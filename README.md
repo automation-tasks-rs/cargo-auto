@@ -32,6 +32,8 @@ cargo auto docs
 
 Cargo is a great tool for building rust projects. It has all the basics: `cargo build`, `cargo build --release`, `cargo fmt`, `cargo test`, `cargo doc`,...  
 But sometimes we need to do more things like copying some files, publish to ftp or enter long commands. These repetitive tasks must be automated.  
+Task automation makes work easier and faster, simplifies the workflow, while improving the consistency and accuracy of workflows.  
+This is also sometimes referred to as "workflow automation."  
 There are many different build systems and task runners there: `make`, `cmake`, `shell scripts`, `cargo-make`, `cargo-script`, `cargo-run-script`, `runner`, `python scripts`, `powershell scripts`, `cmd prompt scripts`, ...  
 Sadly there is no standard in the rust community for now.  
 I want something similar to [build.rs](https://doc.rust-lang.org/cargo/reference/build-scripts.html), so I can write my "tasks" in pure rust. I don't want to learn another meta language with weird syntax and difficult to debug. So I will make something really simple, easy, rusty and extensible.  
