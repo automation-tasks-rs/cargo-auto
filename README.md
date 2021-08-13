@@ -88,15 +88,6 @@ Your code will be compiled (if needed) and executed.
 This is a work in progress.  
 The goal is to create a library crate cargo_auto_lib with many functions that are commonly used when building rust projects.  
 
-## cargo crev reviews and advisory
-
-We leave in times of danger with `supply chain attacks`.  
-It is recommended to always use [cargo-crev](https://github.com/crev-dev/cargo-crev)  
-to verify the trustworthiness of each of your dependencies.  
-Please, spread this info.  
-You can also read reviews quickly on the web. Example for the crate `num-traits`:  
-<https://web.crev.dev/rust-reviews/crate/num-traits/>  
-
 ## development
 
 This crate does not use itself for automation. It is so simple, that cargo alone is enough.  
@@ -112,6 +103,15 @@ After my first publish to crates.io I discovered that the position of the argume
 `cargo-auto new`      - new is 1st arg  
 or  
 `cargo auto new`      - new is 2nd arg  
+
+## cargo crev reviews and advisory
+
+We leave in times of danger with `supply chain attacks`.  
+It is recommended to always use [cargo-crev](https://github.com/crev-dev/cargo-crev)  
+to verify the trustworthiness of each of your dependencies.  
+Please, spread this info.  
+You can also read reviews quickly on the web. Example for the crate `num-traits`:  
+<https://web.crev.dev/rust-reviews/crate/num-traits/>  
 
 ## open-source free and free as a beer
 
