@@ -46,14 +46,14 @@ fn main() {
     // cargo auto new     - new is the arg_2
     let arg_1 = args.next();
     match arg_1 {
-        None => print_help_when_no_argument(),
+        None => print_help_from_cargo_auto(),
         Some(task) => {
             if task!="auto"{
                 match_first_argument(&task, args);
             }else{                
                 let arg_2 = args.next();
                 match arg_2 {
-                    None => print_help_when_no_argument(),
+                    None => print_help_from_cargo_auto(),
                     Some(task) => match_first_argument(&task, args),                    
                 }
             }
@@ -73,7 +73,7 @@ fn is_not_run_in_rust_project_root_directory() -> bool {
 /// else print the help for `cargo auto new`
 /// in development use: `cargo run`
 /// in runtime use: `cargo auto`
-fn print_help_when_no_argument() {
+fn print_help_from_cargo_auto() {
     if !PATH_CARGO_TOML.exists() || !PATH_SRC_MAIN_RS.exists() {
         println!("To start using `cargo auto` you must create a new automation_tasks_rs folder with the command:");
         println!("$ cargo auto new");
@@ -105,7 +105,7 @@ fn match_first_argument(task: &str, mut args: std::env::Args) {
     } else {
         if !already_exists_automation_tasks_rs() {
             println!("{}Error: Directory automation_tasks_rs does not exist.{}", *RED, *RESET);
-            print_help_when_no_argument();
+            print_help_from_cargo_auto();
             // early exit
             std::process::exit(0);
         }
@@ -124,7 +124,7 @@ fn match_first_argument(task: &str, mut args: std::env::Args) {
 /// build if the date of Cargo.toml or main.rs is newer then of automation_tasks_rs/target/automation_tasks_rs
 fn build_automation_tasks_rs_if_needed() {
     if !PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.exists() {
-        build_automation_tasks_rs();
+        build_project_automation_tasks_rs();
         // early return
         return ();
     }
@@ -134,12 +134,12 @@ fn build_automation_tasks_rs_if_needed() {
     let modified_main_rs = unwrap!(unwrap!(std::fs::metadata(PATH_SRC_MAIN_RS.as_os_str())).modified());
 
     if modified_automation_tasks_rs < modified_cargo_toml || modified_automation_tasks_rs < modified_main_rs {
-        build_automation_tasks_rs();
+        build_project_automation_tasks_rs();
     }
 }
 
 /// build automation_tasks_rs
-fn build_automation_tasks_rs() {
+fn build_project_automation_tasks_rs() {
     // build in other directory (not in working current directory)
     // cargo build --manifest-path=dir/Cargo.toml
     unwrap!(unwrap!(std::process::Command::new("cargo")
@@ -169,6 +169,9 @@ fn auto_new(args: &mut std::env::Args) {
         None => copy_template("basic"),
         Some(template_name) => copy_template(&template_name),
     }
+    build_automation_tasks_rs_if_needed();
+    // call `cargo auto` to show the help of the new automation_tasks_rs
+    unwrap!(unwrap!(std::process::Command::new("cargo").arg("auto") .spawn()).wait());
 }
 
 /// creates directory if needed and copy files from templates: Cargo.toml, .gitignore and main.rs
