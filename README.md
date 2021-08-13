@@ -19,7 +19,7 @@ cargo install cargo-auto
 cargo auto new
 ```
 
-This will generate a new directory `automation_tasks_rs` in your main rust project. It is a helper project with complete folder structure for rust projects and completely independent from the main rust project. You can open it in a new editor and view/edit the rust code.  
+This will generate a new directory `automation_tasks_rs` in your main rust project. It is a helper project with complete directory structure for rust projects and completely independent from the main rust project. You can open it in a new editor and view/edit the rust code.  
 Then try this common tasks in the main rust project directory:  
 
 ```bash
@@ -45,8 +45,8 @@ This tool is meant for rust projects, so it means that all the rust infrastructu
 
 ## automation_tasks_rs helper project
 
-The command `cargo auto new` will create a new directory `automation_tasks_rs` with a template for a helper rust project in the root directory of your `main rust project` . It should not interfere with the main rust project. This folder will be added into git commits and pushed to remote repositories as part of the main project. It has its own `.gitignore` to avoid committing its target directory.  
-The `automation_tasks_rs` helper project contains user defined tasks in rust code. This helper project should be opened in a new editor starting from the `automation_tasks_rs` folder. It does not share dependencies with the main project. It is completely separate and independent.  
+The command `cargo auto new` will create a new directory `automation_tasks_rs` with a template for a helper rust project in the root directory of your `main rust project` . It should not interfere with the main rust project. This directory will be added into git commits and pushed to remote repositories as part of the main project. It has its own `.gitignore` to avoid committing its target directory.  
+The `automation_tasks_rs` helper project contains user defined tasks in rust code. This helper project should be opened in a new editor starting from the `automation_tasks_rs` directory. It does not share dependencies with the main project. It is completely separate and independent.  
 
 ## cargo auto subcommand
 
@@ -62,8 +62,8 @@ The code-flow of the source code of `cargo-auto` is simple, fully commented and 
 
 ## templates
 
-Inside the cargo-auto project there are 2 folders with rust sub-projects as templates. I can open a new editor for these folders and build this crates independently. So it is easy to debug and develop.  
-Sadly, I cannot publish these folders and files to `crates.io`. I can effectively publish only the source code inside my main rust project `cargo-auto`.  
+Inside the cargo-auto project there are 2 directories with rust sub-projects as templates. I can open a new editor for these directories and build this crates independently. So it is easy to debug and develop.  
+Sadly, I cannot publish these directories and files to `crates.io`. I can effectively publish only the source code inside my main rust project `cargo-auto`.  
 Therefor, before publishing I must copy the text of these files into the modules `template_basic` and `template_with_lib`. It is not difficult now that rust has fantastic [raw strings](https://doc.rust-lang.org/rust-by-example/std/str.html).  
 
 ## template_basic
@@ -74,9 +74,9 @@ The command
 cargo auto new
 ```
 
-will copy the `template_basic` into `automation_tasks_rs` folder.  
+will copy the `template_basic` into `automation_tasks_rs` directory.  
 This has no dependencies at all, except `std`. It is really simple to understand how it works.  
-Open the folder `automation_tasks_rs` in a new editor, explore and add your own tasks in rust code. It is a plain CLI rust project, you can do everything you need with it. Add dependencies and stuff. No limits. This helper project will be added to you commits and stay part of your project.  
+Open the directory `automation_tasks_rs` in a new editor, explore and add your own tasks in rust code. It is a plain CLI rust project, you can do everything you need with it. Add dependencies and stuff. No limits. This helper project will be added to you commits and stay part of your project.  
 Then in the main project run your task (the task name here is `build`):  
 
 ```rust

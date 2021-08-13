@@ -69,8 +69,8 @@ fn task_docs() {
         // copy to /docs/ because it is github standard
         "echo $ rsync -a --info=progress2 --delete-after target/doc/ docs/",
         "rsync -a --info=progress2 --delete-after target/doc/ docs/",
-        "echo Create simple index.html file in docs folder",
-        &format!("echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",&project_folder_name()) ,
+        "echo Create simple index.html file in docs directory",
+        &format!("echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",&project_directory_name()) ,
         // message to help user with next move
         "echo After successful doc, commit and push changes",
         ];
@@ -100,14 +100,14 @@ fn run_shell_commands(shell_commands: Vec<&str>) {
 }
 
 /// check if run in rust project root directory error and exit if not
-/// there must be Cargo.toml and folder automation_tasks_rs
+/// there must be Cargo.toml and directory automation_tasks_rs
 fn is_not_run_in_rust_project_root_directory() -> bool {
     // return negation of exists
     !(std::path::Path::new("automation_tasks_rs").exists() && std::path::Path::new("Cargo.toml").exists())
 }
 
 /// returns the directory name, that is usually also the crate name (for simplicity)
-fn project_folder_name()->String{
+fn project_directory_name()->String{
     std::env::current_dir().unwrap().file_name().unwrap().to_string_lossy().to_string()
 }
 

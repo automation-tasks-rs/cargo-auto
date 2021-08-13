@@ -75,7 +75,7 @@ fn is_not_run_in_rust_project_root_directory() -> bool {
 /// in runtime use: `cargo auto`
 fn print_help_from_cargo_auto() {
     if !PATH_CARGO_TOML.exists() || !PATH_SRC_MAIN_RS.exists() {
-        println!("To start using `cargo auto` you must create a new automation_tasks_rs folder with the command:");
+        println!("To start using `cargo auto` you must create a new automation_tasks_rs directory with the command:");
         println!("$ cargo auto new");
         println!("or more advanced");
         println!("$ cargo auto new with_lib");
@@ -95,7 +95,7 @@ fn match_first_argument(task: &str, mut args: std::env::Args) {
     if task == "new" {
         if already_exists_automation_tasks_rs() {
             println!(
-                "{}Error: Directory automation_tasks_rs already exists. Cannot create new automation_tasks_rs.{}",
+                "{}Error: Directory automation_tasks_rs already exists. Cannot create new directory automation_tasks_rs.{}",
                 *RED, *RESET
             );
             // early exit
@@ -168,8 +168,16 @@ fn auto_new(args: &mut std::env::Args) {
     match arg_2 {
         None => copy_template("basic"),
         Some(template_name) => copy_template(&template_name),
-    }
+    }    
     build_automation_tasks_rs_if_needed();
+    println!("");
+    println!("`crate auto new` generated the directory automation_tasks_rs in your main rust project.");
+    println!("You can open this new helper rust project in a new rust editor.");
+    println!("View and edit the rust code in automation_tasks_rs. It is independent from the main project.");
+    println!("It will be automatically compiled on the next use of `crate auto task_name` command.");
+    println!("The new directory will be added to your git commit.");
+    println!("There is a local .gitignore file to avoid commit of the target directory.");
+    println!("");
     // call `cargo auto` to show the help of the new automation_tasks_rs
     unwrap!(unwrap!(std::process::Command::new("cargo").arg("auto") .spawn()).wait());
 }

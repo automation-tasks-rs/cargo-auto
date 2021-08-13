@@ -20,7 +20,7 @@
                 }
             },
             "args": ["build"],
-            "cwd": "${workspaceFolder}"
+            "cwd": "${workspacedirectory}"
         },
         {
             "type": "lldb",
