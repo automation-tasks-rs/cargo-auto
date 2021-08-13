@@ -1,0 +1,24 @@
+[package]
+name = "cargo-auto"
+version = "0.3.43"
+authors = ["Luciano Bestia <luciano.bestia@gmail.com>"]
+edition = "2018"
+description = "cargo auto - automation tasks written in Rust language"
+repository = "https://github.com/LucianoBestia/cargo-auto"
+readme = "README.md"
+license = "MIT"
+keywords = ["rust", "make"]
+categories = ["development-tools::build-utils"]
+# publish as a cargo tool. Only this files.
+publish = true
+include = [
+    "Cargo.toml",
+    "LICENSE",
+    "README.md",
+    "src/*"
+]
+
+[dependencies]
+unwrap = "1.2.1"
+termion = "1.5.6"
+lazy_static="1.4.0"

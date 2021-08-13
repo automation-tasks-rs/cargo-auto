@@ -1,0 +1,45 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug executable 'cargo-auto'",
+            "cargo": {
+                "args": [
+                    "build",
+                    "--bin=cargo-auto",
+                    "--package=cargo-auto"
+                ],
+                "filter": {
+                    "name": "cargo-auto",
+                    "kind": "bin"
+                }
+            },
+            "args": ["build"],
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "Debug unit tests in executable 'cargo-auto'",
+            "cargo": {
+                "args": [
+                    "test",
+                    "--no-run",
+                    "--bin=cargo-auto",
+                    "--package=cargo-auto"
+                ],
+                "filter": {
+                    "name": "cargo-auto",
+                    "kind": "bin"
+                }
+            },
+            "args": [],
+            "cwd": "${workspaceFolder}"
+        }
+    ]
+}
