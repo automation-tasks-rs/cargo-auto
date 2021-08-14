@@ -8,7 +8,7 @@
 
 [comment]: # (lmake_lines_of_code end)
 
-cargo auto - automation tasks written in Rust language
+cargo-auto : automation tasks written in Rust language for the build process of rust projects
 
 ## Try it
 
