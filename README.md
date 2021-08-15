@@ -21,15 +21,6 @@ cargo auto new
 
 ![cargo_auto_new](images/cargo_auto_new.png "cargo_auto_new")
 
-This will generate a new directory `automation_tasks_rs` in your main rust project. It is a helper project with complete directory structure for rust projects and completely independent from the main rust project. You can open it in a new editor and view/edit the rust code.  
-Then try this common tasks in the main rust project directory:  
-
-```bash
-cargo auto build
-cargo auto release
-cargo auto docs
-```
-
 ## Motivation
 
 Cargo is a great tool for building rust projects. It has all the basics: `cargo build`, `cargo build --release`, `cargo fmt`, `cargo test`, `cargo doc`,...  
