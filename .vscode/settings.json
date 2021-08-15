@@ -1,9 +1,11 @@
 {
     "cSpell.words": [
+        "auto",
         "cmake",
         "filetime",
-        "auto",
+        "println",
         "subcommand",
-        "termion"
+        "termion",
+        "xtask"
     ]
 }

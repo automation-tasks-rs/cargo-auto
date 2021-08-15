@@ -27,7 +27,7 @@ Cargo is a great tool for building rust projects. It has all the basics: `cargo 
 But sometimes we need to do more things like copying some files, publish to ftp or enter long commands. These repetitive tasks must be automated.  
 Task automation makes work easier and faster, simplifies the workflow, while improving the consistency and accuracy of workflows.  
 This is also sometimes referred to as "workflow automation."  
-There are many different build systems and task runners there: `make`, `cmake`, `shell scripts`, `cargo-make`, `cargo-script`, `cargo-run-script`, `runner`, `python scripts`, `powershell scripts`, `cmd prompt scripts`, ...  
+There are many different build systems and task runners there: `make`, `cmake`, `shell scripts`, `cargo-xtask`, `cargo-make`, `cargo-task`, `cargo-script`, `cargo-run-script`, `runner`, `python scripts`, `powershell scripts`, `cmd prompt scripts`, ...  
 Sadly there is no standard in the rust community for now.  
 I want something similar to [build.rs](https://doc.rust-lang.org/cargo/reference/build-scripts.html), so I can write my "tasks" in pure rust. I don't want to learn another meta language with weird syntax and difficult to debug. So I will make something really simple, easy, rusty and extensible.  
 
@@ -40,6 +40,124 @@ This tool is meant for rust projects, so it means that all the rust infrastructu
 
 The command `cargo auto new` will create a new directory `automation_tasks_rs` with a template for a helper rust project in the root directory of your `main rust project` . It should not interfere with the main rust project. This directory will be added into git commits and pushed to remote repositories as part of the main project. It has its own `.gitignore` to avoid committing its target directory.  
 The `automation_tasks_rs` helper project contains user defined tasks in rust code. This helper project should be opened in a new editor starting from the `automation_tasks_rs` directory. It does not share dependencies with the main project. It is completely separate and independent.  
+Basic example:  
+
+```rust
+/// automation_tasks_rs basic
+fn main() {
+    if is_not_run_in_rust_project_root_directory() {
+        println!("Error: automation_tasks_rs must be called in the root directory of the rust project beside the Cargo.toml file and automation_tasks_rs directory.");
+        // early exit
+        std::process::exit(0);
+    }
+
+    let mut args = std::env::args();
+    // the zero argument is the name of the program
+    let _arg_0 = args.next();
+    // the first argument is the user defined task: (no argument for help), build, release,...
+    let arg_1 = args.next();
+    match arg_1 {
+        None => print_help(),
+        Some(task) => {            
+            println!("Running auto task: {}", &task);
+            // region: call task functions for the task argument
+            if &task == "build" || &task == "b" {
+                task_build();
+            } else if &task == "release" || &task == "r" {
+                task_release();
+            } else if &task == "docs" || &task == "doc" || &task == "d" {
+                task_docs();
+            } else {
+                println!("Task {} is unknown.", &task);
+                print_help();
+            }
+            // endregion: call functions for the task argument
+        }
+    }
+}
+
+/// write a comprehensible help for user defined tasks
+fn print_help() {
+    println!("User defined tasks in automation_tasks_rs:");
+    println!("cargo auto build - builds the crate in debug mode");
+    println!("cargo auto release - builds the crate in release mode");
+    println!("cargo auto docs - builds the docs");
+}
+
+// region: tasks
+
+/// example how to call a list of shell commands
+fn task_build() {
+    #[rustfmt::skip]
+    let shell_commands = [
+        "echo $ cargo fmt", 
+        "cargo fmt", 
+        "echo $ cargo build", 
+        "cargo build"];
+    run_shell_commands(shell_commands.to_vec());
+}
+
+/// example how to call one shell command and combine with rust code
+fn task_release() {
+    println!("$ cargo fmt");
+    run_shell_command("cargo fmt");
+    println!("$ cargo build --release");
+    run_shell_command("cargo build --release");
+}
+
+/// example how to call a list of shell commands and combine with rust code
+fn task_docs() {
+    #[rustfmt::skip]
+    let shell_commands = [
+        "echo $ cargo doc --no-deps --document-private-items",
+        "cargo doc --no-deps --document-private-items",        
+        // copy to /docs/ because it is github standard
+        "echo $ rsync -a --info=progress2 --delete-after target/doc/ docs/",
+        "rsync -a --info=progress2 --delete-after target/doc/ docs/",
+        "echo Create simple index.html file in docs directory",
+        &format!("echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",&project_directory_name()) ,
+        // message to help user with next move
+        "echo After successful doc, commit and push changes",
+        ];
+    run_shell_commands(shell_commands.to_vec());
+}
+
+// endregion: tasks
+
+// region: helper functions
+
+/// run one shell command
+fn run_shell_command(shell_command: &str) {
+    std::process::Command::new("sh")
+        .arg("-c")
+        .arg(shell_command)
+        .spawn()
+        .unwrap()
+        .wait()
+        .unwrap();
+}
+
+/// run shell commands from a vector of strings. This could go into a library.
+fn run_shell_commands(shell_commands: Vec<&str>) {
+    for shell_command in shell_commands {
+        run_shell_command(shell_command);
+    }
+}
+
+/// check if run in rust project root directory error and exit if not
+/// there must be Cargo.toml and directory automation_tasks_rs
+fn is_not_run_in_rust_project_root_directory() -> bool {
+    // return negation of exists
+    !(std::path::Path::new("automation_tasks_rs").exists() && std::path::Path::new("Cargo.toml").exists())
+}
+
+/// returns the directory name, that is usually also the crate name (for simplicity)
+fn project_directory_name()->String{
+    std::env::current_dir().unwrap().file_name().unwrap().to_string_lossy().to_string()
+}
+
+// endregion: helper functions
+```
 
 ## cargo auto subcommand
 
