@@ -3,7 +3,7 @@
 /// because when publishing to crates.io I loose all other files except the main binary.
 
 pub fn cargo_toml()->&'static str {    
-    r#"
+    r##"
 [package]
 name = "automation_tasks_rs"
 version = "0.1.1"
@@ -13,25 +13,30 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-"#
+cargo_auto_lib = "0.7.2"
+"##
 }
 
 pub fn gitignore()->&'static str{
-    r#"
+    r##"
 /target
-    "#
+    "##
 }
 
 pub fn src_main_rs()->&'static str{
     r##"
 /// automation_tasks_rs with_lib
+
+use cargo_auto_lib::*;
+
 fn main() {
     if is_not_run_in_rust_project_root_directory() {
         println!("Error: automation_tasks_rs must be called in the root directory of the rust project beside the Cargo.toml file and automation_tasks_rs directory.");
         // early exit
         std::process::exit(0);
     }
-
+    
+    // get CLI arguments
     let mut args = std::env::args();
     // the zero argument is the name of the program
     let _arg_0 = args.next();
@@ -40,12 +45,14 @@ fn main() {
     match arg_1 {
         None => print_help(),
         Some(task) => {            
-            println!("Running auto task: {}", &task);
+            println!("Running automation_tasks_rs: {}", &task);
             // region: call task functions for the task argument
             if &task == "build" || &task == "b" {
                 task_build();
             } else if &task == "release" || &task == "r" {
                 task_release();
+            } else if &task == "increment_minor" {
+                task_increment_minor();                
             } else if &task == "docs" || &task == "doc" || &task == "d" {
                 task_docs();
             } else {
@@ -60,15 +67,19 @@ fn main() {
 /// write a comprehensible help for user defined tasks
 fn print_help() {
     println!("User defined tasks in automation_tasks_rs:");
-    println!("cargo auto build - builds the crate in debug mode");
-    println!("cargo auto release - builds the crate in release mode");
-    println!("cargo auto docs - builds the docs");
+    println!("cargo auto build - builds the crate in debug mode, fmt");
+    println!("cargo auto release - builds the crate in release mode, version from date, fmt");
+    println!("cargo auto increment_minor - increments the semver version minor part (only for libraries)");
+    println!("cargo auto docs - builds the docs, copy to docs directory");
 }
 
 // region: tasks
 
 /// example how to call a list of shell commands
 fn task_build() {
+    auto_cargo_toml_to_md();
+    auto_lines_of_code("");
+    
     #[rustfmt::skip]
     let shell_commands = [
         "echo $ cargo fmt", 
@@ -80,14 +91,27 @@ fn task_build() {
 
 /// example how to call one shell command and combine with rust code
 fn task_release() {
+    // semver is used for libraries, version_from_date is used for binary
+    //auto_semver_increment_patch();
+    auto_version_from_date();
+    auto_cargo_toml_to_md();
+    auto_lines_of_code("");
+
     println!("$ cargo fmt");
     run_shell_command("cargo fmt");
     println!("$ cargo build --release");
     run_shell_command("cargo build --release");
 }
 
+/// semver is used for libraries, version_from_date is used for binary
+fn task_increment_minor() {
+    auto_semver_increment_minor();
+    auto_cargo_toml_to_md();
+}
+
 /// example how to call a list of shell commands and combine with rust code
-fn task_docs() {
+fn task_docs() {    
+    auto_md_to_doc_comments();        
     #[rustfmt::skip]
     let shell_commands = [
         "echo $ cargo doc --no-deps --document-private-items",
@@ -96,34 +120,16 @@ fn task_docs() {
         "echo $ rsync -a --info=progress2 --delete-after target/doc/ docs/",
         "rsync -a --info=progress2 --delete-after target/doc/ docs/",
         "echo Create simple index.html file in docs directory",
-        &format!("echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",&project_directory_name()) ,
+        &format!("echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",package_name()) ,
         // message to help user with next move
         "echo After successful doc, commit and push changes",
         ];
-    run_shell_commands(shell_commands.to_vec());
+        run_shell_commands(shell_commands.to_vec());
 }
 
 // endregion: tasks
 
 // region: helper functions
-
-/// run one shell command
-fn run_shell_command(shell_command: &str) {
-    std::process::Command::new("sh")
-        .arg("-c")
-        .arg(shell_command)
-        .spawn()
-        .unwrap()
-        .wait()
-        .unwrap();
-}
-
-/// run shell commands from a vector of strings. This could go into a library.
-fn run_shell_commands(shell_commands: Vec<&str>) {
-    for shell_command in shell_commands {
-        run_shell_command(shell_command);
-    }
-}
 
 /// check if run in rust project root directory error and exit if not
 /// there must be Cargo.toml and directory automation_tasks_rs
@@ -132,12 +138,6 @@ fn is_not_run_in_rust_project_root_directory() -> bool {
     !(std::path::Path::new("automation_tasks_rs").exists() && std::path::Path::new("Cargo.toml").exists())
 }
 
-/// returns the directory name, that is usually also the crate name (for simplicity)
-fn project_directory_name()->String{
-    std::env::current_dir().unwrap().file_name().unwrap().to_string_lossy().to_string()
-}
-
 // endregion: helper functions
-
     "##
 }
