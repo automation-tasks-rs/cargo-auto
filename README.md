@@ -21,7 +21,7 @@ cargo auto new
 
 ![cargo_auto_new](images/cargo_auto_new.png "cargo_auto_new")
 
-Try to run a task:
+Now try to run a task:
 
 ```bash
 cargo auto build
