@@ -58,6 +58,7 @@ This tool is meant for rust projects, so it means that all the rust infrastructu
 
 The command `cargo auto new` will create a new directory `automation_tasks_rs` with a template for a helper rust project in the root directory of your `main rust project` . It should not interfere with the main rust project. This directory will be added into git commits and pushed to remote repositories as part of the main project. It has its own `.gitignore` to avoid committing its target directory.  
 The `automation_tasks_rs` helper project contains user defined tasks in rust code. This helper project should be opened in a new editor starting from the `automation_tasks_rs` directory. It does not share dependencies with the main project. It is completely separate and independent.  
+You can edit it and add your dependencies and rust codes. No limits. This is your rust project now.  
 Basic example:  
 
 ```rust
