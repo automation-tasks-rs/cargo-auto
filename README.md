@@ -21,6 +21,14 @@ cargo auto new
 
 ![cargo_auto_new](images/cargo_auto_new.png "cargo_auto_new")
 
+Try to run a task:
+
+```bash
+cargo auto build
+```
+
+![cargo_auto_build](images/cargo_auto_build.png "cargo_auto_build")
+
 ## Motivation
 
 Cargo is a great tool for building rust projects. It has all the basics: `cargo build`, `cargo build --release`, `cargo fmt`, `cargo test`, `cargo doc`,...  
