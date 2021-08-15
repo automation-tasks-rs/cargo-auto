@@ -1,16 +1,18 @@
+[comment]: # (auto_md_to_doc_comments segment start A)
+
 # cargo-auto  
 
 [comment]: # (auto_cargo_toml_to_md start)
 
 **cargo-auto : automation tasks written in Rust language for the build process of rust projects**  
-***[repository](https://github.com/LucianoBestia/cargo-auto); version: 2021.815.1142  date: 2021-08-15 authors: Luciano Bestia***  
+***[repository](https://github.com/LucianoBestia/cargo-auto); version: 2021.815.1207  date: 2021-08-15 authors: Luciano Bestia***  
 
 [comment]: # (auto_cargo_toml_to_md end)
 
 [comment]: # (auto_lines_of_code start)
 [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-405-green.svg)](https://github.com/LucianoBestia/cargo-auto/)
-[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-51-blue.svg)](https://github.com/LucianoBestia/cargo-auto/)
-[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-48-purple.svg)](https://github.com/LucianoBestia/cargo-auto/)
+[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-59-blue.svg)](https://github.com/LucianoBestia/cargo-auto/)
+[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-49-purple.svg)](https://github.com/LucianoBestia/cargo-auto/)
 [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/LucianoBestia/cargo-auto/)
 [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-0-orange.svg)](https://github.com/LucianoBestia/cargo-auto/)
 
@@ -252,3 +254,5 @@ I just love programming.
 But I need also to drink. If you find my projects and tutorials helpful, please buy me a beer or two donating on my [paypal](https://www.paypal.com/paypalme/LucianoBestia). You know the price of a beer in your local bar ;-)  
 So I can drink a free beer for your health :-)  
 [Na zdravje](https://translate.google.com/?hl=en&sl=sl&tl=en&text=Na%20zdravje&op=translate) !
+
+[comment]: # (auto_md_to_doc_comments segment end A)
