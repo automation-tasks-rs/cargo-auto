@@ -2,7 +2,7 @@
 /// I have to copy this files into the modules crate::template_basic and crate::template_with_lib
 /// because when publishing to crates.io I loose all other files except the main binary.
 
-pub fn cargo_toml()->&'static str {    
+pub fn cargo_toml() -> &'static str {
     r##"
 [package]
 name = "automation_tasks_rs"
@@ -17,13 +17,13 @@ cargo_auto_lib = "0.7.2"
 "##
 }
 
-pub fn gitignore()->&'static str{
+pub fn gitignore() -> &'static str {
     r##"
 /target
     "##
 }
 
-pub fn src_main_rs()->&'static str{
+pub fn src_main_rs() -> &'static str {
     r##"
 /// automation_tasks_rs with_lib
 

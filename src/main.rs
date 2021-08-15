@@ -2,7 +2,7 @@
 
 // endregion: lmake_readme include "readme.md" //! A
 
-use std::{path::{Path, PathBuf}};
+use std::path::{Path, PathBuf};
 
 mod template_basic;
 mod template_with_lib;
@@ -25,7 +25,8 @@ lazy_static! {
     static ref PATH_CARGO_TOML: PathBuf = PathBuf::from("automation_tasks_rs/Cargo.toml");
     static ref PATH_GITIGNORE: PathBuf = PathBuf::from("automation_tasks_rs/.gitignore");
     static ref PATH_SRC_MAIN_RS: PathBuf = PathBuf::from("automation_tasks_rs/src/main.rs");
-    static ref PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS: PathBuf = PathBuf::from("automation_tasks_rs/target/debug/automation_tasks_rs");
+    static ref PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS: PathBuf =
+        PathBuf::from("automation_tasks_rs/target/debug/automation_tasks_rs");
 }
 
 fn main() {
@@ -48,13 +49,13 @@ fn main() {
     match arg_1 {
         None => print_help_from_cargo_auto(),
         Some(task) => {
-            if task!="auto"{
+            if task != "auto" {
                 match_first_argument(&task, args);
-            }else{                
+            } else {
                 let arg_2 = args.next();
                 match arg_2 {
                     None => print_help_from_cargo_auto(),
-                    Some(task) => match_first_argument(&task, args),                    
+                    Some(task) => match_first_argument(&task, args),
                 }
             }
         }
@@ -168,7 +169,7 @@ fn auto_new(args: &mut std::env::Args) {
     match arg_2 {
         None => copy_template("basic"),
         Some(template_name) => copy_template(&template_name),
-    }    
+    }
     build_automation_tasks_rs_if_needed();
     println!("");
     println!("`crate auto new` generated the directory automation_tasks_rs in your main rust project.");
@@ -179,23 +180,40 @@ fn auto_new(args: &mut std::env::Args) {
     println!("There is a local .gitignore file to avoid commit of the target directory.");
     println!("");
     // call `cargo auto` to show the help of the new automation_tasks_rs
-    unwrap!(unwrap!(std::process::Command::new("cargo").arg("auto") .spawn()).wait());
+    unwrap!(unwrap!(std::process::Command::new("cargo").arg("auto").spawn()).wait());
 }
 
 /// creates directory if needed and copy files from templates: Cargo.toml, .gitignore and main.rs
 /// I have to copy this files into the modules crate::template_basic and crate::template_with_lib
 /// because when publishing to crates.io I loose all other files except the main binary.
-fn copy_template(template_name: &str) {    
+fn copy_template(template_name: &str) {
     unwrap!(std::fs::create_dir_all(Path::new("automation_tasks_rs/src")));
 
-    if template_name=="basic"{
-        unwrap!(std::fs::write(PATH_CARGO_TOML.as_os_str(), crate::template_basic::cargo_toml().as_bytes()));
-        unwrap!(std::fs::write(PATH_GITIGNORE.as_os_str(), crate::template_basic::gitignore().as_bytes()));
-        unwrap!(std::fs::write(PATH_SRC_MAIN_RS.as_os_str(), crate::template_basic::src_main_rs().as_bytes()));
-    } else 
-    if template_name=="basic"{
-        unwrap!(std::fs::write(PATH_CARGO_TOML.as_os_str(), crate::template_with_lib::cargo_toml().as_bytes()));
-        unwrap!(std::fs::write(PATH_GITIGNORE.as_os_str(), crate::template_with_lib::gitignore().as_bytes()));
-        unwrap!(std::fs::write(PATH_SRC_MAIN_RS.as_os_str(), crate::template_with_lib::src_main_rs().as_bytes()));
+    if template_name == "basic" {
+        unwrap!(std::fs::write(
+            PATH_CARGO_TOML.as_os_str(),
+            crate::template_basic::cargo_toml().as_bytes()
+        ));
+        unwrap!(std::fs::write(
+            PATH_GITIGNORE.as_os_str(),
+            crate::template_basic::gitignore().as_bytes()
+        ));
+        unwrap!(std::fs::write(
+            PATH_SRC_MAIN_RS.as_os_str(),
+            crate::template_basic::src_main_rs().as_bytes()
+        ));
+    } else if template_name == "with_lib" {
+        unwrap!(std::fs::write(
+            PATH_CARGO_TOML.as_os_str(),
+            crate::template_with_lib::cargo_toml().as_bytes()
+        ));
+        unwrap!(std::fs::write(
+            PATH_GITIGNORE.as_os_str(),
+            crate::template_with_lib::gitignore().as_bytes()
+        ));
+        unwrap!(std::fs::write(
+            PATH_SRC_MAIN_RS.as_os_str(),
+            crate::template_with_lib::src_main_rs().as_bytes()
+        ));
     }
 }
