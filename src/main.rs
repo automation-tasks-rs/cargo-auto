@@ -2,13 +2,12 @@
 
 // endregion: lmake_readme include "readme.md" //! A
 
-use std::path::{Path, PathBuf};
-
 mod template_basic;
 mod template_with_lib;
 
 // region: use statements
 use lazy_static::lazy_static;
+use std::path::{Path, PathBuf};
 use unwrap::unwrap;
 // endregion
 
