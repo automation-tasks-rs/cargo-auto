@@ -1,1 +1,1 @@
-window.ALL_CRATES = ["cargo_rssc"];
+window.ALL_CRATES = ["cargo_auto"];
