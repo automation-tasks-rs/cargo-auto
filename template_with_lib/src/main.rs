@@ -93,7 +93,7 @@ fn task_docs() {
         "echo $ rsync -a --info=progress2 --delete-after target/doc/ docs/",
         "rsync -a --info=progress2 --delete-after target/doc/ docs/",
         "echo Create simple index.html file in docs directory",
-        &format!("echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",package_name()) ,
+        &format!("echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",package_name().replace("-","_")) ,
         // message to help user with next move
         "echo After successful doc, commit and push changes",
         ];
