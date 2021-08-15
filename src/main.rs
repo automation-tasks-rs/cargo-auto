@@ -172,12 +172,12 @@ fn auto_new(args: &mut std::env::Args) {
     }
     build_automation_tasks_rs_if_needed();
     println!("");
-    println!("`crate auto new` generated the directory automation_tasks_rs in your main rust project.");
+    println!("`crate auto new` generated the directory `automation_tasks_rs` in your main rust project.");
     println!("You can open this new helper rust project in a new rust editor.");
-    println!("View and edit the rust code in automation_tasks_rs. It is independent from the main project.");
+    println!("View and edit the rust code in `automation_tasks_rs`. It is independent from the main project.");
     println!("It will be automatically compiled on the next use of `crate auto task_name` command.");
     println!("The new directory will be added to your git commit.");
-    println!("There is a local .gitignore file to avoid commit of the target directory.");
+    println!("There is a local .gitignore file to avoid commit of the `target/` directory.");
     println!("");
     // call `cargo auto` to show the help of the new automation_tasks_rs
     unwrap!(unwrap!(std::process::Command::new("cargo").arg("auto").spawn()).wait());
