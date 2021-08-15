@@ -1,14 +1,22 @@
 # cargo-auto  
 
-[comment]: # (lmake_readme cargo.toml data start)
+[comment]: # (auto_cargo_toml_to_md start)
 
-[comment]: # (lmake_readme cargo.toml data end)  
+**cargo-auto : automation tasks written in Rust language for the build process of rust projects**  
+***[repository](https://github.com/LucianoBestia/cargo-auto); version: 2021.815.1059  date: 2021-08-15 authors: Luciano Bestia***  
 
-[comment]: # (lmake_lines_of_code start)
+[comment]: # (auto_cargo_toml_to_md end)
 
-[comment]: # (lmake_lines_of_code end)
+[comment]: # (auto_lines_of_code start)
+[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-406-green.svg)](https://github.com/LucianoBestia/cargo-auto/)
+[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-51-blue.svg)](https://github.com/LucianoBestia/cargo-auto/)
+[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-48-purple.svg)](https://github.com/LucianoBestia/cargo-auto/)
+[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/LucianoBestia/cargo-auto/)
+[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-0-orange.svg)](https://github.com/LucianoBestia/cargo-auto/)
 
-cargo-auto : automation tasks written in Rust language for the build process of rust projects
+[comment]: # (auto_lines_of_code end)
+
+[![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto) [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/) [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/cargo-auto.svg)](https://web.crev.dev/rust-reviews/crate/cargo-auto/) [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/) [![Licence](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/LucianoBestia/cargo-auto/blob/master/LICENSE) [![Rust](https://github.com/LucianoBestia/cargo-auto/workflows/RustAction/badge.svg)](https://github.com/LucianoBestia/cargo-auto/)  
 
 ## Try it
 
