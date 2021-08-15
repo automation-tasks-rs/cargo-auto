@@ -223,7 +223,6 @@ cargo auto new with_lib
 
 ## development
 
-This crate does not use itself for automation. It is so simple, that cargo alone is enough.  
 Usually I compile and run the code with added arguments like this:  
 
 ```bash
@@ -233,9 +232,9 @@ cargo run -- release
 ```
 
 After my first publish to crates.io I discovered that the position of the argument changes if it is used as:  
-`cargo-auto new`      - new is 1st arg  
+standalone `cargo-auto new`      - new is 1st arg  
 or  
-`cargo auto new`      - new is 2nd arg  
+subcommand `cargo auto new`      - new is 2nd arg  
 
 ## cargo crev reviews and advisory
 
