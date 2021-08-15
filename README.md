@@ -88,7 +88,11 @@ Your code will be compiled (if needed) and executed.
 ## template_with_lib
 
 This is a work in progress.  
-The goal is to create a library crate cargo_auto_lib with many functions that are commonly used when building rust projects.  
+The goal is to create a library crate [cargo_auto_lib](https://github.com/LucianoBestia/cargo_auto_lib) with many functions that are commonly used when building rust projects.  
+
+```rust
+cargo auto new with_lib
+```
 
 ## development
 
