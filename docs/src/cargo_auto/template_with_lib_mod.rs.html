@@ -155,11 +155,6 @@
 <span id="153">153</span>
 <span id="154">154</span>
 <span id="155">155</span>
-<span id="156">156</span>
-<span id="157">157</span>
-<span id="158">158</span>
-<span id="159">159</span>
-<span id="160">160</span>
 </pre><pre class="rust">
 <span class="doccomment">//! copy of the files in the directory template_with_lib</span>
 <span class="doccomment">/// I have to copy this files into the modules crate::template_basic and crate::template_with_lib</span>
@@ -187,8 +182,7 @@ cargo_auto_lib = &quot;0.7.8&quot;
 }
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">src_main_rs</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-    <span class="string">r##&quot;
-//! automation_tasks_rs with_lib
+    <span class="string">r##&quot;//! automation_tasks_rs with_lib
 
 use cargo_auto_lib::*;
 
@@ -251,9 +245,7 @@ fn print_help() {
 fn task_build() {    
     #[rustfmt::skip]
     let shell_commands = [
-        &quot;echo $ cargo fmt&quot;, 
         &quot;cargo fmt&quot;, 
-        &quot;echo $ cargo build&quot;, 
         &quot;cargo build&quot;];
     run_shell_commands(shell_commands.to_vec());
 }
@@ -283,17 +275,15 @@ fn task_docs() {
     auto_md_to_doc_comments();        
     #[rustfmt::skip]
     let shell_commands = [
-        &quot;echo $ cargo doc --no-deps --document-private-items&quot;,
-        &quot;cargo doc --no-deps --document-private-items&quot;,        
-        // copy to /docs/ because it is github standard
-        &quot;echo $ rsync -a --info=progress2 --delete-after target/doc/ docs/&quot;,
+        &quot;cargo doc --no-deps --document-private-items --open&quot;,        
+        // copy target/doc into docs/ because it is github standard
         &quot;rsync -a --info=progress2 --delete-after target/doc/ docs/&quot;,
         &quot;echo Create simple index.html file in docs directory&quot;,
-        &amp;format!(&quot;echo \&quot;&lt;meta http-equiv=\\\&quot;refresh\\\&quot; content=\\\&quot;0; url={}/index.html\\\&quot; /&gt;\&quot; &gt; docs/index.html&quot;,package_name().replace(&quot;-&quot;,&quot;_&quot;)) ,
-        // message to help user with next move
-        &quot;echo After successful doc, commit and push changes&quot;,
-        ];
-        run_shell_commands(shell_commands.to_vec());
+        &amp;format!(&quot;echo \&quot;&lt;meta http-equiv=\\\&quot;refresh\\\&quot; content=\\\&quot;0; url={}/index.html\\\&quot; /&gt;\&quot; &gt; docs/index.html&quot;,package_name().replace(&quot;-&quot;,&quot;_&quot;)) ,        
+    ];
+    run_shell_commands(shell_commands.to_vec());
+    // message to help user with next move
+    println!(&quot;After successful doc, commit and push changes&quot;);
 }
 
 /// example hot to publish to crates.io and git tag
@@ -318,7 +308,7 @@ fn is_not_run_in_rust_project_root_directory() -&gt; bool {
 }
 
 // endregion: helper functions
-        
+
     &quot;##</span>
 }
 </pre></div>

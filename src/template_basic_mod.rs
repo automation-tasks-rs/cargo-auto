@@ -23,8 +23,7 @@ pub fn gitignore() -> &'static str {
 }
 
 pub fn src_main_rs() -> &'static str {
-    r##"
-/// automation_tasks_rs basic
+    r##"/// automation_tasks_rs basic
 fn main() {
     if is_not_run_in_rust_project_root_directory() {
         println!("Error: automation_tasks_rs must be called in the root directory of the rust project beside the Cargo.toml file and automation_tasks_rs directory.");

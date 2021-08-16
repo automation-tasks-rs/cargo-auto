@@ -2,10 +2,10 @@
 //! # cargo-auto  
 //!
 //! **cargo-auto : automation tasks written in Rust language for the build process of rust projects**  
-//! ***[repository](https://github.com/LucianoBestia/cargo-auto); version: 2021.816.1045  date: 2021-08-16 authors: Luciano Bestia***  
+//! ***[repository](https://github.com/LucianoBestia/cargo-auto); version: 2021.816.1211  date: 2021-08-16 authors: Luciano Bestia***  
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-424-green.svg)](https://github.com/LucianoBestia/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-314-blue.svg)](https://github.com/LucianoBestia/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-420-green.svg)](https://github.com/LucianoBestia/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-274-blue.svg)](https://github.com/LucianoBestia/cargo-auto/)
 //! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-47-purple.svg)](https://github.com/LucianoBestia/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/LucianoBestia/cargo-auto/)
 //! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-0-orange.svg)](https://github.com/LucianoBestia/cargo-auto/)
@@ -114,7 +114,7 @@
 //!     #[rustfmt::skip]
 //!     let shell_commands = [
 //!         "echo $ cargo doc --no-deps --document-private-items --open",
-//!         "cargo doc --no-deps --document-private-items --open",        
+//!         "cargo doc --no-deps --document-private-items --open",
 //!         // copy to /docs/ because it is github standard
 //!         "echo $ rsync -a --info=progress2 --delete-after target/doc/ docs/",
 //!         "rsync -a --info=progress2 --delete-after target/doc/ docs/",
@@ -148,18 +148,19 @@
 //! Inside the cargo-auto project there are 2 directories with rust sub-projects as templates. I can open a new editor for these directories and build this crates independently. So it is easy to debug and develop.  
 //! Sadly, I cannot publish these directories and files to `crates.io`. I can effectively publish only the source code inside my main rust project `cargo-auto`.  
 //! Therefor, before publishing I must copy the text of these files into the modules `template_basic_mod.rs` and `template_with_lib_mod.rs`. It is not difficult now that rust has fantastic [raw strings](https://doc.rust-lang.org/rust-by-example/std/str.html).  
+//! Guess what? I found a perfect example for automation! How convenient.  
 //!
 //! ## template_basic
 //!
-//! The command  
+//! This command will copy the `template_basic` into `automation_tasks_rs` directory:  
 //!
 //! ```rust
 //! cargo auto new
 //! ```
 //!
-//! will copy the `template_basic` into `automation_tasks_rs` directory.  
-//! This has no dependencies at all, except `std`. It is really simple to understand how it works.  
-//! Open the directory `automation_tasks_rs` in a new editor, explore and add your own tasks in rust code. It is a plain CLI rust project, you can do everything you need with it. Add dependencies and stuff. No limits. This helper project will be added to you commits and stay part of your project.  
+//! The new helper project has no dependencies at all, except `std`. It is really simple to understand how it works.  
+//! Open the directory `automation_tasks_rs` in a new editor, explore and add your own tasks in rust code. It is a plain CLI rust project, you can do everything you need with it. Add dependencies and stuff. No limits. Freedom of expression.  
+//! This helper project will be added to you commits and stay part of your project.  
 //! Then in the main project, run your task (the task name here is `build`) simply like this:  
 //!
 //! ```rust
@@ -186,12 +187,6 @@
 //! cargo run -- build
 //! cargo run -- release
 //! ```
-//!
-//! After my first publish to crates.io I discovered that the position of the argument changes if it is used as:  
-//! standalone `cargo-auto new`      - new is 1st arg  
-//! or  
-//! subcommand `cargo auto new`      - new is 2nd arg  
-//! I added some code to solve that.  
 //!
 //! ## cargo crev reviews and advisory
 //!

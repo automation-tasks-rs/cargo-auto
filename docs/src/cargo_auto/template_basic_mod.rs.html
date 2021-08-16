@@ -149,7 +149,6 @@
 <span id="147">147</span>
 <span id="148">148</span>
 <span id="149">149</span>
-<span id="150">150</span>
 </pre><pre class="rust">
 <span class="doccomment">//! copy of the files in the directory template_basic</span>
 <span class="doccomment">/// I have to copy this files into the modules crate::template_basic and crate::template_with_lib</span>
@@ -176,8 +175,7 @@ publish = false
 }
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">src_main_rs</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-    <span class="string">r##&quot;
-/// automation_tasks_rs basic
+    <span class="string">r##&quot;/// automation_tasks_rs basic
 fn main() {
     if is_not_run_in_rust_project_root_directory() {
         println!(&quot;Error: automation_tasks_rs must be called in the root directory of the rust project beside the Cargo.toml file and automation_tasks_rs directory.&quot;);
@@ -248,8 +246,8 @@ fn task_release() {
 fn task_docs() {
     #[rustfmt::skip]
     let shell_commands = [
-        &quot;echo $ cargo doc --no-deps --document-private-items&quot;,
-        &quot;cargo doc --no-deps --document-private-items&quot;,        
+        &quot;echo $ cargo doc --no-deps --document-private-items --open&quot;,
+        &quot;cargo doc --no-deps --document-private-items --open&quot;,
         // copy to /docs/ because it is github standard
         &quot;echo $ rsync -a --info=progress2 --delete-after target/doc/ docs/&quot;,
         &quot;rsync -a --info=progress2 --delete-after target/doc/ docs/&quot;,
