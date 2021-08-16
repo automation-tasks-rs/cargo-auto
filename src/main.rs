@@ -295,9 +295,10 @@ fn is_not_run_in_rust_project_root_directory() -> bool {
 /// in runtime use: `cargo auto`  
 fn print_help_from_cargo_auto() {
     if !PATH_CARGO_TOML.exists() || !PATH_SRC_MAIN_RS.exists() {
-        println!("To start using `cargo auto` you must create a new automation_tasks_rs directory with the command:");
+        println!("");
+        println!("To start using `cargo auto` you must create a new `automation_tasks_rs` directory with the command:");
         println!("$ cargo auto new");
-        println!("or more advanced");
+        println!("or more advanced:");
         println!("$ cargo auto new with_lib");
     } else {
         build_automation_tasks_rs_if_needed();
@@ -397,7 +398,6 @@ fn auto_new(args: &mut std::env::Args) {
     println!("It will be automatically compiled on the next use of `crate auto task_name` command.");
     println!("The new directory will be added to your git commit.");
     println!("There is a local .gitignore file to avoid commit of the `target/` directory.");
-    println!("");
     // call `cargo auto` to show the help of the new automation_tasks_rs
     unwrap!(unwrap!(std::process::Command::new("cargo").arg("auto").spawn()).wait());
 }
