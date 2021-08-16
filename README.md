@@ -156,6 +156,7 @@ The source code is on [GitHub](https://github.com/LucianoBestia/cargo-auto) with
 Inside the cargo-auto project there are 2 directories with rust sub-projects as templates. I can open a new editor for these directories and build this crates independently. So it is easy to debug and develop.  
 Sadly, I cannot publish these directories and files to `crates.io`. I can effectively publish only the source code inside my main rust project `cargo-auto`.  
 Therefor, before publishing I must copy the text of these files into the modules `template_basic_mod.rs` and `template_with_lib_mod.rs`. It is not difficult now that rust has fantastic [raw strings](https://doc.rust-lang.org/rust-by-example/std/str.html).  
+Guess what? I found a perfect example for automation! How convenient.  
 
 ## template_basic
 
