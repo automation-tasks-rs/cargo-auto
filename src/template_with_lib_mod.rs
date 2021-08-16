@@ -1,9 +1,8 @@
-//! copy of the files in the directory template_with_lib
-/// I have to copy this files into the modules crate::template_basic and crate::template_with_lib
-/// because when publishing to crates.io I loose all other files except the main binary.
+//! this strings are copied from the template_x folders
+//! because when publishing to crates.io I only the main binary is transferred
 
 pub fn cargo_toml() -> &'static str {
-    r##"
+    r#"
 [package]
 name = "automation_tasks_rs"
 version = "0.1.1"
@@ -14,13 +13,12 @@ publish = false
 
 [dependencies]
 cargo_auto_lib = "0.7.8"
-"##
+"#
 }
 
 pub fn gitignore() -> &'static str {
-    r##"
-/target
-    "##
+    r#"/target
+    "#
 }
 
 pub fn src_main_rs() -> &'static str {
@@ -35,8 +33,8 @@ fn main() {
         // early exit
         std::process::exit(0);
     }
-    
-    // get CLI arguments
+	
+	// get CLI arguments
     let mut args = std::env::args();
     // the zero argument is the name of the program
     let _arg_0 = args.next();
@@ -151,5 +149,6 @@ fn is_not_run_in_rust_project_root_directory() -> bool {
 
 // endregion: helper functions
 
+    
     "##
 }

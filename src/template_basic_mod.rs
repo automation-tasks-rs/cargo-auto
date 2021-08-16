@@ -1,10 +1,8 @@
-//! copy of the files in the directory template_basic
-/// I have to copy this files into the modules crate::template_basic and crate::template_with_lib
-/// because when publishing to crates.io I loose all other files except the main binary.
+//! this strings are copied from the template_x folders
+//! because when publishing to crates.io I only the main binary is transferred
 
 pub fn cargo_toml() -> &'static str {
-    r#"
-[package]
+    r#"[package]
 name = "automation_tasks_rs"
 version = "0.1.1"
 authors = ["Luciano Bestia <luciano.bestia@gmail.com>"]
@@ -17,8 +15,7 @@ publish = false
 }
 
 pub fn gitignore() -> &'static str {
-    r#"
-/target
+    r#"/target
     "#
 }
 

@@ -1,7 +1,7 @@
 // region: auto_md_to_doc_comments include README.md A //!
 //! # cargo-auto  
 //!
-//! **cargo-auto : automation tasks written in Rust language for the build process of rust projects**  
+//! **cargo-auto - automation tasks written in Rust language for the build process of rust projects**  
 //! ***[repository](https://github.com/LucianoBestia/cargo-auto); version: 2021.816.1211  date: 2021-08-16 authors: Luciano Bestia***  
 //!
 //! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-420-green.svg)](https://github.com/LucianoBestia/cargo-auto/)
