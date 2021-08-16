@@ -143,6 +143,23 @@
 <span id="141">141</span>
 <span id="142">142</span>
 <span id="143">143</span>
+<span id="144">144</span>
+<span id="145">145</span>
+<span id="146">146</span>
+<span id="147">147</span>
+<span id="148">148</span>
+<span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
+<span id="160">160</span>
 </pre><pre class="rust">
 <span class="doccomment">//! copy of the files in the directory template_with_lib</span>
 <span class="doccomment">/// I have to copy this files into the modules crate::template_basic and crate::template_with_lib</span>
@@ -159,7 +176,7 @@ description = &quot;cargo auto - automation tasks written in Rust language&quot;
 publish = false
 
 [dependencies]
-cargo_auto_lib = &quot;0.7.2&quot;
+cargo_auto_lib = &quot;0.7.8&quot;
 &quot;##</span>
 }
 
@@ -171,10 +188,11 @@ cargo_auto_lib = &quot;0.7.2&quot;
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">src_main_rs</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
     <span class="string">r##&quot;
-/// automation_tasks_rs with_lib
+//! automation_tasks_rs with_lib
 
 use cargo_auto_lib::*;
 
+/// automation_tasks_rs with_lib
 fn main() {
     if is_not_run_in_rust_project_root_directory() {
         println!(&quot;Error: automation_tasks_rs must be called in the root directory of the rust project beside the Cargo.toml file and automation_tasks_rs directory.&quot;);
@@ -186,46 +204,51 @@ fn main() {
     let mut args = std::env::args();
     // the zero argument is the name of the program
     let _arg_0 = args.next();
+    match_arguments_and_call_tasks(args);
+}
+
+/// match arguments and call tasks functions
+fn match_arguments_and_call_tasks(mut args: std::env::Args){
     // the first argument is the user defined task: (no argument for help), build, release,...
     let arg_1 = args.next();
     match arg_1 {
         None =&gt; print_help(),
         Some(task) =&gt; {            
-            println!(&quot;Running automation_tasks_rs: {}&quot;, &amp;task);
-            // region: call task functions for the task argument
+            println!(&quot;Running auto task: {}&quot;, &amp;task);
             if &amp;task == &quot;build&quot; || &amp;task == &quot;b&quot; {
                 task_build();
             } else if &amp;task == &quot;release&quot; || &amp;task == &quot;r&quot; {
                 task_release();
             } else if &amp;task == &quot;increment_minor&quot; {
-                task_increment_minor();                
+                task_increment_minor();
             } else if &amp;task == &quot;docs&quot; || &amp;task == &quot;doc&quot; || &amp;task == &quot;d&quot; {
                 task_docs();
+            } else if &amp;task == &quot;publish_to_crates_io&quot; {
+                task_publish_to_crates_io();
             } else {
                 println!(&quot;Task {} is unknown.&quot;, &amp;task);
                 print_help();
             }
-            // endregion: call functions for the task argument
         }
     }
 }
 
 /// write a comprehensible help for user defined tasks
 fn print_help() {
+    println!(&quot;&quot;);
     println!(&quot;User defined tasks in automation_tasks_rs:&quot;);
     println!(&quot;cargo auto build - builds the crate in debug mode, fmt&quot;);
     println!(&quot;cargo auto release - builds the crate in release mode, version from date, fmt&quot;);
     println!(&quot;cargo auto increment_minor - increments the semver version minor part (only for libraries)&quot;);
     println!(&quot;cargo auto docs - builds the docs, copy to docs directory&quot;);
+    println!(&quot;cargo auto publish_to_crates_io - publish to crates.io, git tag&quot;);
+    println!(&quot;&quot;);
 }
 
 // region: tasks
 
 /// example how to call a list of shell commands
-fn task_build() {
-    auto_cargo_toml_to_md();
-    auto_lines_of_code(&quot;&quot;);
-    
+fn task_build() {    
     #[rustfmt::skip]
     let shell_commands = [
         &quot;echo $ cargo fmt&quot;, 
@@ -237,7 +260,7 @@ fn task_build() {
 
 /// example how to call one shell command and combine with rust code
 fn task_release() {
-    // semver is used for libraries, version_from_date is used for binary
+    // `semver` is used for libraries, `version_from_date` is used for binary executables
     //auto_semver_increment_patch();
     auto_version_from_date();
     auto_cargo_toml_to_md();
@@ -249,7 +272,7 @@ fn task_release() {
     run_shell_command(&quot;cargo build --release&quot;);
 }
 
-/// semver is used for libraries, version_from_date is used for binary
+/// semver is used for libraries, increment the second part of the version
 fn task_increment_minor() {
     auto_semver_increment_minor();
     auto_cargo_toml_to_md();
@@ -266,25 +289,36 @@ fn task_docs() {
         &quot;echo $ rsync -a --info=progress2 --delete-after target/doc/ docs/&quot;,
         &quot;rsync -a --info=progress2 --delete-after target/doc/ docs/&quot;,
         &quot;echo Create simple index.html file in docs directory&quot;,
-        &amp;format!(&quot;echo \&quot;&lt;meta http-equiv=\\\&quot;refresh\\\&quot; content=\\\&quot;0; url={}/index.html\\\&quot; /&gt;\&quot; &gt; docs/index.html&quot;,package_name()) ,
+        &amp;format!(&quot;echo \&quot;&lt;meta http-equiv=\\\&quot;refresh\\\&quot; content=\\\&quot;0; url={}/index.html\\\&quot; /&gt;\&quot; &gt; docs/index.html&quot;,package_name().replace(&quot;-&quot;,&quot;_&quot;)) ,
         // message to help user with next move
         &quot;echo After successful doc, commit and push changes&quot;,
         ];
         run_shell_commands(shell_commands.to_vec());
 }
 
+/// example hot to publish to crates.io and git tag
+fn task_publish_to_crates_io(){
+    // git tag
+    let shell_command = format!(&quot;git tag -f -a v{version} -m version_{version}&quot;,version=package_version());
+    run_shell_command(&amp;shell_command);
+
+    // cargo publish
+    run_shell_command(&quot;cargo publish&quot;);
+}
+
 // endregion: tasks
 
 // region: helper functions
 
-/// check if run in rust project root directory error and exit if not
-/// there must be Cargo.toml and directory automation_tasks_rs
+/// check if run in rust project root directory error
+/// there must be Cargo.toml and the directory automation_tasks_rs
 fn is_not_run_in_rust_project_root_directory() -&gt; bool {
     // return negation of exists
     !(std::path::Path::new(&quot;automation_tasks_rs&quot;).exists() &amp;&amp; std::path::Path::new(&quot;Cargo.toml&quot;).exists())
 }
 
 // endregion: helper functions
+        
     &quot;##</span>
 }
 </pre></div>

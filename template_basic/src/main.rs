@@ -9,13 +9,17 @@ fn main() {
     let mut args = std::env::args();
     // the zero argument is the name of the program
     let _arg_0 = args.next();
+    match_arguments_and_call_tasks(args);
+}
+
+/// match arguments and call tasks functions
+fn match_arguments_and_call_tasks(mut args: std::env::Args){
     // the first argument is the user defined task: (no argument for help), build, release,...
     let arg_1 = args.next();
     match arg_1 {
         None => print_help(),
         Some(task) => {            
             println!("Running auto task: {}", &task);
-            // region: call task functions for the task argument
             if &task == "build" || &task == "b" {
                 task_build();
             } else if &task == "release" || &task == "r" {
@@ -26,17 +30,18 @@ fn main() {
                 println!("Task {} is unknown.", &task);
                 print_help();
             }
-            // endregion: call functions for the task argument
         }
     }
 }
 
 /// write a comprehensible help for user defined tasks
 fn print_help() {
+    println!("");
     println!("User defined tasks in automation_tasks_rs:");
     println!("cargo auto build - builds the crate in debug mode");
     println!("cargo auto release - builds the crate in release mode");
     println!("cargo auto docs - builds the docs");
+    println!("");
 }
 
 // region: tasks
@@ -99,14 +104,16 @@ fn run_shell_commands(shell_commands: Vec<&str>) {
     }
 }
 
-/// check if run in rust project root directory error and exit if not
-/// there must be Cargo.toml and directory automation_tasks_rs
+/// check if run in rust project root directory error
+/// there must be Cargo.toml and the directory automation_tasks_rs
 fn is_not_run_in_rust_project_root_directory() -> bool {
     // return negation of exists
     !(std::path::Path::new("automation_tasks_rs").exists() && std::path::Path::new("Cargo.toml").exists())
 }
 
-/// returns the directory name, that is usually also the crate name (for simplicity)
+/// returns the directory name, that is usually also the crate name 
+/// The true package name is inside Cargo.toml, 
+/// but for simplicity (no dependencies) here I use the directory name.
 fn project_directory_name()->String{
     std::env::current_dir().unwrap().file_name().unwrap().to_string_lossy().to_string()
 }

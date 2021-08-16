@@ -5,14 +5,14 @@
 [comment]: # (auto_cargo_toml_to_md start)
 
 **cargo-auto : automation tasks written in Rust language for the build process of rust projects**  
-***[repository](https://github.com/LucianoBestia/cargo-auto); version: 2021.815.1251  date: 2021-08-15 authors: Luciano Bestia***  
+***[repository](https://github.com/LucianoBestia/cargo-auto); version: 2021.816.1045  date: 2021-08-16 authors: Luciano Bestia***  
 
 [comment]: # (auto_cargo_toml_to_md end)
 
 [comment]: # (auto_lines_of_code start)
-[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-404-green.svg)](https://github.com/LucianoBestia/cargo-auto/)
-[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-307-blue.svg)](https://github.com/LucianoBestia/cargo-auto/)
-[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-49-purple.svg)](https://github.com/LucianoBestia/cargo-auto/)
+[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-424-green.svg)](https://github.com/LucianoBestia/cargo-auto/)
+[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-314-blue.svg)](https://github.com/LucianoBestia/cargo-auto/)
+[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-47-purple.svg)](https://github.com/LucianoBestia/cargo-auto/)
 [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/LucianoBestia/cargo-auto/)
 [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-0-orange.svg)](https://github.com/LucianoBestia/cargo-auto/)
 
@@ -39,6 +39,8 @@ cargo auto build
 
 ![cargo_auto_build](https://github.com/LucianoBestia/cargo-auto/raw/main/images/cargo_auto_build.png "cargo_auto_build")
 
+Congratulations! You are already using `cargo-auto`. Simple as that.  
+
 ## Motivation
 
 Cargo is a great tool for building rust projects. It has all the basics: `cargo build`, `cargo build --release`, `cargo fmt`, `cargo test`, `cargo doc`,...  
@@ -57,29 +59,21 @@ This tool `cargo-auto` is meant for rust projects, so it means that all the rust
 ## automation_tasks_rs helper project
 
 The command `cargo auto new` will create a new directory `automation_tasks_rs` with a template for a helper rust project in the root directory of your `main rust project` . It should not interfere with the main rust project. This directory will be added into git commits and pushed to remote repositories as part of the main project. It has its own `.gitignore` to avoid committing its target directory.  
-The `automation_tasks_rs` helper project contains user defined tasks in rust code. This helper project should be opened in a new editor starting from the `automation_tasks_rs` directory. It does not share dependencies with the main project. It is completely separate and independent.  
-You can edit it and add your dependencies and rust codes. No limits. Freedom of expression. This is now your code and your helper rust project. Because only you know what you want to automate.  
+The `automation_tasks_rs` helper project contains user defined tasks in rust code. Your tasks. This helper project should be opened in a new editor starting from the `automation_tasks_rs` directory. It does not share dependencies with the main project. It is completely separate and independent.  
+You can edit it and add your dependencies and rust code. No limits. Freedom of expression.  
+This is now your code, your tasks and your helper rust project!  
+Because only you know what you want to automate and how to do it.  
 Basic example:  
 
 ```rust
-/// automation_tasks_rs basic
-fn main() {
-    if is_not_run_in_rust_project_root_directory() {
-        println!("Error: automation_tasks_rs must be called in the root directory of the rust project beside the Cargo.toml file and automation_tasks_rs directory.");
-        // early exit
-        std::process::exit(0);
-    }
-
-    let mut args = std::env::args();
-    // the zero argument is the name of the program
-    let _arg_0 = args.next();
+/// match arguments and call tasks functions
+fn match_arguments_and_call_tasks(mut args: std::env::Args){
     // the first argument is the user defined task: (no argument for help), build, release,...
     let arg_1 = args.next();
     match arg_1 {
         None => print_help(),
         Some(task) => {            
             println!("Running auto task: {}", &task);
-            // region: call task functions for the task argument
             if &task == "build" || &task == "b" {
                 task_build();
             } else if &task == "release" || &task == "r" {
@@ -90,7 +84,6 @@ fn main() {
                 println!("Task {} is unknown.", &task);
                 print_help();
             }
-            // endregion: call functions for the task argument
         }
     }
 }
@@ -143,39 +136,6 @@ fn task_docs() {
 
 // endregion: tasks
 
-// region: helper functions
-
-/// run one shell command
-fn run_shell_command(shell_command: &str) {
-    std::process::Command::new("sh")
-        .arg("-c")
-        .arg(shell_command)
-        .spawn()
-        .unwrap()
-        .wait()
-        .unwrap();
-}
-
-/// run shell commands from a vector of strings. This could go into a library.
-fn run_shell_commands(shell_commands: Vec<&str>) {
-    for shell_command in shell_commands {
-        run_shell_command(shell_command);
-    }
-}
-
-/// check if run in rust project root directory error and exit if not
-/// there must be Cargo.toml and directory automation_tasks_rs
-fn is_not_run_in_rust_project_root_directory() -> bool {
-    // return negation of exists
-    !(std::path::Path::new("automation_tasks_rs").exists() && std::path::Path::new("Cargo.toml").exists())
-}
-
-/// returns the directory name, that is usually also the crate name (for simplicity)
-fn project_directory_name()->String{
-    std::env::current_dir().unwrap().file_name().unwrap().to_string_lossy().to_string()
-}
-
-// endregion: helper functions
 ```
 
 ## cargo auto subcommand

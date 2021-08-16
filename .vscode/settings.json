@@ -3,6 +3,7 @@
         "auto",
         "cmake",
         "filetime",
+        "paypal",
         "println",
         "subcommand",
         "termion",
