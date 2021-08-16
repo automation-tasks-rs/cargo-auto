@@ -160,15 +160,15 @@ Guess what? I found a perfect example for automation! How convenient.
 
 ## template_basic
 
-The command  
+This command will copy the `template_basic` into `automation_tasks_rs` directory:  
 
 ```rust
 cargo auto new
 ```
 
-will copy the `template_basic` into `automation_tasks_rs` directory.  
-This has no dependencies at all, except `std`. It is really simple to understand how it works.  
-Open the directory `automation_tasks_rs` in a new editor, explore and add your own tasks in rust code. It is a plain CLI rust project, you can do everything you need with it. Add dependencies and stuff. No limits. This helper project will be added to you commits and stay part of your project.  
+The new helper project has no dependencies at all, except `std`. It is really simple to understand how it works.  
+Open the directory `automation_tasks_rs` in a new editor, explore and add your own tasks in rust code. It is a plain CLI rust project, you can do everything you need with it. Add dependencies and stuff. No limits. Freedom of expression.  
+This helper project will be added to you commits and stay part of your project.  
 Then in the main project, run your task (the task name here is `build`) simply like this:  
 
 ```rust
@@ -195,12 +195,6 @@ cargo run -- new
 cargo run -- build
 cargo run -- release
 ```
-
-After my first publish to crates.io I discovered that the position of the argument changes if it is used as:  
-standalone `cargo-auto new`      - new is 1st arg  
-or  
-subcommand `cargo auto new`      - new is 2nd arg  
-I added some code to solve that.  
 
 ## cargo crev reviews and advisory
 
