@@ -49,16 +49,16 @@ There are many different build systems and task runners there: `make`, `cmake`, 
 Sadly there is no standard in the rust community for now.  
 I want something similar to [build.rs](https://doc.rust-lang.org/cargo/reference/build-scripts.html), so I can write my "tasks" in pure rust. I don't want to learn another meta language with weird syntax and difficult to debug. So I will make something really simple, easy, rusty and extensible.  
 
-## cargo auto - automation tasks written in Rust language
+## scripting with rust
 
 Rust is a compiled language. It is not really a scripting or interpreted language. But the compilation of small projects is really fast and can be ignored. Subsequent calls will use the already built binary and so the speed will be even faster.  
-This tool is meant for rust projects, so it means that all the rust infrastructure is already in place.  
+This tool `cargo-auto` is meant for rust projects, so it means that all the rust infrastructure is already in place.  
 
 ## automation_tasks_rs helper project
 
 The command `cargo auto new` will create a new directory `automation_tasks_rs` with a template for a helper rust project in the root directory of your `main rust project` . It should not interfere with the main rust project. This directory will be added into git commits and pushed to remote repositories as part of the main project. It has its own `.gitignore` to avoid committing its target directory.  
 The `automation_tasks_rs` helper project contains user defined tasks in rust code. This helper project should be opened in a new editor starting from the `automation_tasks_rs` directory. It does not share dependencies with the main project. It is completely separate and independent.  
-You can edit it and add your dependencies and rust codes. No limits. This is your rust project now.  
+You can edit it and add your dependencies and rust codes. No limits. Freedom of expression. This is now your code and your helper rust project. Because only you know what you want to automate.  
 Basic example:  
 
 ```rust
@@ -188,13 +188,14 @@ cargo auto
 
 This binary is super simple. It has only 3 trivial dependencies: `unwrap`, `termion` and `lazy_static`.  
 The binary only reads the CLI arguments and runs the `automation_tasks_rs` binary with them. If needed it will compile `automation_tasks_rs` first.  
-The code-flow of the source code of `cargo-auto` is simple, fully commented and straightforward to audit. The source code is on [GitHub](https://github.com/LucianoBestia/cargo-auto) with MIT open-source licensing.  
+The code-flow of the source code of `cargo-auto` is simple, fully commented and straightforward to audit.  
+The source code is on [GitHub](https://github.com/LucianoBestia/cargo-auto) with MIT open-source licensing.  
 
 ## templates
 
 Inside the cargo-auto project there are 2 directories with rust sub-projects as templates. I can open a new editor for these directories and build this crates independently. So it is easy to debug and develop.  
 Sadly, I cannot publish these directories and files to `crates.io`. I can effectively publish only the source code inside my main rust project `cargo-auto`.  
-Therefor, before publishing I must copy the text of these files into the modules `template_basic` and `template_with_lib`. It is not difficult now that rust has fantastic [raw strings](https://doc.rust-lang.org/rust-by-example/std/str.html).  
+Therefor, before publishing I must copy the text of these files into the modules `template_basic_mod.rs` and `template_with_lib_mod.rs`. It is not difficult now that rust has fantastic [raw strings](https://doc.rust-lang.org/rust-by-example/std/str.html).  
 
 ## template_basic
 
@@ -207,7 +208,7 @@ cargo auto new
 will copy the `template_basic` into `automation_tasks_rs` directory.  
 This has no dependencies at all, except `std`. It is really simple to understand how it works.  
 Open the directory `automation_tasks_rs` in a new editor, explore and add your own tasks in rust code. It is a plain CLI rust project, you can do everything you need with it. Add dependencies and stuff. No limits. This helper project will be added to you commits and stay part of your project.  
-Then in the main project run your task (the task name here is `build`):  
+Then in the main project, run your task (the task name here is `build`) simply like this:  
 
 ```rust
 cargo auto build
@@ -226,7 +227,7 @@ cargo auto new with_lib
 
 ## development
 
-Usually I compile and run the code with added arguments like this:  
+Usually I compile and run the code of `cargo-auto` with added arguments like this:  
 
 ```bash
 cargo run -- new
@@ -238,6 +239,7 @@ After my first publish to crates.io I discovered that the position of the argume
 standalone `cargo-auto new`      - new is 1st arg  
 or  
 subcommand `cargo auto new`      - new is 2nd arg  
+I added some code to solve that.  
 
 ## cargo crev reviews and advisory
 
