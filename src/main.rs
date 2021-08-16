@@ -94,9 +94,9 @@
 //! fn task_build() {
 //!     #[rustfmt::skip]
 //!     let shell_commands = [
-//!         "echo $ cargo fmt", 
-//!         "cargo fmt", 
-//!         "echo $ cargo build", 
+//!         "echo $ cargo fmt",
+//!         "cargo fmt",
+//!         "echo $ cargo build",
 //!         "cargo build"];
 //!     run_shell_commands(shell_commands.to_vec());
 //! }

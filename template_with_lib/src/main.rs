@@ -61,9 +61,7 @@ fn print_help() {
 fn task_build() {    
     #[rustfmt::skip]
     let shell_commands = [
-        "echo $ cargo fmt", 
         "cargo fmt", 
-        "echo $ cargo build", 
         "cargo build"];
     run_shell_commands(shell_commands.to_vec());
 }
@@ -93,17 +91,15 @@ fn task_docs() {
     auto_md_to_doc_comments();        
     #[rustfmt::skip]
     let shell_commands = [
-        "echo $ cargo doc --no-deps --document-private-items",
         "cargo doc --no-deps --document-private-items",        
-        // copy to /docs/ because it is github standard
-        "echo $ rsync -a --info=progress2 --delete-after target/doc/ docs/",
+        // copy target/doc into docs/ because it is github standard
         "rsync -a --info=progress2 --delete-after target/doc/ docs/",
         "echo Create simple index.html file in docs directory",
-        &format!("echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",package_name().replace("-","_")) ,
-        // message to help user with next move
-        "echo After successful doc, commit and push changes",
-        ];
-        run_shell_commands(shell_commands.to_vec());
+        &format!("echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",package_name().replace("-","_")) ,        
+    ];
+    run_shell_commands(shell_commands.to_vec());
+    // message to help user with next move
+    println!("After successful doc, commit and push changes");
 }
 
 /// example hot to publish to crates.io and git tag
