@@ -91,7 +91,7 @@ fn task_docs() {
     auto_md_to_doc_comments();        
     #[rustfmt::skip]
     let shell_commands = [
-        "cargo doc --no-deps --document-private-items",        
+        "cargo doc --no-deps --document-private-items --open",        
         // copy target/doc into docs/ because it is github standard
         "rsync -a --info=progress2 --delete-after target/doc/ docs/",
         "echo Create simple index.html file in docs directory",
