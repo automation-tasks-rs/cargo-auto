@@ -23,9 +23,14 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args){
     let arg_1 = args.next();
     match arg_1 {
         None => print_help(),
-        Some(task) => {            
-            println!("Running auto task: {}", &task);
-            if &task == "build" || &task == "b" {
+        Some(task) => {  
+            if &task != "completion"{    
+                println!("Running cargo-auto task: {}", &task);
+            }
+
+            if &task == "completion"{
+                completion();
+            } else if &task == "build" || &task == "b" {
                 task_build();
             } else if &task == "release" || &task == "r" {
                 task_release();
@@ -123,6 +128,19 @@ fn is_not_run_in_rust_project_root_directory() -> bool {
     !(std::path::Path::new("automation_tasks_rs").exists() && std::path::Path::new("Cargo.toml").exists())
 }
 
-// endregion: helper functions
+/// TODO: trying some auto-completion for bash
+/// how to say to bash to call this binary?
+/// https://www.joshmcguigan.com/blog/shell-completions-pure-rust/
+/// Custom completion behavior is configured using a special bash built-in called complete.
+/// to configure bash to use our completion script (in this terminal session) run 
+/// complete -C "target/debug/automation_tasks_rs completion" target/debug/automation_tasks_rs
+/// this is always called like `target/debug/automation_tasks_rs` from the main rust project
+fn completion()  {
+    println!("build");
+    println!("release");
+    println!("increment_minor");
+    println!("doc");
+    println!("publish_to_crates_io");
+}
 
-    
+// endregion: helper functions
