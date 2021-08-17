@@ -2,11 +2,11 @@
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of rust projects**  
-//! ***[repository](https://github.com/LucianoBestia/cargo-auto); version: 2021.817.1450  date: 2021-08-17 authors: Luciano Bestia***  
+//! ***[repository](https://github.com/LucianoBestia/cargo-auto); version: 2021.817.1826  date: 2021-08-17 authors: Luciano Bestia***  
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-480-green.svg)](https://github.com/LucianoBestia/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-273-blue.svg)](https://github.com/LucianoBestia/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-52-purple.svg)](https://github.com/LucianoBestia/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-555-green.svg)](https://github.com/LucianoBestia/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-278-blue.svg)](https://github.com/LucianoBestia/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-53-purple.svg)](https://github.com/LucianoBestia/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/LucianoBestia/cargo-auto/)
 //! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-0-orange.svg)](https://github.com/LucianoBestia/cargo-auto/)
 //!
@@ -312,8 +312,7 @@ fn print_help_from_cargo_auto() {
 /// in development use: `cargo run -- build`  
 /// in development use: `cargo run -- release`  
 fn match_first_argument(task: &str, mut args: std::env::Args) {
-    // I will accept both variants: `cargo new with_lib` and `cargo new_with_lib`
-    if task == "new" || task == "new_with_lib" {
+    if task == "new" {
         if already_exists_automation_tasks_rs() {
             println!(
                 "{}Error: Directory automation_tasks_rs already exists. Cannot create new directory automation_tasks_rs.{}",
@@ -323,6 +322,8 @@ fn match_first_argument(task: &str, mut args: std::env::Args) {
             std::process::exit(0);
         }
         auto_new(&mut args, task);
+    } else if task == "completion" {
+        completion();
     } else {
         if !already_exists_automation_tasks_rs() {
             println!("{}Error: Directory automation_tasks_rs does not exist.{}", *RED, *RESET);
@@ -339,6 +340,40 @@ fn match_first_argument(task: &str, mut args: std::env::Args) {
         }
         let mut child = unwrap!(command.spawn());
         unwrap!(child.wait());
+    }
+}
+
+/// sub-command for bash auto-completion of `cargo auto` using the crate `dev_bestia_cargo_completion`
+fn completion() {
+    /// println one, more or all sub_commands
+    fn completion_return_one_or_more_sub_commands(sub_commands: Vec<&str>, word_being_completed: &str) {
+        let mut sub_found = false;
+        for sub_command in sub_commands.iter() {
+            if sub_command.starts_with(word_being_completed) {
+                println!("{}", sub_command);
+                sub_found = true;
+            }
+        }
+        if sub_found == false {
+            // print all sub-commands
+            for sub_command in sub_commands.iter() {
+                println!("{}", sub_command);
+            }
+        }
+    }
+
+    let args: Vec<String> = std::env::args().collect();
+    let last_word = args[2].as_str();
+    let mut word_being_completed = " ";
+    if args.len() > 3 {
+        word_being_completed = args[3].as_str();
+    }
+    if last_word == "cargo-auto" || last_word == "auto" {
+        let sub_commands = vec!["new"];
+        completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
+    } else if last_word == "new" {
+        let sub_commands = vec!["with_lib"];
+        completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
 }
 

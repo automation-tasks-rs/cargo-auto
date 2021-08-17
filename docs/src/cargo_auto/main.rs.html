@@ -445,16 +445,51 @@
 <span id="443">443</span>
 <span id="444">444</span>
 <span id="445">445</span>
+<span id="446">446</span>
+<span id="447">447</span>
+<span id="448">448</span>
+<span id="449">449</span>
+<span id="450">450</span>
+<span id="451">451</span>
+<span id="452">452</span>
+<span id="453">453</span>
+<span id="454">454</span>
+<span id="455">455</span>
+<span id="456">456</span>
+<span id="457">457</span>
+<span id="458">458</span>
+<span id="459">459</span>
+<span id="460">460</span>
+<span id="461">461</span>
+<span id="462">462</span>
+<span id="463">463</span>
+<span id="464">464</span>
+<span id="465">465</span>
+<span id="466">466</span>
+<span id="467">467</span>
+<span id="468">468</span>
+<span id="469">469</span>
+<span id="470">470</span>
+<span id="471">471</span>
+<span id="472">472</span>
+<span id="473">473</span>
+<span id="474">474</span>
+<span id="475">475</span>
+<span id="476">476</span>
+<span id="477">477</span>
+<span id="478">478</span>
+<span id="479">479</span>
+<span id="480">480</span>
 </pre><pre class="rust">
 <span class="comment">// region: auto_md_to_doc_comments include README.md A //!</span>
 <span class="doccomment">//! # cargo-auto  </span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! **cargo-auto - automation tasks written in Rust language for the build process of rust projects**  </span>
-<span class="doccomment">//! ***[repository](https://github.com/LucianoBestia/cargo-auto); version: 2021.817.1450  date: 2021-08-17 authors: Luciano Bestia***  </span>
+<span class="doccomment">//! ***[repository](https://github.com/LucianoBestia/cargo-auto); version: 2021.817.1826  date: 2021-08-17 authors: Luciano Bestia***  </span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-480-green.svg)](https://github.com/LucianoBestia/cargo-auto/)</span>
-<span class="doccomment">//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-273-blue.svg)](https://github.com/LucianoBestia/cargo-auto/)</span>
-<span class="doccomment">//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-52-purple.svg)](https://github.com/LucianoBestia/cargo-auto/)</span>
+<span class="doccomment">//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-555-green.svg)](https://github.com/LucianoBestia/cargo-auto/)</span>
+<span class="doccomment">//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-278-blue.svg)](https://github.com/LucianoBestia/cargo-auto/)</span>
+<span class="doccomment">//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-53-purple.svg)](https://github.com/LucianoBestia/cargo-auto/)</span>
 <span class="doccomment">//! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/LucianoBestia/cargo-auto/)</span>
 <span class="doccomment">//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-0-orange.svg)](https://github.com/LucianoBestia/cargo-auto/)</span>
 <span class="doccomment">//!</span>
@@ -760,8 +795,7 @@
 <span class="doccomment">/// in development use: `cargo run -- build`  </span>
 <span class="doccomment">/// in development use: `cargo run -- release`  </span>
 <span class="kw">fn</span> <span class="ident">match_first_argument</span>(<span class="ident">task</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">mut</span> <span class="ident">args</span>: <span class="ident">std::env::Args</span>) {
-    <span class="comment">// I will accept both variants: `cargo new with_lib` and `cargo new_with_lib`</span>
-    <span class="kw">if</span> <span class="ident">task</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;new&quot;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">task</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;new_with_lib&quot;</span> {
+    <span class="kw">if</span> <span class="ident">task</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;new&quot;</span> {
         <span class="kw">if</span> <span class="ident">already_exists_automation_tasks_rs</span>() {
             <span class="macro">println!</span>(
                 <span class="string">&quot;{}Error: Directory automation_tasks_rs already exists. Cannot create new directory automation_tasks_rs.{}&quot;</span>,
@@ -771,6 +805,8 @@
             <span class="ident">std::process::exit</span>(<span class="number">0</span>);
         }
         <span class="ident">auto_new</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">args</span>, <span class="ident">task</span>);
+    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">task</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;completion&quot;</span> {
+        <span class="ident">completion</span>();
     } <span class="kw">else</span> {
         <span class="kw">if</span> <span class="op">!</span><span class="ident">already_exists_automation_tasks_rs</span>() {
             <span class="macro">println!</span>(<span class="string">&quot;{}Error: Directory automation_tasks_rs does not exist.{}&quot;</span>, <span class="kw-2">*</span><span class="ident">RED</span>, <span class="kw-2">*</span><span class="ident">RESET</span>);
@@ -787,6 +823,40 @@
         }
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">child</span> <span class="op">=</span> <span class="macro">unwrap!</span>(<span class="ident">command</span>.<span class="ident">spawn</span>());
         <span class="macro">unwrap!</span>(<span class="ident">child</span>.<span class="ident">wait</span>());
+    }
+}
+
+<span class="doccomment">/// sub-command for bash auto-completion of `cargo auto` using the crate `dev_bestia_cargo_completion`</span>
+<span class="kw">fn</span> <span class="ident">completion</span>() {
+    <span class="doccomment">/// println one, more or all sub_commands</span>
+    <span class="kw">fn</span> <span class="ident">completion_return_one_or_more_sub_commands</span>(<span class="ident">sub_commands</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">str</span><span class="op">&gt;</span>, <span class="ident">word_being_completed</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">sub_found</span> <span class="op">=</span> <span class="bool-val">false</span>;
+        <span class="kw">for</span> <span class="ident">sub_command</span> <span class="kw">in</span> <span class="ident">sub_commands</span>.<span class="ident">iter</span>() {
+            <span class="kw">if</span> <span class="ident">sub_command</span>.<span class="ident">starts_with</span>(<span class="ident">word_being_completed</span>) {
+                <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">sub_command</span>);
+                <span class="ident">sub_found</span> <span class="op">=</span> <span class="bool-val">true</span>;
+            }
+        }
+        <span class="kw">if</span> <span class="ident">sub_found</span> <span class="op">=</span><span class="op">=</span> <span class="bool-val">false</span> {
+            <span class="comment">// print all sub-commands</span>
+            <span class="kw">for</span> <span class="ident">sub_command</span> <span class="kw">in</span> <span class="ident">sub_commands</span>.<span class="ident">iter</span>() {
+                <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">sub_command</span>);
+            }
+        }
+    }
+
+    <span class="kw">let</span> <span class="ident">args</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">std::env::args</span>().<span class="ident">collect</span>();
+    <span class="kw">let</span> <span class="ident">last_word</span> <span class="op">=</span> <span class="ident">args</span>[<span class="number">2</span>].<span class="ident">as_str</span>();
+    <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">word_being_completed</span> <span class="op">=</span> <span class="string">&quot; &quot;</span>;
+    <span class="kw">if</span> <span class="ident">args</span>.<span class="ident">len</span>() <span class="op">&gt;</span> <span class="number">3</span> {
+        <span class="ident">word_being_completed</span> <span class="op">=</span> <span class="ident">args</span>[<span class="number">3</span>].<span class="ident">as_str</span>();
+    }
+    <span class="kw">if</span> <span class="ident">last_word</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;cargo-auto&quot;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">last_word</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;auto&quot;</span> {
+        <span class="kw">let</span> <span class="ident">sub_commands</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="string">&quot;new&quot;</span>];
+        <span class="ident">completion_return_one_or_more_sub_commands</span>(<span class="ident">sub_commands</span>, <span class="ident">word_being_completed</span>);
+    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">last_word</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;new&quot;</span> {
+        <span class="kw">let</span> <span class="ident">sub_commands</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="string">&quot;with_lib&quot;</span>];
+        <span class="ident">completion_return_one_or_more_sub_commands</span>(<span class="ident">sub_commands</span>, <span class="ident">word_being_completed</span>);
     }
 }
 

@@ -83,26 +83,42 @@ fn print_help() {
     println!("");
 }
 
-/// sub-command for bash auto-completion using the crate `dev_bestia_cargo_completion`
+/// sub-command for bash auto-completion of `cargo auto` using the crate `dev_bestia_cargo_completion`
 fn completion() {
-    let args: Vec<String> = std::env::args().collect();
-    let word_being_completed = &args[2];
-    let sub_commands = vec!["build", "release", "increment_minor", "doc", "publish_to_crates_io"];
-
-    let mut sub_found = false;
-    // print the first that starts with the word
-    for sub_command in sub_commands.iter() {
-        if sub_command.starts_with(word_being_completed) {
-            println!("{}", sub_command);
-            sub_found = true;
-        }
-    }
-    if sub_found == false {
-        // print all sub-commands
+    /// println one, more or all sub_commands
+    fn completion_return_one_or_more_sub_commands(sub_commands: Vec<&str>, word_being_completed: &str) {
+        let mut sub_found = false;
         for sub_command in sub_commands.iter() {
-            println!("{}", sub_command);
+            if sub_command.starts_with(word_being_completed) {
+                println!("{}", sub_command);
+                sub_found = true;
+            }
+        }
+        if sub_found == false {
+            // print all sub-commands
+            for sub_command in sub_commands.iter() {
+                println!("{}", sub_command);
+            }
         }
     }
+
+    let args: Vec<String> = std::env::args().collect();
+    let last_word = args[2].as_str();
+    let mut word_being_completed = " ";
+    if args.len()>3{
+        word_being_completed = args[3].as_str();
+    }
+    if last_word=="cargo-auto" || last_word=="auto"{
+        let sub_commands = vec!["build", "release", "doc", "publish_to_crates_io"];
+        completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
+    } 
+    /*
+    // the second level if needed
+    else if last_word=="new"{
+        let sub_commands = vec!["with_lib"];
+        completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
+    }    
+    */
 }
 
 // region: tasks
@@ -114,6 +130,8 @@ fn task_build() {
         "cargo fmt", 
         "cargo build"];
     run_shell_commands(shell_commands.to_vec());
+    println!("After `cargo auto build`, run the tests and the code. If ok, then `cargo auto release`");
+
 }
 
 /// example how to call one shell command and combine with rust code
@@ -128,6 +146,7 @@ fn task_release() {
     run_shell_command("cargo fmt");
     println!("$ cargo build --release");
     run_shell_command("cargo build --release");
+    println!("After `cargo auto release`, run the tests and the code. If ok, then `cargo auto doc`");
 }
 
 /// semver is used for libraries, increment the second part of the version
@@ -149,7 +168,8 @@ fn task_docs() {
     ];
     run_shell_commands(shell_commands.to_vec());
     // message to help user with next move
-    println!("After successful doc, commit and push changes");
+    println!(r#"After `cargo auto doc`, check `docs/index.html`. If ok, then `git commit -am"message"` and `git push`,"#);
+    println!("then `cargo auto publish_to_crates_io`");
 }
 
 /// example hot to publish to crates.io and git tag
@@ -163,6 +183,9 @@ fn task_publish_to_crates_io() {
 
     // cargo publish
     run_shell_command("cargo publish");
+    println!(r#"After `cargo auto task_publish_to_crates_io', check `crates.io` page."#);
+    println!(r#"If binary then install with `cargo install crate_name` and check how it works."#);
+    println!(r#"If library then add dependency to your rust project and check how it works."#);
 }
 
 // endregion: tasks

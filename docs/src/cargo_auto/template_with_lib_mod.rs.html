@@ -183,6 +183,29 @@
 <span id="181">181</span>
 <span id="182">182</span>
 <span id="183">183</span>
+<span id="184">184</span>
+<span id="185">185</span>
+<span id="186">186</span>
+<span id="187">187</span>
+<span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
 </pre><pre class="rust">
 <span class="doccomment">//! this strings are copied from the template_x folders</span>
 <span class="doccomment">//! because when publishing to crates.io I only the main binary is transferred</span>
@@ -269,26 +292,42 @@ fn print_help() {
     println!(&quot;&quot;);
 }
 
-/// sub-command for bash auto-completion using the crate `dev_bestia_cargo_completion`
+/// sub-command for bash auto-completion of `cargo auto` using the crate `dev_bestia_cargo_completion`
 fn completion() {
-    let args: Vec&lt;String&gt; = std::env::args().collect();
-    let word_being_completed = &amp;args[2];
-    let sub_commands = vec![&quot;build&quot;, &quot;release&quot;, &quot;increment_minor&quot;, &quot;doc&quot;, &quot;publish_to_crates_io&quot;];
-
-    let mut sub_found = false;
-    // print the first that starts with the word
-    for sub_command in sub_commands.iter() {
-        if sub_command.starts_with(word_being_completed) {
-            println!(&quot;{}&quot;, sub_command);
-            sub_found = true;
-        }
-    }
-    if sub_found == false {
-        // print all sub-commands
+    /// println one, more or all sub_commands
+    fn completion_return_one_or_more_sub_commands(sub_commands: Vec&lt;&amp;str&gt;, word_being_completed: &amp;str) {
+        let mut sub_found = false;
         for sub_command in sub_commands.iter() {
-            println!(&quot;{}&quot;, sub_command);
+            if sub_command.starts_with(word_being_completed) {
+                println!(&quot;{}&quot;, sub_command);
+                sub_found = true;
+            }
+        }
+        if sub_found == false {
+            // print all sub-commands
+            for sub_command in sub_commands.iter() {
+                println!(&quot;{}&quot;, sub_command);
+            }
         }
     }
+
+    let args: Vec&lt;String&gt; = std::env::args().collect();
+    let last_word = args[2].as_str();
+    let mut word_being_completed = &quot; &quot;;
+    if args.len()&gt;3{
+        word_being_completed = args[3].as_str();
+    }
+    if last_word==&quot;cargo-auto&quot; || last_word==&quot;auto&quot;{
+        let sub_commands = vec![&quot;build&quot;, &quot;release&quot;, &quot;doc&quot;, &quot;publish_to_crates_io&quot;];
+        completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
+    } 
+    /*
+    // the second level if needed
+    else if last_word==&quot;new&quot;{
+        let sub_commands = vec![&quot;with_lib&quot;];
+        completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
+    }    
+    */
 }
 
 // region: tasks
@@ -300,6 +339,8 @@ fn task_build() {
         &quot;cargo fmt&quot;, 
         &quot;cargo build&quot;];
     run_shell_commands(shell_commands.to_vec());
+    println!(&quot;After `cargo auto build`, run the tests and the code. If ok, then `cargo auto release`&quot;);
+
 }
 
 /// example how to call one shell command and combine with rust code
@@ -314,6 +355,7 @@ fn task_release() {
     run_shell_command(&quot;cargo fmt&quot;);
     println!(&quot;$ cargo build --release&quot;);
     run_shell_command(&quot;cargo build --release&quot;);
+    println!(&quot;After `cargo auto release`, run the tests and the code. If ok, then `cargo auto doc`&quot;);
 }
 
 /// semver is used for libraries, increment the second part of the version
@@ -335,7 +377,8 @@ fn task_docs() {
     ];
     run_shell_commands(shell_commands.to_vec());
     // message to help user with next move
-    println!(&quot;After successful doc, commit and push changes&quot;);
+    println!(r#&quot;After `cargo auto doc`, check `docs/index.html`. If ok, then `git commit -am&quot;message&quot;` and `git push`,&quot;#);
+    println!(&quot;then `cargo auto publish_to_crates_io`&quot;);
 }
 
 /// example hot to publish to crates.io and git tag
@@ -349,6 +392,9 @@ fn task_publish_to_crates_io() {
 
     // cargo publish
     run_shell_command(&quot;cargo publish&quot;);
+    println!(r#&quot;After `cargo auto task_publish_to_crates_io&#39;, check `crates.io` page.&quot;#);
+    println!(r#&quot;If binary then install with `cargo install crate_name` and check how it works.&quot;#);
+    println!(r#&quot;If library then add dependency to your rust project and check how it works.&quot;#);
 }
 
 // endregion: tasks
