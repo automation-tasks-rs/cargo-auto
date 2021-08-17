@@ -2,11 +2,11 @@
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of rust projects**  
-//! ***[repository](https://github.com/LucianoBestia/cargo-auto); version: 2021.816.1211  date: 2021-08-16 authors: Luciano Bestia***  
+//! ***[repository](https://github.com/LucianoBestia/cargo-auto); version: 2021.817.1245  date: 2021-08-17 authors: Luciano Bestia***  
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-420-green.svg)](https://github.com/LucianoBestia/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-274-blue.svg)](https://github.com/LucianoBestia/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-47-purple.svg)](https://github.com/LucianoBestia/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-472-green.svg)](https://github.com/LucianoBestia/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-269-blue.svg)](https://github.com/LucianoBestia/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-51-purple.svg)](https://github.com/LucianoBestia/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/LucianoBestia/cargo-auto/)
 //! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-0-orange.svg)](https://github.com/LucianoBestia/cargo-auto/)
 //!
@@ -142,6 +142,10 @@
 //! The binary only reads the CLI arguments and runs the `automation_tasks_rs` binary with them. If needed it will compile `automation_tasks_rs` first.  
 //! The code-flow of the source code of `cargo-auto` is simple, fully commented and straightforward to audit.  
 //! The source code is on [GitHub](https://github.com/LucianoBestia/cargo-auto) with MIT open-source licensing.  
+//!
+//! ## bash auto-completion
+//!
+//! With the help of the crate [dev_bestia_cargo_completion](https://crates.io/crates/dev_bestia_cargo_completion) the commands `cargo` and `cargo auto` get bash auto-completion. Try it and maybe contribute to add the commands you use most.  
 //!
 //! ## templates
 //!

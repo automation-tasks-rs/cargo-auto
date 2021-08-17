@@ -149,14 +149,34 @@
 <span id="147">147</span>
 <span id="148">148</span>
 <span id="149">149</span>
+<span id="150">150</span>
+<span id="151">151</span>
+<span id="152">152</span>
+<span id="153">153</span>
+<span id="154">154</span>
+<span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
+<span id="160">160</span>
+<span id="161">161</span>
+<span id="162">162</span>
+<span id="163">163</span>
+<span id="164">164</span>
+<span id="165">165</span>
+<span id="166">166</span>
+<span id="167">167</span>
+<span id="168">168</span>
+<span id="169">169</span>
+<span id="170">170</span>
+<span id="171">171</span>
 </pre><pre class="rust">
-<span class="doccomment">//! copy of the files in the directory template_basic</span>
-<span class="doccomment">/// I have to copy this files into the modules crate::template_basic and crate::template_with_lib</span>
-<span class="doccomment">/// because when publishing to crates.io I loose all other files except the main binary.</span>
+<span class="doccomment">//! this strings are copied from the template_x folders</span>
+<span class="doccomment">//! because when publishing to crates.io I only the main binary is transferred</span>
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cargo_toml</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-    <span class="string">r#&quot;
-[package]
+    <span class="string">r#&quot;[package]
 name = &quot;automation_tasks_rs&quot;
 version = &quot;0.1.1&quot;
 authors = [&quot;Luciano Bestia &lt;luciano.bestia@gmail.com&gt;&quot;]
@@ -169,8 +189,7 @@ publish = false
 }
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gitignore</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-    <span class="string">r#&quot;
-/target
+    <span class="string">r#&quot;/target
     &quot;#</span>
 }
 
@@ -196,16 +215,20 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args){
     match arg_1 {
         None =&gt; print_help(),
         Some(task) =&gt; {            
-            println!(&quot;Running auto task: {}&quot;, &amp;task);
-            if &amp;task == &quot;build&quot; || &amp;task == &quot;b&quot; {
-                task_build();
-            } else if &amp;task == &quot;release&quot; || &amp;task == &quot;r&quot; {
-                task_release();
-            } else if &amp;task == &quot;docs&quot; || &amp;task == &quot;doc&quot; || &amp;task == &quot;d&quot; {
-                task_docs();
+            if &amp;task == &quot;completion&quot; {
+                completion();
             } else {
-                println!(&quot;Task {} is unknown.&quot;, &amp;task);
-                print_help();
+                println!(&quot;Running automation task: {}&quot;, &amp;task);
+                if &amp;task == &quot;build&quot; || &amp;task == &quot;b&quot; {
+                    task_build();
+                } else if &amp;task == &quot;release&quot; || &amp;task == &quot;r&quot; {
+                    task_release();
+                } else if &amp;task == &quot;docs&quot; || &amp;task == &quot;doc&quot; || &amp;task == &quot;d&quot; {
+                    task_docs();
+                } else {
+                    println!(&quot;Task {} is unknown.&quot;, &amp;task);
+                    print_help();
+                }
             }
         }
     }
@@ -221,6 +244,27 @@ fn print_help() {
     println!(&quot;&quot;);
 }
 
+/// sub-command for bash auto-completion using the crate `dev_bestia_cargo_completion`
+fn completion() {
+    let args: Vec&lt;String&gt; = std::env::args().collect();
+    let word_being_completed = &amp;args[2];
+    let sub_commands = vec![&quot;build&quot;, &quot;release&quot;, &quot;doc&quot;];
+
+    let mut sub_found = false;
+    // print the first that starts with the word
+    for sub_command in sub_commands.iter() {
+        if sub_command.starts_with(word_being_completed) {
+            println!(&quot;{}&quot;, sub_command);
+            sub_found = true;
+        }
+    }
+    if sub_found == false {
+        // print all sub-commands
+        for sub_command in sub_commands.iter() {
+            println!(&quot;{}&quot;, sub_command);
+        }
+    }
+}
 // region: tasks
 
 /// example how to call a list of shell commands

@@ -155,13 +155,40 @@
 <span id="153">153</span>
 <span id="154">154</span>
 <span id="155">155</span>
+<span id="156">156</span>
+<span id="157">157</span>
+<span id="158">158</span>
+<span id="159">159</span>
+<span id="160">160</span>
+<span id="161">161</span>
+<span id="162">162</span>
+<span id="163">163</span>
+<span id="164">164</span>
+<span id="165">165</span>
+<span id="166">166</span>
+<span id="167">167</span>
+<span id="168">168</span>
+<span id="169">169</span>
+<span id="170">170</span>
+<span id="171">171</span>
+<span id="172">172</span>
+<span id="173">173</span>
+<span id="174">174</span>
+<span id="175">175</span>
+<span id="176">176</span>
+<span id="177">177</span>
+<span id="178">178</span>
+<span id="179">179</span>
+<span id="180">180</span>
+<span id="181">181</span>
+<span id="182">182</span>
+<span id="183">183</span>
 </pre><pre class="rust">
-<span class="doccomment">//! copy of the files in the directory template_with_lib</span>
-<span class="doccomment">/// I have to copy this files into the modules crate::template_basic and crate::template_with_lib</span>
-<span class="doccomment">/// because when publishing to crates.io I loose all other files except the main binary.</span>
+<span class="doccomment">//! this strings are copied from the template_x folders</span>
+<span class="doccomment">//! because when publishing to crates.io I only the main binary is transferred</span>
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">cargo_toml</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-    <span class="string">r##&quot;
+    <span class="string">r#&quot;
 [package]
 name = &quot;automation_tasks_rs&quot;
 version = &quot;0.1.1&quot;
@@ -172,13 +199,12 @@ publish = false
 
 [dependencies]
 cargo_auto_lib = &quot;0.7.8&quot;
-&quot;##</span>
+&quot;#</span>
 }
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">gitignore</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
-    <span class="string">r##&quot;
-/target
-    &quot;##</span>
+    <span class="string">r#&quot;/target
+    &quot;#</span>
 }
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">src_main_rs</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="kw-2">&amp;</span><span class="lifetime">&#39;static</span> <span class="ident">str</span> {
@@ -193,7 +219,7 @@ fn main() {
         // early exit
         std::process::exit(0);
     }
-    
+
     // get CLI arguments
     let mut args = std::env::args();
     // the zero argument is the name of the program
@@ -202,26 +228,30 @@ fn main() {
 }
 
 /// match arguments and call tasks functions
-fn match_arguments_and_call_tasks(mut args: std::env::Args){
+fn match_arguments_and_call_tasks(mut args: std::env::Args) {
     // the first argument is the user defined task: (no argument for help), build, release,...
     let arg_1 = args.next();
     match arg_1 {
         None =&gt; print_help(),
-        Some(task) =&gt; {            
-            println!(&quot;Running auto task: {}&quot;, &amp;task);
-            if &amp;task == &quot;build&quot; || &amp;task == &quot;b&quot; {
-                task_build();
-            } else if &amp;task == &quot;release&quot; || &amp;task == &quot;r&quot; {
-                task_release();
-            } else if &amp;task == &quot;increment_minor&quot; {
-                task_increment_minor();
-            } else if &amp;task == &quot;docs&quot; || &amp;task == &quot;doc&quot; || &amp;task == &quot;d&quot; {
-                task_docs();
-            } else if &amp;task == &quot;publish_to_crates_io&quot; {
-                task_publish_to_crates_io();
+        Some(task) =&gt; {
+            if &amp;task == &quot;completion&quot; {
+                completion();
             } else {
-                println!(&quot;Task {} is unknown.&quot;, &amp;task);
-                print_help();
+                println!(&quot;Running automation task: {}&quot;, &amp;task);
+                if &amp;task == &quot;build&quot; || &amp;task == &quot;b&quot; {
+                    task_build();
+                } else if &amp;task == &quot;release&quot; || &amp;task == &quot;r&quot; {
+                    task_release();
+                } else if &amp;task == &quot;increment_minor&quot; {
+                    task_increment_minor();
+                } else if &amp;task == &quot;docs&quot; || &amp;task == &quot;doc&quot; || &amp;task == &quot;d&quot; {
+                    task_docs();
+                } else if &amp;task == &quot;publish_to_crates_io&quot; {
+                    task_publish_to_crates_io();
+                } else {
+                    println!(&quot;Task {} is unknown.&quot;, &amp;task);
+                    print_help();
+                }
             }
         }
     }
@@ -239,10 +269,32 @@ fn print_help() {
     println!(&quot;&quot;);
 }
 
+/// sub-command for bash auto-completion using the crate `dev_bestia_cargo_completion`
+fn completion() {
+    let args: Vec&lt;String&gt; = std::env::args().collect();
+    let word_being_completed = &amp;args[2];
+    let sub_commands = vec![&quot;build&quot;, &quot;release&quot;, &quot;increment_minor&quot;, &quot;doc&quot;, &quot;publish_to_crates_io&quot;];
+
+    let mut sub_found = false;
+    // print the first that starts with the word
+    for sub_command in sub_commands.iter() {
+        if sub_command.starts_with(word_being_completed) {
+            println!(&quot;{}&quot;, sub_command);
+            sub_found = true;
+        }
+    }
+    if sub_found == false {
+        // print all sub-commands
+        for sub_command in sub_commands.iter() {
+            println!(&quot;{}&quot;, sub_command);
+        }
+    }
+}
+
 // region: tasks
 
 /// example how to call a list of shell commands
-fn task_build() {    
+fn task_build() {
     #[rustfmt::skip]
     let shell_commands = [
         &quot;cargo fmt&quot;, 
@@ -271,8 +323,8 @@ fn task_increment_minor() {
 }
 
 /// example how to call a list of shell commands and combine with rust code
-fn task_docs() {    
-    auto_md_to_doc_comments();        
+fn task_docs() {
+    auto_md_to_doc_comments();
     #[rustfmt::skip]
     let shell_commands = [
         &quot;cargo doc --no-deps --document-private-items --open&quot;,        
@@ -287,9 +339,12 @@ fn task_docs() {
 }
 
 /// example hot to publish to crates.io and git tag
-fn task_publish_to_crates_io(){
+fn task_publish_to_crates_io() {
     // git tag
-    let shell_command = format!(&quot;git tag -f -a v{version} -m version_{version}&quot;,version=package_version());
+    let shell_command = format!(
+        &quot;git tag -f -a v{version} -m version_{version}&quot;,
+        version = package_version()
+    );
     run_shell_command(&amp;shell_command);
 
     // cargo publish
@@ -304,7 +359,8 @@ fn task_publish_to_crates_io(){
 /// there must be Cargo.toml and the directory automation_tasks_rs
 fn is_not_run_in_rust_project_root_directory() -&gt; bool {
     // return negation of exists
-    !(std::path::Path::new(&quot;automation_tasks_rs&quot;).exists() &amp;&amp; std::path::Path::new(&quot;Cargo.toml&quot;).exists())
+    !(std::path::Path::new(&quot;automation_tasks_rs&quot;).exists()
+        &amp;&amp; std::path::Path::new(&quot;Cargo.toml&quot;).exists())
 }
 
 // endregion: helper functions

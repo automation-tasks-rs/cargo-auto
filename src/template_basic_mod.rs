@@ -41,16 +41,20 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args){
     match arg_1 {
         None => print_help(),
         Some(task) => {            
-            println!("Running auto task: {}", &task);
-            if &task == "build" || &task == "b" {
-                task_build();
-            } else if &task == "release" || &task == "r" {
-                task_release();
-            } else if &task == "docs" || &task == "doc" || &task == "d" {
-                task_docs();
+            if &task == "completion" {
+                completion();
             } else {
-                println!("Task {} is unknown.", &task);
-                print_help();
+                println!("Running automation task: {}", &task);
+                if &task == "build" || &task == "b" {
+                    task_build();
+                } else if &task == "release" || &task == "r" {
+                    task_release();
+                } else if &task == "docs" || &task == "doc" || &task == "d" {
+                    task_docs();
+                } else {
+                    println!("Task {} is unknown.", &task);
+                    print_help();
+                }
             }
         }
     }
@@ -66,6 +70,27 @@ fn print_help() {
     println!("");
 }
 
+/// sub-command for bash auto-completion using the crate `dev_bestia_cargo_completion`
+fn completion() {
+    let args: Vec<String> = std::env::args().collect();
+    let word_being_completed = &args[2];
+    let sub_commands = vec!["build", "release", "doc"];
+
+    let mut sub_found = false;
+    // print the first that starts with the word
+    for sub_command in sub_commands.iter() {
+        if sub_command.starts_with(word_being_completed) {
+            println!("{}", sub_command);
+            sub_found = true;
+        }
+    }
+    if sub_found == false {
+        // print all sub-commands
+        for sub_command in sub_commands.iter() {
+            println!("{}", sub_command);
+        }
+    }
+}
 // region: tasks
 
 /// example how to call a list of shell commands
