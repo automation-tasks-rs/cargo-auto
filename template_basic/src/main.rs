@@ -46,7 +46,7 @@ fn print_help() {
     println!("");
     println!("User defined tasks in automation_tasks_rs:");
     println!("cargo auto build - builds the crate in debug mode, fmt");
-    println!("cargo auto release - builds the crate in release mode");
+    println!("cargo auto release - builds the crate in release mode, fmt");
     println!("cargo auto docs - builds the docs, copy to docs directory");
     println!("");
 }
@@ -73,19 +73,19 @@ fn completion() {
     let args: Vec<String> = std::env::args().collect();
     let last_word = args[2].as_str();
     let mut word_being_completed = " ";
-    if args.len()>3{
+    if args.len() > 3 {
         word_being_completed = args[3].as_str();
     }
-    if last_word=="cargo-auto" || last_word=="auto"{
+    if last_word == "cargo-auto" || last_word == "auto" {
         let sub_commands = vec!["build", "release", "doc", "publish_to_crates_io"];
         completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
-    } 
+    }
     /*
     // the second level if needed
-    else if last_word=="new"{
+    else if last_word == "new" {
         let sub_commands = vec!["with_lib"];
         completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
-    }    
+    }
     */
 }
 
@@ -95,9 +95,7 @@ fn completion() {
 fn task_build() {
     #[rustfmt::skip]
     let shell_commands = [
-        "echo $ cargo fmt", 
         "cargo fmt", 
-        "echo $ cargo build", 
         "cargo build"];
     run_shell_commands(shell_commands.to_vec());
     println!("After `cargo auto build`, run the tests and the code. If ok, then `cargo auto release`");
@@ -105,9 +103,7 @@ fn task_build() {
 
 /// example how to call one shell command and combine with rust code
 fn task_release() {
-    println!("$ cargo fmt");
     run_shell_command("cargo fmt");
-    println!("$ cargo build --release");
     run_shell_command("cargo build --release");
     println!("After `cargo auto release`, run the tests and the code. If ok, then `cargo auto doc`");
 }
@@ -116,17 +112,17 @@ fn task_release() {
 fn task_docs() {
     #[rustfmt::skip]
     let shell_commands = [
-        "echo $ cargo doc --no-deps --document-private-items --open",
         "cargo doc --no-deps --document-private-items --open",
-        // copy to /docs/ because it is github standard
-        "echo $ rsync -a --info=progress2 --delete-after target/doc/ docs/",
+        // copy target/doc into docs/ because it is github standard
         "rsync -a --info=progress2 --delete-after target/doc/ docs/",
         "echo Create simple index.html file in docs directory",
-        &format!("echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",&project_directory_name().replace("-","_")) ,
+        &format!("echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",package_name().replace("-","_")) ,
         ];
     run_shell_commands(shell_commands.to_vec());
     // message to help user with next move
-    println!(r#"After `cargo auto doc`, check `docs/index.html`. If ok, then `git commit -am"message"` and `git push`,"#);
+    println!(
+        r#"After `cargo auto doc`, check `docs/index.html`. If ok, then `git commit -am"message"` and `git push`,"#
+    );
     println!("then `cargo publish` or publish to web");
 }
 
@@ -136,6 +132,7 @@ fn task_docs() {
 
 /// run one shell command
 fn run_shell_command(shell_command: &str) {
+    println!("$ {}", shell_command);
     std::process::Command::new("sh")
         .arg("-c")
         .arg(shell_command)
@@ -162,7 +159,7 @@ fn is_not_run_in_rust_project_root_directory() -> bool {
 /// returns the directory name, that is usually also the crate name 
 /// The true package name is inside Cargo.toml, 
 /// but for simplicity (no dependencies) here I use the directory name.
-fn project_directory_name()->String{
+fn package_name()->String{
     std::env::current_dir().unwrap().file_name().unwrap().to_string_lossy().to_string()
 }
 

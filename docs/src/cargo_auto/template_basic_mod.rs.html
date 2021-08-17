@@ -191,9 +191,6 @@
 <span id="189">189</span>
 <span id="190">190</span>
 <span id="191">191</span>
-<span id="192">192</span>
-<span id="193">193</span>
-<span id="194">194</span>
 </pre><pre class="rust">
 <span class="doccomment">//! this strings are copied from the template_x folders</span>
 <span class="doccomment">//! because when publishing to crates.io I only the main binary is transferred</span>
@@ -265,7 +262,7 @@ fn print_help() {
     println!(&quot;&quot;);
     println!(&quot;User defined tasks in automation_tasks_rs:&quot;);
     println!(&quot;cargo auto build - builds the crate in debug mode, fmt&quot;);
-    println!(&quot;cargo auto release - builds the crate in release mode&quot;);
+    println!(&quot;cargo auto release - builds the crate in release mode, fmt&quot;);
     println!(&quot;cargo auto docs - builds the docs, copy to docs directory&quot;);
     println!(&quot;&quot;);
 }
@@ -292,19 +289,19 @@ fn completion() {
     let args: Vec&lt;String&gt; = std::env::args().collect();
     let last_word = args[2].as_str();
     let mut word_being_completed = &quot; &quot;;
-    if args.len()&gt;3{
+    if args.len() &gt; 3 {
         word_being_completed = args[3].as_str();
     }
-    if last_word==&quot;cargo-auto&quot; || last_word==&quot;auto&quot;{
+    if last_word == &quot;cargo-auto&quot; || last_word == &quot;auto&quot; {
         let sub_commands = vec![&quot;build&quot;, &quot;release&quot;, &quot;doc&quot;, &quot;publish_to_crates_io&quot;];
         completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
-    } 
+    }
     /*
     // the second level if needed
-    else if last_word==&quot;new&quot;{
+    else if last_word == &quot;new&quot; {
         let sub_commands = vec![&quot;with_lib&quot;];
         completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
-    }    
+    }
     */
 }
 
@@ -314,9 +311,7 @@ fn completion() {
 fn task_build() {
     #[rustfmt::skip]
     let shell_commands = [
-        &quot;echo $ cargo fmt&quot;, 
         &quot;cargo fmt&quot;, 
-        &quot;echo $ cargo build&quot;, 
         &quot;cargo build&quot;];
     run_shell_commands(shell_commands.to_vec());
     println!(&quot;After `cargo auto build`, run the tests and the code. If ok, then `cargo auto release`&quot;);
@@ -324,9 +319,7 @@ fn task_build() {
 
 /// example how to call one shell command and combine with rust code
 fn task_release() {
-    println!(&quot;$ cargo fmt&quot;);
     run_shell_command(&quot;cargo fmt&quot;);
-    println!(&quot;$ cargo build --release&quot;);
     run_shell_command(&quot;cargo build --release&quot;);
     println!(&quot;After `cargo auto release`, run the tests and the code. If ok, then `cargo auto doc`&quot;);
 }
@@ -335,17 +328,17 @@ fn task_release() {
 fn task_docs() {
     #[rustfmt::skip]
     let shell_commands = [
-        &quot;echo $ cargo doc --no-deps --document-private-items --open&quot;,
         &quot;cargo doc --no-deps --document-private-items --open&quot;,
-        // copy to /docs/ because it is github standard
-        &quot;echo $ rsync -a --info=progress2 --delete-after target/doc/ docs/&quot;,
+        // copy target/doc into docs/ because it is github standard
         &quot;rsync -a --info=progress2 --delete-after target/doc/ docs/&quot;,
         &quot;echo Create simple index.html file in docs directory&quot;,
-        &amp;format!(&quot;echo \&quot;&lt;meta http-equiv=\\\&quot;refresh\\\&quot; content=\\\&quot;0; url={}/index.html\\\&quot; /&gt;\&quot; &gt; docs/index.html&quot;,&amp;project_directory_name().replace(&quot;-&quot;,&quot;_&quot;)) ,
+        &amp;format!(&quot;echo \&quot;&lt;meta http-equiv=\\\&quot;refresh\\\&quot; content=\\\&quot;0; url={}/index.html\\\&quot; /&gt;\&quot; &gt; docs/index.html&quot;,package_name().replace(&quot;-&quot;,&quot;_&quot;)) ,
         ];
     run_shell_commands(shell_commands.to_vec());
     // message to help user with next move
-    println!(r#&quot;After `cargo auto doc`, check `docs/index.html`. If ok, then `git commit -am&quot;message&quot;` and `git push`,&quot;#);
+    println!(
+        r#&quot;After `cargo auto doc`, check `docs/index.html`. If ok, then `git commit -am&quot;message&quot;` and `git push`,&quot;#
+    );
     println!(&quot;then `cargo publish` or publish to web&quot;);
 }
 
@@ -355,6 +348,7 @@ fn task_docs() {
 
 /// run one shell command
 fn run_shell_command(shell_command: &amp;str) {
+    println!(&quot;$ {}&quot;, shell_command);
     std::process::Command::new(&quot;sh&quot;)
         .arg(&quot;-c&quot;)
         .arg(shell_command)
@@ -381,7 +375,7 @@ fn is_not_run_in_rust_project_root_directory() -&gt; bool {
 /// returns the directory name, that is usually also the crate name 
 /// The true package name is inside Cargo.toml, 
 /// but for simplicity (no dependencies) here I use the directory name.
-fn project_directory_name()-&gt;String{
+fn package_name()-&gt;String{
     std::env::current_dir().unwrap().file_name().unwrap().to_string_lossy().to_string()
 }
 
