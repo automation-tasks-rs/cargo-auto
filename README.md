@@ -151,6 +151,10 @@ The binary only reads the CLI arguments and runs the `automation_tasks_rs` binar
 The code-flow of the source code of `cargo-auto` is simple, fully commented and straightforward to audit.  
 The source code is on [GitHub](https://github.com/LucianoBestia/cargo-auto) with MIT open-source licensing.  
 
+## bash auto-completion
+
+With the help of the crate [dev_bestia_cargo_completion](https://crates.io/crates/dev_bestia_cargo_completion) the commands `cargo` and `cargo auto` get bash auto-completion. Try it and maybe contribute to add the commands you use most.  
+
 ## templates
 
 Inside the cargo-auto project there are 2 directories with rust sub-projects as templates. I can open a new editor for these directories and build this crates independently. So it is easy to debug and develop.  
