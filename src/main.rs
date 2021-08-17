@@ -2,11 +2,11 @@
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of rust projects**  
-//! ***[repository](https://github.com/LucianoBestia/cargo-auto); version: 2021.817.1245  date: 2021-08-17 authors: Luciano Bestia***  
+//! ***[repository](https://github.com/LucianoBestia/cargo-auto); version: 2021.817.1450  date: 2021-08-17 authors: Luciano Bestia***  
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-472-green.svg)](https://github.com/LucianoBestia/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-269-blue.svg)](https://github.com/LucianoBestia/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-51-purple.svg)](https://github.com/LucianoBestia/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-480-green.svg)](https://github.com/LucianoBestia/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-273-blue.svg)](https://github.com/LucianoBestia/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-52-purple.svg)](https://github.com/LucianoBestia/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/LucianoBestia/cargo-auto/)
 //! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-0-orange.svg)](https://github.com/LucianoBestia/cargo-auto/)
 //!
@@ -312,7 +312,8 @@ fn print_help_from_cargo_auto() {
 /// in development use: `cargo run -- build`  
 /// in development use: `cargo run -- release`  
 fn match_first_argument(task: &str, mut args: std::env::Args) {
-    if task == "new" {
+    // I will accept both variants: `cargo new with_lib` and `cargo new_with_lib`
+    if task == "new" || task == "new_with_lib" {
         if already_exists_automation_tasks_rs() {
             println!(
                 "{}Error: Directory automation_tasks_rs already exists. Cannot create new directory automation_tasks_rs.{}",
@@ -321,7 +322,7 @@ fn match_first_argument(task: &str, mut args: std::env::Args) {
             // early exit
             std::process::exit(0);
         }
-        auto_new(&mut args);
+        auto_new(&mut args, task);
     } else {
         if !already_exists_automation_tasks_rs() {
             println!("{}Error: Directory automation_tasks_rs does not exist.{}", *RED, *RESET);
@@ -383,13 +384,21 @@ fn already_exists_automation_tasks_rs() -> bool {
 /// with the argument `with_lib` copies template_with_lib  
 /// in development use: `cargo run -- new with_lib`  
 /// in runtime use: `cargo auto new with_lib`  
-fn auto_new(args: &mut std::env::Args) {
-    let arg_2 = args.next();
-    match arg_2 {
-        None => copy_template("basic"),
-        Some(template_name) => copy_template(&template_name),
+fn auto_new(args: &mut std::env::Args, task: &str) {
+    let template_name: String;
+    if task == "new" {
+        let arg_2 = args.next();
+        match arg_2 {
+            None => template_name = "basic".to_string(),
+            Some(template_name_a) => template_name = template_name_a,
+        }
+    } else {
+        template_name = task.trim_start_matches("new_").to_string();
     }
+    copy_template(&template_name);
+
     build_automation_tasks_rs_if_needed();
+
     println!("");
     println!("`crate auto new` generated the directory `automation_tasks_rs` in your main rust project.");
     println!("You can open this new helper rust project in a new rust editor.");
