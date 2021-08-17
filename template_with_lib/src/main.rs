@@ -9,8 +9,8 @@ fn main() {
         // early exit
         std::process::exit(0);
     }
-	
-	// get CLI arguments
+
+    // get CLI arguments
     let mut args = std::env::args();
     // the zero argument is the name of the program
     let _arg_0 = args.next();
@@ -18,31 +18,30 @@ fn main() {
 }
 
 /// match arguments and call tasks functions
-fn match_arguments_and_call_tasks(mut args: std::env::Args){
+fn match_arguments_and_call_tasks(mut args: std::env::Args) {
     // the first argument is the user defined task: (no argument for help), build, release,...
     let arg_1 = args.next();
     match arg_1 {
         None => print_help(),
-        Some(task) => {  
-            if &task != "completion"{    
-                println!("Running cargo-auto task: {}", &task);
-            }
-
-            if &task == "completion"{
+        Some(task) => {
+            if &task == "completion" {
                 completion();
-            } else if &task == "build" || &task == "b" {
-                task_build();
-            } else if &task == "release" || &task == "r" {
-                task_release();
-            } else if &task == "increment_minor" {
-                task_increment_minor();
-            } else if &task == "docs" || &task == "doc" || &task == "d" {
-                task_docs();
-            } else if &task == "publish_to_crates_io" {
-                task_publish_to_crates_io();
             } else {
-                println!("Task {} is unknown.", &task);
-                print_help();
+                println!("Running automation task: {}", &task);
+                if &task == "build" || &task == "b" {
+                    task_build();
+                } else if &task == "release" || &task == "r" {
+                    task_release();
+                } else if &task == "increment_minor" {
+                    task_increment_minor();
+                } else if &task == "docs" || &task == "doc" || &task == "d" {
+                    task_docs();
+                } else if &task == "publish_to_crates_io" {
+                    task_publish_to_crates_io();
+                } else {
+                    println!("Task {} is unknown.", &task);
+                    print_help();
+                }
             }
         }
     }
@@ -60,10 +59,31 @@ fn print_help() {
     println!("");
 }
 
+/// sub-command for bash auto-completion using the crate `dev_bestia_cargo_completion`
+fn completion() {
+    let args: Vec<String> = std::env::args().collect();
+    let word_being_completed = &args[2];
+    let sub_commands = vec!["build", "release", "increment_minor", "doc", "publish_to_crates_io"];
+
+    let mut sub_found = false;
+    for sub_command in sub_commands.iter() {
+        if sub_command.starts_with(word_being_completed) {
+            println!("{}", sub_command);
+            sub_found = true;
+        }
+    }
+    if sub_found == false {
+        // list all sub-commands
+        for sub_command in sub_commands.iter() {
+            println!("{}", sub_command);
+        }
+    }
+}
+
 // region: tasks
 
 /// example how to call a list of shell commands
-fn task_build() {    
+fn task_build() {
     #[rustfmt::skip]
     let shell_commands = [
         "cargo fmt", 
@@ -92,8 +112,8 @@ fn task_increment_minor() {
 }
 
 /// example how to call a list of shell commands and combine with rust code
-fn task_docs() {    
-    auto_md_to_doc_comments();        
+fn task_docs() {
+    auto_md_to_doc_comments();
     #[rustfmt::skip]
     let shell_commands = [
         "cargo doc --no-deps --document-private-items --open",        
@@ -108,9 +128,12 @@ fn task_docs() {
 }
 
 /// example hot to publish to crates.io and git tag
-fn task_publish_to_crates_io(){
+fn task_publish_to_crates_io() {
     // git tag
-    let shell_command = format!("git tag -f -a v{version} -m version_{version}",version=package_version());
+    let shell_command = format!(
+        "git tag -f -a v{version} -m version_{version}",
+        version = package_version()
+    );
     run_shell_command(&shell_command);
 
     // cargo publish
@@ -125,22 +148,8 @@ fn task_publish_to_crates_io(){
 /// there must be Cargo.toml and the directory automation_tasks_rs
 fn is_not_run_in_rust_project_root_directory() -> bool {
     // return negation of exists
-    !(std::path::Path::new("automation_tasks_rs").exists() && std::path::Path::new("Cargo.toml").exists())
-}
-
-/// TODO: trying some auto-completion for bash
-/// how to say to bash to call this binary?
-/// https://www.joshmcguigan.com/blog/shell-completions-pure-rust/
-/// Custom completion behavior is configured using a special bash built-in called complete.
-/// to configure bash to use our completion script (in this terminal session) run 
-/// complete -C "target/debug/automation_tasks_rs completion" target/debug/automation_tasks_rs
-/// this is always called like `target/debug/automation_tasks_rs` from the main rust project
-fn completion()  {
-    println!("build");
-    println!("release");
-    println!("increment_minor");
-    println!("doc");
-    println!("publish_to_crates_io");
+    !(std::path::Path::new("automation_tasks_rs").exists()
+        && std::path::Path::new("Cargo.toml").exists())
 }
 
 // endregion: helper functions
