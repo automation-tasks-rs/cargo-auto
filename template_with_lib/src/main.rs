@@ -66,6 +66,7 @@ fn completion() {
     let sub_commands = vec!["build", "release", "increment_minor", "doc", "publish_to_crates_io"];
 
     let mut sub_found = false;
+    // print the first that starts with the word
     for sub_command in sub_commands.iter() {
         if sub_command.starts_with(word_being_completed) {
             println!("{}", sub_command);
@@ -73,7 +74,7 @@ fn completion() {
         }
     }
     if sub_found == false {
-        // list all sub-commands
+        // print all sub-commands
         for sub_command in sub_commands.iter() {
             println!("{}", sub_command);
         }
