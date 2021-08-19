@@ -191,6 +191,25 @@
 <span id="189">189</span>
 <span id="190">190</span>
 <span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
+<span id="206">206</span>
+<span id="207">207</span>
+<span id="208">208</span>
+<span id="209">209</span>
+<span id="210">210</span>
 </pre><pre class="rust">
 <span class="doccomment">//! this strings are copied from the template_x folders</span>
 <span class="doccomment">//! because when publishing to crates.io I only the main binary is transferred</span>
@@ -218,11 +237,7 @@ publish = false
 
 /// automation_tasks_rs basic
 fn main() {
-    if is_not_run_in_rust_project_root_directory() {
-        println!(&quot;Error: automation_tasks_rs must be called in the root directory of the rust project beside the Cargo.toml file and automation_tasks_rs directory.&quot;);
-        // early exit
-        std::process::exit(0);
-    }
+    exit_if_not_run_in_rust_project_root_directory();
 
     // get CLI arguments
     let mut args = std::env::args();
@@ -230,6 +245,8 @@ fn main() {
     let _arg_0 = args.next();
     match_arguments_and_call_tasks(args);
 }
+
+// region: match, help and completion. Take care to keep them in sync with the changes.
 
 /// match arguments and call tasks functions
 fn match_arguments_and_call_tasks(mut args: std::env::Args) {
@@ -259,39 +276,22 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args) {
 
 /// write a comprehensible help for user defined tasks
 fn print_help() {
-    println!(&quot;&quot;);
-    println!(&quot;User defined tasks in automation_tasks_rs:&quot;);
-    println!(&quot;cargo auto build - builds the crate in debug mode, fmt&quot;);
-    println!(&quot;cargo auto release - builds the crate in release mode, fmt&quot;);
-    println!(&quot;cargo auto docs - builds the docs, copy to docs directory&quot;);
-    println!(&quot;&quot;);
+    println!(
+        r#&quot;
+User defined tasks in automation_tasks_rs:
+cargo auto build - builds the crate in debug mode, fmt
+cargo auto release - builds the crate in release mode, fmt
+cargo auto docs - builds the docs, copy to docs directory
+&quot;#
+    );
 }
 
 /// sub-command for bash auto-completion of `cargo auto` using the crate `dev_bestia_cargo_completion`
 fn completion() {
-    /// println one, more or all sub_commands
-    fn completion_return_one_or_more_sub_commands(sub_commands: Vec&lt;&amp;str&gt;, word_being_completed: &amp;str) {
-        let mut sub_found = false;
-        for sub_command in sub_commands.iter() {
-            if sub_command.starts_with(word_being_completed) {
-                println!(&quot;{}&quot;, sub_command);
-                sub_found = true;
-            }
-        }
-        if sub_found == false {
-            // print all sub-commands
-            for sub_command in sub_commands.iter() {
-                println!(&quot;{}&quot;, sub_command);
-            }
-        }
-    }
-
     let args: Vec&lt;String&gt; = std::env::args().collect();
-    let last_word = args[2].as_str();
-    let mut word_being_completed = &quot; &quot;;
-    if args.len() &gt; 3 {
-        word_being_completed = args[3].as_str();
-    }
+    let word_being_completed = args[2].as_str();
+    let last_word = args[3].as_str();
+
     if last_word == &quot;cargo-auto&quot; || last_word == &quot;auto&quot; {
         let sub_commands = vec![&quot;build&quot;, &quot;release&quot;, &quot;doc&quot;, &quot;publish_to_crates_io&quot;];
         completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
@@ -305,6 +305,8 @@ fn completion() {
     */
 }
 
+// endregion: match, help and completion
+
 // region: tasks
 
 /// example how to call a list of shell commands
@@ -314,14 +316,22 @@ fn task_build() {
         &quot;cargo fmt&quot;, 
         &quot;cargo build&quot;];
     run_shell_commands(shell_commands.to_vec());
-    println!(&quot;After `cargo auto build`, run the tests and the code. If ok, then `cargo auto release`&quot;);
+    println!(
+        r#&quot;
+After `cargo auto build`, run the tests and the code. If ok, then `cargo auto release`
+&quot;#
+    );
 }
 
 /// example how to call one shell command and combine with rust code
 fn task_release() {
     run_shell_command(&quot;cargo fmt&quot;);
     run_shell_command(&quot;cargo build --release&quot;);
-    println!(&quot;After `cargo auto release`, run the tests and the code. If ok, then `cargo auto doc`&quot;);
+    println!(
+        r#&quot;
+After `cargo auto release`, run the tests and the code. If ok, then `cargo auto doc`
+&quot;#
+    );
 }
 
 /// example how to call a list of shell commands and combine with rust code
@@ -337,14 +347,27 @@ fn task_docs() {
     run_shell_commands(shell_commands.to_vec());
     // message to help user with next move
     println!(
-        r#&quot;After `cargo auto doc`, check `docs/index.html`. If ok, then `git commit -am&quot;message&quot;` and `git push`,&quot;#
+        r#&quot;
+After `cargo auto doc`, check `docs/index.html`. If ok, then `git commit -am&quot;message&quot;` and `git push`,
+then `cargo publish` or publish to web
+&quot;#
     );
-    println!(&quot;then `cargo publish` or publish to web&quot;);
 }
 
 // endregion: tasks
 
 // region: helper functions
+
+/// check if run in rust project root directory error
+/// there must be Cargo.toml and the directory automation_tasks_rs
+/// exit with error message if not
+fn exit_if_not_run_in_rust_project_root_directory() {
+    if !(std::path::Path::new(&quot;automation_tasks_rs&quot;).exists() &amp;&amp; std::path::Path::new(&quot;Cargo.toml&quot;).exists()) {
+        println!(&quot;Error: automation_tasks_rs must be called in the root directory of the rust project beside the Cargo.toml file and automation_tasks_rs directory.&quot;);
+        // early exit
+        std::process::exit(0);
+    }
+}
 
 /// run one shell command
 fn run_shell_command(shell_command: &amp;str) {
@@ -365,18 +388,33 @@ fn run_shell_commands(shell_commands: Vec&lt;&amp;str&gt;) {
     }
 }
 
-/// check if run in rust project root directory error
-/// there must be Cargo.toml and the directory automation_tasks_rs
-fn is_not_run_in_rust_project_root_directory() -&gt; bool {
-    // return negation of exists
-    !(std::path::Path::new(&quot;automation_tasks_rs&quot;).exists() &amp;&amp; std::path::Path::new(&quot;Cargo.toml&quot;).exists())
+/// returns the directory name, that is usually also the crate name
+/// The true package name is inside Cargo.toml,
+/// but for simplicity (no dependencies) here I use the directory name.
+fn package_name() -&gt; String {
+    std::env::current_dir()
+        .unwrap()
+        .file_name()
+        .unwrap()
+        .to_string_lossy()
+        .to_string()
 }
 
-/// returns the directory name, that is usually also the crate name 
-/// The true package name is inside Cargo.toml, 
-/// but for simplicity (no dependencies) here I use the directory name.
-fn package_name()-&gt;String{
-    std::env::current_dir().unwrap().file_name().unwrap().to_string_lossy().to_string()
+/// println one, more or all sub_commands
+fn completion_return_one_or_more_sub_commands(sub_commands: Vec&lt;&amp;str&gt;, word_being_completed: &amp;str) {
+    let mut sub_found = false;
+    for sub_command in sub_commands.iter() {
+        if sub_command.starts_with(word_being_completed) {
+            println!(&quot;{}&quot;, sub_command);
+            sub_found = true;
+        }
+    }
+    if sub_found == false {
+        // print all sub-commands
+        for sub_command in sub_commands.iter() {
+            println!(&quot;{}&quot;, sub_command);
+        }
+    }
 }
 
 // endregion: helper functions

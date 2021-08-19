@@ -2,11 +2,11 @@
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of rust projects**  
-//! ***[repository](https://github.com/LucianoBestia/cargo-auto); version: 2021.817.2031  date: 2021-08-17 authors: Luciano Bestia***  
+//! ***[repository](https://github.com/LucianoBestia/cargo-auto); version: 2021.819.906  date: 2021-08-19 authors: Luciano Bestia***  
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-552-green.svg)](https://github.com/LucianoBestia/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-278-blue.svg)](https://github.com/LucianoBestia/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-53-purple.svg)](https://github.com/LucianoBestia/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-584-green.svg)](https://github.com/LucianoBestia/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-280-blue.svg)](https://github.com/LucianoBestia/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-56-purple.svg)](https://github.com/LucianoBestia/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/LucianoBestia/cargo-auto/)
 //! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-0-orange.svg)](https://github.com/LucianoBestia/cargo-auto/)
 //!
