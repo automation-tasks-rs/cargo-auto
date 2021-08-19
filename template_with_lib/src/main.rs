@@ -33,9 +33,11 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args) {
                 } else if &task == "increment_minor" {
                     task_increment_minor();
                 } else if &task == "docs" || &task == "doc" || &task == "d" {
-                    task_docs();
+                    task_docs();                
                 } else if &task == "publish_to_crates_io" {
                     task_publish_to_crates_io();
+                } else if &task == "github_new_release" {
+                    task_github_new_release();
                 } else {
                     println!("Task {} is unknown.", &task);
                     print_help();
@@ -55,6 +57,9 @@ cargo auto release - builds the crate in release mode, version from date, fmt
 cargo auto increment_minor - increments the semver version minor part (only for libraries)
 cargo auto docs - builds the docs, copy to docs directory
 cargo auto publish_to_crates_io - publish to crates.io, git tag
+cargo auto github_new_release - creates new release on github
+  this task needs PAT (personal access token from github) in the env variable: `export GITHUB_TOKEN=paste_token_here`
+
 "#
     );
 }
@@ -66,7 +71,7 @@ fn completion() {
     let last_word = args[3].as_str();
 
     if last_word == "cargo-auto" || last_word == "auto" {
-        let sub_commands = vec!["build", "release", "doc", "publish_to_crates_io"];
+        let sub_commands = vec!["build", "release", "doc", "publish_to_crates_io","github_new_release"];
         completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
     /*
@@ -137,7 +142,7 @@ fn task_docs() {
     println!(
         r#"
 After `cargo auto doc`, check `docs/index.html`. If ok, then `git commit -am"message"` and `git push`,
-then `cargo auto publish_to_crates_io`
+then `cargo auto publish_to_crates_io` or `cargo auto github_new_release`
 "#
     );
 }
@@ -156,42 +161,47 @@ fn task_publish_to_crates_io() {
     println!(
         r#"
 After `cargo auto task_publish_to_crates_io', check `crates.io` page.
-If binary then install with `cargo install crate_name` and check how it works.
-If library then add dependency to your rust project and check how it works.
-"#
+If binary then install with `cargo install {package_name}` and check how it works.
+If library then add dependency `{package_name} = "{package_version}"` to your rust project and check how it works.
+"#,
+        package_name = package_name(),
+        package_version = package_version()
     );
+}
+
+/// create a new release on github with octocrab
+/// the env variable GITHUB_TOKEN must be set `export GITHUB_TOKEN=paste_token_here`
+fn task_github_new_release() {
+    // async block inside sync code with tokio
+    use tokio::runtime::Runtime;
+    let rt = Runtime::new().unwrap();
+    rt.block_on(async move {
+        let owner = github_owner();
+        let repo = package_name();
+        let version = package_version();
+        let name = format!("Version {}", &package_version());
+        let branch = "main";
+        let body_md_text = &format!(
+            r#"
+This is {package_name} from {owner}.     
+            "#,
+            package_name = package_name(),
+            owner = owner
+        );
+
+        let release_id =  github_create_new_release(&owner, &repo, &version, &name, branch, body_md_text).await;
+        println!("New release created, now uploading release asset. This can take some time if the files are big. Wait...");
+
+        // upload asset
+        let path_to_file = format!(
+            "target/release/{package_name}",
+            package_name = package_name()
+        );
+
+        github_upload_asset_to_release(&owner, &repo, &release_id, &path_to_file).await;
+        println!("Asset uploaded.");
+    });
 }
 
 // endregion: tasks
 
-// region: helper functions
-
-/// check if run in rust project root directory error
-/// there must be Cargo.toml and the directory automation_tasks_rs
-/// exit with error message if not
-fn exit_if_not_run_in_rust_project_root_directory() {
-    if !(std::path::Path::new("automation_tasks_rs").exists() && std::path::Path::new("Cargo.toml").exists()) {
-        println!("Error: automation_tasks_rs must be called in the root directory of the rust project beside the Cargo.toml file and automation_tasks_rs directory.");
-        // early exit
-        std::process::exit(0);
-    }
-}
-
-/// println one, more or all sub_commands
-fn completion_return_one_or_more_sub_commands(sub_commands: Vec<&str>, word_being_completed: &str) {
-    let mut sub_found = false;
-    for sub_command in sub_commands.iter() {
-        if sub_command.starts_with(word_being_completed) {
-            println!("{}", sub_command);
-            sub_found = true;
-        }
-    }
-    if sub_found == false {
-        // print all sub-commands
-        for sub_command in sub_commands.iter() {
-            println!("{}", sub_command);
-        }
-    }
-}
-
-// endregion: helper functions
