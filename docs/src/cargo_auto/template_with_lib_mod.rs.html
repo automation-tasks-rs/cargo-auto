@@ -235,6 +235,42 @@
 <span id="233">233</span>
 <span id="234">234</span>
 <span id="235">235</span>
+<span id="236">236</span>
+<span id="237">237</span>
+<span id="238">238</span>
+<span id="239">239</span>
+<span id="240">240</span>
+<span id="241">241</span>
+<span id="242">242</span>
+<span id="243">243</span>
+<span id="244">244</span>
+<span id="245">245</span>
+<span id="246">246</span>
+<span id="247">247</span>
+<span id="248">248</span>
+<span id="249">249</span>
+<span id="250">250</span>
+<span id="251">251</span>
+<span id="252">252</span>
+<span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
+<span id="257">257</span>
+<span id="258">258</span>
+<span id="259">259</span>
+<span id="260">260</span>
+<span id="261">261</span>
+<span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
+<span id="265">265</span>
+<span id="266">266</span>
+<span id="267">267</span>
+<span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
 </pre><pre class="rust">
 <span class="doccomment">//! this strings are copied from the template_x folders</span>
 <span class="doccomment">//! because when publishing to crates.io I only the main binary is transferred</span>
@@ -296,7 +332,10 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args) {
                 } else if &amp;task == &quot;increment_minor&quot; {
                     task_increment_minor();
                 } else if &amp;task == &quot;docs&quot; || &amp;task == &quot;doc&quot; || &amp;task == &quot;d&quot; {
-                    task_docs();                
+                    task_docs();
+                } else if &amp;task == &quot;commit_and_push&quot; {
+                    let arg_2 = args.next();
+                    task_commit_and_push(arg_2);
                 } else if &amp;task == &quot;publish_to_crates_io&quot; {
                     task_publish_to_crates_io();
                 } else if &amp;task == &quot;github_new_release&quot; {
@@ -319,9 +358,11 @@ cargo auto build - builds the crate in debug mode, fmt
 cargo auto release - builds the crate in release mode, version from date, fmt
 cargo auto increment_minor - increments the semver version minor part (only for libraries)
 cargo auto docs - builds the docs, copy to docs directory
+cargo auto commit_and_push - commits with message and push with mandatory message
+    if you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git
 cargo auto publish_to_crates_io - publish to crates.io, git tag
 cargo auto github_new_release - creates new release on github
-  this task needs PAT (personal access token from github) in the env variable: `export GITHUB_TOKEN=paste_token_here`
+    this task needs PAT (personal access token from github) in the env variable: `export GITHUB_TOKEN=paste_token_here`
 
 &quot;#
     );
@@ -334,7 +375,7 @@ fn completion() {
     let last_word = args[3].as_str();
 
     if last_word == &quot;cargo-auto&quot; || last_word == &quot;auto&quot; {
-        let sub_commands = vec![&quot;build&quot;, &quot;release&quot;, &quot;doc&quot;, &quot;publish_to_crates_io&quot;,&quot;github_new_release&quot;];
+        let sub_commands = vec![&quot;build&quot;, &quot;release&quot;, &quot;doc&quot;,&quot;commit_and_push&quot;,&quot;publish_to_crates_io&quot;,&quot;github_new_release&quot;];
         completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
     /*
@@ -359,7 +400,8 @@ fn task_build() {
     run_shell_commands(shell_commands.to_vec());
     println!(
         r#&quot;
-After `cargo auto build`, run the tests and the code. If ok, then `cargo auto release`
+After `cargo auto build`, run the tests and the code. If ok, then 
+run`cargo auto release`
 &quot;#
     );
 }
@@ -378,7 +420,8 @@ fn task_release() {
 
     println!(
         r#&quot;
-After `cargo auto release`, run the tests and the code. If ok, then `cargo auto doc`
+After `cargo auto release`, run the tests and the code. If ok, then 
+run `cargo auto doc`
 &quot;#
     );
 }
@@ -404,10 +447,27 @@ fn task_docs() {
     // message to help user with next move
     println!(
         r#&quot;
-After `cargo auto doc`, check `docs/index.html`. If ok, then `git commit -am&quot;message&quot;` and `git push`,
-then `cargo auto publish_to_crates_io` or `cargo auto github_new_release`
+After `cargo auto doc`, check `docs/index.html`. If ok, then 
+run `cargo auto commit_and_push` with mandatory commit message
 &quot;#
     );
+}
+
+/// commit and push
+fn task_commit_and_push(arg_2: Option&lt;String&gt;) {
+    match arg_2 {
+        None =&gt; println!(&quot;Error: message for commit is mandatory&quot;),
+        Some(message) =&gt; {
+            run_shell_command(&amp;format!(r#&quot;git add -A &amp;&amp; git commit -m &quot;{}&quot;&quot;#, message));
+            run_shell_command(&quot;git push&quot;);
+            println!(
+                r#&quot;
+After `cargo auto commit and push`
+run `cargo auto publish_to_crates_io` or `cargo auto github_new_release`
+&quot;#
+            );
+        }
+    }
 }
 
 /// example hot to publish to crates.io and git tag
@@ -423,7 +483,8 @@ fn task_publish_to_crates_io() {
     run_shell_command(&quot;cargo publish&quot;);
     println!(
         r#&quot;
-After `cargo auto task_publish_to_crates_io&#39;, check `crates.io` page.
+After `cargo auto task_publish_to_crates_io&#39;, 
+check `https://crates.io/crates/{package_name}`.
 If binary then install with `cargo install {package_name}` and check how it works.
 If library then add dependency `{package_name} = &quot;{package_version}&quot;` to your rust project and check how it works.
 &quot;#,
@@ -446,14 +507,16 @@ fn task_github_new_release() {
         let branch = &quot;main&quot;;
         let body_md_text = &amp;format!(
             r#&quot;
-This is {package_name} from {owner}.     
+This is {package_name} from {owner}.
+Write something meaningful here. Maybe instructions how to install.
+Or maybe what changed in this release.
             &quot;#,
             package_name = package_name(),
             owner = owner
         );
 
         let release_id =  github_create_new_release(&amp;owner, &amp;repo, &amp;version, &amp;name, branch, body_md_text).await;
-        println!(&quot;New release created, now uploading release asset. This can take some time if the files are big. Wait...&quot;);
+        println!(&quot;New release created, now uploading release asset. This can take some time if the files are big. Wait ...&quot;);
 
         // upload asset
         let path_to_file = format!(
@@ -462,7 +525,16 @@ This is {package_name} from {owner}.
         );
 
         github_upload_asset_to_release(&amp;owner, &amp;repo, &amp;release_id, &amp;path_to_file).await;
-        println!(&quot;Asset uploaded.&quot;);
+        println!(
+            r#&quot;
+After `cargo auto github_new_release&#39;, 
+check `https://github.com/{github_owner}/{package_name}/releases/tag/v{package_version}`.
+Download it and check hot it works.  
+&quot;#,
+            package_name = package_name(),
+            package_version = package_version(),
+            github_owner = github_owner(),
+        );
     });
 }
 
