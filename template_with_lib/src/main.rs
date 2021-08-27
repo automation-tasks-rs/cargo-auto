@@ -1,6 +1,7 @@
 //! automation_tasks_rs with_lib
 
 use cargo_auto_lib::*;
+use cargo_auto_github_lib::*;
 
 /// automation_tasks_rs with_lib
 fn main() {
@@ -216,7 +217,7 @@ Or maybe what changed in this release.
             owner = owner
         );
 
-        let release_id =  github_create_new_release(&owner, &repo, &version, &name, branch, body_md_text).await;
+        let release_id =  auto_github_create_new_release(&owner, &repo, &version, &name, branch, body_md_text).await;
         println!("New release created, now uploading release asset. This can take some time if the files are big. Wait ...");
 
         // upload asset
@@ -225,7 +226,7 @@ Or maybe what changed in this release.
             package_name = package_name()
         );
 
-        github_upload_asset_to_release(&owner, &repo, &release_id, &path_to_file).await;
+        auto_github_upload_asset_to_release(&owner, &repo, &release_id, &path_to_file).await;
         println!(
             r#"
 After `cargo auto github_new_release', 

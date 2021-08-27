@@ -5,12 +5,12 @@
 [comment]: # (auto_cargo_toml_to_md start)
 
 **cargo-auto - automation tasks written in Rust language for the build process of rust projects**  
-***[repository](https://github.com/LucianoBestia/cargo-auto); version: 2021.823.834  date: 2021-08-23 authors: Luciano Bestia***  
+***[repository](https://github.com/LucianoBestia/cargo-auto); version: 2021.827.848  date: 2021-08-27 authors: Luciano Bestia***  
 
 [comment]: # (auto_cargo_toml_to_md end)
 
 [comment]: # (auto_lines_of_code start)
-[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-634-green.svg)](https://github.com/LucianoBestia/cargo-auto/)
+[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-636-green.svg)](https://github.com/LucianoBestia/cargo-auto/)
 [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-279-blue.svg)](https://github.com/LucianoBestia/cargo-auto/)
 [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-54-purple.svg)](https://github.com/LucianoBestia/cargo-auto/)
 [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/LucianoBestia/cargo-auto/)
@@ -185,6 +185,7 @@ Your code will be compiled (if needed) and executed.
 
 This is a work in progress.  
 The goal is to create a library crate [cargo_auto_lib](https://github.com/LucianoBestia/cargo_auto_lib) with many functions that are commonly used when building rust projects.  
+I made a separate library crate [cargo_auto_github_lib](https://github.com/LucianoBestia/cargo_auto_github_lib) for functions that involve Github. Not everybody is using github.  
 
 ```rust
 cargo auto new with_lib
