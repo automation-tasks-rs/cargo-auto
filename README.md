@@ -5,7 +5,7 @@
 [comment]: # (auto_cargo_toml_to_md start)
 
 **cargo-auto - automation tasks written in Rust language for the build process of rust projects**  
-***[repository](https://github.com/LucianoBestia/cargo-auto); version: 2021.827.848  date: 2021-09-04 authors: Luciano Bestia***  
+***[repository](https://github.com/LucianoBestia/cargo-auto); version: 2021.1023.917  date: 2021-10-23 authors: Luciano Bestia***  
 
 [comment]: # (auto_cargo_toml_to_md end)
 
@@ -74,12 +74,12 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args){
         None => print_help(),
         Some(task) => {            
             println!("Running auto task: {}", &task);
-            if &task == "build" || &task == "b" {
+            if &task == "build"{
                 task_build();
-            } else if &task == "release" || &task == "r" {
+            } else if &task == "release" {
                 task_release();
-            } else if &task == "docs" || &task == "doc" || &task == "d" {
-                task_docs();
+            } else if &task == "doc" {
+                task_doc();
             } else {
                 println!("Task {} is unknown.", &task);
                 print_help();
@@ -98,7 +98,7 @@ fn print_help() {
 
 // region: tasks
 
-/// example how to call a list of shell commands
+/// cargo build
 fn task_build() {
     #[rustfmt::skip]
     let shell_commands = [
@@ -109,7 +109,7 @@ fn task_build() {
     run_shell_commands(shell_commands.to_vec());
 }
 
-/// example how to call one shell command and combine with rust code
+/// cargo build --release
 fn task_release() {
     println!("$ cargo fmt");
     run_shell_command("cargo fmt");
@@ -117,8 +117,8 @@ fn task_release() {
     run_shell_command("cargo build --release");
 }
 
-/// example how to call a list of shell commands and combine with rust code
-fn task_docs() {
+/// cargo doc, then copies to /docs/ folder, because this is a github standard folder
+fn task_doc() {
     #[rustfmt::skip]
     let shell_commands = [
         "echo $ cargo doc --no-deps --document-private-items --open",

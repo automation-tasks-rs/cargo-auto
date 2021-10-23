@@ -2,11 +2,11 @@
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of rust projects**  
-//! ***[repository](https://github.com/LucianoBestia/cargo-auto); version: 2021.827.848  date: 2021-08-27 authors: Luciano Bestia***  
+//! ***[repository](https://github.com/LucianoBestia/cargo-auto); version: 2021.1023.917  date: 2021-10-23 authors: Luciano Bestia***  
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-636-green.svg)](https://github.com/LucianoBestia/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-279-blue.svg)](https://github.com/LucianoBestia/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-54-purple.svg)](https://github.com/LucianoBestia/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-210-green.svg)](https://github.com/LucianoBestia/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-248-blue.svg)](https://github.com/LucianoBestia/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-23-purple.svg)](https://github.com/LucianoBestia/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/LucianoBestia/cargo-auto/)
 //! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-0-orange.svg)](https://github.com/LucianoBestia/cargo-auto/)
 //!
@@ -66,12 +66,12 @@
 //!         None => print_help(),
 //!         Some(task) => {            
 //!             println!("Running auto task: {}", &task);
-//!             if &task == "build" || &task == "b" {
+//!             if &task == "build"{
 //!                 task_build();
-//!             } else if &task == "release" || &task == "r" {
+//!             } else if &task == "release" {
 //!                 task_release();
-//!             } else if &task == "docs" || &task == "doc" || &task == "d" {
-//!                 task_docs();
+//!             } else if &task == "doc" {
+//!                 task_doc();
 //!             } else {
 //!                 println!("Task {} is unknown.", &task);
 //!                 print_help();
@@ -90,7 +90,7 @@
 //!
 //! // region: tasks
 //!
-//! /// example how to call a list of shell commands
+//! /// cargo build
 //! fn task_build() {
 //!     #[rustfmt::skip]
 //!     let shell_commands = [
@@ -101,7 +101,7 @@
 //!     run_shell_commands(shell_commands.to_vec());
 //! }
 //!
-//! /// example how to call one shell command and combine with rust code
+//! /// cargo build --release
 //! fn task_release() {
 //!     println!("$ cargo fmt");
 //!     run_shell_command("cargo fmt");
@@ -109,8 +109,8 @@
 //!     run_shell_command("cargo build --release");
 //! }
 //!
-//! /// example how to call a list of shell commands and combine with rust code
-//! fn task_docs() {
+//! /// cargo doc, then copies to /docs/ folder, because this is a github standard folder
+//! fn task_doc() {
 //!     #[rustfmt::skip]
 //!     let shell_commands = [
 //!         "echo $ cargo doc --no-deps --document-private-items --open",
@@ -195,7 +195,7 @@
 //!
 //! ## cargo crev reviews and advisory
 //!
-//! We leave in times of danger with `supply chain attacks`.  
+//! We leave in times of danger with [supply chain attacks](https://en.wikipedia.org/wiki/Supply_chain_attack).  
 //! It is recommended to always use [cargo-crev](https://github.com/crev-dev/cargo-crev)  
 //! to verify the trustworthiness of each of your dependencies.  
 //! Please, spread this info.  
@@ -206,7 +206,9 @@
 //!
 //! My open-source projects are free and free as a beer (MIT license).  
 //! I just love programming.  
-//! But I need also to drink. If you find my projects and tutorials helpful, please buy me a beer or two donating on my [paypal](https://www.paypal.com/paypalme/LucianoBestia). You know the price of a beer in your local bar ;-)  
+//! But I need also to drink. If you find my projects and tutorials helpful,  
+//! please buy me a beer or two donating on my [paypal](https://www.paypal.com/paypalme/LucianoBestia).  
+//! You know the price of a beer in your local bar ;-)  
 //! So I can drink a free beer for your health :-)  
 //! [Na zdravje](https://translate.google.com/?hl=en&sl=sl&tl=en&text=Na%20zdravje&op=translate) !
 //!

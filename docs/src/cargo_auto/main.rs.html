@@ -481,16 +481,18 @@
 <span id="479">479</span>
 <span id="480">480</span>
 <span id="481">481</span>
+<span id="482">482</span>
+<span id="483">483</span>
 </pre><pre class="rust">
 <span class="comment">// region: auto_md_to_doc_comments include README.md A //!</span>
 <span class="doccomment">//! # cargo-auto  </span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! **cargo-auto - automation tasks written in Rust language for the build process of rust projects**  </span>
-<span class="doccomment">//! ***[repository](https://github.com/LucianoBestia/cargo-auto); version: 2021.827.848  date: 2021-08-27 authors: Luciano Bestia***  </span>
+<span class="doccomment">//! ***[repository](https://github.com/LucianoBestia/cargo-auto); version: 2021.1023.917  date: 2021-10-23 authors: Luciano Bestia***  </span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-636-green.svg)](https://github.com/LucianoBestia/cargo-auto/)</span>
-<span class="doccomment">//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-279-blue.svg)](https://github.com/LucianoBestia/cargo-auto/)</span>
-<span class="doccomment">//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-54-purple.svg)](https://github.com/LucianoBestia/cargo-auto/)</span>
+<span class="doccomment">//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-210-green.svg)](https://github.com/LucianoBestia/cargo-auto/)</span>
+<span class="doccomment">//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-248-blue.svg)](https://github.com/LucianoBestia/cargo-auto/)</span>
+<span class="doccomment">//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-23-purple.svg)](https://github.com/LucianoBestia/cargo-auto/)</span>
 <span class="doccomment">//! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/LucianoBestia/cargo-auto/)</span>
 <span class="doccomment">//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-0-orange.svg)](https://github.com/LucianoBestia/cargo-auto/)</span>
 <span class="doccomment">//!</span>
@@ -550,12 +552,12 @@
 <span class="doccomment">//!         None =&gt; print_help(),</span>
 <span class="doccomment">//!         Some(task) =&gt; {            </span>
 <span class="doccomment">//!             println!(&quot;Running auto task: {}&quot;, &amp;task);</span>
-<span class="doccomment">//!             if &amp;task == &quot;build&quot; || &amp;task == &quot;b&quot; {</span>
+<span class="doccomment">//!             if &amp;task == &quot;build&quot;{</span>
 <span class="doccomment">//!                 task_build();</span>
-<span class="doccomment">//!             } else if &amp;task == &quot;release&quot; || &amp;task == &quot;r&quot; {</span>
+<span class="doccomment">//!             } else if &amp;task == &quot;release&quot; {</span>
 <span class="doccomment">//!                 task_release();</span>
-<span class="doccomment">//!             } else if &amp;task == &quot;docs&quot; || &amp;task == &quot;doc&quot; || &amp;task == &quot;d&quot; {</span>
-<span class="doccomment">//!                 task_docs();</span>
+<span class="doccomment">//!             } else if &amp;task == &quot;doc&quot; {</span>
+<span class="doccomment">//!                 task_doc();</span>
 <span class="doccomment">//!             } else {</span>
 <span class="doccomment">//!                 println!(&quot;Task {} is unknown.&quot;, &amp;task);</span>
 <span class="doccomment">//!                 print_help();</span>
@@ -574,7 +576,7 @@
 <span class="doccomment">//!</span>
 <span class="doccomment">//! // region: tasks</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! /// example how to call a list of shell commands</span>
+<span class="doccomment">//! /// cargo build</span>
 <span class="doccomment">//! fn task_build() {</span>
 <span class="doccomment">//!     #[rustfmt::skip]</span>
 <span class="doccomment">//!     let shell_commands = [</span>
@@ -585,7 +587,7 @@
 <span class="doccomment">//!     run_shell_commands(shell_commands.to_vec());</span>
 <span class="doccomment">//! }</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! /// example how to call one shell command and combine with rust code</span>
+<span class="doccomment">//! /// cargo build --release</span>
 <span class="doccomment">//! fn task_release() {</span>
 <span class="doccomment">//!     println!(&quot;$ cargo fmt&quot;);</span>
 <span class="doccomment">//!     run_shell_command(&quot;cargo fmt&quot;);</span>
@@ -593,8 +595,8 @@
 <span class="doccomment">//!     run_shell_command(&quot;cargo build --release&quot;);</span>
 <span class="doccomment">//! }</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! /// example how to call a list of shell commands and combine with rust code</span>
-<span class="doccomment">//! fn task_docs() {</span>
+<span class="doccomment">//! /// cargo doc, then copies to /docs/ folder, because this is a github standard folder</span>
+<span class="doccomment">//! fn task_doc() {</span>
 <span class="doccomment">//!     #[rustfmt::skip]</span>
 <span class="doccomment">//!     let shell_commands = [</span>
 <span class="doccomment">//!         &quot;echo $ cargo doc --no-deps --document-private-items --open&quot;,</span>
@@ -679,7 +681,7 @@
 <span class="doccomment">//!</span>
 <span class="doccomment">//! ## cargo crev reviews and advisory</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! We leave in times of danger with `supply chain attacks`.  </span>
+<span class="doccomment">//! We leave in times of danger with [supply chain attacks](https://en.wikipedia.org/wiki/Supply_chain_attack).  </span>
 <span class="doccomment">//! It is recommended to always use [cargo-crev](https://github.com/crev-dev/cargo-crev)  </span>
 <span class="doccomment">//! to verify the trustworthiness of each of your dependencies.  </span>
 <span class="doccomment">//! Please, spread this info.  </span>
@@ -690,7 +692,9 @@
 <span class="doccomment">//!</span>
 <span class="doccomment">//! My open-source projects are free and free as a beer (MIT license).  </span>
 <span class="doccomment">//! I just love programming.  </span>
-<span class="doccomment">//! But I need also to drink. If you find my projects and tutorials helpful, please buy me a beer or two donating on my [paypal](https://www.paypal.com/paypalme/LucianoBestia). You know the price of a beer in your local bar ;-)  </span>
+<span class="doccomment">//! But I need also to drink. If you find my projects and tutorials helpful,  </span>
+<span class="doccomment">//! please buy me a beer or two donating on my [paypal](https://www.paypal.com/paypalme/LucianoBestia).  </span>
+<span class="doccomment">//! You know the price of a beer in your local bar ;-)  </span>
 <span class="doccomment">//! So I can drink a free beer for your health :-)  </span>
 <span class="doccomment">//! [Na zdravje](https://translate.google.com/?hl=en&amp;sl=sl&amp;tl=en&amp;text=Na%20zdravje&amp;op=translate) !</span>
 <span class="doccomment">//!</span>
