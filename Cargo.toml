@@ -1,10 +1,10 @@
 [package]
 name = "cargo-auto"
 version = "2021.1023.917"
-authors = ["Luciano Bestia <luciano.bestia@gmail.com>"]
+authors = ["bestia.dev <info@bestia.dev>"]
 edition = "2018"
 description = "cargo-auto - automation tasks written in Rust language for the build process of rust projects"
-repository = "https://github.com/LucianoBestia/cargo-auto"
+repository = "https://github.com/bestia-dev/cargo-auto"
 readme = "README.md"
 license = "MIT"
 keywords = ["rust", "make"]

@@ -5,20 +5,20 @@
 [comment]: # (auto_cargo_toml_to_md start)
 
 **cargo-auto - automation tasks written in Rust language for the build process of rust projects**  
-***version: 2021.1023.917  date: 2021-10-23 author: [Dev_Bestia](https://bestia.dev) repository: [GitHub](https://github.com/LucianoBestia/cargo-auto)***  
+***version: 2021.1023.917  date: 2021-10-23 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
 
 [comment]: # (auto_cargo_toml_to_md end)
 
 [comment]: # (auto_lines_of_code start)
-[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-210-green.svg)](https://github.com/LucianoBestia/cargo-auto/)
-[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-248-blue.svg)](https://github.com/LucianoBestia/cargo-auto/)
-[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-23-purple.svg)](https://github.com/LucianoBestia/cargo-auto/)
-[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/LucianoBestia/cargo-auto/)
-[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-0-orange.svg)](https://github.com/LucianoBestia/cargo-auto/)
+[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-210-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-248-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-23-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-0-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 
 [comment]: # (auto_lines_of_code end)
 
-[![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto) [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/) [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/cargo-auto.svg)](https://web.crev.dev/rust-reviews/crate/cargo-auto/) [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/) [![Licence](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/LucianoBestia/cargo-auto/blob/master/LICENSE) [![Rust](https://github.com/LucianoBestia/cargo-auto/workflows/RustAction/badge.svg)](https://github.com/LucianoBestia/cargo-auto/)  
+[![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto) [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/) [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/cargo-auto.svg)](https://web.crev.dev/rust-reviews/crate/cargo-auto/) [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/) [![Licence](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo-auto/blob/master/LICENSE) [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo-auto/)  
 
 ## Try it
 
@@ -29,7 +29,7 @@ cargo install cargo-auto
 cargo auto new
 ```
 
-![cargo_auto_new](https://github.com/LucianoBestia/cargo-auto/raw/main/images/cargo_auto_new.png "cargo_auto_new")
+![cargo_auto_new](https://github.com/bestia-dev/cargo-auto/raw/main/images/cargo_auto_new.png "cargo_auto_new")
 
 Now try to run a task:
 
@@ -37,7 +37,7 @@ Now try to run a task:
 cargo auto build
 ```
 
-![cargo_auto_build](https://github.com/LucianoBestia/cargo-auto/raw/main/images/cargo_auto_build.png "cargo_auto_build")
+![cargo_auto_build](https://github.com/bestia-dev/cargo-auto/raw/main/images/cargo_auto_build.png "cargo_auto_build")
 
 Congratulations! You are already using `cargo-auto`. Simple as that.  
 
@@ -149,7 +149,7 @@ cargo auto
 This binary is super simple. It has only 3 trivial dependencies: `unwrap`, `termion` and `lazy_static`.  
 The binary only reads the CLI arguments and runs the `automation_tasks_rs` binary with them. If needed it will compile `automation_tasks_rs` first.  
 The code-flow of the source code of `cargo-auto` is simple, fully commented and straightforward to audit.  
-The source code is on [GitHub](https://github.com/LucianoBestia/cargo-auto) with MIT open-source licensing.  
+The source code is on [GitHub](https://github.com/bestia-dev/cargo-auto) with MIT open-source licensing.  
 
 ## bash auto-completion
 
@@ -184,8 +184,8 @@ Your code will be compiled (if needed) and executed.
 ## template_with_lib
 
 This is a work in progress.  
-The goal is to create a library crate [cargo_auto_lib](https://github.com/LucianoBestia/cargo_auto_lib) with many functions that are commonly used when building rust projects.  
-I made a separate library crate [cargo_auto_github_lib](https://github.com/LucianoBestia/cargo_auto_github_lib) for functions that involve Github. Not everybody is using github.  
+The goal is to create a library crate [cargo_auto_lib](https://github.com/bestia-dev/cargo_auto_lib) with many functions that are commonly used when building rust projects.  
+I made a separate library crate [cargo_auto_github_lib](https://github.com/bestia-dev/cargo_auto_github_lib) for functions that involve Github. Not everybody is using github.  
 
 ```rust
 cargo auto new with_lib
@@ -215,7 +215,7 @@ You can also read reviews quickly on the web. Example for the crate `num-traits`
 My open-source projects are free and free as a beer (MIT license).  
 I just love programming.  
 But I need also to drink. If you find my projects and tutorials helpful,  
-please buy me a beer or two donating on my [paypal](https://www.paypal.com/paypalme/LucianoBestia).  
+please buy me a beer or two donating on my [paypal](https://paypal.me/LucianoBestia).  
 You know the price of a beer in your local bar ;-)  
 So I can drink a free beer for your health :-)  
 [Na zdravje](https://translate.google.com/?hl=en&sl=sl&tl=en&text=Na%20zdravje&op=translate) !

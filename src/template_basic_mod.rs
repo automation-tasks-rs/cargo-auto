@@ -5,7 +5,7 @@ pub fn cargo_toml() -> &'static str {
     r#"[package]
 name = "automation_tasks_rs"
 version = "0.1.1"
-authors = ["Luciano Bestia <luciano.bestia@gmail.com>"]
+authors = ["bestia.dev <info@bestia.dev>"]
 edition = "2018"
 description = "cargo auto - automation tasks written in Rust language"
 publish = false
