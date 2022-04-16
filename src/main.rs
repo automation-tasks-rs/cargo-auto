@@ -314,7 +314,7 @@ fn match_first_argument(task: &str, mut args: std::env::Args) {
             // early exit
             std::process::exit(0);
         }
-        auto_new(&mut args, task);
+        auto_new();
     } else if task == "completion" {
         completion();
     } else {
@@ -407,7 +407,7 @@ fn already_exists_automation_tasks_rs() -> bool {
 /// copies the template to the `automation_tasks_rs` directory  
 /// in development use: `cargo run -- new`  
 /// in runtime use: `cargo auto new`  
-fn auto_new(args: &mut std::env::Args, task: &str) {
+fn auto_new() {
     let template_name = "basic";
     copy_template(&template_name);
 

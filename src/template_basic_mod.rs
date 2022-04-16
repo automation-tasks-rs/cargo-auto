@@ -129,6 +129,7 @@ package_name = cargo_toml.package_name(),
 
 /// cargo build --release
 fn task_release() {
+    let cargo_toml = CargoToml::read();
     auto_semver_increment_patch();
     auto_cargo_toml_to_md();
     auto_lines_of_code("");
@@ -140,7 +141,7 @@ fn task_release() {
 After `cargo auto release`, run the compiled binary
 run `./target/release/{package_name} argument` if ok, then
 run `cargo auto doc`
-"#
+"#,
 package_name = cargo_toml.package_name(),
     );
 }
@@ -220,6 +221,7 @@ Add the dependency `{package_name} = "{package_version}"` to your rust project a
 */
 
 // endregion: tasks
+
 
     "##
 }

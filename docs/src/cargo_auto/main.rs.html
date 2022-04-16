@@ -1,6 +1,9 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/main.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>main.rs - source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script id="default-settings"></script><script src="../../storage.js"></script><script src="../../crates.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
-<link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
-<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu" role="button">&#9776;</div><a href='../../cargo_auto/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img src="../../brush.svg" width="18" height="18" alt="Pick another theme!"></button><div id="theme-choices" role="menu"></div></div><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img src="../../wheel.svg" width="18" height="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/main.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>main.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
+    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../cargo_auto/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a><h2 class="location"></h2>
+    </nav>
+    <nav class="sidebar"><a class="sidebar-logo" href="../../cargo_auto/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
+        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../cargo_auto/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -446,45 +449,7 @@
 <span id="444">444</span>
 <span id="445">445</span>
 <span id="446">446</span>
-<span id="447">447</span>
-<span id="448">448</span>
-<span id="449">449</span>
-<span id="450">450</span>
-<span id="451">451</span>
-<span id="452">452</span>
-<span id="453">453</span>
-<span id="454">454</span>
-<span id="455">455</span>
-<span id="456">456</span>
-<span id="457">457</span>
-<span id="458">458</span>
-<span id="459">459</span>
-<span id="460">460</span>
-<span id="461">461</span>
-<span id="462">462</span>
-<span id="463">463</span>
-<span id="464">464</span>
-<span id="465">465</span>
-<span id="466">466</span>
-<span id="467">467</span>
-<span id="468">468</span>
-<span id="469">469</span>
-<span id="470">470</span>
-<span id="471">471</span>
-<span id="472">472</span>
-<span id="473">473</span>
-<span id="474">474</span>
-<span id="475">475</span>
-<span id="476">476</span>
-<span id="477">477</span>
-<span id="478">478</span>
-<span id="479">479</span>
-<span id="480">480</span>
-<span id="481">481</span>
-<span id="482">482</span>
-<span id="483">483</span>
-</pre><pre class="rust">
-<span class="comment">// region: auto_md_to_doc_comments include README.md A //!</span>
+</pre><pre class="rust"><code><span class="comment">// region: auto_md_to_doc_comments include README.md A //!</span>
 <span class="doccomment">//! # cargo-auto  </span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! **cargo-auto - automation tasks written in Rust language for the build process of rust projects**  </span>
@@ -599,7 +564,7 @@
 <span class="doccomment">//! fn task_doc() {</span>
 <span class="doccomment">//!     #[rustfmt::skip]</span>
 <span class="doccomment">//!     let shell_commands = [</span>
-<span class="doccomment">//!         &quot;echo $ cargo doc --no-deps --document-private-items --open&quot;,</span>
+<span class="doccomment">//!         &quot;echo $ cargo doc --no-deps --document-private-items&quot;,</span>
 <span class="doccomment">//!         &quot;cargo doc --no-deps --document-private-items --open&quot;,</span>
 <span class="doccomment">//!         // copy to /docs/ because it is github standard</span>
 <span class="doccomment">//!         &quot;echo $ rsync -a --info=progress2 --delete-after target/doc/ docs/&quot;,</span>
@@ -637,7 +602,7 @@
 <span class="doccomment">//!</span>
 <span class="doccomment">//! Inside the cargo-auto project there are 2 directories with rust sub-projects as templates. I can open a new editor for these directories and build this crates independently. So it is easy to debug and develop.  </span>
 <span class="doccomment">//! Sadly, I cannot publish these directories and files to `crates.io`. I can effectively publish only the source code inside my main rust project `cargo-auto`.  </span>
-<span class="doccomment">//! Therefor, before publishing I must copy the text of these files into the modules `template_basic_mod.rs` and `template_with_lib_mod.rs`. It is not difficult now that rust has fantastic [raw strings](https://doc.rust-lang.org/rust-by-example/std/str.html).  </span>
+<span class="doccomment">//! Therefor, before publishing I must copy the text of these files into the modules `template_basic_mod.rs`. It is not difficult now that rust has fantastic [raw strings](https://doc.rust-lang.org/rust-by-example/std/str.html).  </span>
 <span class="doccomment">//! Guess what? I found a perfect example for automation! How convenient.  </span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! ## template_basic</span>
@@ -659,15 +624,6 @@
 <span class="doccomment">//!</span>
 <span class="doccomment">//! Your code will be compiled (if needed) and executed.  </span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! ## template_with_lib</span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! This is a work in progress.  </span>
-<span class="doccomment">//! The goal is to create a library crate [cargo_auto_lib](https://github.com/bestia-dev/cargo_auto_lib) with many functions that are commonly used when building rust projects.  </span>
-<span class="doccomment">//! I made a separate library crate [cargo_auto_github_lib](https://github.com/bestia-dev/cargo_auto_github_lib) for functions that involve Github. Not everybody is using github.  </span>
-<span class="doccomment">//!</span>
-<span class="doccomment">//! ```rust</span>
-<span class="doccomment">//! cargo auto new with_lib</span>
-<span class="doccomment">//! ```</span>
 <span class="doccomment">//!</span>
 <span class="doccomment">//! ## development</span>
 <span class="doccomment">//!</span>
@@ -701,7 +657,6 @@
 <span class="comment">// endregion: auto_md_to_doc_comments include README.md A //!</span>
 
 <span class="kw">mod</span> <span class="ident">template_basic_mod</span>;
-<span class="kw">mod</span> <span class="ident">template_with_lib_mod</span>;
 
 <span class="comment">// region: use statements</span>
 <span class="kw">use</span> <span class="ident">lazy_static::lazy_static</span>;
@@ -754,15 +709,15 @@
     <span class="comment">// cargo auto new     - new is the arg_2</span>
     <span class="kw">let</span> <span class="ident">arg_1</span> <span class="op">=</span> <span class="ident">args</span>.<span class="ident">next</span>();
     <span class="kw">match</span> <span class="ident">arg_1</span> {
-        <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">print_help_from_cargo_auto</span>(),
-        <span class="prelude-val">Some</span>(<span class="ident">task</span>) <span class="op">=</span><span class="op">&gt;</span> {
+        <span class="prelude-val">None</span> =&gt; <span class="ident">print_help_from_cargo_auto</span>(),
+        <span class="prelude-val">Some</span>(<span class="ident">task</span>) =&gt; {
             <span class="kw">if</span> <span class="ident">task</span> <span class="op">!</span><span class="op">=</span> <span class="string">&quot;auto&quot;</span> {
                 <span class="ident">match_first_argument</span>(<span class="kw-2">&amp;</span><span class="ident">task</span>, <span class="ident">args</span>);
             } <span class="kw">else</span> {
                 <span class="kw">let</span> <span class="ident">arg_2</span> <span class="op">=</span> <span class="ident">args</span>.<span class="ident">next</span>();
                 <span class="kw">match</span> <span class="ident">arg_2</span> {
-                    <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">print_help_from_cargo_auto</span>(),
-                    <span class="prelude-val">Some</span>(<span class="ident">task</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">match_first_argument</span>(<span class="kw-2">&amp;</span><span class="ident">task</span>, <span class="ident">args</span>),
+                    <span class="prelude-val">None</span> =&gt; <span class="ident">print_help_from_cargo_auto</span>(),
+                    <span class="prelude-val">Some</span>(<span class="ident">task</span>) =&gt; <span class="ident">match_first_argument</span>(<span class="kw-2">&amp;</span><span class="ident">task</span>, <span class="ident">args</span>),
                 }
             }
         }
@@ -770,7 +725,7 @@
 }
 
 <span class="doccomment">/// check if is not run in rust project root directory</span>
-<span class="kw">fn</span> <span class="ident">is_not_run_in_rust_project_root_directory</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+<span class="kw">fn</span> <span class="ident">is_not_run_in_rust_project_root_directory</span>() -&gt; <span class="ident">bool</span> {
     <span class="comment">// return negation of exists</span>
     <span class="op">!</span><span class="ident">Path::new</span>(<span class="string">&quot;Cargo.toml&quot;</span>).<span class="ident">exists</span>()
 }
@@ -801,7 +756,7 @@
 <span class="doccomment">/// in development use: `cargo run -- build`  </span>
 <span class="doccomment">/// in development use: `cargo run -- release`  </span>
 <span class="kw">fn</span> <span class="ident">match_first_argument</span>(<span class="ident">task</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="kw-2">mut</span> <span class="ident">args</span>: <span class="ident">std::env::Args</span>) {
-    <span class="kw">if</span> <span class="ident">task</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;new&quot;</span> {
+    <span class="kw">if</span> <span class="ident">task</span> <span class="op">==</span> <span class="string">&quot;new&quot;</span> {
         <span class="kw">if</span> <span class="ident">already_exists_automation_tasks_rs</span>() {
             <span class="macro">println!</span>(
                 <span class="string">&quot;{}Error: Directory automation_tasks_rs already exists. Cannot create new directory automation_tasks_rs.{}&quot;</span>,
@@ -810,8 +765,8 @@
             <span class="comment">// early exit</span>
             <span class="ident">std::process::exit</span>(<span class="number">0</span>);
         }
-        <span class="ident">auto_new</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">args</span>, <span class="ident">task</span>);
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">task</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;completion&quot;</span> {
+        <span class="ident">auto_new</span>();
+    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">task</span> <span class="op">==</span> <span class="string">&quot;completion&quot;</span> {
         <span class="ident">completion</span>();
     } <span class="kw">else</span> {
         <span class="kw">if</span> <span class="op">!</span><span class="ident">already_exists_automation_tasks_rs</span>() {
@@ -843,7 +798,7 @@
                 <span class="ident">sub_found</span> <span class="op">=</span> <span class="bool-val">true</span>;
             }
         }
-        <span class="kw">if</span> <span class="ident">sub_found</span> <span class="op">=</span><span class="op">=</span> <span class="bool-val">false</span> {
+        <span class="kw">if</span> <span class="ident">sub_found</span> <span class="op">==</span> <span class="bool-val">false</span> {
             <span class="comment">// print all sub-commands</span>
             <span class="kw">for</span> <span class="ident">sub_command</span> <span class="kw">in</span> <span class="ident">sub_commands</span>.<span class="ident">iter</span>() {
                 <span class="macro">println!</span>(<span class="string">&quot;{}&quot;</span>, <span class="ident">sub_command</span>);
@@ -857,10 +812,10 @@
     <span class="kw">if</span> <span class="ident">args</span>.<span class="ident">len</span>() <span class="op">&gt;</span> <span class="number">3</span> {
         <span class="ident">word_being_completed</span> <span class="op">=</span> <span class="ident">args</span>[<span class="number">3</span>].<span class="ident">as_str</span>();
     }
-    <span class="kw">if</span> <span class="ident">last_word</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;cargo-auto&quot;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">last_word</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;auto&quot;</span> {
+    <span class="kw">if</span> <span class="ident">last_word</span> <span class="op">==</span> <span class="string">&quot;cargo-auto&quot;</span> <span class="op">|</span><span class="op">|</span> <span class="ident">last_word</span> <span class="op">==</span> <span class="string">&quot;auto&quot;</span> {
         <span class="kw">let</span> <span class="ident">sub_commands</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="string">&quot;new&quot;</span>];
         <span class="ident">completion_return_one_or_more_sub_commands</span>(<span class="ident">sub_commands</span>, <span class="ident">word_being_completed</span>);
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">last_word</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;new&quot;</span> {
+    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">last_word</span> <span class="op">==</span> <span class="string">&quot;new&quot;</span> {
         <span class="kw">let</span> <span class="ident">sub_commands</span> <span class="op">=</span> <span class="macro">vec!</span>[<span class="string">&quot;with_lib&quot;</span>];
         <span class="ident">completion_return_one_or_more_sub_commands</span>(<span class="ident">sub_commands</span>, <span class="ident">word_being_completed</span>);
     }
@@ -895,30 +850,16 @@
 }
 
 <span class="doccomment">/// already exists automation_tasks_rs directory</span>
-<span class="kw">fn</span> <span class="ident">already_exists_automation_tasks_rs</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">bool</span> {
+<span class="kw">fn</span> <span class="ident">already_exists_automation_tasks_rs</span>() -&gt; <span class="ident">bool</span> {
     <span class="comment">// return</span>
     <span class="ident">PATH_AUTOMATION_TASKS_RS</span>.<span class="ident">exists</span>()
 }
 
 <span class="doccomment">/// copies the template to the `automation_tasks_rs` directory  </span>
-<span class="doccomment">/// the second argument is the template name  </span>
-<span class="doccomment">/// without template_name copies the template_basic  </span>
 <span class="doccomment">/// in development use: `cargo run -- new`  </span>
 <span class="doccomment">/// in runtime use: `cargo auto new`  </span>
-<span class="doccomment">/// with the argument `with_lib` copies template_with_lib  </span>
-<span class="doccomment">/// in development use: `cargo run -- new with_lib`  </span>
-<span class="doccomment">/// in runtime use: `cargo auto new with_lib`  </span>
-<span class="kw">fn</span> <span class="ident">auto_new</span>(<span class="ident">args</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">std::env::Args</span>, <span class="ident">task</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
-    <span class="kw">let</span> <span class="ident">template_name</span>: <span class="ident">String</span>;
-    <span class="kw">if</span> <span class="ident">task</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;new&quot;</span> {
-        <span class="kw">let</span> <span class="ident">arg_2</span> <span class="op">=</span> <span class="ident">args</span>.<span class="ident">next</span>();
-        <span class="kw">match</span> <span class="ident">arg_2</span> {
-            <span class="prelude-val">None</span> <span class="op">=</span><span class="op">&gt;</span> <span class="ident">template_name</span> <span class="op">=</span> <span class="string">&quot;basic&quot;</span>.<span class="ident">to_string</span>(),
-            <span class="prelude-val">Some</span>(<span class="ident">template_name_a</span>) <span class="op">=</span><span class="op">&gt;</span> <span class="ident">template_name</span> <span class="op">=</span> <span class="ident">template_name_a</span>,
-        }
-    } <span class="kw">else</span> {
-        <span class="ident">template_name</span> <span class="op">=</span> <span class="ident">task</span>.<span class="ident">trim_start_matches</span>(<span class="string">&quot;new_&quot;</span>).<span class="ident">to_string</span>();
-    }
+<span class="kw">fn</span> <span class="ident">auto_new</span>() {
+    <span class="kw">let</span> <span class="ident">template_name</span> <span class="op">=</span> <span class="string">&quot;basic&quot;</span>;
     <span class="ident">copy_template</span>(<span class="kw-2">&amp;</span><span class="ident">template_name</span>);
 
     <span class="ident">build_automation_tasks_rs_if_needed</span>();
@@ -935,37 +876,25 @@
 }
 
 <span class="doccomment">/// creates directory if needed and copy files from templates: Cargo.toml, .gitignore and main.rs  </span>
-<span class="doccomment">/// The template text is in the modules template_basic_mod.rs and template_with_lib_mod.rs</span>
+<span class="doccomment">/// The template text is in the modules template_basic_mod.rs</span>
 <span class="kw">fn</span> <span class="ident">copy_template</span>(<span class="ident">template_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) {
     <span class="macro">unwrap!</span>(<span class="ident">std::fs::create_dir_all</span>(<span class="ident">Path::new</span>(<span class="string">&quot;automation_tasks_rs/src&quot;</span>)));
 
-    <span class="kw">if</span> <span class="ident">template_name</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;basic&quot;</span> {
+    <span class="kw">if</span> <span class="ident">template_name</span> <span class="op">==</span> <span class="string">&quot;basic&quot;</span> {
         <span class="macro">unwrap!</span>(<span class="ident">std::fs::write</span>(
             <span class="ident">PATH_CARGO_TOML</span>.<span class="ident">as_os_str</span>(),
-            <span class="kw">crate</span><span class="ident">::template_basic_mod::cargo_toml</span>().<span class="ident">as_bytes</span>()
+            <span class="ident"><span class="kw">crate</span>::template_basic_mod::cargo_toml</span>().<span class="ident">as_bytes</span>()
         ));
         <span class="macro">unwrap!</span>(<span class="ident">std::fs::write</span>(
             <span class="ident">PATH_GITIGNORE</span>.<span class="ident">as_os_str</span>(),
-            <span class="kw">crate</span><span class="ident">::template_basic_mod::gitignore</span>().<span class="ident">as_bytes</span>()
+            <span class="ident"><span class="kw">crate</span>::template_basic_mod::gitignore</span>().<span class="ident">as_bytes</span>()
         ));
         <span class="macro">unwrap!</span>(<span class="ident">std::fs::write</span>(
             <span class="ident">PATH_SRC_MAIN_RS</span>.<span class="ident">as_os_str</span>(),
-            <span class="kw">crate</span><span class="ident">::template_basic_mod::src_main_rs</span>().<span class="ident">as_bytes</span>()
-        ));
-    } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">template_name</span> <span class="op">=</span><span class="op">=</span> <span class="string">&quot;with_lib&quot;</span> {
-        <span class="macro">unwrap!</span>(<span class="ident">std::fs::write</span>(
-            <span class="ident">PATH_CARGO_TOML</span>.<span class="ident">as_os_str</span>(),
-            <span class="kw">crate</span><span class="ident">::template_with_lib_mod::cargo_toml</span>().<span class="ident">as_bytes</span>()
-        ));
-        <span class="macro">unwrap!</span>(<span class="ident">std::fs::write</span>(
-            <span class="ident">PATH_GITIGNORE</span>.<span class="ident">as_os_str</span>(),
-            <span class="kw">crate</span><span class="ident">::template_with_lib_mod::gitignore</span>().<span class="ident">as_bytes</span>()
-        ));
-        <span class="macro">unwrap!</span>(<span class="ident">std::fs::write</span>(
-            <span class="ident">PATH_SRC_MAIN_RS</span>.<span class="ident">as_os_str</span>(),
-            <span class="kw">crate</span><span class="ident">::template_with_lib_mod::src_main_rs</span>().<span class="ident">as_bytes</span>()
+            <span class="ident"><span class="kw">crate</span>::template_basic_mod::src_main_rs</span>().<span class="ident">as_bytes</span>()
         ));
     }
 }
-</pre></div>
-</section><section id="search" class="content hidden"></section><div id="rustdoc-vars" data-root-path="../../" data-current-crate="cargo_auto" data-search-index-js="../../search-index.js" data-search-js="../../search.js"></div><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script></body></html>
+</code></pre></div>
+</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="cargo_auto" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.60.0 (7737e0b5c 2022-04-04)" ></div>
+</body></html>
