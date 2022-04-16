@@ -1,6 +1,7 @@
-//! automation_tasks_rs basic
+//! automation_tasks_rs for project_name
 
-/// automation_tasks_rs basic
+use cargo_auto_lib::*;
+
 fn main() {
     exit_if_not_run_in_rust_project_root_directory();
 
@@ -11,7 +12,7 @@ fn main() {
     match_arguments_and_call_tasks(args);
 }
 
-// region: match, help and completion. Take care to keep them in sync with the changes.
+// region: match, help and completion
 
 /// match arguments and call tasks functions
 fn match_arguments_and_call_tasks(mut args: std::env::Args) {
@@ -35,8 +36,8 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args) {
                 } else if &task == "commit_and_push" {
                     let arg_2 = args.next();
                     task_commit_and_push(arg_2);
-                } else if &task == "publish_to_crates_io" {
-                    task_publish_to_crates_io();
+                //} else if &task == "publish_to_crates_io" {
+                //    task_publish_to_crates_io();
                 } else {
                     println!("Task {} is unknown.", &task);
                     print_help();
@@ -51,14 +52,14 @@ fn print_help() {
     println!(
         r#"
 User defined tasks in automation_tasks_rs:
-cargo auto build - builds the crate in debug mode, fmt
-cargo auto release - builds the crate in release mode, fmt
+cargo auto build - builds the crate in debug mode, fmt, increment version
+cargo auto release - builds the crate in release mode, fmt, increment version
+cargo auto doc - builds the docs, copy to docs directory
 cargo auto test - runs all the tests
-cargo auto docs - builds the docs, copy to docs directory
 cargo auto commit_and_push "message" - commits with message and push with mandatory message
       (If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.)
-cargo auto publish_to_crates_io - publish to crates.io, git tag
 "#
+// cargo auto publish_to_crates_io - publish to crates.io, git tag
     );
 }
 
@@ -69,7 +70,8 @@ fn completion() {
     let last_word = args[3].as_str();
 
     if last_word == "cargo-auto" || last_word == "auto" {
-        let sub_commands = vec!["build", "release", "test", "doc", "publish_to_crates_io"];
+        let sub_commands = vec!["build", "release", "doc","test", "commit_and_push"];
+        // , "publish_to_crates_io"
         completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
     /*
@@ -87,29 +89,35 @@ fn completion() {
 
 /// cargo build
 fn task_build() {
-    #[rustfmt::skip]
-    let shell_commands = [
-        "cargo fmt", 
-        "cargo build"];
-    run_shell_commands(shell_commands.to_vec());
+    let cargo_toml = CargoToml::read();
+    auto_semver_increment_patch();
+    run_shell_command("cargo fmt");
+    run_shell_command("cargo build");
     println!(
         r#"
-After `cargo auto build`, run the tests and the code. If ok, then 
+After `cargo auto build`, run the compiled binary
+run `./target/debug/{package_name} argument`, if ok, then
 run `cargo auto release`
-"#
+"#, 
+package_name = cargo_toml.package_name(),
     );
 }
 
 /// cargo build --release
 fn task_release() {
+    auto_semver_increment_patch();
+    auto_cargo_toml_to_md();
+    auto_lines_of_code("");
+
     run_shell_command("cargo fmt");
     run_shell_command("cargo build --release");
     println!(
         r#"
-After `cargo auto release`, 
-run the `cargo auto test`. If ok, then 
+After `cargo auto release`, run the compiled binary
+run `./target/release/{package_name} argument` if ok, then
 run `cargo auto doc`
 "#
+package_name = cargo_toml.package_name(),
     );
 }
 
@@ -126,15 +134,16 @@ run `cargo auto doc`
 
 /// cargo doc, then copies to /docs/ folder, because this is a github standard folder
 fn task_doc() {
-    #[rustfmt::skip]
-    let shell_commands = [
-        "cargo doc --no-deps --document-private-items",
-        // copy target/doc into docs/ because it is github standard
-        "rsync -a --info=progress2 --delete-after target/doc/ docs/",
-        "echo Create simple index.html file in docs directory",
-        &format!("echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",package_name().replace("-","_")) ,
-        ];
-    run_shell_commands(shell_commands.to_vec());
+    let cargo_toml = CargoToml::read();
+    auto_cargo_toml_to_md();
+    auto_lines_of_code("");
+    auto_md_to_doc_comments();
+
+    run_shell_command("cargo doc --no-deps --document-private-items");
+    // copy target/doc into docs/ because it is github standard
+    run_shell_command("rsync -a --info=progress2 --delete-after target/doc/ docs/");
+    // Create simple index.html file in docs directory
+    run_shell_command(&format!("echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",cargo_toml.package_name().replace("-","_")));    
     // message to help user with next move
     println!(
         r#"
@@ -161,12 +170,14 @@ run `cargo auto publish_to_crates_io`
     }
 }
 
+/*
 /// publish to crates.io and git tag
 fn task_publish_to_crates_io() {
+    let cargo_toml = CargoToml::read();
     // git tag
     let shell_command = format!(
         "git tag -f -a v{version} -m version_{version}",
-        version = package_version()
+        version = cargo_toml.package_version()
     );
     run_shell_command(&shell_command);
 
@@ -174,76 +185,14 @@ fn task_publish_to_crates_io() {
     run_shell_command("cargo publish");
     println!(
         r#"
-After `cargo auto task_publish_to_crates_io', 
+After `cargo auto publish_to_crates_io`, 
 check `https://crates.io/crates/{package_name}`.
 Add the dependency `{package_name} = "{package_version}"` to your rust project and check how it works.
 "#,
-        package_name = package_name(),
-        package_version = package_version()
+        package_name = cargo_toml.package_name(),
+        package_version = cargo_toml.package_version()
     );
 }
+*/
 
 // endregion: tasks
-
-// region: helper functions
-
-/// check if run in rust project root directory error
-/// there must be Cargo.toml and the directory automation_tasks_rs
-/// exit with error message if not
-fn exit_if_not_run_in_rust_project_root_directory() {
-    if !(std::path::Path::new("automation_tasks_rs").exists() && std::path::Path::new("Cargo.toml").exists()) {
-        println!("Error: automation_tasks_rs must be called in the root directory of the rust project beside the Cargo.toml file and automation_tasks_rs directory.");
-        // early exit
-        std::process::exit(0);
-    }
-}
-
-/// run one shell command
-fn run_shell_command(shell_command: &str) {
-    println!("$ {}", shell_command);
-    std::process::Command::new("sh")
-        .arg("-c")
-        .arg(shell_command)
-        .spawn()
-        .unwrap()
-        .wait()
-        .unwrap();
-}
-
-/// run shell commands from a vector of strings. This could go into a library.
-fn run_shell_commands(shell_commands: Vec<&str>) {
-    for shell_command in shell_commands {
-        run_shell_command(shell_command);
-    }
-}
-
-/// returns the directory name, that is usually also the crate name
-/// The true package name is inside Cargo.toml,
-/// but for simplicity (no dependencies) here I use the directory name.
-fn package_name() -> String {
-    std::env::current_dir()
-        .unwrap()
-        .file_name()
-        .unwrap()
-        .to_string_lossy()
-        .to_string()
-}
-
-/// println one, more or all sub_commands
-fn completion_return_one_or_more_sub_commands(sub_commands: Vec<&str>, word_being_completed: &str) {
-    let mut sub_found = false;
-    for sub_command in sub_commands.iter() {
-        if sub_command.starts_with(word_being_completed) {
-            println!("{}", sub_command);
-            sub_found = true;
-        }
-    }
-    if sub_found == false {
-        // print all sub-commands
-        for sub_command in sub_commands.iter() {
-            println!("{}", sub_command);
-        }
-    }
-}
-
-// endregion: helper functions

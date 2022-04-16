@@ -157,10 +157,9 @@ With the help of the crate [dev_bestia_cargo_completion](https://crates.io/crate
 
 ## templates
 
-Inside the cargo-auto project there are 2 directories with rust sub-projects as templates. I can open a new editor for these directories and build this crates independently. So it is easy to debug and develop.  
+Inside the cargo-auto project there is a rust sub-projects as template. I can open a new editor for this directories and build this crate independently. So it is easy to debug and develop.  
 Sadly, I cannot publish these directories and files to `crates.io`. I can effectively publish only the source code inside my main rust project `cargo-auto`.  
-Therefor, before publishing I must copy the text of these files into the modules `template_basic_mod.rs` and `template_with_lib_mod.rs`. It is not difficult now that rust has fantastic [raw strings](https://doc.rust-lang.org/rust-by-example/std/str.html).  
-Guess what? I found a perfect example for automation! How convenient.  
+Therefor, before publishing I must copy the text of these files into the modules `template_basic_mod.rs`. It is not difficult now that rust has fantastic [raw strings](https://doc.rust-lang.org/rust-by-example/std/str.html).  
 
 ## template_basic
 
@@ -180,16 +179,6 @@ cargo auto build
 ```
 
 Your code will be compiled (if needed) and executed.  
-
-## template_with_lib
-
-This is a work in progress.  
-The goal is to create a library crate [cargo_auto_lib](https://github.com/bestia-dev/cargo_auto_lib) with many functions that are commonly used when building rust projects.  
-I made a separate library crate [cargo_auto_github_lib](https://github.com/bestia-dev/cargo_auto_github_lib) for functions that involve Github. Not everybody is using github.  
-
-```rust
-cargo auto new with_lib
-```
 
 ## development
 

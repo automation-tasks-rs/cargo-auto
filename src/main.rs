@@ -151,7 +151,7 @@
 //!
 //! Inside the cargo-auto project there are 2 directories with rust sub-projects as templates. I can open a new editor for these directories and build this crates independently. So it is easy to debug and develop.  
 //! Sadly, I cannot publish these directories and files to `crates.io`. I can effectively publish only the source code inside my main rust project `cargo-auto`.  
-//! Therefor, before publishing I must copy the text of these files into the modules `template_basic_mod.rs` and `template_with_lib_mod.rs`. It is not difficult now that rust has fantastic [raw strings](https://doc.rust-lang.org/rust-by-example/std/str.html).  
+//! Therefor, before publishing I must copy the text of these files into the modules `template_basic_mod.rs`. It is not difficult now that rust has fantastic [raw strings](https://doc.rust-lang.org/rust-by-example/std/str.html).  
 //! Guess what? I found a perfect example for automation! How convenient.  
 //!
 //! ## template_basic
@@ -173,15 +173,6 @@
 //!
 //! Your code will be compiled (if needed) and executed.  
 //!
-//! ## template_with_lib
-//!
-//! This is a work in progress.  
-//! The goal is to create a library crate [cargo_auto_lib](https://github.com/bestia-dev/cargo_auto_lib) with many functions that are commonly used when building rust projects.  
-//! I made a separate library crate [cargo_auto_github_lib](https://github.com/bestia-dev/cargo_auto_github_lib) for functions that involve Github. Not everybody is using github.  
-//!
-//! ```rust
-//! cargo auto new with_lib
-//! ```
 //!
 //! ## development
 //!
@@ -215,7 +206,6 @@
 // endregion: auto_md_to_doc_comments include README.md A //!
 
 mod template_basic_mod;
-mod template_with_lib_mod;
 
 // region: use statements
 use lazy_static::lazy_static;
@@ -415,24 +405,10 @@ fn already_exists_automation_tasks_rs() -> bool {
 }
 
 /// copies the template to the `automation_tasks_rs` directory  
-/// the second argument is the template name  
-/// without template_name copies the template_basic  
 /// in development use: `cargo run -- new`  
 /// in runtime use: `cargo auto new`  
-/// with the argument `with_lib` copies template_with_lib  
-/// in development use: `cargo run -- new with_lib`  
-/// in runtime use: `cargo auto new with_lib`  
 fn auto_new(args: &mut std::env::Args, task: &str) {
-    let template_name: String;
-    if task == "new" {
-        let arg_2 = args.next();
-        match arg_2 {
-            None => template_name = "basic".to_string(),
-            Some(template_name_a) => template_name = template_name_a,
-        }
-    } else {
-        template_name = task.trim_start_matches("new_").to_string();
-    }
+    let template_name = "basic";
     copy_template(&template_name);
 
     build_automation_tasks_rs_if_needed();
@@ -449,7 +425,7 @@ fn auto_new(args: &mut std::env::Args, task: &str) {
 }
 
 /// creates directory if needed and copy files from templates: Cargo.toml, .gitignore and main.rs  
-/// The template text is in the modules template_basic_mod.rs and template_with_lib_mod.rs
+/// The template text is in the modules template_basic_mod.rs
 fn copy_template(template_name: &str) {
     unwrap!(std::fs::create_dir_all(Path::new("automation_tasks_rs/src")));
 
@@ -465,19 +441,6 @@ fn copy_template(template_name: &str) {
         unwrap!(std::fs::write(
             PATH_SRC_MAIN_RS.as_os_str(),
             crate::template_basic_mod::src_main_rs().as_bytes()
-        ));
-    } else if template_name == "with_lib" {
-        unwrap!(std::fs::write(
-            PATH_CARGO_TOML.as_os_str(),
-            crate::template_with_lib_mod::cargo_toml().as_bytes()
-        ));
-        unwrap!(std::fs::write(
-            PATH_GITIGNORE.as_os_str(),
-            crate::template_with_lib_mod::gitignore().as_bytes()
-        ));
-        unwrap!(std::fs::write(
-            PATH_SRC_MAIN_RS.as_os_str(),
-            crate::template_with_lib_mod::src_main_rs().as_bytes()
         ));
     }
 }
