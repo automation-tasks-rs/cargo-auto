@@ -59,6 +59,7 @@ cargo auto test - runs all the tests
 cargo auto commit_and_push "message" - commits with message and push with mandatory message
       (If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.)
 cargo auto publish_to_crates_io - publish to crates.io, git tag
+      (YOu need to save the credentials before publishing. On crates.io get the 'access token'. Then save it locally with the command `cargo login TOKEN`)
 "#
     );
 }
@@ -121,17 +122,6 @@ package_name = cargo_toml.package_name(),
     );
 }
 
-/// cargo test
-fn task_test() {
-    run_shell_command("cargo test");
-    println!(
-        r#"
-After `cargo auto test`. If ok, then 
-run `cargo auto doc`
-"#
-    );
-}
-
 /// cargo doc, then copies to /docs/ folder, because this is a github standard folder
 fn task_doc() {
     let cargo_toml = CargoToml::read();
@@ -148,6 +138,17 @@ fn task_doc() {
     println!(
         r#"
 After `cargo auto doc`, check `docs/index.html`. If ok, then 
+run `cargo auto test`
+"#
+    );
+}
+
+/// cargo test
+fn task_test() {
+    run_shell_command("cargo test");
+    println!(
+        r#"
+After `cargo auto test`. If ok, then 
 run `cargo auto commit_and_push "message"` with mandatory commit message
 "#
     );
@@ -172,6 +173,8 @@ run `cargo auto publish_to_crates_io`
 
 /// publish to crates.io and git tag
 fn task_publish_to_crates_io() {
+    println!(r#"The crates.io access token must already be saved locally with `cargo login TOKEN`"#);
+
     let cargo_toml = CargoToml::read();
     // git tag
     let shell_command = format!(
