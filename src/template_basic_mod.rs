@@ -147,17 +147,6 @@ package_name = cargo_toml.package_name(),
     );
 }
 
-/// cargo test
-fn task_test() {
-    run_shell_command("cargo test");
-    println!(
-        r#"
-After `cargo auto test`. If ok, then 
-run `cargo auto doc`
-"#
-    );
-}
-
 /// cargo doc, then copies to /docs/ folder, because this is a github standard folder
 fn task_doc() {
     let cargo_toml = CargoToml::read();
@@ -174,6 +163,17 @@ fn task_doc() {
     println!(
         r#"
 After `cargo auto doc`, check `docs/index.html`. If ok, then 
+run `cargo auto test`
+"#
+    );
+}
+
+/// cargo test
+fn task_test() {
+    run_shell_command("cargo test");
+    println!(
+        r#"
+After `cargo auto test`. If ok, then 
 run `cargo auto commit_and_push "message"` with mandatory commit message
 "#
     );
@@ -223,6 +223,7 @@ Add the dependency `{package_name} = "{package_version}"` to your rust project a
 */
 
 // endregion: tasks
+
 
     "##
 }

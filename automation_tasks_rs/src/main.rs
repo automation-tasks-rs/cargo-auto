@@ -189,10 +189,10 @@ fn task_publish_to_crates_io() {
         r#"
 After `cargo auto publish_to_crates_io`, 
 check `https://crates.io/crates/{package_name}`.
-Add the dependency `{package_name} = "{package_version}"` to your rust project and check how it works.
+Install the crate with `cargo install {package_name}` and check how it works.
 "#,
         package_name = cargo_toml.package_name(),
-        package_version = cargo_toml.package_version()
+        // package_version = cargo_toml.package_version()
     );
 }
 

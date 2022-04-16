@@ -231,6 +231,7 @@
 <span id="226">226</span>
 <span id="227">227</span>
 <span id="228">228</span>
+<span id="229">229</span>
 </pre><pre class="rust"><code><span class="doccomment">//! this strings are copied from the template_x folders</span>
 <span class="doccomment">//! because when publishing to crates.io I only the main binary is transferred</span>
 
@@ -380,17 +381,6 @@ package_name = cargo_toml.package_name(),
     );
 }
 
-/// cargo test
-fn task_test() {
-    run_shell_command(&quot;cargo test&quot;);
-    println!(
-        r#&quot;
-After `cargo auto test`. If ok, then 
-run `cargo auto doc`
-&quot;#
-    );
-}
-
 /// cargo doc, then copies to /docs/ folder, because this is a github standard folder
 fn task_doc() {
     let cargo_toml = CargoToml::read();
@@ -407,6 +397,17 @@ fn task_doc() {
     println!(
         r#&quot;
 After `cargo auto doc`, check `docs/index.html`. If ok, then 
+run `cargo auto test`
+&quot;#
+    );
+}
+
+/// cargo test
+fn task_test() {
+    run_shell_command(&quot;cargo test&quot;);
+    println!(
+        r#&quot;
+After `cargo auto test`. If ok, then 
 run `cargo auto commit_and_push &quot;message&quot;` with mandatory commit message
 &quot;#
     );
@@ -456,6 +457,7 @@ Add the dependency `{package_name} = &quot;{package_version}&quot;` to your rust
 */
 
 // endregion: tasks
+
 
     &quot;##</span>
 }
