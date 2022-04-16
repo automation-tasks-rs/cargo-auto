@@ -114,7 +114,7 @@ fn completion() {
 /// cargo build
 fn task_build() {
     let cargo_toml = CargoToml::read();
-    auto_semver_increment_patch();
+    auto_version_increment_semver_or_date();
     run_shell_command("cargo fmt");
     run_shell_command("cargo build");
     println!(
@@ -130,7 +130,7 @@ package_name = cargo_toml.package_name(),
 /// cargo build --release
 fn task_release() {
     let cargo_toml = CargoToml::read();
-    auto_semver_increment_patch();
+    auto_version_increment_semver_or_date();
     auto_cargo_toml_to_md();
     auto_lines_of_code("");
 

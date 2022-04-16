@@ -2,11 +2,11 @@
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of rust projects**  
-//! ***[repository](https://github.com/bestia-dev/cargo-auto); version: 2021.1023.917  date: 2021-10-23 authors: bestia.dev***  
+//! ***version: 2022.416.1257 date: 2022-04-16 author: [bestia.dev](bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-210-green.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-248-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-23-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-386-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-247-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-40-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-0-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
@@ -113,7 +113,7 @@
 //! fn task_doc() {
 //!     #[rustfmt::skip]
 //!     let shell_commands = [
-//!         "echo $ cargo doc --no-deps --document-private-items",
+//!         "echo $ cargo doc --no-deps --document-private-items --open",
 //!         "cargo doc --no-deps --document-private-items --open",
 //!         // copy to /docs/ because it is github standard
 //!         "echo $ rsync -a --info=progress2 --delete-after target/doc/ docs/",
@@ -149,10 +149,9 @@
 //!
 //! ## templates
 //!
-//! Inside the cargo-auto project there are 2 directories with rust sub-projects as templates. I can open a new editor for these directories and build this crates independently. So it is easy to debug and develop.  
+//! Inside the cargo-auto project there is a rust sub-projects as template. I can open a new editor for this directories and build this crate independently. So it is easy to debug and develop.  
 //! Sadly, I cannot publish these directories and files to `crates.io`. I can effectively publish only the source code inside my main rust project `cargo-auto`.  
 //! Therefor, before publishing I must copy the text of these files into the modules `template_basic_mod.rs`. It is not difficult now that rust has fantastic [raw strings](https://doc.rust-lang.org/rust-by-example/std/str.html).  
-//! Guess what? I found a perfect example for automation! How convenient.  
 //!
 //! ## template_basic
 //!
@@ -173,6 +172,12 @@
 //!
 //! Your code will be compiled (if needed) and executed.  
 //!
+//! ## more complex tasks
+//!
+//! You can write more complex tasks in Rust language.  
+//! For example in this project I use automation to create github Releases : <https://github.com/bestia-dev/dropbox_backup_to_external_disk>  
+//! Here is pretty complex workspace with more sub-projects: <https://github.com/bestia-dev/cargo_crev_reviews_workspace>  
+//! There is no end to your imagination. If you write something that looks it can help other developers, please share it with me and I will add it here.
 //!
 //! ## development
 //!

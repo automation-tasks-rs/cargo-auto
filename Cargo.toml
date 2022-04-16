@@ -1,6 +1,6 @@
 [package]
 name = "cargo-auto"
-version = "2021.1023.917"
+version = "2022.416.1257"
 authors = ["bestia.dev <info@bestia.dev>"]
 edition = "2018"
 description = "cargo-auto - automation tasks written in Rust language for the build process of rust projects"
