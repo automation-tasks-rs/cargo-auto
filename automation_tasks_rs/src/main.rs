@@ -1,5 +1,7 @@
 //! automation_tasks_rs for cargo-auto
 
+mod copy_files_to_strings_mod;
+
 use cargo_auto_lib::*;
 
 fn main() {

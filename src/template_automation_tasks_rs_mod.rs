@@ -1,6 +1,8 @@
 //! this strings are copied from the template_automation_tasks_rs folder
 //! because when publishing to crates.io, only the main bin-executable is transferred
 
+// region: files copied into strings by automation tasks
+
 pub fn cargo_toml() -> &'static str {
     r#"[package]
 name = "automation_tasks_rs"
@@ -227,3 +229,5 @@ Add the dependency `{package_name} = "{package_version}"` to your rust project a
 
     "##
 }
+
+// endregion: files copied into strings by automation tasks
