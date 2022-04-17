@@ -2,7 +2,7 @@
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2022.417.1443 date: 2022-04-17 author: [bestia.dev](bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2022.417.1457 date: 2022-04-17 author: [bestia.dev](bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
 //!
 //! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-579-green.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-513-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
@@ -55,7 +55,7 @@
 //!
 //! ## cargo auto new_cli
 //!
-//! I like very much that Rust has the command `cargo new project_name`. It creates a super simple Rust hello project that can be build run immediately. But this example is too simple. It lacks basic file structures of a serious CLI program.  
+//! I like very much that Rust has the command `cargo new project_name`. It creates a super simple Rust hello project that can be build and run immediately. But this example is too simple. It lacks basic file structures of a serious CLI program.  
 //! I composed an opinionated template for a Rust CLI project. It is easy to run:
 //!
 //! ```bash

@@ -1128,7 +1128,7 @@ fn upper_my_name(my_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2022.417.1443 date: 2022-04-17 author: [bestia.dev](bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2022.417.1457 date: 2022-04-17 author: [bestia.dev](bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
 //!
 //! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-579-green.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-513-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
@@ -1181,7 +1181,7 @@ fn upper_my_name(my_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //!
 //! ## cargo auto new_cli
 //!
-//! I like very much that Rust has the command `cargo new project_name`. It creates a super simple Rust hello project that can be build run immediately. But this example is too simple. It lacks basic file structures of a serious CLI program.  
+//! I like very much that Rust has the command `cargo new project_name`. It creates a super simple Rust hello project that can be build and run immediately. But this example is too simple. It lacks basic file structures of a serious CLI program.  
 //! I composed an opinionated template for a Rust CLI project. It is easy to run:
 //!
 //! ```bash
@@ -1891,7 +1891,7 @@ fn task_commit_and_push(arg_2: Option&lt;String&gt;) {
     match arg_2 {
         None =&gt; println!(&quot;Error: message for commit is mandatory&quot;),
         Some(message) =&gt; {
-            run_shell_command(&amp;format!(r#&quot;git add -A &amp;&amp; git commit -m &quot;{}&quot;&quot;#, message));
+            run_shell_command(&amp;format!(r#&quot;git add -A &amp;&amp; git commit -m --allow-empty &quot;{}&quot;&quot;#, message));
             run_shell_command(&quot;git push&quot;);
             println!(
                 r#&quot;

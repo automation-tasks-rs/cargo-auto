@@ -5,7 +5,7 @@
 [comment]: # (auto_cargo_toml_to_md start)
 
 **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-***version: 2022.417.1443 date: 2022-04-17 author: [bestia.dev](bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
+***version: 2022.417.1457 date: 2022-04-17 author: [bestia.dev](bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
 
 [comment]: # (auto_cargo_toml_to_md end)
 
@@ -63,7 +63,7 @@ I want something similar to [build.rs](https://doc.rust-lang.org/cargo/reference
 
 ## cargo auto new_cli
 
-I like very much that Rust has the command `cargo new project_name`. It creates a super simple Rust hello project that can be build run immediately. But this example is too simple. It lacks basic file structures of a serious CLI program.  
+I like very much that Rust has the command `cargo new project_name`. It creates a super simple Rust hello project that can be build and run immediately. But this example is too simple. It lacks basic file structures of a serious CLI program.  
 I composed an opinionated template for a Rust CLI project. It is easy to run:
 
 ```bash
