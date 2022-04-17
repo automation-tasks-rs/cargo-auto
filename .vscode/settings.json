@@ -2,11 +2,13 @@
     "cSpell.words": [
         "auto",
         "cmake",
+        "crev",
         "endregion",
         "filetime",
         "new_cli",
         "paypal",
         "println",
+        "rustfmt",
         "subcommand",
         "termion",
         "wooow",

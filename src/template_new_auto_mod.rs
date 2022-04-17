@@ -3,9 +3,15 @@
 
 pub fn copy_to_files(project_name: &str) {
     let folder_path = std::path::Path::new(project_name);
-    std::fs::create_dir(folder_path).unwrap();
+    std::fs::create_dir_all(folder_path).unwrap();
     for file_item in get_vec_file() {
-        std::fs::write(folder_path.join(file_item.file_name), file_item.file_content.as_bytes()).unwrap();
+        // create directory if needed
+        std::fs::create_dir_all(folder_path.join(&file_item.file_name).parent().unwrap()).unwrap();
+        std::fs::write(
+            folder_path.join(&file_item.file_name),
+            file_item.file_content.as_bytes(),
+        )
+        .unwrap();
     }
 }
 

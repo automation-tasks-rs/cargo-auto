@@ -3,7 +3,7 @@
 
 pub fn copy_to_files(project_name: &str) {
     let folder_path = std::path::Path::new(project_name);
-    std::fs::create_dir(folder_path).unwrap();
+    std::fs::create_dir_all(folder_path).unwrap();
     for file_item in get_vec_file() {
         // rename/replace the project_name
         let file_name = file_item
@@ -13,7 +13,9 @@ pub fn copy_to_files(project_name: &str) {
             .file_content
             .replace("bestia_dev_cargo_auto_new_cli", project_name);
 
-        std::fs::write(folder_path.join(file_name), file_content.as_bytes()).unwrap();
+        // create directory if needed
+        std::fs::create_dir_all(folder_path.join(&file_name).parent().unwrap()).unwrap();
+        std::fs::write(folder_path.join(&file_name), file_content.as_bytes()).unwrap();
     }
 }
 

@@ -197,6 +197,10 @@ cargo run -- build
 cargo run -- release
 ```
 
+## TODO
+
+Get the username from git, to use it in Cargo.toml of new_cli
+
 ## cargo crev reviews and advisory
 
 We leave in times of danger with [supply chain attacks](https://en.wikipedia.org/wiki/Supply_chain_attack).  
