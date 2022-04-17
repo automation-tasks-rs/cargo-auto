@@ -4,6 +4,7 @@ mod copy_files_to_strings_mod;
 
 use cargo_auto_lib::*;
 
+
 fn main() {
     exit_if_not_run_in_rust_project_root_directory();
 
@@ -73,7 +74,14 @@ fn completion() {
     let last_word = args[3].as_str();
 
     if last_word == "cargo-auto" || last_word == "auto" {
-        let sub_commands = vec!["build", "release", "doc","test", "commit_and_push", "publish_to_crates_io"];
+        let sub_commands = vec![
+            "build",
+            "release",
+            "doc",
+            "test",
+            "commit_and_push",
+            "publish_to_crates_io",
+        ];
         completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
     /*
@@ -92,6 +100,15 @@ fn completion() {
 /// cargo build
 fn task_build() {
     let cargo_toml = CargoToml::read();
+
+    copy_files_to_strings_mod::copy_folder_files_into_module(
+        std::path::Path::new("template_new_auto"), 
+        std::path::Path::new("src/template_new_auto_mod.rs"));
+ 
+    copy_files_to_strings_mod::copy_folder_files_into_module(
+        std::path::Path::new("template_new_cli"), 
+        std::path::Path::new("src/template_new_cli_mod.rs"));
+
     auto_version_increment_semver_or_date();
     run_shell_command("cargo fmt");
     run_shell_command("cargo build");
@@ -100,13 +117,23 @@ fn task_build() {
 After `cargo auto build`, run the compiled binary
 run `./target/debug/{package_name} argument`, if ok, then
 run `cargo auto release`
-"#, 
-package_name = cargo_toml.package_name(),
+"#,
+        package_name = cargo_toml.package_name(),
     );
 }
 
+
 /// cargo build --release
 fn task_release() {
+
+    copy_files_to_strings_mod::copy_folder_files_into_module(
+        std::path::Path::new("template_new_auto"), 
+        std::path::Path::new("src/template_new_auto_mod.rs"));
+ 
+    copy_files_to_strings_mod::copy_folder_files_into_module(
+        std::path::Path::new("template_new_cli"), 
+        std::path::Path::new("src/template_new_cli_mod.rs"));
+
     let cargo_toml = CargoToml::read();
     auto_version_increment_semver_or_date();
     auto_cargo_toml_to_md();
@@ -120,9 +147,10 @@ After `cargo auto release`, run the compiled binary
 run `./target/release/{package_name} argument` if ok, then
 run `cargo auto doc`
 "#,
-package_name = cargo_toml.package_name(),
+        package_name = cargo_toml.package_name(),
     );
 }
+
 
 /// cargo doc, then copies to /docs/ folder, because this is a github standard folder
 fn task_doc() {
@@ -135,7 +163,10 @@ fn task_doc() {
     // copy target/doc into docs/ because it is github standard
     run_shell_command("rsync -a --info=progress2 --delete-after target/doc/ docs/");
     // Create simple index.html file in docs directory
-    run_shell_command(&format!("echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",cargo_toml.package_name().replace("-","_")));    
+    run_shell_command(&format!(
+        "echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",
+        cargo_toml.package_name().replace("-", "_")
+    ));
     // message to help user with next move
     println!(
         r#"

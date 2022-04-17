@@ -1,10 +1,21 @@
-//! this strings are copied from the template_automation_tasks_rs folder
+//! this strings are copied from the template_new_auto folder
 //! because when publishing to crates.io, only the main bin-executable is transferred
 
-// region: files copied into strings by automation tasks
+pub fn copy_to_files(project_name: &str) {
+    let folder_path = std::path::Path::new(project_name);
+    std::fs::create_dir(folder_path).unwrap();
+    for file_item in get_vec_file() {
+        std::fs::write(folder_path.join(file_item.file_name), file_item.file_content.as_bytes()).unwrap();
+    }
+}
 
-pub fn cargo_toml() -> &'static str {
-    r#"[package]
+pub fn get_vec_file() -> Vec<crate::FileItem> {
+    let mut vec_file = vec![];
+
+    // region: files copied into strings by automation tasks
+    vec_file.push(crate::FileItem {
+        file_name: "Cargo.toml",
+        file_content: r###"[package]
 name = "automation_tasks_rs"
 version = "0.1.1"
 authors = ["bestia.dev <info@bestia.dev>"]
@@ -14,17 +25,15 @@ publish = false
 
 [dependencies]
 cargo_auto_lib = "0.7.24"
-
-"#
-}
-
-pub fn gitignore() -> &'static str {
-    r#"/target
-    "#
-}
-
-pub fn src_main_rs() -> &'static str {
-    r##"//! automation_tasks_rs for project_name
+"###,
+    });
+    vec_file.push(crate::FileItem {
+        file_name: ".gitignore",
+        file_content: r###"/target"###,
+    });
+    vec_file.push(crate::FileItem{
+            file_name :"src/main.rs",
+            file_content : r###"//! automation_tasks_rs for project_name
 
 use cargo_auto_lib::*;
 
@@ -225,9 +234,49 @@ Add the dependency `{package_name} = "{package_version}"` to your rust project a
 */
 
 // endregion: tasks
+"###,
+});
+    vec_file.push(crate::FileItem{
+            file_name :"README.md",
+            file_content : r###"# automation_tasks_rs
 
+In this sub-project `automation_tasks_rs` you can write tasks that you need when compiling or managing your Rust project.  
+The simple `cargo build` and `cargo build --release` are sometimes not enough. We need to copy some files, to prepare some environment. It is nice to have `all` the tasks in one place with a sort order that new users can easily follow.  
+It is a Rust project, so you don't have to learn another strange language for automation.  
+This helper project is used in combination with the program `cargo-auto`. Install it with `cargo install cargo-auto`.
+You can use also the cargo bash completion program `cargo install dev_bestia_cargo_completion`.  
 
-    "##
+Don't put any secrets like passwords, passphrases or tokens here, because this helper-project is pushed to the remote repository together with the main Rust project.  
+
+In the main  project folder (where the Cargo.toml file is) run
+
+```bash
+cargo auto
+```
+
+You will get the list of possible tasks with descriptions like this:
+
+```bash
+User defined tasks in automation_tasks_rs:
+cargo auto build - builds the crate in debug mode, fmt, increment version
+cargo auto release - builds the crate in release mode, fmt, increment version
+cargo auto doc - builds the docs, copy to docs directory
+cargo auto test - runs all the tests
+cargo auto commit_and_push "message" - commits with message and push with mandatory message
+      (If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.)
+cargo auto publish_to_crates_io - publish to crates.io, git tag
+      (YOu need to save the credentials before publishing. On crates.io get the 'access token'. Then save it locally with the command `cargo login TOKEN`)
+```
+
+## user defined tasks
+
+You can write any task you need. You have all the power of the Rust language under your fingertips.  
+You can use or write a library for some specific tasks you need.  
+For example there is the crate `cargo_auto_github_lib` if you need to create a Release on Github.  
+"###,
+});
+    // endregion: files copied into strings by automation tasks
+
+    // return
+    vec_file
 }
-
-// endregion: files copied into strings by automation tasks

@@ -26,7 +26,7 @@ Inside your main rust project directory (the one with Cargo.toml) run:
 
 ```bash
 cargo install cargo-auto
-cargo auto new
+cargo auto new_auto
 ```
 
 ![cargo_auto_new](https://github.com/bestia-dev/cargo-auto/raw/main/images/cargo_auto_new.png "cargo_auto_new")
@@ -58,7 +58,7 @@ This tool `cargo-auto` is meant for rust projects, so it means that all the rust
 
 ## automation_tasks_rs helper project
 
-The command `cargo auto new` will create a new directory `automation_tasks_rs` with a template for a helper rust project in the root directory of your `main rust project` . It should not interfere with the main rust project. This directory will be added into git commits and pushed to remote repositories as part of the main project. It has its own `.gitignore` to avoid committing its target directory.  
+The command `cargo auto new_auto` will create a new directory `automation_tasks_rs` with a template for a helper rust project in the root directory of your `main rust project` . It should not interfere with the main rust project. This directory will be added into git commits and pushed to remote repositories as part of the main project. It has its own `.gitignore` to avoid committing its target directory.  
 The `automation_tasks_rs` helper project contains user defined tasks in rust code. Your tasks. This helper project should be opened in a new editor starting from the `automation_tasks_rs` directory. It does not share dependencies with the main project. It is completely separate and independent.  
 You can edit it and add your dependencies and rust code. No limits. Freedom of expression.  
 This is now your code, your tasks and your helper rust project!  
@@ -159,14 +159,14 @@ With the help of the crate [dev_bestia_cargo_completion](https://crates.io/crate
 
 Inside the cargo-auto project there is a rust sub-projects as template. I can open a new editor for this directories and build this crate independently. So it is easy to debug and develop.  
 Sadly, I cannot publish these directories and files to `crates.io`. I can effectively publish only the source code inside my main rust project `cargo-auto`.  
-Therefor, before publishing I must copy the text of these files into the modules `template_automation_tasks_rs_mod.rs`. It is not difficult now that rust has fantastic [raw strings](https://doc.rust-lang.org/rust-by-example/std/str.html).  
+Therefor, before publishing I must copy the text of these files into the modules `template_new_auto_mod.rs`. It is not difficult now that rust has fantastic [raw strings](https://doc.rust-lang.org/rust-by-example/std/str.html).  
 
-## template_automation_tasks_rs
+## template_new_auto
 
-This command will copy the `template_automation_tasks_rs` into `automation_tasks_rs` directory:  
+This command will copy the `template_new_auto` into `automation_tasks_rs` directory:  
 
 ```rust
-cargo auto new
+cargo auto new_auto
 ```
 
 The new helper project has no dependencies at all, except `std`. It is really simple to understand how it works.  
@@ -192,7 +192,7 @@ There is no end to your imagination. If you write something that looks it can he
 Usually I compile and run the code of `cargo-auto` with added arguments like this:  
 
 ```bash
-cargo run -- new
+cargo run -- new_auto
 cargo run -- build
 cargo run -- release
 ```

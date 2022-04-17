@@ -50,7 +50,7 @@
 //!
 //! ## automation_tasks_rs helper project
 //!
-//! The command `cargo auto new` will create a new directory `automation_tasks_rs` with a template for a helper rust project in the root directory of your `main rust project` . It should not interfere with the main rust project. This directory will be added into git commits and pushed to remote repositories as part of the main project. It has its own `.gitignore` to avoid committing its target directory.  
+//! The command `cargo auto new_auto` will create a new directory `automation_tasks_rs` with a template for a helper rust project in the root directory of your `main rust project` . It should not interfere with the main rust project. This directory will be added into git commits and pushed to remote repositories as part of the main project. It has its own `.gitignore` to avoid committing its target directory.  
 //! The `automation_tasks_rs` helper project contains user defined tasks in rust code. Your tasks. This helper project should be opened in a new editor starting from the `automation_tasks_rs` directory. It does not share dependencies with the main project. It is completely separate and independent.  
 //! You can edit it and add your dependencies and rust code. No limits. Freedom of expression.  
 //! This is now your code, your tasks and your helper rust project!  
@@ -151,11 +151,11 @@
 //!
 //! Inside the cargo-auto project there is a rust sub-projects as template. I can open a new editor for this directories and build this crate independently. So it is easy to debug and develop.  
 //! Sadly, I cannot publish these directories and files to `crates.io`. I can effectively publish only the source code inside my main rust project `cargo-auto`.  
-//! Therefor, before publishing I must copy the text of these files into the modules `template_automation_tasks_rs_mod.rs`. It is not difficult now that rust has fantastic [raw strings](https://doc.rust-lang.org/rust-by-example/std/str.html).  
+//! Therefor, before publishing I must copy the text of these files into the modules `template_new_auto_mod.rs`. It is not difficult now that rust has fantastic [raw strings](https://doc.rust-lang.org/rust-by-example/std/str.html).  
 //!
-//! ## template_automation_tasks_rs
+//! ## template_new_auto
 //!
-//! This command will copy the `template_automation_tasks_rs` into `automation_tasks_rs` directory:  
+//! This command will copy the `template_new_auto` into `automation_tasks_rs` directory:  
 //!
 //! ```rust
 //! cargo auto new
@@ -210,12 +210,14 @@
 //!
 // endregion: auto_md_to_doc_comments include README.md A //!
 
-mod template_automation_tasks_rs_mod;
+mod inside_of_rust_project_mod;
+mod outside_of_rust_project_mod;
+mod template_new_auto_mod;
+mod template_new_cli_mod;
 
 // region: use statements
 use lazy_static::lazy_static;
 use std::path::{Path, PathBuf};
-use unwrap::unwrap;
 // endregion
 
 // colors for terminal
@@ -244,37 +246,21 @@ lazy_static! {
         PathBuf::from("automation_tasks_rs/target/debug/automation_tasks_rs");
 }
 
+pub struct FileItem {
+    file_name: &'static str,
+    file_content: &'static str,
+}
+
 fn main() {
-    if is_not_run_in_rust_project_root_directory() {
-        println!(
-            "{}Error: cargo-auto must be called in the root directory of the rust project beside the Cargo.toml file.{}",
-            *RED, *RESET
-        );
-        // early exit
-        std::process::exit(0);
-    }
     // get CLI arguments
     let mut args = std::env::args();
     // the zero argument is the name of the program
     let _arg_0 = args.next();
-    // the first argument is the task: (no argument for help), new, build, release,...
-    // wooow! There is a difference if I call the standalone binary or as a cargo subcommand:
-    // cargo-auto new     - new is the arg_1
-    // cargo auto new     - new is the arg_2
-    let arg_1 = args.next();
-    match arg_1 {
-        None => print_help_from_cargo_auto(),
-        Some(task) => {
-            if task != "auto" {
-                match_first_argument(&task, args);
-            } else {
-                let arg_2 = args.next();
-                match arg_2 {
-                    None => print_help_from_cargo_auto(),
-                    Some(task) => match_first_argument(&task, args),
-                }
-            }
-        }
+
+    if is_not_run_in_rust_project_root_directory() {
+        outside_of_rust_project_mod::parse_args(&mut args);
+    } else {
+        inside_of_rust_project_mod::parse_args(&mut args);
     }
 }
 
@@ -282,170 +268,4 @@ fn main() {
 fn is_not_run_in_rust_project_root_directory() -> bool {
     // return negation of exists
     !Path::new("Cargo.toml").exists()
-}
-
-/// if there is no argument then print help  
-/// if there exists `automation_tasks_rs/Cargo.toml` and `automation_tasks_rs/src/main.rs`  
-/// call automation_tasks_rs with no arguments to print the help prepared in user defined automation_tasks_rs  
-/// else print the help for `cargo auto new`  
-/// in development use: `cargo run`  
-/// in runtime use: `cargo auto`  
-fn print_help_from_cargo_auto() {
-    if !PATH_CARGO_TOML.exists() || !PATH_SRC_MAIN_RS.exists() {
-        println!("");
-        println!("To start using `cargo auto` you must create a new `automation_tasks_rs` directory with the command:");
-        println!("$ cargo auto new");
-        println!("or more advanced:");
-        println!("$ cargo auto new with_lib");
-    } else {
-        build_automation_tasks_rs_if_needed();
-        unwrap!(unwrap!(std::process::Command::new(PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str()).spawn()).wait());
-    }
-}
-
-/// the first argument is the task: new, build, release,...  
-/// the task `new` is processed by `cargo-auto`,  
-/// all other tasks are processed by the used defined `automation_tasks_rs`  
-/// in development use: `cargo run -- new`  
-/// in development use: `cargo run -- build`  
-/// in development use: `cargo run -- release`  
-fn match_first_argument(task: &str, mut args: std::env::Args) {
-    if task == "new" {
-        if already_exists_automation_tasks_rs() {
-            println!(
-                "{}Error: Directory automation_tasks_rs already exists. Cannot create new directory automation_tasks_rs.{}",
-                *RED, *RESET
-            );
-            // early exit
-            std::process::exit(0);
-        }
-        auto_new();
-    } else if task == "completion" {
-        completion();
-    } else {
-        if !already_exists_automation_tasks_rs() {
-            println!("{}Error: Directory automation_tasks_rs does not exist.{}", *RED, *RESET);
-            print_help_from_cargo_auto();
-            // early exit
-            std::process::exit(0);
-        }
-        build_automation_tasks_rs_if_needed();
-        // call automation_tasks_rs/target/debug/automation_tasks_rs with all the arguments
-        let mut command = std::process::Command::new(PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str());
-        command.arg(&task);
-        while let Some(arg_x) = args.next() {
-            command.arg(&arg_x);
-        }
-        let mut child = unwrap!(command.spawn());
-        unwrap!(child.wait());
-    }
-}
-
-/// sub-command for bash auto-completion of `cargo auto` using the crate `dev_bestia_cargo_completion`
-fn completion() {
-    /// println one, more or all sub_commands
-    fn completion_return_one_or_more_sub_commands(sub_commands: Vec<&str>, word_being_completed: &str) {
-        let mut sub_found = false;
-        for sub_command in sub_commands.iter() {
-            if sub_command.starts_with(word_being_completed) {
-                println!("{}", sub_command);
-                sub_found = true;
-            }
-        }
-        if sub_found == false {
-            // print all sub-commands
-            for sub_command in sub_commands.iter() {
-                println!("{}", sub_command);
-            }
-        }
-    }
-
-    let args: Vec<String> = std::env::args().collect();
-    let last_word = args[2].as_str();
-    let mut word_being_completed = " ";
-    if args.len() > 3 {
-        word_being_completed = args[3].as_str();
-    }
-    if last_word == "cargo-auto" || last_word == "auto" {
-        let sub_commands = vec!["new"];
-        completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
-    } else if last_word == "new" {
-        let sub_commands = vec!["with_lib"];
-        completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
-    }
-}
-
-/// build if the date of Cargo.toml or main.rs is newer then of automation_tasks_rs/target/automation_tasks_rs
-fn build_automation_tasks_rs_if_needed() {
-    if !PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.exists() {
-        build_project_automation_tasks_rs();
-        // early return
-        return ();
-    }
-    let modified_automation_tasks_rs =
-        unwrap!(unwrap!(std::fs::metadata(PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str())).modified());
-    let modified_cargo_toml = unwrap!(unwrap!(std::fs::metadata(PATH_CARGO_TOML.as_os_str())).modified());
-    let modified_main_rs = unwrap!(unwrap!(std::fs::metadata(PATH_SRC_MAIN_RS.as_os_str())).modified());
-
-    if modified_automation_tasks_rs < modified_cargo_toml || modified_automation_tasks_rs < modified_main_rs {
-        build_project_automation_tasks_rs();
-    }
-}
-
-/// build automation_tasks_rs
-fn build_project_automation_tasks_rs() {
-    // build in other directory (not in working current directory)
-    // cargo build --manifest-path=dir/Cargo.toml
-    unwrap!(unwrap!(std::process::Command::new("cargo")
-        .arg("build")
-        .arg("--manifest-path=automation_tasks_rs/Cargo.toml")
-        .spawn())
-    .wait());
-}
-
-/// already exists automation_tasks_rs directory
-fn already_exists_automation_tasks_rs() -> bool {
-    // return
-    PATH_AUTOMATION_TASKS_RS.exists()
-}
-
-/// copies the template to the `automation_tasks_rs` directory  
-/// in development use: `cargo run -- new`  
-/// in runtime use: `cargo auto new`  
-fn auto_new() {
-    let template_name = "basic";
-    copy_template(&template_name);
-
-    build_automation_tasks_rs_if_needed();
-
-    println!("");
-    println!("`crate auto new` generated the directory `automation_tasks_rs` in your main rust project.");
-    println!("You can open this new helper rust project in a new rust editor.");
-    println!("View and edit the rust code in `automation_tasks_rs`. It is independent from the main project.");
-    println!("It will be automatically compiled on the next use of `crate auto task_name` command.");
-    println!("The new directory will be added to your git commit.");
-    println!("There is a local .gitignore file to avoid commit of the `target/` directory.");
-    // call `cargo auto` to show the help of the new automation_tasks_rs
-    unwrap!(unwrap!(std::process::Command::new("cargo").arg("auto").spawn()).wait());
-}
-
-/// creates directory if needed and copy files from templates: Cargo.toml, .gitignore and main.rs  
-/// The template text is in the modules template_automation_tasks_rs_mod.rs
-fn copy_template(template_name: &str) {
-    unwrap!(std::fs::create_dir_all(Path::new("automation_tasks_rs/src")));
-
-    if template_name == "basic" {
-        unwrap!(std::fs::write(
-            PATH_CARGO_TOML.as_os_str(),
-            crate::template_automation_tasks_rs_mod::cargo_toml().as_bytes()
-        ));
-        unwrap!(std::fs::write(
-            PATH_GITIGNORE.as_os_str(),
-            crate::template_automation_tasks_rs_mod::gitignore().as_bytes()
-        ));
-        unwrap!(std::fs::write(
-            PATH_SRC_MAIN_RS.as_os_str(),
-            crate::template_automation_tasks_rs_mod::src_main_rs().as_bytes()
-        ));
-    }
 }
