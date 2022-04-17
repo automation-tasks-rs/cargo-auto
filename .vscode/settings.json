@@ -4,6 +4,7 @@
         "cmake",
         "endregion",
         "filetime",
+        "newcli",
         "paypal",
         "println",
         "subcommand",

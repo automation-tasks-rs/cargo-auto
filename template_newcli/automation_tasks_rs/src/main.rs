@@ -1,28 +1,4 @@
-//! this strings are copied from the template_x folders
-//! because when publishing to crates.io I only the main binary is transferred
-
-pub fn cargo_toml() -> &'static str {
-    r#"[package]
-name = "automation_tasks_rs"
-version = "0.1.1"
-authors = ["bestia.dev <info@bestia.dev>"]
-edition = "2018"
-description = "cargo auto - automation tasks written in Rust language"
-publish = false
-
-[dependencies]
-cargo_auto_lib = "0.7.24"
-
-"#
-}
-
-pub fn gitignore() -> &'static str {
-    r#"/target
-    "#
-}
-
-pub fn src_main_rs() -> &'static str {
-    r##"//! automation_tasks_rs for project_name
+//! automation_tasks_rs for bestia_dev_cargo_auto_new_cli
 
 use cargo_auto_lib::*;
 
@@ -121,7 +97,9 @@ fn task_build() {
     println!(
         r#"
 After `cargo auto build`, run the compiled binary
-run `./target/debug/{package_name} argument`, if ok, then
+run `./target/debug/{package_name} print my_name`, if ok, then
+run `./target/debug/{package_name} upper my_name`, if ok, then
+run `./target/debug/{package_name} upper MY_NAME`, if ok, then
 run `cargo auto release`
 "#, 
 package_name = cargo_toml.package_name(),
@@ -140,7 +118,9 @@ fn task_release() {
     println!(
         r#"
 After `cargo auto release`, run the compiled binary
-run `./target/release/{package_name} argument` if ok, then
+run `./target/release/{package_name} print my_name` if ok, then
+run `./target/release/{package_name} upper my_name` if ok, then
+run `./target/release/{package_name} upper MY_NAME` if ok, then
 run `cargo auto doc`
 "#,
 package_name = cargo_toml.package_name(),
@@ -223,7 +203,3 @@ Add the dependency `{package_name} = "{package_version}"` to your rust project a
 */
 
 // endregion: tasks
-
-
-    "##
-}

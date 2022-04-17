@@ -159,11 +159,11 @@ With the help of the crate [dev_bestia_cargo_completion](https://crates.io/crate
 
 Inside the cargo-auto project there is a rust sub-projects as template. I can open a new editor for this directories and build this crate independently. So it is easy to debug and develop.  
 Sadly, I cannot publish these directories and files to `crates.io`. I can effectively publish only the source code inside my main rust project `cargo-auto`.  
-Therefor, before publishing I must copy the text of these files into the modules `template_basic_mod.rs`. It is not difficult now that rust has fantastic [raw strings](https://doc.rust-lang.org/rust-by-example/std/str.html).  
+Therefor, before publishing I must copy the text of these files into the modules `template_automation_tasks_rs_mod.rs`. It is not difficult now that rust has fantastic [raw strings](https://doc.rust-lang.org/rust-by-example/std/str.html).  
 
-## template_basic
+## template_automation_tasks_rs
 
-This command will copy the `template_basic` into `automation_tasks_rs` directory:  
+This command will copy the `template_automation_tasks_rs` into `automation_tasks_rs` directory:  
 
 ```rust
 cargo auto new
