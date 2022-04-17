@@ -36,7 +36,7 @@
 //!
 //! ## automation_tasks_rs
 //!
-//! Building a project is always more complex then just `cargo build` and `cargo run`. There are always some files to copy or some content to copy from file to file. For this I use `cargo-auto` - automation tasks written in Rust language for the build process of rust projects.
+//! Building a project is always more complex then just `cargo build` and `cargo run`. There are always some files to copy or some content to copy from file to file. For this I use `cargo-auto` - automation tasks written in Rust language for the build process of Rustprojects.
 //!
 //! All the source is inside the folder `automation_tasks_rs`. It is pure Rust, it is easy to understand and modify to your needs.
 //!

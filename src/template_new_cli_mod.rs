@@ -35,7 +35,7 @@ license = "MIT"
 readme = "README.md"
 repository = "https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli"
 categories = ["rust-patterns"]
-keywords = ["rust cli project template"]
+keywords = ["Rust cli project template"]
 publish = false
 
 [dependencies]
@@ -153,230 +153,218 @@ fn upper_my_name(my_name: &str) -> anyhow::Result<()> {
             file_content : r###"// bestia_dev_cargo_auto_new_cli/src/lib.rs
 
 // region: auto_md_to_doc_comments include README.md A //!
-//! # bestia_dev_cargo_auto_new_cli
+//! # cargo-auto  
 //!
-//! **Basic Rust project template for CLI, more than just `cargo new hello`**  
-//! ***version: 0.1.32 date: 2022-04-14 author: [bestia.dev](bestia.dev) repository: [Github](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli)***  
+//! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
+//! ***version: 2022.417.1443 date: 2022-04-17 author: [bestia.dev](bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-82-green.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-230-blue.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-25-purple.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
-//! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-18-yellow.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-33-orange.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-579-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-513-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-108-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-621-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
-//! [![Licence](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/blob/main/LICENSE) [![Rust](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
+//! [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto) [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/) [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/cargo-auto.svg)](https://web.crev.dev/rust-reviews/crate/cargo-auto/) [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/) [![Licence](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo-auto/blob/master/LICENSE) [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo-auto/)  
+//!
+//! ## Try it
+//!
+//! First, we will use `cargo-auto` to create a new empty CLI Rust project similar to `cargo new`, but with a more complete project structure.  
+//!
+//!  ```bash
+//! cargo install cargo-auto
+//! cargo auto new_cli my_hello_project
+//! cd my_hello_project
+//! cargo auto
+//! # it lists all the prepared automation tasks
+//! # try a few
+//! cargo auto build
+//! cargo auto release
+//! cargo auto doc
+//! cargo auto test
+//! ```
+//!
+//! We can also add `automation tasks` to an existing Rust project.
+//! Inside your Rust project directory (the one with Cargo.toml) run:  
+//!
+//! ```bash
+//! cargo auto new_auto
+//! cargo auto
+//! # it lists all the prepared automation tasks
+//! # try to build
+//! cargo auto build
+//! ```
+//!
+//! Congratulations! You are already using `cargo-auto`. Simple as that.  
+//! Now you can modify the tasks to your needs. It is all Rust language.  
 //!
 //! ## Motivation
 //!
-//! My first line I typed when I learned the Rust language was `cargo new hello`. It is extraordinary for learning Rust, but it is a rudimentary example, not really useful in practical life.
+//! Cargo is a great tool for building Rust projects. It has all the basics: `cargo build`, `cargo build --release`, `cargo fmt`, `cargo test`, `cargo doc`,...  
+//! But sometimes we need to do more things like copying some files, publish to ftp or enter long commands. These repetitive tasks must be automated.  
+//! Task automation makes work easier and faster, simplifies the workflow, while improving the consistency and accuracy of workflows.  
+//! This is also sometimes referred to as "workflow automation."  
+//! There are many different build systems and task runners there: `make`, `cmake`, `shell scripts`, `cargo-xtask`, `cargo-make`, `cargo-task`, `cargo-script`, `cargo-run-script`, `runner`, `python scripts`, `powershell scripts`, `cmd prompt scripts`, ...  
+//! Sadly there is no standard in the Rust community for now.  
+//! I want something similar to [build.rs](https://doc.rust-lang.org/cargo/reference/build-scripts.html), so I can write my "tasks" in pure Rust I don't want to learn another meta language with weird syntax and difficult to debug. So I will make something really simple, easy, rusty and extensible.  
 //!
-//! I created this project template `bestia_dev_cargo_auto_new_cli` for a simple CLI application that has all the moving parts for a real life project.
+//! ## cargo auto new_cli
 //!
-//! ## Separate bin and lib
+//! I like very much that Rust has the command `cargo new project_name`. It creates a super simple Rust hello project that can be build run immediately. But this example is too simple. It lacks basic file structures of a serious CLI program.  
+//! I composed an opinionated template for a Rust CLI project. It is easy to run:
 //!
-//! It is always good to split the project between a `bin` (executable) and a `lib` (library crate).
+//! ```bash
+//! cargo auto new_cli project_name
+//! ```
 //!
-//! Even for the smallest project. Maybe some other program will use the library eventually.
+//! ## scripting with rust
 //!
-//! All the input/output is coded in the `bin`. The library must not operate directly with the stdin/stdout, because some other caller of the library can have other ideas around input-output options.
+//! Rust is a compiled language. It is not really a scripting or interpreted language. But the compilation of small projects is really fast and can be ignored. Subsequent calls will use the already built binary and so the speed will be even faster.  
+//! This tool `cargo-auto` is meant for Rust projects, so it means that all the Rust infrastructure is already in place.  
 //!
-//! A separate `lib` enables to make good tests without worrying about input-output.
+//! ## automation_tasks_rs helper project
 //!
-//! ## super simple argument parsing
+//! The command `cargo auto new_auto` will create a new directory `automation_tasks_rs` with a template for a helper Rust project in the root directory of your `main Rust project` . It should not interfere with the main Rust project. This directory will be added into git commits and pushed to remote repositories as part of the main project. It has its own `.gitignore` to avoid committing its target directory.  
+//! The `automation_tasks_rs` helper project contains user defined tasks in Rust code. Your tasks. This helper project should be opened in a new editor starting from the `automation_tasks_rs` directory. It does not share dependencies with the main project. It is completely separate and independent.  
+//! You can edit it and add your dependencies and Rust code. No limits. Freedom of expression.  
+//! This is now your code, your tasks and your helper Rust project!  
+//! Because only you know what you want to automate and how to do it.  
+//! Basic example:  
 //!
-//! I use a super simple code to parse CLI arguments inside the `src/bin/bestia_dev_cargo_auto_new_cli.rs`. There are crate libraries that enables very complex argument parsing if needed.
+//! ```rust
+//! /// match arguments and call tasks functions
+//! fn match_arguments_and_call_tasks(mut args: std::env::Args){
+//!     // the first argument is the user defined task: (no argument for help), build, release,...
+//!     let arg_1 = args.next();
+//!     match arg_1 {
+//!         None => print_help(),
+//!         Some(task) => {            
+//!             println!("Running auto task: {}", &task);
+//!             if &task == "build"{
+//!                 task_build();
+//!             } else if &task == "release" {
+//!                 task_release();
+//!             } else if &task == "doc" {
+//!                 task_doc();
+//!             } else {
+//!                 println!("Task {} is unknown.", &task);
+//!                 print_help();
+//!             }
+//!         }
+//!     }
+//! }
 //!
-//! ## automation_tasks_rs
+//! /// write a comprehensible help for user defined tasks
+//! fn print_help() {
+//!     println!("User defined tasks in automation_tasks_rs:");
+//!     println!("cargo auto build - builds the crate in debug mode");
+//!     println!("cargo auto release - builds the crate in release mode");
+//!     println!("cargo auto docs - builds the docs");
+//! }
 //!
-//! Building a project is always more complex then just `cargo build` and `cargo run`. There are always some files to copy or some content to copy from file to file. For this I use `cargo-auto` - automation tasks written in Rust language for the build process of rust projects.
+//! // region: tasks
 //!
-//! All the source is inside the folder `automation_tasks_rs`. It is pure Rust, it is easy to understand and modify to your needs.
+//! /// cargo build
+//! fn task_build() {
+//!     #[rustfmt::skip]
+//!     let shell_commands = [
+//!         "echo $ cargo fmt",
+//!         "cargo fmt",
+//!         "echo $ cargo build",
+//!         "cargo build"];
+//!     run_shell_commands(shell_commands.to_vec());
+//! }
 //!
-//! To start using it just type in `VSCode terminal`:
+//! /// cargo build --release
+//! fn task_release() {
+//!     println!("$ cargo fmt");
+//!     run_shell_command("cargo fmt");
+//!     println!("$ cargo build --release");
+//!     run_shell_command("cargo build --release");
+//! }
+//!
+//! /// cargo doc, then copies to /docs/ folder, because this is a github standard folder
+//! fn task_doc() {
+//!     #[rustfmt::skip]
+//!     let shell_commands = [
+//!         "echo $ cargo doc --no-deps --document-private-items --open",
+//!         "cargo doc --no-deps --document-private-items --open",
+//!         // copy to /docs/ because it is github standard
+//!         "echo $ rsync -a --info=progress2 --delete-after target/doc/ docs/",
+//!         "rsync -a --info=progress2 --delete-after target/doc/ docs/",
+//!         "echo Create simple index.html file in docs directory",
+//!         &format!("echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",&project_directory_name()) ,
+//!         // message to help user with next move
+//!         "echo After successful doc, commit and push changes",
+//!         ];
+//!     run_shell_commands(shell_commands.to_vec());
+//! }
+//!
+//! // endregion: tasks
+//!
+//! ```
+//!
+//! ## cargo auto subcommand
+//!
+//! The command `cargo install cargo-auto` will add a new subcommand to cargo:
 //!
 //! ```bash
 //! cargo auto
 //! ```
 //!
-//! ```bash
-//! User defined tasks in automation_tasks_rs:
-//! cargo auto build - builds the crate in debug mode, fmt
-//! cargo auto release - builds the crate in release mode, version from date, fmt, strip
-//! cargo auto doc - builds the docs, copy to docs directory
-//! cargo auto commit_and_push - commits with message and push with mandatory message
-//!  if you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git
-//! cargo auto publish_to_crates_io - publish to crates.io, git tag
-//! ```
+//! This binary is super simple. It has only 3 trivial dependencies: `unwrap`, `termion` and `lazy_static`.  
+//! The binary only reads the CLI arguments and runs the `automation_tasks_rs` binary with them. If needed it will compile `automation_tasks_rs` first.  
+//! The code-flow of the source code of `cargo-auto` is simple, fully commented and straightforward to audit.  
+//! The source code is on [GitHub](https://github.com/bestia-dev/cargo-auto) with MIT open-source licensing.  
 //!
-//! The `bash auto-completion` should work. If you type `cargo auto b` and press `tab` it should auto-complete to `build`. Look at the project <https://github.com/bestia-dev/dev_bestia_cargo_completion>.
+//! ## bash auto-completion
 //!
-//! ```bash
-//! cargo auto build
-//! ```
+//! With the help of the crate [dev_bestia_cargo_completion](https://crates.io/crates/dev_bestia_cargo_completion) the commands `cargo` and `cargo auto` get bash auto-completion. Try it!  
 //!
-//! ```bash
-//! Running automation task: build
-//! old version: "0.1.18"
-//! new version: '0.1.19'
-//! $ cargo fmt
-//! $ cargo build
-//! Compiling bestia_dev_cargo_auto_new_cli v0.1.19 (/home/rustdevuser/rustprojects/bestia_dev_cargo_auto_new_cli)
-//! Finished dev [unoptimized + debuginfo] target(s) in 2.72s
+//! ## cargo auto new_auto
 //!
-//! After `cargo auto build`, run the compiled binary
-//! run `./target/debug/bestia_dev_cargo_auto_new_cli print my_name`
-//! later
-//! run `cargo auto release`
-//! ```
+//! Inside the cargo-auto project there is a Rust sub-projects that is a template. I can open a new editor for this directories and build this crate independently. So it is easy to debug and develop.  
+//! Sadly, I cannot publish these directories and files to `crates.io`. I can effectively publish only the source code inside my main Rust project `cargo-auto`.  
+//! Therefor, before publishing I copy the content of these files into the modules `template_new_auto_mod.rs` on every build. It is not difficult now that Rust has fantastic [raw strings](https://doc.rust-lang.org/rust-by-example/std/str.html).  
 //!
-//! After the task there is a recommendation what to do next.
+//! ## more complex tasks
+//!
+//! You can write more complex tasks in Rust language.  
+//! For example in this project I use automation to create github Releases : <https://github.com/bestia-dev/dropbox_backup_to_external_disk>  
+//! Here is pretty complex workspace with more sub-projects:  
+//! <https://github.com/bestia-dev/cargo_crev_reviews_workspace>  
+//! There is no end to your imagination. If you write something that looks it can help other developers, please share it with me and I will add it here.
+//!
+//! ## development
+//!
+//! Usually I compile and run the code of `cargo-auto` with added arguments like this:  
 //!
 //! ```bash
-//! cargo auto release
+//! cargo run -- new_auto
+//! cargo run -- build
+//! cargo run -- release
 //! ```
 //!
-//! ```bash
-//! Running automation task: release
-//! old version: "0.1.20"
-//! new version: '0.1.21'
-//! new text: '
-//! **Basic Rust project template for CLI, more than just `cargo new hello`**
-//! ***version: 0.1.21 date: 2022-04-01 author: [bestia.dev](bestia.dev) repository: [Github](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli)***'
+//! ## TODO
 //!
-//! include_into_readme_md write file: README.md
-//! $ cargo fmt
-//! $ cargo build --release
-//! Compiling bestia_dev_cargo_auto_new_cli v0.1.21 (/home/rustdevuser/rustprojects/bestia_dev_cargo_auto_new_cli)
-//! Finished release [optimized] target(s) in 1.05s
-//!
-//! After `cargo auto release`, , run the compiled binary
-//! run `./target/release/bestia_dev_cargo_auto_new_cli print my_name`
-//! later
-//! run `cargo auto doc`
-//!
-//! ```
-//!
-//! Release is incrementing the version number and date, copying the title and description from Cargo.toml to README.md. Calculates the lines of code in the project and makes badges from it in README.md. Copying the README into doc comments, so the documentation can be compiled later.
-//!
-//! ```bash
-//! cargo auto doc
-//! ```
-//!
-//! ```bash
-//! Running automation task: doc
-//! $ cargo doc --no-deps --document-private-items
-//!  Documenting bestia_dev_cargo_auto_new_cli v0.1.21 (/home/rustdevuser/rustprojects/bestia_dev_cargo_auto_new_cli)
-//! Finished dev [unoptimized + debuginfo] target(s) in 0.54s
-//! $ rsync -a --info=progress2 --delete-after target/doc/ docs/
-//! 2,787,371 100% 46.60MB/s 0:00:00 (xfr#56, to-chk=0/61) 
-//!
-//! After `cargo auto doc`, check `docs/index.html`. If ok, then 
-//! run `cargo auto commit_and_push` with mandatory commit message
-//! ```
-//!
-//! If you Ctrl+Click on the link `docs/index.html` it will open the file in VSCode editor. In the right corner you can click to see the Live Preview. It will open the preview for the html file in an integrated browser in VSCode. Very useful.
-//! Now is a good time to run all the test before committing.
-//!
-//! ```bash
-//! cargo test
-//! ```
-//!
-//! If we are happy with the changes, we commit and push:
-//!
-//! ```bash
-//! cargo auto commit_and_push "my message for commit"
-//! ```
-//!
-//! ```bash
-//! Running automation task: commit_and_push
-//! $ git add -A && git commit -m "readme"
-//! [main 3bdcc91] readme
-//!  9 files changed, 443 insertions(+), 89 deletions(-)
-//! $ git push
-//! Enumerating objects: 36, done.
-//! Counting objects: 100% (36/36), done.
-//! Delta compression using up to 6 threads
-//! Compressing objects: 100% (16/16), done.
-//! Writing objects: 100% (19/19), 6.27 KiB | 1.25 MiB/s, done.
-//! Total 19 (delta 11), reused 0 (delta 0), pack-reused 0
-//! remote: Resolving deltas: 100% (11/11), completed with 10 local objects.
-//! To https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli.git
-//!  d0f31d3..3bdcc91 main -> main
-//!
-//! After `cargo auto commit and push`
-//! run `cargo auto publish_to_crates_io`
-//! ```
-//!
-//! And finally if you want to publish it on crates.io. First you need the `access token` you get from crates.io.
-//!
-//! ```bash
-//! cargo login
-//! # type the access token
-//! cargo auto publish_to_crates_io
-//! ```
-//!
-//! ## lib.rs doc-comments
-//!
-//! The entire README.md is copied into lib.rs. This can be annoying to watch. You can collapse the entire section clicking on `// region: auto_md_to_doc_comments include README.md`.
-//!
-//! You can use `// region:` and `// endregion:` to mark sections you want to collapse in the editor.
-//!
-//! From this doc-comments the `docs` will be created. Take a look and try to write what other users would want to read in the `docs`.
-//!
-//! ## Modules
-//!
-//! I added one module `utils_mod.rs` just to showcase how modules are used in separate files.
-//!
-//! ## Markdown
-//!
-//! README.md and all the doc-comments are in markdown. To separate paragraphs in markdown use an empty line between them.
-//! I tried other variants like double-space or backslash, but an empty line is the most used in the wild.
-//!
-//! ## tests
-//!
-//! I added a unit-test, just to show how it looks. And an integration-test. So it is "ready-to-go".
-//! Run them with `cargo test`.
-//!
-//! ## examples
-//!
-//! In the directory `examples` every rs file is a bin executable.
-//! Run it with:
-//!
-//! ```bash
-//! cargo run --example example_1
-//! ```
-//!
-//! ## Error handling thiserror and anyhow
-//!
-//! The rule number one is never use `.unwrap()` in your real Rust code. It is a sign, you are not Error handling properly.
-//! Maybe `unwrap()` can be fine for some fast learning examples, but for any real-life Rust code you must use some `Error handling`. There are many different ways to do that in Rust. I choose the pair of libraries `thiserror` and `anyhow`. The first is made for libraries, the second is made for bin-executables.  
-//! The library needs an Enum with all the possible errors that this library can return. With `#[derive(Error)]` this enum get everything needed to be a true Rust error struct. Every error can have a formatting string and a struct of data.  
-//! The bin-executable does not want to be involved in every possible error separately. It needs an umbrella for all possible errors with `anyhow::Result`.  
-//! Inside the code, mostly propagate the errors with the `?` Operator after the `Result` value instead of unwrap() or the match expression.
-//! In the tests we don't want to work with Error handling. There, instead of `.unwrap()`, use the similar function `.expect(&str)` that has an additional description string.
+//! Get the username from git, to use it in Cargo.toml of new_cli
 //!
 //! ## cargo crev reviews and advisory
 //!
-//! We live in times of danger with [supply chain attacks](https://en.wikipedia.org/wiki/Supply_chain_attack).
+//! We live in times of danger with [supply chain attacks](https://en.wikipedia.org/wiki/Supply_chain_attack).  
+//! It is recommended to always use [cargo-crev](https://github.com/crev-dev/cargo-crev)  
+//! to verify the trustworthiness of each of your dependencies.  
+//! Please, spread this info.  
+//! You can also read reviews quickly on the web:  
+//! <https://web.crev.dev/rust-reviews/crates/>  
 //!
-//! It is recommended to always use [cargo-crev](https://github.com/crev-dev/cargo-crev) to verify the trustworthiness of each of your dependencies.
+//! ## open-source free and free as a beer
 //!
-//! Please, spread this info.
-//!
-//! You can also read crev reviews quickly on the web:
-//!
-//! <https://web.crev.dev/rust-reviews/crates/>
-//!
-//! ## open-source and free as a beer
-//!
-//! My open-source projects are free as a beer (MIT license).
-//!
-//! I just love programming.
-//!
-//! But I need also to drink. If you find my projects and tutorials helpful,please buy me a beer donating on my [paypal](https://paypal.me/LucianoBestia).
-//!
-//! You know the price of a beer in your local bar ;-) So I can drink a free beer for your health :-)
-//!
+//! My open-source projects are free as a beer (MIT license).  
+//! I just love programming.  
+//! But I need also to drink. If you find my projects and tutorials helpful,  
+//! please buy me a beer donating on my [paypal](https://paypal.me/LucianoBestia).  
+//! You know the price of a beer in your local bar ;-)  
+//! So I can drink a free beer for your health :-)  
 //! [Na zdravje!](https://translate.google.com/?hl=en&sl=sl&tl=en&text=Na%20zdravje&op=translate) [Alla salute!](https://dictionary.cambridge.org/dictionary/italian-english/alla-salute) [Prost!](https://dictionary.cambridge.org/dictionary/german-english/prost) [Nazdravlje!](https://matadornetwork.com/nights/how-to-say-cheers-in-50-languages/) 🍻
 //!
 // endregion: auto_md_to_doc_comments include README.md A //!
@@ -485,7 +473,7 @@ I use a super simple code to parse CLI arguments inside the `src/bin/bestia_dev_
 
 ## automation_tasks_rs
 
-Building a project is always more complex then just `cargo build` and `cargo run`. There are always some files to copy or some content to copy from file to file. For this I use `cargo-auto` - automation tasks written in Rust language for the build process of rust projects.
+Building a project is always more complex then just `cargo build` and `cargo run`. There are always some files to copy or some content to copy from file to file. For this I use `cargo-auto` - automation tasks written in Rust language for the build process of Rust projects.
 
 All the source is inside the folder `automation_tasks_rs`. It is pure Rust, it is easy to understand and modify to your needs.
 
@@ -961,7 +949,7 @@ fn task_publish_to_crates_io() {
         r#"
 After `cargo auto publish_to_crates_io`, 
 check `https://crates.io/crates/{package_name}`.
-Add the dependency `{package_name} = "{package_version}"` to your rust project and check how it works.
+Add the dependency `{package_name} = "{package_version}"` to your Rust project and check how it works.
 "#,
         package_name = cargo_toml.package_name(),
         package_version = cargo_toml.package_version()

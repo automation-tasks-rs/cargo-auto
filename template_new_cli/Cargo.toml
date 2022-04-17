@@ -8,7 +8,7 @@ license = "MIT"
 readme = "README.md"
 repository = "https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli"
 categories = ["rust-patterns"]
-keywords = ["rust cli project template"]
+keywords = ["Rust cli project template"]
 publish = false
 
 [dependencies]

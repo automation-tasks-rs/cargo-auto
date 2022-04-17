@@ -90,7 +90,10 @@ pub fn new_cli(arg_2: Option<String>) {
                 "The command `crate auto new_cli` generated the directory `{}`",
                 &project_name
             );
-            println!("You can open this new rust project `{}` in a new rust editor.",&project_name);
+            println!(
+                "You can open this new Rust project `{}` in a new Rust editor.",
+                &project_name
+            );
             println!("For example VSCode:");
             println!("run `cd {}`", &project_name);
             println!("run `code .`");
