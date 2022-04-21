@@ -24,18 +24,33 @@ pub fn get_vec_file() -> Vec<crate::FileItem> {
 
     // region: files copied into strings by automation tasks
     vec_file.push(crate::FileItem {
+        file_name: ".vscode/settings.json",
+        file_content: r###"{
+    "cSpell.words": [
+        "crev",
+        "debuginfo",
+        "endregion",
+        "rustdevuser",
+        "rustprojects",
+        "struct",
+        "thiserror",
+        "unoptimized"
+    ]
+}"###,
+    });
+    vec_file.push(crate::FileItem {
         file_name: "Cargo.toml",
         file_content: r###"[package]
 name = "bestia_dev_cargo_auto_new_cli"
-version = "0.1.32"
-description = "Basic Rust project template for CLI, more than just `cargo new hello`"
+version = "1.0.4"
+description = "Basic Rust project template for CLI and library, more than just `cargo new hello`"
 authors = ["bestia.dev <info@bestia.dev>"]
 edition = "2021"
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli"
 categories = ["rust-patterns"]
-keywords = ["Rust cli project template"]
+keywords = ["Rust cli and library project template"]
 publish = false
 
 [dependencies]
@@ -46,29 +61,56 @@ anyhow="1.0.56""###,
     });
     vec_file.push(crate::FileItem {
         file_name: ".gitignore",
-        file_content: r###"
-/target
+        file_content: r###"/target
 **/*.rs.bk
-Cargo.lock
 "###,
     });
     vec_file.push(crate::FileItem {
-        file_name: "src/utils_mod.rs",
-        file_content: r###"// bestia_dev_cargo_auto_new_cli/src/utils_mod.rs
+        file_name: "src/hello_mod.rs",
+        file_content: r###"// bestia_dev_cargo_auto_new_cli/src/hello_mod.rs
 
-//! Just an example how to create and call a module in a separate file.
+//! All the real code is inside modules in separate files.
 //!
 //! This doc-comments will be compiled into the `docs`.
 
-/// return uppercase
-pub fn make_uppercase(my_name: &str) -> String {
+use crate::LibraryError;
+
+/// format the hello phrase
+pub fn format_hello_phrase(greet_name: &str) -> String {
+    log::info!("start format_hello_phrase()");
     // return
-    my_name.to_uppercase()
+    format!("Hello {}!", greet_name)
+}
+
+/// format the hello phrase with uppercase name
+/// if it is already uppercase, return error with thiserror
+pub fn format_upper_hello_phrase(greet_name: &str) -> Result<String, LibraryError> {
+    log::info!("start format_upper_hello_phrase()");
+    // shadowing the same variable name:
+    let upper_greet_name = make_uppercase(greet_name);
+    if upper_greet_name == greet_name {
+        return Err(LibraryError::Uppercase(greet_name.to_string()));
+    }
+
+    // return
+    Ok(format!("Hello {}!", &upper_greet_name))
+}
+
+/// return uppercase
+pub fn make_uppercase(greet_name: &str) -> String {
+    // return
+    greet_name.to_uppercase()
 }
 
 #[cfg(test)]
 mod test {
     use super::*;
+
+    #[test]
+    pub fn test_format_upper_hello_phrase() {
+        assert_eq!(format_upper_hello_phrase("abcd").expect("error"), "Hello ABCD!");
+        assert!(format_upper_hello_phrase("ABCD").is_err());
+    }
 
     #[test]
     pub fn test_make_uppercase() {
@@ -80,41 +122,45 @@ mod test {
 "###,
     });
     vec_file.push(crate::FileItem {
-        file_name: "src/bin/bestia_dev_cargo_auto_new_cli.rs",
-        file_content: r###"//! bestia_dev_cargo_auto_new_cli/src/bin/bestia_dev_cargo_auto_new_cli.rs
+        file_name: "src/bin/bestia_dev_cargo_auto_new_cli/main.rs",
+        file_content: r###"//! bestia_dev_cargo_auto_new_cli/src/bin/bestia_dev_cargo_auto_new_cli/main.rs
 
-// The `bin` has all the stdin and stdout.
-// The `lib` must be in/out agnostic. That is the responsibility of the `bin`
+// This `main.rs` is the code for the CLI application.
+// The build of this project will create the CLI application.
+// The `main.rs` has all the stdin and stdout.
+// The `lib.rs` must be in/out agnostic. That is the responsibility of the `main.rs`
+// This `lib.rs` can be used as dependency crate for other projects.
 
-// The `bin` uses the `anyhow` error library, the `lib` uses the `thiserror` library
+// The `main.rs` uses the `anyhow` error library.
+// The `lib.rs` uses the `thiserror` library.
 
-/// entry point into the bin executable
+/// entry point into the bin-executable
 fn main() {
     // logging is essential for every project
     pretty_env_logger::init();
 
-    // super simple argument parsing. There are crates that can parse complex arguments.
+    // super simple argument parsing. There are crates that can parse more complex arguments.
     match std::env::args().nth(1).as_deref() {
         None | Some("--help") | Some("-h") => print_help(),
         Some("print") => match std::env::args().nth(2).as_deref() {
             // second argument
-            Some(my_name) => {
-                print_my_name(my_name);
+            Some(greet_name) => {
+                print_greet_name(greet_name);
             }
-            None => println!("Missing arguments `my_name`."),
+            None => println!("Missing arguments `greet_name`."),
         },
         Some("upper") => match std::env::args().nth(2).as_deref() {
             // second argument
-            Some(my_name) => {
+            Some(greet_name) => {
                 // this can return an error. Here is the last place I can deal with the error.
-                match upper_my_name(my_name) {
+                match upper_greet_name(greet_name) {
                     // do nothing
                     Ok(()) => (),
                     // log error from anyhow
                     Err(err) => log::error!("{}", err),
                 }
             }
-            None => println!("Missing arguments `my_name`."),
+            None => println!("Missing arguments `greet_name`."),
         },
         _ => println!("Unrecognized arguments. Try `bestia_dev_cargo_auto_new_cli --help`"),
     }
@@ -132,16 +178,16 @@ bestia_dev_cargo_auto_new_cli upper my_name
 }
 
 /// print my name
-fn print_my_name(my_name: &str) {
-    // call the function from the `lib`
-    println!("{}", bestia_dev_cargo_auto_new_cli::format_hello_phrase(my_name));
+fn print_greet_name(greet_name: &str) {
+    // call the function from the `lib.rs`
+    println!("{}", bestia_dev_cargo_auto_new_cli::format_hello_phrase(greet_name));
 }
 
 /// print my name upper, can return error
-fn upper_my_name(my_name: &str) -> anyhow::Result<()> {
-    // the function from `lib`, can return error
+fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
+    // the function from `lib.rs`, can return error
     // use the ? syntax to bubble the error up one level or continue (early return)
-    let upper = bestia_dev_cargo_auto_new_cli::format_upper_hello_phrase(my_name)?;
+    let upper = bestia_dev_cargo_auto_new_cli::format_upper_hello_phrase(greet_name)?;
     println!("{}", upper);
     // return
     Ok(())
@@ -152,17 +198,19 @@ fn upper_my_name(my_name: &str) -> anyhow::Result<()> {
             file_name :"src/lib.rs",
             file_content : r###"// bestia_dev_cargo_auto_new_cli/src/lib.rs
 
+// You can collapse the long region below using VSCode. It is only the copy of the README.md file, because it gets compiled into docs.
+
 // region: auto_md_to_doc_comments include README.md A //!
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2022.417.1457 date: 2022-04-17 author: [bestia.dev](bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2022.421.1347 date: 2022-04-21 author: [bestia.dev](bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-579-green.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-513-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-108-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-609-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-522-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-119-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-621-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-1179-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
 //! [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto) [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/) [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/cargo-auto.svg)](https://web.crev.dev/rust-reviews/crate/cargo-auto/) [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/) [![Licence](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo-auto/blob/master/LICENSE) [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo-auto/)  
 //!
@@ -369,12 +417,22 @@ fn upper_my_name(my_name: &str) -> anyhow::Result<()> {
 //!
 // endregion: auto_md_to_doc_comments include README.md A //!
 
-// The `bin` has all the stdin and stdout.
-// The `lib` must be in/out agnostic. That is the responsibility of the `bin`
+// The `main.rs` has all the stdin and stdout.
+// The `lib.rs` must be in/out agnostic. That is the responsibility of the `main.rs`
 
-mod utils_mod;
+// The `lib.rs` does not have any real code. All the code is in modules in separate files.
+// The `lib.rs` has just the list of modules, it publishes module's functions or class for the caller
+// and it has some global stuff like the Error enum.
 
-// The `bin` uses the `anyhow` error library, the `lib` uses the `thiserror` library
+// access to modules
+mod hello_mod;
+
+// `pub use` allows the caller of the lib to access modules functions, structs or all(*)
+pub use hello_mod::format_hello_phrase;
+pub use hello_mod::format_upper_hello_phrase;
+
+// The `main.rs` uses the `anyhow` error library.
+// The `lib.rs` uses the `thiserror` library.
 use thiserror::Error;
 
 /// all possible library errors for `thiserror`
@@ -384,38 +442,6 @@ pub enum LibraryError {
     Uppercase(String),
     #[error("unknown error")]
     Unknown,
-}
-
-/// format the hello phrase
-pub fn format_hello_phrase(my_name: &str) -> String {
-    log::info!("start format_hello_phrase()");
-    // return
-    format!("Hello {}!", my_name)
-}
-
-/// format the hello phrase with uppercase name
-/// if it is already uppercase, return error with thiserror
-pub fn format_upper_hello_phrase(my_name: &str) -> Result<String, LibraryError> {
-    log::info!("start format_upper_hello_phrase()");
-    // shadowing the same variable name:
-    let upper_my_name = utils_mod::make_uppercase(my_name);
-    if upper_my_name == my_name {
-        return Err(LibraryError::Uppercase(my_name.to_string()));
-    }
-
-    // return
-    Ok(format!("Hello {}!", &upper_my_name))
-}
-
-#[cfg(test)]
-mod test {
-    use super::*;
-
-    #[test]
-    pub fn test_format_upper_hello_phrase() {
-        assert_eq!(format_upper_hello_phrase("abcd").expect("error"), "Hello ABCD!");
-        assert!(format_upper_hello_phrase("ABCD").is_err());
-    }
 }
 "###,
 });
@@ -427,17 +453,17 @@ mod test {
 
 [comment]: # (auto_cargo_toml_to_md start)
 
-**Basic Rust project template for CLI, more than just `cargo new hello`**  
-***version: 0.1.32 date: 2022-04-14 author: [bestia.dev](bestia.dev) repository: [Github](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli)***  
+**Basic Rust project template for CLI and library, more than just `cargo new hello`**  
+***version: 1.0.4 date: 2022-04-21 author: [bestia.dev](bestia.dev) repository: [Github](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli)***  
 
 [comment]: # (auto_cargo_toml_to_md end)
 
 [comment]: # (auto_lines_of_code start)
-[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-82-green.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
-[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-230-blue.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
-[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-25-purple.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
-[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-18-yellow.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
-[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-33-orange.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
+[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-89-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-13-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-36-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-19-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-30-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 
 [comment]: # (auto_lines_of_code end)
 
@@ -456,20 +482,20 @@ My first line I typed when I learned the Rust language was `cargo new hello`. It
 
 I created this project template `bestia_dev_cargo_auto_new_cli` for a simple CLI application that has all the moving parts for a real life project.
 
-## Separate bin and lib
+## Separate main.rs and lib.rs
 
-It is always good to split the project between a `bin` (executable) and a `lib` (library crate).
+It is always good to split the project between a `main.rs` (executable) and a `lib.rs` (library crate).
 
 Even for the smallest project. Maybe some other program will use the library eventually.
 
-All the input/output is coded in the `bin`: keyboard and monitor (stdin and stdout), access to files and some access to network.  
+All the input/output is coded in the `main.rs`: keyboard and monitor (stdin and stdout), access to files and some access to network.  
 The library must not operate directly with the stdin/stdout, because some other caller of the library can have other ideas around input-output options. Maybe it is a Graphical user interface that does thing completely different than CLI applications.
 
-A separate `lib` enables to make good tests and examples without worrying about input-output.
+A separate `lib.rs` enables to make good tests and examples without worrying about input-output.
 
 ## super simple argument parsing
 
-I use a super simple code to parse CLI arguments inside the `src/bin/bestia_dev_cargo_auto_new_cli.rs`. There are crate libraries that enables very complex argument parsing if needed.
+I use a super simple code to parse CLI arguments inside the `src/bin/bestia_dev_cargo_auto_new_cli/main.rs`. There are crate libraries that enables very complex argument parsing if needed.
 
 ## automation_tasks_rs
 
@@ -610,7 +636,7 @@ From this doc-comments the `docs` will be created. Take a look and try to write 
 
 ## Modules
 
-I added one module `utils_mod.rs` just to showcase how modules are used in separate files.
+I added one module `hello_mod.rs` just to showcase how modules are used in separate files.
 
 ## Markdown
 
@@ -624,7 +650,7 @@ Run them with `cargo test`.
 
 ## examples
 
-In the directory `examples` every rs file is a bin executable.
+In the directory `examples` every rs file is a bin-executable.
 Run it with:
 
 ```bash
@@ -667,6 +693,235 @@ You know the price of a beer in your local bar ;-) So I can drink a free beer fo
 [comment]: # (auto_md_to_doc_comments segment end A)
 "###,
 });
+    vec_file.push(crate::FileItem {
+        file_name: "Cargo.lock",
+        file_content: r###"# This file is automatically @generated by Cargo.
+# It is not intended for manual editing.
+version = 3
+
+[[package]]
+name = "aho-corasick"
+version = "0.7.18"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1e37cfd5e7657ada45f742d6e99ca5788580b5c529dc78faf11ece6dc702656f"
+dependencies = [
+ "memchr",
+]
+
+[[package]]
+name = "anyhow"
+version = "1.0.56"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4361135be9122e0870de935d7c439aef945b9f9ddd4199a553b5270b49c82a27"
+
+[[package]]
+name = "atty"
+version = "0.2.14"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d9b39be18770d11421cdb1b9947a45dd3f37e93092cbf377614828a319d5fee8"
+dependencies = [
+ "hermit-abi",
+ "libc",
+ "winapi",
+]
+
+[[package]]
+name = "bestia_dev_cargo_auto_new_cli"
+version = "1.0.4"
+dependencies = [
+ "anyhow",
+ "log",
+ "pretty_env_logger",
+ "thiserror",
+]
+
+[[package]]
+name = "cfg-if"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
+
+[[package]]
+name = "env_logger"
+version = "0.7.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "44533bbbb3bb3c1fa17d9f2e4e38bbbaf8396ba82193c4cb1b6445d711445d36"
+dependencies = [
+ "atty",
+ "humantime",
+ "log",
+ "regex",
+ "termcolor",
+]
+
+[[package]]
+name = "hermit-abi"
+version = "0.1.19"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "62b467343b94ba476dcb2500d242dadbb39557df889310ac77c5d99100aaac33"
+dependencies = [
+ "libc",
+]
+
+[[package]]
+name = "humantime"
+version = "1.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "df004cfca50ef23c36850aaaa59ad52cc70d0e90243c3c7737a4dd32dc7a3c4f"
+dependencies = [
+ "quick-error",
+]
+
+[[package]]
+name = "libc"
+version = "0.2.124"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "21a41fed9d98f27ab1c6d161da622a4fa35e8a54a8adc24bbf3ddd0ef70b0e50"
+
+[[package]]
+name = "log"
+version = "0.4.16"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6389c490849ff5bc16be905ae24bc913a9c8892e19b2341dbc175e14c341c2b8"
+dependencies = [
+ "cfg-if",
+]
+
+[[package]]
+name = "memchr"
+version = "2.4.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "308cc39be01b73d0d18f82a0e7b2a3df85245f84af96fdddc5d202d27e47b86a"
+
+[[package]]
+name = "pretty_env_logger"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "926d36b9553851b8b0005f1275891b392ee4d2d833852c417ed025477350fb9d"
+dependencies = [
+ "env_logger",
+ "log",
+]
+
+[[package]]
+name = "proc-macro2"
+version = "1.0.37"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ec757218438d5fda206afc041538b2f6d889286160d649a86a24d37e1235afd1"
+dependencies = [
+ "unicode-xid",
+]
+
+[[package]]
+name = "quick-error"
+version = "1.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a1d01941d82fa2ab50be1e79e6714289dd7cde78eba4c074bc5a4374f650dfe0"
+
+[[package]]
+name = "quote"
+version = "1.0.18"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a1feb54ed693b93a84e14094943b84b7c4eae204c512b7ccb95ab0c66d278ad1"
+dependencies = [
+ "proc-macro2",
+]
+
+[[package]]
+name = "regex"
+version = "1.5.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1a11647b6b25ff05a515cb92c365cec08801e83423a235b51e231e1808747286"
+dependencies = [
+ "aho-corasick",
+ "memchr",
+ "regex-syntax",
+]
+
+[[package]]
+name = "regex-syntax"
+version = "0.6.25"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f497285884f3fcff424ffc933e56d7cbca511def0c9831a7f9b5f6153e3cc89b"
+
+[[package]]
+name = "syn"
+version = "1.0.91"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b683b2b825c8eef438b77c36a06dc262294da3d5a5813fac20da149241dcd44d"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "unicode-xid",
+]
+
+[[package]]
+name = "termcolor"
+version = "1.1.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bab24d30b911b2376f3a13cc2cd443142f0c81dda04c118693e35b3835757755"
+dependencies = [
+ "winapi-util",
+]
+
+[[package]]
+name = "thiserror"
+version = "1.0.30"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "854babe52e4df1653706b98fcfc05843010039b406875930a70e4d9644e5c417"
+dependencies = [
+ "thiserror-impl",
+]
+
+[[package]]
+name = "thiserror-impl"
+version = "1.0.30"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "aa32fd3f627f367fe16f893e2597ae3c05020f8bba2666a4e6ea73d377e5714b"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "unicode-xid"
+version = "0.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8ccb82d61f80a663efe1f787a51b16b5a51e3314d6ac365b08639f52387b33f3"
+
+[[package]]
+name = "winapi"
+version = "0.3.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5c839a674fcd7a98952e593242ea400abe93992746761e38641405d28b00f419"
+dependencies = [
+ "winapi-i686-pc-windows-gnu",
+ "winapi-x86_64-pc-windows-gnu",
+]
+
+[[package]]
+name = "winapi-i686-pc-windows-gnu"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ac3b87c63620426dd9b991e5ce0329eff545bccbbb34f3be09ff6fb6ab51b7b6"
+
+[[package]]
+name = "winapi-util"
+version = "0.1.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "70ec6ce85bb158151cae5e5c87f95a8e97d2c0c4b001223f33a334e3ce5de178"
+dependencies = [
+ "winapi",
+]
+
+[[package]]
+name = "winapi-x86_64-pc-windows-gnu"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "712e227841d057c1ee1cd2fb22fa7e5a5461ae8e48fa2ca79ec42cfc1931183f"
+"###,
+    });
     vec_file.push(crate::FileItem {
         file_name: "LICENSE",
         file_content: r###"MIT License
@@ -714,18 +969,19 @@ fn integration_test_02_error_check() {
         file_name: "examples/example_1.rs",
         file_content: r###"// examples/example_1.rs
 
-//! A simple example how to use the `lib`
+//! A simple example how to use the `lib.rs`
+//! You can run it with `cargo run --example example_1`
 
 use bestia_dev_cargo_auto_new_cli::*;
 
 /// example how to use format_hello_phrase() and format_upper_hello_phrase()
 fn main() {
-    let my_name = "john doe";
-    let phrase = format_hello_phrase(my_name);
+    let greet_name = "john doe";
+    let phrase = format_hello_phrase(greet_name);
     println!("{}", phrase);
 
     // possible error must be processed
-    match format_upper_hello_phrase(my_name) {
+    match format_upper_hello_phrase(greet_name) {
         Ok(phrase) => println!("{}", phrase),
         Err(err) => log::error!("Error: {}", err),
     }
@@ -960,6 +1216,349 @@ Add the dependency `{package_name} = "{package_version}"` to your Rust project a
 // endregion: tasks
 "###,
 });
+    vec_file.push(crate::FileItem {
+        file_name: "automation_tasks_rs/Cargo.lock",
+        file_content: r###"# This file is automatically @generated by Cargo.
+# It is not intended for manual editing.
+version = 3
+
+[[package]]
+name = "aho-corasick"
+version = "0.7.18"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1e37cfd5e7657ada45f742d6e99ca5788580b5c529dc78faf11ece6dc702656f"
+dependencies = [
+ "memchr",
+]
+
+[[package]]
+name = "anyhow"
+version = "1.0.56"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4361135be9122e0870de935d7c439aef945b9f9ddd4199a553b5270b49c82a27"
+
+[[package]]
+name = "autocfg"
+version = "1.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d468802bab17cbc0cc575e9b053f41e72aa36bfa6b7f55e3529ffa43161b97fa"
+
+[[package]]
+name = "automation_tasks_rs"
+version = "0.1.1"
+dependencies = [
+ "cargo_auto_lib",
+]
+
+[[package]]
+name = "bitflags"
+version = "1.3.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "bef38d45163c2f1dde094a7dfd33ccf595c92905c8f8f4fdc18d06fb1037718a"
+
+[[package]]
+name = "cargo_auto_lib"
+version = "0.7.24"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "89d8dac84a26115f6b140e826a0adc44840bdeef7235dc0f3f5ff007ea1de99b"
+dependencies = [
+ "anyhow",
+ "cargo_toml",
+ "chrono",
+ "filetime",
+ "glob",
+ "lazy_static",
+ "reader_for_microxml",
+ "regex",
+ "semver",
+ "serde",
+ "serde_derive",
+ "serde_json",
+ "termion",
+ "toml",
+ "unwrap",
+]
+
+[[package]]
+name = "cargo_toml"
+version = "0.9.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9c3596addfb02dcdc06f5252ddda9f3785f9230f5827fb4284645240fa05ad92"
+dependencies = [
+ "serde",
+ "serde_derive",
+ "toml",
+]
+
+[[package]]
+name = "cfg-if"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
+
+[[package]]
+name = "chrono"
+version = "0.4.19"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "670ad68c9088c2a963aaa298cb369688cf3f9465ce5e2d4ca10e6e0098a1ce73"
+dependencies = [
+ "libc",
+ "num-integer",
+ "num-traits",
+ "time",
+ "winapi",
+]
+
+[[package]]
+name = "filetime"
+version = "0.2.16"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c0408e2626025178a6a7f7ffc05a25bc47103229f19c113755de7bf63816290c"
+dependencies = [
+ "cfg-if",
+ "libc",
+ "redox_syscall",
+ "winapi",
+]
+
+[[package]]
+name = "glob"
+version = "0.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9b919933a397b79c37e33b77bb2aa3dc8eb6e165ad809e58ff75bc7db2e34574"
+
+[[package]]
+name = "itoa"
+version = "1.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1aab8fc367588b89dcee83ab0fd66b72b50b72fa1904d7095045ace2b0c81c35"
+
+[[package]]
+name = "lazy_static"
+version = "1.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e2abad23fbc42b3700f2f279844dc832adb2b2eb069b2df918f455c4e18cc646"
+
+[[package]]
+name = "libc"
+version = "0.2.124"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "21a41fed9d98f27ab1c6d161da622a4fa35e8a54a8adc24bbf3ddd0ef70b0e50"
+
+[[package]]
+name = "memchr"
+version = "2.4.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "308cc39be01b73d0d18f82a0e7b2a3df85245f84af96fdddc5d202d27e47b86a"
+
+[[package]]
+name = "num-integer"
+version = "0.1.44"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d2cc698a63b549a70bc047073d2949cce27cd1c7b0a4a862d08a8031bc2801db"
+dependencies = [
+ "autocfg",
+ "num-traits",
+]
+
+[[package]]
+name = "num-traits"
+version = "0.2.14"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "9a64b1ec5cda2586e284722486d802acf1f7dbdc623e2bfc57e65ca1cd099290"
+dependencies = [
+ "autocfg",
+]
+
+[[package]]
+name = "numtoa"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b8f8bdf33df195859076e54ab11ee78a1b208382d3a26ec40d142ffc1ecc49ef"
+
+[[package]]
+name = "proc-macro2"
+version = "1.0.37"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ec757218438d5fda206afc041538b2f6d889286160d649a86a24d37e1235afd1"
+dependencies = [
+ "unicode-xid",
+]
+
+[[package]]
+name = "quote"
+version = "1.0.18"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a1feb54ed693b93a84e14094943b84b7c4eae204c512b7ccb95ab0c66d278ad1"
+dependencies = [
+ "proc-macro2",
+]
+
+[[package]]
+name = "reader_for_microxml"
+version = "2.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "0d726a3f4c11def37106edaf44caf861a9012ebcd4eb6f748cc4fd93c2a15de1"
+
+[[package]]
+name = "redox_syscall"
+version = "0.2.13"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "62f25bc4c7e55e0b0b7a1d43fb893f4fa1361d0abe38b9ce4f323c2adfe6ef42"
+dependencies = [
+ "bitflags",
+]
+
+[[package]]
+name = "redox_termios"
+version = "0.1.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8440d8acb4fd3d277125b4bd01a6f38aee8d814b3b5fc09b3f2b825d37d3fe8f"
+dependencies = [
+ "redox_syscall",
+]
+
+[[package]]
+name = "regex"
+version = "1.5.5"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1a11647b6b25ff05a515cb92c365cec08801e83423a235b51e231e1808747286"
+dependencies = [
+ "aho-corasick",
+ "memchr",
+ "regex-syntax",
+]
+
+[[package]]
+name = "regex-syntax"
+version = "0.6.25"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "f497285884f3fcff424ffc933e56d7cbca511def0c9831a7f9b5f6153e3cc89b"
+
+[[package]]
+name = "ryu"
+version = "1.0.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "73b4b750c782965c211b42f022f59af1fbceabdd026623714f104152f1ec149f"
+
+[[package]]
+name = "semver"
+version = "1.0.7"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d65bd28f48be7196d222d95b9243287f48d27aca604e08497513019ff0502cc4"
+
+[[package]]
+name = "serde"
+version = "1.0.136"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ce31e24b01e1e524df96f1c2fdd054405f8d7376249a5110886fb4b658484789"
+
+[[package]]
+name = "serde_derive"
+version = "1.0.136"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "08597e7152fcd306f41838ed3e37be9eaeed2b61c42e2117266a554fab4662f9"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
+name = "serde_json"
+version = "1.0.79"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8e8d9fa5c3b304765ce1fd9c4c8a3de2c8db365a5b91be52f186efc675681d95"
+dependencies = [
+ "itoa",
+ "ryu",
+ "serde",
+]
+
+[[package]]
+name = "syn"
+version = "1.0.91"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b683b2b825c8eef438b77c36a06dc262294da3d5a5813fac20da149241dcd44d"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "unicode-xid",
+]
+
+[[package]]
+name = "termion"
+version = "1.5.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "077185e2eac69c3f8379a4298e1e07cd36beb962290d4a51199acf0fdc10607e"
+dependencies = [
+ "libc",
+ "numtoa",
+ "redox_syscall",
+ "redox_termios",
+]
+
+[[package]]
+name = "time"
+version = "0.1.44"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6db9e6914ab8b1ae1c260a4ae7a49b6c5611b40328a735b21862567685e73255"
+dependencies = [
+ "libc",
+ "wasi",
+ "winapi",
+]
+
+[[package]]
+name = "toml"
+version = "0.5.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8d82e1a7758622a465f8cee077614c73484dac5b836c02ff6a40d5d1010324d7"
+dependencies = [
+ "serde",
+]
+
+[[package]]
+name = "unicode-xid"
+version = "0.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8ccb82d61f80a663efe1f787a51b16b5a51e3314d6ac365b08639f52387b33f3"
+
+[[package]]
+name = "unwrap"
+version = "1.2.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7e33648dd74328e622c7be51f3b40a303c63f93e6fa5f08778b6203a4c25c20f"
+
+[[package]]
+name = "wasi"
+version = "0.10.0+wasi-snapshot-preview1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1a143597ca7c7793eff794def352d41792a93c481eb1042423ff7ff72ba2c31f"
+
+[[package]]
+name = "winapi"
+version = "0.3.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5c839a674fcd7a98952e593242ea400abe93992746761e38641405d28b00f419"
+dependencies = [
+ "winapi-i686-pc-windows-gnu",
+ "winapi-x86_64-pc-windows-gnu",
+]
+
+[[package]]
+name = "winapi-i686-pc-windows-gnu"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ac3b87c63620426dd9b991e5ce0329eff545bccbbb34f3be09ff6fb6ab51b7b6"
+
+[[package]]
+name = "winapi-x86_64-pc-windows-gnu"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "712e227841d057c1ee1cd2fb22fa7e5a5461ae8e48fa2ca79ec42cfc1931183f"
+"###,
+    });
     // endregion: files copied into strings by automation tasks
 
     // return
