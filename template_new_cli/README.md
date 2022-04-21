@@ -4,17 +4,17 @@
 
 [comment]: # (auto_cargo_toml_to_md start)
 
-**Basic Rust project template for CLI, more than just `cargo new hello`**  
-***version: 0.1.32 date: 2022-04-14 author: [bestia.dev](bestia.dev) repository: [Github](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli)***  
+**Basic Rust project template for CLI and library, more than just `cargo new hello`**  
+***version: 1.0.4 date: 2022-04-21 author: [bestia.dev](bestia.dev) repository: [Github](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli)***  
 
 [comment]: # (auto_cargo_toml_to_md end)
 
 [comment]: # (auto_lines_of_code start)
-[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-82-green.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
-[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-230-blue.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
-[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-25-purple.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
-[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-18-yellow.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
-[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-33-orange.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
+[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-89-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-13-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-36-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-19-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-30-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 
 [comment]: # (auto_lines_of_code end)
 
@@ -33,20 +33,20 @@ My first line I typed when I learned the Rust language was `cargo new hello`. It
 
 I created this project template `bestia_dev_cargo_auto_new_cli` for a simple CLI application that has all the moving parts for a real life project.
 
-## Separate bin and lib
+## Separate main.rs and lib.rs
 
-It is always good to split the project between a `bin` (executable) and a `lib` (library crate).
+It is always good to split the project between a `main.rs` (executable) and a `lib.rs` (library crate).
 
 Even for the smallest project. Maybe some other program will use the library eventually.
 
-All the input/output is coded in the `bin`: keyboard and monitor (stdin and stdout), access to files and some access to network.  
+All the input/output is coded in the `main.rs`: keyboard and monitor (stdin and stdout), access to files and some access to network.  
 The library must not operate directly with the stdin/stdout, because some other caller of the library can have other ideas around input-output options. Maybe it is a Graphical user interface that does thing completely different than CLI applications.
 
-A separate `lib` enables to make good tests and examples without worrying about input-output.
+A separate `lib.rs` enables to make good tests and examples without worrying about input-output.
 
 ## super simple argument parsing
 
-I use a super simple code to parse CLI arguments inside the `src/bin/bestia_dev_cargo_auto_new_cli.rs`. There are crate libraries that enables very complex argument parsing if needed.
+I use a super simple code to parse CLI arguments inside the `src/bin/bestia_dev_cargo_auto_new_cli/main.rs`. There are crate libraries that enables very complex argument parsing if needed.
 
 ## automation_tasks_rs
 
@@ -187,7 +187,7 @@ From this doc-comments the `docs` will be created. Take a look and try to write 
 
 ## Modules
 
-I added one module `utils_mod.rs` just to showcase how modules are used in separate files.
+I added one module `hello_mod.rs` just to showcase how modules are used in separate files.
 
 ## Markdown
 
@@ -201,7 +201,7 @@ Run them with `cargo test`.
 
 ## examples
 
-In the directory `examples` every rs file is a bin executable.
+In the directory `examples` every rs file is a bin-executable.
 Run it with:
 
 ```bash

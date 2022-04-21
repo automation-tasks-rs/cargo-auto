@@ -1,14 +1,14 @@
 [package]
 name = "bestia_dev_cargo_auto_new_cli"
-version = "0.1.32"
-description = "Basic Rust project template for CLI, more than just `cargo new hello`"
+version = "1.0.4"
+description = "Basic Rust project template for CLI and library, more than just `cargo new hello`"
 authors = ["bestia.dev <info@bestia.dev>"]
 edition = "2021"
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli"
 categories = ["rust-patterns"]
-keywords = ["Rust cli project template"]
+keywords = ["Rust cli and library project template"]
 publish = false
 
 [dependencies]
