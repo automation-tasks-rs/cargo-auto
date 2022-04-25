@@ -29,7 +29,7 @@ pub fn get_vec_file() -> Vec<crate::FileItem> {
 name = "bestia_dev_cargo_auto_new_cli"
 version = "0.1.32"
 description = "Basic Rust project template for CLI, more than just `cargo new hello`"
-authors = ["bestia.dev <info@bestia.dev>"]
+authors = ["bestia.dev"]
 edition = "2021"
 license = "MIT"
 readme = "README.md"
@@ -750,7 +750,7 @@ fn main() {
 [package]
 name = "automation_tasks_rs"
 version = "0.1.1"
-authors = ["bestia.dev <info@bestia.dev>"]
+authors = ["bestia.dev"]
 edition = "2018"
 description = "cargo auto - automation tasks written in Rust language"
 publish = false

@@ -24,7 +24,7 @@ pub fn get_vec_file() -> Vec<crate::FileItem> {
         file_content: r###"[package]
 name = "automation_tasks_rs"
 version = "0.1.1"
-authors = ["bestia.dev <info@bestia.dev>"]
+authors = ["bestia.dev"]
 edition = "2018"
 description = "cargo auto - automation tasks written in Rust language"
 publish = false
