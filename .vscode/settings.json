@@ -11,6 +11,7 @@
         "rustfmt",
         "subcommand",
         "termion",
+        "thiserror",
         "wooow",
         "xtask",
         "zdravje"
