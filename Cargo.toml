@@ -1,13 +1,13 @@
 [package]
 name = "cargo-auto"
-version = "2022.417.1206"
+version = "2022.421.1347"
 authors = ["bestia.dev"]
 edition = "2018"
-description = "cargo-auto - automation tasks written in Rust language for the build process of rust projects"
+description = "cargo-auto - automation tasks written in Rust language for the build process of Rust projects"
 repository = "https://github.com/bestia-dev/cargo-auto"
 readme = "README.md"
 license = "MIT"
-keywords = ["rust", "make"]
+keywords = ["Rust", "make"]
 categories = ["development-tools::build-utils"]
 # publish as a cargo tool. Only this files.
 publish = true

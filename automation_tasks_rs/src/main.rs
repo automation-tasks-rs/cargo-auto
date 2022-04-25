@@ -192,7 +192,7 @@ fn task_commit_and_push(arg_2: Option<String>) {
     match arg_2 {
         None => println!("Error: message for commit is mandatory"),
         Some(message) => {
-            run_shell_command(&format!(r#"git add -A && git commit -m "{}""#, message));
+            run_shell_command(&format!(r#"git add -A && git commit --allow-empty -m "{}""#, message));
             run_shell_command("git push");
             println!(
                 r#"

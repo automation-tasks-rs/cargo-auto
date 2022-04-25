@@ -167,9 +167,9 @@ fn new_auto() {
     build_automation_tasks_rs_if_needed();
 
     println!("");
-    println!("`crate auto new_auto` generated the directory `automation_tasks_rs` in your main rust project.");
-    println!("You can open this new helper rust project in a new rust editor.");
-    println!("View and edit the rust code in `automation_tasks_rs`. It is independent from the main project.");
+    println!("`crate auto new_auto` generated the directory `automation_tasks_rs` in your main Rust project.");
+    println!("You can open this new helper Rust project in a new Rust editor.");
+    println!("View and edit the Rust code in `automation_tasks_rs`. It is independent from the main project.");
     println!("It will be automatically compiled on the next use of `crate auto task_name` command.");
     println!("The new directory will be added to your git commit.");
     println!("There is a local .gitignore file to avoid commit of the `target/` directory.");

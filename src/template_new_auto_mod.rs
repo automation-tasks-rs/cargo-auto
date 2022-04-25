@@ -201,7 +201,7 @@ fn task_commit_and_push(arg_2: Option<String>) {
     match arg_2 {
         None => println!("Error: message for commit is mandatory"),
         Some(message) => {
-            run_shell_command(&format!(r#"git add -A && git commit -m "{}""#, message));
+            run_shell_command(&format!(r#"git add -A && git commit --allow-empty -m "{}""#, message));
             run_shell_command("git push");
             println!(
                 r#"
@@ -231,7 +231,7 @@ fn task_publish_to_crates_io() {
         r#"
 After `cargo auto publish_to_crates_io`, 
 check `https://crates.io/crates/{package_name}`.
-Add the dependency `{package_name} = "{package_version}"` to your rust project and check how it works.
+Add the dependency `{package_name} = "{package_version}"` to your Rust project and check how it works.
 "#,
         package_name = cargo_toml.package_name(),
         package_version = cargo_toml.package_version()

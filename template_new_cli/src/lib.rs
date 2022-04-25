@@ -1,18 +1,27 @@
 // bestia_dev_cargo_auto_new_cli/src/lib.rs
 
+// You can collapse the long region below using VSCode. It is only the copy of the README.md file, because it gets compiled into docs.
+
 // region: auto_md_to_doc_comments include README.md A //!
 //! # bestia_dev_cargo_auto_new_cli
 //!
-//! **Basic Rust project template for CLI, more than just `cargo new hello`**  
-//! ***version: 0.1.32 date: 2022-04-14 author: [bestia.dev](bestia.dev) repository: [Github](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli)***  
+//! **Basic Rust project template for CLI and library, more than just `cargo new hello`**  
+//! ***version: 1.0.4 date: 2022-04-21 author: [bestia.dev](bestia.dev) repository: [Github](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli)***  
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-82-green.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-230-blue.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-25-purple.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
-//! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-18-yellow.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-33-orange.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-89-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-13-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-36-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-19-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-30-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
 //! [![Licence](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/blob/main/LICENSE) [![Rust](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
+//!
+//! ## Edit this README.md file
+//!
+//! Edit this README file with your data. But leave the markers: auto_md_to_doc_comments, auto_lines_of_code, auto_cargo_toml_to_md and similar, because the automation tasks need them.  
+//! Modify the title and description only in Cargo.toml. Automation tasks will copy that into README.md.  
+//! Lines of code are filled automatically from automation tasks.  
+//! Find `bestia.dev` everywhere and change it with your username.
 //!
 //! ## Motivation
 //!
@@ -20,23 +29,24 @@
 //!
 //! I created this project template `bestia_dev_cargo_auto_new_cli` for a simple CLI application that has all the moving parts for a real life project.
 //!
-//! ## Separate bin and lib
+//! ## Separate main.rs and lib.rs
 //!
-//! It is always good to split the project between a `bin` (executable) and a `lib` (library crate).
+//! It is always good to split the project between a `main.rs` (executable) and a `lib.rs` (library crate).
 //!
 //! Even for the smallest project. Maybe some other program will use the library eventually.
 //!
-//! All the input/output is coded in the `bin`. The library must not operate directly with the stdin/stdout, because some other caller of the library can have other ideas around input-output options.
+//! All the input/output is coded in the `main.rs`: keyboard and monitor (stdin and stdout), access to files and some access to network.  
+//! The library must not operate directly with the stdin/stdout, because some other caller of the library can have other ideas around input-output options. Maybe it is a Graphical user interface that does thing completely different than CLI applications.
 //!
-//! A separate `lib` enables to make good tests without worrying about input-output.
+//! A separate `lib.rs` enables to make good tests and examples without worrying about input-output.
 //!
 //! ## super simple argument parsing
 //!
-//! I use a super simple code to parse CLI arguments inside the `src/bin/bestia_dev_cargo_auto_new_cli.rs`. There are crate libraries that enables very complex argument parsing if needed.
+//! I use a super simple code to parse CLI arguments inside the `src/bin/bestia_dev_cargo_auto_new_cli/main.rs`. There are crate libraries that enables very complex argument parsing if needed.
 //!
 //! ## automation_tasks_rs
 //!
-//! Building a project is always more complex then just `cargo build` and `cargo run`. There are always some files to copy or some content to copy from file to file. For this I use `cargo-auto` - automation tasks written in Rust language for the build process of rust projects.
+//! Building a project is always more complex then just `cargo build` and `cargo run`. There are always some files to copy or some content to copy from file to file. For this I use `cargo-auto` - automation tasks written in Rust language for the build process of Rust projects.
 //!
 //! All the source is inside the folder `automation_tasks_rs`. It is pure Rust, it is easy to understand and modify to your needs.
 //!
@@ -173,7 +183,7 @@
 //!
 //! ## Modules
 //!
-//! I added one module `utils_mod.rs` just to showcase how modules are used in separate files.
+//! I added one module `hello_mod.rs` just to showcase how modules are used in separate files.
 //!
 //! ## Markdown
 //!
@@ -187,7 +197,7 @@
 //!
 //! ## examples
 //!
-//! In the directory `examples` every rs file is a bin executable.
+//! In the directory `examples` every rs file is a bin-executable.
 //! Run it with:
 //!
 //! ```bash
@@ -229,12 +239,22 @@
 //!
 // endregion: auto_md_to_doc_comments include README.md A //!
 
-// The `bin` has all the stdin and stdout.
-// The `lib` must be in/out agnostic. That is the responsibility of the `bin`
+// The `main.rs` has all the stdin and stdout.
+// The `lib.rs` must be in/out agnostic. That is the responsibility of the `main.rs`
 
-mod utils_mod;
+// The `lib.rs` does not have any real code. All the code is in modules in separate files.
+// The `lib.rs` has just the list of modules, it publishes module's functions or class for the caller
+// and it has some global stuff like the Error enum.
 
-// The `bin` uses the `anyhow` error library, the `lib` uses the `thiserror` library
+// access to modules
+mod hello_mod;
+
+// `pub use` allows the caller of the lib to access modules functions, structs or all(*)
+pub use hello_mod::format_hello_phrase;
+pub use hello_mod::format_upper_hello_phrase;
+
+// The `main.rs` uses the `anyhow` error library.
+// The `lib.rs` uses the `thiserror` library.
 use thiserror::Error;
 
 /// all possible library errors for `thiserror`
@@ -244,36 +264,4 @@ pub enum LibraryError {
     Uppercase(String),
     #[error("unknown error")]
     Unknown,
-}
-
-/// format the hello phrase
-pub fn format_hello_phrase(my_name: &str) -> String {
-    log::info!("start format_hello_phrase()");
-    // return
-    format!("Hello {}!", my_name)
-}
-
-/// format the hello phrase with uppercase name
-/// if it is already uppercase, return error with thiserror
-pub fn format_upper_hello_phrase(my_name: &str) -> Result<String, LibraryError> {
-    log::info!("start format_upper_hello_phrase()");
-    // shadowing the same variable name:
-    let upper_my_name = utils_mod::make_uppercase(my_name);
-    if upper_my_name == my_name {
-        return Err(LibraryError::Uppercase(my_name.to_string()));
-    }
-
-    // return
-    Ok(format!("Hello {}!", &upper_my_name))
-}
-
-#[cfg(test)]
-mod test {
-    use super::*;
-
-    #[test]
-    pub fn test_format_upper_hello_phrase() {
-        assert_eq!(format_upper_hello_phrase("abcd").expect("error"), "Hello ABCD!");
-        assert!(format_upper_hello_phrase("ABCD").is_err());
-    }
 }
