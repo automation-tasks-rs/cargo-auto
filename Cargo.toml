@@ -2,6 +2,7 @@
 name = "cargo-auto"
 version = "2022.421.1347"
 authors = ["bestia.dev"]
+homepage = "https://bestia.dev"
 edition = "2018"
 description = "cargo-auto - automation tasks written in Rust language for the build process of Rust projects"
 repository = "https://github.com/bestia-dev/cargo-auto"

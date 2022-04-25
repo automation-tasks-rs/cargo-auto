@@ -3,6 +3,7 @@ name = "bestia_dev_cargo_auto_new_cli"
 version = "1.0.4"
 description = "Basic Rust project template for CLI and library, more than just `cargo new hello`"
 authors = ["bestia.dev"]
+homepage = "https://bestia.dev"
 edition = "2021"
 license = "MIT"
 readme = "README.md"

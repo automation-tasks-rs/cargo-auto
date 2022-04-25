@@ -3,6 +3,7 @@
 name = "automation_tasks_rs"
 version = "0.1.1"
 authors = ["bestia.dev"]
+homepage = "https://bestia.dev"
 edition = "2018"
 description = "cargo auto - automation tasks written in Rust language"
 publish = false
