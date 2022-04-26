@@ -2,8 +2,10 @@
     "cSpell.words": [
         "Alla",
         "auto",
+        "buildtool",
         "cmake",
         "crev",
+        "developmenttool",
         "endregion",
         "filetime",
         "Nazdravlje",
@@ -12,6 +14,7 @@
         "println",
         "Prost",
         "rustfmt",
+        "rustlang",
         "subcommand",
         "termion",
         "thiserror",
