@@ -1599,6 +1599,7 @@
 <span id="1594">1594</span>
 <span id="1595">1595</span>
 <span id="1596">1596</span>
+<span id="1597">1597</span>
 </pre><pre class="rust"><code><span class="doccomment">//! this strings are copied from the template_new_cli folder</span>
 <span class="doccomment">//! because when publishing to crates.io, only the main bin-executable is transferred</span>
 
@@ -1806,19 +1807,19 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2022.512.1612 date: 2022-05-12 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2022.512.1805 date: 2022-05-12 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-634-green.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-524-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-635-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-532-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-111-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-1203-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-1204-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
 //! [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
 //! [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)
 //! [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/cargo-auto.svg)](https://web.crev.dev/rust-reviews/crate/cargo-auto/)
 //! [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/)
-//! [![Licence](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo-auto/blob/master/LICENSE)
+//! [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo-auto/blob/master/LICENSE)
 //! [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fbestia-dev%2Fcargo-auto&amp;count_bg=%2379C83D&amp;title_bg=%23555555&amp;icon=&amp;icon_color=%23E7E7E7&amp;title=hits&amp;edge_flat=false)](https://hits.seeyoufarm.com)
 //!
@@ -2611,7 +2612,7 @@ description = &quot;cargo auto - automation tasks written in Rust language&quot;
 publish = false
 
 [dependencies]
-cargo_auto_lib = &quot;0.7.33&quot;&quot;###</span>,
+cargo_auto_lib = &quot;0.7.42&quot;&quot;###</span>,
     });
     <span class="ident">vec_file</span>.<span class="ident">push</span>(<span class="ident"><span class="kw">crate</span>::FileItem</span> {
         <span class="ident">file_name</span>: <span class="string">&quot;automation_tasks_rs/.gitignore&quot;</span>,
@@ -2781,6 +2782,7 @@ fn task_doc() {
     run_shell_command(&quot;rsync -a --info=progress2 --delete-after target/doc/ docs/&quot;);
     // Create simple index.html file in docs directory
     run_shell_command(&amp;format!(&quot;echo \&quot;&lt;meta http-equiv=\\\&quot;refresh\\\&quot; content=\\\&quot;0; url={}/index.html\\\&quot; /&gt;\&quot; &gt; docs/index.html&quot;,cargo_toml.package_name().replace(&quot;-&quot;,&quot;_&quot;)));    
+    run_shell_command(&quot;cargo fmt&quot;);
     // message to help user with next move
     println!(
         r#&quot;

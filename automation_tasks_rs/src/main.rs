@@ -168,6 +168,7 @@ fn task_doc() {
         "echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",
         cargo_toml.package_name().replace("-", "_")
     ));
+    run_shell_command("cargo fmt");
     // message to help user with next move
     println!(
         r#"

@@ -312,6 +312,7 @@
 <span id="307">307</span>
 <span id="308">308</span>
 <span id="309">309</span>
+<span id="310">310</span>
 </pre><pre class="rust"><code><span class="doccomment">//! this strings are copied from the template_new_auto folder</span>
 <span class="doccomment">//! because when publishing to crates.io, only the main bin-executable is transferred</span>
 
@@ -345,7 +346,7 @@ description = &quot;cargo auto - automation tasks written in Rust language&quot;
 publish = false
 
 [dependencies]
-cargo_auto_lib = &quot;0.7.33&quot;
+cargo_auto_lib = &quot;0.7.42&quot;
 &quot;###</span>,
     });
     <span class="ident">vec_file</span>.<span class="ident">push</span>(<span class="ident"><span class="kw">crate</span>::FileItem</span> {
@@ -511,6 +512,7 @@ fn task_doc() {
     run_shell_command(&quot;rsync -a --info=progress2 --delete-after target/doc/ docs/&quot;);
     // Create simple index.html file in docs directory
     run_shell_command(&amp;format!(&quot;echo \&quot;&lt;meta http-equiv=\\\&quot;refresh\\\&quot; content=\\\&quot;0; url={}/index.html\\\&quot; /&gt;\&quot; &gt; docs/index.html&quot;,cargo_toml.package_name().replace(&quot;-&quot;,&quot;_&quot;)));    
+    run_shell_command(&quot;cargo fmt&quot;);
     // message to help user with next move
     println!(
         r#&quot;
