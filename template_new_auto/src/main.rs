@@ -147,6 +147,7 @@ fn task_doc() {
     let cargo_toml = CargoToml::read();
     auto_cargo_toml_to_md();
     auto_lines_of_code("");
+    auto_plantuml(&cargo_toml.package_repository().unwrap());
     auto_md_to_doc_comments();
 
     run_shell_command("cargo doc --no-deps --document-private-items");

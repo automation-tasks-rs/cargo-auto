@@ -45,6 +45,7 @@ name = "bestia_dev_cargo_auto_new_cli"
 version = "1.0.4"
 description = "Basic Rust project template for CLI and library, more than just `cargo new hello`"
 authors = ["bestia.dev"]
+homepage = "https://bestia.dev"
 edition = "2021"
 license = "MIT"
 readme = "README.md"
@@ -204,15 +205,23 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2022.421.1347 date: 2022-04-21 author: [bestia.dev](bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2022.512.1612 date: 2022-05-12 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-609-green.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-522-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-119-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-634-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-524-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-111-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-1179-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-1203-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
-//! [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto) [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/) [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/cargo-auto.svg)](https://web.crev.dev/rust-reviews/crate/cargo-auto/) [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/) [![Licence](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo-auto/blob/master/LICENSE) [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo-auto/)  
+//! [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
+//! [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)
+//! [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/cargo-auto.svg)](https://web.crev.dev/rust-reviews/crate/cargo-auto/)
+//! [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/)
+//! [![Licence](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo-auto/blob/master/LICENSE)
+//! [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fbestia-dev%2Fcargo-auto&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+//!
+//! Hashtags: #rustlang #buildtool #developmenttool #cli
 //!
 //! ## Try it
 //!
@@ -995,12 +1004,13 @@ fn main() {
 name = "automation_tasks_rs"
 version = "0.1.1"
 authors = ["bestia.dev"]
+homepage = "https://bestia.dev"
 edition = "2018"
 description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "0.7.24""###,
+cargo_auto_lib = "0.7.33""###,
     });
     vec_file.push(crate::FileItem {
         file_name: "automation_tasks_rs/.gitignore",
@@ -1040,15 +1050,17 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args) {
                     task_build();
                 } else if &task == "release" {
                     task_release();
-                } else if &task == "test" {
-                    task_test();
                 } else if &task == "doc" {
                     task_doc();
+                } else if &task == "test" {
+                    task_test();
                 } else if &task == "commit_and_push" {
                     let arg_2 = args.next();
                     task_commit_and_push(arg_2);
-                //} else if &task == "publish_to_crates_io" {
-                //    task_publish_to_crates_io();
+                /*
+                } else if &task == "publish_to_crates_io" {
+                    task_publish_to_crates_io();
+                */
                 } else {
                     println!("Task {} is unknown.", &task);
                     print_help();
@@ -1070,9 +1082,22 @@ cargo auto test - runs all the tests
 cargo auto commit_and_push "message" - commits with message and push with mandatory message
       (If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.)
 "#
-// cargo auto publish_to_crates_io - publish to crates.io, git tag
-//      (You need to save the credentials before publishing. On crates.io get the 'access token'. Then save it locally with the command ` cargo login TOKEN`)
+/*
+cargo auto publish_to_crates_io - publish to crates.io, git tag
+      (You need credentials for publishing. On crates.io get the 'access token'. Then save it locally once and forever with the command 
+      ` cargo login TOKEN` use a space before the command to avoid saving the secret token in bash history.)
+*/
     );
+    print_examples_cmd();
+}
+
+/// all example commands in one place
+fn print_examples_cmd(){
+/*
+    println!(r#"run examples:
+cargo run --example example1
+"#);
+*/
 }
 
 /// sub-command for bash auto-completion of `cargo auto` using the crate `dev_bestia_cargo_completion`
@@ -1082,7 +1107,7 @@ fn completion() {
     let last_word = args[3].as_str();
 
     if last_word == "cargo-auto" || last_word == "auto" {
-        let sub_commands = vec!["build", "release", "doc","test", "commit_and_push"];
+        let sub_commands = vec!["build", "release", "doc", "test", "commit_and_push",];
         // , "publish_to_crates_io"
         completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
@@ -1107,14 +1132,16 @@ fn task_build() {
     run_shell_command("cargo build");
     println!(
         r#"
-After `cargo auto build`, run the compiled binary
+After `cargo auto build`, run the compiled binary, examples and/or tests
 run `./target/debug/{package_name} print my_name`, if ok, then
 run `./target/debug/{package_name} upper my_name`, if ok, then
 run `./target/debug/{package_name} upper MY_NAME`, if ok, then
+run `cargo auto test`, if ok, then,
 run `cargo auto release`
 "#, 
 package_name = cargo_toml.package_name(),
     );
+    print_examples_cmd();
 }
 
 /// cargo build --release
@@ -1128,14 +1155,16 @@ fn task_release() {
     run_shell_command("cargo build --release");
     println!(
         r#"
-After `cargo auto release`, run the compiled binary
+After `cargo auto release`, run the compiled binary, examples and/or tests
 run `./target/release/{package_name} print my_name` if ok, then
 run `./target/release/{package_name} upper my_name` if ok, then
 run `./target/release/{package_name} upper MY_NAME` if ok, then
+run `cargo auto test`, if ok, then,
 run `cargo auto doc`
 "#,
 package_name = cargo_toml.package_name(),
     );
+    print_examples_cmd();
 }
 
 /// cargo doc, then copies to /docs/ folder, because this is a github standard folder
@@ -1143,6 +1172,7 @@ fn task_doc() {
     let cargo_toml = CargoToml::read();
     auto_cargo_toml_to_md();
     auto_lines_of_code("");
+    auto_plantuml(&cargo_toml.package_repository().unwrap());
     auto_md_to_doc_comments();
 
     run_shell_command("cargo doc --no-deps --document-private-items");
@@ -1153,7 +1183,7 @@ fn task_doc() {
     // message to help user with next move
     println!(
         r#"
-After `cargo auto doc`, check `docs/index.html`. If ok, then 
+After `cargo auto doc`, check `docs/index.html`. If ok, then test the documentation code examples
 run `cargo auto test`
 "#
     );
