@@ -29,10 +29,10 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args) {
                     task_build();
                 } else if &task == "release" {
                     task_release();
-                } else if &task == "test" {
-                    task_test();
                 } else if &task == "doc" {
                     task_doc();
+                } else if &task == "test" {
+                    task_test();
                 } else if &task == "commit_and_push" {
                     let arg_2 = args.next();
                     task_commit_and_push(arg_2);
