@@ -2,6 +2,18 @@
 
 use cargo_auto_lib::*;
 
+// ANSI colors for Linux terminal
+// https://github.com/shiena/ansicolor/blob/master/README.md
+#[allow(dead_code)]
+pub const RED: &str = "\x1b[31m";
+#[allow(dead_code)]
+pub const YELLOW: &str = "\x1b[33m";
+#[allow(dead_code)]
+pub const GREEN: &str = "\x1b[32m";
+#[allow(dead_code)]
+pub const RESET: &str = "\x1b[0m";
+
+
 fn main() {
     exit_if_not_run_in_rust_project_root_directory();
 
@@ -24,7 +36,7 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args) {
             if &task == "completion" {
                 completion();
             } else {
-                println!("Running automation task: {}", &task);
+                println!("{YELLOW}Running automation task: {task}{RESET}");
                 if &task == "build" {
                     task_build();
                 } else if &task == "release" {
@@ -41,7 +53,7 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args) {
                     task_publish_to_crates_io();
                 */
                 } else {
-                    println!("Task {} is unknown.", &task);
+                    println!("{RED}Error: Task {task} is unknown.{RESET}");
                     print_help();
                 }
             }
@@ -53,18 +65,21 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args) {
 fn print_help() {
     println!(
         r#"
-User defined tasks in automation_tasks_rs:
+    {YELLOW}Welcome to cargo-auto !
+    This program automates your custom tasks when developing a Rust project.{RESET}
+
+    User defined tasks in automation_tasks_rs:
 cargo auto build - builds the crate in debug mode, fmt, increment version
 cargo auto release - builds the crate in release mode, fmt, increment version
 cargo auto doc - builds the docs, copy to docs directory
 cargo auto test - runs all the tests
 cargo auto commit_and_push "message" - commits with message and push with mandatory message
-      (If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.)
+    (If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.)
 "#
 /*
 cargo auto publish_to_crates_io - publish to crates.io, git tag
-      (You need credentials for publishing. On crates.io get the 'access token'. Then save it locally once and forever with the command 
-      ` cargo login TOKEN` use a space before the command to avoid saving the secret token in bash history.)
+    (You need credentials for publishing. On crates.io get the 'access token'. Then save it locally once and forever with the command 
+    ` cargo login TOKEN` use a space before the command to avoid saving the secret token in bash history.)
 */
     );
     print_examples_cmd();
@@ -110,14 +125,18 @@ fn task_build() {
     run_shell_command("cargo fmt");
     run_shell_command("cargo build");
     println!(
-        r#"
-After `cargo auto build`, run the compiled binary, examples and/or tests
-run `./target/debug/{package_name} print world`, if ok, then
-run `./target/debug/{package_name} upper world`, if ok, then
-run `./target/debug/{package_name} upper WORLD`, if ok, then
-run `cargo auto test`, if ok, then,
-run `cargo auto release`
-"#, 
+        r#"{YELLOW}
+    After `cargo auto build`, run the compiled binary, examples and/or tests
+./target/debug/{package_name} print world
+    if ok, then
+./target/debug/{package_name} upper world
+    if ok, then
+./target/debug/{package_name} upper WORLD
+    if ok, then
+cargo auto test
+    if ok, then,
+cargo auto release
+{RESET}"#,
 package_name = cargo_toml.package_name(),
     );
     print_examples_cmd();
@@ -133,14 +152,18 @@ fn task_release() {
     run_shell_command("cargo fmt");
     run_shell_command("cargo build --release");
     println!(
-        r#"
-After `cargo auto release`, run the compiled binary, examples and/or tests
-run `./target/release/{package_name} print world` if ok, then
-run `./target/release/{package_name} upper world` if ok, then
-run `./target/release/{package_name} upper WORLD` if ok, then
-run `cargo auto test`, if ok, then,
-run `cargo auto doc`
-"#,
+        r#"{YELLOW}
+    After `cargo auto release`, run the compiled binary, examples and/or tests
+./target/release/{package_name} print world
+    if ok, then
+./target/release/{package_name} upper world
+    if ok, then
+./target/release/{package_name} upper WORLD
+    if ok, then
+cargo auto test
+    if ok, then,
+cargo auto doc
+{RESET}"#,
 package_name = cargo_toml.package_name(),
     );
     print_examples_cmd();
@@ -158,14 +181,17 @@ fn task_doc() {
     // copy target/doc into docs/ because it is github standard
     run_shell_command("rsync -a --info=progress2 --delete-after target/doc/ docs/");
     // Create simple index.html file in docs directory
-    run_shell_command(&format!("echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",cargo_toml.package_name().replace("-","_")));    
+    run_shell_command(&format!(
+        "echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",
+        cargo_toml.package_name().replace("-","_")
+    ));
     run_shell_command("cargo fmt");
     // message to help user with next move
     println!(
-        r#"
-After `cargo auto doc`, check `docs/index.html`. If ok, then test the documentation code examples
-run `cargo auto test`
-"#
+        r#"{YELLOW}
+    After `cargo auto doc`, check `docs/index.html`. If ok, then test the documentation code examples
+cargo auto test
+{RESET}"#
     );
 }
 
@@ -173,25 +199,26 @@ run `cargo auto test`
 fn task_test() {
     run_shell_command("cargo test");
     println!(
-        r#"
-After `cargo auto test`. If ok, then 
-run `cargo auto commit_and_push "message"` with mandatory commit message
-"#
+        r#"{YELLOW}
+    After `cargo auto test`. If ok, then 
+cargo auto commit_and_push "message"
+    with mandatory commit message
+{RESET}"#
     );
 }
 
 /// commit and push
 fn task_commit_and_push(arg_2: Option<String>) {
     match arg_2 {
-        None => println!("Error: message for commit is mandatory"),
+        None => println!("{RED}Error: Message for commit is mandatory.{RESET}"),
         Some(message) => {
             run_shell_command(&format!(r#"git add -A && git commit --allow-empty -m "{}""#, message));
             run_shell_command("git push");
             println!(
-                r#"
-After `cargo auto commit_and_push "message"`
-run `cargo auto publish_to_crates_io`
-"#
+                r#"{YELLOW}
+    After `cargo auto commit_and_push "message"`
+cargo auto publish_to_crates_io
+{RESET}"#
             );
         }
     }
@@ -200,7 +227,8 @@ run `cargo auto publish_to_crates_io`
 /*
 /// publish to crates.io and git tag
 fn task_publish_to_crates_io() {
-    println!(r#"The crates.io access token must already be saved locally with `cargo login TOKEN`"#);
+    println!(r#"{YELLOW}The crates.io access token must already be saved locally with `cargo login TOKEN`{RESET}"#);
+
     let cargo_toml = CargoToml::read();
     // git tag
     let shell_command = format!(
@@ -212,11 +240,12 @@ fn task_publish_to_crates_io() {
     // cargo publish
     run_shell_command("cargo publish");
     println!(
-        r#"
-After `cargo auto publish_to_crates_io`, 
-check `https://crates.io/crates/{package_name}`.
-Add the dependency `{package_name} = "{package_version}"` to your Rust project and check how it works.
-"#,
+        r#"{YELLOW}
+    After `cargo auto publish_to_crates_io`, 
+    check `https://crates.io/crates/{package_name}`.
+    Install the crate with `cargo install {package_name}` and check how it works.
+    Add the dependency `{package_name} = "{package_version}"` to your Rust project and check how it works.
+{RESET}"#,
         package_name = cargo_toml.package_name(),
         package_version = cargo_toml.package_version()
     );
