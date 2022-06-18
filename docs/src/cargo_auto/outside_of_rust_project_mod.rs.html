@@ -105,10 +105,32 @@
 <span id="100">100</span>
 <span id="101">101</span>
 <span id="102">102</span>
+<span id="103">103</span>
+<span id="104">104</span>
+<span id="105">105</span>
+<span id="106">106</span>
+<span id="107">107</span>
+<span id="108">108</span>
+<span id="109">109</span>
+<span id="110">110</span>
+<span id="111">111</span>
+<span id="112">112</span>
+<span id="113">113</span>
 </pre><pre class="rust"><code><span class="comment">// outside_of_rust_project_mod.rs</span>
 
 <span class="comment">// region: use statements</span>
 <span class="comment">// endregion</span>
+
+<span class="comment">// ANSI colors for Linux terminal</span>
+<span class="comment">// https://github.com/shiena/ansicolor/blob/master/README.md</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RED</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;\x1b[31m&quot;</span>;
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">YELLOW</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;\x1b[33m&quot;</span>;
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GREEN</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;\x1b[32m&quot;</span>;
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RESET</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;\x1b[0m&quot;</span>;
 
 <span class="doccomment">/// it is run outside a Rust project</span>
 <span class="doccomment">/// It must have the argument &quot;new_cli&quot; and the project title</span>
@@ -138,9 +160,16 @@
 
 <span class="doccomment">///  </span>
 <span class="kw">fn</span> <span class="ident">print_help_from_cargo_auto</span>() {
-    <span class="macro">println!</span>(<span class="string">&quot;&quot;</span>);
-    <span class="macro">println!</span>(<span class="string">&quot;Outside of a Rust project, cargo-auto can create a new Rust project for CLI:&quot;</span>);
-    <span class="macro">println!</span>(<span class="string">&quot;$ cargo auto new_cli project_name&quot;</span>);
+    <span class="macro">println!</span>(
+        <span class="string">r#&quot;
+    {YELLOW}Welcome to cargo-auto !
+    This program automates your custom tasks when developing a Rust project.{RESET}
+
+    Outside of a Rust project, cargo-auto can create a new Rust project for CLI, simple yet complete:
+cargo auto new_cli project_name
+
+&quot;#</span>
+    );
 }
 
 <span class="doccomment">/// the first argument is the task: new_cli,...  </span>
@@ -189,21 +218,14 @@
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new_cli</span>(<span class="ident">arg_2</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="ident">String</span><span class="op">&gt;</span>) {
     <span class="kw">match</span> <span class="ident">arg_2</span> {
-        <span class="prelude-val">None</span> =&gt; <span class="macro">println!</span>(<span class="string">&quot;Project name argument is missing: `cargo auto new_cli project_name`&quot;</span>),
+        <span class="prelude-val">None</span> =&gt; <span class="macro">println!</span>(<span class="string">&quot;{RED}Error: Project name argument is missing: `cargo auto new_cli project_name`{RESET}&quot;</span>),
         <span class="prelude-val">Some</span>(<span class="ident">project_name</span>) =&gt; {
             <span class="ident"><span class="kw">crate</span>::template_new_cli_mod::copy_to_files</span>(<span class="kw-2">&amp;</span><span class="ident">project_name</span>);
             <span class="macro">println!</span>(<span class="string">&quot;&quot;</span>);
-            <span class="macro">println!</span>(
-                <span class="string">&quot;The command `crate auto new_cli` generated the directory `{}`&quot;</span>,
-                <span class="kw-2">&amp;</span><span class="ident">project_name</span>
-            );
-            <span class="macro">println!</span>(
-                <span class="string">&quot;You can open this new Rust project `{}` in a new Rust editor.&quot;</span>,
-                <span class="kw-2">&amp;</span><span class="ident">project_name</span>
-            );
-            <span class="macro">println!</span>(<span class="string">&quot;For example VSCode:&quot;</span>);
-            <span class="macro">println!</span>(<span class="string">&quot;run `cd {}`&quot;</span>, <span class="kw-2">&amp;</span><span class="ident">project_name</span>);
-            <span class="macro">println!</span>(<span class="string">&quot;run `code .`&quot;</span>);
+            <span class="macro">println!</span>(<span class="string">&quot;    {YELLOW}The command `crate auto new_cli` generated the directory `{project_name}`{RESET}&quot;</span>);
+            <span class="macro">println!</span>(<span class="string">&quot;    {YELLOW}You can open this new Rust project `{project_name}` in a new Rust editor.{RESET}&quot;</span>,);
+            <span class="macro">println!</span>(<span class="string">&quot;    For example VSCode:&quot;</span>);
+            <span class="macro">println!</span>(<span class="string">&quot;code {project_name}&quot;</span>);
         }
     }
 }

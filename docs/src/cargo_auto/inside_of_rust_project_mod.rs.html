@@ -181,11 +181,49 @@
 <span id="176">176</span>
 <span id="177">177</span>
 <span id="178">178</span>
+<span id="179">179</span>
+<span id="180">180</span>
+<span id="181">181</span>
+<span id="182">182</span>
+<span id="183">183</span>
+<span id="184">184</span>
+<span id="185">185</span>
+<span id="186">186</span>
+<span id="187">187</span>
+<span id="188">188</span>
+<span id="189">189</span>
+<span id="190">190</span>
+<span id="191">191</span>
+<span id="192">192</span>
+<span id="193">193</span>
+<span id="194">194</span>
+<span id="195">195</span>
+<span id="196">196</span>
+<span id="197">197</span>
+<span id="198">198</span>
+<span id="199">199</span>
+<span id="200">200</span>
+<span id="201">201</span>
+<span id="202">202</span>
+<span id="203">203</span>
+<span id="204">204</span>
+<span id="205">205</span>
 </pre><pre class="rust"><code><span class="comment">// inside_of_rust_project_mod.rs</span>
 
 <span class="comment">// region: use statements</span>
-<span class="kw">use</span> <span class="ident">unwrap::unwrap</span>;
+
 <span class="comment">// endregion</span>
+
+<span class="comment">// ANSI colors for Linux terminal</span>
+<span class="comment">// https://github.com/shiena/ansicolor/blob/master/README.md</span>
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RED</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;\x1b[31m&quot;</span>;
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">YELLOW</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;\x1b[33m&quot;</span>;
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">GREEN</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;\x1b[32m&quot;</span>;
+<span class="attribute">#[<span class="ident">allow</span>(<span class="ident">dead_code</span>)]</span>
+<span class="kw">pub</span> <span class="kw">const</span> <span class="ident">RESET</span>: <span class="kw-2">&amp;</span><span class="ident">str</span> <span class="op">=</span> <span class="string">&quot;\x1b[0m&quot;</span>;
 
 <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">parse_args</span>(<span class="ident">args</span>: <span class="kw-2">&amp;mut</span> <span class="ident">std::env::Args</span>) {
     <span class="comment">// the first argument is the task: (no argument for help), new_auto, build, release,...</span>
@@ -225,15 +263,22 @@
 <span class="doccomment">/// in runtime use: `cargo auto`  </span>
 <span class="kw">fn</span> <span class="ident">print_help_from_cargo_auto</span>() {
     <span class="kw">if</span> <span class="op">!</span><span class="ident"><span class="kw">crate</span>::PATH_CARGO_TOML</span>.<span class="ident">exists</span>() <span class="op">|</span><span class="op">|</span> <span class="op">!</span><span class="ident"><span class="kw">crate</span>::PATH_SRC_MAIN_RS</span>.<span class="ident">exists</span>() {
-        <span class="macro">println!</span>(<span class="string">&quot;&quot;</span>);
-        <span class="macro">println!</span>(<span class="string">&quot;To start using `cargo auto` inside your Rust project, you must create a new `automation_tasks_rs` directory with the command:&quot;</span>);
-        <span class="macro">println!</span>(<span class="string">&quot;$ cargo auto new_auto&quot;</span>);
+        <span class="macro">println!</span>(
+            <span class="string">r#&quot;
+    {YELLOW}Welcome to cargo-auto !
+    This program automates your custom tasks when developing a Rust project.{RESET}
+        
+    To start using `cargo auto` inside your Rust project, you must create a new `automation_tasks_rs` directory with the command:
+cargo auto new_auto
+&quot;#</span>
+        );
     } <span class="kw">else</span> {
         <span class="ident">build_automation_tasks_rs_if_needed</span>();
-        <span class="macro">unwrap!</span>(
-            <span class="macro">unwrap!</span>(<span class="ident">std::process::Command::new</span>(<span class="ident"><span class="kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS</span>.<span class="ident">as_os_str</span>()).<span class="ident">spawn</span>())
-                .<span class="ident">wait</span>()
-        );
+        <span class="ident">std::process::Command::new</span>(<span class="ident"><span class="kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS</span>.<span class="ident">as_os_str</span>())
+            .<span class="ident">spawn</span>()
+            .<span class="ident">unwrap</span>()
+            .<span class="ident">wait</span>()
+            .<span class="ident">unwrap</span>();
     }
 }
 
@@ -249,10 +294,7 @@
     } <span class="kw">else</span> <span class="kw">if</span> <span class="ident">task</span> <span class="op">==</span> <span class="string">&quot;new_auto&quot;</span> {
         <span class="comment">// this task is inside cargo-auto</span>
         <span class="kw">if</span> <span class="ident">already_exists_automation_tasks_rs</span>() {
-            <span class="macro">println!</span>(
-                <span class="string">&quot;{}Error: Directory automation_tasks_rs already exists. Cannot create new directory automation_tasks_rs.{}&quot;</span>,
-                <span class="kw-2">*</span><span class="ident"><span class="kw">crate</span>::RED</span>, <span class="kw-2">*</span><span class="ident"><span class="kw">crate</span>::RESET</span>
-            );
+            <span class="macro">println!</span>( <span class="string">&quot;{RED}Error: Directory automation_tasks_rs already exists. Cannot create new directory automation_tasks_rs.{RESET}&quot;</span> );
             <span class="comment">// early exit</span>
             <span class="ident">std::process::exit</span>(<span class="number">0</span>);
         }
@@ -260,11 +302,7 @@
     } <span class="kw">else</span> {
         <span class="comment">// these tasks are user defined in automation_tasks_rs</span>
         <span class="kw">if</span> <span class="op">!</span><span class="ident">already_exists_automation_tasks_rs</span>() {
-            <span class="macro">println!</span>(
-                <span class="string">&quot;{}Error: Directory automation_tasks_rs does not exist.{}&quot;</span>,
-                <span class="kw-2">*</span><span class="ident"><span class="kw">crate</span>::RED</span>,
-                <span class="kw-2">*</span><span class="ident"><span class="kw">crate</span>::RESET</span>
-            );
+            <span class="macro">println!</span>(<span class="string">&quot;{RED}Error: Directory automation_tasks_rs does not exist.{RESET}&quot;</span>);
             <span class="ident">print_help_from_cargo_auto</span>();
             <span class="comment">// early exit</span>
             <span class="ident">std::process::exit</span>(<span class="number">0</span>);
@@ -276,8 +314,8 @@
         <span class="kw">while</span> <span class="kw">let</span> <span class="prelude-val">Some</span>(<span class="ident">arg_x</span>) <span class="op">=</span> <span class="ident">args</span>.<span class="ident">next</span>() {
             <span class="ident">command</span>.<span class="ident">arg</span>(<span class="kw-2">&amp;</span><span class="ident">arg_x</span>);
         }
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">child</span> <span class="op">=</span> <span class="macro">unwrap!</span>(<span class="ident">command</span>.<span class="ident">spawn</span>());
-        <span class="macro">unwrap!</span>(<span class="ident">child</span>.<span class="ident">wait</span>());
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">child</span> <span class="op">=</span> <span class="ident">command</span>.<span class="ident">spawn</span>().<span class="ident">unwrap</span>();
+        <span class="ident">child</span>.<span class="ident">wait</span>().<span class="ident">unwrap</span>();
     }
 }
 
@@ -319,12 +357,18 @@
         <span class="comment">// early return</span>
         <span class="kw">return</span> ();
     }
-    <span class="kw">let</span> <span class="ident">modified_automation_tasks_rs</span> <span class="op">=</span> <span class="macro">unwrap!</span>(<span class="macro">unwrap!</span>(<span class="ident">std::fs::metadata</span>(
-        <span class="ident"><span class="kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS</span>.<span class="ident">as_os_str</span>()
-    ))
-    .<span class="ident">modified</span>());
-    <span class="kw">let</span> <span class="ident">modified_cargo_toml</span> <span class="op">=</span> <span class="macro">unwrap!</span>(<span class="macro">unwrap!</span>(<span class="ident">std::fs::metadata</span>(<span class="ident"><span class="kw">crate</span>::PATH_CARGO_TOML</span>.<span class="ident">as_os_str</span>())).<span class="ident">modified</span>());
-    <span class="kw">let</span> <span class="ident">modified_main_rs</span> <span class="op">=</span> <span class="macro">unwrap!</span>(<span class="macro">unwrap!</span>(<span class="ident">std::fs::metadata</span>(<span class="ident"><span class="kw">crate</span>::PATH_SRC_MAIN_RS</span>.<span class="ident">as_os_str</span>())).<span class="ident">modified</span>());
+    <span class="kw">let</span> <span class="ident">modified_automation_tasks_rs</span> <span class="op">=</span> <span class="ident">std::fs::metadata</span>(<span class="ident"><span class="kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS</span>.<span class="ident">as_os_str</span>())
+        .<span class="ident">unwrap</span>()
+        .<span class="ident">modified</span>()
+        .<span class="ident">unwrap</span>();
+    <span class="kw">let</span> <span class="ident">modified_cargo_toml</span> <span class="op">=</span> <span class="ident">std::fs::metadata</span>(<span class="ident"><span class="kw">crate</span>::PATH_CARGO_TOML</span>.<span class="ident">as_os_str</span>())
+        .<span class="ident">unwrap</span>()
+        .<span class="ident">modified</span>()
+        .<span class="ident">unwrap</span>();
+    <span class="kw">let</span> <span class="ident">modified_main_rs</span> <span class="op">=</span> <span class="ident">std::fs::metadata</span>(<span class="ident"><span class="kw">crate</span>::PATH_SRC_MAIN_RS</span>.<span class="ident">as_os_str</span>())
+        .<span class="ident">unwrap</span>()
+        .<span class="ident">modified</span>()
+        .<span class="ident">unwrap</span>();
 
     <span class="kw">if</span> <span class="ident">modified_automation_tasks_rs</span> <span class="op">&lt;</span> <span class="ident">modified_cargo_toml</span> <span class="op">|</span><span class="op">|</span> <span class="ident">modified_automation_tasks_rs</span> <span class="op">&lt;</span> <span class="ident">modified_main_rs</span> {
         <span class="ident">build_project_automation_tasks_rs</span>();
@@ -335,11 +379,13 @@
 <span class="kw">fn</span> <span class="ident">build_project_automation_tasks_rs</span>() {
     <span class="comment">// build in other directory (not in working current directory)</span>
     <span class="comment">// cargo build --manifest-path=dir/Cargo.toml</span>
-    <span class="macro">unwrap!</span>(<span class="macro">unwrap!</span>(<span class="ident">std::process::Command::new</span>(<span class="string">&quot;cargo&quot;</span>)
+    <span class="ident">std::process::Command::new</span>(<span class="string">&quot;cargo&quot;</span>)
         .<span class="ident">arg</span>(<span class="string">&quot;build&quot;</span>)
         .<span class="ident">arg</span>(<span class="string">&quot;--manifest-path=automation_tasks_rs/Cargo.toml&quot;</span>)
-        .<span class="ident">spawn</span>())
-    .<span class="ident">wait</span>());
+        .<span class="ident">spawn</span>()
+        .<span class="ident">unwrap</span>()
+        .<span class="ident">wait</span>()
+        .<span class="ident">unwrap</span>();
 }
 
 <span class="doccomment">/// copies the template to the `automation_tasks_rs` directory  </span>
@@ -349,15 +395,23 @@
     <span class="ident"><span class="kw">crate</span>::template_new_auto_mod::copy_to_files</span>(<span class="string">&quot;automation_tasks_rs&quot;</span>);
     <span class="ident">build_automation_tasks_rs_if_needed</span>();
 
-    <span class="macro">println!</span>(<span class="string">&quot;&quot;</span>);
-    <span class="macro">println!</span>(<span class="string">&quot;`crate auto new_auto` generated the directory `automation_tasks_rs` in your main Rust project.&quot;</span>);
-    <span class="macro">println!</span>(<span class="string">&quot;You can open this new helper Rust project in a new Rust editor.&quot;</span>);
-    <span class="macro">println!</span>(<span class="string">&quot;View and edit the Rust code in `automation_tasks_rs`. It is independent from the main project.&quot;</span>);
-    <span class="macro">println!</span>(<span class="string">&quot;It will be automatically compiled on the next use of `crate auto task_name` command.&quot;</span>);
-    <span class="macro">println!</span>(<span class="string">&quot;The new directory will be added to your git commit.&quot;</span>);
-    <span class="macro">println!</span>(<span class="string">&quot;There is a local .gitignore file to avoid commit of the `target/` directory.&quot;</span>);
+    <span class="macro">println!</span>(
+        <span class="string">r#&quot;
+    {YELLOW}`crate auto new_auto` generated the directory `automation_tasks_rs` in your main Rust project.
+    You can open this new helper Rust project in a new Rust editor.
+    View and edit the Rust code in `automation_tasks_rs`. It is independent from the main project.
+    It will be automatically compiled on the next use of `crate auto task_name` command.
+    The new directory will be added to your git commit.
+    There is a local .gitignore file to avoid commit of the `target/` directory.
+{RESET}&quot;#</span>
+    );
     <span class="comment">// call `cargo auto` to show the help of the new automation_tasks_rs</span>
-    <span class="macro">unwrap!</span>(<span class="macro">unwrap!</span>(<span class="ident">std::process::Command::new</span>(<span class="string">&quot;cargo&quot;</span>).<span class="ident">arg</span>(<span class="string">&quot;auto&quot;</span>).<span class="ident">spawn</span>()).<span class="ident">wait</span>());
+    <span class="ident">std::process::Command::new</span>(<span class="string">&quot;cargo&quot;</span>)
+        .<span class="ident">arg</span>(<span class="string">&quot;auto&quot;</span>)
+        .<span class="ident">spawn</span>()
+        .<span class="ident">unwrap</span>()
+        .<span class="ident">wait</span>()
+        .<span class="ident">unwrap</span>();
 }
 </code></pre></div>
 </section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="cargo_auto" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0 (fe5b13d68 2022-05-18)" ></div>

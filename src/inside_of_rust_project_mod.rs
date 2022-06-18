@@ -1,8 +1,19 @@
 // inside_of_rust_project_mod.rs
 
 // region: use statements
-use unwrap::unwrap;
+
 // endregion
+
+// ANSI colors for Linux terminal
+// https://github.com/shiena/ansicolor/blob/master/README.md
+#[allow(dead_code)]
+pub const RED: &str = "\x1b[31m";
+#[allow(dead_code)]
+pub const YELLOW: &str = "\x1b[33m";
+#[allow(dead_code)]
+pub const GREEN: &str = "\x1b[32m";
+#[allow(dead_code)]
+pub const RESET: &str = "\x1b[0m";
 
 pub fn parse_args(args: &mut std::env::Args) {
     // the first argument is the task: (no argument for help), new_auto, build, release,...
@@ -42,15 +53,22 @@ fn already_exists_automation_tasks_rs() -> bool {
 /// in runtime use: `cargo auto`  
 fn print_help_from_cargo_auto() {
     if !crate::PATH_CARGO_TOML.exists() || !crate::PATH_SRC_MAIN_RS.exists() {
-        println!("");
-        println!("To start using `cargo auto` inside your Rust project, you must create a new `automation_tasks_rs` directory with the command:");
-        println!("$ cargo auto new_auto");
+        println!(
+            r#"
+    {YELLOW}Welcome to cargo-auto !
+    This program automates your custom tasks when developing a Rust project.{RESET}
+        
+    To start using `cargo auto` inside your Rust project, you must create a new `automation_tasks_rs` directory with the command:
+cargo auto new_auto
+"#
+        );
     } else {
         build_automation_tasks_rs_if_needed();
-        unwrap!(
-            unwrap!(std::process::Command::new(crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str()).spawn())
-                .wait()
-        );
+        std::process::Command::new(crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str())
+            .spawn()
+            .unwrap()
+            .wait()
+            .unwrap();
     }
 }
 
@@ -66,10 +84,7 @@ fn match_first_argument(task: &str, args: &mut std::env::Args) {
     } else if task == "new_auto" {
         // this task is inside cargo-auto
         if already_exists_automation_tasks_rs() {
-            println!(
-                "{}Error: Directory automation_tasks_rs already exists. Cannot create new directory automation_tasks_rs.{}",
-                *crate::RED, *crate::RESET
-            );
+            println!( "{RED}Error: Directory automation_tasks_rs already exists. Cannot create new directory automation_tasks_rs.{RESET}" );
             // early exit
             std::process::exit(0);
         }
@@ -77,11 +92,7 @@ fn match_first_argument(task: &str, args: &mut std::env::Args) {
     } else {
         // these tasks are user defined in automation_tasks_rs
         if !already_exists_automation_tasks_rs() {
-            println!(
-                "{}Error: Directory automation_tasks_rs does not exist.{}",
-                *crate::RED,
-                *crate::RESET
-            );
+            println!("{RED}Error: Directory automation_tasks_rs does not exist.{RESET}");
             print_help_from_cargo_auto();
             // early exit
             std::process::exit(0);
@@ -93,8 +104,8 @@ fn match_first_argument(task: &str, args: &mut std::env::Args) {
         while let Some(arg_x) = args.next() {
             command.arg(&arg_x);
         }
-        let mut child = unwrap!(command.spawn());
-        unwrap!(child.wait());
+        let mut child = command.spawn().unwrap();
+        child.wait().unwrap();
     }
 }
 
@@ -136,12 +147,18 @@ fn build_automation_tasks_rs_if_needed() {
         // early return
         return ();
     }
-    let modified_automation_tasks_rs = unwrap!(unwrap!(std::fs::metadata(
-        crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str()
-    ))
-    .modified());
-    let modified_cargo_toml = unwrap!(unwrap!(std::fs::metadata(crate::PATH_CARGO_TOML.as_os_str())).modified());
-    let modified_main_rs = unwrap!(unwrap!(std::fs::metadata(crate::PATH_SRC_MAIN_RS.as_os_str())).modified());
+    let modified_automation_tasks_rs = std::fs::metadata(crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str())
+        .unwrap()
+        .modified()
+        .unwrap();
+    let modified_cargo_toml = std::fs::metadata(crate::PATH_CARGO_TOML.as_os_str())
+        .unwrap()
+        .modified()
+        .unwrap();
+    let modified_main_rs = std::fs::metadata(crate::PATH_SRC_MAIN_RS.as_os_str())
+        .unwrap()
+        .modified()
+        .unwrap();
 
     if modified_automation_tasks_rs < modified_cargo_toml || modified_automation_tasks_rs < modified_main_rs {
         build_project_automation_tasks_rs();
@@ -152,11 +169,13 @@ fn build_automation_tasks_rs_if_needed() {
 fn build_project_automation_tasks_rs() {
     // build in other directory (not in working current directory)
     // cargo build --manifest-path=dir/Cargo.toml
-    unwrap!(unwrap!(std::process::Command::new("cargo")
+    std::process::Command::new("cargo")
         .arg("build")
         .arg("--manifest-path=automation_tasks_rs/Cargo.toml")
-        .spawn())
-    .wait());
+        .spawn()
+        .unwrap()
+        .wait()
+        .unwrap();
 }
 
 /// copies the template to the `automation_tasks_rs` directory  
@@ -166,13 +185,21 @@ fn new_auto() {
     crate::template_new_auto_mod::copy_to_files("automation_tasks_rs");
     build_automation_tasks_rs_if_needed();
 
-    println!("");
-    println!("`crate auto new_auto` generated the directory `automation_tasks_rs` in your main Rust project.");
-    println!("You can open this new helper Rust project in a new Rust editor.");
-    println!("View and edit the Rust code in `automation_tasks_rs`. It is independent from the main project.");
-    println!("It will be automatically compiled on the next use of `crate auto task_name` command.");
-    println!("The new directory will be added to your git commit.");
-    println!("There is a local .gitignore file to avoid commit of the `target/` directory.");
+    println!(
+        r#"
+    {YELLOW}`crate auto new_auto` generated the directory `automation_tasks_rs` in your main Rust project.
+    You can open this new helper Rust project in a new Rust editor.
+    View and edit the Rust code in `automation_tasks_rs`. It is independent from the main project.
+    It will be automatically compiled on the next use of `crate auto task_name` command.
+    The new directory will be added to your git commit.
+    There is a local .gitignore file to avoid commit of the `target/` directory.
+{RESET}"#
+    );
     // call `cargo auto` to show the help of the new automation_tasks_rs
-    unwrap!(unwrap!(std::process::Command::new("cargo").arg("auto").spawn()).wait());
+    std::process::Command::new("cargo")
+        .arg("auto")
+        .spawn()
+        .unwrap()
+        .wait()
+        .unwrap();
 }

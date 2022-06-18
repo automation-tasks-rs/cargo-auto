@@ -1,9 +1,9 @@
 [package]
 name = "cargo-auto"
-version = "2022.618.1644"
+version = "2022.618.1853"
 authors = ["bestia.dev"]
 homepage = "https://bestia.dev"
-edition = "2018"
+edition = "2021"
 description = "cargo-auto - automation tasks written in Rust language for the build process of Rust projects"
 repository = "https://github.com/bestia-dev/cargo-auto"
 readme = "README.md"
@@ -20,6 +20,4 @@ include = [
 ]
 
 [dependencies]
-unwrap = "1.2.1"
-termion = "1.5.6"
 lazy_static="1.4.0"

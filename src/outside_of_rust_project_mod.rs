@@ -3,6 +3,17 @@
 // region: use statements
 // endregion
 
+// ANSI colors for Linux terminal
+// https://github.com/shiena/ansicolor/blob/master/README.md
+#[allow(dead_code)]
+pub const RED: &str = "\x1b[31m";
+#[allow(dead_code)]
+pub const YELLOW: &str = "\x1b[33m";
+#[allow(dead_code)]
+pub const GREEN: &str = "\x1b[32m";
+#[allow(dead_code)]
+pub const RESET: &str = "\x1b[0m";
+
 /// it is run outside a Rust project
 /// It must have the argument "new_cli" and the project title
 pub fn parse_args(args: &mut std::env::Args) {
@@ -31,9 +42,16 @@ pub fn parse_args(args: &mut std::env::Args) {
 
 ///  
 fn print_help_from_cargo_auto() {
-    println!("");
-    println!("Outside of a Rust project, cargo-auto can create a new Rust project for CLI:");
-    println!("$ cargo auto new_cli project_name");
+    println!(
+        r#"
+    {YELLOW}Welcome to cargo-auto !
+    This program automates your custom tasks when developing a Rust project.{RESET}
+
+    Outside of a Rust project, cargo-auto can create a new Rust project for CLI, simple yet complete:
+cargo auto new_cli project_name
+
+"#
+    );
 }
 
 /// the first argument is the task: new_cli,...  
@@ -82,21 +100,14 @@ fn completion() {
 
 pub fn new_cli(arg_2: Option<String>) {
     match arg_2 {
-        None => println!("Project name argument is missing: `cargo auto new_cli project_name`"),
+        None => println!("{RED}Error: Project name argument is missing: `cargo auto new_cli project_name`{RESET}"),
         Some(project_name) => {
             crate::template_new_cli_mod::copy_to_files(&project_name);
             println!("");
-            println!(
-                "The command `crate auto new_cli` generated the directory `{}`",
-                &project_name
-            );
-            println!(
-                "You can open this new Rust project `{}` in a new Rust editor.",
-                &project_name
-            );
-            println!("For example VSCode:");
-            println!("run `cd {}`", &project_name);
-            println!("run `code .`");
+            println!("    {YELLOW}The command `crate auto new_cli` generated the directory `{project_name}`{RESET}");
+            println!("    {YELLOW}You can open this new Rust project `{project_name}` in a new Rust editor.{RESET}",);
+            println!("    For example VSCode:");
+            println!("code {project_name}");
         }
     }
 }
