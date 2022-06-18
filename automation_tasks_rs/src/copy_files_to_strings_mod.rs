@@ -17,6 +17,10 @@ pub fn copy_folder_files_into_module(folder_path: &std::path::Path, module_path:
     let mut new_code = String::new();
     for file_name in files.iter() {
         let file_name_short = file_name.trim_start_matches(&format!("{}/",folder_path.to_string_lossy()));
+        // avoid Cargo.lock file
+        if file_name_short=="Cargo.lock"{
+            continue;
+        }
         let file_content = std::fs::read_to_string(&file_name).unwrap();
         new_code.push_str(&format!(r####"vec_file.push(crate::FileItem{{
             file_name :"{}",

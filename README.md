@@ -5,16 +5,16 @@
 [comment]: # (auto_cargo_toml_to_md start)
 
 **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-***version: 2022.618.1600 date: 2022-06-18 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
+***version: 2022.618.1644 date: 2022-06-18 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
 
 [comment]: # (auto_cargo_toml_to_md end)
 
 [comment]: # (auto_lines_of_code start)
-[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-1946-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-671-green.svg)](https://github.com/bestia-dev/cargo-auto/)
 [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-298-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
 [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-117-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-2177-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-673-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 
 [comment]: # (auto_lines_of_code end)
 

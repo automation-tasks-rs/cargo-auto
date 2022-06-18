@@ -134,8 +134,6 @@ fn task_build() {
         r#"{YELLOW}
     After `cargo auto build`, run the compiled binary, examples and/or tests
 ./target/debug/{package_name} argument
-    if ok, then
-cargo auto test
     if ok, then,
 cargo auto release
 {RESET}"#,
@@ -166,8 +164,6 @@ fn task_release() {
         r#"{YELLOW}
     After `cargo auto release`, run the compiled binary, examples and/or tests
 ./target/release/{package_name} argument
-    if ok, then
-cargo auto test
     if ok, then,
 cargo auto doc
 {RESET}"#,

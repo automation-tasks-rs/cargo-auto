@@ -132,8 +132,6 @@ fn task_build() {
 ./target/debug/{package_name} upper world
     if ok, then
 ./target/debug/{package_name} upper WORLD
-    if ok, then
-cargo auto test
     if ok, then,
 cargo auto release
 {RESET}"#,
@@ -159,8 +157,6 @@ fn task_release() {
 ./target/release/{package_name} upper world
     if ok, then
 ./target/release/{package_name} upper WORLD
-    if ok, then
-cargo auto test
     if ok, then,
 cargo auto doc
 {RESET}"#,
