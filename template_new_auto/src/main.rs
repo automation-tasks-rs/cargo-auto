@@ -229,10 +229,14 @@ fn task_publish_to_crates_io() {
     run_shell_command("cargo publish");
     println!(
         r#"{YELLOW}
-    After `cargo auto publish_to_crates_io`, 
-    check `https://crates.io/crates/{package_name}`.
-    Install the crate with `cargo install {package_name}` and check how it works.
-    Add the dependency `{package_name} = "{package_version}"` to your Rust project and check how it works.
+    After `cargo auto publish_to_crates_io`, check in browser
+https://crates.io/crates/{package_name}
+    Install the crate with
+cargo install {package_name}
+    and check how it works.
+    Add the dependency
+{package_name} = "{package_version}"
+    to your Rust project and check how it works.
 {RESET}"#,
         package_name = cargo_toml.package_name(),
         package_version = cargo_toml.package_version()
