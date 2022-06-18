@@ -30,7 +30,7 @@ dependencies = [
 
 [[package]]
 name = "bestia_dev_cargo_auto_new_cli"
-version = "1.0.4"
+version = "1.0.12"
 dependencies = [
  "anyhow",
  "log",

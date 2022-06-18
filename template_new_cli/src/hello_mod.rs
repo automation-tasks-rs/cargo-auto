@@ -4,8 +4,6 @@
 //!
 //! This doc-comments will be compiled into the `docs`.
 
-use crate::LibraryError;
-
 /// format the hello phrase
 pub fn format_hello_phrase(greet_name: &str) -> String {
     log::info!("start format_hello_phrase()");
@@ -15,12 +13,12 @@ pub fn format_hello_phrase(greet_name: &str) -> String {
 
 /// format the hello phrase with uppercase name
 /// if it is already uppercase, return error with thiserror
-pub fn format_upper_hello_phrase(greet_name: &str) -> Result<String, LibraryError> {
+pub fn format_upper_hello_phrase(greet_name: &str) -> Result<String, crate::LibraryError> {
     log::info!("start format_upper_hello_phrase()");
     // shadowing the same variable name:
     let upper_greet_name = make_uppercase(greet_name);
     if upper_greet_name == greet_name {
-        return Err(LibraryError::Uppercase(greet_name.to_string()));
+        return Err(crate::LibraryError::Uppercase(greet_name.to_string()));
     }
 
     // return

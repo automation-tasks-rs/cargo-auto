@@ -112,9 +112,9 @@ fn task_build() {
     println!(
         r#"
 After `cargo auto build`, run the compiled binary, examples and/or tests
-run `./target/debug/{package_name} print my_name`, if ok, then
-run `./target/debug/{package_name} upper my_name`, if ok, then
-run `./target/debug/{package_name} upper MY_NAME`, if ok, then
+run `./target/debug/{package_name} print world`, if ok, then
+run `./target/debug/{package_name} upper world`, if ok, then
+run `./target/debug/{package_name} upper WORLD`, if ok, then
 run `cargo auto test`, if ok, then,
 run `cargo auto release`
 "#, 
@@ -135,9 +135,9 @@ fn task_release() {
     println!(
         r#"
 After `cargo auto release`, run the compiled binary, examples and/or tests
-run `./target/release/{package_name} print my_name` if ok, then
-run `./target/release/{package_name} upper my_name` if ok, then
-run `./target/release/{package_name} upper MY_NAME` if ok, then
+run `./target/release/{package_name} print world` if ok, then
+run `./target/release/{package_name} upper world` if ok, then
+run `./target/release/{package_name} upper WORLD` if ok, then
 run `cargo auto test`, if ok, then,
 run `cargo auto doc`
 "#,

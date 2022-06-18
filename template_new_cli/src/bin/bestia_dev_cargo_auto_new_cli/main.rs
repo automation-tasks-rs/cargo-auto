@@ -9,6 +9,9 @@
 // The `main.rs` uses the `anyhow` error library.
 // The `lib.rs` uses the `thiserror` library.
 
+// Linux terminal colors
+use bestia_dev_cargo_auto_new_cli::{RED, RESET, YELLOW};
+
 /// entry point into the bin-executable
 fn main() {
     // logging is essential for every project
@@ -22,7 +25,7 @@ fn main() {
             Some(greet_name) => {
                 print_greet_name(greet_name);
             }
-            None => println!("Missing arguments `greet_name`."),
+            None => println!("{RED}Error: Missing arguments `greet_name`.{RESET}"),
         },
         Some("upper") => match std::env::args().nth(2).as_deref() {
             // second argument
@@ -32,12 +35,12 @@ fn main() {
                     // do nothing
                     Ok(()) => (),
                     // log error from anyhow
-                    Err(err) => log::error!("{}", err),
+                    Err(err) => println!("{RED}Error: {err}{RESET}"),
                 }
             }
-            None => println!("Missing arguments `greet_name`."),
+            None => println!("{RED}Error: Missing arguments `greet_name`.{RESET}"),
         },
-        _ => println!("Unrecognized arguments. Try `bestia_dev_cargo_auto_new_cli --help`"),
+        _ => println!("{RED}Error: Unrecognized arguments. Try `bestia_dev_cargo_auto_new_cli --help`{RESET}"),
     }
 }
 
@@ -45,9 +48,16 @@ fn main() {
 fn print_help() {
     println!(
         r#"
+    {YELLOW}Welcome to bestia_dev_cargo_auto_new_cli !
+    This is a simple yet complete template for a CLI program written in Rust.{RESET}
+
 bestia_dev_cargo_auto_new_cli --help
-bestia_dev_cargo_auto_new_cli print my_name
-bestia_dev_cargo_auto_new_cli upper my_name
+bestia_dev_cargo_auto_new_cli print world
+bestia_dev_cargo_auto_new_cli upper world
+
+    This command should return an error:
+bestia_dev_cargo_auto_new_cli upper WORLD
+  
 "#
     );
 }

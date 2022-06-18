@@ -14,7 +14,7 @@
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-19-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-30-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
-//! [![Licence](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/blob/main/LICENSE) [![Rust](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
+//! [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/blob/main/LICENSE) [![Rust](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
 //!
 //! ## Edit this README.md file
 //!
@@ -82,7 +82,7 @@
 //! Finished dev [unoptimized + debuginfo] target(s) in 2.72s
 //!
 //! After `cargo auto build`, run the compiled binary
-//! run `./target/debug/bestia_dev_cargo_auto_new_cli print my_name`
+//! run `./target/debug/bestia_dev_cargo_auto_new_cli print world`
 //! later
 //! run `cargo auto release`
 //! ```
@@ -108,7 +108,7 @@
 //! Finished release [optimized] target(s) in 1.05s
 //!
 //! After `cargo auto release`, , run the compiled binary
-//! run `./target/release/bestia_dev_cargo_auto_new_cli print my_name`
+//! run `./target/release/bestia_dev_cargo_auto_new_cli print world`
 //! later
 //! run `cargo auto doc`
 //!
@@ -126,9 +126,9 @@
 //!  Documenting bestia_dev_cargo_auto_new_cli v0.1.21 (/home/rustdevuser/rustprojects/bestia_dev_cargo_auto_new_cli)
 //! Finished dev [unoptimized + debuginfo] target(s) in 0.54s
 //! $ rsync -a --info=progress2 --delete-after target/doc/ docs/
-//! 2,787,371 100% 46.60MB/s 0:00:00 (xfr#56, to-chk=0/61) 
+//! 2,787,371 100% 46.60MB/s 0:00:00 (xfr#56, to-chk=0/61)
 //!
-//! After `cargo auto doc`, check `docs/index.html`. If ok, then 
+//! After `cargo auto doc`, check `docs/index.html`. If ok, then
 //! run `cargo auto commit_and_push` with mandatory commit message
 //! ```
 //!
@@ -260,8 +260,19 @@ use thiserror::Error;
 /// all possible library errors for `thiserror`
 #[derive(Error, Debug)]
 pub enum LibraryError {
-    #[error("name `{0}` is already uppercase")]
+    #[error("Name `{0}` is already uppercase.")]
     Uppercase(String),
-    #[error("unknown error")]
+    #[error("Unknown error.")]
     Unknown,
 }
+
+// ANSI colors for Linux terminal
+// https://github.com/shiena/ansicolor/blob/master/README.md
+#[allow(dead_code)]
+pub const RED: &str = "\x1b[31m";
+#[allow(dead_code)]
+pub const YELLOW: &str = "\x1b[33m";
+#[allow(dead_code)]
+pub const GREEN: &str = "\x1b[32m";
+#[allow(dead_code)]
+pub const RESET: &str = "\x1b[0m";

@@ -18,7 +18,7 @@
 
 [comment]: # (auto_lines_of_code end)
 
-[![Licence](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/blob/main/LICENSE) [![Rust](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/blob/main/LICENSE) [![Rust](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
 
 ## Edit this README.md file
 
@@ -86,7 +86,7 @@ Compiling bestia_dev_cargo_auto_new_cli v0.1.19 (/home/rustdevuser/rustprojects/
 Finished dev [unoptimized + debuginfo] target(s) in 2.72s
 
 After `cargo auto build`, run the compiled binary
-run `./target/debug/bestia_dev_cargo_auto_new_cli print my_name`
+run `./target/debug/bestia_dev_cargo_auto_new_cli print world`
 later
 run `cargo auto release`
 ```
@@ -112,7 +112,7 @@ Compiling bestia_dev_cargo_auto_new_cli v0.1.21 (/home/rustdevuser/rustprojects/
 Finished release [optimized] target(s) in 1.05s
 
 After `cargo auto release`, , run the compiled binary
-run `./target/release/bestia_dev_cargo_auto_new_cli print my_name`
+run `./target/release/bestia_dev_cargo_auto_new_cli print world`
 later
 run `cargo auto doc`
 

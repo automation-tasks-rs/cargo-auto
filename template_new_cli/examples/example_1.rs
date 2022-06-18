@@ -7,7 +7,7 @@ use bestia_dev_cargo_auto_new_cli::*;
 
 /// example how to use format_hello_phrase() and format_upper_hello_phrase()
 fn main() {
-    let greet_name = "john doe";
+    let greet_name = "world";
     let phrase = format_hello_phrase(greet_name);
     println!("{}", phrase);
 
