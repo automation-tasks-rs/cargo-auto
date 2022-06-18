@@ -211,21 +211,19 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
 }
 "###,
     });
-    vec_file.push(crate::FileItem{
-            file_name :"src/lib.rs",
-            file_content : r###"// bestia_dev_cargo_auto_new_cli/src/lib.rs
-
-// You can collapse the long region below using VSCode. It is only the copy of the README.md file, because it gets compiled into docs.
+    vec_file.push(crate::FileItem {
+        file_name: "src/lib.rs",
+        file_content: r###"// bestia_dev_cargo_auto_new_cli/src/lib.rs
 
 // region: auto_md_to_doc_comments include README.md A //!
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2022.618.1552 date: 2022-06-18 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2022.618.1557 date: 2022-06-18 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
 //!
 //! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-1946-green.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-532-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-118-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-298-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-117-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-2177-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
@@ -480,7 +478,7 @@ pub const GREEN: &str = "\x1b[32m";
 #[allow(dead_code)]
 pub const RESET: &str = "\x1b[0m";
 "###,
-});
+    });
     vec_file.push(crate::FileItem{
             file_name :"README.md",
             file_content : r###"[comment]: # (auto_md_to_doc_comments segment start A)
