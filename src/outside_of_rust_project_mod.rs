@@ -50,6 +50,7 @@ fn print_help_from_cargo_auto() {
     Outside of a Rust project, cargo-auto can create a new Rust project for CLI, simple yet complete:
 cargo auto new_cli project_name
 
+    © 2022 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
 "#
     );
 }

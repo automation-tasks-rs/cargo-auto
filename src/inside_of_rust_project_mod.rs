@@ -60,6 +60,8 @@ fn print_help_from_cargo_auto() {
         
     To start using `cargo auto` inside your Rust project, you must create a new `automation_tasks_rs` directory with the command:
 cargo auto new_auto
+
+    © 2022 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
 "#
         );
     } else {
