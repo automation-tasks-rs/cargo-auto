@@ -58,6 +58,7 @@ bestia_dev_cargo_auto_new_cli upper world
     This command should return an error:
 bestia_dev_cargo_auto_new_cli upper WORLD
   
+    © 2022 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
 "#
     );
 }

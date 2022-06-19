@@ -78,6 +78,8 @@ cargo auto commit_and_push "message" - commits with message and push with mandat
 cargo auto publish_to_crates_io - publish to crates.io, git tag
     (You need credentials for publishing. On crates.io get the 'access token'. Then save it locally once and forever with the command 
     ` cargo login TOKEN` use a space before the command to avoid saving the secret token in bash history.)
+
+    © 2022 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
 "#
     );
     print_examples_cmd();

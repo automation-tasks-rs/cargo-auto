@@ -75,6 +75,8 @@ cargo auto doc - builds the docs, copy to docs directory
 cargo auto test - runs all the tests
 cargo auto commit_and_push "message" - commits with message and push with mandatory message
     (If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.)
+
+    © 2022 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
 "#
 /*
 cargo auto publish_to_crates_io - publish to crates.io, git tag
