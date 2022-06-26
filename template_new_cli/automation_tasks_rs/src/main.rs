@@ -151,6 +151,10 @@ fn task_release() {
 
     run_shell_command("cargo fmt");
     run_shell_command("cargo build --release");
+    run_shell_command(&format!(
+        "strip target/release/{package_name}",
+        package_name = cargo_toml.package_name()
+    )); 
     println!(
         r#"{YELLOW}
     After `cargo auto release`, run the compiled binary, examples and/or tests

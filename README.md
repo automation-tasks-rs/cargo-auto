@@ -26,7 +26,7 @@
 [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo-auto/)
 [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fbestia-dev%2Fcargo-auto&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
 
-Hashtags: #rustlang #buildtool #developmenttool #cli  
+Hashtags: #rustlang #tutorial #buildtool #developmenttool #cli  
 My projects on Github are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
 
 ## Try it
@@ -91,7 +91,8 @@ The `automation_tasks_rs` helper project contains user defined tasks in Rust cod
 You can edit it and add your dependencies and Rust code. No limits. Freedom of expression.  
 This is now your code, your tasks and your helper Rust project!  
 Because only you know what you want to automate and how to do it.  
-Basic example:  
+Never write secrets, passwords, passcodes or tokens inside your Rust code. Because then it is pushed to Github and the whole world can read it in the next second !
+Basic example (most of the useful functions is already there):  
 
 ```rust
 /// match arguments and call tasks functions
@@ -118,48 +119,39 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args){
 
 /// write a comprehensible help for user defined tasks
 fn print_help() {
-    println!("User defined tasks in automation_tasks_rs:");
-    println!("cargo auto build - builds the crate in debug mode");
-    println!("cargo auto release - builds the crate in release mode");
-    println!("cargo auto docs - builds the docs");
+    println!(r#"
+    User defined tasks in automation_tasks_rs:
+cargo auto build - builds the crate in debug mode
+cargo auto release - builds the crate in release mode
+cargo auto docs - builds the docs
+"#);
 }
 
 // region: tasks
 
 /// cargo build
 fn task_build() {
-    #[rustfmt::skip]
-    let shell_commands = [
-        "echo $ cargo fmt",
-        "cargo fmt",
-        "echo $ cargo build",
-        "cargo build"];
-    run_shell_commands(shell_commands.to_vec());
+    run_shell_command("cargo fmt");
+    run_shell_command("cargo build");
 }
 
 /// cargo build --release
 fn task_release() {
-    println!("$ cargo fmt");
     run_shell_command("cargo fmt");
-    println!("$ cargo build --release");
     run_shell_command("cargo build --release");
 }
 
 /// cargo doc, then copies to /docs/ folder, because this is a github standard folder
 fn task_doc() {
-    #[rustfmt::skip]
-    let shell_commands = [
-        "echo $ cargo doc --no-deps --document-private-items --open",
-        "cargo doc --no-deps --document-private-items --open",
-        // copy to /docs/ because it is github standard
-        "echo $ rsync -a --info=progress2 --delete-after target/doc/ docs/",
-        "rsync -a --info=progress2 --delete-after target/doc/ docs/",
-        "echo Create simple index.html file in docs directory",
-        &format!("echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",&project_directory_name()) ,
-        // message to help user with next move
-        "echo After successful doc, commit and push changes",
-        ];
-    run_shell_commands(shell_commands.to_vec());
+    run_shell_command("cargo doc --no-deps --document-private-items");
+    // copy target/doc into docs/ because it is github standard
+    run_shell_command("rsync -a --info=progress2 --delete-after target/doc/ docs/");
+    // Create simple index.html file in docs directory
+    run_shell_command(&format!(
+        "echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",
+        cargo_toml.package_name().replace("-","_")
+    ));
+    run_shell_command("cargo fmt");
 }
 
 // endregion: tasks
