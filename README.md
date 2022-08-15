@@ -24,7 +24,7 @@
 [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo-auto/blob/master/LICENSE)
 [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo-auto/)
-![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982)
+![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 
 Hashtags: #rustlang #tutorial #buildtool #developmenttool #cli  
 My projects on Github are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
