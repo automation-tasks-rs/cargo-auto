@@ -128,10 +128,10 @@ fn task_build() {
     run_shell_command("cargo build");
     println!(
         r#"{YELLOW}
-    After `cargo auto build`, run the compiled binary, examples and/or tests
-./target/debug/{package_name} argument
-    if ok, then,
-cargo auto release
+    After `cargo auto build`, run the compiled binary, examples and/or tests{RESET}{GREEN}
+./target/debug/{package_name} argument{RESET}{YELLOW}
+    if ok, then,{RESET}{GREEN}
+cargo auto release{RESET}{YELLOW}
 {RESET}"#,
 package_name = cargo_toml.package_name(),
     );
@@ -153,10 +153,10 @@ fn task_release() {
     )); 
     println!(
         r#"{YELLOW}
-    After `cargo auto release`, run the compiled binary, examples and/or tests
-./target/release/{package_name} argument
-    if ok, then,
-cargo auto doc
+    After `cargo auto release`, run the compiled binary, examples and/or tests{RESET}{GREEN}
+./target/release/{package_name} argument{RESET}{YELLOW}
+    if ok, then,{RESET}{GREEN}
+cargo auto doc{RESET}{YELLOW}
 {RESET}"#,
 package_name = cargo_toml.package_name(),
     );
@@ -183,8 +183,8 @@ fn task_doc() {
     // message to help user with next move
     println!(
         r#"{YELLOW}
-    After `cargo auto doc`, check `docs/index.html`. If ok, then test the documentation code examples
-cargo auto test
+    After `cargo auto doc`, check `docs/index.html`. If ok, then test the documentation code examples{RESET}{GREEN}
+cargo auto test{RESET}{YELLOW}
 {RESET}"#
     );
 }
@@ -194,9 +194,9 @@ fn task_test() {
     run_shell_command("cargo test");
     println!(
         r#"{YELLOW}
-    After `cargo auto test`. If ok, then 
-cargo auto commit_and_push "message"
-    with mandatory commit message
+    After `cargo auto test`. If ok, then {RESET}{GREEN}
+cargo auto commit_and_push "message"{RESET}{YELLOW}
+    with mandatory commit message{RESET}{GREEN}
 {RESET}"#
     );
 }
@@ -210,8 +210,8 @@ fn task_commit_and_push(arg_2: Option<String>) {
             run_shell_command("git push");
             println!(
                 r#"{YELLOW}
-    After `cargo auto commit_and_push "message"`
-cargo auto publish_to_crates_io
+    After `cargo auto commit_and_push "message"`{RESET}{GREEN}
+cargo auto publish_to_crates_io{RESET}{YELLOW}
 {RESET}"#
             );
         }
@@ -235,14 +235,14 @@ fn task_publish_to_crates_io() {
     run_shell_command("cargo publish");
     println!(
         r#"{YELLOW}
-    After `cargo auto publish_to_crates_io`, check in browser
-https://crates.io/crates/{package_name}
-    Install the crate with
-cargo install {package_name}
+    After `cargo auto publish_to_crates_io`, check in browser{RESET}{GREEN}
+https://crates.io/crates/{package_name}{RESET}{YELLOW}
+    Install the crate with{RESET}{GREEN}
+cargo install {package_name}{RESET}{YELLOW}
     and check how it works.
-    Add the dependency
-{package_name} = "{package_version}"
-    to your Rust project and check how it works.
+    Add the dependency{RESET}{GREEN}
+{package_name} = "{package_version}"{RESET}{YELLOW}
+    to your Rust project and check how it works.{RESET}{GREEN}
 {RESET}"#,
         package_name = cargo_toml.package_name(),
         package_version = cargo_toml.package_version()
