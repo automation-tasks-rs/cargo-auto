@@ -220,13 +220,13 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2022.1017.647 date: 2022-10-17 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2022.1017.931 date: 2022-10-17 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-712-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-711-green.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-286-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-120-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-684-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-683-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
 //! [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
 //! [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)
@@ -471,25 +471,25 @@ pub const RESET: &str = "\x1b[0m";
     });
     vec_file.push(crate::FileItem{
             file_name :"README.md",
-            file_content : r###"[comment]: # (auto_md_to_doc_comments segment start A)
+            file_content : r###"[//]: # (auto_md_to_doc_comments segment start A)
 
 # bestia_dev_cargo_auto_new_cli
 
-[comment]: # (auto_cargo_toml_to_md start)
+[//]: # (auto_cargo_toml_to_md start)
 
 **Basic Rust project template for CLI and library, more than just `cargo new hello`**  
 ***version: 1.0.4 date: 2022-04-21 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli)***  
 
-[comment]: # (auto_cargo_toml_to_md end)
+[//]: # (auto_cargo_toml_to_md end)
 
-[comment]: # (auto_lines_of_code start)
+[//]: # (auto_lines_of_code start)
 [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-89-green.svg)](https://github.com/bestia-dev/cargo-auto/)
 [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-13-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
 [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-36-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-19-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
 [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-30-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 
-[comment]: # (auto_lines_of_code end)
+[//]: # (auto_lines_of_code end)
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/blob/main/LICENSE) [![Rust](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
 
@@ -714,7 +714,7 @@ You know the price of a beer in your local bar ;-) So I can drink a free beer fo
 
 [Na zdravje!](https://translate.google.com/?hl=en&sl=sl&tl=en&text=Na%20zdravje&op=translate) [Alla salute!](https://dictionary.cambridge.org/dictionary/italian-english/alla-salute) [Prost!](https://dictionary.cambridge.org/dictionary/german-english/prost) [Nazdravlje!](https://matadornetwork.com/nights/how-to-say-cheers-in-50-languages/) 🍻
 
-[comment]: # (auto_md_to_doc_comments segment end A)
+[//]: # (auto_md_to_doc_comments segment end A)
 "###,
 });
     vec_file.push(crate::FileItem {
@@ -796,7 +796,7 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "0.7.42""###,
+cargo_auto_lib = "0.8.60""###,
     });
     vec_file.push(crate::FileItem {
         file_name: "automation_tasks_rs/.gitignore",
@@ -875,14 +875,13 @@ fn print_help() {
     {YELLOW}Welcome to cargo-auto !
     This program automates your custom tasks when developing a Rust project.{RESET}
 
-    User defined tasks in automation_tasks_rs:
-cargo auto build - builds the crate in debug mode, fmt, increment version
-cargo auto release - builds the crate in release mode, fmt, increment version
-cargo auto doc - builds the docs, copy to docs directory
-cargo auto test - runs all the tests
-cargo auto commit_and_push "message" - commits with message and push with mandatory message
-    (If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.)
-
+    User defined tasks in automation_tasks_rs:{RESET}{GREEN}
+cargo auto build{RESET}{YELLOW} - builds the crate in debug mode, fmt, increment version{RESET}{GREEN}
+cargo auto release{RESET}{YELLOW} - builds the crate in release mode, fmt, increment version{RESET}{GREEN}
+cargo auto doc{RESET}{YELLOW} - builds the docs, copy to docs directory{RESET}{GREEN}
+cargo auto test{RESET}{YELLOW} - runs all the tests{RESET}{GREEN}
+cargo auto commit_and_push "message"{RESET}{YELLOW} - commits with message and push with mandatory message
+    (If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.){RESET}
     © 2022 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
 "#
 /*
@@ -897,8 +896,8 @@ cargo auto publish_to_crates_io - publish to crates.io, git tag
 /// all example commands in one place
 fn print_examples_cmd(){
 /*
-    println!(r#"run examples:
-cargo run --example example1
+    println!(r#"{YELLOW}run examples:{RESET}{GREEN}
+cargo run --example example1{RESET}
 "#);
 */
 }

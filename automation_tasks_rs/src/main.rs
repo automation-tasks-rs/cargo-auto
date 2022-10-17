@@ -68,17 +68,16 @@ fn print_help() {
     {YELLOW}Welcome to cargo-auto !
     This program automates your custom tasks when developing a Rust project.{RESET}
 
-    User defined tasks in automation_tasks_rs:
-cargo auto build - builds the crate in debug mode, fmt, increment version
-cargo auto release - builds the crate in release mode, fmt, increment version
-cargo auto doc - builds the docs, copy to docs directory
-cargo auto test - runs all the tests
-cargo auto commit_and_push "message" - commits with message and push with mandatory message
-    (If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.)
-cargo auto publish_to_crates_io - publish to crates.io, git tag
+    User defined tasks in automation_tasks_rs:{RESET}{GREEN}
+cargo auto build{RESET}{YELLOW} - builds the crate in debug mode, fmt, increment version{RESET}{GREEN}
+cargo auto release{RESET}{YELLOW} - builds the crate in release mode, fmt, increment version{RESET}{GREEN}
+cargo auto doc{RESET}{YELLOW} - builds the docs, copy to docs directory{RESET}{GREEN}
+cargo auto test{RESET}{YELLOW} - runs all the tests{RESET}{GREEN}
+cargo auto commit_and_push "message"{RESET}{YELLOW} - commits with message and push with mandatory message
+    (If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.){RESET}{GREEN}
+cargo auto publish_to_crates_io{RESET}{YELLOW} - publish to crates.io, git tag
     (You need credentials for publishing. On crates.io get the 'access token'. Then save it locally once and forever with the command 
-    ` cargo login TOKEN` use a space before the command to avoid saving the secret token in bash history.)
-
+    ` cargo login TOKEN` use a space before the command to avoid saving the secret token in bash history.){RESET}
     © 2022 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
 "#
     );
@@ -88,8 +87,8 @@ cargo auto publish_to_crates_io - publish to crates.io, git tag
 /// all example commands in one place
 fn print_examples_cmd(){
 /*
-    println!(r#"run examples:
-cargo run --example example1
+    println!(r#"{YELLOW}run examples:{RESET}{GREEN}
+cargo run --example example1{RESET}
 "#);
 */
 }

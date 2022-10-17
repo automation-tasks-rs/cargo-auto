@@ -349,7 +349,6 @@
 <span id="349">349</span>
 <span id="350">350</span>
 <span id="351">351</span>
-<span id="352">352</span>
 </pre><pre class="rust"><code><span class="doccomment">//! this strings are copied from the template_new_auto folder</span>
 <span class="doccomment">//! because when publishing to crates.io, only the main bin-executable is transferred</span>
 
@@ -394,7 +393,7 @@ description = &quot;cargo auto - automation tasks written in Rust language&quot;
 publish = false
 
 [dependencies]
-cargo_auto_lib = &quot;0.7.42&quot;
+cargo_auto_lib = &quot;0.8.60&quot;
 &quot;###</span>,
     });
     <span class="ident">vec_file</span>.<span class="ident">push</span>(<span class="ident"><span class="kw">crate</span>::FileItem</span> {
@@ -473,14 +472,13 @@ fn print_help() {
     {YELLOW}Welcome to cargo-auto !
     This program automates your custom tasks when developing a Rust project.{RESET}
 
-    User defined tasks in automation_tasks_rs:
-cargo auto build - builds the crate in debug mode, fmt, increment version
-cargo auto release - builds the crate in release mode, fmt, increment version
-cargo auto doc - builds the docs, copy to docs directory
-cargo auto test - runs all the tests
-cargo auto commit_and_push &quot;message&quot; - commits with message and push with mandatory message
-    (If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.)
-
+    User defined tasks in automation_tasks_rs:{RESET}{GREEN}
+cargo auto build{RESET}{YELLOW} - builds the crate in debug mode, fmt, increment version{RESET}{GREEN}
+cargo auto release{RESET}{YELLOW} - builds the crate in release mode, fmt, increment version{RESET}{GREEN}
+cargo auto doc{RESET}{YELLOW} - builds the docs, copy to docs directory{RESET}{GREEN}
+cargo auto test{RESET}{YELLOW} - runs all the tests{RESET}{GREEN}
+cargo auto commit_and_push &quot;message&quot;{RESET}{YELLOW} - commits with message and push with mandatory message
+    (If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.){RESET}
     © 2022 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
 &quot;#
 /*
@@ -495,8 +493,8 @@ cargo auto publish_to_crates_io - publish to crates.io, git tag
 /// all example commands in one place
 fn print_examples_cmd(){
 /*
-    println!(r#&quot;run examples:
-cargo run --example example1
+    println!(r#&quot;{YELLOW}run examples:{RESET}{GREEN}
+cargo run --example example1{RESET}
 &quot;#);
 */
 }
