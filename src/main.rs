@@ -38,7 +38,7 @@
 //! ```
 //!
 //! We can also add `automation tasks` to an existing Rust project.
-//! Inside your Rust project directory (the one with Cargo.toml) run:  
+//! Inside your Rust project directory (the one with  or Cargo-auto.toml) run:  
 //!
 //! ```bash
 //! cargo auto new_auto
@@ -267,7 +267,10 @@ fn main() {
 }
 
 /// check if is not run in Rust project root directory
+/// I had problems using the original cargo workspaces to group projects together.
+/// So I invented the Cargo-auto.toml to make a pseudo-workspace. It does not use any original Cargo functionality.
+/// But builds all members using cargo-auto functionality.
 fn is_not_run_in_rust_project_root_directory() -> bool {
     // return negation of exists
-    !Path::new("Cargo.toml").exists()
+    !(Path::new("Cargo.toml").exists() || Path::new("Cargo-auto.toml").exists())
 }

@@ -8,7 +8,7 @@ You can use also the cargo bash completion program `cargo install dev_bestia_car
 
 Don't put any secrets like passwords, passphrases or tokens here, because this helper-project is pushed to the remote repository together with the main Rust project.  
 
-In the main  project folder (where the Cargo.toml file is) run
+In the main  project folder (where the Cargo.toml or Cargo-auto.toml file is) run
 
 ```bash
 cargo auto
