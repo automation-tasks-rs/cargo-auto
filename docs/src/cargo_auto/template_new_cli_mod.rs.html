@@ -1,9 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/template_new_cli_mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>template_new_cli_mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script src="../../crates.js"></script><script defer src="../../main.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script>
-    <noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../cargo_auto/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a><h2 class="location"></h2>
-    </nav>
-    <nav class="sidebar"><a class="sidebar-logo" href="../../cargo_auto/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div>
-        </a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../cargo_auto/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><div class="theme-picker hidden"><button id="theme-picker" aria-label="Pick another theme!" aria-haspopup="menu" title="themes"><img width="22" height="22" alt="Pick another theme!" src="../../brush.svg"></button><div id="theme-choices" role="menu"></div></div><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><button type="button" id="help-button" title="help">?</button><a id="settings-menu" href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/template_new_cli_mod.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>template_new_cli_mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Regular.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../FiraSans-Medium.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Regular.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceSerif4-Bold.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../SourceCodePro-Semibold.ttf.woff2"><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled><link rel="stylesheet" type="text/css" href="../../dark.css" disabled><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script id="default-settings" ></script><script src="../../storage.js"></script><script defer src="../../source-script.js"></script><script defer src="../../source-files.js"></script><script defer src="../../main.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="alternate icon" type="image/png" href="../../favicon-16x16.png"><link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><link rel="icon" type="image/svg+xml" href="../../favicon.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="mobile-topbar"><button class="sidebar-menu-toggle">&#9776;</button><a class="sidebar-logo" href="../../cargo_auto/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a><h2 class="location"></h2></nav><nav class="sidebar"><a class="sidebar-logo" href="../../cargo_auto/index.html"><div class="logo-container"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></div></a></nav><main><div class="width-limiter"><div class="sub-container"><a class="sub-logo-container" href="../../cargo_auto/index.html"><img class="rust-logo" src="../../rust-logo.svg" alt="logo"></a><nav class="sub"><form class="search-form"><div class="search-container"><span></span><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><button type="button">?</button></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../wheel.svg"></a></div></div></form></nav></div><section id="main-content" class="content"><div class="example-wrap"><pre class="line-numbers"><span id="1">1</span>
 <span id="2">2</span>
 <span id="3">3</span>
 <span id="4">4</span>
@@ -1270,6 +1265,7 @@ bestia_dev_cargo_auto_new_cli upper world
     This command should return an error:
 bestia_dev_cargo_auto_new_cli upper WORLD
   
+    © 2022 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
 &quot;#
     );
 }
@@ -1299,13 +1295,13 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2022.618.1853 date: 2022-06-18 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2022.1017.637 date: 2022-10-17 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-699-green.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-294-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-712-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-297-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-120-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-673-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-684-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
 //! [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
 //! [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)
@@ -1313,9 +1309,10 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //! [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/)
 //! [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo-auto/blob/master/LICENSE)
 //! [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2Fbestia-dev%2Fcargo-auto&amp;count_bg=%2379C83D&amp;title_bg=%23555555&amp;icon=&amp;icon_color=%23E7E7E7&amp;title=hits&amp;edge_flat=false)](https://hits.seeyoufarm.com)
+//! ![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 //!
-//! Hashtags: #rustlang #buildtool #developmenttool #cli
+//! Hashtags: #rustlang #tutorial #buildtool #developmenttool #cli  
+//! My projects on Github are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
 //!
 //! ## Try it
 //!
@@ -1335,7 +1332,7 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //! ```
 //!
 //! We can also add `automation tasks` to an existing Rust project.
-//! Inside your Rust project directory (the one with Cargo.toml) run:  
+//! Inside your Rust project directory (the one with Cargo.toml or Cargo-auto.toml) run:  
 //!
 //! ```bash
 //! cargo auto new_auto
@@ -1379,7 +1376,8 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //! You can edit it and add your dependencies and Rust code. No limits. Freedom of expression.  
 //! This is now your code, your tasks and your helper Rust project!  
 //! Because only you know what you want to automate and how to do it.  
-//! Basic example:  
+//! Never write secrets, passwords, passcodes or tokens inside your Rust code. Because then it is pushed to Github and the whole world can read it in the next second !
+//! Basic example (most of the useful functions is already there):  
 //!
 //! ```rust
 //! /// match arguments and call tasks functions
@@ -1406,48 +1404,39 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //!
 //! /// write a comprehensible help for user defined tasks
 //! fn print_help() {
-//!     println!(&quot;User defined tasks in automation_tasks_rs:&quot;);
-//!     println!(&quot;cargo auto build - builds the crate in debug mode&quot;);
-//!     println!(&quot;cargo auto release - builds the crate in release mode&quot;);
-//!     println!(&quot;cargo auto docs - builds the docs&quot;);
+//!     println!(r#&quot;
+//!     User defined tasks in automation_tasks_rs:
+//! cargo auto build - builds the crate in debug mode
+//! cargo auto release - builds the crate in release mode
+//! cargo auto docs - builds the docs
+//! &quot;#);
 //! }
 //!
 //! // region: tasks
 //!
 //! /// cargo build
 //! fn task_build() {
-//!     #[rustfmt::skip]
-//!     let shell_commands = [
-//!         &quot;echo $ cargo fmt&quot;,
-//!         &quot;cargo fmt&quot;,
-//!         &quot;echo $ cargo build&quot;,
-//!         &quot;cargo build&quot;];
-//!     run_shell_commands(shell_commands.to_vec());
+//!     run_shell_command(&quot;cargo fmt&quot;);
+//!     run_shell_command(&quot;cargo build&quot;);
 //! }
 //!
 //! /// cargo build --release
 //! fn task_release() {
-//!     println!(&quot;$ cargo fmt&quot;);
 //!     run_shell_command(&quot;cargo fmt&quot;);
-//!     println!(&quot;$ cargo build --release&quot;);
 //!     run_shell_command(&quot;cargo build --release&quot;);
 //! }
 //!
 //! /// cargo doc, then copies to /docs/ folder, because this is a github standard folder
 //! fn task_doc() {
-//!     #[rustfmt::skip]
-//!     let shell_commands = [
-//!         &quot;echo $ cargo doc --no-deps --document-private-items --open&quot;,
-//!         &quot;cargo doc --no-deps --document-private-items --open&quot;,
-//!         // copy to /docs/ because it is github standard
-//!         &quot;echo $ rsync -a --info=progress2 --delete-after target/doc/ docs/&quot;,
-//!         &quot;rsync -a --info=progress2 --delete-after target/doc/ docs/&quot;,
-//!         &quot;echo Create simple index.html file in docs directory&quot;,
-//!         &amp;format!(&quot;echo \&quot;&lt;meta http-equiv=\\\&quot;refresh\\\&quot; content=\\\&quot;0; url={}/index.html\\\&quot; /&gt;\&quot; &gt; docs/index.html&quot;,&amp;project_directory_name()) ,
-//!         // message to help user with next move
-//!         &quot;echo After successful doc, commit and push changes&quot;,
-//!         ];
-//!     run_shell_commands(shell_commands.to_vec());
+//!     run_shell_command(&quot;cargo doc --no-deps --document-private-items&quot;);
+//!     // copy target/doc into docs/ because it is github standard
+//!     run_shell_command(&quot;rsync -a --info=progress2 --delete-after target/doc/ docs/&quot;);
+//!     // Create simple index.html file in docs directory
+//!     run_shell_command(&amp;format!(
+//!         &quot;echo \&quot;&lt;meta http-equiv=\\\&quot;refresh\\\&quot; content=\\\&quot;0; url={}/index.html\\\&quot; /&gt;\&quot; &gt; docs/index.html&quot;,
+//!         cargo_toml.package_name().replace(&quot;-&quot;,&quot;_&quot;)
+//!     ));
+//!     run_shell_command(&quot;cargo fmt&quot;);
 //! }
 //!
 //! // endregion: tasks
@@ -1494,10 +1483,6 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //! cargo run -- build
 //! cargo run -- release
 //! ```
-//!
-//! ## TODO
-//!
-//! Get the username from git, to use it in Cargo.toml of new_cli
 //!
 //! ## cargo crev reviews and advisory
 //!
@@ -1568,7 +1553,7 @@ pub const RESET: &amp;str = &quot;\x1b[0m&quot;;
 [comment]: # (auto_cargo_toml_to_md start)
 
 **Basic Rust project template for CLI and library, more than just `cargo new hello`**  
-***version: 1.0.4 date: 2022-04-21 author: [bestia.dev](bestia.dev) repository: [Github](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli)***  
+***version: 1.0.4 date: 2022-04-21 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli)***  
 
 [comment]: # (auto_cargo_toml_to_md end)
 
@@ -1972,6 +1957,8 @@ cargo auto doc - builds the docs, copy to docs directory
 cargo auto test - runs all the tests
 cargo auto commit_and_push &quot;message&quot; - commits with message and push with mandatory message
     (If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.)
+
+    © 2022 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
 &quot;#
 /*
 cargo auto publish_to_crates_io - publish to crates.io, git tag
@@ -2046,6 +2033,10 @@ fn task_release() {
 
     run_shell_command(&quot;cargo fmt&quot;);
     run_shell_command(&quot;cargo build --release&quot;);
+    run_shell_command(&amp;format!(
+        &quot;strip target/release/{package_name}&quot;,
+        package_name = cargo_toml.package_name()
+    )); 
     println!(
         r#&quot;{YELLOW}
     After `cargo auto release`, run the compiled binary, examples and/or tests
@@ -2134,10 +2125,14 @@ fn task_publish_to_crates_io() {
     run_shell_command(&quot;cargo publish&quot;);
     println!(
         r#&quot;{YELLOW}
-    After `cargo auto publish_to_crates_io`, 
-    check `https://crates.io/crates/{package_name}`.
-    Install the crate with `cargo install {package_name}` and check how it works.
-    Add the dependency `{package_name} = &quot;{package_version}&quot;` to your Rust project and check how it works.
+    After `cargo auto publish_to_crates_io`, check in browser
+https://crates.io/crates/{package_name}
+    Install the crate with
+cargo install {package_name}
+    and check how it works.
+    Add the dependency 
+{package_name} = &quot;{package_version}&quot;
+    to your Rust project and check how it works.
 {RESET}&quot;#,
         package_name = cargo_toml.package_name(),
         package_version = cargo_toml.package_version()
@@ -2154,5 +2149,4 @@ fn task_publish_to_crates_io() {
     <span class="ident">vec_file</span>
 }
 </code></pre></div>
-</section><section id="search" class="content hidden"></section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="cargo_auto" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.61.0 (fe5b13d68 2022-05-18)" ></div>
-</body></html>
+</section></div></main><div id="rustdoc-vars" data-root-path="../../" data-current-crate="cargo_auto" data-themes="ayu,dark,light" data-resource-suffix="" data-rustdoc-version="1.64.0 (a55dd71d5 2022-09-19)" ></div></body></html>

@@ -2,13 +2,13 @@
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2022.618.1853 date: 2022-06-18 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2022.1017.637 date: 2022-10-17 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-699-green.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-294-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-712-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-297-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-120-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-673-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-684-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
 //! [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
 //! [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)
@@ -18,7 +18,8 @@
 //! [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! ![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 //!
-//! Hashtags: #rustlang #buildtool #developmenttool #cli
+//! Hashtags: #rustlang #tutorial #buildtool #developmenttool #cli  
+//! My projects on Github are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
 //!
 //! ## Try it
 //!
@@ -38,7 +39,7 @@
 //! ```
 //!
 //! We can also add `automation tasks` to an existing Rust project.
-//! Inside your Rust project directory (the one with  or Cargo-auto.toml) run:  
+//! Inside your Rust project directory (the one with Cargo.toml or Cargo-auto.toml) run:  
 //!
 //! ```bash
 //! cargo auto new_auto
@@ -82,7 +83,8 @@
 //! You can edit it and add your dependencies and Rust code. No limits. Freedom of expression.  
 //! This is now your code, your tasks and your helper Rust project!  
 //! Because only you know what you want to automate and how to do it.  
-//! Basic example:  
+//! Never write secrets, passwords, passcodes or tokens inside your Rust code. Because then it is pushed to Github and the whole world can read it in the next second !
+//! Basic example (most of the useful functions is already there):  
 //!
 //! ```rust
 //! /// match arguments and call tasks functions
@@ -109,48 +111,39 @@
 //!
 //! /// write a comprehensible help for user defined tasks
 //! fn print_help() {
-//!     println!("User defined tasks in automation_tasks_rs:");
-//!     println!("cargo auto build - builds the crate in debug mode");
-//!     println!("cargo auto release - builds the crate in release mode");
-//!     println!("cargo auto docs - builds the docs");
+//!     println!(r#"
+//!     User defined tasks in automation_tasks_rs:
+//! cargo auto build - builds the crate in debug mode
+//! cargo auto release - builds the crate in release mode
+//! cargo auto docs - builds the docs
+//! "#);
 //! }
 //!
 //! // region: tasks
 //!
 //! /// cargo build
 //! fn task_build() {
-//!     #[rustfmt::skip]
-//!     let shell_commands = [
-//!         "echo $ cargo fmt",
-//!         "cargo fmt",
-//!         "echo $ cargo build",
-//!         "cargo build"];
-//!     run_shell_commands(shell_commands.to_vec());
+//!     run_shell_command("cargo fmt");
+//!     run_shell_command("cargo build");
 //! }
 //!
 //! /// cargo build --release
 //! fn task_release() {
-//!     println!("$ cargo fmt");
 //!     run_shell_command("cargo fmt");
-//!     println!("$ cargo build --release");
 //!     run_shell_command("cargo build --release");
 //! }
 //!
 //! /// cargo doc, then copies to /docs/ folder, because this is a github standard folder
 //! fn task_doc() {
-//!     #[rustfmt::skip]
-//!     let shell_commands = [
-//!         "echo $ cargo doc --no-deps --document-private-items --open",
-//!         "cargo doc --no-deps --document-private-items --open",
-//!         // copy to /docs/ because it is github standard
-//!         "echo $ rsync -a --info=progress2 --delete-after target/doc/ docs/",
-//!         "rsync -a --info=progress2 --delete-after target/doc/ docs/",
-//!         "echo Create simple index.html file in docs directory",
-//!         &format!("echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",&project_directory_name()) ,
-//!         // message to help user with next move
-//!         "echo After successful doc, commit and push changes",
-//!         ];
-//!     run_shell_commands(shell_commands.to_vec());
+//!     run_shell_command("cargo doc --no-deps --document-private-items");
+//!     // copy target/doc into docs/ because it is github standard
+//!     run_shell_command("rsync -a --info=progress2 --delete-after target/doc/ docs/");
+//!     // Create simple index.html file in docs directory
+//!     run_shell_command(&format!(
+//!         "echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",
+//!         cargo_toml.package_name().replace("-","_")
+//!     ));
+//!     run_shell_command("cargo fmt");
 //! }
 //!
 //! // endregion: tasks
@@ -197,10 +190,6 @@
 //! cargo run -- build
 //! cargo run -- release
 //! ```
-//!
-//! ## TODO
-//!
-//! Get the username from git, to use it in Cargo.toml of new_cli
 //!
 //! ## cargo crev reviews and advisory
 //!

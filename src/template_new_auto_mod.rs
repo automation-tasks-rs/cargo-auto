@@ -128,6 +128,8 @@ cargo auto doc - builds the docs, copy to docs directory
 cargo auto test - runs all the tests
 cargo auto commit_and_push "message" - commits with message and push with mandatory message
     (If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.)
+
+    © 2022 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
 "#
 /*
 cargo auto publish_to_crates_io - publish to crates.io, git tag
@@ -198,6 +200,10 @@ fn task_release() {
 
     run_shell_command("cargo fmt");
     run_shell_command("cargo build --release");
+    run_shell_command(&format!(
+        "strip target/release/{package_name}",
+        package_name = cargo_toml.package_name()
+    )); 
     println!(
         r#"{YELLOW}
     After `cargo auto release`, run the compiled binary, examples and/or tests
@@ -284,10 +290,10 @@ fn task_publish_to_crates_io() {
         r#"{YELLOW}
     After `cargo auto publish_to_crates_io`, check in browser
 https://crates.io/crates/{package_name}
-    Install the crate with 
+    Install the crate with
 cargo install {package_name}
     and check how it works.
-    Add the dependency 
+    Add the dependency
 {package_name} = "{package_version}"
     to your Rust project and check how it works.
 {RESET}"#,
@@ -312,7 +318,7 @@ You can use also the cargo bash completion program `cargo install dev_bestia_car
 
 Don't put any secrets like passwords, passphrases or tokens here, because this helper-project is pushed to the remote repository together with the main Rust project.  
 
-In the main  project folder (where the Cargo.toml file is) run
+In the main  project folder (where the Cargo.toml or Cargo-auto.toml file is) run
 
 ```bash
 cargo auto
