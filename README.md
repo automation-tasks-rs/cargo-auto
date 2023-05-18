@@ -199,6 +199,10 @@ cargo run -- build
 cargo run -- release
 ```
 
+## TODO
+
+new wasm, new wasm_pwa, new wasm_pwa_server, new wasm_pwa_server_pgrsql
+
 ## cargo crev reviews and advisory
 
 We live in times of danger with [supply chain attacks](https://en.wikipedia.org/wiki/Supply_chain_attack).  
