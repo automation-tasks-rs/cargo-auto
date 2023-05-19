@@ -51,14 +51,14 @@ fn print_help() {
     {YELLOW}Welcome to cargo_auto_template_new_cli !
     This is a simple yet complete template for a CLI program written in Rust.{RESET}
 
-cargo_auto_template_new_cli --help
-cargo_auto_template_new_cli print world
-cargo_auto_template_new_cli upper world
+{GREEN}cargo_auto_template_new_cli --help{RESET}
+{GREEN}cargo_auto_template_new_cli print world{RESET}
+{GREEN}cargo_auto_template_new_cli upper world{RESET}
 
-    This command should return an error:
-cargo_auto_template_new_cli upper WORLD
+    {YELLOW}This command should return an error:{RESET}
+{GREEN}cargo_auto_template_new_cli upper WORLD{RESET}
   
-    © 2022 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
+    {YELLOW}© 2022 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
 "#
     );
 }

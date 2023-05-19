@@ -64,14 +64,14 @@ fn print_help() {
     {YELLOW}Welcome to cargo-auto !
     This program automates your custom tasks when developing a Rust project.{RESET}
 
-    User defined tasks in automation_tasks_rs:{RESET}{GREEN}
-cargo auto build{RESET}{YELLOW} - builds the crate in debug mode, fmt, increment version{RESET}{GREEN}
-cargo auto release{RESET}{YELLOW} - builds the crate in release mode, fmt, increment version{RESET}{GREEN}
-cargo auto doc{RESET}{YELLOW} - builds the docs, copy to docs directory{RESET}{GREEN}
-cargo auto test{RESET}{YELLOW} - runs all the tests{RESET}{GREEN}
-cargo auto commit_and_push "message"{RESET}{YELLOW} - commits with message and push with mandatory message
-    (If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.){RESET}{GREEN}
-    © 2023 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
+    {YELLOW}User defined tasks in automation_tasks_rs:{RESET}
+{GREEN}cargo auto build{RESET}{YELLOW} - builds the crate in debug mode, fmt, increment version{RESET}
+{GREEN}cargo auto release{RESET}{YELLOW} - builds the crate in release mode, fmt, increment version{RESET}
+{GREEN}cargo auto doc{RESET}{YELLOW} - builds the docs, copy to docs directory{RESET}
+{GREEN}cargo auto test{RESET}{YELLOW} - runs all the tests{RESET}
+{GREEN}cargo auto commit_and_push "message"{RESET}{YELLOW} - commits with message and push with mandatory message{RESET}
+    {YELLOW}(If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.){RESET}
+    {YELLOW}© 2023 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
 "#
     );
     print_examples_cmd();
@@ -183,7 +183,7 @@ fn task_doc() {
         r#"
     {YELLOW}After `cargo auto doc`, check `docs/index.html`. If ok, then test the documentation code examples{RESET}
 {GREEN}cargo auto test{RESET}
-{YELLOW}{RESET}"#
+    {YELLOW}{RESET}"#
     );
 }
 

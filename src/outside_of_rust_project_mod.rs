@@ -47,11 +47,11 @@ fn print_help_from_cargo_auto() {
     {YELLOW}Welcome to cargo-auto !
     This program automates your custom tasks when developing a Rust project.{RESET}
 
-    Outside of a Rust project, cargo-auto can create a new Rust project for CLI, simple yet complete:
-cargo auto new_cli project_name
-cargo auto new_wasm project_name
+    {YELLOW}Outside of a Rust project, cargo-auto can create a new Rust project for CLI, simple yet complete:{RESET}
+{GREEN}cargo auto new_cli project_name{RESET}
+{GREEN}cargo auto new_wasm project_name{RESET}
 
-    © 2022 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
+    {YELLOW}© 2022 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
 "#
     );
 }
@@ -111,11 +111,11 @@ pub fn new_cli(arg_2: Option<String>) {
             println!("");
             println!("    {YELLOW}The command `crate auto new_cli` generated the directory `{project_name}`{RESET}");
             println!("    {YELLOW}You can open this new Rust project `{project_name}` in a new Rust editor.{RESET}",);
-            println!("    For example VSCode:");
-            println!("code {project_name}");
-            println!("    Then build with:");
-            println!("cargo auto build");
-            println!("    and follow detailed instructions.");
+            println!("    {YELLOW}For example VSCode:{RESET}");
+            println!("{GREEN}code {project_name}{RESET}");
+            println!("    {YELLOW}Then build with:{RESET}");
+            println!("{GREEN}cargo auto build{RESET}");
+            println!("    {YELLOW}and follow detailed instructions.{RESET}");
         }
     }
 }
@@ -128,11 +128,11 @@ pub fn new_wasm(arg_2: Option<String>) {
             println!("");
             println!("    {YELLOW}The command `crate auto new_wasm` generated the directory `{project_name}`{RESET}");
             println!("    {YELLOW}You can open this new Rust project `{project_name}` in a new Rust editor.{RESET}",);
-            println!("    For example VSCode:");
-            println!("code {project_name}");
-            println!("    Then build with:");
-            println!("cargo auto build");
-            println!("    and follow detailed instructions.");
+            println!("    {YELLOW}For example VSCode:{RESET}");
+            println!("{GREEN}code {project_name}{RESET}");
+            println!("    {YELLOW}Then build with:{RESET}");
+            println!("{GREEN}cargo auto build{RESET}");
+            println!("    {YELLOW}and follow detailed instructions.{RESET}");
         }
     }
 }
