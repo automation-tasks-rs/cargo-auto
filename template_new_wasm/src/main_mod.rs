@@ -73,7 +73,7 @@ pub fn main() {
     }
 }
 
-/// it 'prints' inside a dedicated <p> in html
+/// it 'prints' inside a dedicated element in html
 fn html_println(text: &str) {
     wsm::set_html_element_inner_text("p_for_html_println", text);
 }

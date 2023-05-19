@@ -472,14 +472,14 @@ fn print_help() {
     {YELLOW}Welcome to cargo-auto !
     This program automates your custom tasks when developing a Rust project.{RESET}
 
-    User defined tasks in automation_tasks_rs:{RESET}{GREEN}
-cargo auto build{RESET}{YELLOW} - builds the crate in debug mode, fmt, increment version{RESET}{GREEN}
-cargo auto release{RESET}{YELLOW} - builds the crate in release mode, fmt, increment version{RESET}{GREEN}
-cargo auto doc{RESET}{YELLOW} - builds the docs, copy to docs directory{RESET}{GREEN}
-cargo auto test{RESET}{YELLOW} - runs all the tests{RESET}{GREEN}
-cargo auto commit_and_push &quot;message&quot;{RESET}{YELLOW} - commits with message and push with mandatory message
-    (If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.){RESET}
-    © 2022 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
+    {YELLOW}User defined tasks in automation_tasks_rs:{RESET}
+{GREEN}cargo auto build{RESET}{YELLOW} - builds the crate in debug mode, fmt, increment version{RESET}
+{GREEN}cargo auto release{RESET}{YELLOW} - builds the crate in release mode, fmt, increment version{RESET}
+{GREEN}cargo auto doc{RESET}{YELLOW} - builds the docs, copy to docs directory{RESET}
+{GREEN}cargo auto test{RESET}{YELLOW} - runs all the tests{RESET}
+{GREEN}cargo auto commit_and_push &quot;message&quot;{RESET}{YELLOW} - commits with message and push with mandatory message{RESET}
+    {YELLOW}(If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.){RESET}
+    {YELLOW}© 2022 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
 &quot;#
 /*
 cargo auto publish_to_crates_io - publish to crates.io, git tag
@@ -493,8 +493,8 @@ cargo auto publish_to_crates_io - publish to crates.io, git tag
 /// all example commands in one place
 fn print_examples_cmd(){
 /*
-    println!(r#&quot;{YELLOW}run examples:{RESET}{GREEN}
-cargo run --example example1{RESET}
+    println!(r#&quot;{YELLOW}run examples:{RESET}
+{GREEN}cargo run --example example1{RESET}
 &quot;#);
 */
 }
@@ -530,12 +530,12 @@ fn task_build() {
     run_shell_command(&quot;cargo fmt&quot;);
     run_shell_command(&quot;cargo build&quot;);
     println!(
-        r#&quot;{YELLOW}
-    After `cargo auto build`, run the compiled binary, examples and/or tests{RESET}{GREEN}
-./target/debug/{package_name} argument{RESET}{YELLOW}
-    if ok, then,{RESET}{GREEN}
-cargo auto release{RESET}{YELLOW}
-{RESET}&quot;#,
+        r#&quot;
+    {YELLOW}After `cargo auto build`, run the compiled binary, examples and/or tests{RESET}
+{GREEN}./target/debug/{package_name} argument{RESET}
+    {YELLOW}if ok, then,{RESET}
+{GREEN}cargo auto release{RESET}
+    {YELLOW}{RESET}&quot;#,
 package_name = cargo_toml.package_name(),
     );
     print_examples_cmd();
@@ -555,12 +555,12 @@ fn task_release() {
         package_name = cargo_toml.package_name()
     )); 
     println!(
-        r#&quot;{YELLOW}
-    After `cargo auto release`, run the compiled binary, examples and/or tests{RESET}{GREEN}
-./target/release/{package_name} argument{RESET}{YELLOW}
-    if ok, then,{RESET}{GREEN}
-cargo auto doc{RESET}{YELLOW}
-{RESET}&quot;#,
+        r#&quot;
+    {YELLOW}After `cargo auto release`, run the compiled binary, examples and/or tests{RESET}
+{GREEN}./target/release/{package_name} argument{RESET}
+    {YELLOW}if ok, then,{RESET}
+{GREEN}cargo auto doc{RESET}
+    {YELLOW}{RESET}&quot;#,
 package_name = cargo_toml.package_name(),
     );
     print_examples_cmd();
@@ -585,10 +585,10 @@ fn task_doc() {
     run_shell_command(&quot;cargo fmt&quot;);
     // message to help user with next move
     println!(
-        r#&quot;{YELLOW}
-    After `cargo auto doc`, check `docs/index.html`. If ok, then test the documentation code examples{RESET}{GREEN}
-cargo auto test{RESET}{YELLOW}
-{RESET}&quot;#
+        r#&quot;
+    {YELLOW}After `cargo auto doc`, check `docs/index.html`. If ok, then test the documentation code examples{RESET}
+{GREEN}cargo auto test{RESET}
+    {YELLOW}{RESET}&quot;#
     );
 }
 
@@ -596,11 +596,11 @@ cargo auto test{RESET}{YELLOW}
 fn task_test() {
     run_shell_command(&quot;cargo test&quot;);
     println!(
-        r#&quot;{YELLOW}
-    After `cargo auto test`. If ok, then {RESET}{GREEN}
-cargo auto commit_and_push &quot;message&quot;{RESET}{YELLOW}
-    with mandatory commit message{RESET}{GREEN}
-{RESET}&quot;#
+        r#&quot;
+    {YELLOW}After `cargo auto test`. If ok, then {RESET}
+{GREEN}cargo auto commit_and_push &quot;message&quot;{RESET}
+    {YELLOW}with mandatory commit message{RESET}
+{GREEN}{RESET}&quot;#
     );
 }
 
@@ -612,10 +612,10 @@ fn task_commit_and_push(arg_2: Option&lt;String&gt;) {
             run_shell_command(&amp;format!(r#&quot;git add -A &amp;&amp; git commit --allow-empty -m &quot;{}&quot;&quot;#, message));
             run_shell_command(&quot;git push&quot;);
             println!(
-                r#&quot;{YELLOW}
-    After `cargo auto commit_and_push &quot;message&quot;`{RESET}{GREEN}
-cargo auto publish_to_crates_io{RESET}{YELLOW}
-{RESET}&quot;#
+                r#&quot;
+    {YELLOW}After `cargo auto commit_and_push &quot;message&quot;`{RESET}
+{GREEN}cargo auto publish_to_crates_io{RESET}
+    {YELLOW}{RESET}&quot;#
             );
         }
     }
@@ -637,16 +637,16 @@ fn task_publish_to_crates_io() {
     // cargo publish
     run_shell_command(&quot;cargo publish&quot;);
     println!(
-        r#&quot;{YELLOW}
-    After `cargo auto publish_to_crates_io`, check in browser{RESET}{GREEN}
-https://crates.io/crates/{package_name}{RESET}{YELLOW}
-    Install the crate with{RESET}{GREEN}
-cargo install {package_name}{RESET}{YELLOW}
-    and check how it works.
-    Add the dependency{RESET}{GREEN}
-{package_name} = &quot;{package_version}&quot;{RESET}{YELLOW}
-    to your Rust project and check how it works.{RESET}{GREEN}
-{RESET}&quot;#,
+        r#&quot;
+    {YELLOW}After `cargo auto publish_to_crates_io`, check in browser{RESET}
+{GREEN}https://crates.io/crates/{package_name}{RESET}
+    {YELLOW}Install the crate with{RESET}
+{GREEN}cargo install {package_name}{RESET}
+    {YELLOW}and check how it works.
+    Add the dependency{RESET}
+{GREEN}{package_name} = &quot;{package_version}&quot;{RESET}
+    {YELLOW}to your Rust project and check how it works.{RESET}
+{GREEN}{RESET}&quot;#,
         package_name = cargo_toml.package_name(),
         package_version = cargo_toml.package_version()
     );

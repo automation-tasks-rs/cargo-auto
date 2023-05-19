@@ -1173,6 +1173,7 @@
 <a href="#1173" id="1173">1173</a>
 <a href="#1174" id="1174">1174</a>
 <a href="#1175" id="1175">1175</a>
+<a href="#1176" id="1176">1176</a>
 </pre><pre class="rust"><code><span class="doccomment">//! this strings are copied from the template_new_wasm folder
 //! because when publishing to crates.io, only the main bin-executable is transferred
 
@@ -1183,10 +1184,10 @@
         <span class="comment">// rename/replace the project_name
         </span><span class="kw">let </span>file_name = file_item
             .file_name
-            .replace(<span class="string">&quot;bestia_dev_cargo_auto_new_wasm&quot;</span>, project_name);
+            .replace(<span class="string">&quot;cargo_auto_template_new_wasm&quot;</span>, project_name);
         <span class="kw">let </span>file_content = file_item
             .file_content
-            .replace(<span class="string">&quot;bestia_dev_cargo_auto_new_wasm&quot;</span>, project_name);
+            .replace(<span class="string">&quot;cargo_auto_template_new_wasm&quot;</span>, project_name);
 
         <span class="comment">// create directory if needed
         </span>std::fs::create_dir_all(folder_path.join(<span class="kw-2">&amp;</span>file_name).parent().unwrap()).unwrap();
@@ -1220,13 +1221,13 @@
     vec_file.push(<span class="kw">crate</span>::FileItem {
         file_name: <span class="string">&quot;Cargo.toml&quot;</span>,
         file_content: <span class="string">r###&quot;[package]
-name = &quot;bestia_dev_cargo_auto_new_wasm&quot;
+name = &quot;cargo_auto_template_new_wasm&quot;
 version = &quot;2023.519.1012&quot;
 authors = [&quot;bestia.dev&quot;]
 homepage = &quot;https://bestia.dev&quot;
 edition = &quot;2021&quot;
 description = &quot;template for a minimal wasm project for browser&quot;
-repository = &quot;https://github.com/bestia-dev/bestia_dev_cargo_auto_new_wasm&quot;
+repository = &quot;https://github.com/bestia-dev/cargo_auto_template_new_wasm&quot;
 readme = &quot;README.md&quot;
 license = &quot;MIT&quot;
 keywords = [&quot;wasm&quot;]
@@ -1502,7 +1503,7 @@ pub fn main() {
 
     // super simple argument parsing.
     // In browser we can use &#39;local routing&#39; on url path with # fragment
-    // http://localhost:4000/bestia_dev_cargo_auto_new_wasm#arg_1/arg_2
+    // http://localhost:4000/cargo_auto_template_new_wasm#arg_1/arg_2
     let location = wsm::window().location();
     let mut location_hash_fragment = unwrap!(location.hash());
     // dbg! is now writing to the console, crate wasm-rs-dbg
@@ -1513,7 +1514,7 @@ pub fn main() {
         // replace # with delimiter /
         location_hash_fragment.replace_range(..1, &quot;/&quot;);
     }
-    let location_hash_fragment = format!(&quot;bestia_dev_cargo_auto_new_wasm{}&quot;, location_hash_fragment);
+    let location_hash_fragment = format!(&quot;cargo_auto_template_new_wasm{}&quot;, location_hash_fragment);
     dbg!(&amp;location_hash_fragment);
     let args = location_hash_fragment.split(&quot;/&quot;);
     let args: Vec&lt;&amp;str&gt; = args.collect();
@@ -1547,11 +1548,11 @@ pub fn main() {
                 None =&gt; html_println(&quot;Error: Missing second argument for upper.&quot;),
             }
         }
-        _ =&gt; html_println(&quot;Error: Unrecognized arguments. Try \n http://localhost:4000/bestia_dev_cargo_auto_new_wasm#help&quot;),
+        _ =&gt; html_println(&quot;Error: Unrecognized arguments. Try \n http://localhost:4000/cargo_auto_template_new_wasm#help&quot;),
     }
 }
 
-/// it &#39;prints&#39; inside a dedicated &lt;p&gt; in html
+/// it &#39;prints&#39; inside a dedicated element in html
 fn html_println(text: &amp;str) {
     wsm::set_html_element_inner_text(&quot;p_for_html_println&quot;, text);
 }
@@ -1560,17 +1561,17 @@ fn html_println(text: &amp;str) {
 fn print_help() {
     html_println(
         r#&quot;
-    Welcome to bestia_dev_cargo_auto_new_wasm !
+    Welcome to cargo_auto_template_new_wasm !
     This is a simple yet complete template for a WASM program written in Rust.
     The file structure is on purpose similar to a Rust CLI project and accepts similar arguments.
 
-    http://localhost:4000/bestia_dev_cargo_auto_new_wasm
-    http://localhost:4000/bestia_dev_cargo_auto_new_wasm#help
-    http://localhost:4000/bestia_dev_cargo_auto_new_wasm#print/world
-    http://localhost:4000/bestia_dev_cargo_auto_new_wasm#upper/world
+    http://localhost:4000/cargo_auto_template_new_wasm
+    http://localhost:4000/cargo_auto_template_new_wasm#help
+    http://localhost:4000/cargo_auto_template_new_wasm#print/world
+    http://localhost:4000/cargo_auto_template_new_wasm#upper/world
 
     This command should return an error:
-    http://localhost:4000/bestia_dev_cargo_auto_new_wasm#upper/WORLD
+    http://localhost:4000/cargo_auto_template_new_wasm#upper/WORLD
 
     © 2023 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
 &quot;#,
@@ -1611,7 +1612,7 @@ fn on_click_btn_run() {
     let arg_2 = wsm::get_input_element_value_string_by_id(&quot;arg_2&quot;);
     if !arg_1.is_empty() &amp;&amp; !arg_2.is_empty() {
         // pass arguments as URL in a new tab
-        let url = format!(&quot;/bestia_dev_cargo_auto_new_wasm#{arg_1}/{arg_2}&quot;);
+        let url = format!(&quot;/cargo_auto_template_new_wasm#{arg_1}/{arg_2}&quot;);
         wsm::open_url_in_new_tab(&amp;url);
     } else {
         // write on the same web page
@@ -1660,13 +1661,13 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2023.519.1116 date: 2023-05-19 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2023.519.1415 date: 2023-05-19 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-928-green.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-325-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-926-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-346-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-202-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-1313-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-1314-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
 //! [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
 //! [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)
@@ -1904,7 +1905,7 @@ pub fn wasm_bindgen_start() -&gt; Result&lt;(), JsValue&gt; {
     console_error_panic_hook::set_once();
     // write the app version just for debug purposes
     wsm::debug_write(&amp;format!(
-        &quot;bestia_dev_cargo_auto_new_wasm v{}&quot;,
+        &quot;cargo_auto_template_new_wasm v{}&quot;,
         env!(&quot;CARGO_PKG_VERSION&quot;)
     ));
 
@@ -1918,12 +1919,12 @@ pub fn wasm_bindgen_start() -&gt; Result&lt;(), JsValue&gt; {
             file_name :<span class="string">&quot;README.md&quot;</span>,
             file_content : <span class="string">r###&quot;[//]: # (auto_md_to_doc_comments segment start A)
 
-# bestia_dev_cargo_auto_new_wasm
+# cargo_auto_template_new_wasm
 
 [//]: # (auto_cargo_toml_to_md start)
 
 **template for a minimal wasm project for browser**  
-***version: 2023.519.1012 date: 2023-05-19 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_wasm)***  
+***version: 2023.519.1012 date: 2023-05-19 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo_auto_template_new_wasm)***  
 
 [//]: # (auto_cargo_toml_to_md end)
 
@@ -1936,8 +1937,8 @@ pub fn wasm_bindgen_start() -&gt; Result&lt;(), JsValue&gt; {
 
 [//]: # (auto_lines_of_code end)
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_wasm/blob/master/LICENSE)
-[![Rust](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_wasm/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_wasm/)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/blob/master/LICENSE)
+[![Rust](https://github.com/bestia-dev/cargo_auto_template_new_wasm/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/)
 ![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/638168303.svg)
 
 Hashtags: #rustlang #tutorial #pwa #wasm #webassembly  
@@ -1956,7 +1957,7 @@ I recommend to use the Containerized Rust Development Environment (CRDE) to writ
 
 ## HTML, CSS
 
-The simple static HTML and CSS files are in `web_server_folder/bestia_dev_cargo_auto_new_wasm`.  
+The simple static HTML and CSS files are in `web_server_folder/cargo_auto_template_new_wasm`.  
 Then the Rust code injects html elements into the DOM.  
 
 ## Web server and wasm
@@ -1987,10 +1988,11 @@ So I can drink a free beer for your health :-)
 [//bestiadev.substack.com](https://bestiadev.substack.com)  
 [//youtube.com/@bestia-dev-tutorials](https://youtube.com/@bestia-dev-tutorials)  
 
-[//]: # (auto_md_to_doc_comments segment end A)&quot;###</span>,
+[//]: # (auto_md_to_doc_comments segment end A)
+&quot;###</span>,
 });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;web_server_folder/bestia_dev_cargo_auto_new_wasm/css/basic_style.css&quot;</span>,
+        file_name: <span class="string">&quot;web_server_folder/cargo_auto_template_new_wasm/css/basic_style.css&quot;</span>,
         file_content: <span class="string">r###&quot;html { 
     font-family: sans-serif;
     background-color: #000000;
@@ -2028,16 +2030,16 @@ p{
   }&quot;###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;web_server_folder/bestia_dev_cargo_auto_new_wasm/index.html&quot;</span>,
+        file_name: <span class="string">&quot;web_server_folder/cargo_auto_template_new_wasm/index.html&quot;</span>,
         file_content: <span class="string">r###&quot;&lt;!DOCTYPE html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 
 &lt;head&gt;
       &lt;!-- classic header for a web page --&gt;
-      &lt;title&gt;bestia_dev_cargo_auto_new_wasm&lt;/title&gt;
+      &lt;title&gt;cargo_auto_template_new_wasm&lt;/title&gt;
       &lt;meta http-equiv=&quot;Content-type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
       &lt;meta name=&quot;Description&quot; content=&quot;template for a minimal wasm project for browser&quot;&gt;
-      &lt;meta name=&quot;author&quot; content=&quot;https://github.com/bestia-dev/bestia_dev_cargo_auto_new_wasm&quot;&gt;    
+      &lt;meta name=&quot;author&quot; content=&quot;https://github.com/bestia-dev/cargo_auto_template_new_wasm&quot;&gt;    
       &lt;link rel=&quot;stylesheet&quot; href=&quot;css/basic_style.css&quot;&gt;
       
 &lt;/head&gt;
@@ -2068,8 +2070,8 @@ p{
       &lt;p id=&quot;p_for_html_println&quot;&gt;&lt;/p&gt;
       &lt;!-- import and init the wasm code --&gt;
       &lt;script type=&quot;module&quot;&gt;
-            import init from &quot;./pkg/bestia_dev_cargo_auto_new_wasm.js&quot;;
-            init(&quot;./pkg/bestia_dev_cargo_auto_new_wasm_bg.wasm&quot;);
+            import init from &quot;./pkg/cargo_auto_template_new_wasm.js&quot;;
+            init(&quot;./pkg/cargo_auto_template_new_wasm_bg.wasm&quot;);
       &lt;/script&gt;
 &lt;/body&gt;
 
@@ -2122,7 +2124,7 @@ cargo_auto_lib = &quot;0.8.60&quot;&quot;###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem{
             file_name :<span class="string">&quot;automation_tasks_rs/src/main.rs&quot;</span>,
-            file_content : <span class="string">r###&quot;//! automation_tasks_rs for bestia_dev_cargo_auto_new_wasm
+            file_content : <span class="string">r###&quot;//! automation_tasks_rs for cargo_auto_template_new_wasm
 
 use cargo_auto_lib::*;
 
@@ -2188,14 +2190,14 @@ fn print_help() {
     {YELLOW}Welcome to cargo-auto !
     This program automates your custom tasks when developing a Rust project.{RESET}
 
-    User defined tasks in automation_tasks_rs:{RESET}{GREEN}
-cargo auto build{RESET}{YELLOW} - builds the crate in debug mode, fmt, increment version{RESET}{GREEN}
-cargo auto release{RESET}{YELLOW} - builds the crate in release mode, fmt, increment version{RESET}{GREEN}
-cargo auto doc{RESET}{YELLOW} - builds the docs, copy to docs directory{RESET}{GREEN}
-cargo auto test{RESET}{YELLOW} - runs all the tests{RESET}{GREEN}
-cargo auto commit_and_push &quot;message&quot;{RESET}{YELLOW} - commits with message and push with mandatory message
-    (If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.){RESET}{GREEN}
-    © 2023 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
+    {YELLOW}User defined tasks in automation_tasks_rs:{RESET}
+{GREEN}cargo auto build{RESET}{YELLOW} - builds the crate in debug mode, fmt, increment version{RESET}
+{GREEN}cargo auto release{RESET}{YELLOW} - builds the crate in release mode, fmt, increment version{RESET}
+{GREEN}cargo auto doc{RESET}{YELLOW} - builds the docs, copy to docs directory{RESET}
+{GREEN}cargo auto test{RESET}{YELLOW} - runs all the tests{RESET}
+{GREEN}cargo auto commit_and_push &quot;message&quot;{RESET}{YELLOW} - commits with message and push with mandatory message{RESET}
+    {YELLOW}(If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.){RESET}
+    {YELLOW}© 2023 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
 &quot;#
     );
     print_examples_cmd();
@@ -2240,18 +2242,18 @@ fn task_build() {
     auto_cargo_toml_to_md();
     auto_lines_of_code(&quot;&quot;);
     run_shell_command(&quot;wasm-pack build --target web&quot;);
-    run_shell_command(&quot;\\rsync -a --delete-after pkg/ web_server_folder/bestia_dev_cargo_auto_new_wasm/pkg/&quot;);
+    run_shell_command(&quot;\\rsync -a --delete-after pkg/ web_server_folder/cargo_auto_template_new_wasm/pkg/&quot;);
     println!(
         r#&quot;
     {YELLOW}After `cargo auto build`, open port 4000 in VSCode and run the basic web server
     in a separate VSCode bash terminal, so it can serve constantly in the background.{RESET}
 {GREEN}basic-http-server -a 0.0.0.0:4000 ./web_server_folder{RESET}
     {YELLOW}and open the browser on{RESET}
-{GREEN}http://localhost:4000/bestia_dev_cargo_auto_new_wasm{RESET}
-{GREEN}http://localhost:4000/bestia_dev_cargo_auto_new_wasm#print/world{RESET}
-{GREEN}http://localhost:4000/bestia_dev_cargo_auto_new_wasm#upper/world{RESET}
+{GREEN}http://localhost:4000/cargo_auto_template_new_wasm{RESET}
+{GREEN}http://localhost:4000/cargo_auto_template_new_wasm#print/world{RESET}
+{GREEN}http://localhost:4000/cargo_auto_template_new_wasm#upper/world{RESET}
     {YELLOW}This will return an error:{RESET}
-{GREEN}http://localhost:4000/bestia_dev_cargo_auto_new_wasm#upper/WORLD{RESET}
+{GREEN}http://localhost:4000/cargo_auto_template_new_wasm#upper/WORLD{RESET}
     {YELLOW}If all is fine, run{RESET}
 {GREEN}cargo auto release{RESET}
 &quot;#
@@ -2266,18 +2268,18 @@ fn task_release() {
 
     run_shell_command(&quot;cargo fmt&quot;);
     run_shell_command(&quot;wasm-pack build --target web&quot;);
-    run_shell_command(&quot;\\rsync -a --delete-after pkg/ web_server_folder/bestia_dev_cargo_auto_new_wasm/pkg/&quot;);
+    run_shell_command(&quot;\\rsync -a --delete-after pkg/ web_server_folder/cargo_auto_template_new_wasm/pkg/&quot;);
     println!(
         r#&quot;
     {YELLOW}After `cargo auto build`, open port 4000 in VSCode and run the basic web server
     in a separate VSCode bash terminal, so it can serve constantly in the background.{RESET}
 {GREEN}basic-http-server -a 0.0.0.0:4000 ./web_server_folder{RESET}
     {YELLOW}and open the browser on{RESET}
-{GREEN}http://localhost:4000/bestia_dev_cargo_auto_new_wasm{RESET}    
-{GREEN}http://localhost:4000/bestia_dev_cargo_auto_new_wasm#print/world{RESET}
-{GREEN}http://localhost:4000/bestia_dev_cargo_auto_new_wasm#upper/world{RESET}
+{GREEN}http://localhost:4000/cargo_auto_template_new_wasm{RESET}    
+{GREEN}http://localhost:4000/cargo_auto_template_new_wasm#print/world{RESET}
+{GREEN}http://localhost:4000/cargo_auto_template_new_wasm#upper/world{RESET}
     {YELLOW}This will return an error:{RESET}
-{GREEN}http://localhost:4000/bestia_dev_cargo_auto_new_wasm#upper/WORLD{RESET}
+{GREEN}http://localhost:4000/cargo_auto_template_new_wasm#upper/WORLD{RESET}
     {YELLOW}If all is fine, run{RESET}
 {GREEN}cargo auto doc{RESET}
 &quot;#
@@ -2307,7 +2309,7 @@ fn task_doc() {
         r#&quot;
     {YELLOW}After `cargo auto doc`, check `docs/index.html`. If ok, then test the documentation code examples{RESET}
 {GREEN}cargo auto test{RESET}
-{YELLOW}{RESET}&quot;#
+    {YELLOW}{RESET}&quot;#
     );
 }
 

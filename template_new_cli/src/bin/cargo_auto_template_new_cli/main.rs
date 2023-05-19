@@ -10,7 +10,7 @@
 // The `lib.rs` uses the `thiserror` library.
 
 // Linux terminal colors
-use cargo_auto_template_new_cli::{RED, RESET, YELLOW};
+use cargo_auto_template_new_cli::{GREEN, RED, RESET, YELLOW};
 
 /// entry point into the bin-executable
 fn main() {
