@@ -24,7 +24,7 @@ pub fn main() {
 
     // super simple argument parsing.
     // In browser we can use 'local routing' on url path with # fragment
-    // http://localhost:4000/bestia_dev_cargo_auto_new_wasm#arg_1/arg_2
+    // http://localhost:4000/cargo_auto_template_new_wasm#arg_1/arg_2
     let location = wsm::window().location();
     let mut location_hash_fragment = unwrap!(location.hash());
     // dbg! is now writing to the console, crate wasm-rs-dbg
@@ -35,7 +35,7 @@ pub fn main() {
         // replace # with delimiter /
         location_hash_fragment.replace_range(..1, "/");
     }
-    let location_hash_fragment = format!("bestia_dev_cargo_auto_new_wasm{}", location_hash_fragment);
+    let location_hash_fragment = format!("cargo_auto_template_new_wasm{}", location_hash_fragment);
     dbg!(&location_hash_fragment);
     let args = location_hash_fragment.split("/");
     let args: Vec<&str> = args.collect();
@@ -69,7 +69,7 @@ pub fn main() {
                 None => html_println("Error: Missing second argument for upper."),
             }
         }
-        _ => html_println("Error: Unrecognized arguments. Try \n http://localhost:4000/bestia_dev_cargo_auto_new_wasm#help"),
+        _ => html_println("Error: Unrecognized arguments. Try \n http://localhost:4000/cargo_auto_template_new_wasm#help"),
     }
 }
 
@@ -82,17 +82,17 @@ fn html_println(text: &str) {
 fn print_help() {
     html_println(
         r#"
-    Welcome to bestia_dev_cargo_auto_new_wasm !
+    Welcome to cargo_auto_template_new_wasm !
     This is a simple yet complete template for a WASM program written in Rust.
     The file structure is on purpose similar to a Rust CLI project and accepts similar arguments.
 
-    http://localhost:4000/bestia_dev_cargo_auto_new_wasm
-    http://localhost:4000/bestia_dev_cargo_auto_new_wasm#help
-    http://localhost:4000/bestia_dev_cargo_auto_new_wasm#print/world
-    http://localhost:4000/bestia_dev_cargo_auto_new_wasm#upper/world
+    http://localhost:4000/cargo_auto_template_new_wasm
+    http://localhost:4000/cargo_auto_template_new_wasm#help
+    http://localhost:4000/cargo_auto_template_new_wasm#print/world
+    http://localhost:4000/cargo_auto_template_new_wasm#upper/world
 
     This command should return an error:
-    http://localhost:4000/bestia_dev_cargo_auto_new_wasm#upper/WORLD
+    http://localhost:4000/cargo_auto_template_new_wasm#upper/WORLD
 
     © 2023 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
 "#,
@@ -133,7 +133,7 @@ fn on_click_btn_run() {
     let arg_2 = wsm::get_input_element_value_string_by_id("arg_2");
     if !arg_1.is_empty() && !arg_2.is_empty() {
         // pass arguments as URL in a new tab
-        let url = format!("/bestia_dev_cargo_auto_new_wasm#{arg_1}/{arg_2}");
+        let url = format!("/cargo_auto_template_new_wasm#{arg_1}/{arg_2}");
         wsm::open_url_in_new_tab(&url);
     } else {
         // write on the same web page

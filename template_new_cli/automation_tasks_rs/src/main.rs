@@ -1,4 +1,4 @@
-//! automation_tasks_rs for bestia_dev_cargo_auto_new_cli
+//! automation_tasks_rs for cargo_auto_template_new_cli
 
 use cargo_auto_lib::*;
 

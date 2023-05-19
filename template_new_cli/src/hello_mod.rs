@@ -1,4 +1,4 @@
-// bestia_dev_cargo_auto_new_cli/src/hello_mod.rs
+// cargo_auto_template_new_cli/src/hello_mod.rs
 
 //! All the real code is inside modules in separate files.
 //!

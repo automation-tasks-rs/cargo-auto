@@ -1,11 +1,11 @@
 [//]: # (auto_md_to_doc_comments segment start A)
 
-# bestia_dev_cargo_auto_new_wasm
+# cargo_auto_template_new_wasm
 
 [//]: # (auto_cargo_toml_to_md start)
 
 **template for a minimal wasm project for browser**  
-***version: 2023.519.1012 date: 2023-05-19 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_wasm)***  
+***version: 2023.519.1012 date: 2023-05-19 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo_auto_template_new_wasm)***  
 
 [//]: # (auto_cargo_toml_to_md end)
 
@@ -18,8 +18,8 @@
 
 [//]: # (auto_lines_of_code end)
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_wasm/blob/master/LICENSE)
-[![Rust](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_wasm/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_wasm/)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/blob/master/LICENSE)
+[![Rust](https://github.com/bestia-dev/cargo_auto_template_new_wasm/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/)
 ![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/638168303.svg)
 
 Hashtags: #rustlang #tutorial #pwa #wasm #webassembly  
@@ -38,7 +38,7 @@ I recommend to use the Containerized Rust Development Environment (CRDE) to writ
 
 ## HTML, CSS
 
-The simple static HTML and CSS files are in `web_server_folder/bestia_dev_cargo_auto_new_wasm`.  
+The simple static HTML and CSS files are in `web_server_folder/cargo_auto_template_new_wasm`.  
 Then the Rust code injects html elements into the DOM.  
 
 ## Web server and wasm

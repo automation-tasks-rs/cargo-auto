@@ -1,4 +1,4 @@
-//! automation_tasks_rs for bestia_dev_cargo_auto_new_wasm
+//! automation_tasks_rs for cargo_auto_template_new_wasm
 
 use cargo_auto_lib::*;
 
@@ -116,18 +116,18 @@ fn task_build() {
     auto_cargo_toml_to_md();
     auto_lines_of_code("");
     run_shell_command("wasm-pack build --target web");
-    run_shell_command("\\rsync -a --delete-after pkg/ web_server_folder/bestia_dev_cargo_auto_new_wasm/pkg/");
+    run_shell_command("\\rsync -a --delete-after pkg/ web_server_folder/cargo_auto_template_new_wasm/pkg/");
     println!(
         r#"
     {YELLOW}After `cargo auto build`, open port 4000 in VSCode and run the basic web server
     in a separate VSCode bash terminal, so it can serve constantly in the background.{RESET}
 {GREEN}basic-http-server -a 0.0.0.0:4000 ./web_server_folder{RESET}
     {YELLOW}and open the browser on{RESET}
-{GREEN}http://localhost:4000/bestia_dev_cargo_auto_new_wasm{RESET}
-{GREEN}http://localhost:4000/bestia_dev_cargo_auto_new_wasm#print/world{RESET}
-{GREEN}http://localhost:4000/bestia_dev_cargo_auto_new_wasm#upper/world{RESET}
+{GREEN}http://localhost:4000/cargo_auto_template_new_wasm{RESET}
+{GREEN}http://localhost:4000/cargo_auto_template_new_wasm#print/world{RESET}
+{GREEN}http://localhost:4000/cargo_auto_template_new_wasm#upper/world{RESET}
     {YELLOW}This will return an error:{RESET}
-{GREEN}http://localhost:4000/bestia_dev_cargo_auto_new_wasm#upper/WORLD{RESET}
+{GREEN}http://localhost:4000/cargo_auto_template_new_wasm#upper/WORLD{RESET}
     {YELLOW}If all is fine, run{RESET}
 {GREEN}cargo auto release{RESET}
 "#
@@ -142,18 +142,18 @@ fn task_release() {
 
     run_shell_command("cargo fmt");
     run_shell_command("wasm-pack build --target web");
-    run_shell_command("\\rsync -a --delete-after pkg/ web_server_folder/bestia_dev_cargo_auto_new_wasm/pkg/");
+    run_shell_command("\\rsync -a --delete-after pkg/ web_server_folder/cargo_auto_template_new_wasm/pkg/");
     println!(
         r#"
     {YELLOW}After `cargo auto build`, open port 4000 in VSCode and run the basic web server
     in a separate VSCode bash terminal, so it can serve constantly in the background.{RESET}
 {GREEN}basic-http-server -a 0.0.0.0:4000 ./web_server_folder{RESET}
     {YELLOW}and open the browser on{RESET}
-{GREEN}http://localhost:4000/bestia_dev_cargo_auto_new_wasm{RESET}    
-{GREEN}http://localhost:4000/bestia_dev_cargo_auto_new_wasm#print/world{RESET}
-{GREEN}http://localhost:4000/bestia_dev_cargo_auto_new_wasm#upper/world{RESET}
+{GREEN}http://localhost:4000/cargo_auto_template_new_wasm{RESET}    
+{GREEN}http://localhost:4000/cargo_auto_template_new_wasm#print/world{RESET}
+{GREEN}http://localhost:4000/cargo_auto_template_new_wasm#upper/world{RESET}
     {YELLOW}This will return an error:{RESET}
-{GREEN}http://localhost:4000/bestia_dev_cargo_auto_new_wasm#upper/WORLD{RESET}
+{GREEN}http://localhost:4000/cargo_auto_template_new_wasm#upper/WORLD{RESET}
     {YELLOW}If all is fine, run{RESET}
 {GREEN}cargo auto doc{RESET}
 "#

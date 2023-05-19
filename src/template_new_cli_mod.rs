@@ -8,10 +8,10 @@ pub fn copy_to_files(project_name: &str) {
         // rename/replace the project_name
         let file_name = file_item
             .file_name
-            .replace("bestia_dev_cargo_auto_new_cli", project_name);
+            .replace("cargo_auto_template_new_cli", project_name);
         let file_content = file_item
             .file_content
-            .replace("bestia_dev_cargo_auto_new_cli", project_name);
+            .replace("cargo_auto_template_new_cli", project_name);
 
         // create directory if needed
         std::fs::create_dir_all(folder_path.join(&file_name).parent().unwrap()).unwrap();
@@ -49,7 +49,7 @@ pub fn get_vec_file() -> Vec<crate::FileItem> {
     vec_file.push(crate::FileItem {
         file_name: "Cargo.toml",
         file_content: r###"[package]
-name = "bestia_dev_cargo_auto_new_cli"
+name = "cargo_auto_template_new_cli"
 version = "1.0.12"
 description = "Basic Rust project template for CLI and library, more than just `cargo new hello`"
 authors = ["bestia.dev"]
@@ -57,7 +57,7 @@ homepage = "https://bestia.dev"
 edition = "2021"
 license = "MIT"
 readme = "README.md"
-repository = "https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli"
+repository = "https://github.com/bestia-dev/cargo_auto_template_new_cli"
 categories = ["rust-patterns"]
 keywords = ["Rust cli and library project template"]
 publish = false
@@ -76,7 +76,7 @@ anyhow="1.0.56""###,
     });
     vec_file.push(crate::FileItem {
         file_name: "src/hello_mod.rs",
-        file_content: r###"// bestia_dev_cargo_auto_new_cli/src/hello_mod.rs
+        file_content: r###"// cargo_auto_template_new_cli/src/hello_mod.rs
 
 //! All the real code is inside modules in separate files.
 //!
@@ -129,8 +129,8 @@ mod test {
 "###,
     });
     vec_file.push(crate::FileItem {
-        file_name: "src/bin/bestia_dev_cargo_auto_new_cli/main.rs",
-        file_content: r###"//! bestia_dev_cargo_auto_new_cli/src/bin/bestia_dev_cargo_auto_new_cli/main.rs
+        file_name: "src/bin/cargo_auto_template_new_cli/main.rs",
+        file_content: r###"//! cargo_auto_template_new_cli/src/bin/cargo_auto_template_new_cli/main.rs
 
 // This `main.rs` is the code for the CLI application.
 // The build of this project will create the CLI application.
@@ -142,7 +142,7 @@ mod test {
 // The `lib.rs` uses the `thiserror` library.
 
 // Linux terminal colors
-use bestia_dev_cargo_auto_new_cli::{RED, RESET, YELLOW};
+use cargo_auto_template_new_cli::{RED, RESET, YELLOW};
 
 /// entry point into the bin-executable
 fn main() {
@@ -172,7 +172,7 @@ fn main() {
             }
             None => println!("{RED}Error: Missing arguments `greet_name`.{RESET}"),
         },
-        _ => println!("{RED}Error: Unrecognized arguments. Try `bestia_dev_cargo_auto_new_cli --help`{RESET}"),
+        _ => println!("{RED}Error: Unrecognized arguments. Try `cargo_auto_template_new_cli --help`{RESET}"),
     }
 }
 
@@ -180,15 +180,15 @@ fn main() {
 fn print_help() {
     println!(
         r#"
-    {YELLOW}Welcome to bestia_dev_cargo_auto_new_cli !
+    {YELLOW}Welcome to cargo_auto_template_new_cli !
     This is a simple yet complete template for a CLI program written in Rust.{RESET}
 
-bestia_dev_cargo_auto_new_cli --help
-bestia_dev_cargo_auto_new_cli print world
-bestia_dev_cargo_auto_new_cli upper world
+cargo_auto_template_new_cli --help
+cargo_auto_template_new_cli print world
+cargo_auto_template_new_cli upper world
 
     This command should return an error:
-bestia_dev_cargo_auto_new_cli upper WORLD
+cargo_auto_template_new_cli upper WORLD
   
     © 2022 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
 "#
@@ -198,14 +198,14 @@ bestia_dev_cargo_auto_new_cli upper WORLD
 /// print my name
 fn print_greet_name(greet_name: &str) {
     // call the function from the `lib.rs`
-    println!("{}", bestia_dev_cargo_auto_new_cli::format_hello_phrase(greet_name));
+    println!("{}", cargo_auto_template_new_cli::format_hello_phrase(greet_name));
 }
 
 /// print my name upper, can return error
 fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
     // the function from `lib.rs`, can return error
     // use the ? syntax to bubble the error up one level or continue (early return)
-    let upper = bestia_dev_cargo_auto_new_cli::format_upper_hello_phrase(greet_name)?;
+    let upper = cargo_auto_template_new_cli::format_upper_hello_phrase(greet_name)?;
     println!("{}", upper);
     // return
     Ok(())
@@ -214,7 +214,7 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
     });
     vec_file.push(crate::FileItem {
         file_name: "src/lib.rs",
-        file_content: r###"// bestia_dev_cargo_auto_new_cli/src/lib.rs
+        file_content: r###"// cargo_auto_template_new_cli/src/lib.rs
 
 // region: auto_md_to_doc_comments include README.md A //!
 //! # cargo-auto  
@@ -494,12 +494,12 @@ pub const RESET: &str = "\x1b[0m";
             file_name :"README.md",
             file_content : r###"[//]: # (auto_md_to_doc_comments segment start A)
 
-# bestia_dev_cargo_auto_new_cli
+# cargo_auto_template_new_cli
 
 [//]: # (auto_cargo_toml_to_md start)
 
 **Basic Rust project template for CLI and library, more than just `cargo new hello`**  
-***version: 1.0.4 date: 2022-04-21 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli)***  
+***version: 1.0.4 date: 2022-04-21 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo_auto_template_new_cli)***  
 
 [//]: # (auto_cargo_toml_to_md end)
 
@@ -512,7 +512,7 @@ pub const RESET: &str = "\x1b[0m";
 
 [//]: # (auto_lines_of_code end)
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/blob/main/LICENSE) [![Rust](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo_auto_template_new_cli/blob/main/LICENSE) [![Rust](https://github.com/bestia-dev/cargo_auto_template_new_cli/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo_auto_template_new_cli/)
 
 ## Edit this README.md file
 
@@ -525,7 +525,7 @@ Find `bestia.dev` everywhere and change it with your username.
 
 My first line I typed when I learned the Rust language was `cargo new hello`. It is extraordinary for learning Rust, but it is a rudimentary example, not really useful in practical life.
 
-I created this project template `bestia_dev_cargo_auto_new_cli` for a simple CLI application that has all the moving parts for a real life project.
+I created this project template `cargo_auto_template_new_cli` for a simple CLI application that has all the moving parts for a real life project.
 
 ## Separate main.rs and lib.rs
 
@@ -540,7 +540,7 @@ A separate `lib.rs` enables to make good tests and examples without worrying abo
 
 ## super simple argument parsing
 
-I use a super simple code to parse CLI arguments inside the `src/bin/bestia_dev_cargo_auto_new_cli/main.rs`. There are crate libraries that enables very complex argument parsing if needed.
+I use a super simple code to parse CLI arguments inside the `src/bin/cargo_auto_template_new_cli/main.rs`. There are crate libraries that enables very complex argument parsing if needed.
 
 ## automation_tasks_rs
 
@@ -576,11 +576,11 @@ old version: "0.1.18"
 new version: '0.1.19'
 $ cargo fmt
 $ cargo build
-Compiling bestia_dev_cargo_auto_new_cli v0.1.19 (/home/rustdevuser/rustprojects/bestia_dev_cargo_auto_new_cli)
+Compiling cargo_auto_template_new_cli v0.1.19 (/home/rustdevuser/rustprojects/cargo_auto_template_new_cli)
 Finished dev [unoptimized + debuginfo] target(s) in 2.72s
 
 After `cargo auto build`, run the compiled binary
-run `./target/debug/bestia_dev_cargo_auto_new_cli print world`
+run `./target/debug/cargo_auto_template_new_cli print world`
 later
 run `cargo auto release`
 ```
@@ -597,16 +597,16 @@ old version: "0.1.20"
 new version: '0.1.21'
 new text: '
 **Basic Rust project template for CLI, more than just `cargo new hello`**
-***version: 0.1.21 date: 2022-04-01 author: [bestia.dev](bestia.dev) repository: [Github](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli)***'
+***version: 0.1.21 date: 2022-04-01 author: [bestia.dev](bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo_auto_template_new_cli)***'
 
 include_into_readme_md write file: README.md
 $ cargo fmt
 $ cargo build --release
-Compiling bestia_dev_cargo_auto_new_cli v0.1.21 (/home/rustdevuser/rustprojects/bestia_dev_cargo_auto_new_cli)
+Compiling cargo_auto_template_new_cli v0.1.21 (/home/rustdevuser/rustprojects/cargo_auto_template_new_cli)
 Finished release [optimized] target(s) in 1.05s
 
 After `cargo auto release`, , run the compiled binary
-run `./target/release/bestia_dev_cargo_auto_new_cli print world`
+run `./target/release/cargo_auto_template_new_cli print world`
 later
 run `cargo auto doc`
 
@@ -621,7 +621,7 @@ cargo auto doc
 ```bash
 Running automation task: doc
 $ cargo doc --no-deps --document-private-items
- Documenting bestia_dev_cargo_auto_new_cli v0.1.21 (/home/rustdevuser/rustprojects/bestia_dev_cargo_auto_new_cli)
+ Documenting cargo_auto_template_new_cli v0.1.21 (/home/rustdevuser/rustprojects/cargo_auto_template_new_cli)
 Finished dev [unoptimized + debuginfo] target(s) in 0.54s
 $ rsync -a --info=progress2 --delete-after target/doc/ docs/
 2,787,371 100% 46.60MB/s 0:00:00 (xfr#56, to-chk=0/61) 
@@ -656,7 +656,7 @@ Compressing objects: 100% (16/16), done.
 Writing objects: 100% (19/19), 6.27 KiB | 1.25 MiB/s, done.
 Total 19 (delta 11), reused 0 (delta 0), pack-reused 0
 remote: Resolving deltas: 100% (11/11), completed with 10 local objects.
-To https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli.git
+To https://github.com/bestia-dev/cargo_auto_template_new_cli.git
  d0f31d3..3bdcc91 main -> main
 
 After `cargo auto commit and push`
@@ -767,7 +767,7 @@ SOFTWARE.
         file_name: "tests/integration_test.rs",
         file_content: r###"// tests/integration_test.rs
 
-use bestia_dev_cargo_auto_new_cli::*;
+use cargo_auto_template_new_cli::*;
 
 #[test]
 fn integration_test_01() {
@@ -788,7 +788,7 @@ fn integration_test_02_error_check() {
 //! A simple example how to use the `lib.rs`
 //! You can run it with `cargo run --example example_1`
 
-use bestia_dev_cargo_auto_new_cli::*;
+use cargo_auto_template_new_cli::*;
 
 /// example how to use format_hello_phrase() and format_upper_hello_phrase()
 fn main() {
@@ -826,7 +826,7 @@ cargo_auto_lib = "0.8.60""###,
     });
     vec_file.push(crate::FileItem{
             file_name :"automation_tasks_rs/src/main.rs",
-            file_content : r###"//! automation_tasks_rs for bestia_dev_cargo_auto_new_cli
+            file_content : r###"//! automation_tasks_rs for cargo_auto_template_new_cli
 
 use cargo_auto_lib::*;
 

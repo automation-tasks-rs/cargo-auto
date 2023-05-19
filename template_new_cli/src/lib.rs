@@ -1,4 +1,4 @@
-// bestia_dev_cargo_auto_new_cli/src/lib.rs
+// cargo_auto_template_new_cli/src/lib.rs
 
 // region: auto_md_to_doc_comments include README.md A //!
 

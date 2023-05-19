@@ -1,11 +1,11 @@
 [//]: # (auto_md_to_doc_comments segment start A)
 
-# bestia_dev_cargo_auto_new_cli
+# cargo_auto_template_new_cli
 
 [//]: # (auto_cargo_toml_to_md start)
 
 **Basic Rust project template for CLI and library, more than just `cargo new hello`**  
-***version: 1.0.4 date: 2022-04-21 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli)***  
+***version: 1.0.4 date: 2022-04-21 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo_auto_template_new_cli)***  
 
 [//]: # (auto_cargo_toml_to_md end)
 
@@ -18,7 +18,7 @@
 
 [//]: # (auto_lines_of_code end)
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/blob/main/LICENSE) [![Rust](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli/)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo_auto_template_new_cli/blob/main/LICENSE) [![Rust](https://github.com/bestia-dev/cargo_auto_template_new_cli/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo_auto_template_new_cli/)
 
 ## Edit this README.md file
 
@@ -31,7 +31,7 @@ Find `bestia.dev` everywhere and change it with your username.
 
 My first line I typed when I learned the Rust language was `cargo new hello`. It is extraordinary for learning Rust, but it is a rudimentary example, not really useful in practical life.
 
-I created this project template `bestia_dev_cargo_auto_new_cli` for a simple CLI application that has all the moving parts for a real life project.
+I created this project template `cargo_auto_template_new_cli` for a simple CLI application that has all the moving parts for a real life project.
 
 ## Separate main.rs and lib.rs
 
@@ -46,7 +46,7 @@ A separate `lib.rs` enables to make good tests and examples without worrying abo
 
 ## super simple argument parsing
 
-I use a super simple code to parse CLI arguments inside the `src/bin/bestia_dev_cargo_auto_new_cli/main.rs`. There are crate libraries that enables very complex argument parsing if needed.
+I use a super simple code to parse CLI arguments inside the `src/bin/cargo_auto_template_new_cli/main.rs`. There are crate libraries that enables very complex argument parsing if needed.
 
 ## automation_tasks_rs
 
@@ -82,11 +82,11 @@ old version: "0.1.18"
 new version: '0.1.19'
 $ cargo fmt
 $ cargo build
-Compiling bestia_dev_cargo_auto_new_cli v0.1.19 (/home/rustdevuser/rustprojects/bestia_dev_cargo_auto_new_cli)
+Compiling cargo_auto_template_new_cli v0.1.19 (/home/rustdevuser/rustprojects/cargo_auto_template_new_cli)
 Finished dev [unoptimized + debuginfo] target(s) in 2.72s
 
 After `cargo auto build`, run the compiled binary
-run `./target/debug/bestia_dev_cargo_auto_new_cli print world`
+run `./target/debug/cargo_auto_template_new_cli print world`
 later
 run `cargo auto release`
 ```
@@ -103,16 +103,16 @@ old version: "0.1.20"
 new version: '0.1.21'
 new text: '
 **Basic Rust project template for CLI, more than just `cargo new hello`**
-***version: 0.1.21 date: 2022-04-01 author: [bestia.dev](bestia.dev) repository: [Github](https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli)***'
+***version: 0.1.21 date: 2022-04-01 author: [bestia.dev](bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo_auto_template_new_cli)***'
 
 include_into_readme_md write file: README.md
 $ cargo fmt
 $ cargo build --release
-Compiling bestia_dev_cargo_auto_new_cli v0.1.21 (/home/rustdevuser/rustprojects/bestia_dev_cargo_auto_new_cli)
+Compiling cargo_auto_template_new_cli v0.1.21 (/home/rustdevuser/rustprojects/cargo_auto_template_new_cli)
 Finished release [optimized] target(s) in 1.05s
 
 After `cargo auto release`, , run the compiled binary
-run `./target/release/bestia_dev_cargo_auto_new_cli print world`
+run `./target/release/cargo_auto_template_new_cli print world`
 later
 run `cargo auto doc`
 
@@ -127,7 +127,7 @@ cargo auto doc
 ```bash
 Running automation task: doc
 $ cargo doc --no-deps --document-private-items
- Documenting bestia_dev_cargo_auto_new_cli v0.1.21 (/home/rustdevuser/rustprojects/bestia_dev_cargo_auto_new_cli)
+ Documenting cargo_auto_template_new_cli v0.1.21 (/home/rustdevuser/rustprojects/cargo_auto_template_new_cli)
 Finished dev [unoptimized + debuginfo] target(s) in 0.54s
 $ rsync -a --info=progress2 --delete-after target/doc/ docs/
 2,787,371 100% 46.60MB/s 0:00:00 (xfr#56, to-chk=0/61) 
@@ -162,7 +162,7 @@ Compressing objects: 100% (16/16), done.
 Writing objects: 100% (19/19), 6.27 KiB | 1.25 MiB/s, done.
 Total 19 (delta 11), reused 0 (delta 0), pack-reused 0
 remote: Resolving deltas: 100% (11/11), completed with 10 local objects.
-To https://github.com/bestia-dev/bestia_dev_cargo_auto_new_cli.git
+To https://github.com/bestia-dev/cargo_auto_template_new_cli.git
  d0f31d3..3bdcc91 main -> main
 
 After `cargo auto commit and push`

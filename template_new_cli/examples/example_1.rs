@@ -3,7 +3,7 @@
 //! A simple example how to use the `lib.rs`
 //! You can run it with `cargo run --example example_1`
 
-use bestia_dev_cargo_auto_new_cli::*;
+use cargo_auto_template_new_cli::*;
 
 /// example how to use format_hello_phrase() and format_upper_hello_phrase()
 fn main() {

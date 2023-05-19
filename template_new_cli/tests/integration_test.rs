@@ -1,6 +1,6 @@
 // tests/integration_test.rs
 
-use bestia_dev_cargo_auto_new_cli::*;
+use cargo_auto_template_new_cli::*;
 
 #[test]
 fn integration_test_01() {

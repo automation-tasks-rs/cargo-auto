@@ -1,11 +1,11 @@
 [package]
-name = "bestia_dev_cargo_auto_new_wasm"
+name = "cargo_auto_template_new_wasm"
 version = "2023.519.1012"
 authors = ["bestia.dev"]
 homepage = "https://bestia.dev"
 edition = "2021"
 description = "template for a minimal wasm project for browser"
-repository = "https://github.com/bestia-dev/bestia_dev_cargo_auto_new_wasm"
+repository = "https://github.com/bestia-dev/cargo_auto_template_new_wasm"
 readme = "README.md"
 license = "MIT"
 keywords = ["wasm"]

@@ -1,4 +1,4 @@
-//! bestia_dev_cargo_auto_new_cli/src/bin/bestia_dev_cargo_auto_new_cli/main.rs
+//! src/bin/cargo_auto_template_new_cli/main.rs
 
 // This `main.rs` is the code for the CLI application.
 // The build of this project will create the CLI application.
@@ -10,7 +10,7 @@
 // The `lib.rs` uses the `thiserror` library.
 
 // Linux terminal colors
-use bestia_dev_cargo_auto_new_cli::{RED, RESET, YELLOW};
+use cargo_auto_template_new_cli::{RED, RESET, YELLOW};
 
 /// entry point into the bin-executable
 fn main() {
@@ -40,7 +40,7 @@ fn main() {
             }
             None => println!("{RED}Error: Missing arguments `greet_name`.{RESET}"),
         },
-        _ => println!("{RED}Error: Unrecognized arguments. Try `bestia_dev_cargo_auto_new_cli --help`{RESET}"),
+        _ => println!("{RED}Error: Unrecognized arguments. Try `cargo_auto_template_new_cli --help`{RESET}"),
     }
 }
 
@@ -48,15 +48,15 @@ fn main() {
 fn print_help() {
     println!(
         r#"
-    {YELLOW}Welcome to bestia_dev_cargo_auto_new_cli !
+    {YELLOW}Welcome to cargo_auto_template_new_cli !
     This is a simple yet complete template for a CLI program written in Rust.{RESET}
 
-bestia_dev_cargo_auto_new_cli --help
-bestia_dev_cargo_auto_new_cli print world
-bestia_dev_cargo_auto_new_cli upper world
+cargo_auto_template_new_cli --help
+cargo_auto_template_new_cli print world
+cargo_auto_template_new_cli upper world
 
     This command should return an error:
-bestia_dev_cargo_auto_new_cli upper WORLD
+cargo_auto_template_new_cli upper WORLD
   
     © 2022 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
 "#
@@ -66,14 +66,14 @@ bestia_dev_cargo_auto_new_cli upper WORLD
 /// print my name
 fn print_greet_name(greet_name: &str) {
     // call the function from the `lib.rs`
-    println!("{}", bestia_dev_cargo_auto_new_cli::format_hello_phrase(greet_name));
+    println!("{}", cargo_auto_template_new_cli::format_hello_phrase(greet_name));
 }
 
 /// print my name upper, can return error
 fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
     // the function from `lib.rs`, can return error
     // use the ? syntax to bubble the error up one level or continue (early return)
-    let upper = bestia_dev_cargo_auto_new_cli::format_upper_hello_phrase(greet_name)?;
+    let upper = cargo_auto_template_new_cli::format_upper_hello_phrase(greet_name)?;
     println!("{}", upper);
     // return
     Ok(())
