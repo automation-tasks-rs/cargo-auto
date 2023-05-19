@@ -1,6 +1,4 @@
-//! automation_tasks_rs for cargo-auto
-
-mod copy_files_to_strings_mod;
+//! automation_tasks_rs for bestia_dev_cargo_auto_new_wasm
 
 use cargo_auto_lib::*;
 
@@ -50,8 +48,6 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args) {
                 } else if &task == "commit_and_push" {
                     let arg_2 = args.next();
                     task_commit_and_push(arg_2);
-                } else if &task == "publish_to_crates_io" {
-                    task_publish_to_crates_io();
                 } else {
                     println!("{RED}Error: Task {task} is unknown.{RESET}");
                     print_help();
@@ -75,10 +71,7 @@ cargo auto doc{RESET}{YELLOW} - builds the docs, copy to docs directory{RESET}{G
 cargo auto test{RESET}{YELLOW} - runs all the tests{RESET}{GREEN}
 cargo auto commit_and_push "message"{RESET}{YELLOW} - commits with message and push with mandatory message
     (If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.){RESET}{GREEN}
-cargo auto publish_to_crates_io{RESET}{YELLOW} - publish to crates.io, git tag
-    (You need credentials for publishing. On crates.io get the 'access token'. Then save it locally once and forever with the command 
-    ` cargo login TOKEN` use a space before the command to avoid saving the secret token in bash history.){RESET}
-    © 2022 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
+    © 2023 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
 "#
     );
     print_examples_cmd();
@@ -100,7 +93,7 @@ fn completion() {
     let last_word = args[3].as_str();
 
     if last_word == "cargo-auto" || last_word == "auto" {
-        let sub_commands = vec!["build", "release", "doc", "test", "commit_and_push", "publish_to_crates_io",];
+        let sub_commands = vec!["build", "release", "doc", "test", "commit_and_push",];
         completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
     /*
@@ -116,71 +109,54 @@ fn completion() {
 
 // region: tasks
 
-/// cargo build
+/// wasm-pack build
 fn task_build() {
-    let cargo_toml = CargoToml::read();
-
-    copy_files_to_strings_mod::copy_folder_files_into_module(
-        std::path::Path::new("template_new_auto"), 
-        std::path::Path::new("src/template_new_auto_mod.rs"));
- 
-    copy_files_to_strings_mod::copy_folder_files_into_module(
-        std::path::Path::new("template_new_cli"), 
-        std::path::Path::new("src/template_new_cli_mod.rs"));
-
-    copy_files_to_strings_mod::copy_folder_files_into_module(
-        std::path::Path::new("template_new_wasm"), 
-        std::path::Path::new("src/template_new_wasm_mod.rs"));        
-
     auto_version_increment_semver_or_date();
     run_shell_command("cargo fmt");
-    run_shell_command("cargo build");
+    auto_cargo_toml_to_md();
+    auto_lines_of_code("");
+    run_shell_command("wasm-pack build --target web");
+    run_shell_command("\\rsync -a --delete-after pkg/ web_server_folder/bestia_dev_cargo_auto_new_wasm/pkg/");
     println!(
-        r#"{YELLOW}
-    After `cargo auto build`, run the compiled binary, examples and/or tests{RESET}{GREEN}
-./target/debug/{package_name} argument{RESET}{YELLOW}
-    if ok, then,{RESET}{GREEN}
-cargo auto release{RESET}{YELLOW}
-{RESET}"#,
-package_name = cargo_toml.package_name(),
+        r#"
+    {YELLOW}After `cargo auto build`, open port 4000 in VSCode and run the basic web server
+    in a separate VSCode bash terminal, so it can serve constantly in the background.{RESET}
+{GREEN}basic-http-server -a 0.0.0.0:4000 ./web_server_folder{RESET}
+    {YELLOW}and open the browser on{RESET}
+{GREEN}http://localhost:4000/bestia_dev_cargo_auto_new_wasm{RESET}
+{GREEN}http://localhost:4000/bestia_dev_cargo_auto_new_wasm#print/world{RESET}
+{GREEN}http://localhost:4000/bestia_dev_cargo_auto_new_wasm#upper/world{RESET}
+    {YELLOW}This will return an error:{RESET}
+{GREEN}http://localhost:4000/bestia_dev_cargo_auto_new_wasm#upper/WORLD{RESET}
+    {YELLOW}If all is fine, run{RESET}
+{GREEN}cargo auto release{RESET}
+"#
     );
-    print_examples_cmd();
 }
 
-/// cargo build --release
+/// wasm-pack build --release
 fn task_release() {
-
-    copy_files_to_strings_mod::copy_folder_files_into_module(
-        std::path::Path::new("template_new_auto"), 
-        std::path::Path::new("src/template_new_auto_mod.rs"));
- 
-    copy_files_to_strings_mod::copy_folder_files_into_module(
-        std::path::Path::new("template_new_cli"), 
-        std::path::Path::new("src/template_new_cli_mod.rs"));
-
-    copy_files_to_strings_mod::copy_folder_files_into_module(
-        std::path::Path::new("template_new_wasm"), 
-        std::path::Path::new("src/template_new_wasm_mod.rs"));
-        
-    let cargo_toml = CargoToml::read();
     auto_version_increment_semver_or_date();
     auto_cargo_toml_to_md();
     auto_lines_of_code("");
 
     run_shell_command("cargo fmt");
-    run_shell_command("cargo build --release");
-    run_shell_command(&format!(
-        "strip target/release/{package_name}",
-        package_name = cargo_toml.package_name()
-    )); 
+    run_shell_command("wasm-pack build --target web");
+    run_shell_command("\\rsync -a --delete-after pkg/ web_server_folder/bestia_dev_cargo_auto_new_wasm/pkg/");
     println!(
-        r#"{YELLOW}
-    After `cargo auto release`, run the compiled binary, examples and/or tests{RESET}{GREEN}
-./target/release/{package_name} argument{RESET}{YELLOW}
-    if ok, then,{RESET}{GREEN}
-cargo auto doc{RESET}{YELLOW}
-{RESET}"#,
-package_name = cargo_toml.package_name(),
+        r#"
+    {YELLOW}After `cargo auto build`, open port 4000 in VSCode and run the basic web server
+    in a separate VSCode bash terminal, so it can serve constantly in the background.{RESET}
+{GREEN}basic-http-server -a 0.0.0.0:4000 ./web_server_folder{RESET}
+    {YELLOW}and open the browser on{RESET}
+{GREEN}http://localhost:4000/bestia_dev_cargo_auto_new_wasm{RESET}    
+{GREEN}http://localhost:4000/bestia_dev_cargo_auto_new_wasm#print/world{RESET}
+{GREEN}http://localhost:4000/bestia_dev_cargo_auto_new_wasm#upper/world{RESET}
+    {YELLOW}This will return an error:{RESET}
+{GREEN}http://localhost:4000/bestia_dev_cargo_auto_new_wasm#upper/WORLD{RESET}
+    {YELLOW}If all is fine, run{RESET}
+{GREEN}cargo auto doc{RESET}
+"#
     );
     print_examples_cmd();
 }
@@ -204,10 +180,10 @@ fn task_doc() {
     run_shell_command("cargo fmt");
     // message to help user with next move
     println!(
-        r#"{YELLOW}
-    After `cargo auto doc`, check `docs/index.html`. If ok, then test the documentation code examples{RESET}{GREEN}
-cargo auto test{RESET}{YELLOW}
-{RESET}"#
+        r#"
+    {YELLOW}After `cargo auto doc`, check `docs/index.html`. If ok, then test the documentation code examples{RESET}
+{GREEN}cargo auto test{RESET}
+{YELLOW}{RESET}"#
     );
 }
 
@@ -215,11 +191,11 @@ cargo auto test{RESET}{YELLOW}
 fn task_test() {
     run_shell_command("cargo test");
     println!(
-        r#"{YELLOW}
-    After `cargo auto test`. If ok, then {RESET}{GREEN}
-cargo auto commit_and_push "message"{RESET}{YELLOW}
-    with mandatory commit message{RESET}{GREEN}
-{RESET}"#
+        r#"
+    {YELLOW}After `cargo auto test`. If ok, then {RESET}
+{GREEN}cargo auto commit_and_push "message"{RESET}
+    {YELLOW}with mandatory commit message{RESET}
+{GREEN}{RESET}"#
     );
 }
 
@@ -229,42 +205,15 @@ fn task_commit_and_push(arg_2: Option<String>) {
         None => println!("{RED}Error: Message for commit is mandatory.{RESET}"),
         Some(message) => {
             run_shell_command(&format!(r#"git add -A && git commit --allow-empty -m "{}""#, message));
-            run_shell_command("git push");
+            run_shell_command("git push");            
             println!(
-                r#"{YELLOW}
-    After `cargo auto commit_and_push "message"`{RESET}{GREEN}
-cargo auto publish_to_crates_io{RESET}{YELLOW}
-{RESET}"#
-            );
+                r#"
+    {YELLOW}After `cargo auto commit_and_push "message"`{RESET}
+{GREEN}cargo auto publish_to_crates_io{RESET}
+    {YELLOW}{RESET}"#
+                );
         }
     }
-}
-
-/// publish to crates.io and git tag
-fn task_publish_to_crates_io() {
-    println!(r#"{YELLOW}The crates.io access token must already be saved locally with `cargo login TOKEN`{RESET}"#);
-
-    let cargo_toml = CargoToml::read();
-    // git tag
-    let shell_command = format!(
-        "git tag -f -a v{version} -m version_{version}",
-        version = cargo_toml.package_version()
-    );
-    run_shell_command(&shell_command);
-
-    // cargo publish
-    run_shell_command("cargo publish");
-    println!(
-        r#"{YELLOW}
-    After `cargo auto publish_to_crates_io`, check in browser{RESET}{GREEN}
-https://crates.io/crates/{package_name}{RESET}{YELLOW}
-    Install the crate with {RESET}{GREEN}
-cargo install {package_name}{RESET}{YELLOW}
-    and check how it works.{RESET}{GREEN}
-{RESET}"#,
-        package_name = cargo_toml.package_name(),
-        // package_version = cargo_toml.package_version()
-    );
 }
 
 // endregion: tasks

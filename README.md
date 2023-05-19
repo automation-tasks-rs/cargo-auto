@@ -79,6 +79,19 @@ I composed an opinionated template for a Rust CLI project. It is easy to run:
 cargo auto new_cli project_name
 ```
 
+## cargo auto new_wasm
+
+I composed an opinionated template for a simple Rust WASM project for browser. It is very similar to the new_cli template, but for WASM.  
+It is easy to run:
+
+```bash
+cargo auto new_wasm project_name
+# then
+cd project_name
+cargo auto build
+# follow detailed instructions
+```
+
 ## scripting with rust
 
 Rust is a compiled language. It is not really a scripting or interpreted language. But the compilation of small projects is really fast and can be ignored. Subsequent calls will use the already built binary and so the speed will be even faster.  

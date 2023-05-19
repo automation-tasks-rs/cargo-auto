@@ -15,7 +15,7 @@ pub const GREEN: &str = "\x1b[32m";
 pub const RESET: &str = "\x1b[0m";
 
 /// it is run outside a Rust project
-/// It must have the argument "new_cli" and the project title
+/// It must have the argument "new_cli" or "new_wasm" and the project title
 pub fn parse_args(args: &mut std::env::Args) {
     // the first argument is the task: new_cli
     // wooow! There is a difference if I call the standalone binary or as a cargo subcommand:
@@ -49,13 +49,14 @@ fn print_help_from_cargo_auto() {
 
     Outside of a Rust project, cargo-auto can create a new Rust project for CLI, simple yet complete:
 cargo auto new_cli project_name
+cargo auto new_wasm project_name
 
     © 2022 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
 "#
     );
 }
 
-/// the first argument is the task: new_cli,...  
+/// the first argument is the task: new_cli, or new_wasm...  
 /// in development use: `cargo run -- new_cli`  
 fn match_first_argument(task: &str, args: &mut std::env::Args) {
     if task == "completion" {
@@ -63,6 +64,9 @@ fn match_first_argument(task: &str, args: &mut std::env::Args) {
     } else if task == "new_cli" {
         let arg_2 = args.next();
         new_cli(arg_2);
+    } else if task == "new_wasm" {
+        let arg_2 = args.next();
+        new_wasm(arg_2);
     } else {
         print_help_from_cargo_auto();
     }
@@ -94,7 +98,7 @@ fn completion() {
         word_being_completed = args[3].as_str();
     }
     if last_word == "cargo-auto" || last_word == "auto" {
-        let sub_commands = vec!["new_cli"];
+        let sub_commands = vec!["new_cli", "new_wasm"];
         completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
 }
@@ -109,6 +113,26 @@ pub fn new_cli(arg_2: Option<String>) {
             println!("    {YELLOW}You can open this new Rust project `{project_name}` in a new Rust editor.{RESET}",);
             println!("    For example VSCode:");
             println!("code {project_name}");
+            println!("    Then build with:");
+            println!("cargo auto build");
+            println!("    and follow detailed instructions.");
+        }
+    }
+}
+
+pub fn new_wasm(arg_2: Option<String>) {
+    match arg_2 {
+        None => println!("{RED}Error: Project name argument is missing: `cargo auto new_wasm project_name`{RESET}"),
+        Some(project_name) => {
+            crate::template_new_wasm_mod::copy_to_files(&project_name);
+            println!("");
+            println!("    {YELLOW}The command `crate auto new_wasm` generated the directory `{project_name}`{RESET}");
+            println!("    {YELLOW}You can open this new Rust project `{project_name}` in a new Rust editor.{RESET}",);
+            println!("    For example VSCode:");
+            println!("code {project_name}");
+            println!("    Then build with:");
+            println!("cargo auto build");
+            println!("    and follow detailed instructions.");
         }
     }
 }

@@ -31,8 +31,8 @@ pub fn copy_folder_files_into_module(folder_path: &std::path::Path, module_path:
 
     // read the content of the module, delimited by markers
     let module_content =  std::fs::read_to_string(module_path).unwrap();
-    let start_pos = find_pos_start_data_after_delimiter(&module_content, 0, "// region: files copied into strings by automation tasks\n").expect("didn't fine // region: files copied..");
-    let end_pos = find_pos_end_data_before_delimiter(&module_content, 0, "// endregion: files copied into strings by automation tasks").expect("didn't fine // endregion: files copied..");
+    let start_pos = find_pos_start_data_after_delimiter(&module_content, 0, "// region: files copied into strings by automation tasks\n").expect("didn't find // region: files copied..");
+    let end_pos = find_pos_end_data_before_delimiter(&module_content, 0, "// endregion: files copied into strings by automation tasks").expect("didn't find // endregion: files copied..");
     let old_code = &module_content[start_pos..end_pos];
 
     // compare the text, if different replace

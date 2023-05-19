@@ -4,7 +4,7 @@ version = 3
 
 [[package]]
 name = "cargo-auto"
-version = "2022.1017.931"
+version = "2023.519.1105"
 dependencies = [
  "lazy_static",
 ]
