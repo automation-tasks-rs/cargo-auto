@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"fn":[["copy_to_files",""],["get_vec_file",""]]};
+window.SIDEBAR_ITEMS = {"fn":["copy_to_files","get_vec_file"]};
