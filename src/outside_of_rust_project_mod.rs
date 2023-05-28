@@ -15,7 +15,7 @@ pub const GREEN: &str = "\x1b[32m";
 pub const RESET: &str = "\x1b[0m";
 
 /// it is run outside a Rust project
-/// It must have the argument "new_cli" or "new_wasm" and the project title
+/// It must have the argument "new_cli" or "new_wasm" or "new_pwa_wasm" and the project title
 pub fn parse_args(args: &mut std::env::Args) {
     // the first argument is the task: new_cli
     // wooow! There is a difference if I call the standalone binary or as a cargo subcommand:
@@ -50,6 +50,8 @@ fn print_help_from_cargo_auto() {
     {YELLOW}Outside of a Rust project, cargo-auto can create a new Rust project for CLI, simple yet complete:{RESET}
 {GREEN}cargo auto new_cli project_name{RESET}
 {GREEN}cargo auto new_wasm project_name{RESET}
+{GREEN}cargo auto new_pwa_wasm project_name{RESET}{YELLOW} - On first call, it will create the `pwa.json5` and `icon512x512.png` files.
+    {YELLOW}Modify them and then repeat the same command.{RESET}
 
     {YELLOW}© 2022 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
 "#
@@ -67,6 +69,9 @@ fn match_first_argument(task: &str, args: &mut std::env::Args) {
     } else if task == "new_wasm" {
         let arg_2 = args.next();
         new_wasm(arg_2);
+    } else if task == "new_pwa_wasm" {
+        let arg_2 = args.next();
+        new_pwa_wasm(arg_2);
     } else {
         print_help_from_cargo_auto();
     }
@@ -98,7 +103,7 @@ fn completion() {
         word_being_completed = args[3].as_str();
     }
     if last_word == "cargo-auto" || last_word == "auto" {
-        let sub_commands = vec!["new_cli", "new_wasm"];
+        let sub_commands = vec!["new_cli", "new_wasm", "new_pwa_wasm"];
         completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
 }
@@ -115,7 +120,7 @@ pub fn new_cli(arg_2: Option<String>) {
             println!("{GREEN}code {project_name}{RESET}");
             println!("    {YELLOW}Then build with:{RESET}");
             println!("{GREEN}cargo auto build{RESET}");
-            println!("    {YELLOW}and follow detailed instructions.{RESET}");
+            println!("    {YELLOW}and follow the detailed instructions.{RESET}");
         }
     }
 }
@@ -132,7 +137,27 @@ pub fn new_wasm(arg_2: Option<String>) {
             println!("{GREEN}code {project_name}{RESET}");
             println!("    {YELLOW}Then build with:{RESET}");
             println!("{GREEN}cargo auto build{RESET}");
-            println!("    {YELLOW}and follow detailed instructions.{RESET}");
+            println!("    {YELLOW}and follow the detailed instructions.{RESET}");
+        }
+    }
+}
+
+pub fn new_pwa_wasm(arg_2: Option<String>) {
+    match arg_2 {
+        None => println!("{RED}Error: Project name argument is missing: `cargo auto new_pwa_wasm project_name`{RESET}"),
+        Some(project_name) => {
+            crate::template_new_pwa_wasm_mod::copy_to_files(&project_name);
+            // TODO: use the `pwa.json5` and `icon512x512.png` to customize the template project
+            println!("");
+            println!("    {YELLOW}On first call, the command `crate auto new_pwa_wasm` generated the files `pwa.json5` and `icon512x512.png`.{RESET}");
+            println!("    {YELLOW}Modify these files accordingly and repeat the same command.{RESET}");
+            println!("    {YELLOW}On second call, the command `crate auto new_pwa_wasm` generated the directory `{project_name}`{RESET}");
+            println!("    {YELLOW}You can open this new Rust project `{project_name}` in a new Rust editor.{RESET}",);
+            println!("    {YELLOW}For example VSCode:{RESET}");
+            println!("{GREEN}code {project_name}{RESET}");
+            println!("    {YELLOW}Then build with:{RESET}");
+            println!("{GREEN}cargo auto build{RESET}");
+            println!("    {YELLOW}and follow the detailed instructions.{RESET}");
         }
     }
 }

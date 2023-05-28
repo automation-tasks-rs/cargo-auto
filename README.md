@@ -92,6 +92,23 @@ cargo auto build
 # follow detailed instructions
 ```
 
+## cargo auto new_pwa_wasm
+
+I composed an opinionated template for a simple Rust PWA-WASM project for browser. It is very similar to the new_cli template, but for WASM. It adds the PWA standard functionality to work as an offline app.  
+The template needs the title, name, long name and description inside a `pwa.json5` file and the `icon512x512.png` file for the icons.  
+It is easy to run:
+
+```bash
+cargo auto new_pwa_wasm
+# on first run it will just create the `pwa.json5` and `icon512x512.png` files
+# modify these files for your new app
+cargo auto new_pwa_wasm
+# then
+cd project_name
+cargo auto build
+# follow detailed instructions
+```
+
 ## scripting with rust
 
 Rust is a compiled language. It is not really a scripting or interpreted language. But the compilation of small projects is really fast and can be ignored. Subsequent calls will use the already built binary and so the speed will be even faster.  

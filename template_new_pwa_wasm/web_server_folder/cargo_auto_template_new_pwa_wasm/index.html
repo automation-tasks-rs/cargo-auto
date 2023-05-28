@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <!-- classic header for a web page -->
+      <title>cargo_auto_template_new_pwa_wasm</title>
+      <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+      <meta name="Description" content="template for a minimal wasm project for browser">
+      <meta name="author" content="https://github.com/bestia-dev/cargo_auto_template_new_pwa_wasm">    
+      <link rel="stylesheet" href="css/basic_style.css">
+      
+</head>
+
+<body>
+      <!-- warning if javascript iis not enabled -->
+      <noscript>
+            <h2>
+                  !!!???!!!<br>
+                  This web app <br>
+                  cannot work <br>
+                  without javascript<br>
+                  enabled<br>
+                  !!!???!!!</h2>
+      </noscript>
+      <!-- display a text while waiting for wasm download. 
+      This content will change from the wasm code.-->
+      <div id="div_for_wasm_html_injecting">
+            <h2>
+                  Waiting to<br>
+                  download <br>
+                  the web app...<br>
+                  This is <br>
+                  very quick on fast<br>
+                  networks...<br>
+            </h2>
+      </div>
+      <p id="p_for_html_println"></p>
+      <!-- import and init the wasm code -->
+      <script type="module">
+            import init from "./pkg/cargo_auto_template_new_pwa_wasm.js";
+            init("./pkg/cargo_auto_template_new_pwa_wasm_bg.wasm");
+      </script>
+</body>
+
+</html>

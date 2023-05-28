@@ -131,6 +131,10 @@ fn task_build() {
     copy_files_to_strings_mod::copy_folder_files_into_module(
         std::path::Path::new("template_new_wasm"), 
         std::path::Path::new("src/template_new_wasm_mod.rs"));        
+            
+        copy_files_to_strings_mod::copy_folder_files_into_module(
+    std::path::Path::new("template_new_pwa_wasm"), 
+    std::path::Path::new("src/template_new_pwa_wasm_mod.rs"));   
 
     auto_version_increment_semver_or_date();
     run_shell_command("cargo fmt");
@@ -161,7 +165,11 @@ fn task_release() {
     copy_files_to_strings_mod::copy_folder_files_into_module(
         std::path::Path::new("template_new_wasm"), 
         std::path::Path::new("src/template_new_wasm_mod.rs"));
-        
+
+    copy_files_to_strings_mod::copy_folder_files_into_module(
+        std::path::Path::new("template_new_pwa_wasm"), 
+        std::path::Path::new("src/template_new_pwa_wasm_mod.rs"));
+
     let cargo_toml = CargoToml::read();
     auto_version_increment_semver_or_date();
     auto_cargo_toml_to_md();

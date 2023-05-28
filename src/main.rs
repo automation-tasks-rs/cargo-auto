@@ -237,6 +237,7 @@ mod inside_of_rust_project_mod;
 mod outside_of_rust_project_mod;
 mod template_new_auto_mod;
 mod template_new_cli_mod;
+mod template_new_pwa_wasm_mod;
 mod template_new_wasm_mod;
 
 // region: use statements
