@@ -148,12 +148,12 @@ fn remove_downloading_message() {
 
 /// print my name
 fn print_greet_name(greet_name: &str) {
-    wsm::set_html_element_inner_text("div_for_wasm_html_injecting",
+    wsm::set_html_element_inner_text("div_for_wasm_html_injecting",&format!(
 r#"The result is
 {}
 "#,
     lib_mod::format_hello_phrase(greet_name)
-    );
+    ));
 }
 
 /// print my name upper, can return error
@@ -161,11 +161,11 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
     // the function from `lib.rs`, can return error
     // use the ? syntax to bubble the error up one level or continue (early return)
     let upper = lib_mod::format_upper_hello_phrase(greet_name)?;
-    wsm::set_html_element_inner_text("div_for_wasm_html_injecting",
+    wsm::set_html_element_inner_text("div_for_wasm_html_injecting",&format!(
 r#"The result is
 {upper}
 "#
-    );
+    ));
     // return
     Ok(())
 }

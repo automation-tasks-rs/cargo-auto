@@ -78,19 +78,11 @@ pub fn set_html_element_inner_text(element_id: &str, inner_text: &str) {
 /// Only correctly html encoded strings can use this function.
 /// set inner html into dom
 pub fn set_html_element_inner_html(element_id: &str, inner_html: &str) {
-    let div_for_wasm_html_injecting = get_element_by_id(element_id);
-    div_for_wasm_html_injecting.set_html_element_inner_html(inner_html);
+    let html_element = get_element_by_id(element_id);
+    html_element.set_inner_html(inner_html);
 }
 
 // open URL in new tab
 pub fn open_url_in_new_tab(url: &str) {
-    // just an example of one method how to use javascript code inside Rust code
-    let js_cmd = &format!(
-        r#"{{
-        var win = window.open('{}', '_blank','noopener');
-        win.focus();
-        }}"#,
-        url,
-    );
-    unwrap!(js_sys::eval(&js_cmd));
+    window().open_with_url_and_target(url, "_blank").unwrap();
 }

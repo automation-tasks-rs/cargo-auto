@@ -447,21 +447,13 @@ pub fn set_html_element_inner_text(element_id: &str, inner_text: &str) {
 /// Only correctly html encoded strings can use this function.
 /// set inner html into dom
 pub fn set_html_element_inner_html(element_id: &str, inner_html: &str) {
-    let div_for_wasm_html_injecting = get_element_by_id(element_id);
-    div_for_wasm_html_injecting.set_html_element_inner_html(inner_html);
+    let html_element = get_element_by_id(element_id);
+    html_element.set_inner_html(inner_html);
 }
 
 // open URL in new tab
 pub fn open_url_in_new_tab(url: &str) {
-    // just an example of one method how to use javascript code inside Rust code
-    let js_cmd = &format!(
-        r#"{{
-        var win = window.open('{}', '_blank','noopener');
-        win.focus();
-        }}"#,
-        url,
-    );
-    unwrap!(js_sys::eval(&js_cmd));
+    window().open_with_url_and_target(url, "_blank").unwrap();
 }
 "###,
     });
@@ -727,8 +719,8 @@ fn print_greet_name(greet_name: &str) {
 r#"The result is
 {}
 "#,
-lib_mod::format_hello_phrase(greet_name)
-));
+    lib_mod::format_hello_phrase(greet_name)
+    ));
 }
 
 /// print my name upper, can return error
@@ -736,13 +728,11 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
     // the function from `lib.rs`, can return error
     // use the ? syntax to bubble the error up one level or continue (early return)
     let upper = lib_mod::format_upper_hello_phrase(greet_name)?;
-
-    wsm::set_html_element_inner_text("div_for_wasm_html_injecting",format!(
+    wsm::set_html_element_inner_text("div_for_wasm_html_injecting",&format!(
 r#"The result is
 {upper}
 "#
     ));
-    
     // return
     Ok(())
 }
@@ -7598,7 +7588,7 @@ body {
 // but the new service worker will not be activated until all 
 // tabs with this webapp are closed.
 
-const CACHE_NAME = '2023.529.1044';
+const CACHE_NAME = '2023.529.1151';
 
 self.addEventListener('install', event => {
     console.log('event install ', CACHE_NAME);
@@ -7728,7 +7718,7 @@ self.addEventListener('fetch', event => {
     <!-- import and init the wasm code -->
     <script type="module">
         import init from "./pkg/rust_project_name.js";
-        init("./pkg/rust_project_name.wasm");
+        init("./pkg/rust_project_name_bg.wasm");
     </script>
 </body>
 </html>
