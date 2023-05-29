@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"constant":["GREEN","RED","RESET","YELLOW"],"fn":["completion","completion_return_one_or_more_sub_commands","match_first_argument","new_cli","new_wasm","parse_args","print_help_from_cargo_auto"]};
+window.SIDEBAR_ITEMS = {"fn":["completion","completion_return_one_or_more_sub_commands","match_first_argument","parse_args","print_help_from_cargo_auto"]};

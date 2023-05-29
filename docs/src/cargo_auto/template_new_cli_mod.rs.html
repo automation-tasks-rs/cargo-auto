@@ -1091,10 +1091,65 @@
 <a href="#1091" id="1091">1091</a>
 <a href="#1092" id="1092">1092</a>
 <a href="#1093" id="1093">1093</a>
+<a href="#1094" id="1094">1094</a>
+<a href="#1095" id="1095">1095</a>
+<a href="#1096" id="1096">1096</a>
+<a href="#1097" id="1097">1097</a>
+<a href="#1098" id="1098">1098</a>
+<a href="#1099" id="1099">1099</a>
+<a href="#1100" id="1100">1100</a>
+<a href="#1101" id="1101">1101</a>
+<a href="#1102" id="1102">1102</a>
+<a href="#1103" id="1103">1103</a>
+<a href="#1104" id="1104">1104</a>
+<a href="#1105" id="1105">1105</a>
+<a href="#1106" id="1106">1106</a>
+<a href="#1107" id="1107">1107</a>
+<a href="#1108" id="1108">1108</a>
+<a href="#1109" id="1109">1109</a>
+<a href="#1110" id="1110">1110</a>
+<a href="#1111" id="1111">1111</a>
+<a href="#1112" id="1112">1112</a>
+<a href="#1113" id="1113">1113</a>
+<a href="#1114" id="1114">1114</a>
+<a href="#1115" id="1115">1115</a>
+<a href="#1116" id="1116">1116</a>
+<a href="#1117" id="1117">1117</a>
+<a href="#1118" id="1118">1118</a>
+<a href="#1119" id="1119">1119</a>
+<a href="#1120" id="1120">1120</a>
+<a href="#1121" id="1121">1121</a>
+<a href="#1122" id="1122">1122</a>
+<a href="#1123" id="1123">1123</a>
+<a href="#1124" id="1124">1124</a>
+<a href="#1125" id="1125">1125</a>
+<a href="#1126" id="1126">1126</a>
+<a href="#1127" id="1127">1127</a>
+<a href="#1128" id="1128">1128</a>
+<a href="#1129" id="1129">1129</a>
 </pre><pre class="rust"><code><span class="doccomment">//! this strings are copied from the template_new_cli folder
 //! because when publishing to crates.io, only the main bin-executable is transferred
 
-</span><span class="kw">pub fn </span>copy_to_files(project_name: <span class="kw-2">&amp;</span>str) {
+</span><span class="kw">use crate</span>::{GREEN, RED, RESET, YELLOW};
+
+<span class="kw">pub fn </span>new_cli(arg_2: <span class="prelude-ty">Option</span>&lt;String&gt;) {
+    <span class="kw">match </span>arg_2 {
+        <span class="prelude-val">None </span>=&gt; <span class="macro">println!</span>(<span class="string">&quot;{RED}Error: Project name argument is missing: `cargo auto new_cli project_name`{RESET}&quot;</span>),
+        <span class="prelude-val">Some</span>(project_name) =&gt; {
+            copy_to_files(<span class="kw-2">&amp;</span>project_name);
+            <span class="macro">println!</span>(<span class="string">&quot;&quot;</span>);
+            <span class="macro">println!</span>(<span class="string">&quot;    {YELLOW}The command `crate auto new_cli` generated the directory `{project_name}`{RESET}&quot;</span>);
+            <span class="macro">println!</span>(<span class="string">&quot;    {YELLOW}You can open this new Rust project `{project_name}` in a new Rust editor.{RESET}&quot;</span>,);
+            <span class="macro">println!</span>(<span class="string">&quot;    {YELLOW}For example VSCode:{RESET}&quot;</span>);
+            <span class="macro">println!</span>(<span class="string">&quot;{GREEN}code {project_name}{RESET}&quot;</span>);
+            <span class="macro">println!</span>(<span class="string">&quot;    {YELLOW}Then build with:{RESET}&quot;</span>);
+            <span class="macro">println!</span>(<span class="string">&quot;{GREEN}cargo auto build{RESET}&quot;</span>);
+            <span class="macro">println!</span>(<span class="string">&quot;    {YELLOW}and follow the detailed instructions.{RESET}&quot;</span>);
+        }
+    }
+}
+
+<span class="kw">pub fn </span>copy_to_files(project_name: <span class="kw-2">&amp;</span>str) {
     <span class="kw">let </span>folder_path = std::path::Path::new(project_name);
     std::fs::create_dir_all(folder_path).unwrap();
     <span class="kw">for </span>file_item <span class="kw">in </span>get_vec_file() {
@@ -1311,13 +1366,13 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2023.519.1415 date: 2023-05-19 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2023.529.1605 date: 2023-05-29 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-926-green.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-346-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-202-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-1363-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-395-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-329-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-1314-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-8837-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
 //! [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
 //! [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)
@@ -1387,6 +1442,23 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //!
 //! ```bash
 //! cargo auto new_wasm project_name
+//! # then
+//! cd project_name
+//! cargo auto build
+//! # follow detailed instructions
+//! ```
+//!
+//! ## cargo auto new_pwa_wasm
+//!
+//! I composed an opinionated template for a simple Rust PWA-WASM project for browser. It is very similar to the new_cli template, but for WASM. It adds the PWA standard functionality to work as an offline app.  
+//! The template needs the title, name, long name and description inside a `pwa.json5` file and the `icon512x512.png` file for the icons.  
+//! It is easy to run:
+//!
+//! ```bash
+//! cargo auto new_pwa_wasm
+//! # on first run it will just create the `pwa.json5` and `icon512x512.png` files
+//! # modify these files for your new app
+//! cargo auto new_pwa_wasm
 //! # then
 //! cd project_name
 //! cargo auto build

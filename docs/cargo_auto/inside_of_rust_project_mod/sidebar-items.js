@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"constant":["GREEN","RED","RESET","YELLOW"],"fn":["already_exists_automation_tasks_rs","build_automation_tasks_rs_if_needed","build_project_automation_tasks_rs","completion","completion_return_one_or_more_sub_commands","match_first_argument","new_auto","parse_args","print_help_from_cargo_auto"]};
+window.SIDEBAR_ITEMS = {"fn":["already_exists_automation_tasks_rs","completion","completion_return_one_or_more_sub_commands","match_first_argument","parse_args","print_help_from_cargo_auto"]};

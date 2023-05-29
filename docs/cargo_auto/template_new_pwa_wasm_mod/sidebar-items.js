@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["copy_to_files","decode_png","encode_to_favicon_ico","encode_to_png","favicon_add_entry","get_vec_file","new_pwa_wasm","resize_image"],"struct":["PwaJson5"]};

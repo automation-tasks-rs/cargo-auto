@@ -1174,10 +1174,71 @@
 <a href="#1174" id="1174">1174</a>
 <a href="#1175" id="1175">1175</a>
 <a href="#1176" id="1176">1176</a>
+<a href="#1177" id="1177">1177</a>
+<a href="#1178" id="1178">1178</a>
+<a href="#1179" id="1179">1179</a>
+<a href="#1180" id="1180">1180</a>
+<a href="#1181" id="1181">1181</a>
+<a href="#1182" id="1182">1182</a>
+<a href="#1183" id="1183">1183</a>
+<a href="#1184" id="1184">1184</a>
+<a href="#1185" id="1185">1185</a>
+<a href="#1186" id="1186">1186</a>
+<a href="#1187" id="1187">1187</a>
+<a href="#1188" id="1188">1188</a>
+<a href="#1189" id="1189">1189</a>
+<a href="#1190" id="1190">1190</a>
+<a href="#1191" id="1191">1191</a>
+<a href="#1192" id="1192">1192</a>
+<a href="#1193" id="1193">1193</a>
+<a href="#1194" id="1194">1194</a>
+<a href="#1195" id="1195">1195</a>
+<a href="#1196" id="1196">1196</a>
+<a href="#1197" id="1197">1197</a>
+<a href="#1198" id="1198">1198</a>
+<a href="#1199" id="1199">1199</a>
+<a href="#1200" id="1200">1200</a>
+<a href="#1201" id="1201">1201</a>
+<a href="#1202" id="1202">1202</a>
+<a href="#1203" id="1203">1203</a>
+<a href="#1204" id="1204">1204</a>
+<a href="#1205" id="1205">1205</a>
+<a href="#1206" id="1206">1206</a>
+<a href="#1207" id="1207">1207</a>
+<a href="#1208" id="1208">1208</a>
+<a href="#1209" id="1209">1209</a>
+<a href="#1210" id="1210">1210</a>
+<a href="#1211" id="1211">1211</a>
+<a href="#1212" id="1212">1212</a>
+<a href="#1213" id="1213">1213</a>
+<a href="#1214" id="1214">1214</a>
+<a href="#1215" id="1215">1215</a>
+<a href="#1216" id="1216">1216</a>
+<a href="#1217" id="1217">1217</a>
+<a href="#1218" id="1218">1218</a>
 </pre><pre class="rust"><code><span class="doccomment">//! this strings are copied from the template_new_wasm folder
 //! because when publishing to crates.io, only the main bin-executable is transferred
 
-</span><span class="kw">pub fn </span>copy_to_files(project_name: <span class="kw-2">&amp;</span>str) {
+</span><span class="kw">use crate</span>::{GREEN, RED, RESET, YELLOW};
+
+<span class="kw">pub fn </span>new_wasm(arg_2: <span class="prelude-ty">Option</span>&lt;String&gt;) {
+    <span class="kw">match </span>arg_2 {
+        <span class="prelude-val">None </span>=&gt; <span class="macro">println!</span>(<span class="string">&quot;{RED}Error: Project name argument is missing: `cargo auto new_wasm project_name`{RESET}&quot;</span>),
+        <span class="prelude-val">Some</span>(project_name) =&gt; {
+            copy_to_files(<span class="kw-2">&amp;</span>project_name);
+            <span class="macro">println!</span>(<span class="string">&quot;&quot;</span>);
+            <span class="macro">println!</span>(<span class="string">&quot;    {YELLOW}The command `crate auto new_wasm` generated the directory `{project_name}`{RESET}&quot;</span>);
+            <span class="macro">println!</span>(<span class="string">&quot;    {YELLOW}You can open this new Rust project `{project_name}` in a new Rust editor.{RESET}&quot;</span>,);
+            <span class="macro">println!</span>(<span class="string">&quot;    {YELLOW}For example VSCode:{RESET}&quot;</span>);
+            <span class="macro">println!</span>(<span class="string">&quot;{GREEN}code {project_name}{RESET}&quot;</span>);
+            <span class="macro">println!</span>(<span class="string">&quot;    {YELLOW}Then build with:{RESET}&quot;</span>);
+            <span class="macro">println!</span>(<span class="string">&quot;{GREEN}cargo auto build{RESET}&quot;</span>);
+            <span class="macro">println!</span>(<span class="string">&quot;    {YELLOW}and follow the detailed instructions.{RESET}&quot;</span>);
+        }
+    }
+}
+
+<span class="kw">pub fn </span>copy_to_files(project_name: <span class="kw-2">&amp;</span>str) {
     <span class="kw">let </span>folder_path = std::path::Path::new(project_name);
     std::fs::create_dir_all(folder_path).unwrap();
     <span class="kw">for </span>file_item <span class="kw">in </span>get_vec_file() {
@@ -1349,22 +1410,22 @@ pub fn add_listener_to_button(element_id: &amp;str, fn_on_click_button: &amp;&#3
 }
 
 /// set inner text
-pub fn set_html_element_inner_text(element_id: &amp;str, text: &amp;str) {
+pub fn set_html_element_inner_text(element_id: &amp;str, inner_text: &amp;str) {
     let html_element = get_html_element_by_id(element_id);
-    html_element.set_inner_text(text);
+    html_element.set_inner_text(inner_text);
+}
+
+/// WARNING for HTML INJECTION! Never put user provided strings in set_html_element_inner_html.
+/// Only correctly html encoded strings can use this function.
+/// set inner html into dom
+pub fn set_html_element_inner_html(element_id: &amp;str, inner_html: &amp;str) {
+    let html_element = get_element_by_id(element_id);
+    html_element.set_inner_html(inner_html);
 }
 
 // open URL in new tab
 pub fn open_url_in_new_tab(url: &amp;str) {
-    // just an example of one method how to use javascript code inside Rust code
-    let js_cmd = &amp;format!(
-        r#&quot;{{
-        var win = window.open(&#39;{}&#39;, &#39;_blank&#39;,&#39;noopener&#39;);
-        win.focus();
-        }}&quot;#,
-        url,
-    );
-    unwrap!(js_sys::eval(&amp;js_cmd));
+    window().open_with_url_and_target(url, &quot;_blank&quot;).unwrap();
 }
 &quot;###</span>,
     });
@@ -1530,7 +1591,7 @@ pub fn main() {
             match args.get(2).copied() {
                 // second argument
                 Some(greet_name) =&gt; print_greet_name(greet_name),
-                None =&gt; html_println(&quot;Error: Missing second argument for print.&quot;),
+                None =&gt; wsm::set_html_element_inner_text(&quot;div_for_errors&quot;,&quot;Error: Missing second argument for print.&quot;),
             }
         }
         Some(&quot;upper&quot;) =&gt; {
@@ -1542,26 +1603,23 @@ pub fn main() {
                         // do nothing
                         Ok(()) =&gt; (),
                         // log error from anyhow
-                        Err(err) =&gt; html_println(&amp;format!(&quot;Error: {err}&quot;)),
+                        Err(err) =&gt; wsm::set_html_element_inner_text(&quot;div_for_errors&quot;,&amp;format!(&quot;Error: {err}&quot;)),
                     }
                 }
-                None =&gt; html_println(&quot;Error: Missing second argument for upper.&quot;),
+                None =&gt; wsm::set_html_element_inner_text(&quot;div_for_errors&quot;,&quot;Error: Missing second argument for upper.&quot;),
             }
         }
-        _ =&gt; html_println(&quot;Error: Unrecognized arguments. Try \n http://localhost:4000/cargo_auto_template_new_wasm#help&quot;),
+        _ =&gt; wsm::set_html_element_inner_text(&quot;div_for_errors&quot;,&quot;Error: Unrecognized arguments. Try \n http://localhost:4000/cargo_auto_template_new_wasm#help&quot;),
     }
 }
 
-/// it &#39;prints&#39; inside a dedicated element in html
-fn html_println(text: &amp;str) {
-    wsm::set_html_element_inner_text(&quot;p_for_html_println&quot;, text);
-}
 
 /// print help
 fn print_help() {
-    html_println(
+    wsm::set_html_element_inner_text(&quot;div_for_wasm_html_injecting&quot;,
         r#&quot;
     Welcome to cargo_auto_template_new_wasm !
+    
     This is a simple yet complete template for a WASM program written in Rust.
     The file structure is on purpose similar to a Rust CLI project and accepts similar arguments.
 
@@ -1601,8 +1659,9 @@ pub fn page_with_inputs() {
 &lt;p class=&quot;small&quot;&gt;bestia.dev&lt;/p&gt;
         &quot;#;
 
-    let div_for_wasm_html_injecting = wsm::get_element_by_id(&quot;div_for_wasm_html_injecting&quot;);
-    div_for_wasm_html_injecting.set_inner_html(&amp;html);
+    // WARNING for HTML INJECTION! Never put user provided strings in set_html_element_inner_html.
+    // Only correctly html encoded strings can use this function.
+    wsm::set_html_element_inner_html(&quot;div_for_wasm_html_injecting&quot;,html);
     wsm::add_listener_to_button(&quot;btn_run&quot;, &amp;on_click_btn_run);
 }
 
@@ -1617,7 +1676,7 @@ fn on_click_btn_run() {
     } else {
         // write on the same web page
         wsm::set_html_element_inner_text(
-            &quot;p_for_html_println&quot;,
+            &quot;div_for_errors&quot;,
             &amp;format!(&quot;Error: Both arguments are mandatory.&quot;),
         );
     }
@@ -1625,26 +1684,29 @@ fn on_click_btn_run() {
 
 // remove downloading message
 fn remove_downloading_message() {
-    let div_for_wasm_html_injecting = wsm::get_element_by_id(&quot;div_for_wasm_html_injecting&quot;);
-    div_for_wasm_html_injecting.set_inner_html(&quot;&quot;);
+    wsm::set_html_element_inner_text(&quot;div_for_wasm_html_injecting&quot;,&quot;&quot;);
 }
 
 /// print my name
 fn print_greet_name(greet_name: &amp;str) {
-    let div_for_wasm_html_injecting = wsm::get_element_by_id(&quot;div_for_wasm_html_injecting&quot;);
-    div_for_wasm_html_injecting.set_inner_html(&quot;&lt;h1&gt;The result is&lt;/h1&gt;&quot;);
-    // call the function from the `lib.rs`
-    html_println(&amp;format!(&quot;{}&quot;, lib_mod::format_hello_phrase(greet_name)));
+    wsm::set_html_element_inner_text(&quot;div_for_wasm_html_injecting&quot;,&amp;format!(
+r#&quot;The result is
+{}
+&quot;#,
+    lib_mod::format_hello_phrase(greet_name)
+    ));
 }
 
 /// print my name upper, can return error
 fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
-    let div_for_wasm_html_injecting = wsm::get_element_by_id(&quot;div_for_wasm_html_injecting&quot;);
-    div_for_wasm_html_injecting.set_inner_html(&quot;&lt;h1&gt;The result is&lt;/h1&gt;&quot;);
     // the function from `lib.rs`, can return error
     // use the ? syntax to bubble the error up one level or continue (early return)
     let upper = lib_mod::format_upper_hello_phrase(greet_name)?;
-    html_println(&amp;format!(&quot;{}&quot;, upper));
+    wsm::set_html_element_inner_text(&quot;div_for_wasm_html_injecting&quot;,&amp;format!(
+r#&quot;The result is
+{upper}
+&quot;#
+    ));
     // return
     Ok(())
 }
@@ -1661,13 +1723,13 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2023.519.1415 date: 2023-05-19 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2023.529.1605 date: 2023-05-29 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-926-green.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-346-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-202-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-1363-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-395-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-329-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-1314-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-8837-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
 //! [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
 //! [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)
@@ -1737,6 +1799,23 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //!
 //! ```bash
 //! cargo auto new_wasm project_name
+//! # then
+//! cd project_name
+//! cargo auto build
+//! # follow detailed instructions
+//! ```
+//!
+//! ## cargo auto new_pwa_wasm
+//!
+//! I composed an opinionated template for a simple Rust PWA-WASM project for browser. It is very similar to the new_cli template, but for WASM. It adds the PWA standard functionality to work as an offline app.  
+//! The template needs the title, name, long name and description inside a `pwa.json5` file and the `icon512x512.png` file for the icons.  
+//! It is easy to run:
+//!
+//! ```bash
+//! cargo auto new_pwa_wasm
+//! # on first run it will just create the `pwa.json5` and `icon512x512.png` files
+//! # modify these files for your new app
+//! cargo auto new_pwa_wasm
 //! # then
 //! cd project_name
 //! cargo auto build
@@ -2027,7 +2106,12 @@ p{
     font-size: 16px;
     font-weight: bold;
     color: #fff;
-  }&quot;###</span>,
+  }
+
+  .fc_red{
+    color: red;
+}
+&quot;###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
         file_name: <span class="string">&quot;web_server_folder/cargo_auto_template_new_wasm/index.html&quot;</span>,
@@ -2067,7 +2151,7 @@ p{
                   networks...&lt;br&gt;
             &lt;/h2&gt;
       &lt;/div&gt;
-      &lt;p id=&quot;p_for_html_println&quot;&gt;&lt;/p&gt;
+      &lt;p class=&quot;fc_red&quot; id=&quot;div_for_errors&quot;&gt;&lt;/p&gt;
       &lt;!-- import and init the wasm code --&gt;
       &lt;script type=&quot;module&quot;&gt;
             import init from &quot;./pkg/cargo_auto_template_new_wasm.js&quot;;

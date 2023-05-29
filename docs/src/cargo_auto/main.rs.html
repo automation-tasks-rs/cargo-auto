@@ -285,17 +285,46 @@
 <a href="#285" id="285">285</a>
 <a href="#286" id="286">286</a>
 <a href="#287" id="287">287</a>
+<a href="#288" id="288">288</a>
+<a href="#289" id="289">289</a>
+<a href="#290" id="290">290</a>
+<a href="#291" id="291">291</a>
+<a href="#292" id="292">292</a>
+<a href="#293" id="293">293</a>
+<a href="#294" id="294">294</a>
+<a href="#295" id="295">295</a>
+<a href="#296" id="296">296</a>
+<a href="#297" id="297">297</a>
+<a href="#298" id="298">298</a>
+<a href="#299" id="299">299</a>
+<a href="#300" id="300">300</a>
+<a href="#301" id="301">301</a>
+<a href="#302" id="302">302</a>
+<a href="#303" id="303">303</a>
+<a href="#304" id="304">304</a>
+<a href="#305" id="305">305</a>
+<a href="#306" id="306">306</a>
+<a href="#307" id="307">307</a>
+<a href="#308" id="308">308</a>
+<a href="#309" id="309">309</a>
+<a href="#310" id="310">310</a>
+<a href="#311" id="311">311</a>
+<a href="#312" id="312">312</a>
+<a href="#313" id="313">313</a>
+<a href="#314" id="314">314</a>
+<a href="#315" id="315">315</a>
+<a href="#316" id="316">316</a>
 </pre><pre class="rust"><code><span class="comment">// region: auto_md_to_doc_comments include README.md A //!
 </span><span class="doccomment">//! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2023.519.1415 date: 2023-05-19 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2023.529.1605 date: 2023-05-29 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-926-green.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-346-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-202-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-1363-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-395-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-329-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-1314-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-8837-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
 //! [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
 //! [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)
@@ -365,6 +394,23 @@
 //!
 //! ```bash
 //! cargo auto new_wasm project_name
+//! # then
+//! cd project_name
+//! cargo auto build
+//! # follow detailed instructions
+//! ```
+//!
+//! ## cargo auto new_pwa_wasm
+//!
+//! I composed an opinionated template for a simple Rust PWA-WASM project for browser. It is very similar to the new_cli template, but for WASM. It adds the PWA standard functionality to work as an offline app.  
+//! The template needs the title, name, long name and description inside a `pwa.json5` file and the `icon512x512.png` file for the icons.  
+//! It is easy to run:
+//!
+//! ```bash
+//! cargo auto new_pwa_wasm
+//! # on first run it will just create the `pwa.json5` and `icon512x512.png` files
+//! # modify these files for your new app
+//! cargo auto new_pwa_wasm
 //! # then
 //! cd project_name
 //! cargo auto build
@@ -524,6 +570,7 @@
 <span class="kw">mod </span>outside_of_rust_project_mod;
 <span class="kw">mod </span>template_new_auto_mod;
 <span class="kw">mod </span>template_new_cli_mod;
+<span class="kw">mod </span>template_new_pwa_wasm_mod;
 <span class="kw">mod </span>template_new_wasm_mod;
 
 <span class="comment">// region: use statements
@@ -545,6 +592,17 @@
     </span><span class="kw">static </span><span class="kw-2">ref </span>PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS: PathBuf =
         PathBuf::from(<span class="string">&quot;automation_tasks_rs/target/debug/automation_tasks_rs&quot;</span>);
 }
+
+<span class="comment">// ANSI colors for Linux terminal
+// https://github.com/shiena/ansicolor/blob/master/README.md
+</span><span class="attr">#[allow(dead_code)]
+</span><span class="kw">pub const </span>RED: <span class="kw-2">&amp;</span>str = <span class="string">&quot;\x1b[31m&quot;</span>;
+<span class="attr">#[allow(dead_code)]
+</span><span class="kw">pub const </span>YELLOW: <span class="kw-2">&amp;</span>str = <span class="string">&quot;\x1b[33m&quot;</span>;
+<span class="attr">#[allow(dead_code)]
+</span><span class="kw">pub const </span>GREEN: <span class="kw-2">&amp;</span>str = <span class="string">&quot;\x1b[32m&quot;</span>;
+<span class="attr">#[allow(dead_code)]
+</span><span class="kw">pub const </span>RESET: <span class="kw-2">&amp;</span>str = <span class="string">&quot;\x1b[0m&quot;</span>;
 
 <span class="kw">pub struct </span>FileItem {
     file_name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str,
