@@ -17,6 +17,8 @@
         "developmenttool",
         "endregion",
         "filetime",
+        "imageops",
+        "Lanczos",
         "Nazdravlje",
         "new_cli",
         "noopener",

@@ -373,7 +373,7 @@ pub fn main() {
             match args.get(2).copied() {
                 // second argument
                 Some(greet_name) => print_greet_name(greet_name),
-                None => html_println("Error: Missing second argument for print."),
+                None => set_inner_text("Error: Missing second argument for print."),
             }
         }
         Some("upper") => {
@@ -385,24 +385,24 @@ pub fn main() {
                         // do nothing
                         Ok(()) => (),
                         // log error from anyhow
-                        Err(err) => html_println(&format!("Error: {err}")),
+                        Err(err) => set_inner_text(&format!("Error: {err}")),
                     }
                 }
-                None => html_println("Error: Missing second argument for upper."),
+                None => set_inner_text("Error: Missing second argument for upper."),
             }
         }
-        _ => html_println("Error: Unrecognized arguments. Try \n http://localhost:4000/cargo_auto_template_new_wasm#help"),
+        _ => set_inner_text("Error: Unrecognized arguments. Try \n http://localhost:4000/cargo_auto_template_new_wasm#help"),
     }
 }
 
 /// it 'prints' inside a dedicated element in html
-fn html_println(text: &str) {
-    wsm::set_html_element_inner_text("p_for_html_println", text);
+fn set_inner_text(text: &str) {
+    wsm::set_html_element_inner_text("p_for_set_inner_text", text);
 }
 
 /// print help
 fn print_help() {
-    html_println(
+    set_inner_text(
         r#"
     Welcome to cargo_auto_template_new_wasm !
     This is a simple yet complete template for a WASM program written in Rust.
@@ -445,7 +445,7 @@ pub fn page_with_inputs() {
         "#;
 
     let div_for_wasm_html_injecting = wsm::get_element_by_id("div_for_wasm_html_injecting");
-    div_for_wasm_html_injecting.set_inner_html(&html);
+    div_for_wasm_html_injecting.set_html_element_inner_html(&html);
     wsm::add_listener_to_button("btn_run", &on_click_btn_run);
 }
 
@@ -460,7 +460,7 @@ fn on_click_btn_run() {
     } else {
         // write on the same web page
         wsm::set_html_element_inner_text(
-            "p_for_html_println",
+            "p_for_set_inner_text",
             &format!("Error: Both arguments are mandatory."),
         );
     }
@@ -469,25 +469,25 @@ fn on_click_btn_run() {
 // remove downloading message
 fn remove_downloading_message() {
     let div_for_wasm_html_injecting = wsm::get_element_by_id("div_for_wasm_html_injecting");
-    div_for_wasm_html_injecting.set_inner_html("");
+    div_for_wasm_html_injecting.set_html_element_inner_html("");
 }
 
 /// print my name
 fn print_greet_name(greet_name: &str) {
     let div_for_wasm_html_injecting = wsm::get_element_by_id("div_for_wasm_html_injecting");
-    div_for_wasm_html_injecting.set_inner_html("<h1>The result is</h1>");
+    div_for_wasm_html_injecting.set_html_element_inner_html("<h1>The result is</h1>");
     // call the function from the `lib.rs`
-    html_println(&format!("{}", lib_mod::format_hello_phrase(greet_name)));
+    set_inner_text(&format!("{}", lib_mod::format_hello_phrase(greet_name)));
 }
 
 /// print my name upper, can return error
 fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
     let div_for_wasm_html_injecting = wsm::get_element_by_id("div_for_wasm_html_injecting");
-    div_for_wasm_html_injecting.set_inner_html("<h1>The result is</h1>");
+    div_for_wasm_html_injecting.set_html_element_inner_html("<h1>The result is</h1>");
     // the function from `lib.rs`, can return error
     // use the ? syntax to bubble the error up one level or continue (early return)
     let upper = lib_mod::format_upper_hello_phrase(greet_name)?;
-    html_println(&format!("{}", upper));
+    set_inner_text(&format!("{}", upper));
     // return
     Ok(())
 }
@@ -679,7 +679,7 @@ p{
                   networks...<br>
             </h2>
       </div>
-      <p id="p_for_html_println"></p>
+      <p id="p_for_set_inner_text"></p>
       <!-- import and init the wasm code -->
       <script type="module">
             import init from "./pkg/cargo_auto_template_new_wasm.js";

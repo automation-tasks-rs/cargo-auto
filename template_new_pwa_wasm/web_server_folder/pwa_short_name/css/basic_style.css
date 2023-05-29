@@ -127,6 +127,10 @@ body {
     font-weight: bold;
 }
 
+.fc_red{
+    color: red;
+}
+
 .center {
     display: block;
     margin-left: auto;

@@ -1,6 +1,6 @@
 [package]
 name = "cargo-auto"
-version = "2023.529.853"
+version = "2023.529.1044"
 authors = ["bestia.dev"]
 homepage = "https://bestia.dev"
 edition = "2021"
@@ -24,3 +24,5 @@ lazy_static="1.4.0"
 base64ct = {version = "1.6.0", features = ["alloc"] }
 json5 = "0.4.1"
 serde = { version = "1.0.163", features = ["derive"] }
+image = "0.24.6"
+ico = "0.3.0"

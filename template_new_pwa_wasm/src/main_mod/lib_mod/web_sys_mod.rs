@@ -56,13 +56,6 @@ pub fn get_input_element_value_string_by_id(element_id: &str) -> String {
     input_html_element.value()
 }
 
-/// set inner html into dom
-/// The inner_html must be correctly HTML encoded !
-pub fn set_inner_html(element_id: &str, inner_html: &str) {
-    let div_for_wasm_html_injecting = get_element_by_id(element_id);
-    div_for_wasm_html_injecting.set_inner_html(inner_html);
-}
-
 /// add event listener for button
 pub fn add_listener_to_button(element_id: &str, fn_on_click_button: &'static (dyn Fn() + 'static)) {
     let handler_1 = Box::new(move || {
@@ -76,9 +69,17 @@ pub fn add_listener_to_button(element_id: &str, fn_on_click_button: &'static (dy
 }
 
 /// set inner text
-pub fn set_html_element_inner_text(element_id: &str, text: &str) {
+pub fn set_html_element_inner_text(element_id: &str, inner_text: &str) {
     let html_element = get_html_element_by_id(element_id);
-    html_element.set_inner_text(text);
+    html_element.set_inner_text(inner_text);
+}
+
+/// WARNING for HTML INJECTION! Never put user provided strings in set_html_element_inner_html.
+/// Only correctly html encoded strings can use this function.
+/// set inner html into dom
+pub fn set_html_element_inner_html(element_id: &str, inner_html: &str) {
+    let div_for_wasm_html_injecting = get_element_by_id(element_id);
+    div_for_wasm_html_injecting.set_html_element_inner_html(inner_html);
 }
 
 // open URL in new tab
