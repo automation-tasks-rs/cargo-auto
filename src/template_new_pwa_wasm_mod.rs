@@ -425,13 +425,6 @@ pub fn get_input_element_value_string_by_id(element_id: &str) -> String {
     input_html_element.value()
 }
 
-/// set inner html into dom
-/// The inner_html must be correctly HTML encoded !
-pub fn set_html_element_inner_html(element_id: &str, inner_html: &str) {
-    let div_for_wasm_html_injecting = get_element_by_id(element_id);
-    div_for_wasm_html_injecting.set_html_element_inner_html(inner_html);
-}
-
 /// add event listener for button
 pub fn add_listener_to_button(element_id: &str, fn_on_click_button: &'static (dyn Fn() + 'static)) {
     let handler_1 = Box::new(move || {
@@ -445,9 +438,17 @@ pub fn add_listener_to_button(element_id: &str, fn_on_click_button: &'static (dy
 }
 
 /// set inner text
-pub fn set_html_element_inner_text(element_id: &str, text: &str) {
+pub fn set_html_element_inner_text(element_id: &str, inner_text: &str) {
     let html_element = get_html_element_by_id(element_id);
-    html_element.set_inner_text(text);
+    html_element.set_inner_text(inner_text);
+}
+
+/// WARNING for HTML INJECTION! Never put user provided strings in set_html_element_inner_html.
+/// Only correctly html encoded strings can use this function.
+/// set inner html into dom
+pub fn set_html_element_inner_html(element_id: &str, inner_html: &str) {
+    let div_for_wasm_html_injecting = get_element_by_id(element_id);
+    div_for_wasm_html_injecting.set_html_element_inner_html(inner_html);
 }
 
 // open URL in new tab
@@ -571,9 +572,9 @@ pub const GREEN: &str = "\x1b[32m";
 pub const RESET: &str = "\x1b[0m";
 "###,
     });
-    vec_file.push(crate::FileItem {
-        file_name: "src/main_mod.rs",
-        file_content: r###"// src/main_mod.rs
+    vec_file.push(crate::FileItem{
+            file_name :"src/main_mod.rs",
+            file_content : r###"// src/main_mod.rs
 // This module is like a main.rs module for a binary CLI executable.
 // The `main_mod.rs` contains all input/output interface stuff.
 // So the program logic can be separate from the interface.
@@ -626,7 +627,7 @@ pub fn main() {
             match args.get(2).copied() {
                 // second argument
                 Some(greet_name) => print_greet_name(greet_name),
-                None => set_inner_text("Error: Missing second argument for print."),
+                None => wsm::set_html_element_inner_text("div_for_errors","Error: Missing second argument for print."),
             }
         }
         Some("upper") => {
@@ -638,24 +639,19 @@ pub fn main() {
                         // do nothing
                         Ok(()) => (),
                         // log error from anyhow
-                        Err(err) => set_inner_text(&format!("Error: {err}")),
+                        Err(err) => wsm::set_html_element_inner_text("div_for_errors",&format!("Error: {err}")),
                     }
                 }
-                None => set_inner_text("Error: Missing second argument for upper."),
+                None => wsm::set_html_element_inner_text("div_for_errors","Error: Missing second argument for upper."),
             }
         }
-        _ => set_inner_text("Error: Unrecognized arguments. Try \n http://localhost:4000/pwa_short_name#help"),
+        _ => wsm::set_html_element_inner_text("div_for_errors","Error: Unrecognized arguments. Try \n http://localhost:4000/pwa_short_name#help"),
     }
-}
-
-/// it 'prints' inside a dedicated element in html
-fn set_inner_text(text: &str) {
-    wsm::set_html_element_inner_text("div_for_errors", text);
 }
 
 /// print help
 fn print_help() {
-    set_inner_text(
+    wsm::set_html_element_inner_text("div_for_wasm_html_injecting",
         r#"
     Welcome to pwa_short_name !
     This is a simple yet complete template for a WASM program written in Rust.
@@ -697,8 +693,9 @@ pub fn page_with_inputs() {
 <p class="small">bestia.dev</p>
         "#;
 
-    let div_for_wasm_html_injecting = wsm::get_element_by_id("div_for_wasm_html_injecting");
-    div_for_wasm_html_injecting.set_html_element_inner_html(&html);
+    // WARNING for HTML INJECTION! Never put user provided strings in set_html_element_inner_html.
+    // Only correctly html encoded strings can use this function.
+    wsm::set_html_element_inner_html("div_for_wasm_html_injecting",html);
     wsm::add_listener_to_button("btn_run", &on_click_btn_run);
 }
 
@@ -721,31 +718,36 @@ fn on_click_btn_run() {
 
 // remove downloading message
 fn remove_downloading_message() {
-    let div_for_wasm_html_injecting = wsm::get_element_by_id("div_for_wasm_html_injecting");
-    div_for_wasm_html_injecting.set_html_element_inner_html("");
+    wsm::set_html_element_inner_text("div_for_wasm_html_injecting","");
 }
 
 /// print my name
 fn print_greet_name(greet_name: &str) {
-    let div_for_wasm_html_injecting = wsm::get_element_by_id("div_for_wasm_html_injecting");
-    div_for_wasm_html_injecting.set_html_element_inner_html("<h1>The result is</h1>");
-    // call the function from the `lib.rs`
-    set_inner_text(&format!("{}", lib_mod::format_hello_phrase(greet_name)));
+    wsm::set_html_element_inner_text("div_for_wasm_html_injecting",&format!(
+r#"The result is
+{}
+"#,
+lib_mod::format_hello_phrase(greet_name)
+));
 }
 
 /// print my name upper, can return error
 fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
-    let div_for_wasm_html_injecting = wsm::get_element_by_id("div_for_wasm_html_injecting");
-    div_for_wasm_html_injecting.set_html_element_inner_html("<h1>The result is</h1>");
     // the function from `lib.rs`, can return error
     // use the ? syntax to bubble the error up one level or continue (early return)
     let upper = lib_mod::format_upper_hello_phrase(greet_name)?;
-    set_inner_text(&format!("{}", upper));
+
+    wsm::set_html_element_inner_text("div_for_wasm_html_injecting",format!(
+r#"The result is
+{upper}
+"#
+    ));
+    
     // return
     Ok(())
 }
 "###,
-    });
+});
     vec_file.push(crate::FileItem {
         file_name: "src/lib.rs",
         file_content: r###"//! src/lib.rs
@@ -7515,6 +7517,10 @@ body {
     font-weight: bold;
 }
 
+.fc_red{
+    color: red;
+}
+
 .center {
     display: block;
     margin-left: auto;
@@ -7718,11 +7724,11 @@ self.addEventListener('fetch', event => {
             networks...<br>
         </h2>
     </div>
-    <div id="div_for_errors"></div>
+    <div class="fc_red" id="div_for_errors"></div>
     <!-- import and init the wasm code -->
     <script type="module">
         import init from "./pkg/rust_project_name.js";
-        init("./pkg/rust_project_name_bg.wasm");
+        init("./pkg/rust_project_name.wasm");
     </script>
 </body>
 </html>

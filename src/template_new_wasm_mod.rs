@@ -192,9 +192,17 @@ pub fn add_listener_to_button(element_id: &str, fn_on_click_button: &'static (dy
 }
 
 /// set inner text
-pub fn set_html_element_inner_text(element_id: &str, text: &str) {
+pub fn set_html_element_inner_text(element_id: &str, inner_text: &str) {
     let html_element = get_html_element_by_id(element_id);
-    html_element.set_inner_text(text);
+    html_element.set_inner_text(inner_text);
+}
+
+/// WARNING for HTML INJECTION! Never put user provided strings in set_html_element_inner_html.
+/// Only correctly html encoded strings can use this function.
+/// set inner html into dom
+pub fn set_html_element_inner_html(element_id: &str, inner_html: &str) {
+    let div_for_wasm_html_injecting = get_element_by_id(element_id);
+    div_for_wasm_html_injecting.set_html_element_inner_html(inner_html);
 }
 
 // open URL in new tab
@@ -373,7 +381,7 @@ pub fn main() {
             match args.get(2).copied() {
                 // second argument
                 Some(greet_name) => print_greet_name(greet_name),
-                None => set_inner_text("Error: Missing second argument for print."),
+                None => wsm::set_html_element_inner_text("div_for_errors","Error: Missing second argument for print."),
             }
         }
         Some("upper") => {
@@ -385,24 +393,20 @@ pub fn main() {
                         // do nothing
                         Ok(()) => (),
                         // log error from anyhow
-                        Err(err) => set_inner_text(&format!("Error: {err}")),
+                        Err(err) => wsm::set_html_element_inner_text("div_for_errors",&format!("Error: {err}")),
                     }
                 }
-                None => set_inner_text("Error: Missing second argument for upper."),
+                None => wsm::set_html_element_inner_text("div_for_errors","Error: Missing second argument for upper."),
             }
         }
-        _ => set_inner_text("Error: Unrecognized arguments. Try \n http://localhost:4000/cargo_auto_template_new_wasm#help"),
+        _ => wsm::set_html_element_inner_text("div_for_errors","Error: Unrecognized arguments. Try \n http://localhost:4000/cargo_auto_template_new_wasm#help"),
     }
 }
 
-/// it 'prints' inside a dedicated element in html
-fn set_inner_text(text: &str) {
-    wsm::set_html_element_inner_text("p_for_set_inner_text", text);
-}
 
 /// print help
 fn print_help() {
-    set_inner_text(
+    wsm::set_html_element_inner_text("div_for_wasm_html_injecting",
         r#"
     Welcome to cargo_auto_template_new_wasm !
     This is a simple yet complete template for a WASM program written in Rust.
@@ -444,8 +448,9 @@ pub fn page_with_inputs() {
 <p class="small">bestia.dev</p>
         "#;
 
-    let div_for_wasm_html_injecting = wsm::get_element_by_id("div_for_wasm_html_injecting");
-    div_for_wasm_html_injecting.set_html_element_inner_html(&html);
+    // WARNING for HTML INJECTION! Never put user provided strings in set_html_element_inner_html.
+    // Only correctly html encoded strings can use this function.
+    wsm::set_html_element_inner_html("div_for_wasm_html_injecting",html);
     wsm::add_listener_to_button("btn_run", &on_click_btn_run);
 }
 
@@ -460,7 +465,7 @@ fn on_click_btn_run() {
     } else {
         // write on the same web page
         wsm::set_html_element_inner_text(
-            "p_for_set_inner_text",
+            "div_for_errors",
             &format!("Error: Both arguments are mandatory."),
         );
     }
@@ -468,26 +473,29 @@ fn on_click_btn_run() {
 
 // remove downloading message
 fn remove_downloading_message() {
-    let div_for_wasm_html_injecting = wsm::get_element_by_id("div_for_wasm_html_injecting");
-    div_for_wasm_html_injecting.set_html_element_inner_html("");
+    wsm::set_html_element_inner_text("div_for_wasm_html_injecting","");
 }
 
 /// print my name
 fn print_greet_name(greet_name: &str) {
-    let div_for_wasm_html_injecting = wsm::get_element_by_id("div_for_wasm_html_injecting");
-    div_for_wasm_html_injecting.set_html_element_inner_html("<h1>The result is</h1>");
-    // call the function from the `lib.rs`
-    set_inner_text(&format!("{}", lib_mod::format_hello_phrase(greet_name)));
+    wsm::set_html_element_inner_text("div_for_wasm_html_injecting",
+r#"The result is
+{}
+"#,
+    lib_mod::format_hello_phrase(greet_name)
+    );
 }
 
 /// print my name upper, can return error
 fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
-    let div_for_wasm_html_injecting = wsm::get_element_by_id("div_for_wasm_html_injecting");
-    div_for_wasm_html_injecting.set_html_element_inner_html("<h1>The result is</h1>");
     // the function from `lib.rs`, can return error
     // use the ? syntax to bubble the error up one level or continue (early return)
     let upper = lib_mod::format_upper_hello_phrase(greet_name)?;
-    set_inner_text(&format!("{}", upper));
+    wsm::set_html_element_inner_text("div_for_wasm_html_injecting",
+r#"The result is
+{upper}
+"#
+    );
     // return
     Ok(())
 }
@@ -639,7 +647,12 @@ p{
     font-size: 16px;
     font-weight: bold;
     color: #fff;
-  }"###,
+  }
+
+  .fc_red{
+    color: red;
+}
+"###,
     });
     vec_file.push(crate::FileItem {
         file_name: "web_server_folder/cargo_auto_template_new_wasm/index.html",
@@ -679,7 +692,7 @@ p{
                   networks...<br>
             </h2>
       </div>
-      <p id="p_for_set_inner_text"></p>
+      <p class="fc_red" id="div_for_errors"></p>
       <!-- import and init the wasm code -->
       <script type="module">
             import init from "./pkg/cargo_auto_template_new_wasm.js";
