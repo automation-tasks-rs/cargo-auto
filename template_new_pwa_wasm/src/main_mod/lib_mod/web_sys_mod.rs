@@ -1,6 +1,6 @@
 //! src/web_sys_mod.rs
-//! helper functions for web_sys, window, document, dom, console,
-//! Trying to isolate/hide all javascript code and conversion here.
+//! helper functions for web_sys, window, document, dom, console, html elements,...
+//! Trying to isolate/hide all javascript code and conversion in this module.
 
 // region: use
 // the macro unwrap! shows the TRUE location where the error has ocurred.
@@ -37,6 +37,15 @@ pub fn get_html_element_by_id(element_id: &str) -> web_sys::HtmlElement {
     html_element
 }
 
+/// HTML encode - naive
+pub fn html_encode(input: &str) -> String {
+    input
+        .replace("&", "&amp;")
+        .replace("\"", "&quot;")
+        .replace("'", "&apos;")
+        .replace("<", "&lt;")
+        .replace(">", "&gt;")
+}
 /// get input element value string by id
 pub fn get_input_element_value_string_by_id(element_id: &str) -> String {
     // debug_write("before get_element_by_id");
@@ -45,6 +54,13 @@ pub fn get_input_element_value_string_by_id(element_id: &str) -> String {
     let input_html_element = unwrap!(input_element.dyn_into::<web_sys::HtmlInputElement>());
     // debug_write("before value()");
     input_html_element.value()
+}
+
+/// set inner html into dom
+/// The inner_html must be correctly HTML encoded !
+pub fn set_inner_html(element_id: &str, inner_html: &str) {
+    let div_for_wasm_html_injecting = get_element_by_id(element_id);
+    div_for_wasm_html_injecting.set_inner_html(inner_html);
 }
 
 /// add event listener for button

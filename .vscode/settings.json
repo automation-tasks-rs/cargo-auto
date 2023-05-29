@@ -1,6 +1,7 @@
 {
     "cSpell.words": [
         "Alla",
+        "alloc",
         "apos",
         "auto",
         "bestia",
@@ -31,6 +32,7 @@
         "rustfmt",
         "rustlang",
         "rustprojects",
+        "serde",
         "stylesheet",
         "subcommand",
         "substack",

@@ -1,4 +1,4 @@
-//! automation_tasks_rs for cargo_auto_template_new_pwa_wasm
+//! automation_tasks_rs for rust_project_name
 
 use cargo_auto_lib::*;
 
@@ -48,6 +48,8 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args) {
                 } else if &task == "commit_and_push" {
                     let arg_2 = args.next();
                     task_commit_and_push(arg_2);
+                } else if &task == "publish_to_web" {
+                    task_publish_to_web();
                 } else {
                     println!("{RED}Error: Task {task} is unknown.{RESET}");
                     print_help();
@@ -71,6 +73,9 @@ fn print_help() {
 {GREEN}cargo auto test{RESET}{YELLOW} - runs all the tests{RESET}
 {GREEN}cargo auto commit_and_push "message"{RESET}{YELLOW} - commits with message and push with mandatory message{RESET}
     {YELLOW}(If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.){RESET}
+{GREEN}cargo auto publish_to_web - publish to web, git tag{RESET}
+    {YELLOW}(You need credentials for publishing over SSH. Use ssh-agent and ssh-add to store the credentials for SSH.){RESET}
+
     {YELLOW}© 2023 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
 "#
     );
@@ -93,7 +98,7 @@ fn completion() {
     let last_word = args[3].as_str();
 
     if last_word == "cargo-auto" || last_word == "auto" {
-        let sub_commands = vec!["build", "release", "doc", "test", "commit_and_push",];
+        let sub_commands = vec!["build", "release", "doc", "test", "commit_and_push", "publish_to_web"];
         completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
     /*
@@ -116,18 +121,18 @@ fn task_build() {
     auto_cargo_toml_to_md();
     auto_lines_of_code("");
     run_shell_command("wasm-pack build --target web");
-    run_shell_command("\\rsync -a --delete-after pkg/ web_server_folder/cargo_auto_template_new_pwa_wasm/pkg/");
+    run_shell_command("\\rsync -a --delete-after pkg/ web_server_folder/pwa_short_name/pkg/");
     println!(
         r#"
     {YELLOW}After `cargo auto build`, open port 4000 in VSCode and run the basic web server
     in a separate VSCode bash terminal, so it can serve constantly in the background.{RESET}
 {GREEN}basic-http-server -a 0.0.0.0:4000 ./web_server_folder{RESET}
     {YELLOW}and open the browser on{RESET}
-{GREEN}http://localhost:4000/cargo_auto_template_new_pwa_wasm{RESET}
-{GREEN}http://localhost:4000/cargo_auto_template_new_pwa_wasm#print/world{RESET}
-{GREEN}http://localhost:4000/cargo_auto_template_new_pwa_wasm#upper/world{RESET}
+{GREEN}http://localhost:4000/pwa_short_name{RESET}
+{GREEN}http://localhost:4000/pwa_short_name#print/world{RESET}
+{GREEN}http://localhost:4000/pwa_short_name#upper/world{RESET}
     {YELLOW}This will return an error:{RESET}
-{GREEN}http://localhost:4000/cargo_auto_template_new_pwa_wasm#upper/WORLD{RESET}
+{GREEN}http://localhost:4000/pwa_short_name#upper/WORLD{RESET}
     {YELLOW}If all is fine, run{RESET}
 {GREEN}cargo auto release{RESET}
 "#
@@ -142,18 +147,18 @@ fn task_release() {
 
     run_shell_command("cargo fmt");
     run_shell_command("wasm-pack build --target web");
-    run_shell_command("\\rsync -a --delete-after pkg/ web_server_folder/cargo_auto_template_new_pwa_wasm/pkg/");
+    run_shell_command("\\rsync -a --delete-after pkg/ web_server_folder/pwa_short_name/pkg/");
     println!(
         r#"
     {YELLOW}After `cargo auto build`, open port 4000 in VSCode and run the basic web server
     in a separate VSCode bash terminal, so it can serve constantly in the background.{RESET}
 {GREEN}basic-http-server -a 0.0.0.0:4000 ./web_server_folder{RESET}
     {YELLOW}and open the browser on{RESET}
-{GREEN}http://localhost:4000/cargo_auto_template_new_pwa_wasm{RESET}    
-{GREEN}http://localhost:4000/cargo_auto_template_new_pwa_wasm#print/world{RESET}
-{GREEN}http://localhost:4000/cargo_auto_template_new_pwa_wasm#upper/world{RESET}
+{GREEN}http://localhost:4000/pwa_short_name{RESET}    
+{GREEN}http://localhost:4000/pwa_short_name#print/world{RESET}
+{GREEN}http://localhost:4000/pwa_short_name#upper/world{RESET}
     {YELLOW}This will return an error:{RESET}
-{GREEN}http://localhost:4000/cargo_auto_template_new_pwa_wasm#upper/WORLD{RESET}
+{GREEN}http://localhost:4000/pwa_short_name#upper/WORLD{RESET}
     {YELLOW}If all is fine, run{RESET}
 {GREEN}cargo auto doc{RESET}
 "#
@@ -214,6 +219,31 @@ fn task_commit_and_push(arg_2: Option<String>) {
                 );
         }
     }
+}
+
+/// publish to web
+fn task_publish_to_web() {
+    println!(r#"{YELLOW}Use ssh-agent and ssh-add to store your credentials for publish to web.{RESET}"#);
+    let cargo_toml = CargoToml::read();
+    // git tag
+    let shell_command = format!(
+        "git tag -f -a v{version} -m version_{version}",
+        version = cargo_toml.package_version()
+    );
+    run_shell_command(&shell_command);
+    let shell_command = format!(
+        "rsync -e ssh -a --info=progress2 --delete-after ~/rustprojects/{package_name}/web_server_folder/ project_author@project_homepage:/var/www/project_homepage/pwa_short_name/",
+        package_name = cargo_toml.package_name()
+    );
+    run_shell_command(&shell_command);
+    println!(
+        r#"{YELLOW}
+    After `cargo auto publish_to_web`, 
+    check 
+https://bestia.dev/{package_name}
+{RESET}"#,
+        package_name = cargo_toml.package_name()
+    );
 }
 
 // endregion: tasks

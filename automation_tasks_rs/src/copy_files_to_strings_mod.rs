@@ -1,5 +1,7 @@
 // copy_files_to_strings_mod.rs
 
+use base64ct::Encoding;
+
 /// copy all files from the folder into a module as strings (static &str)
 /// the module has the markers: region: files copied into strings by automation tasks and endregion:
 /// the string will be in a vector with the file name
@@ -21,7 +23,21 @@ pub fn copy_folder_files_into_module(folder_path: &std::path::Path, module_path:
         if file_name_short=="Cargo.lock"{
             continue;
         }
-        let file_content = std::fs::read_to_string(&file_name).unwrap();
+        let file_content = if 
+            file_name_short.ends_with(".ico") 
+            || file_name_short.ends_with(".png")
+            || file_name_short.ends_with(".woff2")
+        {
+            // convert binary file to base64
+            let b = std::fs::read(&file_name).unwrap();
+            base64ct::Base64::encode_string(&b)
+        }
+        else{
+            // all others are text files
+            // dbg!(&file_name_short);
+            std::fs::read_to_string(&file_name).unwrap()
+        };
+
         new_code.push_str(&format!(r####"vec_file.push(crate::FileItem{{
             file_name :"{}",
             file_content : r###"{}"###,

@@ -9,3 +9,4 @@ publish = false
 
 [dependencies]
 cargo_auto_lib = "0.8.60"
+base64ct = {version = "1.6.0", features = ["alloc"] }

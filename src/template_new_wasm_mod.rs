@@ -1,6 +1,25 @@
 //! this strings are copied from the template_new_wasm folder
 //! because when publishing to crates.io, only the main bin-executable is transferred
 
+use crate::{GREEN, RED, RESET, YELLOW};
+
+pub fn new_wasm(arg_2: Option<String>) {
+    match arg_2 {
+        None => println!("{RED}Error: Project name argument is missing: `cargo auto new_wasm project_name`{RESET}"),
+        Some(project_name) => {
+            copy_to_files(&project_name);
+            println!("");
+            println!("    {YELLOW}The command `crate auto new_wasm` generated the directory `{project_name}`{RESET}");
+            println!("    {YELLOW}You can open this new Rust project `{project_name}` in a new Rust editor.{RESET}",);
+            println!("    {YELLOW}For example VSCode:{RESET}");
+            println!("{GREEN}code {project_name}{RESET}");
+            println!("    {YELLOW}Then build with:{RESET}");
+            println!("{GREEN}cargo auto build{RESET}");
+            println!("    {YELLOW}and follow the detailed instructions.{RESET}");
+        }
+    }
+}
+
 pub fn copy_to_files(project_name: &str) {
     let folder_path = std::path::Path::new(project_name);
     std::fs::create_dir_all(folder_path).unwrap();
@@ -585,31 +604,6 @@ So I can drink a free beer for your health :-)
 "###,
 });
     vec_file.push(crate::FileItem {
-        file_name: "LICENSE",
-        file_content: r###"MIT License
-
-Copyright (c) 2023 bestia.dev
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-"###,
-    });
-    vec_file.push(crate::FileItem {
         file_name: "web_server_folder/cargo_auto_template_new_wasm/css/basic_style.css",
         file_content: r###"html { 
     font-family: sans-serif;
@@ -694,6 +688,31 @@ p{
 </body>
 
 </html>"###,
+    });
+    vec_file.push(crate::FileItem {
+        file_name: "LICENSE",
+        file_content: r###"MIT License
+
+Copyright (c) 2023 bestia.dev
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+"###,
     });
     vec_file.push(crate::FileItem {
         file_name: "automation_tasks_rs/Cargo.toml",

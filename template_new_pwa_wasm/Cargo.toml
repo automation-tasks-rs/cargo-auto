@@ -1,15 +1,15 @@
 [package]
-name = "cargo_auto_template_new_pwa_wasm"
+name = "rust_project_name"
 version = "2023.519.1012"
-authors = ["bestia.dev"]
-homepage = "https://bestia.dev"
+authors = ["project_author"]
+homepage = "project_homepage"
 edition = "2021"
-description = "template for a minimal wasm project for browser"
-repository = "https://github.com/bestia-dev/cargo_auto_template_new_pwa_wasm"
+description = "pwa_description"
+repository = "project_repository"
 readme = "README.md"
 license = "MIT"
 keywords = ["wasm"]
-categories = ["learning"]
+categories = ["tutorial"]
 publish = false
 
 [lib]
@@ -17,8 +17,9 @@ publish = false
 crate-type = ["cdylib"]
 
 [dependencies]
+# the macro unwrap is great for WASM, because it shows the correct file and line number of the error
 unwrap = "1.2.1"
-wasm-bindgen = "0.2.86"
+wasm-bindgen = { version = "0.2.86", features = ["serde-serialize"] }
 console_error_panic_hook = "0.1.7"
 js-sys = "0.3.63"
 thiserror="1.0.40"
@@ -30,9 +31,11 @@ wasm-rs-dbg = {version="0.1.2", default-features = false, features = ["console-l
 [dependencies.web-sys]
 version = "0.3.63"
 features = [
+  "AbortController",
   "console",
   "Document",
   "Element",
+  "ErrorEvent",
   "HtmlElement",
   "HtmlInputElement",
   "Location",

@@ -1,11 +1,11 @@
 [//]: # (auto_md_to_doc_comments segment start A)
 
-# cargo_auto_template_new_pwa_wasm
+# rust_project_name
 
 [//]: # (auto_cargo_toml_to_md start)
 
-**template for a minimal wasm project for browser**  
-***version: 2023.519.1012 date: 2023-05-19 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo_auto_template_new_pwa_wasm)***  
+**template for a minimal pwa wasm project for browser**  
+***version: 2023.519.1012 date: 2023-05-19 author: [project_author](project_homepage) repository: [Github](project_repository)***  
 
 [//]: # (auto_cargo_toml_to_md end)
 
@@ -18,9 +18,8 @@
 
 [//]: # (auto_lines_of_code end)
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo_auto_template_new_pwa_wasm/blob/master/LICENSE)
-[![Rust](https://github.com/bestia-dev/cargo_auto_template_new_pwa_wasm/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo_auto_template_new_pwa_wasm/)
-![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/638168303.svg)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](project_repository/blob/master/LICENSE)
+[![Rust](project_repository/workflows/RustAction/badge.svg)](project_repository)
 
 Hashtags: #rustlang #tutorial #pwa #wasm #webassembly  
 My projects on Github are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
@@ -38,7 +37,7 @@ I recommend to use the Containerized Rust Development Environment (CRDE) to writ
 
 ## HTML, CSS
 
-The simple static HTML and CSS files are in `web_server_folder/cargo_auto_template_new_pwa_wasm`.  
+The simple static HTML and CSS files are in `web_server_folder/pwa_short_name`.  
 Then the Rust code injects html elements into the DOM.  
 
 ## Web server and wasm

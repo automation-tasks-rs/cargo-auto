@@ -4,16 +4,7 @@
 
 // endregion
 
-// ANSI colors for Linux terminal
-// https://github.com/shiena/ansicolor/blob/master/README.md
-#[allow(dead_code)]
-pub const RED: &str = "\x1b[31m";
-#[allow(dead_code)]
-pub const YELLOW: &str = "\x1b[33m";
-#[allow(dead_code)]
-pub const GREEN: &str = "\x1b[32m";
-#[allow(dead_code)]
-pub const RESET: &str = "\x1b[0m";
+use crate::{GREEN, RED, RESET, YELLOW};
 
 pub fn parse_args(args: &mut std::env::Args) {
     // the first argument is the task: (no argument for help), new_auto, build, release,...
@@ -65,7 +56,7 @@ fn print_help_from_cargo_auto() {
 "#
         );
     } else {
-        build_automation_tasks_rs_if_needed();
+        crate::template_new_auto_mod::build_automation_tasks_rs_if_needed();
         std::process::Command::new(crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str())
             .spawn()
             .unwrap()
@@ -90,7 +81,7 @@ fn match_first_argument(task: &str, args: &mut std::env::Args) {
             // early exit
             std::process::exit(0);
         }
-        new_auto();
+        crate::template_new_auto_mod::new_auto();
     } else {
         // these tasks are user defined in automation_tasks_rs
         if !already_exists_automation_tasks_rs() {
@@ -99,7 +90,7 @@ fn match_first_argument(task: &str, args: &mut std::env::Args) {
             // early exit
             std::process::exit(0);
         }
-        build_automation_tasks_rs_if_needed();
+        crate::template_new_auto_mod::build_automation_tasks_rs_if_needed();
         // call automation_tasks_rs/target/debug/automation_tasks_rs with all the arguments
         let mut command = std::process::Command::new(crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str());
         command.arg(&task);
@@ -140,68 +131,4 @@ fn completion() {
         let sub_commands = vec!["new_auto"];
         completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
-}
-
-/// build if the date of Cargo.toml or main.rs is newer then of automation_tasks_rs/target/automation_tasks_rs
-fn build_automation_tasks_rs_if_needed() {
-    if !crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.exists() {
-        build_project_automation_tasks_rs();
-        // early return
-        return ();
-    }
-    let modified_automation_tasks_rs = std::fs::metadata(crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str())
-        .unwrap()
-        .modified()
-        .unwrap();
-    let modified_cargo_toml = std::fs::metadata(crate::PATH_CARGO_TOML.as_os_str())
-        .unwrap()
-        .modified()
-        .unwrap();
-    let modified_main_rs = std::fs::metadata(crate::PATH_SRC_MAIN_RS.as_os_str())
-        .unwrap()
-        .modified()
-        .unwrap();
-
-    if modified_automation_tasks_rs < modified_cargo_toml || modified_automation_tasks_rs < modified_main_rs {
-        build_project_automation_tasks_rs();
-    }
-}
-
-/// build automation_tasks_rs
-fn build_project_automation_tasks_rs() {
-    // build in other directory (not in working current directory)
-    // cargo build --manifest-path=dir/Cargo.toml
-    std::process::Command::new("cargo")
-        .arg("build")
-        .arg("--manifest-path=automation_tasks_rs/Cargo.toml")
-        .spawn()
-        .unwrap()
-        .wait()
-        .unwrap();
-}
-
-/// copies the template to the `automation_tasks_rs` directory  
-/// in development use: `cargo run -- new_auto`  
-/// in runtime use: `cargo auto new_auto`  
-fn new_auto() {
-    crate::template_new_auto_mod::copy_to_files("automation_tasks_rs");
-    build_automation_tasks_rs_if_needed();
-
-    println!(
-        r#"
-    {YELLOW}`crate auto new_auto` generated the directory `automation_tasks_rs` in your main Rust project.
-    You can open this new helper Rust project in a new Rust editor.
-    View and edit the Rust code in `automation_tasks_rs`. It is independent from the main project.
-    It will be automatically compiled on the next use of `crate auto task_name` command.
-    The new directory will be added to your git commit.
-    There is a local .gitignore file to avoid commit of the `target/` directory.
-{RESET}"#
-    );
-    // call `cargo auto` to show the help of the new automation_tasks_rs
-    std::process::Command::new("cargo")
-        .arg("auto")
-        .spawn()
-        .unwrap()
-        .wait()
-        .unwrap();
 }

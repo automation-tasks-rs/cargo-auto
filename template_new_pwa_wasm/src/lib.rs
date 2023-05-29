@@ -20,7 +20,7 @@ pub fn wasm_bindgen_start() -> Result<(), JsValue> {
     console_error_panic_hook::set_once();
     // write the app version just for debug purposes
     wsm::debug_write(&format!(
-        "cargo_auto_template_new_pwa_wasm v{}",
+        "pwa_short_name v{}",
         env!("CARGO_PKG_VERSION")
     ));
 

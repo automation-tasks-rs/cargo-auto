@@ -1,6 +1,73 @@
 //! this strings are copied from the template_new_auto folder
 //! because when publishing to crates.io, only the main bin-executable is transferred
 
+#[allow(unused)]
+use crate::{GREEN, RED, RESET, YELLOW};
+
+/// copies the template to the `automation_tasks_rs` directory  
+/// in development use: `cargo run -- new_auto`  
+/// in runtime use: `cargo auto new_auto`  
+pub fn new_auto() {
+    crate::template_new_auto_mod::copy_to_files("automation_tasks_rs");
+    build_automation_tasks_rs_if_needed();
+
+    println!(
+        r#"
+    {YELLOW}`crate auto new_auto` generated the directory `automation_tasks_rs` in your main Rust project.
+    You can open this new helper Rust project in a new Rust editor.
+    View and edit the Rust code in `automation_tasks_rs`. It is independent from the main project.
+    It will be automatically compiled on the next use of `crate auto task_name` command.
+    The new directory will be added to your git commit.
+    There is a local .gitignore file to avoid commit of the `target/` directory.
+{RESET}"#
+    );
+    // call `cargo auto` to show the help of the new automation_tasks_rs
+    std::process::Command::new("cargo")
+        .arg("auto")
+        .spawn()
+        .unwrap()
+        .wait()
+        .unwrap();
+}
+
+/// build if the date of Cargo.toml or main.rs is newer then of automation_tasks_rs/target/automation_tasks_rs
+pub fn build_automation_tasks_rs_if_needed() {
+    if !crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.exists() {
+        build_project_automation_tasks_rs();
+        // early return
+        return ();
+    }
+    let modified_automation_tasks_rs = std::fs::metadata(crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str())
+        .unwrap()
+        .modified()
+        .unwrap();
+    let modified_cargo_toml = std::fs::metadata(crate::PATH_CARGO_TOML.as_os_str())
+        .unwrap()
+        .modified()
+        .unwrap();
+    let modified_main_rs = std::fs::metadata(crate::PATH_SRC_MAIN_RS.as_os_str())
+        .unwrap()
+        .modified()
+        .unwrap();
+
+    if modified_automation_tasks_rs < modified_cargo_toml || modified_automation_tasks_rs < modified_main_rs {
+        build_project_automation_tasks_rs();
+    }
+}
+
+/// build automation_tasks_rs
+pub fn build_project_automation_tasks_rs() {
+    // build in other directory (not in working current directory)
+    // cargo build --manifest-path=dir/Cargo.toml
+    std::process::Command::new("cargo")
+        .arg("build")
+        .arg("--manifest-path=automation_tasks_rs/Cargo.toml")
+        .spawn()
+        .unwrap()
+        .wait()
+        .unwrap();
+}
+
 pub fn copy_to_files(project_name: &str) {
     let folder_path = std::path::Path::new(project_name);
     std::fs::create_dir_all(folder_path).unwrap();

@@ -3,16 +3,8 @@
 // region: use statements
 // endregion
 
-// ANSI colors for Linux terminal
-// https://github.com/shiena/ansicolor/blob/master/README.md
-#[allow(dead_code)]
-pub const RED: &str = "\x1b[31m";
-#[allow(dead_code)]
-pub const YELLOW: &str = "\x1b[33m";
-#[allow(dead_code)]
-pub const GREEN: &str = "\x1b[32m";
-#[allow(dead_code)]
-pub const RESET: &str = "\x1b[0m";
+#[allow(unused)]
+use crate::{GREEN, RED, RESET, YELLOW};
 
 /// it is run outside a Rust project
 /// It must have the argument "new_cli" or "new_wasm" or "new_pwa_wasm" and the project title
@@ -65,13 +57,13 @@ fn match_first_argument(task: &str, args: &mut std::env::Args) {
         completion();
     } else if task == "new_cli" {
         let arg_2 = args.next();
-        new_cli(arg_2);
+        crate::template_new_cli_mod::new_cli(arg_2);
     } else if task == "new_wasm" {
         let arg_2 = args.next();
-        new_wasm(arg_2);
+        crate::template_new_wasm_mod::new_wasm(arg_2);
     } else if task == "new_pwa_wasm" {
         let arg_2 = args.next();
-        new_pwa_wasm(arg_2);
+        crate::template_new_pwa_wasm_mod::new_pwa_wasm(arg_2);
     } else {
         print_help_from_cargo_auto();
     }
@@ -105,59 +97,5 @@ fn completion() {
     if last_word == "cargo-auto" || last_word == "auto" {
         let sub_commands = vec!["new_cli", "new_wasm", "new_pwa_wasm"];
         completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
-    }
-}
-
-pub fn new_cli(arg_2: Option<String>) {
-    match arg_2 {
-        None => println!("{RED}Error: Project name argument is missing: `cargo auto new_cli project_name`{RESET}"),
-        Some(project_name) => {
-            crate::template_new_cli_mod::copy_to_files(&project_name);
-            println!("");
-            println!("    {YELLOW}The command `crate auto new_cli` generated the directory `{project_name}`{RESET}");
-            println!("    {YELLOW}You can open this new Rust project `{project_name}` in a new Rust editor.{RESET}",);
-            println!("    {YELLOW}For example VSCode:{RESET}");
-            println!("{GREEN}code {project_name}{RESET}");
-            println!("    {YELLOW}Then build with:{RESET}");
-            println!("{GREEN}cargo auto build{RESET}");
-            println!("    {YELLOW}and follow the detailed instructions.{RESET}");
-        }
-    }
-}
-
-pub fn new_wasm(arg_2: Option<String>) {
-    match arg_2 {
-        None => println!("{RED}Error: Project name argument is missing: `cargo auto new_wasm project_name`{RESET}"),
-        Some(project_name) => {
-            crate::template_new_wasm_mod::copy_to_files(&project_name);
-            println!("");
-            println!("    {YELLOW}The command `crate auto new_wasm` generated the directory `{project_name}`{RESET}");
-            println!("    {YELLOW}You can open this new Rust project `{project_name}` in a new Rust editor.{RESET}",);
-            println!("    {YELLOW}For example VSCode:{RESET}");
-            println!("{GREEN}code {project_name}{RESET}");
-            println!("    {YELLOW}Then build with:{RESET}");
-            println!("{GREEN}cargo auto build{RESET}");
-            println!("    {YELLOW}and follow the detailed instructions.{RESET}");
-        }
-    }
-}
-
-pub fn new_pwa_wasm(arg_2: Option<String>) {
-    match arg_2 {
-        None => println!("{RED}Error: Project name argument is missing: `cargo auto new_pwa_wasm project_name`{RESET}"),
-        Some(project_name) => {
-            crate::template_new_pwa_wasm_mod::copy_to_files(&project_name);
-            // TODO: use the `pwa.json5` and `icon512x512.png` to customize the template project
-            println!("");
-            println!("    {YELLOW}On first call, the command `crate auto new_pwa_wasm` generated the files `pwa.json5` and `icon512x512.png`.{RESET}");
-            println!("    {YELLOW}Modify these files accordingly and repeat the same command.{RESET}");
-            println!("    {YELLOW}On second call, the command `crate auto new_pwa_wasm` generated the directory `{project_name}`{RESET}");
-            println!("    {YELLOW}You can open this new Rust project `{project_name}` in a new Rust editor.{RESET}",);
-            println!("    {YELLOW}For example VSCode:{RESET}");
-            println!("{GREEN}code {project_name}{RESET}");
-            println!("    {YELLOW}Then build with:{RESET}");
-            println!("{GREEN}cargo auto build{RESET}");
-            println!("    {YELLOW}and follow the detailed instructions.{RESET}");
-        }
     }
 }

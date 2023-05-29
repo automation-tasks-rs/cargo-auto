@@ -260,6 +260,17 @@ lazy_static! {
         PathBuf::from("automation_tasks_rs/target/debug/automation_tasks_rs");
 }
 
+// ANSI colors for Linux terminal
+// https://github.com/shiena/ansicolor/blob/master/README.md
+#[allow(dead_code)]
+pub const RED: &str = "\x1b[31m";
+#[allow(dead_code)]
+pub const YELLOW: &str = "\x1b[33m";
+#[allow(dead_code)]
+pub const GREEN: &str = "\x1b[32m";
+#[allow(dead_code)]
+pub const RESET: &str = "\x1b[0m";
+
 pub struct FileItem {
     file_name: &'static str,
     file_content: &'static str,

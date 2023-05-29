@@ -1,6 +1,25 @@
 //! this strings are copied from the template_new_cli folder
 //! because when publishing to crates.io, only the main bin-executable is transferred
 
+use crate::{GREEN, RED, RESET, YELLOW};
+
+pub fn new_cli(arg_2: Option<String>) {
+    match arg_2 {
+        None => println!("{RED}Error: Project name argument is missing: `cargo auto new_cli project_name`{RESET}"),
+        Some(project_name) => {
+            copy_to_files(&project_name);
+            println!("");
+            println!("    {YELLOW}The command `crate auto new_cli` generated the directory `{project_name}`{RESET}");
+            println!("    {YELLOW}You can open this new Rust project `{project_name}` in a new Rust editor.{RESET}",);
+            println!("    {YELLOW}For example VSCode:{RESET}");
+            println!("{GREEN}code {project_name}{RESET}");
+            println!("    {YELLOW}Then build with:{RESET}");
+            println!("{GREEN}cargo auto build{RESET}");
+            println!("    {YELLOW}and follow the detailed instructions.{RESET}");
+        }
+    }
+}
+
 pub fn copy_to_files(project_name: &str) {
     let folder_path = std::path::Path::new(project_name);
     std::fs::create_dir_all(folder_path).unwrap();
