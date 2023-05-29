@@ -7,9 +7,12 @@
     */
     /* background color */
     --b_color_body: #24292E;
-    --b_color_button: dodgerblue;
+    --b_color_button: rgb(78, 78, 78);
+    --b_color_header:rgb(78, 78, 78);
     /* front color */
     --f_color_body: #c4cce0;
+    --f_color_button: white;
+    --f_color_header:white;
     --f_color_link: white;
 }
 
@@ -19,45 +22,15 @@
 /* less then 590px*/
 
 @media (max-width: 590px) {
-    .media_header_grid_01 {
-        display: grid;
-        grid-template-columns: 1fr;
-    }
+   
 
-    .media_header_grid_02 {
-        display: grid;
-        grid-template-columns: 1fr;
-    }
-
-    .media_right {
-        text-align: left;
-    }
-
-    .media_portrait_visible {
-        visibility: visible;
-    }
 }
 
 /* larger then 590px */
 
 @media (min-width: 590px) {
-    .media_header_grid_01 {
-        display: grid;
-        grid-template-columns: 1fr 3fr;
-    }
+   
 
-    .media_header_grid_02 {
-        display: grid;
-        grid-template-columns: 4fr 9fr 3fr;
-    }
-
-    .media_right {
-        text-align: right;
-    }
-
-    .media_portrait_visible {
-        visibility: hidden;
-    }
 }
 
 @font-face {
@@ -75,7 +48,7 @@
 }
 
 .fa,
-.fas {
+.fas, .fa-solid {
     font-family: 'Font Awesome 5 Free';
     font-weight: 900;
 }
@@ -110,18 +83,33 @@ relative to this font-size.*/
 }
 
 body {
-    max-width: 600px;
     margin: 0;
-    padding: 0;
+    padding: 2%;
     font-size: 60%;
     line-height: 1.5;
     background-color: var(--b_color_body);
     color: var(--f_color_body);
 }
 
+a:link,
+a:visited,
+a:hover,
+a:active {
+    color: inherit;
+    text-decoration: none;
+}
+
+h1{
+    padding:0px;
+}
 /* endregion: basics */
 
 /* region: css classes */
+
+.div_header{
+    background-color: rgb(78, 78, 78);
+    width: 100%;
+}
 
 .bold {
     font-weight: bold;
@@ -161,7 +149,7 @@ body {
     background: var(--b_color_button);
     font-size: 120%;
     font-weight: bold;
-    color: #fff;
+    color: var(--f_color_button);
 }
 
 /* endregion: css classes */

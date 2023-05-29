@@ -79,6 +79,7 @@ fn print_help() {
     wsm::set_html_element_inner_text("div_for_wasm_html_injecting",
         r#"
     Welcome to cargo_auto_template_new_wasm !
+    
     This is a simple yet complete template for a WASM program written in Rust.
     The file structure is on purpose similar to a Rust CLI project and accepts similar arguments.
 

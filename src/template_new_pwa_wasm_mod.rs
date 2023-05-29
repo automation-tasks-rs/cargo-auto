@@ -451,9 +451,9 @@ pub fn set_html_element_inner_html(element_id: &str, inner_html: &str) {
     html_element.set_inner_html(inner_html);
 }
 
-// open URL in new tab
-pub fn open_url_in_new_tab(url: &str) {
-    window().open_with_url_and_target(url, "_blank").unwrap();
+// open URL in same tab (PWA don't have tabs, only one windows)
+pub fn open_url(url: &str) {
+    window().location().replace(url).unwrap();
 }
 "###,
     });
@@ -590,8 +590,7 @@ pub fn main() {
     wasm_logger::init(wasm_logger::Config::default());
     log::info!("main() started");
 
-    // super simple argument parsing.
-    // In browser we can use 'local routing' on url path with # fragment
+    // region: In browser we can use 'local routing' on url path with # fragment
     // http://localhost:4000/pwa_short_name#arg_1/arg_2
     let location = wsm::window().location();
     let mut location_hash_fragment = unwrap!(location.hash());
@@ -609,8 +608,11 @@ pub fn main() {
     let args: Vec<&str> = args.collect();
     dbg!(&args);
 
-    remove_downloading_message();
+    // every page must have the header
+    header();
+    // endregion
 
+    // super simple argument parsing.
     // Since &str is Copy, you can avoid the creation of &&str by adding .copied()
     match args.get(1).copied() {
         None => page_with_inputs(),
@@ -641,9 +643,26 @@ pub fn main() {
     }
 }
 
+/// render header with Home and Help
+fn header() {
+    // WARNING for HTML INJECTION! Never put user provided strings in set_html_element_inner_html.
+    // Only correctly html encoded strings can use this function.
+    wsm::set_html_element_inner_html("div_for_wasm_html_injecting",
+r#"
+<div class="div_header">
+    <a href="/pwa_short_name"><i class="fa-solid fa-home"></i>Home</a>
+    &nbsp;
+    <a href="/pwa_short_name#help"><i class="fa-solid fa-question-circle"></i>Help</a>
+    &nbsp;
+</div>
+<div id="div_body"></div>
+"#
+    );
+}
+
 /// print help
 fn print_help() {
-    wsm::set_html_element_inner_text("div_for_wasm_html_injecting",
+    wsm::set_html_element_inner_text("div_body",
         r#"
     Welcome to pwa_short_name !
     This is a simple yet complete template for a WASM program written in Rust.
@@ -687,7 +706,7 @@ pub fn page_with_inputs() {
 
     // WARNING for HTML INJECTION! Never put user provided strings in set_html_element_inner_html.
     // Only correctly html encoded strings can use this function.
-    wsm::set_html_element_inner_html("div_for_wasm_html_injecting",html);
+    wsm::set_html_element_inner_html("div_body",html);
     wsm::add_listener_to_button("btn_run", &on_click_btn_run);
 }
 
@@ -698,7 +717,7 @@ fn on_click_btn_run() {
     if !arg_1.is_empty() && !arg_2.is_empty() {
         // pass arguments as URL in a new tab
         let url = format!("/pwa_short_name#{arg_1}/{arg_2}");
-        wsm::open_url_in_new_tab(&url);
+        wsm::open_url(&url);
     } else {
         // write on the same web page
         wsm::set_html_element_inner_text(
@@ -708,14 +727,11 @@ fn on_click_btn_run() {
     }
 }
 
-// remove downloading message
-fn remove_downloading_message() {
-    wsm::set_html_element_inner_text("div_for_wasm_html_injecting","");
-}
 
 /// print my name
 fn print_greet_name(greet_name: &str) {
-    wsm::set_html_element_inner_text("div_for_wasm_html_injecting",&format!(
+    // subsequent manipulation of the dom must be without dangerous inner_html
+    wsm::set_html_element_inner_text("div_body",&format!(
 r#"The result is
 {}
 "#,
@@ -728,7 +744,8 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
     // the function from `lib.rs`, can return error
     // use the ? syntax to bubble the error up one level or continue (early return)
     let upper = lib_mod::format_upper_hello_phrase(greet_name)?;
-    wsm::set_html_element_inner_text("div_for_wasm_html_injecting",&format!(
+    // subsequent manipulation of the dom must be without dangerous inner_html
+    wsm::set_html_element_inner_text("div_body",&format!(
 r#"The result is
 {upper}
 "#
@@ -7399,45 +7416,15 @@ readers do not read off random characters that represent icons */
 /* less then 590px*/
 
 @media (max-width: 590px) {
-    .media_header_grid_01 {
-        display: grid;
-        grid-template-columns: 1fr;
-    }
+   
 
-    .media_header_grid_02 {
-        display: grid;
-        grid-template-columns: 1fr;
-    }
-
-    .media_right {
-        text-align: left;
-    }
-
-    .media_portrait_visible {
-        visibility: visible;
-    }
 }
 
 /* larger then 590px */
 
 @media (min-width: 590px) {
-    .media_header_grid_01 {
-        display: grid;
-        grid-template-columns: 1fr 3fr;
-    }
+   
 
-    .media_header_grid_02 {
-        display: grid;
-        grid-template-columns: 4fr 9fr 3fr;
-    }
-
-    .media_right {
-        text-align: right;
-    }
-
-    .media_portrait_visible {
-        visibility: hidden;
-    }
 }
 
 @font-face {
@@ -7455,7 +7442,7 @@ readers do not read off random characters that represent icons */
 }
 
 .fa,
-.fas {
+.fas, .fa-solid {
     font-family: 'Font Awesome 5 Free';
     font-weight: 900;
 }
@@ -7502,6 +7489,11 @@ body {
 /* endregion: basics */
 
 /* region: css classes */
+
+.div_header{
+    background-color: rgb(78, 78, 78);
+    width: 100%;
+}
 
 .bold {
     font-weight: bold;
@@ -7588,7 +7580,7 @@ body {
 // but the new service worker will not be activated until all 
 // tabs with this webapp are closed.
 
-const CACHE_NAME = '2023.529.1151';
+const CACHE_NAME = '2023.529.1422';
 
 self.addEventListener('install', event => {
     console.log('event install ', CACHE_NAME);

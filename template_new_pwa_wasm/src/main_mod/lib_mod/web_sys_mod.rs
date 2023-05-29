@@ -82,7 +82,7 @@ pub fn set_html_element_inner_html(element_id: &str, inner_html: &str) {
     html_element.set_inner_html(inner_html);
 }
 
-// open URL in new tab
-pub fn open_url_in_new_tab(url: &str) {
-    window().open_with_url_and_target(url, "_blank").unwrap();
+// open URL in same tab (PWA don't have tabs, only one windows)
+pub fn open_url(url: &str) {
+    window().location().replace(url).unwrap();
 }
