@@ -4,17 +4,17 @@
 
 [//]: # (auto_cargo_toml_to_md start)
 
-**template for a minimal pwa wasm project for browser**  
-***version: 2023.519.1012 date: 2023-05-19 author: [project_author](project_homepage) repository: [Github](project_repository)***  
+**pwa_description**  
+***version: 2023.530.1200 date: 2023-05-30 author: [project_author](project_homepage) repository: [Github](project_repository)***  
 
 [//]: # (auto_cargo_toml_to_md end)
 
 [//]: # (auto_lines_of_code start)
-[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-262-green.svg)](https://github.com/bestia-dev/rust_wasm_pwa_minimal_clock/)
-[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-30-blue.svg)](https://github.com/bestia-dev/rust_wasm_pwa_minimal_clock/)
-[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-67-purple.svg)](https://github.com/bestia-dev/rust_wasm_pwa_minimal_clock/)
-[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/rust_wasm_pwa_minimal_clock/)
-[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-19-orange.svg)](https://github.com/bestia-dev/rust_wasm_pwa_minimal_clock/)
+[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-342-green.svg)](project_repository)
+[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-40-blue.svg)](project_repository)
+[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-76-purple.svg)](project_repository)
+[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](project_repository)
+[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-19-orange.svg)](project_repository)
 
 [//]: # (auto_lines_of_code end)
 

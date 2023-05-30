@@ -68,6 +68,17 @@ pub fn add_listener_to_button(element_id: &str, fn_on_click_button: &'static (dy
     closure.forget();
 }
 
+/// add event listener for onhashchange
+pub fn add_listener_for_onhashchange(fn_on_hash_change: &'static (dyn Fn() + 'static)) {
+    let handler_1 = Box::new(move || {
+        fn_on_hash_change();
+    }) as Box<dyn FnMut()>;
+    let closure = Closure::wrap(handler_1);
+
+    window().set_onhashchange(Some(closure.as_ref().unchecked_ref()));
+    closure.forget();
+}
+
 /// set inner text
 pub fn set_html_element_inner_text(element_id: &str, inner_text: &str) {
     let html_element = get_html_element_by_id(element_id);
@@ -84,5 +95,25 @@ pub fn set_html_element_inner_html(element_id: &str, inner_html: &str) {
 
 // open URL in same tab (PWA don't have tabs, only one windows)
 pub fn open_url(url: &str) {
-    window().location().replace(url).unwrap();
+    dbg!(url);
+    window().location().assign(url).unwrap();
+    // Strange behavior: if url has hash, then it does not load ?!?
+    match window().location().hash() {
+        Ok(hash) => {
+            dbg!(&hash);
+            window().location().set_hash(&hash).unwrap();
+        }
+        Err(_err) => {}
+    }
+}
+
+pub fn now_time_as_string() -> String {
+    let now = js_sys::Date::new_0();
+    let now_time = format!(
+        "{:02}:{:02}:{:02}",
+        now.get_hours(),
+        now.get_minutes(),
+        now.get_seconds()
+    );
+    now_time
 }

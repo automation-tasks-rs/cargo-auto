@@ -128,11 +128,11 @@ fn task_build() {
     in a separate VSCode bash terminal, so it can serve constantly in the background.{RESET}
 {GREEN}basic-http-server -a 0.0.0.0:4000 ./web_server_folder{RESET}
     {YELLOW}and open the browser on{RESET}
-{GREEN}http://localhost:4000/pwa_short_name{RESET}
-{GREEN}http://localhost:4000/pwa_short_name#print/world{RESET}
-{GREEN}http://localhost:4000/pwa_short_name#upper/world{RESET}
+{GREEN}http://localhost:4000/pwa_short_name/{RESET}
+{GREEN}http://localhost:4000/pwa_short_name/#print/world{RESET}
+{GREEN}http://localhost:4000/pwa_short_name/#upper/world{RESET}
     {YELLOW}This will return an error:{RESET}
-{GREEN}http://localhost:4000/pwa_short_name#upper/WORLD{RESET}
+{GREEN}http://localhost:4000/pwa_short_name/#upper/WORLD{RESET}
     {YELLOW}If all is fine, run{RESET}
 {GREEN}cargo auto release{RESET}
 "#
@@ -154,11 +154,11 @@ fn task_release() {
     in a separate VSCode bash terminal, so it can serve constantly in the background.{RESET}
 {GREEN}basic-http-server -a 0.0.0.0:4000 ./web_server_folder{RESET}
     {YELLOW}and open the browser on{RESET}
-{GREEN}http://localhost:4000/pwa_short_name{RESET}    
-{GREEN}http://localhost:4000/pwa_short_name#print/world{RESET}
-{GREEN}http://localhost:4000/pwa_short_name#upper/world{RESET}
+{GREEN}http://localhost:4000/pwa_short_name/{RESET}    
+{GREEN}http://localhost:4000/pwa_short_name/#print/world{RESET}
+{GREEN}http://localhost:4000/pwa_short_name/#upper/world{RESET}
     {YELLOW}This will return an error:{RESET}
-{GREEN}http://localhost:4000/pwa_short_name#upper/WORLD{RESET}
+{GREEN}http://localhost:4000/pwa_short_name/#upper/WORLD{RESET}
     {YELLOW}If all is fine, run{RESET}
 {GREEN}cargo auto doc{RESET}
 "#

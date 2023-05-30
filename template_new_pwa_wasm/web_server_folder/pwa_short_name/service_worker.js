@@ -7,7 +7,7 @@
 // but the new service worker will not be activated until all 
 // tabs with this webapp are closed.
 
-const CACHE_NAME = '2023.530.819';
+const CACHE_NAME = '2023.530.1200';
 
 self.addEventListener('install', event => {
     console.log('event install ', CACHE_NAME);
@@ -18,8 +18,7 @@ self.addEventListener('install', event => {
         caches.open(CACHE_NAME).then(function (cache) {
             return cache.addAll(
                 [
-                    /* TODO: strangely the # fragment does not work ! */
-                    '.',
+                    '/pwa_short_name/',
                     'index.html',
                     'favicon.ico',
                     'manifest.json',

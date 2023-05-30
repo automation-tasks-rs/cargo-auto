@@ -4,7 +4,7 @@
         "titleBar.inactiveForeground": "#ffffffcc",
         "titleBar.activeBackground": "#6f4787",
         "titleBar.inactiveBackground": "#8d3f5ecc"
-      },
+    },
     "cSpell.words": [
         "apos",
         "bestia",
@@ -14,6 +14,7 @@
         "endregion",
         "onchange",
         "onclick",
+        "onhashchange",
         "plantuml",
         "rustlang",
         "thiserror",

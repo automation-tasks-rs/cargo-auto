@@ -13,6 +13,7 @@ navigator.serviceWorker.addEventListener('controllerchange', function () {
     navigator.serviceWorker.controller.addEventListener('statechange', function () {
         // If the ServiceWorker becomes "activated", let the user know they can go offline!
         if (this.state === 'activated') {
+            console.log('ServiceWorker activated. Can go offline.');
             window.location.reload();
         }
     });

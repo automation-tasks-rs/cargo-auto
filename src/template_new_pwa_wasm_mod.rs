@@ -7600,7 +7600,7 @@ h1{
 // but the new service worker will not be activated until all 
 // tabs with this webapp are closed.
 
-const CACHE_NAME = '2023.530.805';
+const CACHE_NAME = '2023.530.819';
 
 self.addEventListener('install', event => {
     console.log('event install ', CACHE_NAME);
@@ -7611,7 +7611,8 @@ self.addEventListener('install', event => {
         caches.open(CACHE_NAME).then(function (cache) {
             return cache.addAll(
                 [
-                    '/pwa_short_name'
+                    /* TODO: strangely the # fragment does not work ! */
+                    '.',
                     'index.html',
                     'favicon.ico',
                     'manifest.json',
@@ -7621,9 +7622,12 @@ self.addEventListener('install', event => {
                     'css/fontawesome.css',
                     'css/normalize.css',
                     'css/Roboto-Medium.woff2',
-                    'icons/icon-32.png',
+                    'icons/icon-032.png',
+                    'icons/icon-072.png',
+                    'icons/icon-096.png',
                     'icons/icon-120.png',
                     'icons/icon-128.png',
+                    'icons/icon-144.png',
                     'icons/icon-152.png',
                     'icons/icon-167.png',
                     'icons/icon-180.png',
@@ -7774,6 +7778,7 @@ navigator.serviceWorker.addEventListener('controllerchange', function () {
     navigator.serviceWorker.controller.addEventListener('statechange', function () {
         // If the ServiceWorker becomes "activated", let the user know they can go offline!
         if (this.state === 'activated') {
+            console.log('ServiceWorker activated. Can go offline.');
             window.location.reload();
         }
     });
