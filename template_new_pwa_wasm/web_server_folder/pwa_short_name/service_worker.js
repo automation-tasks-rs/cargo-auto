@@ -7,7 +7,7 @@
 // but the new service worker will not be activated until all 
 // tabs with this webapp are closed.
 
-const CACHE_NAME = '2023.529.1605';
+const CACHE_NAME = '2023.530.819';
 
 self.addEventListener('install', event => {
     console.log('event install ', CACHE_NAME);
@@ -18,7 +18,32 @@ self.addEventListener('install', event => {
         caches.open(CACHE_NAME).then(function (cache) {
             return cache.addAll(
                 [
+                    /* TODO: strangely the # fragment does not work ! */
+                    '.',
                     'index.html',
+                    'favicon.ico',
+                    'manifest.json',
+                    'start_service_worker.js',
+                    'css/basic_style.css',
+                    'css/fa-solid-900.woff2',
+                    'css/fontawesome.css',
+                    'css/normalize.css',
+                    'css/Roboto-Medium.woff2',
+                    'icons/icon-032.png',
+                    'icons/icon-072.png',
+                    'icons/icon-096.png',
+                    'icons/icon-120.png',
+                    'icons/icon-128.png',
+                    'icons/icon-144.png',
+                    'icons/icon-152.png',
+                    'icons/icon-167.png',
+                    'icons/icon-180.png',
+                    'icons/icon-192.png',
+                    'icons/icon-196.png',
+                    'icons/icon-512.png',
+                    'icons/icon-maskable.png',
+                    'pkg/rust_project_name_bg.wasm',
+                    'pkg/rust_project_name.js'
                 ]
             );
         })

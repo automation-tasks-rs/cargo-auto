@@ -1,4 +1,10 @@
 {
+    "workbench.colorCustomizations": {
+        "titleBar.activeForeground": "#fff",
+        "titleBar.inactiveForeground": "#ffffffcc",
+        "titleBar.activeBackground": "#477587",
+        "titleBar.inactiveBackground": "#3F758DCC"
+      },
     "cSpell.words": [
         "Alla",
         "alloc",

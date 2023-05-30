@@ -1,6 +1,6 @@
 [package]
 name = "cargo-auto"
-version = "2023.529.1605"
+version = "2023.530.819"
 authors = ["bestia.dev"]
 homepage = "https://bestia.dev"
 edition = "2021"
