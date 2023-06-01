@@ -94,8 +94,8 @@ fn print_help() {
 /// all example commands in one place
 fn print_examples_cmd(){
 /*
-    println!(r#"{YELLOW}run examples:{RESET}{GREEN}
-cargo run --example example1{RESET}
+    println!(r#"{YELLOW}run examples:{RESET}
+{GREEN}cargo run --example example1{RESET}
 "#);
 */
 }
@@ -152,7 +152,7 @@ fn task_build() {
 {GREEN}./target/debug/{package_name} argument{RESET}
     {YELLOW}if ok, then,{RESET}
 {GREEN}cargo auto release{RESET}
-    {YELLOW}{RESET}"#,
+"#,
 package_name = cargo_toml.package_name(),
     );
     print_examples_cmd();
@@ -194,7 +194,7 @@ fn task_release() {
 {GREEN}./target/release/{package_name} argument{RESET}
     {YELLOW}if ok, then,{RESET}
 {GREEN}cargo auto doc{RESET}
-    {YELLOW}{RESET}"#,
+"#,
 package_name = cargo_toml.package_name(),
     );
     print_examples_cmd();
@@ -234,7 +234,7 @@ fn task_test() {
     {YELLOW}After `cargo auto test`. If ok, then {RESET}
 {GREEN}cargo auto commit_and_push "message"{RESET}
     {YELLOW}with mandatory commit message{RESET}
-{GREEN}{RESET}"#
+"#
     );
 }
 
@@ -249,7 +249,7 @@ fn task_commit_and_push(arg_2: Option<String>) {
                 r#"
     {YELLOW}After `cargo auto commit_and_push "message"`{RESET}
 {GREEN}cargo auto publish_to_crates_io{RESET}
-    {YELLOW}{RESET}"#
+"#
             );
         }
     }
@@ -273,7 +273,7 @@ fn task_publish_to_crates_io() {
         r#"
     {YELLOW}After `cargo auto publish_to_crates_io`, check in browser{RESET}
 {GREEN}https://crates.io/crates/{package_name}{RESET}
-    {YELLOW}Install the crate with {RESET}
+    {YELLOW}Install the crate with{RESET}
 {GREEN}cargo install {package_name}{RESET}
     {YELLOW}and check how it works.{RESET}
     {YELLOW}Then create the Github-Release and upload the assets.{RESET}    

@@ -207,7 +207,7 @@ fn print_help() {
     {YELLOW}This command should return an error:{RESET}
 {GREEN}cargo_auto_template_new_cli upper WORLD{RESET}
   
-    {YELLOW}© 2022 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
+    {YELLOW}© 2023 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
 "#
     );
 }
@@ -689,7 +689,7 @@ fn print_help() {
 {GREEN}cargo auto test{RESET}{YELLOW} - runs all the tests{RESET}
 {GREEN}cargo auto commit_and_push "message"{RESET}{YELLOW} - commits with message and push with mandatory message{RESET}
     {YELLOW}(If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.){RESET}
-    {YELLOW}© 2022 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
+    {YELLOW}© 2023 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
 "#
 /*
 cargo auto publish_to_crates_io - publish to crates.io, git tag
