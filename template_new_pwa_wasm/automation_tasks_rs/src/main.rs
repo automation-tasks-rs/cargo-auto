@@ -194,6 +194,7 @@ fn task_doc() {
 
 /// cargo test
 fn task_test() {
+    println!(r#"    {YELLOW}Wasm is a cdylib and therefore doc-tests are not run !{RESET}"#);
     run_shell_command("cargo test");
     println!(
         r#"

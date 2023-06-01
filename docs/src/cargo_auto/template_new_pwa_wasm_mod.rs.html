@@ -8475,6 +8475,80 @@
 <a href="#8475" id="8475">8475</a>
 <a href="#8476" id="8476">8476</a>
 <a href="#8477" id="8477">8477</a>
+<a href="#8478" id="8478">8478</a>
+<a href="#8479" id="8479">8479</a>
+<a href="#8480" id="8480">8480</a>
+<a href="#8481" id="8481">8481</a>
+<a href="#8482" id="8482">8482</a>
+<a href="#8483" id="8483">8483</a>
+<a href="#8484" id="8484">8484</a>
+<a href="#8485" id="8485">8485</a>
+<a href="#8486" id="8486">8486</a>
+<a href="#8487" id="8487">8487</a>
+<a href="#8488" id="8488">8488</a>
+<a href="#8489" id="8489">8489</a>
+<a href="#8490" id="8490">8490</a>
+<a href="#8491" id="8491">8491</a>
+<a href="#8492" id="8492">8492</a>
+<a href="#8493" id="8493">8493</a>
+<a href="#8494" id="8494">8494</a>
+<a href="#8495" id="8495">8495</a>
+<a href="#8496" id="8496">8496</a>
+<a href="#8497" id="8497">8497</a>
+<a href="#8498" id="8498">8498</a>
+<a href="#8499" id="8499">8499</a>
+<a href="#8500" id="8500">8500</a>
+<a href="#8501" id="8501">8501</a>
+<a href="#8502" id="8502">8502</a>
+<a href="#8503" id="8503">8503</a>
+<a href="#8504" id="8504">8504</a>
+<a href="#8505" id="8505">8505</a>
+<a href="#8506" id="8506">8506</a>
+<a href="#8507" id="8507">8507</a>
+<a href="#8508" id="8508">8508</a>
+<a href="#8509" id="8509">8509</a>
+<a href="#8510" id="8510">8510</a>
+<a href="#8511" id="8511">8511</a>
+<a href="#8512" id="8512">8512</a>
+<a href="#8513" id="8513">8513</a>
+<a href="#8514" id="8514">8514</a>
+<a href="#8515" id="8515">8515</a>
+<a href="#8516" id="8516">8516</a>
+<a href="#8517" id="8517">8517</a>
+<a href="#8518" id="8518">8518</a>
+<a href="#8519" id="8519">8519</a>
+<a href="#8520" id="8520">8520</a>
+<a href="#8521" id="8521">8521</a>
+<a href="#8522" id="8522">8522</a>
+<a href="#8523" id="8523">8523</a>
+<a href="#8524" id="8524">8524</a>
+<a href="#8525" id="8525">8525</a>
+<a href="#8526" id="8526">8526</a>
+<a href="#8527" id="8527">8527</a>
+<a href="#8528" id="8528">8528</a>
+<a href="#8529" id="8529">8529</a>
+<a href="#8530" id="8530">8530</a>
+<a href="#8531" id="8531">8531</a>
+<a href="#8532" id="8532">8532</a>
+<a href="#8533" id="8533">8533</a>
+<a href="#8534" id="8534">8534</a>
+<a href="#8535" id="8535">8535</a>
+<a href="#8536" id="8536">8536</a>
+<a href="#8537" id="8537">8537</a>
+<a href="#8538" id="8538">8538</a>
+<a href="#8539" id="8539">8539</a>
+<a href="#8540" id="8540">8540</a>
+<a href="#8541" id="8541">8541</a>
+<a href="#8542" id="8542">8542</a>
+<a href="#8543" id="8543">8543</a>
+<a href="#8544" id="8544">8544</a>
+<a href="#8545" id="8545">8545</a>
+<a href="#8546" id="8546">8546</a>
+<a href="#8547" id="8547">8547</a>
+<a href="#8548" id="8548">8548</a>
+<a href="#8549" id="8549">8549</a>
+<a href="#8550" id="8550">8550</a>
+<a href="#8551" id="8551">8551</a>
 </pre><pre class="rust"><code><span class="doccomment">//! this strings are copied from the template_new_pwa_wasm folder
 //! because when publishing to crates.io, only the main bin-executable is transferred
 
@@ -8763,19 +8837,25 @@
         &quot;titleBar.inactiveBackground&quot;: &quot;#8d3f5ecc&quot;
     },
     &quot;cSpell.words&quot;: [
+        &quot;Alla&quot;,
         &quot;apos&quot;,
         &quot;bestia&quot;,
+        &quot;bestiadev&quot;,
         &quot;bindgen&quot;,
         &quot;cdylib&quot;,
         &quot;CRDE&quot;,
         &quot;endregion&quot;,
+        &quot;Nazdravlje&quot;,
         &quot;onchange&quot;,
         &quot;onclick&quot;,
         &quot;onhashchange&quot;,
         &quot;plantuml&quot;,
+        &quot;Prost&quot;,
         &quot;rustlang&quot;,
+        &quot;substack&quot;,
         &quot;thiserror&quot;,
-        &quot;webassembly&quot;
+        &quot;webassembly&quot;,
+        &quot;zdravje&quot;
     ]
 }&quot;###</span>,
     });
@@ -8810,6 +8890,7 @@ anyhow=&quot;1.0.71&quot;
 log = &quot;0.4.17&quot;
 wasm-logger = &quot;0.2.0&quot;
 wasm-rs-dbg = {version=&quot;0.1.2&quot;, default-features = false, features = [&quot;console-log&quot;]}
+html-escape = &quot;0.2.13&quot;
 
 [dependencies.web-sys]
 version = &quot;0.3.63&quot;
@@ -8825,8 +8906,8 @@ features = [
   &quot;Window&quot;,
 ]
 
-[dev-dependencies]
-wasm-bindgen-test = &quot;0.3.36&quot;
+# [dev-dependencies]
+# wasm-bindgen-test = &quot;0.3.36&quot;
 
 [profile.release]
 panic = &quot;abort&quot;
@@ -8849,40 +8930,116 @@ panic = &quot;abort&quot;
 /pkg/
 &quot;###</span>,
     });
+    vec_file.push(<span class="kw">crate</span>::FileItem{
+            file_name :<span class="string">&quot;src/main_mod/lib_mod/web_sys_mod/html_source_code_mod.rs&quot;</span>,
+            file_content : <span class="string">r###&quot;//! html_source_code_mod.rs
+
+/// HtmlSourceCode - type to manipulate HTML source code safer than with string functions only  
+/// WARNING for HTML INJECTION!   
+/// HTML is the standard markup language for Web pages. HTML source code is just a text.  
+/// It is easy to read, write, understand and parse.  
+/// The syntax of HTML source code is similar to XML structured with elements, tags, nodes, texts, comments and attributes.  
+/// The browser then transforms this HTML source code into the DOM tree and then renders that.  
+/// It is very tempting to modify this source code in our application with string manipulation and then pass it to the browser.  
+/// The html source code (it is just a string) that is provided by the programmer is always ok, he wants it to work properly.  
+/// The BIG problem arises when we need to inject some user provided data into the HTML source code.  
+/// The HTML syntax mixes instructions and data together and this creates a BIG problem.  
+/// Never put user provided strings in a html source code directly, because it can contain an HTML injection attack.  
+/// We need to encode all user data before putting it into the HTML source code.  
+/// There are 2 types of encodings: one for attributes values and another for text nodes.  
+/// We will create a new type that makes it safer and easier for the programmer to replace data in the HTML source code.  
+///
+
+pub struct HtmlSourceCode {
+    html: String,
+}
+
+impl HtmlSourceCode {
+    /// The programmer provides a &amp;&#39;static str to initiate HtmlSourceCode.  
+    /// The html source code coming from the programmer is always ok, he wants it to work properly.  
+    /// The data that will be replaced, have a recognizable and unique value.  
+    pub fn new(html_code: &amp;&#39;static str) -&gt; Self {
+        HtmlSourceCode {
+            html: html_code.to_string(),
+        }
+    }
+
+    /// get the well formed html  
+    /// We trust the programmer to carefully work with HtmlSourceCode to be always well formed and without HTML injection.  
+    pub fn get_html(&amp;self) -&gt; String {
+        self.html.clone()
+    }
+
+    /// This must be pure text, no html element are allowed for bold or italic...  
+    /// We trust the programmer that it will replace only the anticipated placeholders.  
+    pub fn replace_text_node(&amp;mut self, placeholder: &amp;&#39;static str, text: &amp;str) {
+        self.html = self
+            .html
+            .replace(placeholder, &amp;html_escape::encode_text(text));
+    }
+
+    /// The attribute value must be double_quoted.  
+    /// We trust the programmer that it will replace only the anticipated placeholders.  
+    pub fn replace_attribute_value(&amp;mut self, placeholder: &amp;&#39;static str, value: &amp;str) {
+        self.html = self.html.replace(
+            placeholder,
+            &amp;html_escape::encode_double_quoted_attribute(value),
+        );
+    }
+
+    /// We expect the HtmlSourceCode to be well formed. For that we trust the programmer.  
+    /// We trust the programmer that it will replace only the anticipated placeholders.  
+    pub fn replace_html_source_code(
+        &amp;mut self,
+        placeholder: &amp;&#39;static str,
+        html_source_code: &amp;HtmlSourceCode,
+    ) {
+        self.html = self.html.replace(placeholder, &amp;html_source_code.get_html());
+    }
+
+    /// Injects the HTMLSourceCode into a DOM element.  
+    /// We trust the programmer to carefully work with HtmlSourceCode to be always well formed and without HTML injection.  
+    pub fn inject_into_dom_element(self, element_id: &amp;str) {
+        let html_element = super::get_element_by_id(element_id);
+        html_element.set_inner_html(&amp;self.html);
+    }
+}
+&quot;###</span>,
+});
     vec_file.push(<span class="kw">crate</span>::FileItem {
         file_name: <span class="string">&quot;src/main_mod/lib_mod/web_sys_mod.rs&quot;</span>,
-        file_content: <span class="string">r###&quot;//! src/web_sys_mod.rs
-//! helper functions for web_sys, window, document, dom, console, html elements,...
-//! Trying to isolate/hide all javascript code and conversion in this module.
+        file_content: <span class="string">r###&quot;// src/web_sys_mod.rs
+
+//! Helper functions for web_sys, window, document, dom, console, html elements,...  
+//! Trying to isolate/hide all javascript code and conversion in this module.  
 
 // region: use
 // the macro unwrap! shows the TRUE location where the error has ocurred.
 use unwrap::unwrap;
 use wasm_bindgen::prelude::*;
-use wasm_bindgen::{JsCast, JsValue};
+use wasm_bindgen::JsCast;
+// use wasm_bindgen::JsValue;
 // use wasm_bindgen_futures::JsFuture;
-use web_sys::console;
+// use web_sys::console;
 // use web_sys::{Request, RequestInit, Response};
 // endregion: use
 
-/// return the global window object
+mod html_source_code_mod;
+//re-export
+pub use html_source_code_mod::HtmlSourceCode;
+
+/// return the global window object  
 pub fn window() -&gt; web_sys::Window {
     unwrap!(web_sys::window())
 }
 
-/// get element by id
+/// get element by id  
 pub fn get_element_by_id(element_id: &amp;str) -&gt; web_sys::Element {
     let document = unwrap!(window().document());
     unwrap!(document.get_element_by_id(element_id))
 }
 
-/// debug write into session_storage
-pub fn debug_write(text: &amp;str) {
-    // writing to the console
-    console::log_1(&amp;JsValue::from_str(text));
-}
-
-/// get html element by id
+/// get html element by id  
 pub fn get_html_element_by_id(element_id: &amp;str) -&gt; web_sys::HtmlElement {
     let element = get_element_by_id(element_id);
     let html_element: web_sys::HtmlElement = unwrap!(element.dyn_into::&lt;web_sys::HtmlElement&gt;());
@@ -8890,16 +9047,7 @@ pub fn get_html_element_by_id(element_id: &amp;str) -&gt; web_sys::HtmlElement {
     html_element
 }
 
-/// HTML encode - naive
-pub fn html_encode(input: &amp;str) -&gt; String {
-    input
-        .replace(&quot;&amp;&quot;, &quot;&amp;amp;&quot;)
-        .replace(&quot;\&quot;&quot;, &quot;&amp;quot;&quot;)
-        .replace(&quot;&#39;&quot;, &quot;&amp;apos;&quot;)
-        .replace(&quot;&lt;&quot;, &quot;&amp;lt;&quot;)
-        .replace(&quot;&gt;&quot;, &quot;&amp;gt;&quot;)
-}
-/// get input element value string by id
+/// get input element value string by id  
 pub fn get_input_element_value_string_by_id(element_id: &amp;str) -&gt; String {
     // debug_write(&quot;before get_element_by_id&quot;);
     let input_element = get_element_by_id(element_id);
@@ -8909,7 +9057,7 @@ pub fn get_input_element_value_string_by_id(element_id: &amp;str) -&gt; String {
     input_html_element.value()
 }
 
-/// add event listener for button
+/// add event listener for button  
 pub fn add_listener_to_button(element_id: &amp;str, fn_on_click_button: &amp;&#39;static (dyn Fn() + &#39;static)) {
     let handler_1 = Box::new(move || {
         fn_on_click_button();
@@ -8921,7 +9069,7 @@ pub fn add_listener_to_button(element_id: &amp;str, fn_on_click_button: &amp;&#3
     closure.forget();
 }
 
-/// add event listener for onhashchange
+/// add event listener for onhashchange  
 pub fn add_listener_for_onhashchange(fn_on_hash_change: &amp;&#39;static (dyn Fn() + &#39;static)) {
     let handler_1 = Box::new(move || {
         fn_on_hash_change();
@@ -8932,21 +9080,13 @@ pub fn add_listener_for_onhashchange(fn_on_hash_change: &amp;&#39;static (dyn Fn
     closure.forget();
 }
 
-/// set inner text
+/// set inner text  
 pub fn set_html_element_inner_text(element_id: &amp;str, inner_text: &amp;str) {
     let html_element = get_html_element_by_id(element_id);
     html_element.set_inner_text(inner_text);
 }
 
-/// WARNING for HTML INJECTION! Never put user provided strings in set_html_element_inner_html.
-/// Only correctly html encoded strings can use this function.
-/// set inner html into dom
-pub fn set_html_element_inner_html(element_id: &amp;str, inner_html: &amp;str) {
-    let html_element = get_element_by_id(element_id);
-    html_element.set_inner_html(inner_html);
-}
-
-// open URL in same tab (PWA don&#39;t have tabs, only one windows)
+/// open URL in same tab (PWA don&#39;t have tabs, only one windows)  
 pub fn open_url(url: &amp;str) {
     dbg!(url);
     window().location().assign(url).unwrap();
@@ -8960,6 +9100,7 @@ pub fn open_url(url: &amp;str) {
     }
 }
 
+/// Wasm must read time from javascript.  
 pub fn now_time_as_string() -&gt; String {
     let now = js_sys::Date::new_0();
     let now_time = format!(
@@ -8976,9 +9117,9 @@ pub fn now_time_as_string() -&gt; String {
         file_name: <span class="string">&quot;src/main_mod/lib_mod/hello_mod.rs&quot;</span>,
         file_content: <span class="string">r###&quot;// src/hello_mod.rs
 
-//! All the real code is inside modules in separate files (program logic).
-//!
-//! This doc-comments will be compiled into the `docs`.
+//! All the real code (program logic) is inside modules in separate files.
+//! This module are UI agnostic and must not have anything to do with UI.
+//! So the same library could be used for CLI and for WASM, that have vastly different UI.
 
 /// format the hello phrase
 pub fn format_hello_phrase(greet_name: &amp;str) -&gt; String {
@@ -9032,9 +9173,10 @@ mod test {
     vec_file.push(<span class="kw">crate</span>::FileItem {
         file_name: <span class="string">&quot;src/main_mod/lib_mod.rs&quot;</span>,
         file_content: <span class="string">r###&quot;// src/lib_mod.rs
-// This module is like a lib.rs module for a binary CLI executable.
-// The `lib_mod.rs` must not contains any input/output interface stuff.
-// So the program logic can be separate from the interface.
+
+//! This module is like a lib.rs module for a binary CLI executable.
+//! The `lib_mod.rs` must not contains any input/output interface stuff.
+//! So the program logic can be separate from the interface.  
 
 // The `main_mod.rs` contains all input/output interface stuff.
 // This `lib_mod.rs` can then be used as dependency crate for other projects.
@@ -9046,20 +9188,16 @@ mod test {
 // The `main_mod.rs` uses the `anyhow` error library.
 // The `lib_mod.rs` uses the `thiserror` library.
 
-use thiserror::Error;
-
-// Instead of a hello_mod local module, we could use a UI agnostic crate library dependency.
-// So the same library could be used for CLI and for WASM, that have vastly different UI.
 mod hello_mod;
-
 pub mod web_sys_mod;
-pub use web_sys_mod as wsm;
 
+// re-exports
 pub use hello_mod::format_hello_phrase;
 pub use hello_mod::format_upper_hello_phrase;
+pub use web_sys_mod as wsm;
 
 /// all possible library errors for `thiserror`
-#[derive(Error, Debug)]
+#[derive(thiserror::Error, Debug)]
 pub enum LibraryError {
     #[error(&quot;Name `{0}` is already uppercase.&quot;)]
     Uppercase(String),
@@ -9082,9 +9220,10 @@ pub const RESET: &amp;str = &quot;\x1b[0m&quot;;
     vec_file.push(<span class="kw">crate</span>::FileItem {
         file_name: <span class="string">&quot;src/main_mod.rs&quot;</span>,
         file_content: <span class="string">r###&quot;// src/main_mod.rs
-// This module is like a main.rs module for a binary CLI executable.
-// The `main_mod.rs` contains all input/output interface stuff.
-// So the program logic can be separate from the interface.
+
+//! This module is like a main.rs module for a binary CLI executable.  
+//! The `main_mod.rs` contains all input/output interface stuff.  
+//! So the program logic can be separate from the interface.  
 
 // The `lib_mod.rs` must not contains any input/output interface stuff.
 // This `lib_mod.rs` can then be used as dependency crate for other projects.
@@ -9096,7 +9235,7 @@ use unwrap::unwrap;
 use wasm_rs_dbg::dbg;
 
 mod lib_mod;
-pub use lib_mod::wsm;
+use lib_mod::wsm;
 pub use lib_mod::LibraryError;
 
 /// entry point just like for cli-bin-executable
@@ -9109,6 +9248,7 @@ pub fn main() {
     routing_by_arguments(args);
 }
 
+/// get args from hash fragment
 fn get_args_from_hash_fragment() -&gt; Vec&lt;String&gt; {
     // region: In browser we can use &#39;local routing&#39; on url path with # fragment
     // but sometimes it does not reload the page, because the browser thinks # is an anchor on the same page
@@ -9134,10 +9274,11 @@ fn get_args_from_hash_fragment() -&gt; Vec&lt;String&gt; {
     args
 }
 
-/// routing can come
-/// 1. on page load and then read the window().location()
-/// 2. or from event change_hash
-/// 3. or can be called from a wasm function directly
+/// routing by arguments  
+/// routing can come from:  
+/// 1. on page load and then read the window().location()  
+/// 2. or from event change_hash  
+/// 3. or can be called from a wasm function directly  
 fn routing_by_arguments(args: Vec&lt;String&gt;) {
     // every page must have the header and onhashchange
     wsm::add_listener_for_onhashchange(&amp;on_hash_change);
@@ -9190,19 +9331,16 @@ fn routing_by_arguments(args: Vec&lt;String&gt;) {
     }
 }
 
-/// the listener calls this function
+/// the listener calls this function  
 fn on_hash_change() {
     dbg!(&quot;on_hash_change&quot;);
     let args = get_args_from_hash_fragment();
     routing_by_arguments(args);
 }
 
-/// render header with Home and Help
+/// render header with Home and Help  
 fn header() {
-    // WARNING for HTML INJECTION! Never put user provided strings in set_html_element_inner_html.
-    // Only correctly html encoded strings can use this function.
-    wsm::set_html_element_inner_html(
-        &quot;div_for_wasm_html_injecting&quot;,
+    let html_source_code = wsm::HtmlSourceCode::new(
         r#&quot;
 &lt;div class=&quot;div_header&quot;&gt;
     &lt;a href=&quot;/pwa_short_name/#page_with_inputs&quot;&gt;&lt;span class=&quot;fa-solid fa-home&quot;&gt;&lt;/span&gt;Home&lt;/a&gt;
@@ -9214,9 +9352,10 @@ fn header() {
 &lt;div id=&quot;div_body&quot;&gt;&lt;/div&gt;
 &quot;#,
     );
+    html_source_code.inject_into_dom_element(&quot;div_for_wasm_html_injecting&quot;);
 }
 
-/// print help
+/// print help  
 fn print_help() {
     wsm::set_html_element_inner_text(
         &quot;div_body&quot;,
@@ -9238,35 +9377,44 @@ http://localhost:4000/pwa_short_name/#upper/WORLD
     );
 }
 
-/// render first page
-pub fn page_with_inputs() {
+/// render first page  
+fn page_with_inputs() {
     // rust has `Raw string literals` that are great!
     // just add r# before the starting double quotes and # after the ending double quotes.
-    let html = r#&quot;&lt;h1&gt;pwa_short_name&lt;/h1&gt;
+    let mut html_source_code = wsm::HtmlSourceCode::new(
+r#&quot;&lt;h1&gt;pwa_short_name&lt;/h1&gt;
 &lt;p&gt;Write a command in the Argument 1: print or upper&lt;/p&gt;
 &lt;div class=&quot;input-wrap&quot;&gt;
     &lt;label for=&quot;arg_1&quot;&gt;Argument 1:&lt;/label&gt;  
-    &lt;input style=&quot;width:20%;&quot; type=&quot;text&quot; id=&quot;arg_1&quot; value=&quot;upper&quot;/&gt;
+    &lt;input style=&quot;width:20%;&quot; type=&quot;text&quot; id=&quot;arg_1&quot; value=&quot;ph_arg_1&quot;/&gt;
 &lt;/div&gt;
 &lt;p&gt;Write a name in the Argument 2: world or WORLD&lt;/p&gt;
 &lt;div class=&quot;input-wrap&quot;&gt;
     &lt;label for=&quot;arg_2&quot;&gt;Argument 2:&lt;/label&gt;  
-    &lt;input style=&quot;width:20%;&quot; type=&quot;text&quot; id=&quot;arg_2&quot; value=&quot;world&quot;/&gt;
+    &lt;input style=&quot;width:20%;&quot; type=&quot;text&quot; id=&quot;arg_2&quot; value=&quot;ph_arg_2&quot;/&gt;
 &lt;/div&gt;
 &lt;p&gt;Click on Run&lt;/p&gt;
 &lt;div class=&quot;input-wrap&quot;&gt;
     &lt;input type=&quot;button&quot; class=&quot;button&quot; id=&quot;btn_run&quot; value=&quot;Run&quot;/&gt;
 &lt;/div&gt;
-&lt;p class=&quot;small&quot;&gt;bestia.dev&lt;/p&gt;
-        &quot;#;
+ph_elem_p_1
+        &quot;#);
 
-    // WARNING for HTML INJECTION! Never put user provided strings in set_html_element_inner_html.
-    // Only correctly html encoded strings can use this function.
-    wsm::set_html_element_inner_html(&quot;div_body&quot;, html);
+    // ph_ is the prefix for placeholder to make the string unique and distinctive
+    html_source_code.replace_attribute_value(&quot;ph_arg_1&quot;, &quot;upper&quot;);
+    html_source_code.replace_attribute_value(&quot;ph_arg_2&quot;, &quot;world&quot;);
+
+    let mut fragment = wsm::HtmlSourceCode::new(r#&quot;&lt;p class=&quot;ph_attr_class_1&quot;&gt;ph_text_node_1&lt;/p&gt;&quot;#);
+    fragment.replace_attribute_value(&quot;ph_attr_class_1&quot;, &quot;small&quot;);
+    fragment.replace_text_node(&quot;ph_text_node_1&quot;, &quot;bestia.dev&quot;);
+    html_source_code.replace_html_source_code(&quot;ph_elem_p_1&quot;, &amp;fragment);
+
+    dbg!(html_source_code.get_html());
+    html_source_code.inject_into_dom_element(&quot;div_body&quot;);
     wsm::add_listener_to_button(&quot;btn_run&quot;, &amp;on_click_btn_run);
 }
 
-/// the listener calls this function
+/// the listener calls this function  
 fn on_click_btn_run() {
     let arg_1 = wsm::get_input_element_value_string_by_id(&quot;arg_1&quot;);
     let arg_2 = wsm::get_input_element_value_string_by_id(&quot;arg_2&quot;);
@@ -9283,9 +9431,8 @@ fn on_click_btn_run() {
     }
 }
 
-/// print my name
+/// print my name  
 fn print_greet_name(greet_name: &amp;str) {
-    // subsequent manipulation of the dom must be without dangerous inner_html
     wsm::set_html_element_inner_text(
         &quot;div_body&quot;,
         &amp;format!(
@@ -9297,12 +9444,11 @@ fn print_greet_name(greet_name: &amp;str) {
     );
 }
 
-/// print my name upper, can return error
+/// print my name upper, can return error  
 fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
     // the function from `lib.rs`, can return error
     // use the ? syntax to bubble the error up one level or continue (early return)
     let upper = lib_mod::format_upper_hello_phrase(greet_name)?;
-    // subsequent manipulation of the dom must be without dangerous inner_html
     wsm::set_html_element_inner_text(
         &quot;div_body&quot;,
         &amp;format!(
@@ -9318,22 +9464,23 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
         file_name: <span class="string">&quot;src/lib.rs&quot;</span>,
-        file_content: <span class="string">r###&quot;//! src/lib.rs
-//! This file has just the wasm_bindgen_start() function
-//! and calls into main_mod.rs.
-//! So the structure of the project modules can be similar to a binary CLI executable.
+        file_content: <span class="string">r###&quot;// src/lib.rs
+
+// This file has just the wasm_bindgen_start() function
+// and calls into main_mod.rs.
+// So the structure of the project modules can be similar to a binary CLI executable.
 
 // region: auto_md_to_doc_comments include README.md A //!
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2023.601.646 date: 2023-06-01 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2023.601.1218 date: 2023-06-01 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-1442-green.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-421-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-344-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-1483-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-452-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-336-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-8967-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-8977-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
 //! [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
 //! [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)
@@ -9578,7 +9725,7 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 use wasm_bindgen::prelude::*;
 
 mod main_mod;
-pub use main_mod::wsm;
+/// LibraryError must be accessible in every module.
 pub use main_mod::LibraryError;
 
 #[wasm_bindgen(start)]
@@ -9587,7 +9734,7 @@ pub fn wasm_bindgen_start() -&gt; Result&lt;(), JsValue&gt; {
     // Initialize debugging for when/if something goes wrong.
     console_error_panic_hook::set_once();
     // write the app version just for debug purposes
-    wsm::debug_write(&amp;format!(&quot;pwa_short_name v{}&quot;, env!(&quot;CARGO_PKG_VERSION&quot;)));
+    dbg!(&quot;pwa_short_name v{}&quot;, env!(&quot;CARGO_PKG_VERSION&quot;));
 
     main_mod::main();
     // return
@@ -16424,7 +16571,7 @@ h1{
 // but the new service worker will not be activated until all 
 // tabs with this webapp are closed.
 
-const CACHE_NAME = &#39;2023.601.645&#39;;
+const CACHE_NAME = &#39;2023.601.1208&#39;;
 
 self.addEventListener(&#39;install&#39;, event =&gt; {
     console.log(&#39;event install &#39;, CACHE_NAME);
@@ -16892,6 +17039,7 @@ fn task_doc() {
 
 /// cargo test
 fn task_test() {
+    println!(r#&quot;    {YELLOW}Wasm is a cdylib and therefore doc-tests are not run !{RESET}&quot;#);
     run_shell_command(&quot;cargo test&quot;);
     println!(
         r#&quot;

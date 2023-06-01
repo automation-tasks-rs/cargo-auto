@@ -6,18 +6,24 @@
         "titleBar.inactiveBackground": "#8d3f5ecc"
     },
     "cSpell.words": [
+        "Alla",
         "apos",
         "bestia",
+        "bestiadev",
         "bindgen",
         "cdylib",
         "CRDE",
         "endregion",
+        "Nazdravlje",
         "onchange",
         "onclick",
         "onhashchange",
         "plantuml",
+        "Prost",
         "rustlang",
+        "substack",
         "thiserror",
-        "webassembly"
+        "webassembly",
+        "zdravje"
     ]
 }

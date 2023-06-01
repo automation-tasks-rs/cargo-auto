@@ -237,13 +237,13 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2023.601.646 date: 2023-06-01 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2023.601.1218 date: 2023-06-01 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-1442-green.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-421-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-344-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-1483-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-452-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-336-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-8967-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-8977-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
 //! [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
 //! [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)

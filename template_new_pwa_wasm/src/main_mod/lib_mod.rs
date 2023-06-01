@@ -1,7 +1,8 @@
 // src/lib_mod.rs
-// This module is like a lib.rs module for a binary CLI executable.
-// The `lib_mod.rs` must not contains any input/output interface stuff.
-// So the program logic can be separate from the interface.
+
+//! This module is like a lib.rs module for a binary CLI executable.
+//! The `lib_mod.rs` must not contains any input/output interface stuff.
+//! So the program logic can be separate from the interface.  
 
 // The `main_mod.rs` contains all input/output interface stuff.
 // This `lib_mod.rs` can then be used as dependency crate for other projects.
@@ -13,20 +14,16 @@
 // The `main_mod.rs` uses the `anyhow` error library.
 // The `lib_mod.rs` uses the `thiserror` library.
 
-use thiserror::Error;
-
-// Instead of a hello_mod local module, we could use a UI agnostic crate library dependency.
-// So the same library could be used for CLI and for WASM, that have vastly different UI.
 mod hello_mod;
-
 pub mod web_sys_mod;
-pub use web_sys_mod as wsm;
 
+// re-exports
 pub use hello_mod::format_hello_phrase;
 pub use hello_mod::format_upper_hello_phrase;
+pub use web_sys_mod as wsm;
 
 /// all possible library errors for `thiserror`
-#[derive(Error, Debug)]
+#[derive(thiserror::Error, Debug)]
 pub enum LibraryError {
     #[error("Name `{0}` is already uppercase.")]
     Uppercase(String),

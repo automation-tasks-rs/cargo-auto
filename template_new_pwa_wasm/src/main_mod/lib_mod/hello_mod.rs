@@ -1,8 +1,8 @@
 // src/hello_mod.rs
 
-//! All the real code is inside modules in separate files (program logic).
-//!
-//! This doc-comments will be compiled into the `docs`.
+//! All the real code (program logic) is inside modules in separate files.
+//! This module are UI agnostic and must not have anything to do with UI.
+//! So the same library could be used for CLI and for WASM, that have vastly different UI.
 
 /// format the hello phrase
 pub fn format_hello_phrase(greet_name: &str) -> String {
