@@ -8957,7 +8957,7 @@ pub struct HtmlSourceCode {
 impl HtmlSourceCode {
     /// The programmer provides a &amp;&#39;static str to initiate HtmlSourceCode.  
     /// The html source code coming from the programmer is always ok, he wants it to work properly.  
-    /// The data that will be replaced, have a recognizable and unique value.  
+    /// The data that will be replaced, have a recognizable, unique and delimited value.  
     pub fn new(html_code: &amp;&#39;static str) -&gt; Self {
         HtmlSourceCode {
             html: html_code.to_string(),
@@ -9386,28 +9386,28 @@ r#&quot;&lt;h1&gt;pwa_short_name&lt;/h1&gt;
 &lt;p&gt;Write a command in the Argument 1: print or upper&lt;/p&gt;
 &lt;div class=&quot;input-wrap&quot;&gt;
     &lt;label for=&quot;arg_1&quot;&gt;Argument 1:&lt;/label&gt;  
-    &lt;input style=&quot;width:20%;&quot; type=&quot;text&quot; id=&quot;arg_1&quot; value=&quot;ph_arg_1&quot;/&gt;
+    &lt;input style=&quot;width:20%;&quot; type=&quot;text&quot; id=&quot;arg_1&quot; value=&quot;{ph_arg_1}&quot;/&gt;
 &lt;/div&gt;
 &lt;p&gt;Write a name in the Argument 2: world or WORLD&lt;/p&gt;
 &lt;div class=&quot;input-wrap&quot;&gt;
     &lt;label for=&quot;arg_2&quot;&gt;Argument 2:&lt;/label&gt;  
-    &lt;input style=&quot;width:20%;&quot; type=&quot;text&quot; id=&quot;arg_2&quot; value=&quot;ph_arg_2&quot;/&gt;
+    &lt;input style=&quot;width:20%;&quot; type=&quot;text&quot; id=&quot;arg_2&quot; value=&quot;{ph_arg_2}&quot;/&gt;
 &lt;/div&gt;
 &lt;p&gt;Click on Run&lt;/p&gt;
 &lt;div class=&quot;input-wrap&quot;&gt;
     &lt;input type=&quot;button&quot; class=&quot;button&quot; id=&quot;btn_run&quot; value=&quot;Run&quot;/&gt;
 &lt;/div&gt;
-ph_elem_p_1
+{ph_elem_p_1}
         &quot;#);
 
-    // ph_ is the prefix for placeholder to make the string unique and distinctive
-    html_source_code.replace_attribute_value(&quot;ph_arg_1&quot;, &quot;upper&quot;);
-    html_source_code.replace_attribute_value(&quot;ph_arg_2&quot;, &quot;world&quot;);
+    // {ph_...} is the prefix for placeholder to make the string unique and distinctive
+    html_source_code.replace_attribute_value(&quot;{ph_arg_1}&quot;, &quot;upper&quot;);
+    html_source_code.replace_attribute_value(&quot;{ph_arg_2}&quot;, &quot;world&quot;);
 
-    let mut fragment = wsm::HtmlSourceCode::new(r#&quot;&lt;p class=&quot;ph_attr_class_1&quot;&gt;ph_text_node_1&lt;/p&gt;&quot;#);
-    fragment.replace_attribute_value(&quot;ph_attr_class_1&quot;, &quot;small&quot;);
-    fragment.replace_text_node(&quot;ph_text_node_1&quot;, &quot;bestia.dev&quot;);
-    html_source_code.replace_html_source_code(&quot;ph_elem_p_1&quot;, &amp;fragment);
+    let mut fragment = wsm::HtmlSourceCode::new(r#&quot;&lt;p class=&quot;{ph_attr_class_1}&quot;&gt;{ph_text_node_1}&lt;/p&gt;&quot;#);
+    fragment.replace_attribute_value(&quot;{ph_attr_class_1}&quot;, &quot;small&quot;);
+    fragment.replace_text_node(&quot;{ph_text_node_1}&quot;, &quot;bestia.dev&quot;);
+    html_source_code.replace_html_source_code(&quot;{ph_elem_p_1}&quot;, &amp;fragment);
 
     dbg!(html_source_code.get_html());
     html_source_code.inject_into_dom_element(&quot;div_body&quot;);
@@ -9474,7 +9474,7 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2023.601.1218 date: 2023-06-01 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2023.603.904 date: 2023-06-03 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
 //!
 //! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-1483-green.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-452-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
@@ -16571,7 +16571,7 @@ h1{
 // but the new service worker will not be activated until all 
 // tabs with this webapp are closed.
 
-const CACHE_NAME = &#39;2023.601.1208&#39;;
+const CACHE_NAME = &#39;2023.603.903&#39;;
 
 self.addEventListener(&#39;install&#39;, event =&gt; {
     console.log(&#39;event install &#39;, CACHE_NAME);

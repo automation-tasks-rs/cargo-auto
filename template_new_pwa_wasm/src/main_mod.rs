@@ -165,28 +165,28 @@ r#"<h1>pwa_short_name</h1>
 <p>Write a command in the Argument 1: print or upper</p>
 <div class="input-wrap">
     <label for="arg_1">Argument 1:</label>  
-    <input style="width:20%;" type="text" id="arg_1" value="ph_arg_1"/>
+    <input style="width:20%;" type="text" id="arg_1" value="{ph_arg_1}"/>
 </div>
 <p>Write a name in the Argument 2: world or WORLD</p>
 <div class="input-wrap">
     <label for="arg_2">Argument 2:</label>  
-    <input style="width:20%;" type="text" id="arg_2" value="ph_arg_2"/>
+    <input style="width:20%;" type="text" id="arg_2" value="{ph_arg_2}"/>
 </div>
 <p>Click on Run</p>
 <div class="input-wrap">
     <input type="button" class="button" id="btn_run" value="Run"/>
 </div>
-ph_elem_p_1
+{ph_elem_p_1}
         "#);
 
-    // ph_ is the prefix for placeholder to make the string unique and distinctive
-    html_source_code.replace_attribute_value("ph_arg_1", "upper");
-    html_source_code.replace_attribute_value("ph_arg_2", "world");
+    // {ph_...} is the prefix for placeholder to make the string unique and distinctive
+    html_source_code.replace_attribute_value("{ph_arg_1}", "upper");
+    html_source_code.replace_attribute_value("{ph_arg_2}", "world");
 
-    let mut fragment = wsm::HtmlSourceCode::new(r#"<p class="ph_attr_class_1">ph_text_node_1</p>"#);
-    fragment.replace_attribute_value("ph_attr_class_1", "small");
-    fragment.replace_text_node("ph_text_node_1", "bestia.dev");
-    html_source_code.replace_html_source_code("ph_elem_p_1", &fragment);
+    let mut fragment = wsm::HtmlSourceCode::new(r#"<p class="{ph_attr_class_1}">{ph_text_node_1}</p>"#);
+    fragment.replace_attribute_value("{ph_attr_class_1}", "small");
+    fragment.replace_text_node("{ph_text_node_1}", "bestia.dev");
+    html_source_code.replace_html_source_code("{ph_elem_p_1}", &fragment);
 
     dbg!(html_source_code.get_html());
     html_source_code.inject_into_dom_element("div_body");

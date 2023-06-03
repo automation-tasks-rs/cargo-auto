@@ -23,7 +23,7 @@ pub struct HtmlSourceCode {
 impl HtmlSourceCode {
     /// The programmer provides a &'static str to initiate HtmlSourceCode.  
     /// The html source code coming from the programmer is always ok, he wants it to work properly.  
-    /// The data that will be replaced, have a recognizable and unique value.  
+    /// The data that will be replaced, have a recognizable, unique and delimited value.  
     pub fn new(html_code: &'static str) -> Self {
         HtmlSourceCode {
             html: html_code.to_string(),
