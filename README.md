@@ -7,6 +7,9 @@
 **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
 ***version: 2023.603.904 date: 2023-06-03 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
 
+![status](https://img.shields.io/badge/active_dev-green) 
+![status](https://img.shields.io/badge/in_use-green) 
+
 [//]: # (auto_cargo_toml_to_md end)
 
 [//]: # (auto_lines_of_code start)
