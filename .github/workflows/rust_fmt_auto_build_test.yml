@@ -19,7 +19,7 @@ jobs:
     - name: Cache rust dependencies - what about automation tasks
       uses: Swatinem/rust-cache@v2.7.3
       with:
-        cache-directories: /home/runner/work/cargo-auto/cargo-auto/automation_tasks_rs/target
+        cache-directories: /home/runner/work/cargo-auto/automation_tasks_rs/target
     - name: Configure sccache
       run: echo "RUSTC_WRAPPER=sccache" >> $GITHUB_ENV; echo "SCCACHE_GHA_ENABLED=true" >> $GITHUB_ENV
     - name: Run sccache-cache for artifacts
