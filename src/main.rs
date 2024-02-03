@@ -291,6 +291,7 @@ pub const GREEN: &str = "\x1b[32m";
 #[allow(dead_code)]
 pub const RESET: &str = "\x1b[0m";
 
+/// file item
 pub struct FileItem {
     file_name: &'static str,
     file_content: &'static str,
