@@ -33,7 +33,8 @@ jobs:
       with:
         path: |
           /home/runner/work/cargo-auto/cargo-auto/automation_tasks_rs/target 
-          /home/runner/work/cargo-auto/cargo-auto/Cargo.lock
+          /home/runner/work/cargo-auto/cargo-auto/automation_tasks_rs/Cargo.lock
+          /home/runner/work/cargo-auto/cargo-auto/automation_tasks_rs/Cargo.toml
         key: automation_tasks_rs
     - name: cargo build automation_tasks_rs
       working-directory: ./automation_tasks_rs
