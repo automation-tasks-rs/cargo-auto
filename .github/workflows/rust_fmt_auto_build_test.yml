@@ -1,4 +1,4 @@
-name: RustAction
+name: rust_fmt_auto_build_test
 
 on:
   push:
@@ -10,12 +10,12 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  fmt_auto_build_test:
+  rust_fmt_auto_build_test:
 
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: Fmt
       run: cargo fmt -- --check
     - name: Install cargo-auto
