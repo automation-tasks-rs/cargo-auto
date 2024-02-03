@@ -30,6 +30,8 @@ jobs:
       uses: baptiste0928/cargo-install@v3.0.0
       with:
         crate: cargo-auto
+    - name: cargo build automation_tasks_rs
+      run: cargo build --manifest-path automation_tasks_rs/Cargo.toml
     - name: cargo auto build
       run: cargo auto build
     - name: cargo auto test
