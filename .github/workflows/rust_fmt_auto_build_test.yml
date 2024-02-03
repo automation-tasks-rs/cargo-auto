@@ -17,7 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Set up cargo cache
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       continue-on-error: false
       with:
         path: |
@@ -31,7 +31,7 @@ jobs:
     - name: Fmt
       run: cargo fmt -- --check
     - name: Install cargo-auto
-      run: cargo install cargo-auto
+      run: cargo install --force cargo-auto
     - name: Build
       run: cargo auto build
     - name: Test
