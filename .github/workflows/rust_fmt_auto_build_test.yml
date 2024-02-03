@@ -21,14 +21,15 @@ jobs:
     - name: Configure sccache
       run: echo "RUSTC_WRAPPER=sccache" >> $GITHUB_ENV; echo "SCCACHE_GHA_ENABLED=true" >> $GITHUB_ENV
     - name: Run sccache-cache for artifacts
-      uses: mozilla-actions/sccache-action@v3.0.0
-    - name: Fmt
+      uses: mozilla-actions/sccache-action@v0.04
+    - name: cargo fmt -- --check
       run: cargo fmt -- --check
     - name: cargo-install cargo-auto
+      uses: baptiste0928/cargo-install@v3.0.0
       with:
         crate: cargo-auto
-    - name: Build
+    - name: cargo auto build
       run: cargo auto build
-    - name: Test
+    - name: cargo auto test
       run: cargo auto test
       
