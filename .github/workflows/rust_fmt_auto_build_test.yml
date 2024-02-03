@@ -31,7 +31,9 @@ jobs:
     - name: Cache for automation tasks todo maybe it must be separate
       uses: actions/cache@v4.0.0
       with:
-        path:  /home/runner/work/cargo-auto/cargo-auto/automation_tasks_rs/target
+        path: |
+          /home/runner/work/cargo-auto/cargo-auto/automation_tasks_rs/target 
+          /home/runner/work/cargo-auto/cargo-auto/Cargo.lock
         key: automation_tasks_rs
     - name: cargo build automation_tasks_rs
       working-directory: ./automation_tasks_rs
