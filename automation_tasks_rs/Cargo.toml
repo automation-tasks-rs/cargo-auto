@@ -1,6 +1,6 @@
 [package]
 name = "automation_tasks_rs"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["bestia.dev"]
 homepage = "https://bestia.dev"
 edition = "2021"
@@ -8,7 +8,7 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "0.8.60"
+cargo_auto_lib = "1.0.78"
 base64ct = {version = "1.6.0", features = ["alloc"] }
-tokio = {version = "1.28.2", features = ["rt","rt-multi-thread","fs"]}
+tokio = {version = "1.36.0", features = ["rt","rt-multi-thread","fs"]}
 cargo_auto_github_lib = "0.1.24"

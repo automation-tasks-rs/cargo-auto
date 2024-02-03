@@ -5,9 +5,12 @@
 [//]: # (auto_cargo_toml_to_md start)
 
 **Basic Rust project template for CLI and library, more than just `cargo new hello`**  
-***version: 1.0.4 date: 2022-04-21 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo_auto_template_new_cli)***  
+***version: 1.0.4 date: 2022-04-21 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo_auto_template_new_cli)***  
 
 [//]: # (auto_cargo_toml_to_md end)
+
+ [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo_auto_template_new_cli/blob/main/LICENSE)
+ [![Rust](https://github.com/bestia-dev/cargo_auto_template_new_cli/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo_auto_template_new_cli/)
 
 [//]: # (auto_lines_of_code start)
 [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-89-green.svg)](https://github.com/bestia-dev/cargo-auto/)
@@ -18,8 +21,6 @@
 
 [//]: # (auto_lines_of_code end)
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo_auto_template_new_cli/blob/main/LICENSE) [![Rust](https://github.com/bestia-dev/cargo_auto_template_new_cli/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo_auto_template_new_cli/)
-
 ## Edit this README.md file
 
 Edit this README file with your data. But leave the markers: auto_md_to_doc_comments, auto_lines_of_code, auto_cargo_toml_to_md and similar, because the automation tasks need them.  
@@ -29,9 +30,9 @@ Find `bestia.dev` everywhere and change it with your username.
 
 ## Motivation
 
-My first line I typed when I learned the Rust language was `cargo new hello`. It is extraordinary for learning Rust, but it is a rudimentary example, not really useful in practical life.
+The first line I typed when I learned the Rust language was `cargo new hello`. It is extraordinary for learning Rust, but it is a rudimentary example, not really useful in practical life.
 
-I created this project template `cargo_auto_template_new_cli` for a simple CLI application that has all the moving parts for a real life project.
+I created this project template `cargo_auto_template_new_cli` for a simple CLI application that has all the moving parts for a real-life project.
 
 ## Separate main.rs and lib.rs
 
@@ -39,20 +40,20 @@ It is always good to split the project between a `main.rs` (executable) and a `l
 
 Even for the smallest project. Maybe some other program will use the library eventually.
 
-All the input/output is coded in the `main.rs`: keyboard and monitor (stdin and stdout), access to files and some access to network.  
-The library must not operate directly with the stdin/stdout, because some other caller of the library can have other ideas around input-output options. Maybe it is a Graphical user interface that does thing completely different than CLI applications.
+All the input/output is coded in the `main.rs`: keyboard and monitor (stdin and stdout), access to files, and some access to the network.  
+The library must not operate directly with the stdin/stdout, because some other caller of the library can have other ideas around input-output options. Maybe it is a Graphical user interface that does things completely different than CLI applications.
 
-A separate `lib.rs` enables to make good tests and examples without worrying about input-output.
+A separate `lib.rs` enables one to make good tests and examples without worrying about input-output.
 
 ## super simple argument parsing
 
-I use a super simple code to parse CLI arguments inside the `src/bin/cargo_auto_template_new_cli/main.rs`. There are crate libraries that enables very complex argument parsing if needed.
+I use a super simple code to parse CLI arguments inside the `src/bin/cargo_auto_template_new_cli/main.rs`. There are crate libraries that enable very complex argument parsing if needed.
 
 ## automation_tasks_rs
 
-Building a project is always more complex then just `cargo build` and `cargo run`. There are always some files to copy or some content to copy from file to file. For this I use `cargo-auto` - automation tasks written in Rust language for the build process of Rust projects.
+Building a project is always more complex than just `cargo build` and `cargo run`. There are always some files to copy or some content to copy from file to file. For this, I use `cargo-auto` - automation tasks written in Rust language for the build process of Rust projects.
 
-All the source is inside the folder `automation_tasks_rs`. It is pure Rust, it is easy to understand and modify to your needs.
+All the sources are inside the folder `automation_tasks_rs`. It is pure Rust, it is easy to understand and modify to your needs.
 
 To start using it just type in `VSCode terminal`:
 
@@ -72,26 +73,7 @@ cargo auto publish_to_crates_io - publish to crates.io, git tag
 
 The `bash auto-completion` should work. If you type `cargo auto b` and press `tab` it should auto-complete to `build`. Look at the project <https://github.com/bestia-dev/dev_bestia_cargo_completion>.
 
-```bash
-cargo auto build
-```
-
-```bash
-Running automation task: build
-old version: "0.1.18"
-new version: '0.1.19'
-$ cargo fmt
-$ cargo build
-Compiling cargo_auto_template_new_cli v0.1.19 (/home/rustdevuser/rustprojects/cargo_auto_template_new_cli)
-Finished dev [unoptimized + debuginfo] target(s) in 2.72s
-
-After `cargo auto build`, run the compiled binary
-run `./target/debug/cargo_auto_template_new_cli print world`
-later
-run `cargo auto release`
-```
-
-After the task there is a recommendation what to do next.
+After the task, there is a recommendation on what to do next.
 
 ```bash
 cargo auto release
@@ -103,7 +85,7 @@ old version: "0.1.20"
 new version: '0.1.21'
 new text: '
 **Basic Rust project template for CLI, more than just `cargo new hello`**
-***version: 0.1.21 date: 2022-04-01 author: [bestia.dev](bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo_auto_template_new_cli)***'
+***version: 0.1.21 date: 2022-04-01 author: [bestia.dev](bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo_auto_template_new_cli)***'
 
 include_into_readme_md write file: README.md
 $ cargo fmt
@@ -137,7 +119,7 @@ run `cargo auto commit_and_push` with mandatory commit message
 ```
 
 If you Ctrl+Click on the link `docs/index.html` it will open the file in VSCode editor. In the right corner you can click to see the Live Preview. It will open the preview for the html file in an integrated browser in VSCode. Very useful.
-Now is a good time to run all the test before committing.
+Now is a good time to run all the tests before committing.
 
 ```bash
 cargo test
@@ -169,7 +151,7 @@ After `cargo auto commit and push`
 run `cargo auto publish_to_crates_io`
 ```
 
-And finally if you want to publish it on crates.io. First you need the `access token` you get from crates.io.
+And finally, if you want to publish it on crates.io. First, you need the `access token` you get from crates.io.
 
 ```bash
 cargo login
@@ -179,7 +161,7 @@ cargo auto publish_to_crates_io
 
 ## lib.rs doc-comments
 
-The entire README.md is copied into lib.rs. This can be annoying to watch. You can collapse the entire section clicking on `// region: auto_md_to_doc_comments include README.md`.
+The entire README.md is copied into lib.rs. This can be annoying to watch. You can collapse the entire section by clicking on `// region: auto_md_to_doc_comments include README.md`.
 
 You can use `// region:` and `// endregion:` to mark sections you want to collapse in the editor.
 
@@ -210,9 +192,9 @@ cargo run --example example_1
 
 ## Error handling thiserror and anyhow
 
-The rule number one is never use `.unwrap()` in your real Rust code. It is a sign, you are not Error handling properly.
-Maybe `unwrap()` can be fine for some fast learning examples, but for any real-life Rust code you must use some `Error handling`. There are many different ways to do that in Rust. I choose the pair of libraries `thiserror` and `anyhow`. The first is made for libraries, the second is made for bin-executables.  
-The library needs an Enum with all the possible errors that this library can return. With `#[derive(Error)]` this enum get everything needed to be a true Rust error struct. Every error can have a formatting string and a struct of data.  
+Rule number one is never to use `.unwrap()` in your real Rust code. It is a sign, you are not Error handling properly.
+Maybe `unwrap()` can be fine for some fast learning examples, but for any real-life Rust code, you must use some `Error handling`. There are many different ways to do that in Rust. I choose the pair of libraries `thiserror` and `anyhow`. The first is made for libraries, the second is made for bin-executables.  
+The library needs an Enum with all the possible errors that this library can return. With `#[derive(Error)]` this enum gets everything needed to be a true Rust error struct. Every error can have a formatting string and a struct of data.  
 The bin-executable does not want to be involved in every possible error separately. It needs an umbrella for all possible errors with `anyhow::Result`.  
 Inside the code, mostly propagate the errors with the `?` Operator after the `Result` value instead of unwrap() or the match expression.
 In the tests we don't want to work with Error handling. There, instead of `.unwrap()`, use the similar function `.expect(&str)` that has an additional description string.
@@ -235,7 +217,7 @@ My open-source projects are free as a beer (MIT license).
 
 I just love programming.
 
-But I need also to drink. If you find my projects and tutorials helpful,please buy me a beer donating on my [paypal](https://paypal.me/LucianoBestia).
+But I need also to drink. If you find my projects and tutorials helpful, please buy me a beer donating on my [paypal](https://paypal.me/LucianoBestia).
 
 You know the price of a beer in your local bar ;-) So I can drink a free beer for your health :-)
 

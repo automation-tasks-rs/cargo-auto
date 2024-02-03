@@ -2,24 +2,27 @@
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2023.603.904 date: 2023-06-03 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2024.203.324 date: 2024-02-03 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-1483-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+//!  ![status](https://img.shields.io/badge/maintained-green)
+//!  ![status](https://img.shields.io/badge/ready_for_use-green)
+//!
+//!  [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
+//!  [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)
+//!  [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/cargo-auto.svg)](https://web.crev.dev/rust-reviews/crate/cargo-auto/)
+//!  [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/)
+//!  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo-auto/blob/master/LICENSE)
+//!  [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/bestia-dev/cargo-auto/)
+//!  ![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
+//!
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9023-green.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-452-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-336-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-8977-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
-//!
-//! [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
-//! [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)
-//! [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/cargo-auto.svg)](https://web.crev.dev/rust-reviews/crate/cargo-auto/)
-//! [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/)
-//! [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo-auto/blob/master/LICENSE)
-//! [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! ![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-1406-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
 //! Hashtags: #rustlang #tutorial #buildtool #developmenttool #cli  
-//! My projects on Github are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
+//! My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
 //!
 //! ## Try it
 //!
@@ -55,16 +58,16 @@
 //! ## Motivation
 //!
 //! Cargo is a great tool for building Rust projects. It has all the basics: `cargo build`, `cargo build --release`, `cargo fmt`, `cargo test`, `cargo doc`,...  
-//! But sometimes we need to do more things like copying some files, publish to ftp or enter long commands. These repetitive tasks must be automated.  
-//! Task automation makes work easier and faster, simplifies the workflow, while improving the consistency and accuracy of workflows.  
+//! But sometimes we need to do more things like copying some files, publishing to FTP, or entering long commands. These repetitive tasks must be automated.  
+//! Task automation makes work easier and faster, and simplifies the workflow while improving the consistency and accuracy of workflows.  
 //! This is also sometimes referred to as "workflow automation."  
 //! There are many different build systems and task runners there: `make`, `cmake`, `shell scripts`, `cargo-xtask`, `cargo-make`, `cargo-task`, `cargo-script`, `cargo-run-script`, `runner`, `python scripts`, `powershell scripts`, `cmd prompt scripts`, ...  
 //! Sadly there is no standard in the Rust community for now.  
-//! I want something similar to [build.rs](https://doc.rust-lang.org/cargo/reference/build-scripts.html), so I can write my "tasks" in pure Rust I don't want to learn another meta language with weird syntax and difficult to debug. So I will make something really simple, easy, rusty and extensible.  
+//! I want something similar to [build.rs](https://doc.rust-lang.org/cargo/reference/build-scripts.html), so I can write my "tasks" in pure Rust I don't want to learn another meta language with weird syntax and difficulty to debug. So I will make something really simple, easy, rusty, and extensible.  
 //!
 //! ## cargo auto new_cli
 //!
-//! I like very much that Rust has the command `cargo new project_name`. It creates a super simple Rust hello project that can be build and run immediately. But this example is too simple. It lacks basic file structures of a serious CLI program.  
+//! I like very much that Rust has the command `cargo new project_name`. It creates a super simple Rust Hello project that can be built and run immediately. But this example is too simple. It lacks the basic file structures of a serious CLI program.  
 //! I composed an opinionated template for a Rust CLI project. It is easy to run:
 //!
 //! ```bash
@@ -73,7 +76,7 @@
 //!
 //! ## cargo auto new_wasm
 //!
-//! I composed an opinionated template for a simple Rust WASM project for browser. It is very similar to the new_cli template, but for WASM.  
+//! I composed an opinionated template for a simple Rust WASM project for a browser. It is very similar to the new_cli template but for WASM.  
 //! It is easy to run:
 //!
 //! ```bash
@@ -86,8 +89,8 @@
 //!
 //! ## cargo auto new_pwa_wasm
 //!
-//! I composed an opinionated template for a simple Rust PWA-WASM project for browser. It is very similar to the new_cli template, but for WASM. It adds the PWA standard functionality to work as an offline app.  
-//! The template needs the title, name, long name and description inside a `pwa.json5` file and the `icon512x512.png` file for the icons.  
+//! I composed an opinionated template for a simple Rust PWA-WASM project for a browser. It is very similar to the new_cli template but for WASM. It adds the PWA standard functionality to work as an offline app.  
+//! The template needs the title, name, long name, and description inside a `pwa.json5` file and the `icon512x512.png` file for the icons.  
 //! It is easy to run:
 //!
 //! ```bash
@@ -103,18 +106,18 @@
 //!
 //! ## scripting with rust
 //!
-//! Rust is a compiled language. It is not really a scripting or interpreted language. But the compilation of small projects is really fast and can be ignored. Subsequent calls will use the already built binary and so the speed will be even faster.  
+//! Rust is a compiled language. It is not really a scripting or interpreted language. But the compilation of small projects is really fast and can be ignored. Subsequent calls will use the already-built binary so the speed will be even faster.  
 //! This tool `cargo-auto` is meant for Rust projects, so it means that all the Rust infrastructure is already in place.  
 //!
 //! ## automation_tasks_rs helper project
 //!
-//! The command `cargo auto new_auto` will create a new directory `automation_tasks_rs` with a template for a helper Rust project in the root directory of your `main Rust project` . It should not interfere with the main Rust project. This directory will be added into git commits and pushed to remote repositories as part of the main project. It has its own `.gitignore` to avoid committing its target directory.  
-//! The `automation_tasks_rs` helper project contains user defined tasks in Rust code. Your tasks. This helper project should be opened in a new editor starting from the `automation_tasks_rs` directory. It does not share dependencies with the main project. It is completely separate and independent.  
+//! The command `cargo auto new_auto` will create a new directory `automation_tasks_rs` with a template for a helper Rust project in the root directory of your `main Rust project`. It should not interfere with the main Rust project. This directory will be added to git commits and pushed to remote repositories as part of the main project. It has its own `.gitignore` to avoid committing to its target directory.  
+//! The `automation_tasks_rs` helper project contains user-defined tasks in Rust code. Your tasks. This helper project should be opened in a new editor starting from the `automation_tasks_rs` directory. It does not share dependencies with the main project. It is completely separate and independent.  
 //! You can edit it and add your dependencies and Rust code. No limits. Freedom of expression.  
-//! This is now your code, your tasks and your helper Rust project!  
+//! This is now your code, your tasks, and your helper Rust project!  
 //! Because only you know what you want to automate and how to do it.  
-//! Never write secrets, passwords, passcodes or tokens inside your Rust code. Because then it is pushed to Github and the whole world can read it in the next second !
-//! Basic example (most of the useful functions is already there):  
+//! Never write secrets, passwords, passcodes, or tokens inside your Rust code. Because then it is pushed to GitHub and the whole world can read it in the next second!
+//! Basic example (most of the useful functions are already there):  
 //!
 //! ```rust
 //! /// match arguments and call tasks functions
@@ -190,30 +193,30 @@
 //!
 //! This binary is super simple. It has only 1 trivial dependency: `lazy_static`.  
 //! The binary only reads the CLI arguments and runs the `automation_tasks_rs` binary with them. If needed it will compile `automation_tasks_rs` first.  
-//! The code-flow of the source code of `cargo-auto` is simple, fully commented and straightforward to audit.  
+//! The code-flow of the source code of `cargo-auto` is simple, fully commented, and straightforward to audit.  
 //! The source code is on [GitHub](https://github.com/bestia-dev/cargo-auto) with MIT open-source licensing.  
 //!
 //! ## bash auto-completion
 //!
-//! With the help of the crate [dev_bestia_cargo_completion](https://crates.io/crates/dev_bestia_cargo_completion) the commands `cargo` and `cargo auto` get bash auto-completion. Try it!  
+//! With the help of the crate [dev_bestia_cargo_completion](https://crates.io/crates/dev_bestia_cargo_completion), the commands `cargo` and `cargo auto` get bash auto-completion. Try it!  
 //!
 //! ## cargo auto new_auto
 //!
-//! Inside the cargo-auto project there is a Rust sub-projects that is a template. I can open a new editor for this directories and build this crate independently. So it is easy to debug and develop.  
+//! Inside the cargo-auto project, there is a Rust sub-project that is a template. I can open a new editor for these directories and build this crate independently. So it is easy to debug and develop.  
 //! Sadly, I cannot publish these directories and files to `crates.io`. I can effectively publish only the source code inside my main Rust project `cargo-auto`.  
-//! Therefor, before publishing I copy the content of these files into the modules `template_new_auto_mod.rs` on every build. It is not difficult now that Rust has fantastic [raw strings](https://doc.rust-lang.org/rust-by-example/std/str.html).  
+//! Therefore, before publishing I copy the content of these files into the modules `template_new_auto_mod.rs` on every build. It is not difficult now that Rust has fantastic [raw strings](https://doc.rust-lang.org/rust-by-example/std/str.html).  
 //!
 //! ## more complex tasks
 //!
 //! You can write more complex tasks in Rust language.  
-//! For example in this project I use automation to create github Releases : <https://github.com/bestia-dev/dropbox_backup_to_external_disk>  
-//! Here is pretty complex workspace with more sub-projects:  
+//! For example in this project I use automation to create GitHub Releases: <https://github.com/bestia-dev/dropbox_backup_to_external_disk>  
+//! Here is a pretty complex workspace with more sub-projects:  
 //! <https://github.com/bestia-dev/cargo_crev_reviews_workspace>  
-//! There is no end to your imagination. If you write something that looks it can help other developers, please share it with me and I will add it here.
+//! There is no end to your imagination. If you write something that looks like it can help other developers, please share it with me and I will add it here.
 //!
 //! ## development
 //!
-//! Usually I compile and run the code of `cargo-auto` with added arguments like this:  
+//! Usually, I compile and run the code of `cargo-auto` with added arguments like this:  
 //!
 //! ```bash
 //! cargo run -- new_auto

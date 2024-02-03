@@ -4,10 +4,14 @@
 
 [//]: # (auto_cargo_toml_to_md start)
 
-**template for a minimal wasm project for browser**  
-***version: 2023.519.1012 date: 2023-05-19 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo_auto_template_new_wasm)***  
+**template for a minimal WASM project for browser**  
+***version: 2023.519.1012 date: 2023-05-19 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo_auto_template_new_wasm)***  
 
 [//]: # (auto_cargo_toml_to_md end)
+
+ [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/blob/master/LICENSE)
+ [![Rust](https://github.com/bestia-dev/cargo_auto_template_new_wasm/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/)
+ ![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/638168303.svg)
 
 [//]: # (auto_lines_of_code start)
 [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-262-green.svg)](https://github.com/bestia-dev/rust_wasm_pwa_minimal_clock/)
@@ -18,12 +22,8 @@
 
 [//]: # (auto_lines_of_code end)
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/blob/master/LICENSE)
-[![Rust](https://github.com/bestia-dev/cargo_auto_template_new_wasm/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/)
-![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/638168303.svg)
-
 Hashtags: #rustlang #tutorial #pwa #wasm #webassembly  
-My projects on Github are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
+My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
 
 ## template
 
@@ -33,7 +33,7 @@ This simplest template does not have a PWA implementation or dedicated web serve
 
 ## Containerized Rust Development Environment (CRDE)
 
-I recommend to use the Containerized Rust Development Environment (CRDE) to write Rust projects. It contains wasm-pack and basic-http-server that this project needs.  
+I recommend using the Containerized Rust Development Environment (CRDE) to write Rust projects. It contains wasm-pack and basic-http-server that this project needs.  
 <https://github.com/bestia-dev/docker_rust_development>  
 
 ## HTML, CSS
@@ -43,13 +43,13 @@ Then the Rust code injects html elements into the DOM.
 
 ## Web server and wasm
 
-We will need the `basic-http-server` because browser security does not allow loading wasm modules from local files.  
-Run the server in a separate VSCode terminal, so it can keep running all the time. In the first VSCode terminal we can build the project and in the browser we can refresh the page with F5.  
+We will need the `basic-http-server` because browser security does not allow the loading of WASM modules from local files.  
+Run the server in a separate VSCode terminal, so it can keep running all the time. In the first VSCode terminal, we can build the project and in the browser, we can refresh the page with F5.  
 
 ## Rust and wasm
 
-Cargo.toml is very important to define the output as wasm library and the required dependencies to web-sys, js-sys and wasm-bindgen.
-Wasm starts from the src/lib.rs. On purpose I added the main_mod.rs and lib_mod.rs to make the project structure similar to a Rust CLI project. The User Interface UI is completely different in-browser or CLI, but we can reuse the libraries that are UI agnostic.  It is smart to split a project that logic does not contain UI.
+Cargo.toml is very important to define the output as wasm library and the required dependencies to web-sys, js-sys, and wasm-bindgen.
+Wasm starts from the src/lib.rs. On purpose, I added the main_mod.rs and lib_mod.rs to make the project structure similar to a Rust CLI project. The User Interface UI is completely different in-browser or CLI, but we can reuse the libraries that are UI agnostic.  It is smart to split a project that logic does not contain UI.
 
 We use cargo auto for automation tasks. Run:
 `cargo auto build`  

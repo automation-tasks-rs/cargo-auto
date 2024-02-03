@@ -5,6 +5,15 @@
         "titleBar.activeBackground": "#477587",
         "titleBar.inactiveBackground": "#3F758DCC"
       },
+      "spellright.language": [
+        "en"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext"
+    ],
+    "rust-analyzer.showUnlinkedFileNotification": false,
     "cSpell.words": [
         "Alla",
         "alloc",
@@ -33,6 +42,7 @@
         "onclick",
         "passcodes",
         "paypal",
+        "pgrsql",
         "plantuml",
         "println",
         "Prost",
@@ -41,6 +51,7 @@
         "rustlang",
         "rustprojects",
         "serde",
+        "struct",
         "stylesheet",
         "subcommand",
         "substack",

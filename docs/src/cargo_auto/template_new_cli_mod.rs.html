@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/template_new_cli_mod.rs`."><title>template_new_cli_mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-c4dbdcde0fbd8430.css" id="mainThemeStyle"><link rel="stylesheet" id="themeStyle" href="../../static.files/light-db279b6232be9c13.css"><link rel="stylesheet" disabled href="../../static.files/dark-cf923f49f397b216.css"><link rel="stylesheet" disabled href="../../static.files/ayu-be46fdc453a55015.css"><script src="../../static.files/storage-3891ce972e3a2bf8.js"></script><script defer src="../../static.files/source-script-1b95b7cca98b26e5.js"></script><script defer src="../../source-files.js"></script><script defer src="../../static.files/main-98a684e84ae5b08b.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-13285aec31fa243e.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc source"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../cargo_auto/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/template_new_cli_mod.rs`."><title>template_new_cli_mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-fa3bb1812debf86c.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="cargo_auto" data-themes="" data-resource-suffix="" data-rustdoc-version="1.74.1 (a28077b28 2023-12-04)" data-channel="1.74.1" data-search-js="search-8be46b629f5f14a8.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-c5bd66d33317d69f.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../cargo_auto/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1161,22 +1161,7 @@
 <a href="#1161" id="1161">1161</a>
 <a href="#1162" id="1162">1162</a>
 <a href="#1163" id="1163">1163</a>
-<a href="#1164" id="1164">1164</a>
-<a href="#1165" id="1165">1165</a>
-<a href="#1166" id="1166">1166</a>
-<a href="#1167" id="1167">1167</a>
-<a href="#1168" id="1168">1168</a>
-<a href="#1169" id="1169">1169</a>
-<a href="#1170" id="1170">1170</a>
-<a href="#1171" id="1171">1171</a>
-<a href="#1172" id="1172">1172</a>
-<a href="#1173" id="1173">1173</a>
-<a href="#1174" id="1174">1174</a>
-<a href="#1175" id="1175">1175</a>
-<a href="#1176" id="1176">1176</a>
-<a href="#1177" id="1177">1177</a>
-<a href="#1178" id="1178">1178</a>
-</pre><pre class="rust"><code><span class="doccomment">//! this strings are copied from the template_new_cli folder
+</pre></div><pre class="rust"><code><span class="doccomment">//! this strings are copied from the template_new_cli folder
 //! because when publishing to crates.io, only the main bin-executable is transferred
 
 </span><span class="kw">use crate</span>::{GREEN, RED, RESET, YELLOW};
@@ -1218,7 +1203,237 @@
     <span class="kw">let </span><span class="kw-2">mut </span>vec_file = <span class="macro">vec!</span>[];
 
     <span class="comment">// region: files copied into strings by automation tasks
-    </span>vec_file.push(<span class="kw">crate</span>::FileItem {
+    </span>vec_file.push(<span class="kw">crate</span>::FileItem{
+            file_name :<span class="string">&quot;README.md&quot;</span>,
+            file_content : <span class="string">r###&quot;[//]: # (auto_md_to_doc_comments segment start A)
+
+# cargo_auto_template_new_cli
+
+[//]: # (auto_cargo_toml_to_md start)
+
+**Basic Rust project template for CLI and library, more than just `cargo new hello`**  
+***version: 1.0.4 date: 2022-04-21 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo_auto_template_new_cli)***  
+
+[//]: # (auto_cargo_toml_to_md end)
+
+ [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo_auto_template_new_cli/blob/main/LICENSE)
+ [![Rust](https://github.com/bestia-dev/cargo_auto_template_new_cli/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo_auto_template_new_cli/)
+
+[//]: # (auto_lines_of_code start)
+[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-89-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-13-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-36-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-19-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-30-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
+
+[//]: # (auto_lines_of_code end)
+
+## Edit this README.md file
+
+Edit this README file with your data. But leave the markers: auto_md_to_doc_comments, auto_lines_of_code, auto_cargo_toml_to_md and similar, because the automation tasks need them.  
+Modify the title and description only in Cargo.toml. Automation tasks will copy that into README.md.  
+Lines of code are filled automatically from automation tasks.  
+Find `bestia.dev` everywhere and change it with your username.
+
+## Motivation
+
+The first line I typed when I learned the Rust language was `cargo new hello`. It is extraordinary for learning Rust, but it is a rudimentary example, not really useful in practical life.
+
+I created this project template `cargo_auto_template_new_cli` for a simple CLI application that has all the moving parts for a real-life project.
+
+## Separate main.rs and lib.rs
+
+It is always good to split the project between a `main.rs` (executable) and a `lib.rs` (library crate).
+
+Even for the smallest project. Maybe some other program will use the library eventually.
+
+All the input/output is coded in the `main.rs`: keyboard and monitor (stdin and stdout), access to files, and some access to the network.  
+The library must not operate directly with the stdin/stdout, because some other caller of the library can have other ideas around input-output options. Maybe it is a Graphical user interface that does things completely different than CLI applications.
+
+A separate `lib.rs` enables one to make good tests and examples without worrying about input-output.
+
+## super simple argument parsing
+
+I use a super simple code to parse CLI arguments inside the `src/bin/cargo_auto_template_new_cli/main.rs`. There are crate libraries that enable very complex argument parsing if needed.
+
+## automation_tasks_rs
+
+Building a project is always more complex than just `cargo build` and `cargo run`. There are always some files to copy or some content to copy from file to file. For this, I use `cargo-auto` - automation tasks written in Rust language for the build process of Rust projects.
+
+All the sources are inside the folder `automation_tasks_rs`. It is pure Rust, it is easy to understand and modify to your needs.
+
+To start using it just type in `VSCode terminal`:
+
+```bash
+cargo auto
+```
+
+```bash
+User defined tasks in automation_tasks_rs:
+cargo auto build - builds the crate in debug mode, fmt
+cargo auto release - builds the crate in release mode, version from date, fmt, strip
+cargo auto doc - builds the docs, copy to docs directory
+cargo auto commit_and_push - commits with message and push with mandatory message
+ if you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git
+cargo auto publish_to_crates_io - publish to crates.io, git tag
+```
+
+The `bash auto-completion` should work. If you type `cargo auto b` and press `tab` it should auto-complete to `build`. Look at the project &lt;https://github.com/bestia-dev/dev_bestia_cargo_completion&gt;.
+
+After the task, there is a recommendation on what to do next.
+
+```bash
+cargo auto release
+```
+
+```bash
+Running automation task: release
+old version: &quot;0.1.20&quot;
+new version: &#39;0.1.21&#39;
+new text: &#39;
+**Basic Rust project template for CLI, more than just `cargo new hello`**
+***version: 0.1.21 date: 2022-04-01 author: [bestia.dev](bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo_auto_template_new_cli)***&#39;
+
+include_into_readme_md write file: README.md
+$ cargo fmt
+$ cargo build --release
+Compiling cargo_auto_template_new_cli v0.1.21 (/home/rustdevuser/rustprojects/cargo_auto_template_new_cli)
+Finished release [optimized] target(s) in 1.05s
+
+After `cargo auto release`, , run the compiled binary
+run `./target/release/cargo_auto_template_new_cli print world`
+later
+run `cargo auto doc`
+
+```
+
+Release is incrementing the version number and date, copying the title and description from Cargo.toml to README.md. Calculates the lines of code in the project and makes badges from it in README.md. Copying the README into doc comments, so the documentation can be compiled later.
+
+```bash
+cargo auto doc
+```
+
+```bash
+Running automation task: doc
+$ cargo doc --no-deps --document-private-items
+ Documenting cargo_auto_template_new_cli v0.1.21 (/home/rustdevuser/rustprojects/cargo_auto_template_new_cli)
+Finished dev [unoptimized + debuginfo] target(s) in 0.54s
+$ rsync -a --info=progress2 --delete-after target/doc/ docs/
+2,787,371 100% 46.60MB/s 0:00:00 (xfr#56, to-chk=0/61) 
+
+After `cargo auto doc`, check `docs/index.html`. If ok, then 
+run `cargo auto commit_and_push` with mandatory commit message
+```
+
+If you Ctrl+Click on the link `docs/index.html` it will open the file in VSCode editor. In the right corner you can click to see the Live Preview. It will open the preview for the html file in an integrated browser in VSCode. Very useful.
+Now is a good time to run all the tests before committing.
+
+```bash
+cargo test
+```
+
+If we are happy with the changes, we commit and push:
+
+```bash
+cargo auto commit_and_push &quot;my message for commit&quot;
+```
+
+```bash
+Running automation task: commit_and_push
+$ git add -A &amp;&amp; git commit -m &quot;readme&quot;
+[main 3bdcc91] readme
+ 9 files changed, 443 insertions(+), 89 deletions(-)
+$ git push
+Enumerating objects: 36, done.
+Counting objects: 100% (36/36), done.
+Delta compression using up to 6 threads
+Compressing objects: 100% (16/16), done.
+Writing objects: 100% (19/19), 6.27 KiB | 1.25 MiB/s, done.
+Total 19 (delta 11), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (11/11), completed with 10 local objects.
+To https://github.com/bestia-dev/cargo_auto_template_new_cli.git
+ d0f31d3..3bdcc91 main -&gt; main
+
+After `cargo auto commit and push`
+run `cargo auto publish_to_crates_io`
+```
+
+And finally, if you want to publish it on crates.io. First, you need the `access token` you get from crates.io.
+
+```bash
+cargo login
+# type the access token
+cargo auto publish_to_crates_io
+```
+
+## lib.rs doc-comments
+
+The entire README.md is copied into lib.rs. This can be annoying to watch. You can collapse the entire section by clicking on `// region: auto_md_to_doc_comments include README.md`.
+
+You can use `// region:` and `// endregion:` to mark sections you want to collapse in the editor.
+
+From this doc-comments the `docs` will be created. Take a look and try to write what other users would want to read in the `docs`.
+
+## Modules
+
+I added one module `hello_mod.rs` just to showcase how modules are used in separate files.
+
+## Markdown
+
+README.md and all the doc-comments are in markdown. To separate paragraphs in markdown use an empty line between them.
+I tried other variants like double-space or backslash, but an empty line is the most used in the wild.
+
+## tests
+
+I added a unit-test, just to show how it looks. And an integration-test. So it is &quot;ready-to-go&quot;.
+Run them with `cargo test`.
+
+## examples
+
+In the directory `examples` every rs file is a bin-executable.
+Run it with:
+
+```bash
+cargo run --example example_1
+```
+
+## Error handling thiserror and anyhow
+
+Rule number one is never to use `.unwrap()` in your real Rust code. It is a sign, you are not Error handling properly.
+Maybe `unwrap()` can be fine for some fast learning examples, but for any real-life Rust code, you must use some `Error handling`. There are many different ways to do that in Rust. I choose the pair of libraries `thiserror` and `anyhow`. The first is made for libraries, the second is made for bin-executables.  
+The library needs an Enum with all the possible errors that this library can return. With `#[derive(Error)]` this enum gets everything needed to be a true Rust error struct. Every error can have a formatting string and a struct of data.  
+The bin-executable does not want to be involved in every possible error separately. It needs an umbrella for all possible errors with `anyhow::Result`.  
+Inside the code, mostly propagate the errors with the `?` Operator after the `Result` value instead of unwrap() or the match expression.
+In the tests we don&#39;t want to work with Error handling. There, instead of `.unwrap()`, use the similar function `.expect(&amp;str)` that has an additional description string.
+
+## cargo crev reviews and advisory
+
+We live in times of danger with [supply chain attacks](https://en.wikipedia.org/wiki/Supply_chain_attack).
+
+It is recommended to always use [cargo-crev](https://github.com/crev-dev/cargo-crev) to verify the trustworthiness of each of your dependencies.
+
+Please, spread this info.
+
+You can also read crev reviews quickly on the web:
+
+&lt;https://web.crev.dev/rust-reviews/crates/&gt;
+
+## open-source and free as a beer
+
+My open-source projects are free as a beer (MIT license).
+
+I just love programming.
+
+But I need also to drink. If you find my projects and tutorials helpful, please buy me a beer donating on my [paypal](https://paypal.me/LucianoBestia).
+
+You know the price of a beer in your local bar ;-) So I can drink a free beer for your health :-)
+
+[Na zdravje!](https://translate.google.com/?hl=en&amp;sl=sl&amp;tl=en&amp;text=Na%20zdravje&amp;op=translate) [Alla salute!](https://dictionary.cambridge.org/dictionary/italian-english/alla-salute) [Prost!](https://dictionary.cambridge.org/dictionary/german-english/prost) [Nazdravlje!](https://matadornetwork.com/nights/how-to-say-cheers-in-50-languages/) 🍻
+
+[//]: # (auto_md_to_doc_comments segment end A)
+&quot;###</span>,
+});
+    vec_file.push(<span class="kw">crate</span>::FileItem {
         file_name: <span class="string">&quot;.vscode/settings.json&quot;</span>,
         file_content: <span class="string">r###&quot;{
     &quot;cSpell.words&quot;: [
@@ -1262,66 +1477,6 @@ log = &quot;0.4&quot;
 pretty_env_logger=&quot;0.4.0&quot;
 thiserror = &quot;1.0.30&quot;
 anyhow=&quot;1.0.56&quot;&quot;###</span>,
-    });
-    vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;.gitignore&quot;</span>,
-        file_content: <span class="string">r###&quot;/target
-**/*.rs.bk
-&quot;###</span>,
-    });
-    vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;src/hello_mod.rs&quot;</span>,
-        file_content: <span class="string">r###&quot;// cargo_auto_template_new_cli/src/hello_mod.rs
-
-//! All the real code is inside modules in separate files.
-//!
-//! This doc-comments will be compiled into the `docs`.
-
-/// format the hello phrase
-pub fn format_hello_phrase(greet_name: &amp;str) -&gt; String {
-    log::info!(&quot;start format_hello_phrase()&quot;);
-    // return
-    format!(&quot;Hello {}!&quot;, greet_name)
-}
-
-/// format the hello phrase with uppercase name
-/// if it is already uppercase, return error with thiserror
-pub fn format_upper_hello_phrase(greet_name: &amp;str) -&gt; Result&lt;String, crate::LibraryError&gt; {
-    log::info!(&quot;start format_upper_hello_phrase()&quot;);
-    // shadowing the same variable name:
-    let upper_greet_name = make_uppercase(greet_name);
-    if upper_greet_name == greet_name {
-        return Err(crate::LibraryError::Uppercase(greet_name.to_string()));
-    }
-
-    // return
-    Ok(format!(&quot;Hello {}!&quot;, &amp;upper_greet_name))
-}
-
-/// return uppercase
-pub fn make_uppercase(greet_name: &amp;str) -&gt; String {
-    // return
-    greet_name.to_uppercase()
-}
-
-#[cfg(test)]
-mod test {
-    use super::*;
-
-    #[test]
-    pub fn test_format_upper_hello_phrase() {
-        assert_eq!(format_upper_hello_phrase(&quot;abcd&quot;).expect(&quot;error&quot;), &quot;Hello ABCD!&quot;);
-        assert!(format_upper_hello_phrase(&quot;ABCD&quot;).is_err());
-    }
-
-    #[test]
-    pub fn test_make_uppercase() {
-        assert_eq!(make_uppercase(&quot;abcd&quot;), &quot;ABCD&quot;);
-        assert_eq!(make_uppercase(&quot;1234abcd&quot;), &quot;1234ABCD&quot;);
-        assert_eq!(make_uppercase(&quot;čšž&quot;), &quot;ČŠŽ&quot;);
-    }
-}
-&quot;###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
         file_name: <span class="string">&quot;src/bin/cargo_auto_template_new_cli/main.rs&quot;</span>,
@@ -1415,24 +1570,27 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2023.603.904 date: 2023-06-03 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2024.203.324 date: 2024-02-03 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-1483-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+//!  ![status](https://img.shields.io/badge/maintained-green)
+//!  ![status](https://img.shields.io/badge/ready_for_use-green)
+//!
+//!  [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
+//!  [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)
+//!  [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/cargo-auto.svg)](https://web.crev.dev/rust-reviews/crate/cargo-auto/)
+//!  [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/)
+//!  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo-auto/blob/master/LICENSE)
+//!  [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/bestia-dev/cargo-auto/)
+//!  ![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
+//!
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9023-green.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-452-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-336-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-8977-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
-//!
-//! [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
-//! [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)
-//! [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/cargo-auto.svg)](https://web.crev.dev/rust-reviews/crate/cargo-auto/)
-//! [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/)
-//! [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo-auto/blob/master/LICENSE)
-//! [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! ![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-1406-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
 //! Hashtags: #rustlang #tutorial #buildtool #developmenttool #cli  
-//! My projects on Github are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
+//! My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
 //!
 //! ## Try it
 //!
@@ -1468,16 +1626,16 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //! ## Motivation
 //!
 //! Cargo is a great tool for building Rust projects. It has all the basics: `cargo build`, `cargo build --release`, `cargo fmt`, `cargo test`, `cargo doc`,...  
-//! But sometimes we need to do more things like copying some files, publish to ftp or enter long commands. These repetitive tasks must be automated.  
-//! Task automation makes work easier and faster, simplifies the workflow, while improving the consistency and accuracy of workflows.  
+//! But sometimes we need to do more things like copying some files, publishing to FTP, or entering long commands. These repetitive tasks must be automated.  
+//! Task automation makes work easier and faster, and simplifies the workflow while improving the consistency and accuracy of workflows.  
 //! This is also sometimes referred to as &quot;workflow automation.&quot;  
 //! There are many different build systems and task runners there: `make`, `cmake`, `shell scripts`, `cargo-xtask`, `cargo-make`, `cargo-task`, `cargo-script`, `cargo-run-script`, `runner`, `python scripts`, `powershell scripts`, `cmd prompt scripts`, ...  
 //! Sadly there is no standard in the Rust community for now.  
-//! I want something similar to [build.rs](https://doc.rust-lang.org/cargo/reference/build-scripts.html), so I can write my &quot;tasks&quot; in pure Rust I don&#39;t want to learn another meta language with weird syntax and difficult to debug. So I will make something really simple, easy, rusty and extensible.  
+//! I want something similar to [build.rs](https://doc.rust-lang.org/cargo/reference/build-scripts.html), so I can write my &quot;tasks&quot; in pure Rust I don&#39;t want to learn another meta language with weird syntax and difficulty to debug. So I will make something really simple, easy, rusty, and extensible.  
 //!
 //! ## cargo auto new_cli
 //!
-//! I like very much that Rust has the command `cargo new project_name`. It creates a super simple Rust hello project that can be build and run immediately. But this example is too simple. It lacks basic file structures of a serious CLI program.  
+//! I like very much that Rust has the command `cargo new project_name`. It creates a super simple Rust Hello project that can be built and run immediately. But this example is too simple. It lacks the basic file structures of a serious CLI program.  
 //! I composed an opinionated template for a Rust CLI project. It is easy to run:
 //!
 //! ```bash
@@ -1486,7 +1644,7 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //!
 //! ## cargo auto new_wasm
 //!
-//! I composed an opinionated template for a simple Rust WASM project for browser. It is very similar to the new_cli template, but for WASM.  
+//! I composed an opinionated template for a simple Rust WASM project for a browser. It is very similar to the new_cli template but for WASM.  
 //! It is easy to run:
 //!
 //! ```bash
@@ -1499,8 +1657,8 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //!
 //! ## cargo auto new_pwa_wasm
 //!
-//! I composed an opinionated template for a simple Rust PWA-WASM project for browser. It is very similar to the new_cli template, but for WASM. It adds the PWA standard functionality to work as an offline app.  
-//! The template needs the title, name, long name and description inside a `pwa.json5` file and the `icon512x512.png` file for the icons.  
+//! I composed an opinionated template for a simple Rust PWA-WASM project for a browser. It is very similar to the new_cli template but for WASM. It adds the PWA standard functionality to work as an offline app.  
+//! The template needs the title, name, long name, and description inside a `pwa.json5` file and the `icon512x512.png` file for the icons.  
 //! It is easy to run:
 //!
 //! ```bash
@@ -1516,18 +1674,18 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //!
 //! ## scripting with rust
 //!
-//! Rust is a compiled language. It is not really a scripting or interpreted language. But the compilation of small projects is really fast and can be ignored. Subsequent calls will use the already built binary and so the speed will be even faster.  
+//! Rust is a compiled language. It is not really a scripting or interpreted language. But the compilation of small projects is really fast and can be ignored. Subsequent calls will use the already-built binary so the speed will be even faster.  
 //! This tool `cargo-auto` is meant for Rust projects, so it means that all the Rust infrastructure is already in place.  
 //!
 //! ## automation_tasks_rs helper project
 //!
-//! The command `cargo auto new_auto` will create a new directory `automation_tasks_rs` with a template for a helper Rust project in the root directory of your `main Rust project` . It should not interfere with the main Rust project. This directory will be added into git commits and pushed to remote repositories as part of the main project. It has its own `.gitignore` to avoid committing its target directory.  
-//! The `automation_tasks_rs` helper project contains user defined tasks in Rust code. Your tasks. This helper project should be opened in a new editor starting from the `automation_tasks_rs` directory. It does not share dependencies with the main project. It is completely separate and independent.  
+//! The command `cargo auto new_auto` will create a new directory `automation_tasks_rs` with a template for a helper Rust project in the root directory of your `main Rust project`. It should not interfere with the main Rust project. This directory will be added to git commits and pushed to remote repositories as part of the main project. It has its own `.gitignore` to avoid committing to its target directory.  
+//! The `automation_tasks_rs` helper project contains user-defined tasks in Rust code. Your tasks. This helper project should be opened in a new editor starting from the `automation_tasks_rs` directory. It does not share dependencies with the main project. It is completely separate and independent.  
 //! You can edit it and add your dependencies and Rust code. No limits. Freedom of expression.  
-//! This is now your code, your tasks and your helper Rust project!  
+//! This is now your code, your tasks, and your helper Rust project!  
 //! Because only you know what you want to automate and how to do it.  
-//! Never write secrets, passwords, passcodes or tokens inside your Rust code. Because then it is pushed to Github and the whole world can read it in the next second !
-//! Basic example (most of the useful functions is already there):  
+//! Never write secrets, passwords, passcodes, or tokens inside your Rust code. Because then it is pushed to GitHub and the whole world can read it in the next second!
+//! Basic example (most of the useful functions are already there):  
 //!
 //! ```rust
 //! /// match arguments and call tasks functions
@@ -1603,30 +1761,30 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //!
 //! This binary is super simple. It has only 1 trivial dependency: `lazy_static`.  
 //! The binary only reads the CLI arguments and runs the `automation_tasks_rs` binary with them. If needed it will compile `automation_tasks_rs` first.  
-//! The code-flow of the source code of `cargo-auto` is simple, fully commented and straightforward to audit.  
+//! The code-flow of the source code of `cargo-auto` is simple, fully commented, and straightforward to audit.  
 //! The source code is on [GitHub](https://github.com/bestia-dev/cargo-auto) with MIT open-source licensing.  
 //!
 //! ## bash auto-completion
 //!
-//! With the help of the crate [dev_bestia_cargo_completion](https://crates.io/crates/dev_bestia_cargo_completion) the commands `cargo` and `cargo auto` get bash auto-completion. Try it!  
+//! With the help of the crate [dev_bestia_cargo_completion](https://crates.io/crates/dev_bestia_cargo_completion), the commands `cargo` and `cargo auto` get bash auto-completion. Try it!  
 //!
 //! ## cargo auto new_auto
 //!
-//! Inside the cargo-auto project there is a Rust sub-projects that is a template. I can open a new editor for this directories and build this crate independently. So it is easy to debug and develop.  
+//! Inside the cargo-auto project, there is a Rust sub-project that is a template. I can open a new editor for these directories and build this crate independently. So it is easy to debug and develop.  
 //! Sadly, I cannot publish these directories and files to `crates.io`. I can effectively publish only the source code inside my main Rust project `cargo-auto`.  
-//! Therefor, before publishing I copy the content of these files into the modules `template_new_auto_mod.rs` on every build. It is not difficult now that Rust has fantastic [raw strings](https://doc.rust-lang.org/rust-by-example/std/str.html).  
+//! Therefore, before publishing I copy the content of these files into the modules `template_new_auto_mod.rs` on every build. It is not difficult now that Rust has fantastic [raw strings](https://doc.rust-lang.org/rust-by-example/std/str.html).  
 //!
 //! ## more complex tasks
 //!
 //! You can write more complex tasks in Rust language.  
-//! For example in this project I use automation to create github Releases : &lt;https://github.com/bestia-dev/dropbox_backup_to_external_disk&gt;  
-//! Here is pretty complex workspace with more sub-projects:  
+//! For example in this project I use automation to create GitHub Releases: &lt;https://github.com/bestia-dev/dropbox_backup_to_external_disk&gt;  
+//! Here is a pretty complex workspace with more sub-projects:  
 //! &lt;https://github.com/bestia-dev/cargo_crev_reviews_workspace&gt;  
-//! There is no end to your imagination. If you write something that looks it can help other developers, please share it with me and I will add it here.
+//! There is no end to your imagination. If you write something that looks like it can help other developers, please share it with me and I will add it here.
 //!
 //! ## development
 //!
-//! Usually I compile and run the code of `cargo-auto` with added arguments like this:  
+//! Usually, I compile and run the code of `cargo-auto` with added arguments like this:  
 //!
 //! ```bash
 //! cargo run -- new_auto
@@ -1702,318 +1860,64 @@ pub const GREEN: &amp;str = &quot;\x1b[32m&quot;;
 pub const RESET: &amp;str = &quot;\x1b[0m&quot;;
 &quot;###</span>,
     });
-    vec_file.push(<span class="kw">crate</span>::FileItem{
-            file_name :<span class="string">&quot;README.md&quot;</span>,
-            file_content : <span class="string">r###&quot;[//]: # (auto_md_to_doc_comments segment start A)
-
-# cargo_auto_template_new_cli
-
-[//]: # (auto_cargo_toml_to_md start)
-
-**Basic Rust project template for CLI and library, more than just `cargo new hello`**  
-***version: 1.0.4 date: 2022-04-21 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo_auto_template_new_cli)***  
-
-[//]: # (auto_cargo_toml_to_md end)
-
-[//]: # (auto_lines_of_code start)
-[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-89-green.svg)](https://github.com/bestia-dev/cargo-auto/)
-[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-13-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
-[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-36-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
-[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-19-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-30-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
-
-[//]: # (auto_lines_of_code end)
-
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo_auto_template_new_cli/blob/main/LICENSE) [![Rust](https://github.com/bestia-dev/cargo_auto_template_new_cli/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo_auto_template_new_cli/)
-
-## Edit this README.md file
-
-Edit this README file with your data. But leave the markers: auto_md_to_doc_comments, auto_lines_of_code, auto_cargo_toml_to_md and similar, because the automation tasks need them.  
-Modify the title and description only in Cargo.toml. Automation tasks will copy that into README.md.  
-Lines of code are filled automatically from automation tasks.  
-Find `bestia.dev` everywhere and change it with your username.
-
-## Motivation
-
-My first line I typed when I learned the Rust language was `cargo new hello`. It is extraordinary for learning Rust, but it is a rudimentary example, not really useful in practical life.
-
-I created this project template `cargo_auto_template_new_cli` for a simple CLI application that has all the moving parts for a real life project.
-
-## Separate main.rs and lib.rs
-
-It is always good to split the project between a `main.rs` (executable) and a `lib.rs` (library crate).
-
-Even for the smallest project. Maybe some other program will use the library eventually.
-
-All the input/output is coded in the `main.rs`: keyboard and monitor (stdin and stdout), access to files and some access to network.  
-The library must not operate directly with the stdin/stdout, because some other caller of the library can have other ideas around input-output options. Maybe it is a Graphical user interface that does thing completely different than CLI applications.
-
-A separate `lib.rs` enables to make good tests and examples without worrying about input-output.
-
-## super simple argument parsing
-
-I use a super simple code to parse CLI arguments inside the `src/bin/cargo_auto_template_new_cli/main.rs`. There are crate libraries that enables very complex argument parsing if needed.
-
-## automation_tasks_rs
-
-Building a project is always more complex then just `cargo build` and `cargo run`. There are always some files to copy or some content to copy from file to file. For this I use `cargo-auto` - automation tasks written in Rust language for the build process of Rust projects.
-
-All the source is inside the folder `automation_tasks_rs`. It is pure Rust, it is easy to understand and modify to your needs.
-
-To start using it just type in `VSCode terminal`:
-
-```bash
-cargo auto
-```
-
-```bash
-User defined tasks in automation_tasks_rs:
-cargo auto build - builds the crate in debug mode, fmt
-cargo auto release - builds the crate in release mode, version from date, fmt, strip
-cargo auto doc - builds the docs, copy to docs directory
-cargo auto commit_and_push - commits with message and push with mandatory message
- if you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git
-cargo auto publish_to_crates_io - publish to crates.io, git tag
-```
-
-The `bash auto-completion` should work. If you type `cargo auto b` and press `tab` it should auto-complete to `build`. Look at the project &lt;https://github.com/bestia-dev/dev_bestia_cargo_completion&gt;.
-
-```bash
-cargo auto build
-```
-
-```bash
-Running automation task: build
-old version: &quot;0.1.18&quot;
-new version: &#39;0.1.19&#39;
-$ cargo fmt
-$ cargo build
-Compiling cargo_auto_template_new_cli v0.1.19 (/home/rustdevuser/rustprojects/cargo_auto_template_new_cli)
-Finished dev [unoptimized + debuginfo] target(s) in 2.72s
-
-After `cargo auto build`, run the compiled binary
-run `./target/debug/cargo_auto_template_new_cli print world`
-later
-run `cargo auto release`
-```
-
-After the task there is a recommendation what to do next.
-
-```bash
-cargo auto release
-```
-
-```bash
-Running automation task: release
-old version: &quot;0.1.20&quot;
-new version: &#39;0.1.21&#39;
-new text: &#39;
-**Basic Rust project template for CLI, more than just `cargo new hello`**
-***version: 0.1.21 date: 2022-04-01 author: [bestia.dev](bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo_auto_template_new_cli)***&#39;
-
-include_into_readme_md write file: README.md
-$ cargo fmt
-$ cargo build --release
-Compiling cargo_auto_template_new_cli v0.1.21 (/home/rustdevuser/rustprojects/cargo_auto_template_new_cli)
-Finished release [optimized] target(s) in 1.05s
-
-After `cargo auto release`, , run the compiled binary
-run `./target/release/cargo_auto_template_new_cli print world`
-later
-run `cargo auto doc`
-
-```
-
-Release is incrementing the version number and date, copying the title and description from Cargo.toml to README.md. Calculates the lines of code in the project and makes badges from it in README.md. Copying the README into doc comments, so the documentation can be compiled later.
-
-```bash
-cargo auto doc
-```
-
-```bash
-Running automation task: doc
-$ cargo doc --no-deps --document-private-items
- Documenting cargo_auto_template_new_cli v0.1.21 (/home/rustdevuser/rustprojects/cargo_auto_template_new_cli)
-Finished dev [unoptimized + debuginfo] target(s) in 0.54s
-$ rsync -a --info=progress2 --delete-after target/doc/ docs/
-2,787,371 100% 46.60MB/s 0:00:00 (xfr#56, to-chk=0/61) 
-
-After `cargo auto doc`, check `docs/index.html`. If ok, then 
-run `cargo auto commit_and_push` with mandatory commit message
-```
-
-If you Ctrl+Click on the link `docs/index.html` it will open the file in VSCode editor. In the right corner you can click to see the Live Preview. It will open the preview for the html file in an integrated browser in VSCode. Very useful.
-Now is a good time to run all the test before committing.
-
-```bash
-cargo test
-```
-
-If we are happy with the changes, we commit and push:
-
-```bash
-cargo auto commit_and_push &quot;my message for commit&quot;
-```
-
-```bash
-Running automation task: commit_and_push
-$ git add -A &amp;&amp; git commit -m &quot;readme&quot;
-[main 3bdcc91] readme
- 9 files changed, 443 insertions(+), 89 deletions(-)
-$ git push
-Enumerating objects: 36, done.
-Counting objects: 100% (36/36), done.
-Delta compression using up to 6 threads
-Compressing objects: 100% (16/16), done.
-Writing objects: 100% (19/19), 6.27 KiB | 1.25 MiB/s, done.
-Total 19 (delta 11), reused 0 (delta 0), pack-reused 0
-remote: Resolving deltas: 100% (11/11), completed with 10 local objects.
-To https://github.com/bestia-dev/cargo_auto_template_new_cli.git
- d0f31d3..3bdcc91 main -&gt; main
-
-After `cargo auto commit and push`
-run `cargo auto publish_to_crates_io`
-```
-
-And finally if you want to publish it on crates.io. First you need the `access token` you get from crates.io.
-
-```bash
-cargo login
-# type the access token
-cargo auto publish_to_crates_io
-```
-
-## lib.rs doc-comments
-
-The entire README.md is copied into lib.rs. This can be annoying to watch. You can collapse the entire section clicking on `// region: auto_md_to_doc_comments include README.md`.
-
-You can use `// region:` and `// endregion:` to mark sections you want to collapse in the editor.
-
-From this doc-comments the `docs` will be created. Take a look and try to write what other users would want to read in the `docs`.
-
-## Modules
-
-I added one module `hello_mod.rs` just to showcase how modules are used in separate files.
-
-## Markdown
-
-README.md and all the doc-comments are in markdown. To separate paragraphs in markdown use an empty line between them.
-I tried other variants like double-space or backslash, but an empty line is the most used in the wild.
-
-## tests
-
-I added a unit-test, just to show how it looks. And an integration-test. So it is &quot;ready-to-go&quot;.
-Run them with `cargo test`.
-
-## examples
-
-In the directory `examples` every rs file is a bin-executable.
-Run it with:
-
-```bash
-cargo run --example example_1
-```
-
-## Error handling thiserror and anyhow
-
-The rule number one is never use `.unwrap()` in your real Rust code. It is a sign, you are not Error handling properly.
-Maybe `unwrap()` can be fine for some fast learning examples, but for any real-life Rust code you must use some `Error handling`. There are many different ways to do that in Rust. I choose the pair of libraries `thiserror` and `anyhow`. The first is made for libraries, the second is made for bin-executables.  
-The library needs an Enum with all the possible errors that this library can return. With `#[derive(Error)]` this enum get everything needed to be a true Rust error struct. Every error can have a formatting string and a struct of data.  
-The bin-executable does not want to be involved in every possible error separately. It needs an umbrella for all possible errors with `anyhow::Result`.  
-Inside the code, mostly propagate the errors with the `?` Operator after the `Result` value instead of unwrap() or the match expression.
-In the tests we don&#39;t want to work with Error handling. There, instead of `.unwrap()`, use the similar function `.expect(&amp;str)` that has an additional description string.
-
-## cargo crev reviews and advisory
-
-We live in times of danger with [supply chain attacks](https://en.wikipedia.org/wiki/Supply_chain_attack).
-
-It is recommended to always use [cargo-crev](https://github.com/crev-dev/cargo-crev) to verify the trustworthiness of each of your dependencies.
-
-Please, spread this info.
-
-You can also read crev reviews quickly on the web:
-
-&lt;https://web.crev.dev/rust-reviews/crates/&gt;
-
-## open-source and free as a beer
-
-My open-source projects are free as a beer (MIT license).
-
-I just love programming.
-
-But I need also to drink. If you find my projects and tutorials helpful,please buy me a beer donating on my [paypal](https://paypal.me/LucianoBestia).
-
-You know the price of a beer in your local bar ;-) So I can drink a free beer for your health :-)
-
-[Na zdravje!](https://translate.google.com/?hl=en&amp;sl=sl&amp;tl=en&amp;text=Na%20zdravje&amp;op=translate) [Alla salute!](https://dictionary.cambridge.org/dictionary/italian-english/alla-salute) [Prost!](https://dictionary.cambridge.org/dictionary/german-english/prost) [Nazdravlje!](https://matadornetwork.com/nights/how-to-say-cheers-in-50-languages/) 🍻
-
-[//]: # (auto_md_to_doc_comments segment end A)
-&quot;###</span>,
-});
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;LICENSE&quot;</span>,
-        file_content: <span class="string">r###&quot;MIT License
+        file_name: <span class="string">&quot;src/hello_mod.rs&quot;</span>,
+        file_content: <span class="string">r###&quot;// cargo_auto_template_new_cli/src/hello_mod.rs
 
-Copyright (c) 2022 bestia.dev
+//! All the real code is inside modules in separate files.
+//!
+//! This doc-comments will be compiled into the `docs`.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the &quot;Software&quot;), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-&quot;###</span>,
-    });
-    vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;tests/integration_test.rs&quot;</span>,
-        file_content: <span class="string">r###&quot;// tests/integration_test.rs
-
-use cargo_auto_template_new_cli::*;
-
-#[test]
-fn integration_test_01() {
-    assert_eq!(format_hello_phrase(&quot;abcd&quot;), &quot;Hello abcd!&quot;);
-    assert_eq!(format_upper_hello_phrase(&quot;abcd&quot;).expect(&quot;error&quot;), &quot;Hello ABCD!&quot;);
+/// format the hello phrase
+pub fn format_hello_phrase(greet_name: &amp;str) -&gt; String {
+    log::info!(&quot;start format_hello_phrase()&quot;);
+    // return
+    format!(&quot;Hello {}!&quot;, greet_name)
 }
 
-#[test]
-fn integration_test_02_error_check() {
-    assert!(format_upper_hello_phrase(&quot;ABCD&quot;).is_err());
+/// format the hello phrase with uppercase name
+/// if it is already uppercase, return error with thiserror
+pub fn format_upper_hello_phrase(greet_name: &amp;str) -&gt; Result&lt;String, crate::LibraryError&gt; {
+    log::info!(&quot;start format_upper_hello_phrase()&quot;);
+    // shadowing the same variable name:
+    let upper_greet_name = make_uppercase(greet_name);
+    if upper_greet_name == greet_name {
+        return Err(crate::LibraryError::Uppercase(greet_name.to_string()));
+    }
+
+    // return
+    Ok(format!(&quot;Hello {}!&quot;, &amp;upper_greet_name))
 }
-&quot;###</span>,
-    });
-    vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;examples/example_1.rs&quot;</span>,
-        file_content: <span class="string">r###&quot;// examples/example_1.rs
 
-//! A simple example how to use the `lib.rs`
-//! You can run it with `cargo run --example example_1`
+/// return uppercase
+pub fn make_uppercase(greet_name: &amp;str) -&gt; String {
+    // return
+    greet_name.to_uppercase()
+}
 
-use cargo_auto_template_new_cli::*;
+#[cfg(test)]
+mod test {
+    use super::*;
 
-/// example how to use format_hello_phrase() and format_upper_hello_phrase()
-fn main() {
-    let greet_name = &quot;world&quot;;
-    let phrase = format_hello_phrase(greet_name);
-    println!(&quot;{}&quot;, phrase);
+    #[test]
+    pub fn test_format_upper_hello_phrase() {
+        assert_eq!(format_upper_hello_phrase(&quot;abcd&quot;).expect(&quot;error&quot;), &quot;Hello ABCD!&quot;);
+        assert!(format_upper_hello_phrase(&quot;ABCD&quot;).is_err());
+    }
 
-    // possible error must be processed
-    match format_upper_hello_phrase(greet_name) {
-        Ok(phrase) =&gt; println!(&quot;{}&quot;, phrase),
-        Err(err) =&gt; log::error!(&quot;Error: {}&quot;, err),
+    #[test]
+    pub fn test_make_uppercase() {
+        assert_eq!(make_uppercase(&quot;abcd&quot;), &quot;ABCD&quot;);
+        assert_eq!(make_uppercase(&quot;1234abcd&quot;), &quot;1234ABCD&quot;);
+        assert_eq!(make_uppercase(&quot;čšž&quot;), &quot;ČŠŽ&quot;);
     }
 }
+&quot;###</span>,
+    });
+    vec_file.push(<span class="kw">crate</span>::FileItem {
+        file_name: <span class="string">&quot;.gitignore&quot;</span>,
+        file_content: <span class="string">r###&quot;/target
+**/*.rs.bk
 &quot;###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
@@ -2029,12 +1933,7 @@ description = &quot;cargo auto - automation tasks written in Rust language&quot;
 publish = false
 
 [dependencies]
-cargo_auto_lib = &quot;0.8.60&quot;&quot;###</span>,
-    });
-    vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;automation_tasks_rs/.gitignore&quot;</span>,
-        file_content: <span class="string">r###&quot;/target
-    &quot;###</span>,
+cargo_auto_lib = &quot;1.0.78&quot;&quot;###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem{
             file_name :<span class="string">&quot;automation_tasks_rs/src/main.rs&quot;</span>,
@@ -2297,7 +2196,7 @@ fn task_publish_to_crates_io() {
     {YELLOW}Add the dependency{RESET}
 {GREEN}{package_name} = &quot;{package_version}&quot;{RESET}
     {YELLOW}to your Rust project and check how it works.{RESET}
-    {YELLOW}Then create the Github-Release and upload the assets.{RESET}    
+    {YELLOW}Then create the GitHub-Release and upload the assets.{RESET}    
 {GREEN}cargo auto github_new_release{RESET}
 &quot;#,
         package_name = cargo_toml.package_name(),
@@ -2340,7 +2239,7 @@ r#&quot;## Changed
         auto_github_upload_asset_to_release(&amp;owner, &amp;repo_name, &amp;release_id, &amp;tar_name).await;
         run_shell_command(&amp;format!(&quot;rm {tar_name}&quot;));  
 
-        println!(&quot;    {YELLOW}Asset uploaded. Open and edit the description on Github-Releases in the browser.{RESET}&quot;);
+        println!(&quot;    {YELLOW}Asset uploaded. Open and edit the description on GitHub-Releases in the browser.{RESET}&quot;);
         println!(&quot;{GREEN}https://github.com/{owner}/{repo_name}/releases{RESET}&quot;);
     });
 }
@@ -2349,10 +2248,80 @@ r#&quot;## Changed
 // endregion: tasks
 &quot;###</span>,
 });
+    vec_file.push(<span class="kw">crate</span>::FileItem {
+        file_name: <span class="string">&quot;automation_tasks_rs/.gitignore&quot;</span>,
+        file_content: <span class="string">r###&quot;/target
+    &quot;###</span>,
+    });
+    vec_file.push(<span class="kw">crate</span>::FileItem {
+        file_name: <span class="string">&quot;examples/example_1.rs&quot;</span>,
+        file_content: <span class="string">r###&quot;// examples/example_1.rs
+
+//! A simple example how to use the `lib.rs`
+//! You can run it with `cargo run --example example_1`
+
+use cargo_auto_template_new_cli::*;
+
+/// example how to use format_hello_phrase() and format_upper_hello_phrase()
+fn main() {
+    let greet_name = &quot;world&quot;;
+    let phrase = format_hello_phrase(greet_name);
+    println!(&quot;{}&quot;, phrase);
+
+    // possible error must be processed
+    match format_upper_hello_phrase(greet_name) {
+        Ok(phrase) =&gt; println!(&quot;{}&quot;, phrase),
+        Err(err) =&gt; log::error!(&quot;Error: {}&quot;, err),
+    }
+}
+&quot;###</span>,
+    });
+    vec_file.push(<span class="kw">crate</span>::FileItem {
+        file_name: <span class="string">&quot;tests/integration_test.rs&quot;</span>,
+        file_content: <span class="string">r###&quot;// tests/integration_test.rs
+
+use cargo_auto_template_new_cli::*;
+
+#[test]
+fn integration_test_01() {
+    assert_eq!(format_hello_phrase(&quot;abcd&quot;), &quot;Hello abcd!&quot;);
+    assert_eq!(format_upper_hello_phrase(&quot;abcd&quot;).expect(&quot;error&quot;), &quot;Hello ABCD!&quot;);
+}
+
+#[test]
+fn integration_test_02_error_check() {
+    assert!(format_upper_hello_phrase(&quot;ABCD&quot;).is_err());
+}
+&quot;###</span>,
+    });
+    vec_file.push(<span class="kw">crate</span>::FileItem {
+        file_name: <span class="string">&quot;LICENSE&quot;</span>,
+        file_content: <span class="string">r###&quot;MIT License
+
+Copyright (c) 2022 bestia.dev
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the &quot;Software&quot;), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+&quot;###</span>,
+    });
     <span class="comment">// endregion: files copied into strings by automation tasks
 
     // return
     </span>vec_file
 }
-</code></pre></div>
-</section></main><div id="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="cargo_auto" data-themes="" data-resource-suffix="" data-rustdoc-version="1.69.0 (84c898d65 2023-04-16)" data-search-js="search-8a59a8356673ec1f.js" data-settings-js="settings-f0c5c39777a9a2f6.js" data-settings-css="settings-0bcba95ff279c1db.css" ></div></body></html>
+</code></pre></div></section></main></body></html>

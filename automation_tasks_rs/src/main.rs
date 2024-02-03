@@ -276,7 +276,7 @@ fn task_publish_to_crates_io() {
     {YELLOW}Install the crate with{RESET}
 {GREEN}cargo install {package_name}{RESET}
     {YELLOW}and check how it works.{RESET}
-    {YELLOW}Then create the Github-Release and upload the assets.{RESET}    
+    {YELLOW}Then create the GitHub-Release and upload the assets.{RESET}    
 {GREEN}cargo auto github_new_release{RESET}
 "#,
         package_name = cargo_toml.package_name(),
@@ -319,7 +319,7 @@ r#"## Changed
         auto_github_upload_asset_to_release(&owner, &repo_name, &release_id, &tar_name).await;
         run_shell_command(&format!("rm {tar_name}"));  
 
-        println!("    {YELLOW}Asset uploaded. Open and edit the description on Github-Releases in the browser.{RESET}");
+        println!("    {YELLOW}Asset uploaded. Open and edit the description on GitHub-Releases in the browser.{RESET}");
         println!("{GREEN}https://github.com/{owner}/{repo_name}/releases{RESET}");
     });
 }

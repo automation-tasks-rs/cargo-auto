@@ -42,6 +42,173 @@ pub fn get_vec_file() -> Vec<crate::FileItem> {
     let mut vec_file = vec![];
 
     // region: files copied into strings by automation tasks
+    vec_file.push(crate::FileItem{
+            file_name :"README.md",
+            file_content : r###"[//]: # (auto_md_to_doc_comments segment start A)
+
+# cargo_auto_template_new_wasm
+
+[//]: # (auto_cargo_toml_to_md start)
+
+**template for a minimal WASM project for browser**  
+***version: 2023.519.1012 date: 2023-05-19 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo_auto_template_new_wasm)***  
+
+[//]: # (auto_cargo_toml_to_md end)
+
+ [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/blob/master/LICENSE)
+ [![Rust](https://github.com/bestia-dev/cargo_auto_template_new_wasm/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/)
+ ![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/638168303.svg)
+
+[//]: # (auto_lines_of_code start)
+[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-262-green.svg)](https://github.com/bestia-dev/rust_wasm_pwa_minimal_clock/)
+[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-30-blue.svg)](https://github.com/bestia-dev/rust_wasm_pwa_minimal_clock/)
+[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-67-purple.svg)](https://github.com/bestia-dev/rust_wasm_pwa_minimal_clock/)
+[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/rust_wasm_pwa_minimal_clock/)
+[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-19-orange.svg)](https://github.com/bestia-dev/rust_wasm_pwa_minimal_clock/)
+
+[//]: # (auto_lines_of_code end)
+
+Hashtags: #rustlang #tutorial #pwa #wasm #webassembly  
+My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
+
+## template
+
+Just like `cargo new` makes a soft and gentle introduction to Rust projects and development, I want to make the same for an in-browser WASM project with `cargo auto new_wasm`.  
+Extremely simple, just the basic moving parts and use-cases.  
+This simplest template does not have a PWA implementation or dedicated web server.
+
+## Containerized Rust Development Environment (CRDE)
+
+I recommend using the Containerized Rust Development Environment (CRDE) to write Rust projects. It contains wasm-pack and basic-http-server that this project needs.  
+<https://github.com/bestia-dev/docker_rust_development>  
+
+## HTML, CSS
+
+The simple static HTML and CSS files are in `web_server_folder/cargo_auto_template_new_wasm`.  
+Then the Rust code injects html elements into the DOM.  
+
+## Web server and wasm
+
+We will need the `basic-http-server` because browser security does not allow the loading of WASM modules from local files.  
+Run the server in a separate VSCode terminal, so it can keep running all the time. In the first VSCode terminal, we can build the project and in the browser, we can refresh the page with F5.  
+
+## Rust and wasm
+
+Cargo.toml is very important to define the output as wasm library and the required dependencies to web-sys, js-sys, and wasm-bindgen.
+Wasm starts from the src/lib.rs. On purpose, I added the main_mod.rs and lib_mod.rs to make the project structure similar to a Rust CLI project. The User Interface UI is completely different in-browser or CLI, but we can reuse the libraries that are UI agnostic.  It is smart to split a project that logic does not contain UI.
+
+We use cargo auto for automation tasks. Run:
+`cargo auto build`  
+and follow the detailed instructions.
+
+## Open-source and free as a beer
+
+My open-source projects are free as a beer (MIT license).  
+I just love programming.  
+But I need also to drink. If you find my projects and tutorials helpful, please buy me a beer by donating to my [PayPal](https://paypal.me/LucianoBestia).  
+You know the price of a beer in your local bar ;-)  
+So I can drink a free beer for your health :-)  
+[Na zdravje!](https://translate.google.com/?hl=en&sl=sl&tl=en&text=Na%20zdravje&op=translate) [Alla salute!](https://dictionary.cambridge.org/dictionary/italian-english/alla-salute) [Prost!](https://dictionary.cambridge.org/dictionary/german-english/prost) [Nazdravlje!](https://matadornetwork.com/nights/how-to-say-cheers-in-50-languages/) 🍻
+
+[//bestia.dev](https://bestia.dev)  
+[//github.com/bestia-dev](https://github.com/bestia-dev)  
+[//bestiadev.substack.com](https://bestiadev.substack.com)  
+[//youtube.com/@bestia-dev-tutorials](https://youtube.com/@bestia-dev-tutorials)  
+
+[//]: # (auto_md_to_doc_comments segment end A)
+"###,
+});
+    vec_file.push(crate::FileItem {
+        file_name: "web_server_folder/cargo_auto_template_new_wasm/index.html",
+        file_content: r###"<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <!-- classic header for a web page -->
+      <title>cargo_auto_template_new_wasm</title>
+      <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+      <meta name="Description" content="template for a minimal wasm project for browser">
+      <meta name="author" content="https://github.com/bestia-dev/cargo_auto_template_new_wasm">    
+      <link rel="stylesheet" href="css/basic_style.css">
+      
+</head>
+
+<body>
+      <!-- warning if javascript iis not enabled -->
+      <noscript>
+            <h2>
+                  !!!???!!!<br>
+                  This web app <br>
+                  cannot work <br>
+                  without javascript<br>
+                  enabled<br>
+                  !!!???!!!</h2>
+      </noscript>
+      <!-- display a text while waiting for wasm download. 
+      This content will change from the wasm code.-->
+      <div id="div_for_wasm_html_injecting">
+            <h2>
+                  Waiting to<br>
+                  download <br>
+                  the web app...<br>
+                  This is <br>
+                  very quick on fast<br>
+                  networks...<br>
+            </h2>
+      </div>
+      <p class="fc_red" id="div_for_errors"></p>
+      <!-- import and init the wasm code -->
+      <script type="module">
+            import init from "./pkg/cargo_auto_template_new_wasm.js";
+            init("./pkg/cargo_auto_template_new_wasm_bg.wasm");
+      </script>
+</body>
+
+</html>"###,
+    });
+    vec_file.push(crate::FileItem {
+        file_name: "web_server_folder/cargo_auto_template_new_wasm/css/basic_style.css",
+        file_content: r###"html { 
+    font-family: sans-serif;
+    background-color: #000000;
+    color: #FBF462;
+}
+
+h1{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+p{
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+.small{
+    font-size: 10px;
+}
+
+.input-wrap {
+    position: relative;
+	text-align: center;
+  }
+
+.button {
+    display: inline-block;
+    padding: 12px 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: #8ebf42;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .fc_red{
+    color: red;
+}
+"###,
+    });
     vec_file.push(crate::FileItem {
         file_name: ".vscode/settings.json",
         file_content: r###"{
@@ -112,20 +279,53 @@ panic = "abort"
 "###,
     });
     vec_file.push(crate::FileItem {
-        file_name: ".gitignore",
-        file_content: r###"# Generated by Cargo
-# will have compiled files and executables
-/target/
+        file_name: "src/main_mod/lib_mod.rs",
+        file_content: r###"// src/lib_mod.rs
+// This module is like a lib.rs module for a binary CLI executable.
+// The `lib_mod.rs` must not contains any input/output interface stuff.
+// So the program logic can be separate from the interface.
 
-# Remove Cargo.lock from gitignore if creating an executable, leave it for libraries
-# More information here https://doc.rust-lang.org/cargo/guide/cargo-toml-vs-cargo-lock.html
-# Cargo.lock
+// The `main_mod.rs` contains all input/output interface stuff.
+// This `lib_mod.rs` can then be used as dependency crate for other projects.
 
-# These are backup files generated by rustfmt
-**/*.rs.bk
+// The `lib_mod.rs` does not have any real code. All the code is in modules in separate files.
+// The `lib_mod.rs` has just the list of modules, it publishes module's functions or class for the caller
+// and it has some global stuff like the Error enum.
 
-# result of compilation does not need to go to repository
-/pkg/
+// The `main_mod.rs` uses the `anyhow` error library.
+// The `lib_mod.rs` uses the `thiserror` library.
+
+use thiserror::Error;
+
+// Instead of a hello_mod local module, we could use a UI agnostic crate library dependency.
+// So the same library could be used for CLI and for WASM, that have vastly different UI.
+mod hello_mod;
+
+pub mod web_sys_mod;
+pub use web_sys_mod as wsm;
+
+pub use hello_mod::format_hello_phrase;
+pub use hello_mod::format_upper_hello_phrase;
+
+/// all possible library errors for `thiserror`
+#[derive(Error, Debug)]
+pub enum LibraryError {
+    #[error("Name `{0}` is already uppercase.")]
+    Uppercase(String),
+    #[error("Unknown error.")]
+    Unknown,
+}
+
+// ANSI colors for Linux terminal
+// https://github.com/shiena/ansicolor/blob/master/README.md
+#[allow(dead_code)]
+pub const RED: &str = "\x1b[31m";
+#[allow(dead_code)]
+pub const YELLOW: &str = "\x1b[33m";
+#[allow(dead_code)]
+pub const GREEN: &str = "\x1b[32m";
+#[allow(dead_code)]
+pub const RESET: &str = "\x1b[0m";
 "###,
     });
     vec_file.push(crate::FileItem {
@@ -266,56 +466,6 @@ mod test {
         assert_eq!(make_uppercase("čšž"), "ČŠŽ");
     }
 }
-"###,
-    });
-    vec_file.push(crate::FileItem {
-        file_name: "src/main_mod/lib_mod.rs",
-        file_content: r###"// src/lib_mod.rs
-// This module is like a lib.rs module for a binary CLI executable.
-// The `lib_mod.rs` must not contains any input/output interface stuff.
-// So the program logic can be separate from the interface.
-
-// The `main_mod.rs` contains all input/output interface stuff.
-// This `lib_mod.rs` can then be used as dependency crate for other projects.
-
-// The `lib_mod.rs` does not have any real code. All the code is in modules in separate files.
-// The `lib_mod.rs` has just the list of modules, it publishes module's functions or class for the caller
-// and it has some global stuff like the Error enum.
-
-// The `main_mod.rs` uses the `anyhow` error library.
-// The `lib_mod.rs` uses the `thiserror` library.
-
-use thiserror::Error;
-
-// Instead of a hello_mod local module, we could use a UI agnostic crate library dependency.
-// So the same library could be used for CLI and for WASM, that have vastly different UI.
-mod hello_mod;
-
-pub mod web_sys_mod;
-pub use web_sys_mod as wsm;
-
-pub use hello_mod::format_hello_phrase;
-pub use hello_mod::format_upper_hello_phrase;
-
-/// all possible library errors for `thiserror`
-#[derive(Error, Debug)]
-pub enum LibraryError {
-    #[error("Name `{0}` is already uppercase.")]
-    Uppercase(String),
-    #[error("Unknown error.")]
-    Unknown,
-}
-
-// ANSI colors for Linux terminal
-// https://github.com/shiena/ansicolor/blob/master/README.md
-#[allow(dead_code)]
-pub const RED: &str = "\x1b[31m";
-#[allow(dead_code)]
-pub const YELLOW: &str = "\x1b[33m";
-#[allow(dead_code)]
-pub const GREEN: &str = "\x1b[32m";
-#[allow(dead_code)]
-pub const RESET: &str = "\x1b[0m";
 "###,
     });
     vec_file.push(crate::FileItem{
@@ -505,24 +655,27 @@ r#"The result is
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2023.603.904 date: 2023-06-03 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2024.203.324 date: 2024-02-03 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-1483-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+//!  ![status](https://img.shields.io/badge/maintained-green)
+//!  ![status](https://img.shields.io/badge/ready_for_use-green)
+//!
+//!  [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
+//!  [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)
+//!  [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/cargo-auto.svg)](https://web.crev.dev/rust-reviews/crate/cargo-auto/)
+//!  [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/)
+//!  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo-auto/blob/master/LICENSE)
+//!  [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/bestia-dev/cargo-auto/)
+//!  ![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
+//!
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9023-green.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-452-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-336-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-8977-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
-//!
-//! [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
-//! [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)
-//! [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/cargo-auto.svg)](https://web.crev.dev/rust-reviews/crate/cargo-auto/)
-//! [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/)
-//! [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo-auto/blob/master/LICENSE)
-//! [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! ![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-1406-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
 //! Hashtags: #rustlang #tutorial #buildtool #developmenttool #cli  
-//! My projects on Github are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
+//! My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
 //!
 //! ## Try it
 //!
@@ -558,16 +711,16 @@ r#"The result is
 //! ## Motivation
 //!
 //! Cargo is a great tool for building Rust projects. It has all the basics: `cargo build`, `cargo build --release`, `cargo fmt`, `cargo test`, `cargo doc`,...  
-//! But sometimes we need to do more things like copying some files, publish to ftp or enter long commands. These repetitive tasks must be automated.  
-//! Task automation makes work easier and faster, simplifies the workflow, while improving the consistency and accuracy of workflows.  
+//! But sometimes we need to do more things like copying some files, publishing to FTP, or entering long commands. These repetitive tasks must be automated.  
+//! Task automation makes work easier and faster, and simplifies the workflow while improving the consistency and accuracy of workflows.  
 //! This is also sometimes referred to as "workflow automation."  
 //! There are many different build systems and task runners there: `make`, `cmake`, `shell scripts`, `cargo-xtask`, `cargo-make`, `cargo-task`, `cargo-script`, `cargo-run-script`, `runner`, `python scripts`, `powershell scripts`, `cmd prompt scripts`, ...  
 //! Sadly there is no standard in the Rust community for now.  
-//! I want something similar to [build.rs](https://doc.rust-lang.org/cargo/reference/build-scripts.html), so I can write my "tasks" in pure Rust I don't want to learn another meta language with weird syntax and difficult to debug. So I will make something really simple, easy, rusty and extensible.  
+//! I want something similar to [build.rs](https://doc.rust-lang.org/cargo/reference/build-scripts.html), so I can write my "tasks" in pure Rust I don't want to learn another meta language with weird syntax and difficulty to debug. So I will make something really simple, easy, rusty, and extensible.  
 //!
 //! ## cargo auto new_cli
 //!
-//! I like very much that Rust has the command `cargo new project_name`. It creates a super simple Rust hello project that can be build and run immediately. But this example is too simple. It lacks basic file structures of a serious CLI program.  
+//! I like very much that Rust has the command `cargo new project_name`. It creates a super simple Rust Hello project that can be built and run immediately. But this example is too simple. It lacks the basic file structures of a serious CLI program.  
 //! I composed an opinionated template for a Rust CLI project. It is easy to run:
 //!
 //! ```bash
@@ -576,7 +729,7 @@ r#"The result is
 //!
 //! ## cargo auto new_wasm
 //!
-//! I composed an opinionated template for a simple Rust WASM project for browser. It is very similar to the new_cli template, but for WASM.  
+//! I composed an opinionated template for a simple Rust WASM project for a browser. It is very similar to the new_cli template but for WASM.  
 //! It is easy to run:
 //!
 //! ```bash
@@ -589,8 +742,8 @@ r#"The result is
 //!
 //! ## cargo auto new_pwa_wasm
 //!
-//! I composed an opinionated template for a simple Rust PWA-WASM project for browser. It is very similar to the new_cli template, but for WASM. It adds the PWA standard functionality to work as an offline app.  
-//! The template needs the title, name, long name and description inside a `pwa.json5` file and the `icon512x512.png` file for the icons.  
+//! I composed an opinionated template for a simple Rust PWA-WASM project for a browser. It is very similar to the new_cli template but for WASM. It adds the PWA standard functionality to work as an offline app.  
+//! The template needs the title, name, long name, and description inside a `pwa.json5` file and the `icon512x512.png` file for the icons.  
 //! It is easy to run:
 //!
 //! ```bash
@@ -606,18 +759,18 @@ r#"The result is
 //!
 //! ## scripting with rust
 //!
-//! Rust is a compiled language. It is not really a scripting or interpreted language. But the compilation of small projects is really fast and can be ignored. Subsequent calls will use the already built binary and so the speed will be even faster.  
+//! Rust is a compiled language. It is not really a scripting or interpreted language. But the compilation of small projects is really fast and can be ignored. Subsequent calls will use the already-built binary so the speed will be even faster.  
 //! This tool `cargo-auto` is meant for Rust projects, so it means that all the Rust infrastructure is already in place.  
 //!
 //! ## automation_tasks_rs helper project
 //!
-//! The command `cargo auto new_auto` will create a new directory `automation_tasks_rs` with a template for a helper Rust project in the root directory of your `main Rust project` . It should not interfere with the main Rust project. This directory will be added into git commits and pushed to remote repositories as part of the main project. It has its own `.gitignore` to avoid committing its target directory.  
-//! The `automation_tasks_rs` helper project contains user defined tasks in Rust code. Your tasks. This helper project should be opened in a new editor starting from the `automation_tasks_rs` directory. It does not share dependencies with the main project. It is completely separate and independent.  
+//! The command `cargo auto new_auto` will create a new directory `automation_tasks_rs` with a template for a helper Rust project in the root directory of your `main Rust project`. It should not interfere with the main Rust project. This directory will be added to git commits and pushed to remote repositories as part of the main project. It has its own `.gitignore` to avoid committing to its target directory.  
+//! The `automation_tasks_rs` helper project contains user-defined tasks in Rust code. Your tasks. This helper project should be opened in a new editor starting from the `automation_tasks_rs` directory. It does not share dependencies with the main project. It is completely separate and independent.  
 //! You can edit it and add your dependencies and Rust code. No limits. Freedom of expression.  
-//! This is now your code, your tasks and your helper Rust project!  
+//! This is now your code, your tasks, and your helper Rust project!  
 //! Because only you know what you want to automate and how to do it.  
-//! Never write secrets, passwords, passcodes or tokens inside your Rust code. Because then it is pushed to Github and the whole world can read it in the next second !
-//! Basic example (most of the useful functions is already there):  
+//! Never write secrets, passwords, passcodes, or tokens inside your Rust code. Because then it is pushed to GitHub and the whole world can read it in the next second!
+//! Basic example (most of the useful functions are already there):  
 //!
 //! ```rust
 //! /// match arguments and call tasks functions
@@ -693,30 +846,30 @@ r#"The result is
 //!
 //! This binary is super simple. It has only 1 trivial dependency: `lazy_static`.  
 //! The binary only reads the CLI arguments and runs the `automation_tasks_rs` binary with them. If needed it will compile `automation_tasks_rs` first.  
-//! The code-flow of the source code of `cargo-auto` is simple, fully commented and straightforward to audit.  
+//! The code-flow of the source code of `cargo-auto` is simple, fully commented, and straightforward to audit.  
 //! The source code is on [GitHub](https://github.com/bestia-dev/cargo-auto) with MIT open-source licensing.  
 //!
 //! ## bash auto-completion
 //!
-//! With the help of the crate [dev_bestia_cargo_completion](https://crates.io/crates/dev_bestia_cargo_completion) the commands `cargo` and `cargo auto` get bash auto-completion. Try it!  
+//! With the help of the crate [dev_bestia_cargo_completion](https://crates.io/crates/dev_bestia_cargo_completion), the commands `cargo` and `cargo auto` get bash auto-completion. Try it!  
 //!
 //! ## cargo auto new_auto
 //!
-//! Inside the cargo-auto project there is a Rust sub-projects that is a template. I can open a new editor for this directories and build this crate independently. So it is easy to debug and develop.  
+//! Inside the cargo-auto project, there is a Rust sub-project that is a template. I can open a new editor for these directories and build this crate independently. So it is easy to debug and develop.  
 //! Sadly, I cannot publish these directories and files to `crates.io`. I can effectively publish only the source code inside my main Rust project `cargo-auto`.  
-//! Therefor, before publishing I copy the content of these files into the modules `template_new_auto_mod.rs` on every build. It is not difficult now that Rust has fantastic [raw strings](https://doc.rust-lang.org/rust-by-example/std/str.html).  
+//! Therefore, before publishing I copy the content of these files into the modules `template_new_auto_mod.rs` on every build. It is not difficult now that Rust has fantastic [raw strings](https://doc.rust-lang.org/rust-by-example/std/str.html).  
 //!
 //! ## more complex tasks
 //!
 //! You can write more complex tasks in Rust language.  
-//! For example in this project I use automation to create github Releases : <https://github.com/bestia-dev/dropbox_backup_to_external_disk>  
-//! Here is pretty complex workspace with more sub-projects:  
+//! For example in this project I use automation to create GitHub Releases: <https://github.com/bestia-dev/dropbox_backup_to_external_disk>  
+//! Here is a pretty complex workspace with more sub-projects:  
 //! <https://github.com/bestia-dev/cargo_crev_reviews_workspace>  
-//! There is no end to your imagination. If you write something that looks it can help other developers, please share it with me and I will add it here.
+//! There is no end to your imagination. If you write something that looks like it can help other developers, please share it with me and I will add it here.
 //!
 //! ## development
 //!
-//! Usually I compile and run the code of `cargo-auto` with added arguments like this:  
+//! Usually, I compile and run the code of `cargo-auto` with added arguments like this:  
 //!
 //! ```bash
 //! cargo run -- new_auto
@@ -776,197 +929,22 @@ pub fn wasm_bindgen_start() -> Result<(), JsValue> {
 }
 "###,
     });
-    vec_file.push(crate::FileItem{
-            file_name :"README.md",
-            file_content : r###"[//]: # (auto_md_to_doc_comments segment start A)
-
-# cargo_auto_template_new_wasm
-
-[//]: # (auto_cargo_toml_to_md start)
-
-**template for a minimal wasm project for browser**  
-***version: 2023.519.1012 date: 2023-05-19 author: [bestia.dev](https://bestia.dev) repository: [Github](https://github.com/bestia-dev/cargo_auto_template_new_wasm)***  
-
-[//]: # (auto_cargo_toml_to_md end)
-
-[//]: # (auto_lines_of_code start)
-[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-262-green.svg)](https://github.com/bestia-dev/rust_wasm_pwa_minimal_clock/)
-[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-30-blue.svg)](https://github.com/bestia-dev/rust_wasm_pwa_minimal_clock/)
-[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-67-purple.svg)](https://github.com/bestia-dev/rust_wasm_pwa_minimal_clock/)
-[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/rust_wasm_pwa_minimal_clock/)
-[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-19-orange.svg)](https://github.com/bestia-dev/rust_wasm_pwa_minimal_clock/)
-
-[//]: # (auto_lines_of_code end)
-
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/blob/master/LICENSE)
-[![Rust](https://github.com/bestia-dev/cargo_auto_template_new_wasm/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/)
-![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/638168303.svg)
-
-Hashtags: #rustlang #tutorial #pwa #wasm #webassembly  
-My projects on Github are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
-
-## template
-
-Just like `cargo new` makes a soft and gentle introduction to Rust projects and development, I want to make the same for an in-browser WASM project with `cargo auto new_wasm`.  
-Extremely simple, just the basic moving parts and use-cases.  
-This simplest template does not have a PWA implementation or dedicated web server.
-
-## Containerized Rust Development Environment (CRDE)
-
-I recommend to use the Containerized Rust Development Environment (CRDE) to write Rust projects. It contains wasm-pack and basic-http-server that this project needs.  
-<https://github.com/bestia-dev/docker_rust_development>  
-
-## HTML, CSS
-
-The simple static HTML and CSS files are in `web_server_folder/cargo_auto_template_new_wasm`.  
-Then the Rust code injects html elements into the DOM.  
-
-## Web server and wasm
-
-We will need the `basic-http-server` because browser security does not allow loading wasm modules from local files.  
-Run the server in a separate VSCode terminal, so it can keep running all the time. In the first VSCode terminal we can build the project and in the browser we can refresh the page with F5.  
-
-## Rust and wasm
-
-Cargo.toml is very important to define the output as wasm library and the required dependencies to web-sys, js-sys and wasm-bindgen.
-Wasm starts from the src/lib.rs. On purpose I added the main_mod.rs and lib_mod.rs to make the project structure similar to a Rust CLI project. The User Interface UI is completely different in-browser or CLI, but we can reuse the libraries that are UI agnostic.  It is smart to split a project that logic does not contain UI.
-
-We use cargo auto for automation tasks. Run:
-`cargo auto build`  
-and follow the detailed instructions.
-
-## Open-source and free as a beer
-
-My open-source projects are free as a beer (MIT license).  
-I just love programming.  
-But I need also to drink. If you find my projects and tutorials helpful, please buy me a beer by donating to my [PayPal](https://paypal.me/LucianoBestia).  
-You know the price of a beer in your local bar ;-)  
-So I can drink a free beer for your health :-)  
-[Na zdravje!](https://translate.google.com/?hl=en&sl=sl&tl=en&text=Na%20zdravje&op=translate) [Alla salute!](https://dictionary.cambridge.org/dictionary/italian-english/alla-salute) [Prost!](https://dictionary.cambridge.org/dictionary/german-english/prost) [Nazdravlje!](https://matadornetwork.com/nights/how-to-say-cheers-in-50-languages/) 🍻
-
-[//bestia.dev](https://bestia.dev)  
-[//github.com/bestia-dev](https://github.com/bestia-dev)  
-[//bestiadev.substack.com](https://bestiadev.substack.com)  
-[//youtube.com/@bestia-dev-tutorials](https://youtube.com/@bestia-dev-tutorials)  
-
-[//]: # (auto_md_to_doc_comments segment end A)
-"###,
-});
     vec_file.push(crate::FileItem {
-        file_name: "LICENSE",
-        file_content: r###"MIT License
+        file_name: ".gitignore",
+        file_content: r###"# Generated by Cargo
+# will have compiled files and executables
+/target/
 
-Copyright (c) 2023 bestia.dev
+# Remove Cargo.lock from gitignore if creating an executable, leave it for libraries
+# More information here https://doc.rust-lang.org/cargo/guide/cargo-toml-vs-cargo-lock.html
+# Cargo.lock
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+# These are backup files generated by rustfmt
+**/*.rs.bk
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+# result of compilation does not need to go to repository
+/pkg/
 "###,
-    });
-    vec_file.push(crate::FileItem {
-        file_name: "web_server_folder/cargo_auto_template_new_wasm/css/basic_style.css",
-        file_content: r###"html { 
-    font-family: sans-serif;
-    background-color: #000000;
-    color: #FBF462;
-}
-
-h1{
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
-p{
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-}
-.small{
-    font-size: 10px;
-}
-
-.input-wrap {
-    position: relative;
-	text-align: center;
-  }
-
-.button {
-    display: inline-block;
-    padding: 12px 18px;
-    cursor: pointer;
-    border-radius: 5px;
-    background-color: #8ebf42;
-    font-size: 16px;
-    font-weight: bold;
-    color: #fff;
-  }
-
-  .fc_red{
-    color: red;
-}
-"###,
-    });
-    vec_file.push(crate::FileItem {
-        file_name: "web_server_folder/cargo_auto_template_new_wasm/index.html",
-        file_content: r###"<!DOCTYPE html>
-<html lang="en">
-
-<head>
-      <!-- classic header for a web page -->
-      <title>cargo_auto_template_new_wasm</title>
-      <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-      <meta name="Description" content="template for a minimal wasm project for browser">
-      <meta name="author" content="https://github.com/bestia-dev/cargo_auto_template_new_wasm">    
-      <link rel="stylesheet" href="css/basic_style.css">
-      
-</head>
-
-<body>
-      <!-- warning if javascript iis not enabled -->
-      <noscript>
-            <h2>
-                  !!!???!!!<br>
-                  This web app <br>
-                  cannot work <br>
-                  without javascript<br>
-                  enabled<br>
-                  !!!???!!!</h2>
-      </noscript>
-      <!-- display a text while waiting for wasm download. 
-      This content will change from the wasm code.-->
-      <div id="div_for_wasm_html_injecting">
-            <h2>
-                  Waiting to<br>
-                  download <br>
-                  the web app...<br>
-                  This is <br>
-                  very quick on fast<br>
-                  networks...<br>
-            </h2>
-      </div>
-      <p class="fc_red" id="div_for_errors"></p>
-      <!-- import and init the wasm code -->
-      <script type="module">
-            import init from "./pkg/cargo_auto_template_new_wasm.js";
-            init("./pkg/cargo_auto_template_new_wasm_bg.wasm");
-      </script>
-</body>
-
-</html>"###,
     });
     vec_file.push(crate::FileItem {
         file_name: "automation_tasks_rs/Cargo.toml",
@@ -981,12 +959,7 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "0.8.60""###,
-    });
-    vec_file.push(crate::FileItem {
-        file_name: "automation_tasks_rs/.gitignore",
-        file_content: r###"/target
-"###,
+cargo_auto_lib = "1.0.78""###,
     });
     vec_file.push(crate::FileItem{
             file_name :"automation_tasks_rs/src/main.rs",
@@ -1241,6 +1214,36 @@ https://bestia.dev/{package_name}
 // endregion: tasks
 "###,
 });
+    vec_file.push(crate::FileItem {
+        file_name: "automation_tasks_rs/.gitignore",
+        file_content: r###"/target
+"###,
+    });
+    vec_file.push(crate::FileItem {
+        file_name: "LICENSE",
+        file_content: r###"MIT License
+
+Copyright (c) 2023 bestia.dev
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+"###,
+    });
     // endregion: files copied into strings by automation tasks
 
     // return
