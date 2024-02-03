@@ -263,7 +263,7 @@ mod template_new_wasm_mod;
 // region: use statements
 use lazy_static::lazy_static;
 use std::path::{Path, PathBuf};
-// endregion
+// endregion: use statements
 
 // paths
 lazy_static! {
