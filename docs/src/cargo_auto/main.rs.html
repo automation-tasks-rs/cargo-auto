@@ -317,11 +317,18 @@
 <a href="#317" id="317">317</a>
 <a href="#318" id="318">318</a>
 <a href="#319" id="319">319</a>
+<a href="#320" id="320">320</a>
+<a href="#321" id="321">321</a>
+<a href="#322" id="322">322</a>
+<a href="#323" id="323">323</a>
+<a href="#324" id="324">324</a>
+<a href="#325" id="325">325</a>
+<a href="#326" id="326">326</a>
 </pre></div><pre class="rust"><code><span class="comment">// region: auto_md_to_doc_comments include README.md A //!
 </span><span class="doccomment">//! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2024.203.327 date: 2024-02-03 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2024.204.206 date: 2024-02-04 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
 //!
 //!  ![status](https://img.shields.io/badge/maintained-green)
 //!  ![status](https://img.shields.io/badge/ready_for_use-green)
@@ -334,9 +341,9 @@
 //!  [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!  ![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9023-green.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-455-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-336-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9139-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-471-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-349-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-1406-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
@@ -572,7 +579,8 @@
 //!
 </span><span class="comment">// endregion: auto_md_to_doc_comments include README.md A //!
 
-</span><span class="kw">mod </span>inside_of_rust_project_mod;
+</span><span class="kw">mod </span>file_hashes_mod;
+<span class="kw">mod </span>inside_of_rust_project_mod;
 <span class="kw">mod </span>outside_of_rust_project_mod;
 <span class="kw">mod </span>template_new_auto_mod;
 <span class="kw">mod </span>template_new_cli_mod;
@@ -582,7 +590,7 @@
 <span class="comment">// region: use statements
 </span><span class="kw">use </span>lazy_static::lazy_static;
 <span class="kw">use </span>std::path::{Path, PathBuf};
-<span class="comment">// endregion
+<span class="comment">// endregion: use statements
 
 // paths
 </span><span class="macro">lazy_static! </span>{
@@ -594,9 +602,14 @@
     </span><span class="kw">static </span><span class="kw-2">ref </span>PATH_GITIGNORE: PathBuf = PathBuf::from(<span class="string">&quot;automation_tasks_rs/.gitignore&quot;</span>);
     <span class="doccomment">/// constant paths for read/write
     </span><span class="kw">static </span><span class="kw-2">ref </span>PATH_SRC_MAIN_RS: PathBuf = PathBuf::from(<span class="string">&quot;automation_tasks_rs/src/main.rs&quot;</span>);
+    <span class="doccomment">/// constant paths for folder
+    </span><span class="kw">static </span><span class="kw-2">ref </span>PATH_SRC: PathBuf = PathBuf::from(<span class="string">&quot;automation_tasks_rs/src&quot;</span>);
     <span class="doccomment">/// constant paths for read/write
     </span><span class="kw">static </span><span class="kw-2">ref </span>PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS: PathBuf =
         PathBuf::from(<span class="string">&quot;automation_tasks_rs/target/debug/automation_tasks_rs&quot;</span>);
+    <span class="doccomment">/// constant paths for read/write
+    </span><span class="kw">static </span><span class="kw-2">ref </span>PATH_FILE_HASHES_JSON: PathBuf =
+        PathBuf::from(<span class="string">&quot;automation_tasks_rs/.file_hashes.json&quot;</span>);
 }
 
 <span class="comment">// ANSI colors for Linux terminal
@@ -610,7 +623,8 @@
 <span class="attr">#[allow(dead_code)]
 </span><span class="kw">pub const </span>RESET: <span class="kw-2">&amp;</span>str = <span class="string">&quot;\x1b[0m&quot;</span>;
 
-<span class="kw">pub struct </span>FileItem {
+<span class="doccomment">/// file item
+</span><span class="kw">pub struct </span>FileItem {
     file_name: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str,
     file_content: <span class="kw-2">&amp;</span><span class="lifetime">&#39;static </span>str,
 }
@@ -628,7 +642,7 @@
     }
 }
 
-<span class="doccomment">/// check if is not run in Rust project root directory
+<span class="doccomment">/// Check if is not run in Rust project root directory
 /// I had problems using the original cargo workspaces to group projects together.
 /// So I invented the Cargo-auto.toml to make a pseudo-workspace. It does not use any original Cargo functionality.
 /// But builds all members using cargo-auto functionality.

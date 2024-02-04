@@ -441,21 +441,11 @@
 <a href="#441" id="441">441</a>
 <a href="#442" id="442">442</a>
 <a href="#443" id="443">443</a>
-<a href="#444" id="444">444</a>
-<a href="#445" id="445">445</a>
-<a href="#446" id="446">446</a>
-<a href="#447" id="447">447</a>
-<a href="#448" id="448">448</a>
-<a href="#449" id="449">449</a>
-<a href="#450" id="450">450</a>
-<a href="#451" id="451">451</a>
-<a href="#452" id="452">452</a>
-<a href="#453" id="453">453</a>
-<a href="#454" id="454">454</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! this strings are copied from the template_new_auto folder
 //! because when publishing to crates.io, only the main bin-executable is transferred
 
-</span><span class="attr">#[allow(unused)]
+</span><span class="kw">use </span><span class="kw">crate</span>::file_hashes_mod;
+<span class="attr">#[allow(unused)]
 </span><span class="kw">use crate</span>::{GREEN, RED, RESET, YELLOW};
 
 <span class="doccomment">/// copies the template to the `automation_tasks_rs` directory  
@@ -484,28 +474,16 @@
         .unwrap();
 }
 
-<span class="doccomment">/// build if the date of Cargo.toml or main.rs is newer then of automation_tasks_rs/target/automation_tasks_rs
+<span class="doccomment">/// build if the files are different then the hashes in automation_tasks_rs/file_hashes.json
 </span><span class="kw">pub fn </span>build_automation_tasks_rs_if_needed() {
     <span class="kw">if </span>!<span class="kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.exists() {
         build_project_automation_tasks_rs();
-        <span class="comment">// early return
-        </span><span class="kw">return </span>();
-    }
-    <span class="kw">let </span>modified_automation_tasks_rs = std::fs::metadata(<span class="kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str())
-        .unwrap()
-        .modified()
-        .unwrap();
-    <span class="kw">let </span>modified_cargo_toml = std::fs::metadata(<span class="kw">crate</span>::PATH_CARGO_TOML.as_os_str())
-        .unwrap()
-        .modified()
-        .unwrap();
-    <span class="kw">let </span>modified_main_rs = std::fs::metadata(<span class="kw">crate</span>::PATH_SRC_MAIN_RS.as_os_str())
-        .unwrap()
-        .modified()
-        .unwrap();
-
-    <span class="kw">if </span>modified_automation_tasks_rs &lt; modified_cargo_toml || modified_automation_tasks_rs &lt; modified_main_rs {
+        <span class="kw">let </span>vec_of_metadata = file_hashes_mod::read_file_metadata();
+        file_hashes_mod::save_json_file_for_file_meta_data(vec_of_metadata);
+    } <span class="kw">else if </span>file_hashes_mod::is_project_changed() {
         build_project_automation_tasks_rs();
+        <span class="kw">let </span>vec_of_metadata = file_hashes_mod::read_file_metadata();
+        file_hashes_mod::save_json_file_for_file_meta_data(vec_of_metadata);
     }
 }
 
@@ -589,7 +567,7 @@ description = &quot;cargo auto - automation tasks written in Rust language&quot;
 publish = false
 
 [dependencies]
-cargo_auto_lib = &quot;1.0.78&quot;
+cargo_auto_lib = &quot;1.0.96&quot;
 &quot;###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem{
