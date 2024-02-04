@@ -2,7 +2,7 @@
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2024.203.327 date: 2024-02-03 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2024.204.206 date: 2024-02-04 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
 //!
 //!  ![status](https://img.shields.io/badge/maintained-green)
 //!  ![status](https://img.shields.io/badge/ready_for_use-green)
@@ -15,9 +15,9 @@
 //!  [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!  ![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9023-green.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-455-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-336-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9139-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-471-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-349-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-1406-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
@@ -253,6 +253,7 @@
 //!
 // endregion: auto_md_to_doc_comments include README.md A //!
 
+mod file_hashes_mod;
 mod inside_of_rust_project_mod;
 mod outside_of_rust_project_mod;
 mod template_new_auto_mod;
@@ -275,9 +276,14 @@ lazy_static! {
     static ref PATH_GITIGNORE: PathBuf = PathBuf::from("automation_tasks_rs/.gitignore");
     /// constant paths for read/write
     static ref PATH_SRC_MAIN_RS: PathBuf = PathBuf::from("automation_tasks_rs/src/main.rs");
+    /// constant paths for folder
+    static ref PATH_SRC: PathBuf = PathBuf::from("automation_tasks_rs/src");
     /// constant paths for read/write
     static ref PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS: PathBuf =
         PathBuf::from("automation_tasks_rs/target/debug/automation_tasks_rs");
+    /// constant paths for read/write
+    static ref PATH_FILE_HASHES_JSON: PathBuf =
+        PathBuf::from("automation_tasks_rs/.file_hashes.json");
 }
 
 // ANSI colors for Linux terminal

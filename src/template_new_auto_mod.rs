@@ -1,6 +1,7 @@
 //! this strings are copied from the template_new_auto folder
 //! because when publishing to crates.io, only the main bin-executable is transferred
 
+use crate::file_hashes_mod;
 #[allow(unused)]
 use crate::{GREEN, RED, RESET, YELLOW};
 
@@ -30,28 +31,16 @@ pub fn new_auto() {
         .unwrap();
 }
 
-/// build if the date of Cargo.toml or main.rs is newer then of automation_tasks_rs/target/automation_tasks_rs
+/// build if the files are different then the hashes in automation_tasks_rs/file_hashes.json
 pub fn build_automation_tasks_rs_if_needed() {
     if !crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.exists() {
         build_project_automation_tasks_rs();
-        // early return
-        return ();
-    }
-    let modified_automation_tasks_rs = std::fs::metadata(crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str())
-        .unwrap()
-        .modified()
-        .unwrap();
-    let modified_cargo_toml = std::fs::metadata(crate::PATH_CARGO_TOML.as_os_str())
-        .unwrap()
-        .modified()
-        .unwrap();
-    let modified_main_rs = std::fs::metadata(crate::PATH_SRC_MAIN_RS.as_os_str())
-        .unwrap()
-        .modified()
-        .unwrap();
-
-    if modified_automation_tasks_rs < modified_cargo_toml || modified_automation_tasks_rs < modified_main_rs {
+        let vec_of_metadata = file_hashes_mod::read_file_metadata();
+        file_hashes_mod::save_json_file_for_file_meta_data(vec_of_metadata);
+    } else if file_hashes_mod::is_project_changed() {
         build_project_automation_tasks_rs();
+        let vec_of_metadata = file_hashes_mod::read_file_metadata();
+        file_hashes_mod::save_json_file_for_file_meta_data(vec_of_metadata);
     }
 }
 
@@ -135,7 +124,7 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "1.0.78"
+cargo_auto_lib = "1.0.96"
 "###,
     });
     vec_file.push(crate::FileItem{

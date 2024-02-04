@@ -362,7 +362,7 @@ So I can drink a free beer for your health :-)
 // but the new service worker will not be activated until all 
 // tabs with this webapp are closed.
 
-const CACHE_NAME = '2024.203.326';
+const CACHE_NAME = '2024.204.206';
 
 self.addEventListener('install', event => {
     console.log('event install ', CACHE_NAME);
@@ -7960,7 +7960,7 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2024.203.327 date: 2024-02-03 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2024.204.206 date: 2024-02-04 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
 //!
 //!  ![status](https://img.shields.io/badge/maintained-green)
 //!  ![status](https://img.shields.io/badge/ready_for_use-green)
@@ -7973,9 +7973,9 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
 //!  [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!  ![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9023-green.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-455-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-336-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9139-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-471-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-349-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-1406-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
@@ -8261,7 +8261,7 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "1.0.78""###,
+cargo_auto_lib = "1.0.96""###,
     });
     vec_file.push(crate::FileItem{
             file_name :"automation_tasks_rs/src/main.rs",
