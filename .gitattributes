@@ -5,6 +5,7 @@
 *.toml text eol=lf
 *.md text eol=lf
 *.json text eol=lf
+*.json5 text eol=lf
 *.lock text eol=lf
 *.yml text eol=lf
 *.html text eol=lf
