@@ -1161,6 +1161,64 @@
 <a href="#1161" id="1161">1161</a>
 <a href="#1162" id="1162">1162</a>
 <a href="#1163" id="1163">1163</a>
+<a href="#1164" id="1164">1164</a>
+<a href="#1165" id="1165">1165</a>
+<a href="#1166" id="1166">1166</a>
+<a href="#1167" id="1167">1167</a>
+<a href="#1168" id="1168">1168</a>
+<a href="#1169" id="1169">1169</a>
+<a href="#1170" id="1170">1170</a>
+<a href="#1171" id="1171">1171</a>
+<a href="#1172" id="1172">1172</a>
+<a href="#1173" id="1173">1173</a>
+<a href="#1174" id="1174">1174</a>
+<a href="#1175" id="1175">1175</a>
+<a href="#1176" id="1176">1176</a>
+<a href="#1177" id="1177">1177</a>
+<a href="#1178" id="1178">1178</a>
+<a href="#1179" id="1179">1179</a>
+<a href="#1180" id="1180">1180</a>
+<a href="#1181" id="1181">1181</a>
+<a href="#1182" id="1182">1182</a>
+<a href="#1183" id="1183">1183</a>
+<a href="#1184" id="1184">1184</a>
+<a href="#1185" id="1185">1185</a>
+<a href="#1186" id="1186">1186</a>
+<a href="#1187" id="1187">1187</a>
+<a href="#1188" id="1188">1188</a>
+<a href="#1189" id="1189">1189</a>
+<a href="#1190" id="1190">1190</a>
+<a href="#1191" id="1191">1191</a>
+<a href="#1192" id="1192">1192</a>
+<a href="#1193" id="1193">1193</a>
+<a href="#1194" id="1194">1194</a>
+<a href="#1195" id="1195">1195</a>
+<a href="#1196" id="1196">1196</a>
+<a href="#1197" id="1197">1197</a>
+<a href="#1198" id="1198">1198</a>
+<a href="#1199" id="1199">1199</a>
+<a href="#1200" id="1200">1200</a>
+<a href="#1201" id="1201">1201</a>
+<a href="#1202" id="1202">1202</a>
+<a href="#1203" id="1203">1203</a>
+<a href="#1204" id="1204">1204</a>
+<a href="#1205" id="1205">1205</a>
+<a href="#1206" id="1206">1206</a>
+<a href="#1207" id="1207">1207</a>
+<a href="#1208" id="1208">1208</a>
+<a href="#1209" id="1209">1209</a>
+<a href="#1210" id="1210">1210</a>
+<a href="#1211" id="1211">1211</a>
+<a href="#1212" id="1212">1212</a>
+<a href="#1213" id="1213">1213</a>
+<a href="#1214" id="1214">1214</a>
+<a href="#1215" id="1215">1215</a>
+<a href="#1216" id="1216">1216</a>
+<a href="#1217" id="1217">1217</a>
+<a href="#1218" id="1218">1218</a>
+<a href="#1219" id="1219">1219</a>
+<a href="#1220" id="1220">1220</a>
+<a href="#1221" id="1221">1221</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! this strings are copied from the template_new_cli folder
 //! because when publishing to crates.io, only the main bin-executable is transferred
 
@@ -1436,6 +1494,21 @@ You know the price of a beer in your local bar ;-) So I can drink a free beer fo
     vec_file.push(<span class="kw">crate</span>::FileItem {
         file_name: <span class="string">&quot;.vscode/settings.json&quot;</span>,
         file_content: <span class="string">r###&quot;{
+    &quot;workbench.colorCustomizations&quot;: {
+        &quot;titleBar.activeForeground&quot;: &quot;#fff&quot;,
+        &quot;titleBar.inactiveForeground&quot;: &quot;#ffffffcc&quot;,
+        &quot;titleBar.activeBackground&quot;: &quot;#477587&quot;,
+        &quot;titleBar.inactiveBackground&quot;: &quot;#3F758DCC&quot;
+      },
+      &quot;spellright.language&quot;: [
+        &quot;en&quot;
+    ],
+    &quot;spellright.documentTypes&quot;: [
+        &quot;markdown&quot;,
+        &quot;latex&quot;,
+        &quot;plaintext&quot;
+    ],
+    &quot;rust-analyzer.showUnlinkedFileNotification&quot;: false,
     &quot;cSpell.words&quot;: [
         &quot;Alla&quot;,
         &quot;bestia&quot;,
@@ -1570,7 +1643,7 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2024.204.206 date: 2024-02-04 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2024.207.2303 date: 2024-02-07 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
 //!
 //!  ![status](https://img.shields.io/badge/maintained-green)
 //!  ![status](https://img.shields.io/badge/ready_for_use-green)
@@ -1583,11 +1656,11 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //!  [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!  ![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9139-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9181-green.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-471-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-349-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-1406-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-1526-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
 //! Hashtags: #rustlang #tutorial #buildtool #developmenttool #cli  
 //! My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
@@ -1915,10 +1988,50 @@ mod test {
 &quot;###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
+        file_name: <span class="string">&quot;.gitattributes&quot;</span>,
+        file_content: <span class="string">r###&quot;# Specific git config for the project
+
+# Declare files that will always have LF line endings on checkout.
+*.rs text eol=lf
+*.toml text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.json5 text eol=lf
+*.lock text eol=lf
+*.yml text eol=lf
+*.html text eol=lf
+*.js text eol=lf
+*.css text eol=lf
+&quot;###</span>,
+    });
+    vec_file.push(<span class="kw">crate</span>::FileItem {
         file_name: <span class="string">&quot;.gitignore&quot;</span>,
         file_content: <span class="string">r###&quot;/target
+
+# Remove Cargo.lock from gitignore if creating an executable, leave it for libraries
+# More information here https://doc.rust-lang.org/cargo/guide/cargo-toml-vs-cargo-lock.html
+# Cargo.lock
+
+# These are backup files generated by rustfmt
 **/*.rs.bk
-&quot;###</span>,
+
+# not needed in commits, but also not a problem if they are committed
+/.automation_tasks_rs_file_hashes.json
+/.auto_version_from_date.json&quot;###</span>,
+    });
+    vec_file.push(<span class="kw">crate</span>::FileItem {
+        file_name: <span class="string">&quot;automation_tasks_rs/.vscode/settings.json&quot;</span>,
+        file_content: <span class="string">r###&quot;{
+    &quot;cSpell.words&quot;: [
+        &quot;alloc&quot;,
+        &quot;bestia&quot;,
+        &quot;endregion&quot;,
+        &quot;new_cli&quot;,
+        &quot;octocrab&quot;,
+        &quot;plantuml&quot;,
+        &quot;zcvf&quot;
+    ]
+}&quot;###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
         file_name: <span class="string">&quot;automation_tasks_rs/Cargo.toml&quot;</span>,
@@ -1933,7 +2046,7 @@ description = &quot;cargo auto - automation tasks written in Rust language&quot;
 publish = false
 
 [dependencies]
-cargo_auto_lib = &quot;1.0.96&quot;&quot;###</span>,
+cargo_auto_lib = &quot;1.1.2&quot;&quot;###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem{
             file_name :<span class="string">&quot;automation_tasks_rs/src/main.rs&quot;</span>,
@@ -2251,7 +2364,10 @@ r#&quot;## Changed
     vec_file.push(<span class="kw">crate</span>::FileItem {
         file_name: <span class="string">&quot;automation_tasks_rs/.gitignore&quot;</span>,
         file_content: <span class="string">r###&quot;/target
-    &quot;###</span>,
+
+# not needed in commits, but also not a problem if they are committed
+/.file_hashes.json
+&quot;###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
         file_name: <span class="string">&quot;examples/example_1.rs&quot;</span>,

@@ -15,32 +15,39 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Cache rust dependencies - what about automation tasks
-      uses: Swatinem/rust-cache@v2.7.3
-    - name: Configure sccache
-      run: echo "RUSTC_WRAPPER=sccache" >> $GITHUB_ENV; echo "SCCACHE_GHA_ENABLED=true" >> $GITHUB_ENV
-    - name: Run sccache-cache for artifacts
-      uses: mozilla-actions/sccache-action@v0.0.4
+    - name: checkout
+      uses: actions/checkout@v4
+
     - name: cargo fmt -- --check
       run: cargo fmt -- --check
-    - name: cargo-install cargo-auto
+
+    - name: Run cache for rust dependencies
+      uses: Swatinem/rust-cache@v2.7.3
+
+    - name: Configure sccache
+      run: echo "RUSTC_WRAPPER=sccache" >> $GITHUB_ENV; echo "SCCACHE_GHA_ENABLED=true" >> $GITHUB_ENV
+
+    - name: Run sccache-cache for artifacts
+      uses: mozilla-actions/sccache-action@v0.0.4
+
+    - name: install and cache cargo-auto
       uses: baptiste0928/cargo-install@v3.0.0
       with:
         crate: cargo-auto
-    - name: Cache for automation tasks todo maybe it must be separate
+
+    - name: Cache for automation tasks
       uses: actions/cache@v4.0.0
       with:
         path: |
+          /home/runner/work/cargo-auto/cargo-auto/automation_tasks_rs/.file_hashes.json 
           /home/runner/work/cargo-auto/cargo-auto/automation_tasks_rs/target 
           /home/runner/work/cargo-auto/cargo-auto/automation_tasks_rs/Cargo.lock
           /home/runner/work/cargo-auto/cargo-auto/automation_tasks_rs/Cargo.toml
         key: automation_tasks_rs
-    - name: cargo build automation_tasks_rs
-      working-directory: ./automation_tasks_rs
-      run: cargo build
+
     - name: cargo auto build
       run: cargo auto build
+
     - name: cargo auto test
       run: cargo auto test
       

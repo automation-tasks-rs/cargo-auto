@@ -124,7 +124,7 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "1.0.96"
+cargo_auto_lib = "1.1.2"
 "###,
     });
     vec_file.push(crate::FileItem{
@@ -434,7 +434,10 @@ r#"## Changed
 });
     vec_file.push(crate::FileItem {
         file_name: ".gitignore",
-        file_content: r###"/target"###,
+        file_content: r###"/target
+
+# not needed in commits, but also not a problem if they are committed
+/.file_hashes.json"###,
     });
     // endregion: files copied into strings by automation tasks
 

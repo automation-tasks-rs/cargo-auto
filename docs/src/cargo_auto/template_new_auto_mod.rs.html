@@ -441,6 +441,9 @@
 <a href="#441" id="441">441</a>
 <a href="#442" id="442">442</a>
 <a href="#443" id="443">443</a>
+<a href="#444" id="444">444</a>
+<a href="#445" id="445">445</a>
+<a href="#446" id="446">446</a>
 </pre></div><pre class="rust"><code><span class="doccomment">//! this strings are copied from the template_new_auto folder
 //! because when publishing to crates.io, only the main bin-executable is transferred
 
@@ -567,7 +570,7 @@ description = &quot;cargo auto - automation tasks written in Rust language&quot;
 publish = false
 
 [dependencies]
-cargo_auto_lib = &quot;1.0.96&quot;
+cargo_auto_lib = &quot;1.1.2&quot;
 &quot;###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem{
@@ -877,7 +880,10 @@ r#&quot;## Changed
 });
     vec_file.push(<span class="kw">crate</span>::FileItem {
         file_name: <span class="string">&quot;.gitignore&quot;</span>,
-        file_content: <span class="string">r###&quot;/target&quot;###</span>,
+        file_content: <span class="string">r###&quot;/target
+
+# not needed in commits, but also not a problem if they are committed
+/.file_hashes.json&quot;###</span>,
     });
     <span class="comment">// endregion: files copied into strings by automation tasks
 

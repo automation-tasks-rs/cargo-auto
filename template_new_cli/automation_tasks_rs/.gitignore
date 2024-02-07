@@ -1,2 +1,4 @@
 /target
-    
+
+# not needed in commits, but also not a problem if they are committed
+/.file_hashes.json
