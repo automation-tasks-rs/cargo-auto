@@ -50,7 +50,7 @@ cargo auto test
 ```
 
 We can also add `automation tasks` to an existing Rust project.
-Inside your Rust project directory (the one with Cargo.toml or Cargo-auto.toml) run:  
+Inside your Rust project directory (the one with Cargo.toml) run:  
 
 ```bash
 cargo auto new_auto
