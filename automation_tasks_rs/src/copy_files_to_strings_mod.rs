@@ -9,7 +9,7 @@ use base64ct::Encoding;
 pub fn copy_folder_files_into_module(folder_path: &std::path::Path, module_path: &std::path::Path) {
     println!("copy_folder_files_into_module {}, {}", folder_path.to_string_lossy(), module_path.to_string_lossy() );
     // traverse and get all file_names
-    let files = cargo_auto_lib::utils_mod::traverse_dir_with_exclude_dir(
+    let files = cargo_auto_lib::traverse_dir_with_exclude_dir(
         &folder_path,
         "",
         // avoid big folders and other folders
