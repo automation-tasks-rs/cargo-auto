@@ -670,7 +670,7 @@ r#"The result is
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2024.207.2303 date: 2024-02-07 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2024.209.128 date: 2024-02-09 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
 //!
 //!  ![status](https://img.shields.io/badge/maintained-green)
 //!  ![status](https://img.shields.io/badge/ready_for_use-green)
@@ -710,7 +710,7 @@ r#"The result is
 //! ```
 //!
 //! We can also add `automation tasks` to an existing Rust project.
-//! Inside your Rust project directory (the one with Cargo.toml or Cargo-auto.toml) run:  
+//! Inside your Rust project directory (the one with Cargo.toml) run:  
 //!
 //! ```bash
 //! cargo auto new_auto

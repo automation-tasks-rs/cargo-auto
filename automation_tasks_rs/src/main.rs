@@ -2,23 +2,21 @@
 
 mod copy_files_to_strings_mod;
 
-use cargo_auto_lib::*;
+// region: library with basic automation tasks
+use cargo_auto_lib as cl;
+// traits must be in scope (Rust strangeness)
+use cl::CargoTomlPublicApiMethods;
+
+use cargo_auto_lib::RED as RED;
+use cargo_auto_lib::YELLOW as YELLOW;
+use cargo_auto_lib::GREEN as GREEN;
+use cargo_auto_lib::RESET as RESET;
+// region: library with basic automation tasks
+
 use cargo_auto_github_lib::*;
 
-// ANSI colors for Linux terminal
-// https://github.com/shiena/ansicolor/blob/master/README.md
-#[allow(dead_code)]
-pub const RED: &str = "\x1b[31m";
-#[allow(dead_code)]
-pub const YELLOW: &str = "\x1b[33m";
-#[allow(dead_code)]
-pub const GREEN: &str = "\x1b[32m";
-#[allow(dead_code)]
-pub const RESET: &str = "\x1b[0m";
-
-
 fn main() {
-    exit_if_not_run_in_rust_project_root_directory();
+    cl::exit_if_not_run_in_rust_project_root_directory();
 
     // get CLI arguments
     let mut args = std::env::args();
@@ -108,7 +106,7 @@ fn completion() {
 
     if last_word == "cargo-auto" || last_word == "auto" {
         let sub_commands = vec!["build", "release", "doc", "test", "commit_and_push", "publish_to_crates_io", "github_new_release"];
-        completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
+        cl::completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
     /*
     // the second level if needed
@@ -125,7 +123,7 @@ fn completion() {
 
 /// cargo build
 fn task_build() {
-    let cargo_toml = CargoToml::read();
+    let cargo_toml = cl::CargoToml::read();
 
     copy_files_to_strings_mod::copy_folder_files_into_module(
         std::path::Path::new("template_new_auto"), 
@@ -143,9 +141,9 @@ fn task_build() {
     std::path::Path::new("template_new_pwa_wasm"), 
     std::path::Path::new("src/template_new_pwa_wasm_mod.rs"));   
 
-    auto_version_increment_semver_or_date();
-    run_shell_command("cargo fmt");
-    run_shell_command("cargo build");
+    cl::auto_version_increment_semver_or_date();
+    cl::run_shell_command("cargo fmt");
+    cl::run_shell_command("cargo build");
     println!(
         r#"
     {YELLOW}After `cargo auto build`, run the compiled binary, examples and/or tests{RESET}
@@ -177,14 +175,14 @@ fn task_release() {
         std::path::Path::new("template_new_pwa_wasm"), 
         std::path::Path::new("src/template_new_pwa_wasm_mod.rs"));
 
-    let cargo_toml = CargoToml::read();
-    auto_version_increment_semver_or_date();
-    auto_cargo_toml_to_md();
-    auto_lines_of_code("");
+    let cargo_toml = cl::CargoToml::read();
+    cl::auto_version_increment_semver_or_date();
+    cl::auto_cargo_toml_to_md();
+    cl::auto_lines_of_code("");
 
-    run_shell_command("cargo fmt");
-    run_shell_command("cargo build --release");
-    run_shell_command(&format!(
+    cl::run_shell_command("cargo fmt");
+    cl::run_shell_command("cargo build --release");
+    cl::run_shell_command(&format!(
         "strip target/release/{package_name}",
         package_name = cargo_toml.package_name()
     )); 
@@ -202,21 +200,24 @@ package_name = cargo_toml.package_name(),
 
 /// cargo doc, then copies to /docs/ folder, because this is a github standard folder
 fn task_doc() {
-    let cargo_toml = CargoToml::read();
-    auto_cargo_toml_to_md();
-    auto_lines_of_code("");
-    auto_plantuml(&cargo_toml.package_repository().unwrap());
-    auto_md_to_doc_comments();
+    let cargo_toml = cl::CargoToml::read();
+    cl::auto_cargo_toml_to_md();
+    cl::auto_lines_of_code("");
+    cl::auto_plantuml(&cargo_toml.package_repository().unwrap());
+    cl::auto_md_to_doc_comments();
 
-    run_shell_command("cargo doc --no-deps --document-private-items");
+    cl::run_shell_command("cargo doc --no-deps --document-private-items");
     // copy target/doc into docs/ because it is github standard
-    run_shell_command("rsync -a --info=progress2 --delete-after target/doc/ docs/");
+    cl::run_shell_command("rsync -a --info=progress2 --delete-after target/doc/ docs/");
     // Create simple index.html file in docs directory
-    run_shell_command(&format!(
+    cl::run_shell_command(&format!(
         "echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",
         cargo_toml.package_name().replace("-","_")
     ));
-    run_shell_command("cargo fmt");
+    // use tidy HTML to format the html files to be human readable and usable for git diff
+    // TODO: what happens if tidy is not installed on the system?
+    cl::run_shell_command("find . -name '*.html' -type f -print -exec tidy -mq '{}' \\;");
+    cl::run_shell_command("cargo fmt");
     // message to help user with next move
     println!(
         r#"
@@ -228,7 +229,7 @@ fn task_doc() {
 
 /// cargo test
 fn task_test() {
-    run_shell_command("cargo test");
+    cl::run_shell_command("cargo test");
     println!(
         r#"
     {YELLOW}After `cargo auto test`. If ok, then {RESET}
@@ -243,8 +244,11 @@ fn task_commit_and_push(arg_2: Option<String>) {
     match arg_2 {
         None => println!("{RED}Error: Message for commit is mandatory.{RESET}"),
         Some(message) => {
-            run_shell_command(&format!(r#"git add -A && git commit --allow-empty -m "{}""#, message));
-            run_shell_command("git push");
+            // separate commit for docs if they changed, to not make a lot of noise in the real commit
+            cl::run_shell_command(r#"git add docs && git diff --staged --quiet || git commit -m "update docs" "#);
+            // the real commit of code
+            cl::run_shell_command(&format!(r#"git add -A && git diff --staged --quiet || git commit -m "{}" "#, message));
+            cl::run_shell_command("git push");
             println!(
                 r#"
     {YELLOW}After `cargo auto commit_and_push "message"`{RESET}
@@ -259,16 +263,16 @@ fn task_commit_and_push(arg_2: Option<String>) {
 fn task_publish_to_crates_io() {
     println!(r#"{YELLOW}The crates.io access token must already be saved locally with `cargo login TOKEN`{RESET}"#);
 
-    let cargo_toml = CargoToml::read();
+    let cargo_toml = cl::CargoToml::read();
     // git tag
     let shell_command = format!(
         "git tag -f -a v{version} -m version_{version}",
         version = cargo_toml.package_version()
     );
-    run_shell_command(&shell_command);
+    cl::run_shell_command(&shell_command);
 
     // cargo publish
-    run_shell_command("cargo publish");
+    cl::run_shell_command("cargo publish");
     println!(
         r#"
     {YELLOW}After `cargo auto publish_to_crates_io`, check in browser{RESET}
@@ -286,7 +290,7 @@ fn task_publish_to_crates_io() {
 
 /// create a new release on github
 fn task_github_new_release() {
-    let cargo_toml = CargoToml::read();
+    let cargo_toml = cl::CargoToml::read();
     println!("    {YELLOW}The env variable GITHUB_TOKEN must be set:  export GITHUB_TOKEN=paste_token_here{RESET}");
 
     // the git tag was already created when we published to crates.io
@@ -313,11 +317,11 @@ r#"## Changed
 
         // compress files tar.gz
         let tar_name = format!("{repo_name}-{tag_name_version}-x86_64-unknown-linux-gnu.tar.gz");
-        run_shell_command(&format!("tar -zcvf {tar_name} target/release/{repo_name}"));
+        cl::run_shell_command(&format!("tar -zcvf {tar_name} target/release/{repo_name}"));
         
         // upload asset     
         auto_github_upload_asset_to_release(&owner, &repo_name, &release_id, &tar_name).await;
-        run_shell_command(&format!("rm {tar_name}"));  
+        cl::run_shell_command(&format!("rm {tar_name}"));  
 
         println!("    {YELLOW}Asset uploaded. Open and edit the description on GitHub-Releases in the browser.{RESET}");
         println!("{GREEN}https://github.com/{owner}/{repo_name}/releases{RESET}");
