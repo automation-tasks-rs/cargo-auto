@@ -5,7 +5,7 @@
 [//]: # (auto_cargo_toml_to_md start)
 
 **pwa_description**  
-***version: 2023.530.1200 date: 2023-05-30 author: [project_author](project_homepage) repository: [GitHub](project_repository)***  
+***version: 2024.530.1200 date: 2024-05-30 author: [project_author](project_homepage) repository: [GitHub](project_repository)***  
 
 [//]: # (auto_cargo_toml_to_md end)
 

@@ -5,7 +5,7 @@
 [//]: # (auto_cargo_toml_to_md start)
 
 **Basic Rust project template for CLI and library, more than just `cargo new hello`**  
-***version: 1.0.4 date: 2022-04-21 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo_auto_template_new_cli)***  
+***version: 1.0.4 date: 2024-04-21 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo_auto_template_new_cli)***  
 
 [//]: # (auto_cargo_toml_to_md end)
 
@@ -85,7 +85,7 @@ old version: "0.1.20"
 new version: '0.1.21'
 new text: '
 **Basic Rust project template for CLI, more than just `cargo new hello`**
-***version: 0.1.21 date: 2022-04-01 author: [bestia.dev](bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo_auto_template_new_cli)***'
+***version: 0.1.21 date: 2024-04-01 author: [bestia.dev](bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo_auto_template_new_cli)***'
 
 include_into_readme_md write file: README.md
 $ cargo fmt

@@ -151,7 +151,7 @@ http://localhost:4000/pwa_short_name/#upper/world
 This command should return an error:
 http://localhost:4000/pwa_short_name/#upper/WORLD
 
-© 2023 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
+© 2024 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
 "#,
     );
 }

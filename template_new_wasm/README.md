@@ -5,7 +5,7 @@
 [//]: # (auto_cargo_toml_to_md start)
 
 **template for a minimal WASM project for browser**  
-***version: 2023.519.1012 date: 2023-05-19 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo_auto_template_new_wasm)***  
+***version: 2024.519.1012 date: 2024-05-19 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo_auto_template_new_wasm)***  
 
 [//]: # (auto_cargo_toml_to_md end)
 
