@@ -1,6 +1,10 @@
 ./docs/help.html
+Document: "2" is not a file!
+
 line 1 column 2729 - Warning: trimming empty <span>
 ./docs/cargo_auto/struct.PATH_FILE_HASHES_JSON.html
+Document: "2" is not a file!
+
 line 4 column 916 - Warning: missing </summary> before <section>
 line 4 column 1406 - Warning: discarding unexpected </summary>
 line 10 column 60 - Warning: missing </summary> before <section>
@@ -190,8 +194,12 @@ line 468 column 1822 - Warning: trimming empty <summary>
 line 469 column 240 - Warning: trimming empty <summary>
 line 469 column 1025 - Warning: trimming empty <summary>
 ./docs/cargo_auto/all.html
+Document: "2" is not a file!
+
 line 1 column 2969 - Warning: trimming empty <span>
 ./docs/cargo_auto/struct.FileItem.html
+Document: "2" is not a file!
+
 line 5 column 3081 - Warning: missing </summary> before <section>
 line 6 column 171 - Warning: discarding unexpected </summary>
 line 6 column 248 - Warning: missing </summary> before <section>
@@ -263,24 +271,44 @@ line 14 column 1822 - Warning: trimming empty <summary>
 line 15 column 240 - Warning: trimming empty <summary>
 line 15 column 1025 - Warning: trimming empty <summary>
 ./docs/cargo_auto/template_new_pwa_wasm_mod/fn.resize_image.html
+Document: "2" is not a file!
+
 line 1 column 2931 - Warning: trimming empty <span>
 ./docs/cargo_auto/template_new_pwa_wasm_mod/fn.decode_png.html
+Document: "2" is not a file!
+
 line 1 column 2929 - Warning: trimming empty <span>
 ./docs/cargo_auto/template_new_pwa_wasm_mod/fn.new_pwa_wasm.html
+Document: "2" is not a file!
+
 line 1 column 2992 - Warning: trimming empty <span>
 ./docs/cargo_auto/template_new_pwa_wasm_mod/fn.get_vec_file.html
+Document: "2" is not a file!
+
 line 1 column 2992 - Warning: trimming empty <span>
 ./docs/cargo_auto/template_new_pwa_wasm_mod/index.html
+Document: "2" is not a file!
+
 line 1 column 3127 - Warning: trimming empty <span>
 ./docs/cargo_auto/template_new_pwa_wasm_mod/fn.encode_to_favicon_ico.html
+Document: "2" is not a file!
+
 line 1 column 3010 - Warning: trimming empty <span>
 ./docs/cargo_auto/template_new_pwa_wasm_mod/fn.copy_to_files.html
+Document: "2" is not a file!
+
 line 1 column 2994 - Warning: trimming empty <span>
 ./docs/cargo_auto/template_new_pwa_wasm_mod/fn.encode_to_png.html
+Document: "2" is not a file!
+
 line 1 column 2935 - Warning: trimming empty <span>
 ./docs/cargo_auto/template_new_pwa_wasm_mod/fn.favicon_add_entry.html
+Document: "2" is not a file!
+
 line 1 column 3002 - Warning: trimming empty <span>
 ./docs/cargo_auto/template_new_pwa_wasm_mod/struct.PwaJson5.html
+Document: "2" is not a file!
+
 line 9 column 2565 - Warning: missing </summary> before <section>
 line 9 column 3072 - Warning: discarding unexpected </summary>
 line 9 column 3149 - Warning: missing </summary> before <section>
@@ -364,10 +392,16 @@ line 19 column 1822 - Warning: trimming empty <summary>
 line 20 column 240 - Warning: trimming empty <summary>
 line 20 column 1025 - Warning: trimming empty <summary>
 ./docs/cargo_auto/constant.YELLOW.html
+Document: "2" is not a file!
+
 line 1 column 2878 - Warning: trimming empty <span>
 ./docs/cargo_auto/index.html
+Document: "2" is not a file!
+
 line 1 column 3145 - Warning: trimming empty <span>
 ./docs/cargo_auto/file_hashes_mod/struct.FileMetaData.html
+Document: "2" is not a file!
+
 line 7 column 232 - Warning: missing </summary> before <section>
 line 7 column 806 - Warning: discarding unexpected </summary>
 line 7 column 883 - Warning: missing </summary> before <section>
@@ -451,10 +485,16 @@ line 18 column 1822 - Warning: trimming empty <summary>
 line 19 column 240 - Warning: trimming empty <summary>
 line 19 column 1025 - Warning: trimming empty <summary>
 ./docs/cargo_auto/file_hashes_mod/fn.save_json_file_for_file_meta_data.html
+Document: "2" is not a file!
+
 line 1 column 2948 - Warning: trimming empty <span>
 ./docs/cargo_auto/file_hashes_mod/index.html
+Document: "2" is not a file!
+
 line 1 column 3039 - Warning: trimming empty <span>
 ./docs/cargo_auto/file_hashes_mod/struct.FileHashes.html
+Document: "2" is not a file!
+
 line 5 column 232 - Warning: missing </summary> before <section>
 line 5 column 797 - Warning: discarding unexpected </summary>
 line 5 column 874 - Warning: missing </summary> before <section>
@@ -538,28 +578,52 @@ line 16 column 1822 - Warning: trimming empty <summary>
 line 17 column 240 - Warning: trimming empty <summary>
 line 17 column 1025 - Warning: trimming empty <summary>
 ./docs/cargo_auto/file_hashes_mod/fn.are_all_files_equal.html
+Document: "2" is not a file!
+
 line 1 column 2986 - Warning: trimming empty <span>
 ./docs/cargo_auto/file_hashes_mod/fn.read_file_metadata.html
+Document: "2" is not a file!
+
 line 1 column 2937 - Warning: trimming empty <span>
 ./docs/cargo_auto/file_hashes_mod/fn.read_json_file.html
+Document: "2" is not a file!
+
 line 1 column 2945 - Warning: trimming empty <span>
 ./docs/cargo_auto/file_hashes_mod/fn.sha256_digest.html
+Document: "2" is not a file!
+
 line 1 column 2931 - Warning: trimming empty <span>
 ./docs/cargo_auto/file_hashes_mod/fn.is_project_changed.html
+Document: "2" is not a file!
+
 line 1 column 3167 - Warning: trimming empty <span>
 ./docs/cargo_auto/outside_of_rust_project_mod/fn.completion.html
+Document: "2" is not a file!
+
 line 1 column 3021 - Warning: trimming empty <span>
 ./docs/cargo_auto/outside_of_rust_project_mod/fn.print_help_from_cargo_auto.html
+Document: "2" is not a file!
+
 line 1 column 3024 - Warning: trimming empty <span>
 ./docs/cargo_auto/outside_of_rust_project_mod/fn.match_first_argument.html
+Document: "2" is not a file!
+
 line 1 column 3031 - Warning: trimming empty <span>
 ./docs/cargo_auto/outside_of_rust_project_mod/index.html
+Document: "2" is not a file!
+
 line 1 column 3036 - Warning: trimming empty <span>
 ./docs/cargo_auto/outside_of_rust_project_mod/fn.parse_args.html
+Document: "2" is not a file!
+
 line 1 column 3045 - Warning: trimming empty <span>
 ./docs/cargo_auto/constant.RED.html
+Document: "2" is not a file!
+
 line 1 column 2872 - Warning: trimming empty <span>
 ./docs/cargo_auto/struct.PATH_AUTOMATION_TASKS_RS.html
+Document: "2" is not a file!
+
 line 4 column 916 - Warning: missing </summary> before <section>
 line 4 column 1406 - Warning: discarding unexpected </summary>
 line 10 column 60 - Warning: missing </summary> before <section>
@@ -749,20 +813,36 @@ line 468 column 1822 - Warning: trimming empty <summary>
 line 469 column 240 - Warning: trimming empty <summary>
 line 469 column 1025 - Warning: trimming empty <summary>
 ./docs/cargo_auto/constant.GREEN.html
+Document: "2" is not a file!
+
 line 1 column 2876 - Warning: trimming empty <span>
 ./docs/cargo_auto/fn.is_not_run_in_rust_project_root_directory.html
+Document: "2" is not a file!
+
 line 1 column 3132 - Warning: trimming empty <span>
 ./docs/cargo_auto/template_new_cli_mod/fn.new_cli.html
+Document: "2" is not a file!
+
 line 1 column 2972 - Warning: trimming empty <span>
 ./docs/cargo_auto/template_new_cli_mod/fn.get_vec_file.html
+Document: "2" is not a file!
+
 line 1 column 2982 - Warning: trimming empty <span>
 ./docs/cargo_auto/template_new_cli_mod/index.html
+Document: "2" is not a file!
+
 line 1 column 3073 - Warning: trimming empty <span>
 ./docs/cargo_auto/template_new_cli_mod/fn.copy_to_files.html
+Document: "2" is not a file!
+
 line 1 column 2984 - Warning: trimming empty <span>
 ./docs/cargo_auto/fn.main.html
+Document: "2" is not a file!
+
 line 1 column 2862 - Warning: trimming empty <span>
 ./docs/cargo_auto/struct.PATH_SRC.html
+Document: "2" is not a file!
+
 line 4 column 916 - Warning: missing </summary> before <section>
 line 4 column 1406 - Warning: discarding unexpected </summary>
 line 10 column 60 - Warning: missing </summary> before <section>
@@ -952,6 +1032,8 @@ line 468 column 1822 - Warning: trimming empty <summary>
 line 469 column 240 - Warning: trimming empty <summary>
 line 469 column 1025 - Warning: trimming empty <summary>
 ./docs/cargo_auto/struct.PATH_CARGO_TOML.html
+Document: "2" is not a file!
+
 line 4 column 916 - Warning: missing </summary> before <section>
 line 4 column 1406 - Warning: discarding unexpected </summary>
 line 10 column 60 - Warning: missing </summary> before <section>
@@ -1141,28 +1223,52 @@ line 468 column 1822 - Warning: trimming empty <summary>
 line 469 column 240 - Warning: trimming empty <summary>
 line 469 column 1025 - Warning: trimming empty <summary>
 ./docs/cargo_auto/constant.RESET.html
+Document: "2" is not a file!
+
 line 1 column 2876 - Warning: trimming empty <span>
 ./docs/cargo_auto/template_new_auto_mod/fn.get_vec_file.html
+Document: "2" is not a file!
+
 line 1 column 2984 - Warning: trimming empty <span>
 ./docs/cargo_auto/template_new_auto_mod/index.html
+Document: "2" is not a file!
+
 line 1 column 3076 - Warning: trimming empty <span>
 ./docs/cargo_auto/template_new_auto_mod/fn.build_project_automation_tasks_rs.html
+Document: "2" is not a file!
+
 line 1 column 2959 - Warning: trimming empty <span>
 ./docs/cargo_auto/template_new_auto_mod/fn.build_automation_tasks_rs_if_needed.html
+Document: "2" is not a file!
+
 line 1 column 3024 - Warning: trimming empty <span>
 ./docs/cargo_auto/template_new_auto_mod/fn.copy_to_files.html
+Document: "2" is not a file!
+
 line 1 column 2986 - Warning: trimming empty <span>
 ./docs/cargo_auto/template_new_auto_mod/fn.new_auto.html
+Document: "2" is not a file!
+
 line 1 column 3051 - Warning: trimming empty <span>
 ./docs/cargo_auto/template_new_wasm_mod/fn.new_wasm.html
+Document: "2" is not a file!
+
 line 1 column 2976 - Warning: trimming empty <span>
 ./docs/cargo_auto/template_new_wasm_mod/fn.get_vec_file.html
+Document: "2" is not a file!
+
 line 1 column 2984 - Warning: trimming empty <span>
 ./docs/cargo_auto/template_new_wasm_mod/index.html
+Document: "2" is not a file!
+
 line 1 column 3076 - Warning: trimming empty <span>
 ./docs/cargo_auto/template_new_wasm_mod/fn.copy_to_files.html
+Document: "2" is not a file!
+
 line 1 column 2986 - Warning: trimming empty <span>
 ./docs/cargo_auto/struct.PATH_GITIGNORE.html
+Document: "2" is not a file!
+
 line 4 column 916 - Warning: missing </summary> before <section>
 line 4 column 1406 - Warning: discarding unexpected </summary>
 line 10 column 60 - Warning: missing </summary> before <section>
@@ -1352,18 +1458,32 @@ line 468 column 1822 - Warning: trimming empty <summary>
 line 469 column 240 - Warning: trimming empty <summary>
 line 469 column 1025 - Warning: trimming empty <summary>
 ./docs/cargo_auto/inside_of_rust_project_mod/fn.completion.html
+Document: "2" is not a file!
+
 line 1 column 3019 - Warning: trimming empty <span>
 ./docs/cargo_auto/inside_of_rust_project_mod/fn.print_help_from_cargo_auto.html
+Document: "2" is not a file!
+
 line 1 column 3278 - Warning: trimming empty <span>
 ./docs/cargo_auto/inside_of_rust_project_mod/fn.match_first_argument.html
+Document: "2" is not a file!
+
 line 1 column 3236 - Warning: trimming empty <span>
 ./docs/cargo_auto/inside_of_rust_project_mod/index.html
+Document: "2" is not a file!
+
 line 1 column 3033 - Warning: trimming empty <span>
 ./docs/cargo_auto/inside_of_rust_project_mod/fn.parse_args.html
+Document: "2" is not a file!
+
 line 1 column 2990 - Warning: trimming empty <span>
 ./docs/cargo_auto/inside_of_rust_project_mod/fn.already_exists_automation_tasks_rs.html
+Document: "2" is not a file!
+
 line 1 column 2989 - Warning: trimming empty <span>
 ./docs/cargo_auto/struct.PATH_SRC_MAIN_RS.html
+Document: "2" is not a file!
+
 line 4 column 916 - Warning: missing </summary> before <section>
 line 4 column 1406 - Warning: discarding unexpected </summary>
 line 10 column 60 - Warning: missing </summary> before <section>
@@ -1553,6 +1673,8 @@ line 468 column 1822 - Warning: trimming empty <summary>
 line 469 column 240 - Warning: trimming empty <summary>
 line 469 column 1025 - Warning: trimming empty <summary>
 ./docs/cargo_auto/struct.PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.html
+Document: "2" is not a file!
+
 line 4 column 916 - Warning: missing </summary> before <section>
 line 4 column 1406 - Warning: discarding unexpected </summary>
 line 10 column 60 - Warning: missing </summary> before <section>
@@ -1742,23 +1864,43 @@ line 468 column 1822 - Warning: trimming empty <summary>
 line 469 column 240 - Warning: trimming empty <summary>
 line 469 column 1025 - Warning: trimming empty <summary>
 ./docs/src/cargo_auto/inside_of_rust_project_mod.rs.html
+Document: "2" is not a file!
+
 line 1 column 2671 - Warning: trimming empty <span>
 ./docs/src/cargo_auto/template_new_auto_mod.rs.html
+Document: "2" is not a file!
+
 line 1 column 2661 - Warning: trimming empty <span>
 ./docs/src/cargo_auto/file_hashes_mod.rs.html
+Document: "2" is not a file!
+
 line 1 column 2649 - Warning: trimming empty <span>
 ./docs/src/cargo_auto/outside_of_rust_project_mod.rs.html
+Document: "2" is not a file!
+
 line 1 column 2673 - Warning: trimming empty <span>
 ./docs/src/cargo_auto/template_new_wasm_mod.rs.html
+Document: "2" is not a file!
+
 line 1 column 2661 - Warning: trimming empty <span>
 ./docs/src/cargo_auto/template_new_cli_mod.rs.html
+Document: "2" is not a file!
+
 line 1 column 2659 - Warning: trimming empty <span>
 ./docs/src/cargo_auto/main.rs.html
+Document: "2" is not a file!
+
 line 1 column 2627 - Warning: trimming empty <span>
 ./docs/src/cargo_auto/template_new_pwa_wasm_mod.rs.html
+Document: "2" is not a file!
+
 line 1 column 2669 - Warning: trimming empty <span>
 ./docs/index.html
+Document: "2" is not a file!
+
 line 1 column 1 - Warning: missing <!DOCTYPE> declaration
 line 1 column 1 - Warning: inserting missing 'title' element
 ./docs/settings.html
+Document: "2" is not a file!
+
 line 1 column 2731 - Warning: trimming empty <span>
