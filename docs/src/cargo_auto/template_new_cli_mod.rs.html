@@ -1,4 +1,76 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/template_new_cli_mod.rs`."><title>template_new_cli_mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-fa3bb1812debf86c.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="cargo_auto" data-themes="" data-resource-suffix="" data-rustdoc-version="1.74.1 (a28077b28 2023-12-04)" data-channel="1.74.1" data-search-js="search-8be46b629f5f14a8.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-c5bd66d33317d69f.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../cargo_auto/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="generator" content=
+"HTML Tidy for HTML5 for Linux version 5.6.0">
+<meta charset="utf-8">
+<meta name="viewport" content=
+"width=device-width, initial-scale=1.0">
+<meta name="generator" content="rustdoc">
+<meta name="description" content=
+"Source of the Rust file `src/template_new_cli_mod.rs`.">
+<title>template_new_cli_mod.rs - source</title>
+<link rel="preload" as="font" type="font/woff2" crossorigin=""
+href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin=""
+href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin=""
+href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin=""
+href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin=""
+href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin=""
+href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2">
+<link rel="stylesheet" href=
+"../../static.files/normalize-76eba96aa4d2e634.css">
+<link rel="stylesheet" href=
+"../../static.files/rustdoc-fa3bb1812debf86c.css">
+<meta name="rustdoc-vars" data-root-path="../../"
+data-static-root-path="../../static.files/" data-current-crate=
+"cargo_auto" data-themes="" data-resource-suffix=""
+data-rustdoc-version="1.74.1 (a28077b28 2023-12-04)" data-channel=
+"1.74.1" data-search-js="search-8be46b629f5f14a8.js"
+data-settings-js="settings-74424d7eec62a23e.js">
+<script src=
+"../../static.files/storage-fec3eaa3851e447d.js"></script>
+<script defer src=
+"../../static.files/src-script-3280b574d94e47b4.js"></script>
+<script defer src="../../src-files.js"></script>
+<script defer src=
+"../../static.files/main-c5bd66d33317d69f.js"></script><noscript>
+<link rel="stylesheet" href=
+"../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript>
+<link rel="alternate icon" type="image/png" href=
+"../../static.files/favicon-16x16-8b506e7a72182f1c.png">
+<link rel="alternate icon" type="image/png" href=
+"../../static.files/favicon-32x32-422f7d1d52889060.png">
+<link rel="icon" type="image/svg+xml" href=
+"../../static.files/favicon-2c020d218678b618.svg">
+</head>
+<body class="rustdoc src">
+<!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<nav class="sidebar"></nav>
+<main>
+<nav class="sub"><a class="sub-logo-container" href=
+"../../cargo_auto/index.html"><img class="rust-logo" src=
+"../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a>
+<form class="search-form"><input class="search-input" name="search"
+aria-label="Run search in the documentation" autocomplete="off"
+spellcheck="false" placeholder=
+"Click or press ‘S’ to search, ‘?’ for more options…" type=
+"search">
+<div id="help-button" title="help" tabindex="-1"><a href=
+"../../help.html">?</a></div>
+<div id="settings-menu" tabindex="-1"><a href="../../settings.html"
+title="settings"><img width="22" height="22" alt="Change settings"
+src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div>
+</form>
+</nav>
+<section id="main-content" class="content">
+<div class="example-wrap">
+<div data-nosnippet="">
+<pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1219,51 +1291,77 @@
 <a href="#1219" id="1219">1219</a>
 <a href="#1220" id="1220">1220</a>
 <a href="#1221" id="1221">1221</a>
-</pre></div><pre class="rust"><code><span class="doccomment">//! this strings are copied from the template_new_cli folder
+</pre></div>
+<pre class="rust"><code><span class=
+"doccomment">//! this strings are copied from the template_new_cli folder
 //! because when publishing to crates.io, only the main bin-executable is transferred
 
-</span><span class="kw">use crate</span>::{GREEN, RED, RESET, YELLOW};
+</span><span class=
+"kw">use crate</span>::{GREEN, RED, RESET, YELLOW};
 
-<span class="kw">pub fn </span>new_cli(arg_2: <span class="prelude-ty">Option</span>&lt;String&gt;) {
+<span class="kw">pub fn </span>new_cli(arg_2: <span class=
+"prelude-ty">Option</span>&lt;String&gt;) {
     <span class="kw">match </span>arg_2 {
-        <span class="prelude-val">None </span>=&gt; <span class="macro">println!</span>(<span class="string">&quot;{RED}Error: Project name argument is missing: `cargo auto new_cli project_name`{RESET}&quot;</span>),
+        <span class="prelude-val">None </span>=&gt; <span class=
+"macro">println!</span>(<span class=
+"string">"{RED}Error: Project name argument is missing: `cargo auto new_cli project_name`{RESET}"</span>),
         <span class="prelude-val">Some</span>(project_name) =&gt; {
-            copy_to_files(<span class="kw-2">&amp;</span>project_name);
-            <span class="macro">println!</span>(<span class="string">&quot;&quot;</span>);
-            <span class="macro">println!</span>(<span class="string">&quot;    {YELLOW}The command `crate auto new_cli` generated the directory `{project_name}`{RESET}&quot;</span>);
-            <span class="macro">println!</span>(<span class="string">&quot;    {YELLOW}You can open this new Rust project `{project_name}` in a new Rust editor.{RESET}&quot;</span>,);
-            <span class="macro">println!</span>(<span class="string">&quot;    {YELLOW}For example VSCode:{RESET}&quot;</span>);
-            <span class="macro">println!</span>(<span class="string">&quot;{GREEN}code {project_name}{RESET}&quot;</span>);
-            <span class="macro">println!</span>(<span class="string">&quot;    {YELLOW}Then build with:{RESET}&quot;</span>);
-            <span class="macro">println!</span>(<span class="string">&quot;{GREEN}cargo auto build{RESET}&quot;</span>);
-            <span class="macro">println!</span>(<span class="string">&quot;    {YELLOW}and follow the detailed instructions.{RESET}&quot;</span>);
+            copy_to_files(<span class="kw-2">&</span>project_name);
+            <span class="macro">println!</span>(<span class=
+"string">""</span>);
+            <span class="macro">println!</span>(<span class=
+"string">"    {YELLOW}The command `crate auto new_cli` generated the directory `{project_name}`{RESET}"</span>);
+            <span class="macro">println!</span>(<span class=
+"string">"    {YELLOW}You can open this new Rust project `{project_name}` in a new Rust editor.{RESET}"</span>,);
+            <span class="macro">println!</span>(<span class=
+"string">"    {YELLOW}For example VSCode:{RESET}"</span>);
+            <span class="macro">println!</span>(<span class=
+"string">"{GREEN}code {project_name}{RESET}"</span>);
+            <span class="macro">println!</span>(<span class=
+"string">"    {YELLOW}Then build with:{RESET}"</span>);
+            <span class="macro">println!</span>(<span class=
+"string">"{GREEN}cargo auto build{RESET}"</span>);
+            <span class="macro">println!</span>(<span class=
+"string">"    {YELLOW}and follow the detailed instructions.{RESET}"</span>);
         }
     }
 }
 
-<span class="kw">pub fn </span>copy_to_files(project_name: <span class="kw-2">&amp;</span>str) {
-    <span class="kw">let </span>folder_path = std::path::Path::new(project_name);
+<span class=
+"kw">pub fn </span>copy_to_files(project_name: <span class=
+"kw-2">&</span>str) {
+    <span class=
+"kw">let </span>folder_path = std::path::Path::new(project_name);
     std::fs::create_dir_all(folder_path).unwrap();
-    <span class="kw">for </span>file_item <span class="kw">in </span>get_vec_file() {
+    <span class="kw">for </span>file_item <span class=
+"kw">in </span>get_vec_file() {
         <span class="comment">// rename/replace the project_name
-        </span><span class="kw">let </span>file_name = file_item.file_name.replace(<span class="string">&quot;cargo_auto_template_new_cli&quot;</span>, project_name);
+        </span><span class=
+"kw">let </span>file_name = file_item.file_name.replace(<span class="string">"cargo_auto_template_new_cli"</span>, project_name);
         <span class="kw">let </span>file_content = file_item
             .file_content
-            .replace(<span class="string">&quot;cargo_auto_template_new_cli&quot;</span>, project_name);
+            .replace(<span class=
+"string">"cargo_auto_template_new_cli"</span>, project_name);
 
         <span class="comment">// create directory if needed
-        </span>std::fs::create_dir_all(folder_path.join(<span class="kw-2">&amp;</span>file_name).parent().unwrap()).unwrap();
-        std::fs::write(folder_path.join(<span class="kw-2">&amp;</span>file_name), file_content.as_bytes()).unwrap();
+        </span>std::fs::create_dir_all(folder_path.join(<span class="kw-2">&</span>file_name).parent().unwrap()).unwrap();
+        std::fs::write(folder_path.join(<span class=
+"kw-2">&</span>file_name), file_content.as_bytes()).unwrap();
     }
 }
 
-<span class="kw">pub fn </span>get_vec_file() -&gt; Vec&lt;<span class="kw">crate</span>::FileItem&gt; {
-    <span class="kw">let </span><span class="kw-2">mut </span>vec_file = <span class="macro">vec!</span>[];
+<span class=
+"kw">pub fn </span>get_vec_file() -&gt; Vec&lt;<span class=
+"kw">crate</span>::FileItem&gt; {
+    <span class="kw">let </span><span class=
+"kw-2">mut </span>vec_file = <span class="macro">vec!</span>[];
 
-    <span class="comment">// region: files copied into strings by automation tasks
+    <span class=
+"comment">// region: files copied into strings by automation tasks
     </span>vec_file.push(<span class="kw">crate</span>::FileItem{
-            file_name :<span class="string">&quot;README.md&quot;</span>,
-            file_content : <span class="string">r###&quot;[//]: # (auto_md_to_doc_comments segment start A)
+            file_name :<span class="string">"README.md"</span>,
+            file_content : <span class=
+"string">r###"[//]: # (auto_md_to_doc_comments segment start A)
 
 # cargo_auto_template_new_cli
 
@@ -1346,11 +1444,11 @@ cargo auto release
 
 ```bash
 Running automation task: release
-old version: &quot;0.1.20&quot;
-new version: &#39;0.1.21&#39;
-new text: &#39;
+old version: "0.1.20"
+new version: '0.1.21'
+new text: '
 **Basic Rust project template for CLI, more than just `cargo new hello`**
-***version: 0.1.21 date: 2022-04-01 author: [bestia.dev](bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo_auto_template_new_cli)***&#39;
+***version: 0.1.21 date: 2022-04-01 author: [bestia.dev](bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo_auto_template_new_cli)***'
 
 include_into_readme_md write file: README.md
 $ cargo fmt
@@ -1393,12 +1491,12 @@ cargo test
 If we are happy with the changes, we commit and push:
 
 ```bash
-cargo auto commit_and_push &quot;my message for commit&quot;
+cargo auto commit_and_push "my message for commit"
 ```
 
 ```bash
 Running automation task: commit_and_push
-$ git add -A &amp;&amp; git commit -m &quot;readme&quot;
+$ git add -A &amp;& git commit -m "readme"
 [main 3bdcc91] readme
  9 files changed, 443 insertions(+), 89 deletions(-)
 $ git push
@@ -1443,7 +1541,7 @@ I tried other variants like double-space or backslash, but an empty line is the 
 
 ## tests
 
-I added a unit-test, just to show how it looks. And an integration-test. So it is &quot;ready-to-go&quot;.
+I added a unit-test, just to show how it looks. And an integration-test. So it is "ready-to-go".
 Run them with `cargo test`.
 
 ## examples
@@ -1462,7 +1560,7 @@ Maybe `unwrap()` can be fine for some fast learning examples, but for any real-l
 The library needs an Enum with all the possible errors that this library can return. With `#[derive(Error)]` this enum gets everything needed to be a true Rust error struct. Every error can have a formatting string and a struct of data.  
 The bin-executable does not want to be involved in every possible error separately. It needs an umbrella for all possible errors with `anyhow::Result`.  
 Inside the code, mostly propagate the errors with the `?` Operator after the `Result` value instead of unwrap() or the match expression.
-In the tests we don&#39;t want to work with Error handling. There, instead of `.unwrap()`, use the similar function `.expect(&amp;str)` that has an additional description string.
+In the tests we don't want to work with Error handling. There, instead of `.unwrap()`, use the similar function `.expect(&amp;str)` that has an additional description string.
 
 ## cargo crev reviews and advisory
 
@@ -1489,71 +1587,74 @@ You know the price of a beer in your local bar ;-) So I can drink a free beer fo
 [Na zdravje!](https://translate.google.com/?hl=en&amp;sl=sl&amp;tl=en&amp;text=Na%20zdravje&amp;op=translate) [Alla salute!](https://dictionary.cambridge.org/dictionary/italian-english/alla-salute) [Prost!](https://dictionary.cambridge.org/dictionary/german-english/prost) [Nazdravlje!](https://matadornetwork.com/nights/how-to-say-cheers-in-50-languages/) 🍻
 
 [//]: # (auto_md_to_doc_comments segment end A)
-&quot;###</span>,
+"###</span>,
 });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;.vscode/settings.json&quot;</span>,
-        file_content: <span class="string">r###&quot;{
-    &quot;workbench.colorCustomizations&quot;: {
-        &quot;titleBar.activeForeground&quot;: &quot;#fff&quot;,
-        &quot;titleBar.inactiveForeground&quot;: &quot;#ffffffcc&quot;,
-        &quot;titleBar.activeBackground&quot;: &quot;#477587&quot;,
-        &quot;titleBar.inactiveBackground&quot;: &quot;#3F758DCC&quot;
+        file_name: <span class=
+"string">".vscode/settings.json"</span>,
+        file_content: <span class="string">r###"{
+    "workbench.colorCustomizations": {
+        "titleBar.activeForeground": "#fff",
+        "titleBar.inactiveForeground": "#ffffffcc",
+        "titleBar.activeBackground": "#477587",
+        "titleBar.inactiveBackground": "#3F758DCC"
       },
-      &quot;spellright.language&quot;: [
-        &quot;en&quot;
+      "spellright.language": [
+        "en"
     ],
-    &quot;spellright.documentTypes&quot;: [
-        &quot;markdown&quot;,
-        &quot;latex&quot;,
-        &quot;plaintext&quot;
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext"
     ],
-    &quot;rust-analyzer.showUnlinkedFileNotification&quot;: false,
-    &quot;cSpell.words&quot;: [
-        &quot;Alla&quot;,
-        &quot;bestia&quot;,
-        &quot;crev&quot;,
-        &quot;debuginfo&quot;,
-        &quot;deps&quot;,
-        &quot;endregion&quot;,
-        &quot;Nazdravlje&quot;,
-        &quot;plantuml&quot;,
-        &quot;Prost&quot;,
-        &quot;rustdevuser&quot;,
-        &quot;rustprojects&quot;,
-        &quot;struct&quot;,
-        &quot;termion&quot;,
-        &quot;thiserror&quot;,
-        &quot;unoptimized&quot;,
-        &quot;zdravje&quot;
+    "rust-analyzer.showUnlinkedFileNotification": false,
+    "cSpell.words": [
+        "Alla",
+        "bestia",
+        "crev",
+        "debuginfo",
+        "deps",
+        "endregion",
+        "Nazdravlje",
+        "plantuml",
+        "Prost",
+        "rustdevuser",
+        "rustprojects",
+        "struct",
+        "termion",
+        "thiserror",
+        "unoptimized",
+        "zdravje"
     ]
-}&quot;###</span>,
+}"###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;Cargo.toml&quot;</span>,
-        file_content: <span class="string">r###&quot;[package]
-name = &quot;cargo_auto_template_new_cli&quot;
-version = &quot;1.0.12&quot;
-description = &quot;Basic Rust project template for CLI and library, more than just `cargo new hello`&quot;
-authors = [&quot;bestia.dev&quot;]
-homepage = &quot;https://bestia.dev&quot;
-edition = &quot;2021&quot;
-license = &quot;MIT&quot;
-readme = &quot;README.md&quot;
-repository = &quot;https://github.com/bestia-dev/cargo_auto_template_new_cli&quot;
-categories = [&quot;rust-patterns&quot;]
-keywords = [&quot;Rust cli and library project template&quot;]
+        file_name: <span class="string">"Cargo.toml"</span>,
+        file_content: <span class="string">r###"[package]
+name = "cargo_auto_template_new_cli"
+version = "1.0.12"
+description = "Basic Rust project template for CLI and library, more than just `cargo new hello`"
+authors = ["bestia.dev"]
+homepage = "https://bestia.dev"
+edition = "2021"
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/bestia-dev/cargo_auto_template_new_cli"
+categories = ["rust-patterns"]
+keywords = ["Rust cli and library project template"]
 publish = false
 
 [dependencies]
-log = &quot;0.4&quot;
-pretty_env_logger=&quot;0.4.0&quot;
-thiserror = &quot;1.0.30&quot;
-anyhow=&quot;1.0.56&quot;&quot;###</span>,
+log = "0.4"
+pretty_env_logger="0.4.0"
+thiserror = "1.0.30"
+anyhow="1.0.56""###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;src/bin/cargo_auto_template_new_cli/main.rs&quot;</span>,
-        file_content: <span class="string">r###&quot;//! src/bin/cargo_auto_template_new_cli/main.rs
+        file_name: <span class=
+"string">"src/bin/cargo_auto_template_new_cli/main.rs"</span>,
+        file_content: <span class=
+"string">r###"//! src/bin/cargo_auto_template_new_cli/main.rs
 
 // This `main.rs` is the code for the CLI application.
 // The build of this project will create the CLI application.
@@ -1574,15 +1675,15 @@ fn main() {
 
     // super simple argument parsing. There are crates that can parse more complex arguments.
     match std::env::args().nth(1).as_deref() {
-        None | Some(&quot;--help&quot;) | Some(&quot;-h&quot;) =&gt; print_help(),
-        Some(&quot;print&quot;) =&gt; match std::env::args().nth(2).as_deref() {
+        None | Some("--help") | Some("-h") =&gt; print_help(),
+        Some("print") =&gt; match std::env::args().nth(2).as_deref() {
             // second argument
             Some(greet_name) =&gt; {
                 print_greet_name(greet_name);
             }
-            None =&gt; println!(&quot;{RED}Error: Missing arguments `greet_name`.{RESET}&quot;),
+            None =&gt; println!("{RED}Error: Missing arguments `greet_name`.{RESET}"),
         },
-        Some(&quot;upper&quot;) =&gt; match std::env::args().nth(2).as_deref() {
+        Some("upper") =&gt; match std::env::args().nth(2).as_deref() {
             // second argument
             Some(greet_name) =&gt; {
                 // this can return an error. Here is the last place I can deal with the error.
@@ -1590,19 +1691,19 @@ fn main() {
                     // do nothing
                     Ok(()) =&gt; (),
                     // log error from anyhow
-                    Err(err) =&gt; println!(&quot;{RED}Error: {err}{RESET}&quot;),
+                    Err(err) =&gt; println!("{RED}Error: {err}{RESET}"),
                 }
             }
-            None =&gt; println!(&quot;{RED}Error: Missing arguments `greet_name`.{RESET}&quot;),
+            None =&gt; println!("{RED}Error: Missing arguments `greet_name`.{RESET}"),
         },
-        _ =&gt; println!(&quot;{RED}Error: Unrecognized arguments. Try `cargo_auto_template_new_cli --help`{RESET}&quot;),
+        _ =&gt; println!("{RED}Error: Unrecognized arguments. Try `cargo_auto_template_new_cli --help`{RESET}"),
     }
 }
 
 /// print help
 fn print_help() {
     println!(
-        r#&quot;
+        r#"
     {YELLOW}Welcome to cargo_auto_template_new_cli !
     This is a simple yet complete template for a CLI program written in Rust.{RESET}
 
@@ -1614,14 +1715,14 @@ fn print_help() {
 {GREEN}cargo_auto_template_new_cli upper WORLD{RESET}
   
     {YELLOW}© 2023 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
-&quot;#
+"#
     );
 }
 
 /// print my name
 fn print_greet_name(greet_name: &amp;str) {
     // call the function from the `lib.rs`
-    println!(&quot;{}&quot;, cargo_auto_template_new_cli::format_hello_phrase(greet_name));
+    println!("{}", cargo_auto_template_new_cli::format_hello_phrase(greet_name));
 }
 
 /// print my name upper, can return error
@@ -1629,21 +1730,22 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
     // the function from `lib.rs`, can return error
     // use the ? syntax to bubble the error up one level or continue (early return)
     let upper = cargo_auto_template_new_cli::format_upper_hello_phrase(greet_name)?;
-    println!(&quot;{}&quot;, upper);
+    println!("{}", upper);
     // return
     Ok(())
 }
-&quot;###</span>,
+"###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;src/lib.rs&quot;</span>,
-        file_content: <span class="string">r###&quot;// cargo_auto_template_new_cli/src/lib.rs
+        file_name: <span class="string">"src/lib.rs"</span>,
+        file_content: <span class=
+"string">r###"// cargo_auto_template_new_cli/src/lib.rs
 
 // region: auto_md_to_doc_comments include README.md A //!
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2024.207.2303 date: 2024-02-07 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2024.209.128 date: 2024-02-09 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
 //!
 //!  ![status](https://img.shields.io/badge/maintained-green)
 //!  ![status](https://img.shields.io/badge/ready_for_use-green)
@@ -1683,7 +1785,7 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //! ```
 //!
 //! We can also add `automation tasks` to an existing Rust project.
-//! Inside your Rust project directory (the one with Cargo.toml or Cargo-auto.toml) run:  
+//! Inside your Rust project directory (the one with Cargo.toml) run:  
 //!
 //! ```bash
 //! cargo auto new_auto
@@ -1701,10 +1803,10 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //! Cargo is a great tool for building Rust projects. It has all the basics: `cargo build`, `cargo build --release`, `cargo fmt`, `cargo test`, `cargo doc`,...  
 //! But sometimes we need to do more things like copying some files, publishing to FTP, or entering long commands. These repetitive tasks must be automated.  
 //! Task automation makes work easier and faster, and simplifies the workflow while improving the consistency and accuracy of workflows.  
-//! This is also sometimes referred to as &quot;workflow automation.&quot;  
+//! This is also sometimes referred to as "workflow automation."  
 //! There are many different build systems and task runners there: `make`, `cmake`, `shell scripts`, `cargo-xtask`, `cargo-make`, `cargo-task`, `cargo-script`, `cargo-run-script`, `runner`, `python scripts`, `powershell scripts`, `cmd prompt scripts`, ...  
 //! Sadly there is no standard in the Rust community for now.  
-//! I want something similar to [build.rs](https://doc.rust-lang.org/cargo/reference/build-scripts.html), so I can write my &quot;tasks&quot; in pure Rust I don&#39;t want to learn another meta language with weird syntax and difficulty to debug. So I will make something really simple, easy, rusty, and extensible.  
+//! I want something similar to [build.rs](https://doc.rust-lang.org/cargo/reference/build-scripts.html), so I can write my "tasks" in pure Rust I don't want to learn another meta language with weird syntax and difficulty to debug. So I will make something really simple, easy, rusty, and extensible.  
 //!
 //! ## cargo auto new_cli
 //!
@@ -1768,15 +1870,15 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //!     match arg_1 {
 //!         None =&gt; print_help(),
 //!         Some(task) =&gt; {            
-//!             println!(&quot;Running auto task: {}&quot;, &amp;task);
-//!             if &amp;task == &quot;build&quot;{
+//!             println!("Running auto task: {}", &amp;task);
+//!             if &amp;task == "build"{
 //!                 task_build();
-//!             } else if &amp;task == &quot;release&quot; {
+//!             } else if &amp;task == "release" {
 //!                 task_release();
-//!             } else if &amp;task == &quot;doc&quot; {
+//!             } else if &amp;task == "doc" {
 //!                 task_doc();
 //!             } else {
-//!                 println!(&quot;Task {} is unknown.&quot;, &amp;task);
+//!                 println!("Task {} is unknown.", &amp;task);
 //!                 print_help();
 //!             }
 //!         }
@@ -1785,39 +1887,39 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //!
 //! /// write a comprehensible help for user defined tasks
 //! fn print_help() {
-//!     println!(r#&quot;
+//!     println!(r#"
 //!     User defined tasks in automation_tasks_rs:
 //! cargo auto build - builds the crate in debug mode
 //! cargo auto release - builds the crate in release mode
 //! cargo auto docs - builds the docs
-//! &quot;#);
+//! "#);
 //! }
 //!
 //! // region: tasks
 //!
 //! /// cargo build
 //! fn task_build() {
-//!     run_shell_command(&quot;cargo fmt&quot;);
-//!     run_shell_command(&quot;cargo build&quot;);
+//!     run_shell_command("cargo fmt");
+//!     run_shell_command("cargo build");
 //! }
 //!
 //! /// cargo build --release
 //! fn task_release() {
-//!     run_shell_command(&quot;cargo fmt&quot;);
-//!     run_shell_command(&quot;cargo build --release&quot;);
+//!     run_shell_command("cargo fmt");
+//!     run_shell_command("cargo build --release");
 //! }
 //!
 //! /// cargo doc, then copies to /docs/ folder, because this is a github standard folder
 //! fn task_doc() {
-//!     run_shell_command(&quot;cargo doc --no-deps --document-private-items&quot;);
+//!     run_shell_command("cargo doc --no-deps --document-private-items");
 //!     // copy target/doc into docs/ because it is github standard
-//!     run_shell_command(&quot;rsync -a --info=progress2 --delete-after target/doc/ docs/&quot;);
+//!     run_shell_command("rsync -a --info=progress2 --delete-after target/doc/ docs/");
 //!     // Create simple index.html file in docs directory
 //!     run_shell_command(&amp;format!(
-//!         &quot;echo \&quot;&lt;meta http-equiv=\\\&quot;refresh\\\&quot; content=\\\&quot;0; url={}/index.html\\\&quot; /&gt;\&quot; &gt; docs/index.html&quot;,
-//!         cargo_toml.package_name().replace(&quot;-&quot;,&quot;_&quot;)
+//!         "echo \"&lt;meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" /&gt;\" &gt; docs/index.html",
+//!         cargo_toml.package_name().replace("-","_")
 //!     ));
-//!     run_shell_command(&quot;cargo fmt&quot;);
+//!     run_shell_command("cargo fmt");
 //! }
 //!
 //! // endregion: tasks
@@ -1898,7 +2000,7 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 // The `lib.rs` must be in/out agnostic. That is the responsibility of the `main.rs`
 
 // The `lib.rs` does not have any real code. All the code is in modules in separate files.
-// The `lib.rs` has just the list of modules, it publishes module&#39;s functions or class for the caller
+// The `lib.rs` has just the list of modules, it publishes module's functions or class for the caller
 // and it has some global stuff like the Error enum.
 
 // access to modules
@@ -1915,27 +2017,28 @@ use thiserror::Error;
 /// all possible library errors for `thiserror`
 #[derive(Error, Debug)]
 pub enum LibraryError {
-    #[error(&quot;Name `{0}` is already uppercase.&quot;)]
+    #[error("Name `{0}` is already uppercase.")]
     Uppercase(String),
-    #[error(&quot;Unknown error.&quot;)]
+    #[error("Unknown error.")]
     Unknown,
 }
 
 // ANSI colors for Linux terminal
 // https://github.com/shiena/ansicolor/blob/master/README.md
 #[allow(dead_code)]
-pub const RED: &amp;str = &quot;\x1b[31m&quot;;
+pub const RED: &amp;str = "\x1b[31m";
 #[allow(dead_code)]
-pub const YELLOW: &amp;str = &quot;\x1b[33m&quot;;
+pub const YELLOW: &amp;str = "\x1b[33m";
 #[allow(dead_code)]
-pub const GREEN: &amp;str = &quot;\x1b[32m&quot;;
+pub const GREEN: &amp;str = "\x1b[32m";
 #[allow(dead_code)]
-pub const RESET: &amp;str = &quot;\x1b[0m&quot;;
-&quot;###</span>,
+pub const RESET: &amp;str = "\x1b[0m";
+"###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;src/hello_mod.rs&quot;</span>,
-        file_content: <span class="string">r###&quot;// cargo_auto_template_new_cli/src/hello_mod.rs
+        file_name: <span class="string">"src/hello_mod.rs"</span>,
+        file_content: <span class=
+"string">r###"// cargo_auto_template_new_cli/src/hello_mod.rs
 
 //! All the real code is inside modules in separate files.
 //!
@@ -1943,15 +2046,15 @@ pub const RESET: &amp;str = &quot;\x1b[0m&quot;;
 
 /// format the hello phrase
 pub fn format_hello_phrase(greet_name: &amp;str) -&gt; String {
-    log::info!(&quot;start format_hello_phrase()&quot;);
+    log::info!("start format_hello_phrase()");
     // return
-    format!(&quot;Hello {}!&quot;, greet_name)
+    format!("Hello {}!", greet_name)
 }
 
 /// format the hello phrase with uppercase name
 /// if it is already uppercase, return error with thiserror
 pub fn format_upper_hello_phrase(greet_name: &amp;str) -&gt; Result&lt;String, crate::LibraryError&gt; {
-    log::info!(&quot;start format_upper_hello_phrase()&quot;);
+    log::info!("start format_upper_hello_phrase()");
     // shadowing the same variable name:
     let upper_greet_name = make_uppercase(greet_name);
     if upper_greet_name == greet_name {
@@ -1959,7 +2062,7 @@ pub fn format_upper_hello_phrase(greet_name: &amp;str) -&gt; Result&lt;String, c
     }
 
     // return
-    Ok(format!(&quot;Hello {}!&quot;, &amp;upper_greet_name))
+    Ok(format!("Hello {}!", &amp;upper_greet_name))
 }
 
 /// return uppercase
@@ -1974,22 +2077,23 @@ mod test {
 
     #[test]
     pub fn test_format_upper_hello_phrase() {
-        assert_eq!(format_upper_hello_phrase(&quot;abcd&quot;).expect(&quot;error&quot;), &quot;Hello ABCD!&quot;);
-        assert!(format_upper_hello_phrase(&quot;ABCD&quot;).is_err());
+        assert_eq!(format_upper_hello_phrase("abcd").expect("error"), "Hello ABCD!");
+        assert!(format_upper_hello_phrase("ABCD").is_err());
     }
 
     #[test]
     pub fn test_make_uppercase() {
-        assert_eq!(make_uppercase(&quot;abcd&quot;), &quot;ABCD&quot;);
-        assert_eq!(make_uppercase(&quot;1234abcd&quot;), &quot;1234ABCD&quot;);
-        assert_eq!(make_uppercase(&quot;čšž&quot;), &quot;ČŠŽ&quot;);
+        assert_eq!(make_uppercase("abcd"), "ABCD");
+        assert_eq!(make_uppercase("1234abcd"), "1234ABCD");
+        assert_eq!(make_uppercase("čšž"), "ČŠŽ");
     }
 }
-&quot;###</span>,
+"###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;.gitattributes&quot;</span>,
-        file_content: <span class="string">r###&quot;# Specific git config for the project
+        file_name: <span class="string">".gitattributes"</span>,
+        file_content: <span class=
+"string">r###"# Specific git config for the project
 
 # Declare files that will always have LF line endings on checkout.
 *.rs text eol=lf
@@ -2002,11 +2106,11 @@ mod test {
 *.html text eol=lf
 *.js text eol=lf
 *.css text eol=lf
-&quot;###</span>,
+"###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;.gitignore&quot;</span>,
-        file_content: <span class="string">r###&quot;/target
+        file_name: <span class="string">".gitignore"</span>,
+        file_content: <span class="string">r###"/target
 
 # Remove Cargo.lock from gitignore if creating an executable, leave it for libraries
 # More information here https://doc.rust-lang.org/cargo/guide/cargo-toml-vs-cargo-lock.html
@@ -2017,40 +2121,44 @@ mod test {
 
 # not needed in commits, but also not a problem if they are committed
 /.automation_tasks_rs_file_hashes.json
-/.auto_version_from_date.json&quot;###</span>,
+/.auto_version_from_date.json"###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;automation_tasks_rs/.vscode/settings.json&quot;</span>,
-        file_content: <span class="string">r###&quot;{
-    &quot;cSpell.words&quot;: [
-        &quot;alloc&quot;,
-        &quot;bestia&quot;,
-        &quot;endregion&quot;,
-        &quot;new_cli&quot;,
-        &quot;octocrab&quot;,
-        &quot;plantuml&quot;,
-        &quot;zcvf&quot;
+        file_name: <span class=
+"string">"automation_tasks_rs/.vscode/settings.json"</span>,
+        file_content: <span class="string">r###"{
+    "cSpell.words": [
+        "alloc",
+        "bestia",
+        "endregion",
+        "new_cli",
+        "octocrab",
+        "plantuml",
+        "zcvf"
     ]
-}&quot;###</span>,
+}"###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;automation_tasks_rs/Cargo.toml&quot;</span>,
-        file_content: <span class="string">r###&quot;
+        file_name: <span class=
+"string">"automation_tasks_rs/Cargo.toml"</span>,
+        file_content: <span class="string">r###"
 [package]
-name = &quot;automation_tasks_rs&quot;
-version = &quot;0.1.1&quot;
-authors = [&quot;bestia.dev&quot;]
-homepage = &quot;https://bestia.dev&quot;
-edition = &quot;2021&quot;
-description = &quot;cargo auto - automation tasks written in Rust language&quot;
+name = "automation_tasks_rs"
+version = "0.1.1"
+authors = ["bestia.dev"]
+homepage = "https://bestia.dev"
+edition = "2021"
+description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = &quot;1.1.2&quot;&quot;###</span>,
+cargo_auto_lib = "1.1.2""###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem{
-            file_name :<span class="string">&quot;automation_tasks_rs/src/main.rs&quot;</span>,
-            file_content : <span class="string">r###&quot;//! automation_tasks_rs for cargo_auto_template_new_cli
+            file_name :<span class=
+"string">"automation_tasks_rs/src/main.rs"</span>,
+            file_content : <span class=
+"string">r###"//! automation_tasks_rs for cargo_auto_template_new_cli
 
 use cargo_auto_lib::*;
 // use cargo_auto_github_lib::*;
@@ -2058,13 +2166,13 @@ use cargo_auto_lib::*;
 // ANSI colors for Linux terminal
 // https://github.com/shiena/ansicolor/blob/master/README.md
 #[allow(dead_code)]
-pub const RED: &amp;str = &quot;\x1b[31m&quot;;
+pub const RED: &amp;str = "\x1b[31m";
 #[allow(dead_code)]
-pub const YELLOW: &amp;str = &quot;\x1b[33m&quot;;
+pub const YELLOW: &amp;str = "\x1b[33m";
 #[allow(dead_code)]
-pub const GREEN: &amp;str = &quot;\x1b[32m&quot;;
+pub const GREEN: &amp;str = "\x1b[32m";
 #[allow(dead_code)]
-pub const RESET: &amp;str = &quot;\x1b[0m&quot;;
+pub const RESET: &amp;str = "\x1b[0m";
 
 
 fn main() {
@@ -2086,29 +2194,29 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args) {
     match arg_1 {
         None =&gt; print_help(),
         Some(task) =&gt; {
-            if &amp;task == &quot;completion&quot; {
+            if &amp;task == "completion" {
                 completion();
             } else {
-                println!(&quot;{YELLOW}Running automation task: {task}{RESET}&quot;);
-                if &amp;task == &quot;build&quot; {
+                println!("{YELLOW}Running automation task: {task}{RESET}");
+                if &amp;task == "build" {
                     task_build();
-                } else if &amp;task == &quot;release&quot; {
+                } else if &amp;task == "release" {
                     task_release();
-                } else if &amp;task == &quot;doc&quot; {
+                } else if &amp;task == "doc" {
                     task_doc();
-                } else if &amp;task == &quot;test&quot; {
+                } else if &amp;task == "test" {
                     task_test();
-                } else if &amp;task == &quot;commit_and_push&quot; {
+                } else if &amp;task == "commit_and_push" {
                     let arg_2 = args.next();
                     task_commit_and_push(arg_2);
                 /*
-                } else if &amp;task == &quot;publish_to_crates_io&quot; {
+                } else if &amp;task == "publish_to_crates_io" {
                     task_publish_to_crates_io();
-                } else if &amp;task == &quot;github_new_release&quot; {
+                } else if &amp;task == "github_new_release" {
                     task_github_new_release();
                 */
                 } else {
-                    println!(&quot;{RED}Error: Task {task} is unknown.{RESET}&quot;);
+                    println!("{RED}Error: Task {task} is unknown.{RESET}");
                     print_help();
                 }
             }
@@ -2119,7 +2227,7 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args) {
 /// write a comprehensible help for user defined tasks
 fn print_help() {
     println!(
-        r#&quot;
+        r#"
     {YELLOW}Welcome to cargo-auto !{RESET}
     {YELLOW}This program automates your custom tasks when developing a Rust project.{RESET}
 
@@ -2128,14 +2236,14 @@ fn print_help() {
 {GREEN}cargo auto release{RESET}{YELLOW} - builds the crate in release mode, fmt, increment version{RESET}
 {GREEN}cargo auto doc{RESET}{YELLOW} - builds the docs, copy to docs directory{RESET}
 {GREEN}cargo auto test{RESET}{YELLOW} - runs all the tests{RESET}
-{GREEN}cargo auto commit_and_push &quot;message&quot;{RESET}{YELLOW} - commits with message and push with mandatory message{RESET}
+{GREEN}cargo auto commit_and_push "message"{RESET}{YELLOW} - commits with message and push with mandatory message{RESET}
     {YELLOW}(If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.){RESET}
 
     {YELLOW}© 2023 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
-&quot;#
+"#
 /*
 {GREEN}cargo auto publish_to_crates_io{RESET}{YELLOW} - publish to crates.io, git tag
-    (You need credentials for publishing. On crates.io get the &#39;access token&#39;. Then save it locally once and forever with the command 
+    (You need credentials for publishing. On crates.io get the 'access token'. Then save it locally once and forever with the command 
     ` cargo login TOKEN` use a space before the command to avoid saving the secret token in bash history.){RESET}
 {GREEN}cargo auto github_new_release{RESET}{YELLOW} - creates new release on github
     This task needs PAT (personal access token from github) in the env variable:{RESET}
@@ -2148,9 +2256,9 @@ fn print_help() {
 /// all example commands in one place
 fn print_examples_cmd(){
 /*
-    println!(r#&quot;{YELLOW}run examples:{RESET}
+    println!(r#"{YELLOW}run examples:{RESET}
 {GREEN}cargo run --example example1{RESET}
-&quot;#);
+"#);
 */
 }
 
@@ -2160,15 +2268,15 @@ fn completion() {
     let word_being_completed = args[2].as_str();
     let last_word = args[3].as_str();
 
-    if last_word == &quot;cargo-auto&quot; || last_word == &quot;auto&quot; {
-        let sub_commands = vec![&quot;build&quot;, &quot;release&quot;, &quot;doc&quot;, &quot;test&quot;, &quot;commit_and_push&quot;,];
-        // , &quot;publish_to_crates_io&quot;, &quot;github_new_release&quot;
+    if last_word == "cargo-auto" || last_word == "auto" {
+        let sub_commands = vec!["build", "release", "doc", "test", "commit_and_push",];
+        // , "publish_to_crates_io", "github_new_release"
         completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
     /*
     // the second level if needed
-    else if last_word == &quot;new&quot; {
-        let sub_commands = vec![&quot;x&quot;];
+    else if last_word == "new" {
+        let sub_commands = vec!["x"];
         completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
     */
@@ -2182,10 +2290,10 @@ fn completion() {
 fn task_build() {
     let cargo_toml = CargoToml::read();
     auto_version_increment_semver_or_date();
-    run_shell_command(&quot;cargo fmt&quot;);
-    run_shell_command(&quot;cargo build&quot;);
+    run_shell_command("cargo fmt");
+    run_shell_command("cargo build");
     println!(
-        r#&quot;
+        r#"
     {YELLOW}After `cargo auto build`, run the compiled binary, examples and/or tests{RESET}
 {GREEN}./target/debug/{package_name} print world{RESET}
     {YELLOW}if ok, then{RESET}
@@ -2194,7 +2302,7 @@ fn task_build() {
 {GREEN}./target/debug/{package_name} upper WORLD{RESET}
     {YELLOW}if ok, then,{RESET}
 {GREEN}cargo auto release{RESET}
-&quot;#,
+"#,
 package_name = cargo_toml.package_name(),
     );
     print_examples_cmd();
@@ -2205,16 +2313,16 @@ fn task_release() {
     let cargo_toml = CargoToml::read();
     auto_version_increment_semver_or_date();
     auto_cargo_toml_to_md();
-    auto_lines_of_code(&quot;&quot;);
+    auto_lines_of_code("");
 
-    run_shell_command(&quot;cargo fmt&quot;);
-    run_shell_command(&quot;cargo build --release&quot;);
+    run_shell_command("cargo fmt");
+    run_shell_command("cargo build --release");
     run_shell_command(&amp;format!(
-        &quot;strip target/release/{package_name}&quot;,
+        "strip target/release/{package_name}",
         package_name = cargo_toml.package_name()
     )); 
     println!(
-        r#&quot;
+        r#"
     {YELLOW}After `cargo auto release`, run the compiled binary, examples and/or tests{RESET}
 {GREEN}./target/release/{package_name} print world{RESET}
     {YELLOW}if ok, then{RESET}
@@ -2223,7 +2331,7 @@ fn task_release() {
 {GREEN}./target/release/{package_name} upper WORLD{RESET}
     {YELLOW}if ok, then,{RESET}
 {GREEN}cargo auto doc{RESET}
-&quot;#,
+"#,
 package_name = cargo_toml.package_name(),
     );
     print_examples_cmd();
@@ -2233,52 +2341,52 @@ package_name = cargo_toml.package_name(),
 fn task_doc() {
     let cargo_toml = CargoToml::read();
     auto_cargo_toml_to_md();
-    auto_lines_of_code(&quot;&quot;);
+    auto_lines_of_code("");
     auto_plantuml(&amp;cargo_toml.package_repository().unwrap());
     auto_md_to_doc_comments();
 
-    run_shell_command(&quot;cargo doc --no-deps --document-private-items&quot;);
+    run_shell_command("cargo doc --no-deps --document-private-items");
     // copy target/doc into docs/ because it is github standard
-    run_shell_command(&quot;rsync -a --info=progress2 --delete-after target/doc/ docs/&quot;);
+    run_shell_command("rsync -a --info=progress2 --delete-after target/doc/ docs/");
     // Create simple index.html file in docs directory
     run_shell_command(&amp;format!(
-        &quot;echo \&quot;&lt;meta http-equiv=\\\&quot;refresh\\\&quot; content=\\\&quot;0; url={}/index.html\\\&quot; /&gt;\&quot; &gt; docs/index.html&quot;,
-        cargo_toml.package_name().replace(&quot;-&quot;,&quot;_&quot;)
+        "echo \"&lt;meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" /&gt;\" &gt; docs/index.html",
+        cargo_toml.package_name().replace("-","_")
     ));
-    run_shell_command(&quot;cargo fmt&quot;);
+    run_shell_command("cargo fmt");
     // message to help user with next move
     println!(
-        r#&quot;
+        r#"
     {YELLOW}After `cargo auto doc`, check `docs/index.html`. If ok, then test the documentation code examples{RESET}
 {GREEN}cargo auto test{RESET}
-    {YELLOW}{RESET}&quot;#
+    {YELLOW}{RESET}"#
     );
 }
 
 /// cargo test
 fn task_test() {
-    run_shell_command(&quot;cargo test&quot;);
+    run_shell_command("cargo test");
     println!(
-        r#&quot;
+        r#"
     {YELLOW}After `cargo auto test`. If ok, then {RESET}
-{GREEN}cargo auto commit_and_push &quot;message&quot;{RESET}
+{GREEN}cargo auto commit_and_push "message"{RESET}
     {YELLOW}with mandatory commit message{RESET}
-&quot;#
+"#
     );
 }
 
 /// commit and push
 fn task_commit_and_push(arg_2: Option&lt;String&gt;) {
     match arg_2 {
-        None =&gt; println!(&quot;{RED}Error: Message for commit is mandatory.{RESET}&quot;),
+        None =&gt; println!("{RED}Error: Message for commit is mandatory.{RESET}"),
         Some(message) =&gt; {
-            run_shell_command(&amp;format!(r#&quot;git add -A &amp;&amp; git commit --allow-empty -m &quot;{}&quot;&quot;#, message));
-            run_shell_command(&quot;git push&quot;);
+            run_shell_command(&amp;format!(r#"git add -A &amp;& git commit --allow-empty -m "{}""#, message));
+            run_shell_command("git push");
             println!(
-                r#&quot;
-    {YELLOW}After `cargo auto commit_and_push &quot;message&quot;`{RESET}
+                r#"
+    {YELLOW}After `cargo auto commit_and_push "message"`{RESET}
 {GREEN}cargo auto publish_to_crates_io{RESET}
-&quot;#
+"#
             );
         }
     }
@@ -2287,31 +2395,31 @@ fn task_commit_and_push(arg_2: Option&lt;String&gt;) {
 /*
 /// publish to crates.io and git tag
 fn task_publish_to_crates_io() {
-    println!(r#&quot;{YELLOW}The crates.io access token must already be saved locally with `cargo login TOKEN`{RESET}&quot;#);
+    println!(r#"{YELLOW}The crates.io access token must already be saved locally with `cargo login TOKEN`{RESET}"#);
 
     let cargo_toml = CargoToml::read();
     // git tag
     let shell_command = format!(
-        &quot;git tag -f -a v{version} -m version_{version}&quot;,
+        "git tag -f -a v{version} -m version_{version}",
         version = cargo_toml.package_version()
     );
     run_shell_command(&amp;shell_command);
 
     // cargo publish
-    run_shell_command(&quot;cargo publish&quot;);
+    run_shell_command("cargo publish");
     println!(
-        r#&quot;
+        r#"
     {YELLOW}After `cargo auto publish_to_crates_io`, check in browser{RESET}
 {GREEN}https://crates.io/crates/{package_name}{RESET}
     {YELLOW}Install the crate with{RESET}
 {GREEN}cargo install {package_name}{RESET}
     {YELLOW}and check how it works.{RESET}
     {YELLOW}Add the dependency{RESET}
-{GREEN}{package_name} = &quot;{package_version}&quot;{RESET}
+{GREEN}{package_name} = "{package_version}"{RESET}
     {YELLOW}to your Rust project and check how it works.{RESET}
     {YELLOW}Then create the GitHub-Release and upload the assets.{RESET}    
 {GREEN}cargo auto github_new_release{RESET}
-&quot;#,
+"#,
         package_name = cargo_toml.package_name(),
         package_version = cargo_toml.package_version()
     );
@@ -2320,7 +2428,7 @@ fn task_publish_to_crates_io() {
 /// create a new release on github
 fn task_github_new_release() {
     let cargo_toml = CargoToml::read();
-    println!(&quot;    {YELLOW}The env variable GITHUB_TOKEN must be set:  export GITHUB_TOKEN=paste_token_here{RESET}&quot;);
+    println!("    {YELLOW}The env variable GITHUB_TOKEN must be set:  export GITHUB_TOKEN=paste_token_here{RESET}");
 
     // the git tag was already created when we published to crates.io
 
@@ -2330,48 +2438,51 @@ fn task_github_new_release() {
     rt.block_on(async move {
         let owner = cargo_auto_github_lib::github_owner();
         let repo_name = cargo_toml.package_name();
-        let tag_name_version = format!(&quot;v{}&quot;, cargo_toml.package_version());
-        let release_name = format!(&quot;Release v{}&quot;, cargo_toml.package_version());
-        let branch = &quot;main&quot;;
+        let tag_name_version = format!("v{}", cargo_toml.package_version());
+        let release_name = format!("Release v{}", cargo_toml.package_version());
+        let branch = "main";
 
         let body_md_text = &amp;format!(
-r#&quot;## Changed
+r#"## Changed
 
 - edit the list of changes
           
-&quot;#);
+"#);
 
         let release_id =  auto_github_create_new_release(&amp;owner, &amp;repo_name, &amp;tag_name_version, &amp;release_name, branch, body_md_text).await;
-        println!(&quot;    {YELLOW}New release created, now uploading release asset. This can take some time if the files are big. Wait...{RESET}&quot;);
+        println!("    {YELLOW}New release created, now uploading release asset. This can take some time if the files are big. Wait...{RESET}");
 
         // compress files tar.gz
-        let tar_name = format!(&quot;{repo_name}-{tag_name_version}-x86_64-unknown-linux-gnu.tar.gz&quot;);
-        run_shell_command(&amp;format!(&quot;tar -zcvf {tar_name} target/release/{repo_name}&quot;));
+        let tar_name = format!("{repo_name}-{tag_name_version}-x86_64-unknown-linux-gnu.tar.gz");
+        run_shell_command(&amp;format!("tar -zcvf {tar_name} target/release/{repo_name}"));
         
         // upload asset     
         auto_github_upload_asset_to_release(&amp;owner, &amp;repo_name, &amp;release_id, &amp;tar_name).await;
-        run_shell_command(&amp;format!(&quot;rm {tar_name}&quot;));  
+        run_shell_command(&amp;format!("rm {tar_name}"));  
 
-        println!(&quot;    {YELLOW}Asset uploaded. Open and edit the description on GitHub-Releases in the browser.{RESET}&quot;);
-        println!(&quot;{GREEN}https://github.com/{owner}/{repo_name}/releases{RESET}&quot;);
+        println!("    {YELLOW}Asset uploaded. Open and edit the description on GitHub-Releases in the browser.{RESET}");
+        println!("{GREEN}https://github.com/{owner}/{repo_name}/releases{RESET}");
     });
 }
 */
 
 // endregion: tasks
-&quot;###</span>,
+"###</span>,
 });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;automation_tasks_rs/.gitignore&quot;</span>,
-        file_content: <span class="string">r###&quot;/target
+        file_name: <span class=
+"string">"automation_tasks_rs/.gitignore"</span>,
+        file_content: <span class="string">r###"/target
 
 # not needed in commits, but also not a problem if they are committed
 /.file_hashes.json
-&quot;###</span>,
+"###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;examples/example_1.rs&quot;</span>,
-        file_content: <span class="string">r###&quot;// examples/example_1.rs
+        file_name: <span class=
+"string">"examples/example_1.rs"</span>,
+        file_content: <span class=
+"string">r###"// examples/example_1.rs
 
 //! A simple example how to use the `lib.rs`
 //! You can run it with `cargo run --example example_1`
@@ -2380,44 +2491,46 @@ use cargo_auto_template_new_cli::*;
 
 /// example how to use format_hello_phrase() and format_upper_hello_phrase()
 fn main() {
-    let greet_name = &quot;world&quot;;
+    let greet_name = "world";
     let phrase = format_hello_phrase(greet_name);
-    println!(&quot;{}&quot;, phrase);
+    println!("{}", phrase);
 
     // possible error must be processed
     match format_upper_hello_phrase(greet_name) {
-        Ok(phrase) =&gt; println!(&quot;{}&quot;, phrase),
-        Err(err) =&gt; log::error!(&quot;Error: {}&quot;, err),
+        Ok(phrase) =&gt; println!("{}", phrase),
+        Err(err) =&gt; log::error!("Error: {}", err),
     }
 }
-&quot;###</span>,
+"###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;tests/integration_test.rs&quot;</span>,
-        file_content: <span class="string">r###&quot;// tests/integration_test.rs
+        file_name: <span class=
+"string">"tests/integration_test.rs"</span>,
+        file_content: <span class=
+"string">r###"// tests/integration_test.rs
 
 use cargo_auto_template_new_cli::*;
 
 #[test]
 fn integration_test_01() {
-    assert_eq!(format_hello_phrase(&quot;abcd&quot;), &quot;Hello abcd!&quot;);
-    assert_eq!(format_upper_hello_phrase(&quot;abcd&quot;).expect(&quot;error&quot;), &quot;Hello ABCD!&quot;);
+    assert_eq!(format_hello_phrase("abcd"), "Hello abcd!");
+    assert_eq!(format_upper_hello_phrase("abcd").expect("error"), "Hello ABCD!");
 }
 
 #[test]
 fn integration_test_02_error_check() {
-    assert!(format_upper_hello_phrase(&quot;ABCD&quot;).is_err());
+    assert!(format_upper_hello_phrase("ABCD").is_err());
 }
-&quot;###</span>,
+"###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;LICENSE&quot;</span>,
-        file_content: <span class="string">r###&quot;MIT License
+        file_name: <span class="string">"LICENSE"</span>,
+        file_content: <span class="string">r###"MIT License
 
 Copyright (c) 2022 bestia.dev
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the &quot;Software&quot;), to deal
+of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
@@ -2426,18 +2539,23 @@ furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-&quot;###</span>,
+"###</span>,
     });
-    <span class="comment">// endregion: files copied into strings by automation tasks
+    <span class=
+"comment">// endregion: files copied into strings by automation tasks
 
     // return
     </span>vec_file
 }
-</code></pre></div></section></main></body></html>
+</code></pre></div>
+</section>
+</main>
+</body>
+</html>

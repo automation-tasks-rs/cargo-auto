@@ -1,4 +1,76 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/template_new_wasm_mod.rs`."><title>template_new_wasm_mod.rs - source</title><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2"><link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2"><link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css"><link rel="stylesheet" href="../../static.files/rustdoc-fa3bb1812debf86c.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="cargo_auto" data-themes="" data-resource-suffix="" data-rustdoc-version="1.74.1 (a28077b28 2023-12-04)" data-channel="1.74.1" data-search-js="search-8be46b629f5f14a8.js" data-settings-js="settings-74424d7eec62a23e.js" ><script src="../../static.files/storage-fec3eaa3851e447d.js"></script><script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-c5bd66d33317d69f.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png"><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"></nav><main><nav class="sub"><a class="sub-logo-container" href="../../cargo_auto/index.html"><img class="rust-logo" src="../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a><form class="search-form"><span></span><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div><div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div></form></nav><section id="main-content" class="content"><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="generator" content=
+"HTML Tidy for HTML5 for Linux version 5.6.0">
+<meta charset="utf-8">
+<meta name="viewport" content=
+"width=device-width, initial-scale=1.0">
+<meta name="generator" content="rustdoc">
+<meta name="description" content=
+"Source of the Rust file `src/template_new_wasm_mod.rs`.">
+<title>template_new_wasm_mod.rs - source</title>
+<link rel="preload" as="font" type="font/woff2" crossorigin=""
+href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin=""
+href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin=""
+href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin=""
+href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin=""
+href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin=""
+href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2">
+<link rel="stylesheet" href=
+"../../static.files/normalize-76eba96aa4d2e634.css">
+<link rel="stylesheet" href=
+"../../static.files/rustdoc-fa3bb1812debf86c.css">
+<meta name="rustdoc-vars" data-root-path="../../"
+data-static-root-path="../../static.files/" data-current-crate=
+"cargo_auto" data-themes="" data-resource-suffix=""
+data-rustdoc-version="1.74.1 (a28077b28 2023-12-04)" data-channel=
+"1.74.1" data-search-js="search-8be46b629f5f14a8.js"
+data-settings-js="settings-74424d7eec62a23e.js">
+<script src=
+"../../static.files/storage-fec3eaa3851e447d.js"></script>
+<script defer src=
+"../../static.files/src-script-3280b574d94e47b4.js"></script>
+<script defer src="../../src-files.js"></script>
+<script defer src=
+"../../static.files/main-c5bd66d33317d69f.js"></script><noscript>
+<link rel="stylesheet" href=
+"../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript>
+<link rel="alternate icon" type="image/png" href=
+"../../static.files/favicon-16x16-8b506e7a72182f1c.png">
+<link rel="alternate icon" type="image/png" href=
+"../../static.files/favicon-32x32-422f7d1d52889060.png">
+<link rel="icon" type="image/svg+xml" href=
+"../../static.files/favicon-2c020d218678b618.svg">
+</head>
+<body class="rustdoc src">
+<!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+<nav class="sidebar"></nav>
+<main>
+<nav class="sub"><a class="sub-logo-container" href=
+"../../cargo_auto/index.html"><img class="rust-logo" src=
+"../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a>
+<form class="search-form"><input class="search-input" name="search"
+aria-label="Run search in the documentation" autocomplete="off"
+spellcheck="false" placeholder=
+"Click or press ‘S’ to search, ‘?’ for more options…" type=
+"search">
+<div id="help-button" title="help" tabindex="-1"><a href=
+"../../help.html">?</a></div>
+<div id="settings-menu" tabindex="-1"><a href="../../settings.html"
+title="settings"><img width="22" height="22" alt="Change settings"
+src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div>
+</form>
+</nav>
+<section id="main-content" class="content">
+<div class="example-wrap">
+<div data-nosnippet="">
+<pre class="src-line-numbers"><a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -1302,53 +1374,79 @@
 <a href="#1302" id="1302">1302</a>
 <a href="#1303" id="1303">1303</a>
 <a href="#1304" id="1304">1304</a>
-</pre></div><pre class="rust"><code><span class="doccomment">//! this strings are copied from the template_new_wasm folder
+</pre></div>
+<pre class="rust"><code><span class=
+"doccomment">//! this strings are copied from the template_new_wasm folder
 //! because when publishing to crates.io, only the main bin-executable is transferred
 
-</span><span class="kw">use crate</span>::{GREEN, RED, RESET, YELLOW};
+</span><span class=
+"kw">use crate</span>::{GREEN, RED, RESET, YELLOW};
 
-<span class="kw">pub fn </span>new_wasm(arg_2: <span class="prelude-ty">Option</span>&lt;String&gt;) {
+<span class="kw">pub fn </span>new_wasm(arg_2: <span class=
+"prelude-ty">Option</span>&lt;String&gt;) {
     <span class="kw">match </span>arg_2 {
-        <span class="prelude-val">None </span>=&gt; <span class="macro">println!</span>(<span class="string">&quot;{RED}Error: Project name argument is missing: `cargo auto new_wasm project_name`{RESET}&quot;</span>),
+        <span class="prelude-val">None </span>=&gt; <span class=
+"macro">println!</span>(<span class=
+"string">"{RED}Error: Project name argument is missing: `cargo auto new_wasm project_name`{RESET}"</span>),
         <span class="prelude-val">Some</span>(project_name) =&gt; {
-            copy_to_files(<span class="kw-2">&amp;</span>project_name);
-            <span class="macro">println!</span>(<span class="string">&quot;&quot;</span>);
-            <span class="macro">println!</span>(<span class="string">&quot;    {YELLOW}The command `crate auto new_wasm` generated the directory `{project_name}`{RESET}&quot;</span>);
-            <span class="macro">println!</span>(<span class="string">&quot;    {YELLOW}You can open this new Rust project `{project_name}` in a new Rust editor.{RESET}&quot;</span>,);
-            <span class="macro">println!</span>(<span class="string">&quot;    {YELLOW}For example VSCode:{RESET}&quot;</span>);
-            <span class="macro">println!</span>(<span class="string">&quot;{GREEN}code {project_name}{RESET}&quot;</span>);
-            <span class="macro">println!</span>(<span class="string">&quot;    {YELLOW}Then build with:{RESET}&quot;</span>);
-            <span class="macro">println!</span>(<span class="string">&quot;{GREEN}cargo auto build{RESET}&quot;</span>);
-            <span class="macro">println!</span>(<span class="string">&quot;    {YELLOW}and follow the detailed instructions.{RESET}&quot;</span>);
+            copy_to_files(<span class="kw-2">&</span>project_name);
+            <span class="macro">println!</span>(<span class=
+"string">""</span>);
+            <span class="macro">println!</span>(<span class=
+"string">"    {YELLOW}The command `crate auto new_wasm` generated the directory `{project_name}`{RESET}"</span>);
+            <span class="macro">println!</span>(<span class=
+"string">"    {YELLOW}You can open this new Rust project `{project_name}` in a new Rust editor.{RESET}"</span>,);
+            <span class="macro">println!</span>(<span class=
+"string">"    {YELLOW}For example VSCode:{RESET}"</span>);
+            <span class="macro">println!</span>(<span class=
+"string">"{GREEN}code {project_name}{RESET}"</span>);
+            <span class="macro">println!</span>(<span class=
+"string">"    {YELLOW}Then build with:{RESET}"</span>);
+            <span class="macro">println!</span>(<span class=
+"string">"{GREEN}cargo auto build{RESET}"</span>);
+            <span class="macro">println!</span>(<span class=
+"string">"    {YELLOW}and follow the detailed instructions.{RESET}"</span>);
         }
     }
 }
 
-<span class="kw">pub fn </span>copy_to_files(project_name: <span class="kw-2">&amp;</span>str) {
-    <span class="kw">let </span>folder_path = std::path::Path::new(project_name);
+<span class=
+"kw">pub fn </span>copy_to_files(project_name: <span class=
+"kw-2">&</span>str) {
+    <span class=
+"kw">let </span>folder_path = std::path::Path::new(project_name);
     std::fs::create_dir_all(folder_path).unwrap();
-    <span class="kw">for </span>file_item <span class="kw">in </span>get_vec_file() {
+    <span class="kw">for </span>file_item <span class=
+"kw">in </span>get_vec_file() {
         <span class="comment">// rename/replace the project_name
         </span><span class="kw">let </span>file_name = file_item
             .file_name
-            .replace(<span class="string">&quot;cargo_auto_template_new_wasm&quot;</span>, project_name);
+            .replace(<span class=
+"string">"cargo_auto_template_new_wasm"</span>, project_name);
         <span class="kw">let </span>file_content = file_item
             .file_content
-            .replace(<span class="string">&quot;cargo_auto_template_new_wasm&quot;</span>, project_name);
+            .replace(<span class=
+"string">"cargo_auto_template_new_wasm"</span>, project_name);
 
         <span class="comment">// create directory if needed
-        </span>std::fs::create_dir_all(folder_path.join(<span class="kw-2">&amp;</span>file_name).parent().unwrap()).unwrap();
-        std::fs::write(folder_path.join(<span class="kw-2">&amp;</span>file_name), file_content.as_bytes()).unwrap();
+        </span>std::fs::create_dir_all(folder_path.join(<span class="kw-2">&</span>file_name).parent().unwrap()).unwrap();
+        std::fs::write(folder_path.join(<span class=
+"kw-2">&</span>file_name), file_content.as_bytes()).unwrap();
     }
 }
 
-<span class="kw">pub fn </span>get_vec_file() -&gt; Vec&lt;<span class="kw">crate</span>::FileItem&gt; {
-    <span class="kw">let </span><span class="kw-2">mut </span>vec_file = <span class="macro">vec!</span>[];
+<span class=
+"kw">pub fn </span>get_vec_file() -&gt; Vec&lt;<span class=
+"kw">crate</span>::FileItem&gt; {
+    <span class="kw">let </span><span class=
+"kw-2">mut </span>vec_file = <span class="macro">vec!</span>[];
 
-    <span class="comment">// region: files copied into strings by automation tasks
+    <span class=
+"comment">// region: files copied into strings by automation tasks
     </span>vec_file.push(<span class="kw">crate</span>::FileItem{
-            file_name :<span class="string">&quot;README.md&quot;</span>,
-            file_content : <span class="string">r###&quot;[//]: # (auto_md_to_doc_comments segment start A)
+            file_name :<span class="string">"README.md"</span>,
+            file_content : <span class=
+"string">r###"[//]: # (auto_md_to_doc_comments segment start A)
 
 # cargo_auto_template_new_wasm
 
@@ -1420,20 +1518,22 @@ So I can drink a free beer for your health :-)
 [//youtube.com/@bestia-dev-tutorials](https://youtube.com/@bestia-dev-tutorials)  
 
 [//]: # (auto_md_to_doc_comments segment end A)
-&quot;###</span>,
+"###</span>,
 });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;web_server_folder/cargo_auto_template_new_wasm/index.html&quot;</span>,
-        file_content: <span class="string">r###&quot;&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
+        file_name: <span class=
+"string">"web_server_folder/cargo_auto_template_new_wasm/index.html"</span>,
+        file_content: <span class=
+"string">r###"&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
 
 &lt;head&gt;
       &lt;!-- classic header for a web page --&gt;
       &lt;title&gt;cargo_auto_template_new_wasm&lt;/title&gt;
-      &lt;meta http-equiv=&quot;Content-type&quot; content=&quot;text/html; charset=utf-8&quot; /&gt;
-      &lt;meta name=&quot;Description&quot; content=&quot;template for a minimal wasm project for browser&quot;&gt;
-      &lt;meta name=&quot;author&quot; content=&quot;https://github.com/bestia-dev/cargo_auto_template_new_wasm&quot;&gt;    
-      &lt;link rel=&quot;stylesheet&quot; href=&quot;css/basic_style.css&quot;&gt;
+      &lt;meta http-equiv="Content-type" content="text/html; charset=utf-8" /&gt;
+      &lt;meta name="Description" content="template for a minimal wasm project for browser"&gt;
+      &lt;meta name="author" content="https://github.com/bestia-dev/cargo_auto_template_new_wasm"&gt;    
+      &lt;link rel="stylesheet" href="css/basic_style.css"&gt;
       
 &lt;/head&gt;
 
@@ -1450,7 +1550,7 @@ So I can drink a free beer for your health :-)
       &lt;/noscript&gt;
       &lt;!-- display a text while waiting for wasm download. 
       This content will change from the wasm code.--&gt;
-      &lt;div id=&quot;div_for_wasm_html_injecting&quot;&gt;
+      &lt;div id="div_for_wasm_html_injecting"&gt;
             &lt;h2&gt;
                   Waiting to&lt;br&gt;
                   download &lt;br&gt;
@@ -1460,19 +1560,20 @@ So I can drink a free beer for your health :-)
                   networks...&lt;br&gt;
             &lt;/h2&gt;
       &lt;/div&gt;
-      &lt;p class=&quot;fc_red&quot; id=&quot;div_for_errors&quot;&gt;&lt;/p&gt;
+      &lt;p class="fc_red" id="div_for_errors"&gt;&lt;/p&gt;
       &lt;!-- import and init the wasm code --&gt;
-      &lt;script type=&quot;module&quot;&gt;
-            import init from &quot;./pkg/cargo_auto_template_new_wasm.js&quot;;
-            init(&quot;./pkg/cargo_auto_template_new_wasm_bg.wasm&quot;);
+      &lt;script type="module"&gt;
+            import init from "./pkg/cargo_auto_template_new_wasm.js";
+            init("./pkg/cargo_auto_template_new_wasm_bg.wasm");
       &lt;/script&gt;
 &lt;/body&gt;
 
-&lt;/html&gt;&quot;###</span>,
+&lt;/html&gt;"###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;web_server_folder/cargo_auto_template_new_wasm/css/basic_style.css&quot;</span>,
-        file_content: <span class="string">r###&quot;html { 
+        file_name: <span class=
+"string">"web_server_folder/cargo_auto_template_new_wasm/css/basic_style.css"</span>,
+        file_content: <span class="string">r###"html { 
     font-family: sans-serif;
     background-color: #000000;
     color: #FBF462;
@@ -1494,7 +1595,7 @@ p{
 
 .input-wrap {
     position: relative;
-	text-align: center;
+        text-align: center;
   }
 
 .button {
@@ -1511,95 +1612,97 @@ p{
   .fc_red{
     color: red;
 }
-&quot;###</span>,
+"###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;.vscode/settings.json&quot;</span>,
-        file_content: <span class="string">r###&quot;{
-    &quot;workbench.colorCustomizations&quot;: {
-        &quot;titleBar.activeForeground&quot;: &quot;#fff&quot;,
-        &quot;titleBar.inactiveForeground&quot;: &quot;#ffffffcc&quot;,
-        &quot;titleBar.activeBackground&quot;: &quot;#477587&quot;,
-        &quot;titleBar.inactiveBackground&quot;: &quot;#3F758DCC&quot;
+        file_name: <span class=
+"string">".vscode/settings.json"</span>,
+        file_content: <span class="string">r###"{
+    "workbench.colorCustomizations": {
+        "titleBar.activeForeground": "#fff",
+        "titleBar.inactiveForeground": "#ffffffcc",
+        "titleBar.activeBackground": "#477587",
+        "titleBar.inactiveBackground": "#3F758DCC"
       },
-      &quot;spellright.language&quot;: [
-        &quot;en&quot;
+      "spellright.language": [
+        "en"
     ],
-    &quot;spellright.documentTypes&quot;: [
-        &quot;markdown&quot;,
-        &quot;latex&quot;,
-        &quot;plaintext&quot;
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext"
     ],
-    &quot;rust-analyzer.showUnlinkedFileNotification&quot;: false,
-    &quot;cSpell.words&quot;: [
-        &quot;apos&quot;,
-        &quot;bestia&quot;,
-        &quot;bindgen&quot;,
-        &quot;cdylib&quot;,
-        &quot;CRDE&quot;,
-        &quot;endregion&quot;,
-        &quot;onchange&quot;,
-        &quot;onclick&quot;,
-        &quot;plantuml&quot;,
-        &quot;rustlang&quot;,
-        &quot;thiserror&quot;,
-        &quot;webassembly&quot;
+    "rust-analyzer.showUnlinkedFileNotification": false,
+    "cSpell.words": [
+        "apos",
+        "bestia",
+        "bindgen",
+        "cdylib",
+        "CRDE",
+        "endregion",
+        "onchange",
+        "onclick",
+        "plantuml",
+        "rustlang",
+        "thiserror",
+        "webassembly"
     ]
-}&quot;###</span>,
+}"###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;Cargo.toml&quot;</span>,
-        file_content: <span class="string">r###&quot;[package]
-name = &quot;cargo_auto_template_new_wasm&quot;
-version = &quot;2023.519.1012&quot;
-authors = [&quot;bestia.dev&quot;]
-homepage = &quot;https://bestia.dev&quot;
-edition = &quot;2021&quot;
-description = &quot;template for a minimal wasm project for browser&quot;
-repository = &quot;https://github.com/bestia-dev/cargo_auto_template_new_wasm&quot;
-readme = &quot;README.md&quot;
-license = &quot;MIT&quot;
-keywords = [&quot;wasm&quot;]
-categories = [&quot;learning&quot;]
+        file_name: <span class="string">"Cargo.toml"</span>,
+        file_content: <span class="string">r###"[package]
+name = "cargo_auto_template_new_wasm"
+version = "2023.519.1012"
+authors = ["bestia.dev"]
+homepage = "https://bestia.dev"
+edition = "2021"
+description = "template for a minimal wasm project for browser"
+repository = "https://github.com/bestia-dev/cargo_auto_template_new_wasm"
+readme = "README.md"
+license = "MIT"
+keywords = ["wasm"]
+categories = ["learning"]
 publish = false
 
 [lib]
 # cdylib is for the wasm module library
-crate-type = [&quot;cdylib&quot;]
+crate-type = ["cdylib"]
 
 [dependencies]
-unwrap = &quot;1.2.1&quot;
-wasm-bindgen = &quot;0.2.86&quot;
-console_error_panic_hook = &quot;0.1.7&quot;
-js-sys = &quot;0.3.63&quot;
-thiserror=&quot;1.0.40&quot;
-anyhow=&quot;1.0.71&quot;
-log = &quot;0.4.17&quot;
-wasm-logger = &quot;0.2.0&quot;
-wasm-rs-dbg = {version=&quot;0.1.2&quot;, default-features = false, features = [&quot;console-log&quot;]}
+unwrap = "1.2.1"
+wasm-bindgen = "0.2.86"
+console_error_panic_hook = "0.1.7"
+js-sys = "0.3.63"
+thiserror="1.0.40"
+anyhow="1.0.71"
+log = "0.4.17"
+wasm-logger = "0.2.0"
+wasm-rs-dbg = {version="0.1.2", default-features = false, features = ["console-log"]}
 
 [dependencies.web-sys]
-version = &quot;0.3.63&quot;
+version = "0.3.63"
 features = [
-  &quot;console&quot;,
-  &quot;Document&quot;,
-  &quot;Element&quot;,
-  &quot;HtmlElement&quot;,
-  &quot;HtmlInputElement&quot;,
-  &quot;Location&quot;,
-  &quot;Window&quot;,
+  "console",
+  "Document",
+  "Element",
+  "HtmlElement",
+  "HtmlInputElement",
+  "Location",
+  "Window",
 ]
 
 [dev-dependencies]
-wasm-bindgen-test = &quot;0.3.36&quot;
+wasm-bindgen-test = "0.3.36"
 
 [profile.release]
-panic = &quot;abort&quot;
-&quot;###</span>,
+panic = "abort"
+"###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;src/main_mod/lib_mod.rs&quot;</span>,
-        file_content: <span class="string">r###&quot;// src/lib_mod.rs
+        file_name: <span class=
+"string">"src/main_mod/lib_mod.rs"</span>,
+        file_content: <span class="string">r###"// src/lib_mod.rs
 // This module is like a lib.rs module for a binary CLI executable.
 // The `lib_mod.rs` must not contains any input/output interface stuff.
 // So the program logic can be separate from the interface.
@@ -1608,7 +1711,7 @@ panic = &quot;abort&quot;
 // This `lib_mod.rs` can then be used as dependency crate for other projects.
 
 // The `lib_mod.rs` does not have any real code. All the code is in modules in separate files.
-// The `lib_mod.rs` has just the list of modules, it publishes module&#39;s functions or class for the caller
+// The `lib_mod.rs` has just the list of modules, it publishes module's functions or class for the caller
 // and it has some global stuff like the Error enum.
 
 // The `main_mod.rs` uses the `anyhow` error library.
@@ -1629,27 +1732,29 @@ pub use hello_mod::format_upper_hello_phrase;
 /// all possible library errors for `thiserror`
 #[derive(Error, Debug)]
 pub enum LibraryError {
-    #[error(&quot;Name `{0}` is already uppercase.&quot;)]
+    #[error("Name `{0}` is already uppercase.")]
     Uppercase(String),
-    #[error(&quot;Unknown error.&quot;)]
+    #[error("Unknown error.")]
     Unknown,
 }
 
 // ANSI colors for Linux terminal
 // https://github.com/shiena/ansicolor/blob/master/README.md
 #[allow(dead_code)]
-pub const RED: &amp;str = &quot;\x1b[31m&quot;;
+pub const RED: &amp;str = "\x1b[31m";
 #[allow(dead_code)]
-pub const YELLOW: &amp;str = &quot;\x1b[33m&quot;;
+pub const YELLOW: &amp;str = "\x1b[33m";
 #[allow(dead_code)]
-pub const GREEN: &amp;str = &quot;\x1b[32m&quot;;
+pub const GREEN: &amp;str = "\x1b[32m";
 #[allow(dead_code)]
-pub const RESET: &amp;str = &quot;\x1b[0m&quot;;
-&quot;###</span>,
+pub const RESET: &amp;str = "\x1b[0m";
+"###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;src/main_mod/lib_mod/web_sys_mod.rs&quot;</span>,
-        file_content: <span class="string">r###&quot;//! src/web_sys_mod.rs
+        file_name: <span class=
+"string">"src/main_mod/lib_mod/web_sys_mod.rs"</span>,
+        file_content: <span class=
+"string">r###"//! src/web_sys_mod.rs
 //! helper functions for web_sys, window, document, dom, console,
 //! Trying to isolate/hide all javascript code and conversion here.
 
@@ -1690,16 +1795,16 @@ pub fn get_html_element_by_id(element_id: &amp;str) -&gt; web_sys::HtmlElement {
 
 /// get input element value string by id
 pub fn get_input_element_value_string_by_id(element_id: &amp;str) -&gt; String {
-    // debug_write(&quot;before get_element_by_id&quot;);
+    // debug_write("before get_element_by_id");
     let input_element = get_element_by_id(element_id);
-    // debug_write(&quot;before dyn_into&quot;);
+    // debug_write("before dyn_into");
     let input_html_element = unwrap!(input_element.dyn_into::&lt;web_sys::HtmlInputElement&gt;());
-    // debug_write(&quot;before value()&quot;);
+    // debug_write("before value()");
     input_html_element.value()
 }
 
 /// add event listener for button
-pub fn add_listener_to_button(element_id: &amp;str, fn_on_click_button: &amp;&#39;static (dyn Fn() + &#39;static)) {
+pub fn add_listener_to_button(element_id: &amp;str, fn_on_click_button: &amp;'static (dyn Fn() + 'static)) {
     let handler_1 = Box::new(move || {
         fn_on_click_button();
     }) as Box&lt;dyn FnMut()&gt;;
@@ -1726,13 +1831,14 @@ pub fn set_html_element_inner_html(element_id: &amp;str, inner_html: &amp;str) {
 
 // open URL in new tab
 pub fn open_url_in_new_tab(url: &amp;str) {
-    window().open_with_url_and_target(url, &quot;_blank&quot;).unwrap();
+    window().open_with_url_and_target(url, "_blank").unwrap();
 }
-&quot;###</span>,
+"###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;src/main_mod/lib_mod/hello_mod.rs&quot;</span>,
-        file_content: <span class="string">r###&quot;// src/hello_mod.rs
+        file_name: <span class=
+"string">"src/main_mod/lib_mod/hello_mod.rs"</span>,
+        file_content: <span class="string">r###"// src/hello_mod.rs
 
 //! All the real code is inside modules in separate files (program logic).
 //!
@@ -1740,15 +1846,15 @@ pub fn open_url_in_new_tab(url: &amp;str) {
 
 /// format the hello phrase
 pub fn format_hello_phrase(greet_name: &amp;str) -&gt; String {
-    log::info!(&quot;start format_hello_phrase()&quot;);
+    log::info!("start format_hello_phrase()");
     // return
-    format!(&quot;Hello {}!&quot;, greet_name)
+    format!("Hello {}!", greet_name)
 }
 
 /// format the hello phrase with uppercase name
 /// if it is already uppercase, return error with thiserror
 pub fn format_upper_hello_phrase(greet_name: &amp;str) -&gt; Result&lt;String, crate::LibraryError&gt; {
-    log::info!(&quot;start format_upper_hello_phrase()&quot;);
+    log::info!("start format_upper_hello_phrase()");
     // shadowing the same variable name:
     let upper_greet_name = make_uppercase(greet_name);
     if upper_greet_name == greet_name {
@@ -1756,7 +1862,7 @@ pub fn format_upper_hello_phrase(greet_name: &amp;str) -&gt; Result&lt;String, c
     }
 
     // return
-    Ok(format!(&quot;Hello {}!&quot;, &amp;upper_greet_name))
+    Ok(format!("Hello {}!", &amp;upper_greet_name))
 }
 
 /// return uppercase
@@ -1772,24 +1878,26 @@ mod test {
     #[test]
     pub fn test_format_upper_hello_phrase() {
         assert_eq!(
-            format_upper_hello_phrase(&quot;abcd&quot;).expect(&quot;error&quot;),
-            &quot;Hello ABCD!&quot;
+            format_upper_hello_phrase("abcd").expect("error"),
+            "Hello ABCD!"
         );
-        assert!(format_upper_hello_phrase(&quot;ABCD&quot;).is_err());
+        assert!(format_upper_hello_phrase("ABCD").is_err());
     }
 
     #[test]
     pub fn test_make_uppercase() {
-        assert_eq!(make_uppercase(&quot;abcd&quot;), &quot;ABCD&quot;);
-        assert_eq!(make_uppercase(&quot;1234abcd&quot;), &quot;1234ABCD&quot;);
-        assert_eq!(make_uppercase(&quot;čšž&quot;), &quot;ČŠŽ&quot;);
+        assert_eq!(make_uppercase("abcd"), "ABCD");
+        assert_eq!(make_uppercase("1234abcd"), "1234ABCD");
+        assert_eq!(make_uppercase("čšž"), "ČŠŽ");
     }
 }
-&quot;###</span>,
+"###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem{
-            file_name :<span class="string">&quot;src/main_mod.rs&quot;</span>,
-            file_content : <span class="string">r###&quot;// src/main_mod.rs
+            file_name :<span class=
+"string">"src/main_mod.rs"</span>,
+            file_content : <span class=
+"string">r###"// src/main_mod.rs
 // This module is like a main.rs module for a binary CLI executable.
 // The `main_mod.rs` contains all input/output interface stuff.
 // So the program logic can be separate from the interface.
@@ -1811,24 +1919,24 @@ pub use lib_mod::LibraryError;
 pub fn main() {
     // logging is essential for every project
     wasm_logger::init(wasm_logger::Config::default());
-    log::info!(&quot;main() started&quot;);
+    log::info!("main() started");
 
     // super simple argument parsing.
-    // In browser we can use &#39;local routing&#39; on url path with # fragment
+    // In browser we can use 'local routing' on url path with # fragment
     // http://localhost:4000/cargo_auto_template_new_wasm#arg_1/arg_2
     let location = wsm::window().location();
     let mut location_hash_fragment = unwrap!(location.hash());
     // dbg! is now writing to the console, crate wasm-rs-dbg
     dbg!(&amp;location_hash_fragment);
 
-    // in std::env::args() the nth(0) is the exe name. Let&#39;s make it similar.
+    // in std::env::args() the nth(0) is the exe name. Let's make it similar.
     if !location_hash_fragment.is_empty() {
         // replace # with delimiter /
-        location_hash_fragment.replace_range(..1, &quot;/&quot;);
+        location_hash_fragment.replace_range(..1, "/");
     }
-    let location_hash_fragment = format!(&quot;cargo_auto_template_new_wasm{}&quot;, location_hash_fragment);
+    let location_hash_fragment = format!("cargo_auto_template_new_wasm{}", location_hash_fragment);
     dbg!(&amp;location_hash_fragment);
-    let args = location_hash_fragment.split(&quot;/&quot;);
+    let args = location_hash_fragment.split("/");
     let args: Vec&lt;&amp;str&gt; = args.collect();
     dbg!(&amp;args);
 
@@ -1837,15 +1945,15 @@ pub fn main() {
     // Since &amp;str is Copy, you can avoid the creation of &amp;&amp;str by adding .copied()
     match args.get(1).copied() {
         None =&gt; page_with_inputs(),
-        Some(&quot;help&quot;) =&gt; print_help(),
-        Some(&quot;print&quot;) =&gt; {
+        Some("help") =&gt; print_help(),
+        Some("print") =&gt; {
             match args.get(2).copied() {
                 // second argument
                 Some(greet_name) =&gt; print_greet_name(greet_name),
-                None =&gt; wsm::set_html_element_inner_text(&quot;div_for_errors&quot;,&quot;Error: Missing second argument for print.&quot;),
+                None =&gt; wsm::set_html_element_inner_text("div_for_errors","Error: Missing second argument for print."),
             }
         }
-        Some(&quot;upper&quot;) =&gt; {
+        Some("upper") =&gt; {
             match args.get(2).copied() {
                 // second argument
                 Some(greet_name) =&gt; {
@@ -1854,21 +1962,21 @@ pub fn main() {
                         // do nothing
                         Ok(()) =&gt; (),
                         // log error from anyhow
-                        Err(err) =&gt; wsm::set_html_element_inner_text(&quot;div_for_errors&quot;,&amp;format!(&quot;Error: {err}&quot;)),
+                        Err(err) =&gt; wsm::set_html_element_inner_text("div_for_errors",&amp;format!("Error: {err}")),
                     }
                 }
-                None =&gt; wsm::set_html_element_inner_text(&quot;div_for_errors&quot;,&quot;Error: Missing second argument for upper.&quot;),
+                None =&gt; wsm::set_html_element_inner_text("div_for_errors","Error: Missing second argument for upper."),
             }
         }
-        _ =&gt; wsm::set_html_element_inner_text(&quot;div_for_errors&quot;,&quot;Error: Unrecognized arguments. Try \n http://localhost:4000/cargo_auto_template_new_wasm#help&quot;),
+        _ =&gt; wsm::set_html_element_inner_text("div_for_errors","Error: Unrecognized arguments. Try \n http://localhost:4000/cargo_auto_template_new_wasm#help"),
     }
 }
 
 
 /// print help
 fn print_help() {
-    wsm::set_html_element_inner_text(&quot;div_for_wasm_html_injecting&quot;,
-        r#&quot;
+    wsm::set_html_element_inner_text("div_for_wasm_html_injecting",
+        r#"
     Welcome to cargo_auto_template_new_wasm !
     
     This is a simple yet complete template for a WASM program written in Rust.
@@ -1883,7 +1991,7 @@ fn print_help() {
     http://localhost:4000/cargo_auto_template_new_wasm#upper/WORLD
 
     © 2023 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
-&quot;#,
+"#,
     );
 }
 
@@ -1891,59 +1999,59 @@ fn print_help() {
 pub fn page_with_inputs() {
     // rust has `Raw string literals` that are great!
     // just add r# before the starting double quotes and # after the ending double quotes.
-    let html = r#&quot;
+    let html = r#"
 &lt;h1&gt;Template_new_wasm&lt;/h1&gt;
 &lt;p&gt;Write a command in the Argument 1: print or upper&lt;/p&gt;
-&lt;div class=&quot;input-wrap&quot;&gt;
-    &lt;label for=&quot;arg_1&quot;&gt;Argument 1:&lt;/label&gt;  
-    &lt;input style=&quot;width:20%;&quot; type=&quot;text&quot; id=&quot;arg_1&quot; value=&quot;upper&quot;/&gt;
+&lt;div class="input-wrap"&gt;
+    &lt;label for="arg_1"&gt;Argument 1:&lt;/label&gt;  
+    &lt;input style="width:20%;" type="text" id="arg_1" value="upper"/&gt;
 &lt;/div&gt;
 &lt;p&gt;Write a name in the Argument 2: world or WORLD&lt;/p&gt;
-&lt;div class=&quot;input-wrap&quot;&gt;
-    &lt;label for=&quot;arg_2&quot;&gt;Argument 2:&lt;/label&gt;  
-    &lt;input style=&quot;width:20%;&quot; type=&quot;text&quot; id=&quot;arg_2&quot; value=&quot;world&quot;/&gt;
+&lt;div class="input-wrap"&gt;
+    &lt;label for="arg_2"&gt;Argument 2:&lt;/label&gt;  
+    &lt;input style="width:20%;" type="text" id="arg_2" value="world"/&gt;
 &lt;/div&gt;
 &lt;p&gt;Click on Run&lt;/p&gt;
-&lt;div class=&quot;input-wrap&quot;&gt;
-    &lt;input type=&quot;button&quot; class=&quot;button&quot; id=&quot;btn_run&quot; value=&quot;Run&quot;/&gt;
+&lt;div class="input-wrap"&gt;
+    &lt;input type="button" class="button" id="btn_run" value="Run"/&gt;
 &lt;/div&gt;
-&lt;p class=&quot;small&quot;&gt;bestia.dev&lt;/p&gt;
-        &quot;#;
+&lt;p class="small"&gt;bestia.dev&lt;/p&gt;
+        "#;
 
     // WARNING for HTML INJECTION! Never put user provided strings in set_html_element_inner_html.
     // Only correctly html encoded strings can use this function.
-    wsm::set_html_element_inner_html(&quot;div_for_wasm_html_injecting&quot;,html);
-    wsm::add_listener_to_button(&quot;btn_run&quot;, &amp;on_click_btn_run);
+    wsm::set_html_element_inner_html("div_for_wasm_html_injecting",html);
+    wsm::add_listener_to_button("btn_run", &amp;on_click_btn_run);
 }
 
 /// the listener calls this function
 fn on_click_btn_run() {
-    let arg_1 = wsm::get_input_element_value_string_by_id(&quot;arg_1&quot;);
-    let arg_2 = wsm::get_input_element_value_string_by_id(&quot;arg_2&quot;);
-    if !arg_1.is_empty() &amp;&amp; !arg_2.is_empty() {
+    let arg_1 = wsm::get_input_element_value_string_by_id("arg_1");
+    let arg_2 = wsm::get_input_element_value_string_by_id("arg_2");
+    if !arg_1.is_empty() &amp;& !arg_2.is_empty() {
         // pass arguments as URL in a new tab
-        let url = format!(&quot;/cargo_auto_template_new_wasm#{arg_1}/{arg_2}&quot;);
+        let url = format!("/cargo_auto_template_new_wasm#{arg_1}/{arg_2}");
         wsm::open_url_in_new_tab(&amp;url);
     } else {
         // write on the same web page
         wsm::set_html_element_inner_text(
-            &quot;div_for_errors&quot;,
-            &amp;format!(&quot;Error: Both arguments are mandatory.&quot;),
+            "div_for_errors",
+            &amp;format!("Error: Both arguments are mandatory."),
         );
     }
 }
 
 // remove downloading message
 fn remove_downloading_message() {
-    wsm::set_html_element_inner_text(&quot;div_for_wasm_html_injecting&quot;,&quot;&quot;);
+    wsm::set_html_element_inner_text("div_for_wasm_html_injecting","");
 }
 
 /// print my name
 fn print_greet_name(greet_name: &amp;str) {
-    wsm::set_html_element_inner_text(&quot;div_for_wasm_html_injecting&quot;,&amp;format!(
-r#&quot;The result is
+    wsm::set_html_element_inner_text("div_for_wasm_html_injecting",&amp;format!(
+r#"The result is
 {}
-&quot;#,
+"#,
     lib_mod::format_hello_phrase(greet_name)
     ));
 }
@@ -1953,19 +2061,19 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
     // the function from `lib.rs`, can return error
     // use the ? syntax to bubble the error up one level or continue (early return)
     let upper = lib_mod::format_upper_hello_phrase(greet_name)?;
-    wsm::set_html_element_inner_text(&quot;div_for_wasm_html_injecting&quot;,&amp;format!(
-r#&quot;The result is
+    wsm::set_html_element_inner_text("div_for_wasm_html_injecting",&amp;format!(
+r#"The result is
 {upper}
-&quot;#
+"#
     ));
     // return
     Ok(())
 }
-&quot;###</span>,
+"###</span>,
 });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;src/lib.rs&quot;</span>,
-        file_content: <span class="string">r###&quot;//! src/lib.rs
+        file_name: <span class="string">"src/lib.rs"</span>,
+        file_content: <span class="string">r###"//! src/lib.rs
 //! This file has just the wasm_bindgen_start() function
 //! and calls into main_mod.rs.
 //! So the structure of the project modules can be similar to a binary CLI executable.
@@ -1974,7 +2082,7 @@ r#&quot;The result is
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2024.207.2303 date: 2024-02-07 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2024.209.128 date: 2024-02-09 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
 //!
 //!  ![status](https://img.shields.io/badge/maintained-green)
 //!  ![status](https://img.shields.io/badge/ready_for_use-green)
@@ -2014,7 +2122,7 @@ r#&quot;The result is
 //! ```
 //!
 //! We can also add `automation tasks` to an existing Rust project.
-//! Inside your Rust project directory (the one with Cargo.toml or Cargo-auto.toml) run:  
+//! Inside your Rust project directory (the one with Cargo.toml) run:  
 //!
 //! ```bash
 //! cargo auto new_auto
@@ -2032,10 +2140,10 @@ r#&quot;The result is
 //! Cargo is a great tool for building Rust projects. It has all the basics: `cargo build`, `cargo build --release`, `cargo fmt`, `cargo test`, `cargo doc`,...  
 //! But sometimes we need to do more things like copying some files, publishing to FTP, or entering long commands. These repetitive tasks must be automated.  
 //! Task automation makes work easier and faster, and simplifies the workflow while improving the consistency and accuracy of workflows.  
-//! This is also sometimes referred to as &quot;workflow automation.&quot;  
+//! This is also sometimes referred to as "workflow automation."  
 //! There are many different build systems and task runners there: `make`, `cmake`, `shell scripts`, `cargo-xtask`, `cargo-make`, `cargo-task`, `cargo-script`, `cargo-run-script`, `runner`, `python scripts`, `powershell scripts`, `cmd prompt scripts`, ...  
 //! Sadly there is no standard in the Rust community for now.  
-//! I want something similar to [build.rs](https://doc.rust-lang.org/cargo/reference/build-scripts.html), so I can write my &quot;tasks&quot; in pure Rust I don&#39;t want to learn another meta language with weird syntax and difficulty to debug. So I will make something really simple, easy, rusty, and extensible.  
+//! I want something similar to [build.rs](https://doc.rust-lang.org/cargo/reference/build-scripts.html), so I can write my "tasks" in pure Rust I don't want to learn another meta language with weird syntax and difficulty to debug. So I will make something really simple, easy, rusty, and extensible.  
 //!
 //! ## cargo auto new_cli
 //!
@@ -2099,15 +2207,15 @@ r#&quot;The result is
 //!     match arg_1 {
 //!         None =&gt; print_help(),
 //!         Some(task) =&gt; {            
-//!             println!(&quot;Running auto task: {}&quot;, &amp;task);
-//!             if &amp;task == &quot;build&quot;{
+//!             println!("Running auto task: {}", &amp;task);
+//!             if &amp;task == "build"{
 //!                 task_build();
-//!             } else if &amp;task == &quot;release&quot; {
+//!             } else if &amp;task == "release" {
 //!                 task_release();
-//!             } else if &amp;task == &quot;doc&quot; {
+//!             } else if &amp;task == "doc" {
 //!                 task_doc();
 //!             } else {
-//!                 println!(&quot;Task {} is unknown.&quot;, &amp;task);
+//!                 println!("Task {} is unknown.", &amp;task);
 //!                 print_help();
 //!             }
 //!         }
@@ -2116,39 +2224,39 @@ r#&quot;The result is
 //!
 //! /// write a comprehensible help for user defined tasks
 //! fn print_help() {
-//!     println!(r#&quot;
+//!     println!(r#"
 //!     User defined tasks in automation_tasks_rs:
 //! cargo auto build - builds the crate in debug mode
 //! cargo auto release - builds the crate in release mode
 //! cargo auto docs - builds the docs
-//! &quot;#);
+//! "#);
 //! }
 //!
 //! // region: tasks
 //!
 //! /// cargo build
 //! fn task_build() {
-//!     run_shell_command(&quot;cargo fmt&quot;);
-//!     run_shell_command(&quot;cargo build&quot;);
+//!     run_shell_command("cargo fmt");
+//!     run_shell_command("cargo build");
 //! }
 //!
 //! /// cargo build --release
 //! fn task_release() {
-//!     run_shell_command(&quot;cargo fmt&quot;);
-//!     run_shell_command(&quot;cargo build --release&quot;);
+//!     run_shell_command("cargo fmt");
+//!     run_shell_command("cargo build --release");
 //! }
 //!
 //! /// cargo doc, then copies to /docs/ folder, because this is a github standard folder
 //! fn task_doc() {
-//!     run_shell_command(&quot;cargo doc --no-deps --document-private-items&quot;);
+//!     run_shell_command("cargo doc --no-deps --document-private-items");
 //!     // copy target/doc into docs/ because it is github standard
-//!     run_shell_command(&quot;rsync -a --info=progress2 --delete-after target/doc/ docs/&quot;);
+//!     run_shell_command("rsync -a --info=progress2 --delete-after target/doc/ docs/");
 //!     // Create simple index.html file in docs directory
 //!     run_shell_command(&amp;format!(
-//!         &quot;echo \&quot;&lt;meta http-equiv=\\\&quot;refresh\\\&quot; content=\\\&quot;0; url={}/index.html\\\&quot; /&gt;\&quot; &gt; docs/index.html&quot;,
-//!         cargo_toml.package_name().replace(&quot;-&quot;,&quot;_&quot;)
+//!         "echo \"&lt;meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" /&gt;\" &gt; docs/index.html",
+//!         cargo_toml.package_name().replace("-","_")
 //!     ));
-//!     run_shell_command(&quot;cargo fmt&quot;);
+//!     run_shell_command("cargo fmt");
 //! }
 //!
 //! // endregion: tasks
@@ -2238,19 +2346,20 @@ pub fn wasm_bindgen_start() -&gt; Result&lt;(), JsValue&gt; {
     console_error_panic_hook::set_once();
     // write the app version just for debug purposes
     wsm::debug_write(&amp;format!(
-        &quot;cargo_auto_template_new_wasm v{}&quot;,
-        env!(&quot;CARGO_PKG_VERSION&quot;)
+        "cargo_auto_template_new_wasm v{}",
+        env!("CARGO_PKG_VERSION")
     ));
 
     main_mod::main();
     // return
     Ok(())
 }
-&quot;###</span>,
+"###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;.gitattributes&quot;</span>,
-        file_content: <span class="string">r###&quot;# Specific git config for the project
+        file_name: <span class="string">".gitattributes"</span>,
+        file_content: <span class=
+"string">r###"# Specific git config for the project
 
 # Declare files that will always have LF line endings on checkout.
 *.rs text eol=lf
@@ -2263,11 +2372,12 @@ pub fn wasm_bindgen_start() -&gt; Result&lt;(), JsValue&gt; {
 *.html text eol=lf
 *.js text eol=lf
 *.css text eol=lf
-&quot;###</span>,
+"###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;.gitignore&quot;</span>,
-        file_content: <span class="string">r###&quot;# Generated by Cargo
+        file_name: <span class="string">".gitignore"</span>,
+        file_content: <span class=
+"string">r###"# Generated by Cargo
 # will have compiled files and executables
 /target/
 
@@ -2284,53 +2394,57 @@ pub fn wasm_bindgen_start() -&gt; Result&lt;(), JsValue&gt; {
 # not needed in commits, but also not a problem if they are committed
 /.automation_tasks_rs_file_hashes.json
 /.auto_version_from_date.json
-&quot;###</span>,
+"###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;automation_tasks_rs/.vscode/settings.json&quot;</span>,
-        file_content: <span class="string">r###&quot;{
-    &quot;cSpell.words&quot;: [
-        &quot;alloc&quot;,
-        &quot;bestia&quot;,
-        &quot;endregion&quot;,
-        &quot;new_cli&quot;,
-        &quot;octocrab&quot;,
-        &quot;plantuml&quot;,
-        &quot;zcvf&quot;
+        file_name: <span class=
+"string">"automation_tasks_rs/.vscode/settings.json"</span>,
+        file_content: <span class="string">r###"{
+    "cSpell.words": [
+        "alloc",
+        "bestia",
+        "endregion",
+        "new_cli",
+        "octocrab",
+        "plantuml",
+        "zcvf"
     ]
-}&quot;###</span>,
+}"###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;automation_tasks_rs/Cargo.toml&quot;</span>,
-        file_content: <span class="string">r###&quot;
+        file_name: <span class=
+"string">"automation_tasks_rs/Cargo.toml"</span>,
+        file_content: <span class="string">r###"
 [package]
-name = &quot;automation_tasks_rs&quot;
-version = &quot;0.1.1&quot;
-authors = [&quot;bestia.dev&quot;]
-homepage = &quot;https://bestia.dev&quot;
-edition = &quot;2021&quot;
-description = &quot;cargo auto - automation tasks written in Rust language&quot;
+name = "automation_tasks_rs"
+version = "0.1.1"
+authors = ["bestia.dev"]
+homepage = "https://bestia.dev"
+edition = "2021"
+description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = &quot;1.1.2&quot;&quot;###</span>,
+cargo_auto_lib = "1.1.2""###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem{
-            file_name :<span class="string">&quot;automation_tasks_rs/src/main.rs&quot;</span>,
-            file_content : <span class="string">r###&quot;//! automation_tasks_rs for cargo_auto_template_new_wasm
+            file_name :<span class=
+"string">"automation_tasks_rs/src/main.rs"</span>,
+            file_content : <span class=
+"string">r###"//! automation_tasks_rs for cargo_auto_template_new_wasm
 
 use cargo_auto_lib::*;
 
 // ANSI colors for Linux terminal
 // https://github.com/shiena/ansicolor/blob/master/README.md
 #[allow(dead_code)]
-pub const RED: &amp;str = &quot;\x1b[31m&quot;;
+pub const RED: &amp;str = "\x1b[31m";
 #[allow(dead_code)]
-pub const YELLOW: &amp;str = &quot;\x1b[33m&quot;;
+pub const YELLOW: &amp;str = "\x1b[33m";
 #[allow(dead_code)]
-pub const GREEN: &amp;str = &quot;\x1b[32m&quot;;
+pub const GREEN: &amp;str = "\x1b[32m";
 #[allow(dead_code)]
-pub const RESET: &amp;str = &quot;\x1b[0m&quot;;
+pub const RESET: &amp;str = "\x1b[0m";
 
 
 fn main() {
@@ -2352,25 +2466,25 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args) {
     match arg_1 {
         None =&gt; print_help(),
         Some(task) =&gt; {
-            if &amp;task == &quot;completion&quot; {
+            if &amp;task == "completion" {
                 completion();
             } else {
-                println!(&quot;{YELLOW}Running automation task: {task}{RESET}&quot;);
-                if &amp;task == &quot;build&quot; {
+                println!("{YELLOW}Running automation task: {task}{RESET}");
+                if &amp;task == "build" {
                     task_build();
-                } else if &amp;task == &quot;release&quot; {
+                } else if &amp;task == "release" {
                     task_release();
-                } else if &amp;task == &quot;doc&quot; {
+                } else if &amp;task == "doc" {
                     task_doc();
-                } else if &amp;task == &quot;test&quot; {
+                } else if &amp;task == "test" {
                     task_test();
-                } else if &amp;task == &quot;commit_and_push&quot; {
+                } else if &amp;task == "commit_and_push" {
                     let arg_2 = args.next();
                     task_commit_and_push(arg_2);
-                } else if &amp;task == &quot;publish_to_web&quot; {
+                } else if &amp;task == "publish_to_web" {
                     task_publish_to_web();                    
                 } else {
-                    println!(&quot;{RED}Error: Task {task} is unknown.{RESET}&quot;);
+                    println!("{RED}Error: Task {task} is unknown.{RESET}");
                     print_help();
                 }
             }
@@ -2381,7 +2495,7 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args) {
 /// write a comprehensible help for user defined tasks
 fn print_help() {
     println!(
-        r#&quot;
+        r#"
     {YELLOW}Welcome to cargo-auto !
     This program automates your custom tasks when developing a Rust project.{RESET}
 
@@ -2390,13 +2504,13 @@ fn print_help() {
 {GREEN}cargo auto release{RESET}{YELLOW} - builds the crate in release mode, fmt, increment version{RESET}
 {GREEN}cargo auto doc{RESET}{YELLOW} - builds the docs, copy to docs directory{RESET}
 {GREEN}cargo auto test{RESET}{YELLOW} - runs all the tests{RESET}
-{GREEN}cargo auto commit_and_push &quot;message&quot;{RESET}{YELLOW} - commits with message and push with mandatory message{RESET}
+{GREEN}cargo auto commit_and_push "message"{RESET}{YELLOW} - commits with message and push with mandatory message{RESET}
     {YELLOW}(If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.){RESET}
 {GREEN}cargo auto publish_to_web - publish to web, git tag{RESET}
     {YELLOW}(You need credentials for publishing over SSH. Use ssh-agent and ssh-add to store the credentials for SSH.){RESET}
 
     {YELLOW}© 2023 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
-&quot;#
+"#
     );
     print_examples_cmd();
 }
@@ -2404,9 +2518,9 @@ fn print_help() {
 /// all example commands in one place
 fn print_examples_cmd(){
 /*
-    println!(r#&quot;{YELLOW}run examples:{RESET}{GREEN}
+    println!(r#"{YELLOW}run examples:{RESET}{GREEN}
 cargo run --example example1{RESET}
-&quot;#);
+"#);
 */
 }
 
@@ -2416,14 +2530,14 @@ fn completion() {
     let word_being_completed = args[2].as_str();
     let last_word = args[3].as_str();
 
-    if last_word == &quot;cargo-auto&quot; || last_word == &quot;auto&quot; {
-        let sub_commands = vec![&quot;build&quot;, &quot;release&quot;, &quot;doc&quot;, &quot;test&quot;, &quot;commit_and_push&quot;, &quot;publish_to_web&quot;];
+    if last_word == "cargo-auto" || last_word == "auto" {
+        let sub_commands = vec!["build", "release", "doc", "test", "commit_and_push", "publish_to_web"];
         completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
     /*
     // the second level if needed
-    else if last_word == &quot;new&quot; {
-        let sub_commands = vec![&quot;x&quot;];
+    else if last_word == "new" {
+        let sub_commands = vec!["x"];
         completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
     */
@@ -2436,13 +2550,13 @@ fn completion() {
 /// wasm-pack build
 fn task_build() {
     auto_version_increment_semver_or_date();
-    run_shell_command(&quot;cargo fmt&quot;);
+    run_shell_command("cargo fmt");
     auto_cargo_toml_to_md();
-    auto_lines_of_code(&quot;&quot;);
-    run_shell_command(&quot;wasm-pack build --target web&quot;);
-    run_shell_command(&quot;\\rsync -a --delete-after pkg/ web_server_folder/cargo_auto_template_new_wasm/pkg/&quot;);
+    auto_lines_of_code("");
+    run_shell_command("wasm-pack build --target web");
+    run_shell_command("\\rsync -a --delete-after pkg/ web_server_folder/cargo_auto_template_new_wasm/pkg/");
     println!(
-        r#&quot;
+        r#"
     {YELLOW}After `cargo auto build`, open port 4000 in VSCode and run the basic web server
     in a separate VSCode bash terminal, so it can serve constantly in the background.{RESET}
 {GREEN}basic-http-server -a 0.0.0.0:4000 ./web_server_folder{RESET}
@@ -2454,7 +2568,7 @@ fn task_build() {
 {GREEN}http://localhost:4000/cargo_auto_template_new_wasm#upper/WORLD{RESET}
     {YELLOW}If all is fine, run{RESET}
 {GREEN}cargo auto release{RESET}
-&quot;#
+"#
     );
 }
 
@@ -2462,13 +2576,13 @@ fn task_build() {
 fn task_release() {
     auto_version_increment_semver_or_date();
     auto_cargo_toml_to_md();
-    auto_lines_of_code(&quot;&quot;);
+    auto_lines_of_code("");
 
-    run_shell_command(&quot;cargo fmt&quot;);
-    run_shell_command(&quot;wasm-pack build --target web&quot;);
-    run_shell_command(&quot;\\rsync -a --delete-after pkg/ web_server_folder/cargo_auto_template_new_wasm/pkg/&quot;);
+    run_shell_command("cargo fmt");
+    run_shell_command("wasm-pack build --target web");
+    run_shell_command("\\rsync -a --delete-after pkg/ web_server_folder/cargo_auto_template_new_wasm/pkg/");
     println!(
-        r#&quot;
+        r#"
     {YELLOW}After `cargo auto build`, open port 4000 in VSCode and run the basic web server
     in a separate VSCode bash terminal, so it can serve constantly in the background.{RESET}
 {GREEN}basic-http-server -a 0.0.0.0:4000 ./web_server_folder{RESET}
@@ -2480,7 +2594,7 @@ fn task_release() {
 {GREEN}http://localhost:4000/cargo_auto_template_new_wasm#upper/WORLD{RESET}
     {YELLOW}If all is fine, run{RESET}
 {GREEN}cargo auto doc{RESET}
-&quot;#
+"#
     );
     print_examples_cmd();
 }
@@ -2489,52 +2603,52 @@ fn task_release() {
 fn task_doc() {
     let cargo_toml = CargoToml::read();
     auto_cargo_toml_to_md();
-    auto_lines_of_code(&quot;&quot;);
+    auto_lines_of_code("");
     auto_plantuml(&amp;cargo_toml.package_repository().unwrap());
     auto_md_to_doc_comments();
 
-    run_shell_command(&quot;cargo doc --no-deps --document-private-items&quot;);
+    run_shell_command("cargo doc --no-deps --document-private-items");
     // copy target/doc into docs/ because it is github standard
-    run_shell_command(&quot;rsync -a --info=progress2 --delete-after target/doc/ docs/&quot;);
+    run_shell_command("rsync -a --info=progress2 --delete-after target/doc/ docs/");
     // Create simple index.html file in docs directory
     run_shell_command(&amp;format!(
-        &quot;echo \&quot;&lt;meta http-equiv=\\\&quot;refresh\\\&quot; content=\\\&quot;0; url={}/index.html\\\&quot; /&gt;\&quot; &gt; docs/index.html&quot;,
-        cargo_toml.package_name().replace(&quot;-&quot;,&quot;_&quot;)
+        "echo \"&lt;meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" /&gt;\" &gt; docs/index.html",
+        cargo_toml.package_name().replace("-","_")
     ));
-    run_shell_command(&quot;cargo fmt&quot;);
+    run_shell_command("cargo fmt");
     // message to help user with next move
     println!(
-        r#&quot;
+        r#"
     {YELLOW}After `cargo auto doc`, check `docs/index.html`. If ok, then test the documentation code examples{RESET}
 {GREEN}cargo auto test{RESET}
-    {YELLOW}{RESET}&quot;#
+    {YELLOW}{RESET}"#
     );
 }
 
 /// cargo test
 fn task_test() {
-    run_shell_command(&quot;cargo test&quot;);
+    run_shell_command("cargo test");
     println!(
-        r#&quot;
+        r#"
     {YELLOW}After `cargo auto test`. If ok, then {RESET}
-{GREEN}cargo auto commit_and_push &quot;message&quot;{RESET}
+{GREEN}cargo auto commit_and_push "message"{RESET}
     {YELLOW}with mandatory commit message{RESET}
-{GREEN}{RESET}&quot;#
+{GREEN}{RESET}"#
     );
 }
 
 /// commit and push
 fn task_commit_and_push(arg_2: Option&lt;String&gt;) {
     match arg_2 {
-        None =&gt; println!(&quot;{RED}Error: Message for commit is mandatory.{RESET}&quot;),
+        None =&gt; println!("{RED}Error: Message for commit is mandatory.{RESET}"),
         Some(message) =&gt; {
-            run_shell_command(&amp;format!(r#&quot;git add -A &amp;&amp; git commit --allow-empty -m &quot;{}&quot;&quot;#, message));
-            run_shell_command(&quot;git push&quot;);            
+            run_shell_command(&amp;format!(r#"git add -A &amp;& git commit --allow-empty -m "{}""#, message));
+            run_shell_command("git push");            
             println!(
-                r#&quot;
-    {YELLOW}After `cargo auto commit_and_push &quot;message&quot;`{RESET}
+                r#"
+    {YELLOW}After `cargo auto commit_and_push "message"`{RESET}
 {GREEN}cargo auto publish_to_crates_io{RESET}
-    {YELLOW}{RESET}&quot;#
+    {YELLOW}{RESET}"#
                 );
         }
     }
@@ -2542,48 +2656,49 @@ fn task_commit_and_push(arg_2: Option&lt;String&gt;) {
 
 /// publish to web
 fn task_publish_to_web() {
-    println!(r#&quot;{YELLOW}Use ssh-agent and ssh-add to store your credentials for publish to web.{RESET}&quot;#);
+    println!(r#"{YELLOW}Use ssh-agent and ssh-add to store your credentials for publish to web.{RESET}"#);
     let cargo_toml = CargoToml::read();
     // git tag
     let shell_command = format!(
-        &quot;git tag -f -a v{version} -m version_{version}&quot;,
+        "git tag -f -a v{version} -m version_{version}",
         version = cargo_toml.package_version()
     );
     run_shell_command(&amp;shell_command);
     let shell_command = format!(
-        &quot;rsync -e ssh -a --info=progress2 --delete-after ~/rustprojects/{package_name}/web_server_folder/ project_author@project_homepage:/var/www/project_homepage/pwa_short_name/&quot;,
+        "rsync -e ssh -a --info=progress2 --delete-after ~/rustprojects/{package_name}/web_server_folder/ project_author@project_homepage:/var/www/project_homepage/pwa_short_name/",
         package_name = cargo_toml.package_name()
     );
     run_shell_command(&amp;shell_command);
     println!(
-        r#&quot;{YELLOW}
+        r#"{YELLOW}
     After `cargo auto publish_to_web`, 
     check 
 https://bestia.dev/{package_name}
-{RESET}&quot;#,
+{RESET}"#,
         package_name = cargo_toml.package_name()
     );
 }
 
 // endregion: tasks
-&quot;###</span>,
+"###</span>,
 });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;automation_tasks_rs/.gitignore&quot;</span>,
-        file_content: <span class="string">r###&quot;/target
+        file_name: <span class=
+"string">"automation_tasks_rs/.gitignore"</span>,
+        file_content: <span class="string">r###"/target
 
 # not needed in commits, but also not a problem if they are committed
 /.file_hashes.json
-&quot;###</span>,
+"###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class="string">&quot;LICENSE&quot;</span>,
-        file_content: <span class="string">r###&quot;MIT License
+        file_name: <span class="string">"LICENSE"</span>,
+        file_content: <span class="string">r###"MIT License
 
 Copyright (c) 2023 bestia.dev
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the &quot;Software&quot;), to deal
+of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
@@ -2592,18 +2707,23 @@ furnished to do so, subject to the following conditions:
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
 AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-&quot;###</span>,
+"###</span>,
     });
-    <span class="comment">// endregion: files copied into strings by automation tasks
+    <span class=
+"comment">// endregion: files copied into strings by automation tasks
 
     // return
     </span>vec_file
 }
-</code></pre></div></section></main></body></html>
+</code></pre></div>
+</section>
+</main>
+</body>
+</html>
