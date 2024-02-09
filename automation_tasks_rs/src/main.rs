@@ -74,13 +74,13 @@ fn print_help() {
 {GREEN}cargo auto release{RESET}{YELLOW} - builds the crate in release mode, fmt, increment version{RESET}
 {GREEN}cargo auto doc{RESET}{YELLOW} - builds the docs, copy to docs directory{RESET}
 {GREEN}cargo auto test{RESET}{YELLOW} - runs all the tests{RESET}
-{GREEN}cargo auto commit_and_push "message"{RESET}{YELLOW} - commits with message and push with mandatory message
-    (If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.){RESET}
-{GREEN}cargo auto publish_to_crates_io{RESET}{YELLOW} - publish to crates.io, git tag
-    (You need credentials for publishing. On crates.io get the 'access token'. Then save it locally once and forever with the command 
-    ` cargo login TOKEN` use a space before the command to avoid saving the secret token in bash history.){RESET}
-{GREEN}cargo auto github_new_release{RESET}{YELLOW} - creates new release on github
-    This task needs PAT (personal access token from github) in the env variable:{RESET}
+{GREEN}cargo auto commit_and_push "message"{RESET}{YELLOW} - commits with message and push with mandatory message{RESET}
+    {YELLOW}(If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.){RESET}
+{GREEN}cargo auto publish_to_crates_io{RESET}{YELLOW} - publish to crates.io, git tag{RESET}
+    {YELLOW}(You need credentials for publishing. On crates.io get the 'access token'. Then save it locally once and forever with the command{RESET}
+    {YELLOW}`cargo login TOKEN` use a space before the command to avoid saving the secret token in bash history.){RESET}
+{GREEN}cargo auto github_new_release{RESET}{YELLOW} - creates new release on github{RESET}
+    {YELLOW}This task needs PAT (personal access token from github) in the env variable:{RESET}
 {GREEN} export GITHUB_TOKEN=paste_token_here{RESET}
 
     {YELLOW}© 2024 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
