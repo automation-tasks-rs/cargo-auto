@@ -1,70 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta name="generator" content=
-"HTML Tidy for HTML5 for Linux version 5.6.0">
+<meta name="generator" content="HTML Tidy for HTML5 for Linux version 5.6.0">
 <meta charset="utf-8">
-<meta name="viewport" content=
-"width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="generator" content="rustdoc">
-<meta name="description" content=
-"Source of the Rust file `src/template_new_cli_mod.rs`.">
+<meta name="description" content="Source of the Rust file `src/template_new_cli_mod.rs`.">
 <title>template_new_cli_mod.rs - source</title>
-<link rel="preload" as="font" type="font/woff2" crossorigin=""
-href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin=""
-href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin=""
-href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin=""
-href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin=""
-href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2">
-<link rel="preload" as="font" type="font/woff2" crossorigin=""
-href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2">
-<link rel="stylesheet" href=
-"../../static.files/normalize-76eba96aa4d2e634.css">
-<link rel="stylesheet" href=
-"../../static.files/rustdoc-fa3bb1812debf86c.css">
-<meta name="rustdoc-vars" data-root-path="../../"
-data-static-root-path="../../static.files/" data-current-crate=
-"cargo_auto" data-themes="" data-resource-suffix=""
-data-rustdoc-version="1.74.1 (a28077b28 2023-12-04)" data-channel=
-"1.74.1" data-search-js="search-8be46b629f5f14a8.js"
+<link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../static.files/SourceSerif4-Bold-a2c9cd1067f8b328.ttf.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2">
+<link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css">
+<link rel="stylesheet" href="../../static.files/rustdoc-fa3bb1812debf86c.css">
+<meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="cargo_auto" data-themes=""
+data-resource-suffix="" data-rustdoc-version="1.74.1 (a28077b28 2023-12-04)" data-channel="1.74.1" data-search-js="search-8be46b629f5f14a8.js"
 data-settings-js="settings-74424d7eec62a23e.js">
-<script src=
-"../../static.files/storage-fec3eaa3851e447d.js"></script>
-<script defer src=
-"../../static.files/src-script-3280b574d94e47b4.js"></script>
+<script src="../../static.files/storage-fec3eaa3851e447d.js"></script>
+<script defer src="../../static.files/src-script-3280b574d94e47b4.js"></script>
 <script defer src="../../src-files.js"></script>
-<script defer src=
-"../../static.files/main-c5bd66d33317d69f.js"></script><noscript>
-<link rel="stylesheet" href=
-"../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript>
-<link rel="alternate icon" type="image/png" href=
-"../../static.files/favicon-16x16-8b506e7a72182f1c.png">
-<link rel="alternate icon" type="image/png" href=
-"../../static.files/favicon-32x32-422f7d1d52889060.png">
-<link rel="icon" type="image/svg+xml" href=
-"../../static.files/favicon-2c020d218678b618.svg">
+<script defer src="../../static.files/main-c5bd66d33317d69f.js"></script><noscript>
+<link rel="stylesheet" href="../../static.files/noscript-5d8b3c7633ad77ba.css"></noscript>
+<link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png">
+<link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png">
+<link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg">
 </head>
 <body class="rustdoc src">
 <!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
 <nav class="sidebar"></nav>
 <main>
-<nav class="sub"><a class="sub-logo-container" href=
-"../../cargo_auto/index.html"><img class="rust-logo" src=
+<nav class="sub"><a class="sub-logo-container" href="../../cargo_auto/index.html"><img class="rust-logo" src=
 "../../static.files/rust-logo-151179464ae7ed46.svg" alt="logo"></a>
-<form class="search-form"><input class="search-input" name="search"
-aria-label="Run search in the documentation" autocomplete="off"
-spellcheck="false" placeholder=
-"Click or press ‘S’ to search, ‘?’ for more options…" type=
-"search">
-<div id="help-button" title="help" tabindex="-1"><a href=
-"../../help.html">?</a></div>
-<div id="settings-menu" tabindex="-1"><a href="../../settings.html"
-title="settings"><img width="22" height="22" alt="Change settings"
-src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div>
+<form class="search-form"><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false"
+placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search">
+<div id="help-button" title="help" tabindex="-1"><a href="../../help.html">?</a></div>
+<div id="settings-menu" tabindex="-1"><a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src=
+"../../static.files/wheel-7b819b6101059cd0.svg"></a></div>
 </form>
 </nav>
 <section id="main-content" class="content">
@@ -1292,76 +1265,54 @@ src="../../static.files/wheel-7b819b6101059cd0.svg"></a></div>
 <a href="#1220" id="1220">1220</a>
 <a href="#1221" id="1221">1221</a>
 </pre></div>
-<pre class="rust"><code><span class=
-"doccomment">//! this strings are copied from the template_new_cli folder
+<pre class="rust"><code><span class="doccomment">//! this strings are copied from the template_new_cli folder
 //! because when publishing to crates.io, only the main bin-executable is transferred
 
-</span><span class=
-"kw">use crate</span>::{GREEN, RED, RESET, YELLOW};
+</span><span class="kw">use crate</span>::{GREEN, RED, RESET, YELLOW};
 
-<span class="kw">pub fn </span>new_cli(arg_2: <span class=
-"prelude-ty">Option</span>&lt;String&gt;) {
+<span class="kw">pub fn </span>new_cli(arg_2: <span class="prelude-ty">Option</span>&lt;String&gt;) {
     <span class="kw">match </span>arg_2 {
-        <span class="prelude-val">None </span>=&gt; <span class=
-"macro">println!</span>(<span class=
+        <span class="prelude-val">None </span>=&gt; <span class="macro">println!</span>(<span class=
 "string">"{RED}Error: Project name argument is missing: `cargo auto new_cli project_name`{RESET}"</span>),
         <span class="prelude-val">Some</span>(project_name) =&gt; {
             copy_to_files(<span class="kw-2">&</span>project_name);
-            <span class="macro">println!</span>(<span class=
-"string">""</span>);
+            <span class="macro">println!</span>(<span class="string">""</span>);
             <span class="macro">println!</span>(<span class=
 "string">"    {YELLOW}The command `crate auto new_cli` generated the directory `{project_name}`{RESET}"</span>);
             <span class="macro">println!</span>(<span class=
 "string">"    {YELLOW}You can open this new Rust project `{project_name}` in a new Rust editor.{RESET}"</span>,);
-            <span class="macro">println!</span>(<span class=
-"string">"    {YELLOW}For example VSCode:{RESET}"</span>);
-            <span class="macro">println!</span>(<span class=
-"string">"{GREEN}code {project_name}{RESET}"</span>);
-            <span class="macro">println!</span>(<span class=
-"string">"    {YELLOW}Then build with:{RESET}"</span>);
-            <span class="macro">println!</span>(<span class=
-"string">"{GREEN}cargo auto build{RESET}"</span>);
-            <span class="macro">println!</span>(<span class=
-"string">"    {YELLOW}and follow the detailed instructions.{RESET}"</span>);
+            <span class="macro">println!</span>(<span class="string">"    {YELLOW}For example VSCode:{RESET}"</span>);
+            <span class="macro">println!</span>(<span class="string">"{GREEN}code {project_name}{RESET}"</span>);
+            <span class="macro">println!</span>(<span class="string">"    {YELLOW}Then build with:{RESET}"</span>);
+            <span class="macro">println!</span>(<span class="string">"{GREEN}cargo auto build{RESET}"</span>);
+            <span class="macro">println!</span>(<span class="string">"    {YELLOW}and follow the detailed instructions.{RESET}"</span>);
         }
     }
 }
 
-<span class=
-"kw">pub fn </span>copy_to_files(project_name: <span class=
-"kw-2">&</span>str) {
-    <span class=
-"kw">let </span>folder_path = std::path::Path::new(project_name);
+<span class="kw">pub fn </span>copy_to_files(project_name: <span class="kw-2">&</span>str) {
+    <span class="kw">let </span>folder_path = std::path::Path::new(project_name);
     std::fs::create_dir_all(folder_path).unwrap();
-    <span class="kw">for </span>file_item <span class=
-"kw">in </span>get_vec_file() {
+    <span class="kw">for </span>file_item <span class="kw">in </span>get_vec_file() {
         <span class="comment">// rename/replace the project_name
-        </span><span class=
-"kw">let </span>file_name = file_item.file_name.replace(<span class="string">"cargo_auto_template_new_cli"</span>, project_name);
+        </span><span class="kw">let </span>file_name = file_item.file_name.replace(<span class="string">"cargo_auto_template_new_cli"</span>, project_name);
         <span class="kw">let </span>file_content = file_item
             .file_content
-            .replace(<span class=
-"string">"cargo_auto_template_new_cli"</span>, project_name);
+            .replace(<span class="string">"cargo_auto_template_new_cli"</span>, project_name);
 
         <span class="comment">// create directory if needed
         </span>std::fs::create_dir_all(folder_path.join(<span class="kw-2">&</span>file_name).parent().unwrap()).unwrap();
-        std::fs::write(folder_path.join(<span class=
-"kw-2">&</span>file_name), file_content.as_bytes()).unwrap();
+        std::fs::write(folder_path.join(<span class="kw-2">&</span>file_name), file_content.as_bytes()).unwrap();
     }
 }
 
-<span class=
-"kw">pub fn </span>get_vec_file() -&gt; Vec&lt;<span class=
-"kw">crate</span>::FileItem&gt; {
-    <span class="kw">let </span><span class=
-"kw-2">mut </span>vec_file = <span class="macro">vec!</span>[];
+<span class="kw">pub fn </span>get_vec_file() -&gt; Vec&lt;<span class="kw">crate</span>::FileItem&gt; {
+    <span class="kw">let </span><span class="kw-2">mut </span>vec_file = <span class="macro">vec!</span>[];
 
-    <span class=
-"comment">// region: files copied into strings by automation tasks
+    <span class="comment">// region: files copied into strings by automation tasks
     </span>vec_file.push(<span class="kw">crate</span>::FileItem{
             file_name :<span class="string">"README.md"</span>,
-            file_content : <span class=
-"string">r###"[//]: # (auto_md_to_doc_comments segment start A)
+            file_content : <span class="string">r###"[//]: # (auto_md_to_doc_comments segment start A)
 
 # cargo_auto_template_new_cli
 
@@ -1590,8 +1541,7 @@ You know the price of a beer in your local bar ;-) So I can drink a free beer fo
 "###</span>,
 });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class=
-"string">".vscode/settings.json"</span>,
+        file_name: <span class="string">".vscode/settings.json"</span>,
         file_content: <span class="string">r###"{
     "workbench.colorCustomizations": {
         "titleBar.activeForeground": "#fff",
@@ -1651,10 +1601,8 @@ thiserror = "1.0.30"
 anyhow="1.0.56""###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class=
-"string">"src/bin/cargo_auto_template_new_cli/main.rs"</span>,
-        file_content: <span class=
-"string">r###"//! src/bin/cargo_auto_template_new_cli/main.rs
+        file_name: <span class="string">"src/bin/cargo_auto_template_new_cli/main.rs"</span>,
+        file_content: <span class="string">r###"//! src/bin/cargo_auto_template_new_cli/main.rs
 
 // This `main.rs` is the code for the CLI application.
 // The build of this project will create the CLI application.
@@ -1738,14 +1686,13 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
         file_name: <span class="string">"src/lib.rs"</span>,
-        file_content: <span class=
-"string">r###"// cargo_auto_template_new_cli/src/lib.rs
+        file_content: <span class="string">r###"// cargo_auto_template_new_cli/src/lib.rs
 
 // region: auto_md_to_doc_comments include README.md A //!
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2024.209.128 date: 2024-02-09 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2024.209.135 date: 2024-02-09 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
 //!
 //!  ![status](https://img.shields.io/badge/maintained-green)
 //!  ![status](https://img.shields.io/badge/ready_for_use-green)
@@ -1758,11 +1705,11 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //!  [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!  ![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9181-green.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-471-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9179-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-1227-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-349-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-1526-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-1524-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
 //! Hashtags: #rustlang #tutorial #buildtool #developmenttool #cli  
 //! My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
@@ -2037,8 +1984,7 @@ pub const RESET: &amp;str = "\x1b[0m";
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
         file_name: <span class="string">"src/hello_mod.rs"</span>,
-        file_content: <span class=
-"string">r###"// cargo_auto_template_new_cli/src/hello_mod.rs
+        file_content: <span class="string">r###"// cargo_auto_template_new_cli/src/hello_mod.rs
 
 //! All the real code is inside modules in separate files.
 //!
@@ -2092,8 +2038,7 @@ mod test {
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
         file_name: <span class="string">".gitattributes"</span>,
-        file_content: <span class=
-"string">r###"# Specific git config for the project
+        file_content: <span class="string">r###"# Specific git config for the project
 
 # Declare files that will always have LF line endings on checkout.
 *.rs text eol=lf
@@ -2124,8 +2069,7 @@ mod test {
 /.auto_version_from_date.json"###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class=
-"string">"automation_tasks_rs/.vscode/settings.json"</span>,
+        file_name: <span class="string">"automation_tasks_rs/.vscode/settings.json"</span>,
         file_content: <span class="string">r###"{
     "cSpell.words": [
         "alloc",
@@ -2139,8 +2083,7 @@ mod test {
 }"###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class=
-"string">"automation_tasks_rs/Cargo.toml"</span>,
+        file_name: <span class="string">"automation_tasks_rs/Cargo.toml"</span>,
         file_content: <span class="string">r###"
 [package]
 name = "automation_tasks_rs"
@@ -2155,10 +2098,8 @@ publish = false
 cargo_auto_lib = "1.1.2""###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem{
-            file_name :<span class=
-"string">"automation_tasks_rs/src/main.rs"</span>,
-            file_content : <span class=
-"string">r###"//! automation_tasks_rs for cargo_auto_template_new_cli
+            file_name :<span class="string">"automation_tasks_rs/src/main.rs"</span>,
+            file_content : <span class="string">r###"//! automation_tasks_rs for cargo_auto_template_new_cli
 
 use cargo_auto_lib::*;
 // use cargo_auto_github_lib::*;
@@ -2470,8 +2411,7 @@ r#"## Changed
 "###</span>,
 });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class=
-"string">"automation_tasks_rs/.gitignore"</span>,
+        file_name: <span class="string">"automation_tasks_rs/.gitignore"</span>,
         file_content: <span class="string">r###"/target
 
 # not needed in commits, but also not a problem if they are committed
@@ -2479,10 +2419,8 @@ r#"## Changed
 "###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class=
-"string">"examples/example_1.rs"</span>,
-        file_content: <span class=
-"string">r###"// examples/example_1.rs
+        file_name: <span class="string">"examples/example_1.rs"</span>,
+        file_content: <span class="string">r###"// examples/example_1.rs
 
 //! A simple example how to use the `lib.rs`
 //! You can run it with `cargo run --example example_1`
@@ -2504,10 +2442,8 @@ fn main() {
 "###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
-        file_name: <span class=
-"string">"tests/integration_test.rs"</span>,
-        file_content: <span class=
-"string">r###"// tests/integration_test.rs
+        file_name: <span class="string">"tests/integration_test.rs"</span>,
+        file_content: <span class="string">r###"// tests/integration_test.rs
 
 use cargo_auto_template_new_cli::*;
 
@@ -2548,8 +2484,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 "###</span>,
     });
-    <span class=
-"comment">// endregion: files copied into strings by automation tasks
+    <span class="comment">// endregion: files copied into strings by automation tasks
 
     // return
     </span>vec_file

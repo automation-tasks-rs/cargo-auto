@@ -1,0 +1,1764 @@
+./docs/help.html
+line 1 column 2729 - Warning: trimming empty <span>
+./docs/cargo_auto/struct.PATH_FILE_HASHES_JSON.html
+line 4 column 916 - Warning: missing </summary> before <section>
+line 4 column 1406 - Warning: discarding unexpected </summary>
+line 10 column 60 - Warning: missing </summary> before <section>
+line 10 column 522 - Warning: discarding unexpected </summary>
+line 11 column 530 - Warning: missing </summary> before <section>
+line 11 column 1042 - Warning: discarding unexpected </summary>
+line 17 column 60 - Warning: missing </summary> before <section>
+line 17 column 594 - Warning: discarding unexpected </summary>
+line 27 column 60 - Warning: missing </summary> before <section>
+line 27 column 652 - Warning: discarding unexpected </summary>
+line 36 column 60 - Warning: missing </summary> before <section>
+line 36 column 671 - Warning: discarding unexpected </summary>
+line 48 column 60 - Warning: missing </summary> before <section>
+line 48 column 566 - Warning: discarding unexpected </summary>
+line 54 column 60 - Warning: missing </summary> before <section>
+line 54 column 527 - Warning: discarding unexpected </summary>
+line 70 column 60 - Warning: missing </summary> before <section>
+line 70 column 527 - Warning: discarding unexpected </summary>
+line 76 column 60 - Warning: missing </summary> before <section>
+line 76 column 518 - Warning: discarding unexpected </summary>
+line 94 column 60 - Warning: missing </summary> before <section>
+line 94 column 684 - Warning: discarding unexpected </summary>
+line 116 column 60 - Warning: missing </summary> before <section>
+line 116 column 578 - Warning: discarding unexpected </summary>
+line 137 column 60 - Warning: missing </summary> before <section>
+line 137 column 709 - Warning: discarding unexpected </summary>
+line 151 column 60 - Warning: missing </summary> before <section>
+line 152 column 293 - Warning: discarding unexpected </summary>
+line 172 column 60 - Warning: missing </summary> before <section>
+line 173 column 293 - Warning: discarding unexpected </summary>
+line 190 column 60 - Warning: missing </summary> before <section>
+line 191 column 293 - Warning: discarding unexpected </summary>
+line 204 column 60 - Warning: missing </summary> before <section>
+line 204 column 709 - Warning: discarding unexpected </summary>
+line 220 column 60 - Warning: missing </summary> before <section>
+line 220 column 619 - Warning: missing </span> before <div>
+line 220 column 670 - Warning: inserting implicit <span>
+line 220 column 789 - Warning: discarding unexpected </span>
+line 220 column 796 - Warning: discarding unexpected </summary>
+line 237 column 60 - Warning: missing </summary> before <section>
+line 237 column 709 - Warning: discarding unexpected </summary>
+line 250 column 60 - Warning: missing </summary> before <section>
+line 251 column 293 - Warning: discarding unexpected </summary>
+line 259 column 60 - Warning: missing </summary> before <section>
+line 260 column 309 - Warning: discarding unexpected </summary>
+line 271 column 60 - Warning: missing </summary> before <section>
+line 272 column 309 - Warning: discarding unexpected </summary>
+line 284 column 60 - Warning: missing </summary> before <section>
+line 284 column 582 - Warning: discarding unexpected </summary>
+line 314 column 60 - Warning: missing </summary> before <section>
+line 314 column 546 - Warning: discarding unexpected </summary>
+line 327 column 60 - Warning: missing </summary> before <section>
+line 327 column 564 - Warning: discarding unexpected </summary>
+line 337 column 60 - Warning: missing </summary> before <section>
+line 337 column 830 - Warning: discarding unexpected </summary>
+line 347 column 60 - Warning: missing </summary> before <section>
+line 347 column 854 - Warning: discarding unexpected </summary>
+line 355 column 60 - Warning: missing </summary> before <section>
+line 355 column 843 - Warning: discarding unexpected </summary>
+line 363 column 60 - Warning: missing </summary> before <section>
+line 363 column 834 - Warning: discarding unexpected </summary>
+line 370 column 60 - Warning: missing </summary> before <section>
+line 370 column 827 - Warning: discarding unexpected </summary>
+line 383 column 60 - Warning: missing </summary> before <section>
+line 383 column 512 - Warning: discarding unexpected </summary>
+line 396 column 60 - Warning: missing </summary> before <section>
+line 396 column 800 - Warning: discarding unexpected </summary>
+line 411 column 60 - Warning: missing </summary> before <section>
+line 411 column 515 - Warning: discarding unexpected </summary>
+line 429 column 60 - Warning: missing </summary> before <section>
+line 429 column 512 - Warning: discarding unexpected </summary>
+line 442 column 60 - Warning: missing </summary> before <section>
+line 442 column 526 - Warning: discarding unexpected </summary>
+line 459 column 248 - Warning: missing </summary> before <section>
+line 459 column 788 - Warning: discarding unexpected </summary>
+line 459 column 851 - Warning: missing </summary> before <section>
+line 459 column 1292 - Warning: discarding unexpected </summary>
+line 459 column 1422 - Warning: missing </summary> before <section>
+line 459 column 1916 - Warning: discarding unexpected </summary>
+line 459 column 5301 - Warning: missing </summary> before <section>
+line 460 column 171 - Warning: discarding unexpected </summary>
+line 460 column 248 - Warning: missing </summary> before <section>
+line 460 column 753 - Warning: discarding unexpected </summary>
+line 460 column 1009 - Warning: missing </summary> before <section>
+line 461 column 161 - Warning: discarding unexpected </summary>
+line 461 column 238 - Warning: missing </summary> before <section>
+line 461 column 719 - Warning: discarding unexpected </summary>
+line 461 column 968 - Warning: missing </summary> before <section>
+line 462 column 161 - Warning: discarding unexpected </summary>
+line 462 column 238 - Warning: missing </summary> before <section>
+line 462 column 746 - Warning: discarding unexpected </summary>
+line 462 column 1000 - Warning: missing </summary> before <section>
+line 462 column 1457 - Warning: discarding unexpected </summary>
+line 462 column 1534 - Warning: missing </summary> before <section>
+line 462 column 1907 - Warning: discarding unexpected </summary>
+line 463 column 77 - Warning: missing </summary> before <section>
+line 464 column 168 - Warning: discarding unexpected </summary>
+line 464 column 245 - Warning: missing </summary> before <section>
+line 464 column 618 - Warning: discarding unexpected </summary>
+line 467 column 77 - Warning: missing </summary> before <section>
+line 467 column 294 - Warning: discarding unexpected </summary>
+line 467 column 357 - Warning: missing </summary> before <section>
+line 467 column 674 - Warning: discarding unexpected </summary>
+line 467 column 776 - Warning: missing </summary> before <section>
+line 467 column 986 - Warning: discarding unexpected </summary>
+line 467 column 1103 - Warning: missing </summary> before <section>
+line 467 column 1416 - Warning: discarding unexpected </summary>
+line 467 column 1565 - Warning: missing </summary> before <section>
+line 467 column 1969 - Warning: discarding unexpected </summary>
+line 467 column 2108 - Warning: missing </summary> before <section>
+line 467 column 2524 - Warning: discarding unexpected </summary>
+line 467 column 2671 - Warning: missing </summary> before <section>
+line 467 column 2948 - Warning: discarding unexpected </summary>
+line 467 column 3122 - Warning: missing </summary> before <section>
+line 468 column 168 - Warning: discarding unexpected </summary>
+line 468 column 231 - Warning: missing </summary> before <section>
+line 468 column 679 - Warning: discarding unexpected </summary>
+line 468 column 823 - Warning: missing </summary> before <section>
+line 468 column 1690 - Warning: discarding unexpected </summary>
+line 468 column 1822 - Warning: missing </summary> before <section>
+line 469 column 177 - Warning: discarding unexpected </summary>
+line 469 column 240 - Warning: missing </summary> before <section>
+line 469 column 881 - Warning: discarding unexpected </summary>
+line 469 column 1025 - Warning: missing </summary> before <section>
+line 469 column 1888 - Warning: discarding unexpected </summary>
+line 1 column 6467 - Warning: trimming empty <span>
+line 4 column 916 - Warning: trimming empty <summary>
+line 10 column 60 - Warning: trimming empty <summary>
+line 11 column 530 - Warning: trimming empty <summary>
+line 17 column 60 - Warning: trimming empty <summary>
+line 27 column 60 - Warning: trimming empty <summary>
+line 36 column 60 - Warning: trimming empty <summary>
+line 48 column 60 - Warning: trimming empty <summary>
+line 54 column 60 - Warning: trimming empty <summary>
+line 70 column 60 - Warning: trimming empty <summary>
+line 76 column 60 - Warning: trimming empty <summary>
+line 94 column 60 - Warning: trimming empty <summary>
+line 116 column 60 - Warning: trimming empty <summary>
+line 137 column 60 - Warning: trimming empty <summary>
+line 151 column 60 - Warning: trimming empty <summary>
+line 172 column 60 - Warning: trimming empty <summary>
+line 190 column 60 - Warning: trimming empty <summary>
+line 204 column 60 - Warning: trimming empty <summary>
+line 220 column 60 - Warning: trimming empty <summary>
+line 220 column 619 - Warning: trimming empty <span>
+line 237 column 60 - Warning: trimming empty <summary>
+line 250 column 60 - Warning: trimming empty <summary>
+line 259 column 60 - Warning: trimming empty <summary>
+line 271 column 60 - Warning: trimming empty <summary>
+line 284 column 60 - Warning: trimming empty <summary>
+line 314 column 60 - Warning: trimming empty <summary>
+line 327 column 60 - Warning: trimming empty <summary>
+line 337 column 60 - Warning: trimming empty <summary>
+line 347 column 60 - Warning: trimming empty <summary>
+line 355 column 60 - Warning: trimming empty <summary>
+line 363 column 60 - Warning: trimming empty <summary>
+line 370 column 60 - Warning: trimming empty <summary>
+line 383 column 60 - Warning: trimming empty <summary>
+line 396 column 60 - Warning: trimming empty <summary>
+line 411 column 60 - Warning: trimming empty <summary>
+line 429 column 60 - Warning: trimming empty <summary>
+line 442 column 60 - Warning: trimming empty <summary>
+line 459 column 248 - Warning: trimming empty <summary>
+line 459 column 851 - Warning: trimming empty <summary>
+line 459 column 1422 - Warning: trimming empty <summary>
+line 459 column 5301 - Warning: trimming empty <summary>
+line 460 column 248 - Warning: trimming empty <summary>
+line 460 column 1009 - Warning: trimming empty <summary>
+line 461 column 238 - Warning: trimming empty <summary>
+line 461 column 968 - Warning: trimming empty <summary>
+line 462 column 238 - Warning: trimming empty <summary>
+line 462 column 1000 - Warning: trimming empty <summary>
+line 462 column 1534 - Warning: trimming empty <summary>
+line 463 column 77 - Warning: trimming empty <summary>
+line 464 column 245 - Warning: trimming empty <summary>
+line 467 column 77 - Warning: trimming empty <summary>
+line 467 column 357 - Warning: trimming empty <summary>
+line 467 column 776 - Warning: trimming empty <summary>
+line 467 column 1103 - Warning: trimming empty <summary>
+line 467 column 1565 - Warning: trimming empty <summary>
+line 467 column 2108 - Warning: trimming empty <summary>
+line 467 column 2671 - Warning: trimming empty <summary>
+line 467 column 3122 - Warning: trimming empty <summary>
+line 468 column 231 - Warning: trimming empty <summary>
+line 468 column 823 - Warning: trimming empty <summary>
+line 468 column 1822 - Warning: trimming empty <summary>
+line 469 column 240 - Warning: trimming empty <summary>
+line 469 column 1025 - Warning: trimming empty <summary>
+./docs/cargo_auto/all.html
+line 1 column 2969 - Warning: trimming empty <span>
+./docs/cargo_auto/struct.FileItem.html
+line 5 column 3081 - Warning: missing </summary> before <section>
+line 6 column 171 - Warning: discarding unexpected </summary>
+line 6 column 248 - Warning: missing </summary> before <section>
+line 6 column 753 - Warning: discarding unexpected </summary>
+line 6 column 1009 - Warning: missing </summary> before <section>
+line 7 column 161 - Warning: discarding unexpected </summary>
+line 7 column 238 - Warning: missing </summary> before <section>
+line 7 column 719 - Warning: discarding unexpected </summary>
+line 7 column 968 - Warning: missing </summary> before <section>
+line 8 column 161 - Warning: discarding unexpected </summary>
+line 8 column 238 - Warning: missing </summary> before <section>
+line 8 column 746 - Warning: discarding unexpected </summary>
+line 8 column 1000 - Warning: missing </summary> before <section>
+line 8 column 1431 - Warning: discarding unexpected </summary>
+line 8 column 1508 - Warning: missing </summary> before <section>
+line 8 column 1881 - Warning: discarding unexpected </summary>
+line 9 column 77 - Warning: missing </summary> before <section>
+line 10 column 168 - Warning: discarding unexpected </summary>
+line 10 column 245 - Warning: missing </summary> before <section>
+line 10 column 618 - Warning: discarding unexpected </summary>
+line 13 column 77 - Warning: missing </summary> before <section>
+line 13 column 268 - Warning: discarding unexpected </summary>
+line 13 column 331 - Warning: missing </summary> before <section>
+line 13 column 648 - Warning: discarding unexpected </summary>
+line 13 column 750 - Warning: missing </summary> before <section>
+line 13 column 960 - Warning: discarding unexpected </summary>
+line 13 column 1077 - Warning: missing </summary> before <section>
+line 13 column 1390 - Warning: discarding unexpected </summary>
+line 13 column 1539 - Warning: missing </summary> before <section>
+line 13 column 1939 - Warning: discarding unexpected </summary>
+line 13 column 2078 - Warning: missing </summary> before <section>
+line 13 column 2494 - Warning: discarding unexpected </summary>
+line 13 column 2641 - Warning: missing </summary> before <section>
+line 13 column 2918 - Warning: discarding unexpected </summary>
+line 13 column 3092 - Warning: missing </summary> before <section>
+line 14 column 168 - Warning: discarding unexpected </summary>
+line 14 column 231 - Warning: missing </summary> before <section>
+line 14 column 679 - Warning: discarding unexpected </summary>
+line 14 column 823 - Warning: missing </summary> before <section>
+line 14 column 1690 - Warning: discarding unexpected </summary>
+line 14 column 1822 - Warning: missing </summary> before <section>
+line 15 column 177 - Warning: discarding unexpected </summary>
+line 15 column 240 - Warning: missing </summary> before <section>
+line 15 column 881 - Warning: discarding unexpected </summary>
+line 15 column 1025 - Warning: missing </summary> before <section>
+line 15 column 1888 - Warning: discarding unexpected </summary>
+line 1 column 4079 - Warning: trimming empty <span>
+line 5 column 3081 - Warning: trimming empty <summary>
+line 6 column 248 - Warning: trimming empty <summary>
+line 6 column 1009 - Warning: trimming empty <summary>
+line 7 column 238 - Warning: trimming empty <summary>
+line 7 column 968 - Warning: trimming empty <summary>
+line 8 column 238 - Warning: trimming empty <summary>
+line 8 column 1000 - Warning: trimming empty <summary>
+line 8 column 1508 - Warning: trimming empty <summary>
+line 9 column 77 - Warning: trimming empty <summary>
+line 10 column 245 - Warning: trimming empty <summary>
+line 13 column 77 - Warning: trimming empty <summary>
+line 13 column 331 - Warning: trimming empty <summary>
+line 13 column 750 - Warning: trimming empty <summary>
+line 13 column 1077 - Warning: trimming empty <summary>
+line 13 column 1539 - Warning: trimming empty <summary>
+line 13 column 2078 - Warning: trimming empty <summary>
+line 13 column 2641 - Warning: trimming empty <summary>
+line 13 column 3092 - Warning: trimming empty <summary>
+line 14 column 231 - Warning: trimming empty <summary>
+line 14 column 823 - Warning: trimming empty <summary>
+line 14 column 1822 - Warning: trimming empty <summary>
+line 15 column 240 - Warning: trimming empty <summary>
+line 15 column 1025 - Warning: trimming empty <summary>
+./docs/cargo_auto/template_new_pwa_wasm_mod/fn.resize_image.html
+line 1 column 2931 - Warning: trimming empty <span>
+./docs/cargo_auto/template_new_pwa_wasm_mod/fn.decode_png.html
+line 1 column 2929 - Warning: trimming empty <span>
+./docs/cargo_auto/template_new_pwa_wasm_mod/fn.new_pwa_wasm.html
+line 1 column 2992 - Warning: trimming empty <span>
+./docs/cargo_auto/template_new_pwa_wasm_mod/fn.get_vec_file.html
+line 1 column 2992 - Warning: trimming empty <span>
+./docs/cargo_auto/template_new_pwa_wasm_mod/index.html
+line 1 column 3127 - Warning: trimming empty <span>
+./docs/cargo_auto/template_new_pwa_wasm_mod/fn.encode_to_favicon_ico.html
+line 1 column 3010 - Warning: trimming empty <span>
+./docs/cargo_auto/template_new_pwa_wasm_mod/fn.copy_to_files.html
+line 1 column 2994 - Warning: trimming empty <span>
+./docs/cargo_auto/template_new_pwa_wasm_mod/fn.encode_to_png.html
+line 1 column 2935 - Warning: trimming empty <span>
+./docs/cargo_auto/template_new_pwa_wasm_mod/fn.favicon_add_entry.html
+line 1 column 3002 - Warning: trimming empty <span>
+./docs/cargo_auto/template_new_pwa_wasm_mod/struct.PwaJson5.html
+line 9 column 2565 - Warning: missing </summary> before <section>
+line 9 column 3072 - Warning: discarding unexpected </summary>
+line 9 column 3149 - Warning: missing </summary> before <section>
+line 9 column 3795 - Warning: discarding unexpected </summary>
+line 9 column 4048 - Warning: missing </summary> before <section>
+line 9 column 4622 - Warning: discarding unexpected </summary>
+line 9 column 4699 - Warning: missing </summary> before <section>
+line 10 column 185 - Warning: discarding unexpected </summary>
+line 10 column 2972 - Warning: missing </summary> before <section>
+line 11 column 171 - Warning: discarding unexpected </summary>
+line 11 column 248 - Warning: missing </summary> before <section>
+line 11 column 753 - Warning: discarding unexpected </summary>
+line 11 column 1009 - Warning: missing </summary> before <section>
+line 12 column 161 - Warning: discarding unexpected </summary>
+line 12 column 238 - Warning: missing </summary> before <section>
+line 12 column 719 - Warning: discarding unexpected </summary>
+line 12 column 968 - Warning: missing </summary> before <section>
+line 13 column 161 - Warning: discarding unexpected </summary>
+line 13 column 238 - Warning: missing </summary> before <section>
+line 13 column 746 - Warning: discarding unexpected </summary>
+line 13 column 1000 - Warning: missing </summary> before <section>
+line 13 column 1431 - Warning: discarding unexpected </summary>
+line 13 column 1508 - Warning: missing </summary> before <section>
+line 13 column 1881 - Warning: discarding unexpected </summary>
+line 14 column 77 - Warning: missing </summary> before <section>
+line 15 column 168 - Warning: discarding unexpected </summary>
+line 15 column 245 - Warning: missing </summary> before <section>
+line 15 column 618 - Warning: discarding unexpected </summary>
+line 18 column 77 - Warning: missing </summary> before <section>
+line 18 column 268 - Warning: discarding unexpected </summary>
+line 18 column 331 - Warning: missing </summary> before <section>
+line 18 column 648 - Warning: discarding unexpected </summary>
+line 18 column 750 - Warning: missing </summary> before <section>
+line 18 column 960 - Warning: discarding unexpected </summary>
+line 18 column 1077 - Warning: missing </summary> before <section>
+line 18 column 1390 - Warning: discarding unexpected </summary>
+line 18 column 1539 - Warning: missing </summary> before <section>
+line 18 column 1939 - Warning: discarding unexpected </summary>
+line 18 column 2078 - Warning: missing </summary> before <section>
+line 18 column 2494 - Warning: discarding unexpected </summary>
+line 18 column 2641 - Warning: missing </summary> before <section>
+line 18 column 2918 - Warning: discarding unexpected </summary>
+line 18 column 3092 - Warning: missing </summary> before <section>
+line 19 column 168 - Warning: discarding unexpected </summary>
+line 19 column 231 - Warning: missing </summary> before <section>
+line 19 column 679 - Warning: discarding unexpected </summary>
+line 19 column 823 - Warning: missing </summary> before <section>
+line 19 column 1690 - Warning: discarding unexpected </summary>
+line 19 column 1822 - Warning: missing </summary> before <section>
+line 20 column 177 - Warning: discarding unexpected </summary>
+line 20 column 240 - Warning: missing </summary> before <section>
+line 20 column 881 - Warning: discarding unexpected </summary>
+line 20 column 1025 - Warning: missing </summary> before <section>
+line 20 column 1888 - Warning: discarding unexpected </summary>
+line 1 column 4910 - Warning: trimming empty <span>
+line 9 column 2565 - Warning: trimming empty <summary>
+line 9 column 3149 - Warning: trimming empty <summary>
+line 9 column 4048 - Warning: trimming empty <summary>
+line 9 column 4699 - Warning: trimming empty <summary>
+line 10 column 2972 - Warning: trimming empty <summary>
+line 11 column 248 - Warning: trimming empty <summary>
+line 11 column 1009 - Warning: trimming empty <summary>
+line 12 column 238 - Warning: trimming empty <summary>
+line 12 column 968 - Warning: trimming empty <summary>
+line 13 column 238 - Warning: trimming empty <summary>
+line 13 column 1000 - Warning: trimming empty <summary>
+line 13 column 1508 - Warning: trimming empty <summary>
+line 14 column 77 - Warning: trimming empty <summary>
+line 15 column 245 - Warning: trimming empty <summary>
+line 18 column 77 - Warning: trimming empty <summary>
+line 18 column 331 - Warning: trimming empty <summary>
+line 18 column 750 - Warning: trimming empty <summary>
+line 18 column 1077 - Warning: trimming empty <summary>
+line 18 column 1539 - Warning: trimming empty <summary>
+line 18 column 2078 - Warning: trimming empty <summary>
+line 18 column 2641 - Warning: trimming empty <summary>
+line 18 column 3092 - Warning: trimming empty <summary>
+line 19 column 231 - Warning: trimming empty <summary>
+line 19 column 823 - Warning: trimming empty <summary>
+line 19 column 1822 - Warning: trimming empty <summary>
+line 20 column 240 - Warning: trimming empty <summary>
+line 20 column 1025 - Warning: trimming empty <summary>
+./docs/cargo_auto/constant.YELLOW.html
+line 1 column 2878 - Warning: trimming empty <span>
+./docs/cargo_auto/index.html
+line 1 column 3145 - Warning: trimming empty <span>
+./docs/cargo_auto/file_hashes_mod/struct.FileMetaData.html
+line 7 column 232 - Warning: missing </summary> before <section>
+line 7 column 806 - Warning: discarding unexpected </summary>
+line 7 column 883 - Warning: missing </summary> before <section>
+line 8 column 185 - Warning: discarding unexpected </summary>
+line 8 column 462 - Warning: missing </summary> before <section>
+line 8 column 988 - Warning: discarding unexpected </summary>
+line 8 column 1065 - Warning: missing </summary> before <section>
+line 9 column 170 - Warning: discarding unexpected </summary>
+line 9 column 3000 - Warning: missing </summary> before <section>
+line 10 column 171 - Warning: discarding unexpected </summary>
+line 10 column 248 - Warning: missing </summary> before <section>
+line 10 column 753 - Warning: discarding unexpected </summary>
+line 10 column 1009 - Warning: missing </summary> before <section>
+line 11 column 161 - Warning: discarding unexpected </summary>
+line 11 column 238 - Warning: missing </summary> before <section>
+line 11 column 719 - Warning: discarding unexpected </summary>
+line 11 column 968 - Warning: missing </summary> before <section>
+line 12 column 161 - Warning: discarding unexpected </summary>
+line 12 column 238 - Warning: missing </summary> before <section>
+line 12 column 746 - Warning: discarding unexpected </summary>
+line 12 column 1000 - Warning: missing </summary> before <section>
+line 12 column 1439 - Warning: discarding unexpected </summary>
+line 12 column 1516 - Warning: missing </summary> before <section>
+line 12 column 1889 - Warning: discarding unexpected </summary>
+line 13 column 77 - Warning: missing </summary> before <section>
+line 14 column 168 - Warning: discarding unexpected </summary>
+line 14 column 245 - Warning: missing </summary> before <section>
+line 14 column 618 - Warning: discarding unexpected </summary>
+line 17 column 77 - Warning: missing </summary> before <section>
+line 17 column 276 - Warning: discarding unexpected </summary>
+line 17 column 339 - Warning: missing </summary> before <section>
+line 17 column 656 - Warning: discarding unexpected </summary>
+line 17 column 758 - Warning: missing </summary> before <section>
+line 17 column 968 - Warning: discarding unexpected </summary>
+line 17 column 1085 - Warning: missing </summary> before <section>
+line 17 column 1398 - Warning: discarding unexpected </summary>
+line 17 column 1547 - Warning: missing </summary> before <section>
+line 17 column 1947 - Warning: discarding unexpected </summary>
+line 17 column 2086 - Warning: missing </summary> before <section>
+line 17 column 2502 - Warning: discarding unexpected </summary>
+line 17 column 2649 - Warning: missing </summary> before <section>
+line 17 column 2926 - Warning: discarding unexpected </summary>
+line 17 column 3100 - Warning: missing </summary> before <section>
+line 18 column 168 - Warning: discarding unexpected </summary>
+line 18 column 231 - Warning: missing </summary> before <section>
+line 18 column 679 - Warning: discarding unexpected </summary>
+line 18 column 823 - Warning: missing </summary> before <section>
+line 18 column 1690 - Warning: discarding unexpected </summary>
+line 18 column 1822 - Warning: missing </summary> before <section>
+line 19 column 177 - Warning: discarding unexpected </summary>
+line 19 column 240 - Warning: missing </summary> before <section>
+line 19 column 881 - Warning: discarding unexpected </summary>
+line 19 column 1025 - Warning: missing </summary> before <section>
+line 19 column 1888 - Warning: discarding unexpected </summary>
+line 1 column 4555 - Warning: trimming empty <span>
+line 7 column 232 - Warning: trimming empty <summary>
+line 7 column 883 - Warning: trimming empty <summary>
+line 8 column 462 - Warning: trimming empty <summary>
+line 8 column 1065 - Warning: trimming empty <summary>
+line 9 column 3000 - Warning: trimming empty <summary>
+line 10 column 248 - Warning: trimming empty <summary>
+line 10 column 1009 - Warning: trimming empty <summary>
+line 11 column 238 - Warning: trimming empty <summary>
+line 11 column 968 - Warning: trimming empty <summary>
+line 12 column 238 - Warning: trimming empty <summary>
+line 12 column 1000 - Warning: trimming empty <summary>
+line 12 column 1516 - Warning: trimming empty <summary>
+line 13 column 77 - Warning: trimming empty <summary>
+line 14 column 245 - Warning: trimming empty <summary>
+line 17 column 77 - Warning: trimming empty <summary>
+line 17 column 339 - Warning: trimming empty <summary>
+line 17 column 758 - Warning: trimming empty <summary>
+line 17 column 1085 - Warning: trimming empty <summary>
+line 17 column 1547 - Warning: trimming empty <summary>
+line 17 column 2086 - Warning: trimming empty <summary>
+line 17 column 2649 - Warning: trimming empty <summary>
+line 17 column 3100 - Warning: trimming empty <summary>
+line 18 column 231 - Warning: trimming empty <summary>
+line 18 column 823 - Warning: trimming empty <summary>
+line 18 column 1822 - Warning: trimming empty <summary>
+line 19 column 240 - Warning: trimming empty <summary>
+line 19 column 1025 - Warning: trimming empty <summary>
+./docs/cargo_auto/file_hashes_mod/fn.save_json_file_for_file_meta_data.html
+line 1 column 2948 - Warning: trimming empty <span>
+./docs/cargo_auto/file_hashes_mod/index.html
+line 1 column 3039 - Warning: trimming empty <span>
+./docs/cargo_auto/file_hashes_mod/struct.FileHashes.html
+line 5 column 232 - Warning: missing </summary> before <section>
+line 5 column 797 - Warning: discarding unexpected </summary>
+line 5 column 874 - Warning: missing </summary> before <section>
+line 6 column 185 - Warning: discarding unexpected </summary>
+line 6 column 462 - Warning: missing </summary> before <section>
+line 6 column 979 - Warning: discarding unexpected </summary>
+line 6 column 1056 - Warning: missing </summary> before <section>
+line 7 column 170 - Warning: discarding unexpected </summary>
+line 7 column 2950 - Warning: missing </summary> before <section>
+line 8 column 171 - Warning: discarding unexpected </summary>
+line 8 column 248 - Warning: missing </summary> before <section>
+line 8 column 753 - Warning: discarding unexpected </summary>
+line 8 column 1009 - Warning: missing </summary> before <section>
+line 9 column 161 - Warning: discarding unexpected </summary>
+line 9 column 238 - Warning: missing </summary> before <section>
+line 9 column 719 - Warning: discarding unexpected </summary>
+line 9 column 968 - Warning: missing </summary> before <section>
+line 10 column 161 - Warning: discarding unexpected </summary>
+line 10 column 238 - Warning: missing </summary> before <section>
+line 10 column 746 - Warning: discarding unexpected </summary>
+line 10 column 1000 - Warning: missing </summary> before <section>
+line 10 column 1435 - Warning: discarding unexpected </summary>
+line 10 column 1512 - Warning: missing </summary> before <section>
+line 10 column 1885 - Warning: discarding unexpected </summary>
+line 11 column 77 - Warning: missing </summary> before <section>
+line 12 column 168 - Warning: discarding unexpected </summary>
+line 12 column 245 - Warning: missing </summary> before <section>
+line 12 column 618 - Warning: discarding unexpected </summary>
+line 15 column 77 - Warning: missing </summary> before <section>
+line 15 column 272 - Warning: discarding unexpected </summary>
+line 15 column 335 - Warning: missing </summary> before <section>
+line 15 column 652 - Warning: discarding unexpected </summary>
+line 15 column 754 - Warning: missing </summary> before <section>
+line 15 column 964 - Warning: discarding unexpected </summary>
+line 15 column 1081 - Warning: missing </summary> before <section>
+line 15 column 1394 - Warning: discarding unexpected </summary>
+line 15 column 1543 - Warning: missing </summary> before <section>
+line 15 column 1943 - Warning: discarding unexpected </summary>
+line 15 column 2082 - Warning: missing </summary> before <section>
+line 15 column 2498 - Warning: discarding unexpected </summary>
+line 15 column 2645 - Warning: missing </summary> before <section>
+line 15 column 2922 - Warning: discarding unexpected </summary>
+line 15 column 3096 - Warning: missing </summary> before <section>
+line 16 column 168 - Warning: discarding unexpected </summary>
+line 16 column 231 - Warning: missing </summary> before <section>
+line 16 column 679 - Warning: discarding unexpected </summary>
+line 16 column 823 - Warning: missing </summary> before <section>
+line 16 column 1690 - Warning: discarding unexpected </summary>
+line 16 column 1822 - Warning: missing </summary> before <section>
+line 17 column 177 - Warning: discarding unexpected </summary>
+line 17 column 240 - Warning: missing </summary> before <section>
+line 17 column 881 - Warning: discarding unexpected </summary>
+line 17 column 1025 - Warning: missing </summary> before <section>
+line 17 column 1888 - Warning: discarding unexpected </summary>
+line 1 column 4545 - Warning: trimming empty <span>
+line 5 column 232 - Warning: trimming empty <summary>
+line 5 column 874 - Warning: trimming empty <summary>
+line 6 column 462 - Warning: trimming empty <summary>
+line 6 column 1056 - Warning: trimming empty <summary>
+line 7 column 2950 - Warning: trimming empty <summary>
+line 8 column 248 - Warning: trimming empty <summary>
+line 8 column 1009 - Warning: trimming empty <summary>
+line 9 column 238 - Warning: trimming empty <summary>
+line 9 column 968 - Warning: trimming empty <summary>
+line 10 column 238 - Warning: trimming empty <summary>
+line 10 column 1000 - Warning: trimming empty <summary>
+line 10 column 1512 - Warning: trimming empty <summary>
+line 11 column 77 - Warning: trimming empty <summary>
+line 12 column 245 - Warning: trimming empty <summary>
+line 15 column 77 - Warning: trimming empty <summary>
+line 15 column 335 - Warning: trimming empty <summary>
+line 15 column 754 - Warning: trimming empty <summary>
+line 15 column 1081 - Warning: trimming empty <summary>
+line 15 column 1543 - Warning: trimming empty <summary>
+line 15 column 2082 - Warning: trimming empty <summary>
+line 15 column 2645 - Warning: trimming empty <summary>
+line 15 column 3096 - Warning: trimming empty <summary>
+line 16 column 231 - Warning: trimming empty <summary>
+line 16 column 823 - Warning: trimming empty <summary>
+line 16 column 1822 - Warning: trimming empty <summary>
+line 17 column 240 - Warning: trimming empty <summary>
+line 17 column 1025 - Warning: trimming empty <summary>
+./docs/cargo_auto/file_hashes_mod/fn.are_all_files_equal.html
+line 1 column 2986 - Warning: trimming empty <span>
+./docs/cargo_auto/file_hashes_mod/fn.read_file_metadata.html
+line 1 column 2937 - Warning: trimming empty <span>
+./docs/cargo_auto/file_hashes_mod/fn.read_json_file.html
+line 1 column 2945 - Warning: trimming empty <span>
+./docs/cargo_auto/file_hashes_mod/fn.sha256_digest.html
+line 1 column 2931 - Warning: trimming empty <span>
+./docs/cargo_auto/file_hashes_mod/fn.is_project_changed.html
+line 1 column 3167 - Warning: trimming empty <span>
+./docs/cargo_auto/outside_of_rust_project_mod/fn.completion.html
+line 1 column 3021 - Warning: trimming empty <span>
+./docs/cargo_auto/outside_of_rust_project_mod/fn.print_help_from_cargo_auto.html
+line 1 column 3024 - Warning: trimming empty <span>
+./docs/cargo_auto/outside_of_rust_project_mod/fn.match_first_argument.html
+line 1 column 3031 - Warning: trimming empty <span>
+./docs/cargo_auto/outside_of_rust_project_mod/index.html
+line 1 column 3036 - Warning: trimming empty <span>
+./docs/cargo_auto/outside_of_rust_project_mod/fn.parse_args.html
+line 1 column 3045 - Warning: trimming empty <span>
+./docs/cargo_auto/constant.RED.html
+line 1 column 2872 - Warning: trimming empty <span>
+./docs/cargo_auto/struct.PATH_AUTOMATION_TASKS_RS.html
+line 4 column 916 - Warning: missing </summary> before <section>
+line 4 column 1406 - Warning: discarding unexpected </summary>
+line 10 column 60 - Warning: missing </summary> before <section>
+line 10 column 522 - Warning: discarding unexpected </summary>
+line 11 column 530 - Warning: missing </summary> before <section>
+line 11 column 1042 - Warning: discarding unexpected </summary>
+line 17 column 60 - Warning: missing </summary> before <section>
+line 17 column 594 - Warning: discarding unexpected </summary>
+line 27 column 60 - Warning: missing </summary> before <section>
+line 27 column 652 - Warning: discarding unexpected </summary>
+line 36 column 60 - Warning: missing </summary> before <section>
+line 36 column 671 - Warning: discarding unexpected </summary>
+line 48 column 60 - Warning: missing </summary> before <section>
+line 48 column 566 - Warning: discarding unexpected </summary>
+line 54 column 60 - Warning: missing </summary> before <section>
+line 54 column 527 - Warning: discarding unexpected </summary>
+line 70 column 60 - Warning: missing </summary> before <section>
+line 70 column 527 - Warning: discarding unexpected </summary>
+line 76 column 60 - Warning: missing </summary> before <section>
+line 76 column 518 - Warning: discarding unexpected </summary>
+line 94 column 60 - Warning: missing </summary> before <section>
+line 94 column 684 - Warning: discarding unexpected </summary>
+line 116 column 60 - Warning: missing </summary> before <section>
+line 116 column 578 - Warning: discarding unexpected </summary>
+line 137 column 60 - Warning: missing </summary> before <section>
+line 137 column 709 - Warning: discarding unexpected </summary>
+line 151 column 60 - Warning: missing </summary> before <section>
+line 152 column 293 - Warning: discarding unexpected </summary>
+line 172 column 60 - Warning: missing </summary> before <section>
+line 173 column 293 - Warning: discarding unexpected </summary>
+line 190 column 60 - Warning: missing </summary> before <section>
+line 191 column 293 - Warning: discarding unexpected </summary>
+line 204 column 60 - Warning: missing </summary> before <section>
+line 204 column 709 - Warning: discarding unexpected </summary>
+line 220 column 60 - Warning: missing </summary> before <section>
+line 220 column 619 - Warning: missing </span> before <div>
+line 220 column 670 - Warning: inserting implicit <span>
+line 220 column 789 - Warning: discarding unexpected </span>
+line 220 column 796 - Warning: discarding unexpected </summary>
+line 237 column 60 - Warning: missing </summary> before <section>
+line 237 column 709 - Warning: discarding unexpected </summary>
+line 250 column 60 - Warning: missing </summary> before <section>
+line 251 column 293 - Warning: discarding unexpected </summary>
+line 259 column 60 - Warning: missing </summary> before <section>
+line 260 column 309 - Warning: discarding unexpected </summary>
+line 271 column 60 - Warning: missing </summary> before <section>
+line 272 column 309 - Warning: discarding unexpected </summary>
+line 284 column 60 - Warning: missing </summary> before <section>
+line 284 column 582 - Warning: discarding unexpected </summary>
+line 314 column 60 - Warning: missing </summary> before <section>
+line 314 column 546 - Warning: discarding unexpected </summary>
+line 327 column 60 - Warning: missing </summary> before <section>
+line 327 column 564 - Warning: discarding unexpected </summary>
+line 337 column 60 - Warning: missing </summary> before <section>
+line 337 column 830 - Warning: discarding unexpected </summary>
+line 347 column 60 - Warning: missing </summary> before <section>
+line 347 column 854 - Warning: discarding unexpected </summary>
+line 355 column 60 - Warning: missing </summary> before <section>
+line 355 column 843 - Warning: discarding unexpected </summary>
+line 363 column 60 - Warning: missing </summary> before <section>
+line 363 column 834 - Warning: discarding unexpected </summary>
+line 370 column 60 - Warning: missing </summary> before <section>
+line 370 column 827 - Warning: discarding unexpected </summary>
+line 383 column 60 - Warning: missing </summary> before <section>
+line 383 column 512 - Warning: discarding unexpected </summary>
+line 396 column 60 - Warning: missing </summary> before <section>
+line 396 column 800 - Warning: discarding unexpected </summary>
+line 411 column 60 - Warning: missing </summary> before <section>
+line 411 column 515 - Warning: discarding unexpected </summary>
+line 429 column 60 - Warning: missing </summary> before <section>
+line 429 column 512 - Warning: discarding unexpected </summary>
+line 442 column 60 - Warning: missing </summary> before <section>
+line 442 column 526 - Warning: discarding unexpected </summary>
+line 459 column 248 - Warning: missing </summary> before <section>
+line 459 column 803 - Warning: discarding unexpected </summary>
+line 459 column 866 - Warning: missing </summary> before <section>
+line 459 column 1307 - Warning: discarding unexpected </summary>
+line 459 column 1437 - Warning: missing </summary> before <section>
+line 459 column 1931 - Warning: discarding unexpected </summary>
+line 459 column 5406 - Warning: missing </summary> before <section>
+line 460 column 171 - Warning: discarding unexpected </summary>
+line 460 column 248 - Warning: missing </summary> before <section>
+line 460 column 753 - Warning: discarding unexpected </summary>
+line 460 column 1009 - Warning: missing </summary> before <section>
+line 461 column 161 - Warning: discarding unexpected </summary>
+line 461 column 238 - Warning: missing </summary> before <section>
+line 461 column 719 - Warning: discarding unexpected </summary>
+line 461 column 968 - Warning: missing </summary> before <section>
+line 462 column 161 - Warning: discarding unexpected </summary>
+line 462 column 238 - Warning: missing </summary> before <section>
+line 462 column 746 - Warning: discarding unexpected </summary>
+line 462 column 1000 - Warning: missing </summary> before <section>
+line 462 column 1463 - Warning: discarding unexpected </summary>
+line 462 column 1540 - Warning: missing </summary> before <section>
+line 462 column 1913 - Warning: discarding unexpected </summary>
+line 463 column 77 - Warning: missing </summary> before <section>
+line 464 column 168 - Warning: discarding unexpected </summary>
+line 464 column 245 - Warning: missing </summary> before <section>
+line 464 column 618 - Warning: discarding unexpected </summary>
+line 467 column 77 - Warning: missing </summary> before <section>
+line 467 column 300 - Warning: discarding unexpected </summary>
+line 467 column 363 - Warning: missing </summary> before <section>
+line 467 column 680 - Warning: discarding unexpected </summary>
+line 467 column 782 - Warning: missing </summary> before <section>
+line 467 column 992 - Warning: discarding unexpected </summary>
+line 467 column 1109 - Warning: missing </summary> before <section>
+line 467 column 1422 - Warning: discarding unexpected </summary>
+line 467 column 1571 - Warning: missing </summary> before <section>
+line 467 column 1975 - Warning: discarding unexpected </summary>
+line 467 column 2114 - Warning: missing </summary> before <section>
+line 467 column 2530 - Warning: discarding unexpected </summary>
+line 467 column 2677 - Warning: missing </summary> before <section>
+line 467 column 2954 - Warning: discarding unexpected </summary>
+line 467 column 3128 - Warning: missing </summary> before <section>
+line 468 column 168 - Warning: discarding unexpected </summary>
+line 468 column 231 - Warning: missing </summary> before <section>
+line 468 column 679 - Warning: discarding unexpected </summary>
+line 468 column 823 - Warning: missing </summary> before <section>
+line 468 column 1690 - Warning: discarding unexpected </summary>
+line 468 column 1822 - Warning: missing </summary> before <section>
+line 469 column 177 - Warning: discarding unexpected </summary>
+line 469 column 240 - Warning: missing </summary> before <section>
+line 469 column 881 - Warning: discarding unexpected </summary>
+line 469 column 1025 - Warning: missing </summary> before <section>
+line 469 column 1888 - Warning: discarding unexpected </summary>
+line 1 column 6518 - Warning: trimming empty <span>
+line 4 column 916 - Warning: trimming empty <summary>
+line 10 column 60 - Warning: trimming empty <summary>
+line 11 column 530 - Warning: trimming empty <summary>
+line 17 column 60 - Warning: trimming empty <summary>
+line 27 column 60 - Warning: trimming empty <summary>
+line 36 column 60 - Warning: trimming empty <summary>
+line 48 column 60 - Warning: trimming empty <summary>
+line 54 column 60 - Warning: trimming empty <summary>
+line 70 column 60 - Warning: trimming empty <summary>
+line 76 column 60 - Warning: trimming empty <summary>
+line 94 column 60 - Warning: trimming empty <summary>
+line 116 column 60 - Warning: trimming empty <summary>
+line 137 column 60 - Warning: trimming empty <summary>
+line 151 column 60 - Warning: trimming empty <summary>
+line 172 column 60 - Warning: trimming empty <summary>
+line 190 column 60 - Warning: trimming empty <summary>
+line 204 column 60 - Warning: trimming empty <summary>
+line 220 column 60 - Warning: trimming empty <summary>
+line 220 column 619 - Warning: trimming empty <span>
+line 237 column 60 - Warning: trimming empty <summary>
+line 250 column 60 - Warning: trimming empty <summary>
+line 259 column 60 - Warning: trimming empty <summary>
+line 271 column 60 - Warning: trimming empty <summary>
+line 284 column 60 - Warning: trimming empty <summary>
+line 314 column 60 - Warning: trimming empty <summary>
+line 327 column 60 - Warning: trimming empty <summary>
+line 337 column 60 - Warning: trimming empty <summary>
+line 347 column 60 - Warning: trimming empty <summary>
+line 355 column 60 - Warning: trimming empty <summary>
+line 363 column 60 - Warning: trimming empty <summary>
+line 370 column 60 - Warning: trimming empty <summary>
+line 383 column 60 - Warning: trimming empty <summary>
+line 396 column 60 - Warning: trimming empty <summary>
+line 411 column 60 - Warning: trimming empty <summary>
+line 429 column 60 - Warning: trimming empty <summary>
+line 442 column 60 - Warning: trimming empty <summary>
+line 459 column 248 - Warning: trimming empty <summary>
+line 459 column 866 - Warning: trimming empty <summary>
+line 459 column 1437 - Warning: trimming empty <summary>
+line 459 column 5406 - Warning: trimming empty <summary>
+line 460 column 248 - Warning: trimming empty <summary>
+line 460 column 1009 - Warning: trimming empty <summary>
+line 461 column 238 - Warning: trimming empty <summary>
+line 461 column 968 - Warning: trimming empty <summary>
+line 462 column 238 - Warning: trimming empty <summary>
+line 462 column 1000 - Warning: trimming empty <summary>
+line 462 column 1540 - Warning: trimming empty <summary>
+line 463 column 77 - Warning: trimming empty <summary>
+line 464 column 245 - Warning: trimming empty <summary>
+line 467 column 77 - Warning: trimming empty <summary>
+line 467 column 363 - Warning: trimming empty <summary>
+line 467 column 782 - Warning: trimming empty <summary>
+line 467 column 1109 - Warning: trimming empty <summary>
+line 467 column 1571 - Warning: trimming empty <summary>
+line 467 column 2114 - Warning: trimming empty <summary>
+line 467 column 2677 - Warning: trimming empty <summary>
+line 467 column 3128 - Warning: trimming empty <summary>
+line 468 column 231 - Warning: trimming empty <summary>
+line 468 column 823 - Warning: trimming empty <summary>
+line 468 column 1822 - Warning: trimming empty <summary>
+line 469 column 240 - Warning: trimming empty <summary>
+line 469 column 1025 - Warning: trimming empty <summary>
+./docs/cargo_auto/constant.GREEN.html
+line 1 column 2876 - Warning: trimming empty <span>
+./docs/cargo_auto/fn.is_not_run_in_rust_project_root_directory.html
+line 1 column 3132 - Warning: trimming empty <span>
+./docs/cargo_auto/template_new_cli_mod/fn.new_cli.html
+line 1 column 2972 - Warning: trimming empty <span>
+./docs/cargo_auto/template_new_cli_mod/fn.get_vec_file.html
+line 1 column 2982 - Warning: trimming empty <span>
+./docs/cargo_auto/template_new_cli_mod/index.html
+line 1 column 3073 - Warning: trimming empty <span>
+./docs/cargo_auto/template_new_cli_mod/fn.copy_to_files.html
+line 1 column 2984 - Warning: trimming empty <span>
+./docs/cargo_auto/fn.main.html
+line 1 column 2862 - Warning: trimming empty <span>
+./docs/cargo_auto/struct.PATH_SRC.html
+line 4 column 916 - Warning: missing </summary> before <section>
+line 4 column 1406 - Warning: discarding unexpected </summary>
+line 10 column 60 - Warning: missing </summary> before <section>
+line 10 column 522 - Warning: discarding unexpected </summary>
+line 11 column 530 - Warning: missing </summary> before <section>
+line 11 column 1042 - Warning: discarding unexpected </summary>
+line 17 column 60 - Warning: missing </summary> before <section>
+line 17 column 594 - Warning: discarding unexpected </summary>
+line 27 column 60 - Warning: missing </summary> before <section>
+line 27 column 652 - Warning: discarding unexpected </summary>
+line 36 column 60 - Warning: missing </summary> before <section>
+line 36 column 671 - Warning: discarding unexpected </summary>
+line 48 column 60 - Warning: missing </summary> before <section>
+line 48 column 566 - Warning: discarding unexpected </summary>
+line 54 column 60 - Warning: missing </summary> before <section>
+line 54 column 527 - Warning: discarding unexpected </summary>
+line 70 column 60 - Warning: missing </summary> before <section>
+line 70 column 527 - Warning: discarding unexpected </summary>
+line 76 column 60 - Warning: missing </summary> before <section>
+line 76 column 518 - Warning: discarding unexpected </summary>
+line 94 column 60 - Warning: missing </summary> before <section>
+line 94 column 684 - Warning: discarding unexpected </summary>
+line 116 column 60 - Warning: missing </summary> before <section>
+line 116 column 578 - Warning: discarding unexpected </summary>
+line 137 column 60 - Warning: missing </summary> before <section>
+line 137 column 709 - Warning: discarding unexpected </summary>
+line 151 column 60 - Warning: missing </summary> before <section>
+line 152 column 293 - Warning: discarding unexpected </summary>
+line 172 column 60 - Warning: missing </summary> before <section>
+line 173 column 293 - Warning: discarding unexpected </summary>
+line 190 column 60 - Warning: missing </summary> before <section>
+line 191 column 293 - Warning: discarding unexpected </summary>
+line 204 column 60 - Warning: missing </summary> before <section>
+line 204 column 709 - Warning: discarding unexpected </summary>
+line 220 column 60 - Warning: missing </summary> before <section>
+line 220 column 619 - Warning: missing </span> before <div>
+line 220 column 670 - Warning: inserting implicit <span>
+line 220 column 789 - Warning: discarding unexpected </span>
+line 220 column 796 - Warning: discarding unexpected </summary>
+line 237 column 60 - Warning: missing </summary> before <section>
+line 237 column 709 - Warning: discarding unexpected </summary>
+line 250 column 60 - Warning: missing </summary> before <section>
+line 251 column 293 - Warning: discarding unexpected </summary>
+line 259 column 60 - Warning: missing </summary> before <section>
+line 260 column 309 - Warning: discarding unexpected </summary>
+line 271 column 60 - Warning: missing </summary> before <section>
+line 272 column 309 - Warning: discarding unexpected </summary>
+line 284 column 60 - Warning: missing </summary> before <section>
+line 284 column 582 - Warning: discarding unexpected </summary>
+line 314 column 60 - Warning: missing </summary> before <section>
+line 314 column 546 - Warning: discarding unexpected </summary>
+line 327 column 60 - Warning: missing </summary> before <section>
+line 327 column 564 - Warning: discarding unexpected </summary>
+line 337 column 60 - Warning: missing </summary> before <section>
+line 337 column 830 - Warning: discarding unexpected </summary>
+line 347 column 60 - Warning: missing </summary> before <section>
+line 347 column 854 - Warning: discarding unexpected </summary>
+line 355 column 60 - Warning: missing </summary> before <section>
+line 355 column 843 - Warning: discarding unexpected </summary>
+line 363 column 60 - Warning: missing </summary> before <section>
+line 363 column 834 - Warning: discarding unexpected </summary>
+line 370 column 60 - Warning: missing </summary> before <section>
+line 370 column 827 - Warning: discarding unexpected </summary>
+line 383 column 60 - Warning: missing </summary> before <section>
+line 383 column 512 - Warning: discarding unexpected </summary>
+line 396 column 60 - Warning: missing </summary> before <section>
+line 396 column 800 - Warning: discarding unexpected </summary>
+line 411 column 60 - Warning: missing </summary> before <section>
+line 411 column 515 - Warning: discarding unexpected </summary>
+line 429 column 60 - Warning: missing </summary> before <section>
+line 429 column 512 - Warning: discarding unexpected </summary>
+line 442 column 60 - Warning: missing </summary> before <section>
+line 442 column 526 - Warning: discarding unexpected </summary>
+line 459 column 248 - Warning: missing </summary> before <section>
+line 459 column 723 - Warning: discarding unexpected </summary>
+line 459 column 786 - Warning: missing </summary> before <section>
+line 459 column 1227 - Warning: discarding unexpected </summary>
+line 459 column 1357 - Warning: missing </summary> before <section>
+line 459 column 1851 - Warning: discarding unexpected </summary>
+line 459 column 4846 - Warning: missing </summary> before <section>
+line 460 column 171 - Warning: discarding unexpected </summary>
+line 460 column 248 - Warning: missing </summary> before <section>
+line 460 column 753 - Warning: discarding unexpected </summary>
+line 460 column 1009 - Warning: missing </summary> before <section>
+line 461 column 161 - Warning: discarding unexpected </summary>
+line 461 column 238 - Warning: missing </summary> before <section>
+line 461 column 719 - Warning: discarding unexpected </summary>
+line 461 column 968 - Warning: missing </summary> before <section>
+line 462 column 161 - Warning: discarding unexpected </summary>
+line 462 column 238 - Warning: missing </summary> before <section>
+line 462 column 746 - Warning: discarding unexpected </summary>
+line 462 column 1000 - Warning: missing </summary> before <section>
+line 462 column 1431 - Warning: discarding unexpected </summary>
+line 462 column 1508 - Warning: missing </summary> before <section>
+line 462 column 1881 - Warning: discarding unexpected </summary>
+line 463 column 77 - Warning: missing </summary> before <section>
+line 464 column 168 - Warning: discarding unexpected </summary>
+line 464 column 245 - Warning: missing </summary> before <section>
+line 464 column 618 - Warning: discarding unexpected </summary>
+line 467 column 77 - Warning: missing </summary> before <section>
+line 467 column 268 - Warning: discarding unexpected </summary>
+line 467 column 331 - Warning: missing </summary> before <section>
+line 467 column 648 - Warning: discarding unexpected </summary>
+line 467 column 750 - Warning: missing </summary> before <section>
+line 467 column 960 - Warning: discarding unexpected </summary>
+line 467 column 1077 - Warning: missing </summary> before <section>
+line 467 column 1390 - Warning: discarding unexpected </summary>
+line 467 column 1539 - Warning: missing </summary> before <section>
+line 467 column 1943 - Warning: discarding unexpected </summary>
+line 467 column 2082 - Warning: missing </summary> before <section>
+line 467 column 2498 - Warning: discarding unexpected </summary>
+line 467 column 2645 - Warning: missing </summary> before <section>
+line 467 column 2922 - Warning: discarding unexpected </summary>
+line 467 column 3096 - Warning: missing </summary> before <section>
+line 468 column 168 - Warning: discarding unexpected </summary>
+line 468 column 231 - Warning: missing </summary> before <section>
+line 468 column 679 - Warning: discarding unexpected </summary>
+line 468 column 823 - Warning: missing </summary> before <section>
+line 468 column 1690 - Warning: discarding unexpected </summary>
+line 468 column 1822 - Warning: missing </summary> before <section>
+line 469 column 177 - Warning: discarding unexpected </summary>
+line 469 column 240 - Warning: missing </summary> before <section>
+line 469 column 881 - Warning: discarding unexpected </summary>
+line 469 column 1025 - Warning: missing </summary> before <section>
+line 469 column 1888 - Warning: discarding unexpected </summary>
+line 1 column 6242 - Warning: trimming empty <span>
+line 4 column 916 - Warning: trimming empty <summary>
+line 10 column 60 - Warning: trimming empty <summary>
+line 11 column 530 - Warning: trimming empty <summary>
+line 17 column 60 - Warning: trimming empty <summary>
+line 27 column 60 - Warning: trimming empty <summary>
+line 36 column 60 - Warning: trimming empty <summary>
+line 48 column 60 - Warning: trimming empty <summary>
+line 54 column 60 - Warning: trimming empty <summary>
+line 70 column 60 - Warning: trimming empty <summary>
+line 76 column 60 - Warning: trimming empty <summary>
+line 94 column 60 - Warning: trimming empty <summary>
+line 116 column 60 - Warning: trimming empty <summary>
+line 137 column 60 - Warning: trimming empty <summary>
+line 151 column 60 - Warning: trimming empty <summary>
+line 172 column 60 - Warning: trimming empty <summary>
+line 190 column 60 - Warning: trimming empty <summary>
+line 204 column 60 - Warning: trimming empty <summary>
+line 220 column 60 - Warning: trimming empty <summary>
+line 220 column 619 - Warning: trimming empty <span>
+line 237 column 60 - Warning: trimming empty <summary>
+line 250 column 60 - Warning: trimming empty <summary>
+line 259 column 60 - Warning: trimming empty <summary>
+line 271 column 60 - Warning: trimming empty <summary>
+line 284 column 60 - Warning: trimming empty <summary>
+line 314 column 60 - Warning: trimming empty <summary>
+line 327 column 60 - Warning: trimming empty <summary>
+line 337 column 60 - Warning: trimming empty <summary>
+line 347 column 60 - Warning: trimming empty <summary>
+line 355 column 60 - Warning: trimming empty <summary>
+line 363 column 60 - Warning: trimming empty <summary>
+line 370 column 60 - Warning: trimming empty <summary>
+line 383 column 60 - Warning: trimming empty <summary>
+line 396 column 60 - Warning: trimming empty <summary>
+line 411 column 60 - Warning: trimming empty <summary>
+line 429 column 60 - Warning: trimming empty <summary>
+line 442 column 60 - Warning: trimming empty <summary>
+line 459 column 248 - Warning: trimming empty <summary>
+line 459 column 786 - Warning: trimming empty <summary>
+line 459 column 1357 - Warning: trimming empty <summary>
+line 459 column 4846 - Warning: trimming empty <summary>
+line 460 column 248 - Warning: trimming empty <summary>
+line 460 column 1009 - Warning: trimming empty <summary>
+line 461 column 238 - Warning: trimming empty <summary>
+line 461 column 968 - Warning: trimming empty <summary>
+line 462 column 238 - Warning: trimming empty <summary>
+line 462 column 1000 - Warning: trimming empty <summary>
+line 462 column 1508 - Warning: trimming empty <summary>
+line 463 column 77 - Warning: trimming empty <summary>
+line 464 column 245 - Warning: trimming empty <summary>
+line 467 column 77 - Warning: trimming empty <summary>
+line 467 column 331 - Warning: trimming empty <summary>
+line 467 column 750 - Warning: trimming empty <summary>
+line 467 column 1077 - Warning: trimming empty <summary>
+line 467 column 1539 - Warning: trimming empty <summary>
+line 467 column 2082 - Warning: trimming empty <summary>
+line 467 column 2645 - Warning: trimming empty <summary>
+line 467 column 3096 - Warning: trimming empty <summary>
+line 468 column 231 - Warning: trimming empty <summary>
+line 468 column 823 - Warning: trimming empty <summary>
+line 468 column 1822 - Warning: trimming empty <summary>
+line 469 column 240 - Warning: trimming empty <summary>
+line 469 column 1025 - Warning: trimming empty <summary>
+./docs/cargo_auto/struct.PATH_CARGO_TOML.html
+line 4 column 916 - Warning: missing </summary> before <section>
+line 4 column 1406 - Warning: discarding unexpected </summary>
+line 10 column 60 - Warning: missing </summary> before <section>
+line 10 column 522 - Warning: discarding unexpected </summary>
+line 11 column 530 - Warning: missing </summary> before <section>
+line 11 column 1042 - Warning: discarding unexpected </summary>
+line 17 column 60 - Warning: missing </summary> before <section>
+line 17 column 594 - Warning: discarding unexpected </summary>
+line 27 column 60 - Warning: missing </summary> before <section>
+line 27 column 652 - Warning: discarding unexpected </summary>
+line 36 column 60 - Warning: missing </summary> before <section>
+line 36 column 671 - Warning: discarding unexpected </summary>
+line 48 column 60 - Warning: missing </summary> before <section>
+line 48 column 566 - Warning: discarding unexpected </summary>
+line 54 column 60 - Warning: missing </summary> before <section>
+line 54 column 527 - Warning: discarding unexpected </summary>
+line 70 column 60 - Warning: missing </summary> before <section>
+line 70 column 527 - Warning: discarding unexpected </summary>
+line 76 column 60 - Warning: missing </summary> before <section>
+line 76 column 518 - Warning: discarding unexpected </summary>
+line 94 column 60 - Warning: missing </summary> before <section>
+line 94 column 684 - Warning: discarding unexpected </summary>
+line 116 column 60 - Warning: missing </summary> before <section>
+line 116 column 578 - Warning: discarding unexpected </summary>
+line 137 column 60 - Warning: missing </summary> before <section>
+line 137 column 709 - Warning: discarding unexpected </summary>
+line 151 column 60 - Warning: missing </summary> before <section>
+line 152 column 293 - Warning: discarding unexpected </summary>
+line 172 column 60 - Warning: missing </summary> before <section>
+line 173 column 293 - Warning: discarding unexpected </summary>
+line 190 column 60 - Warning: missing </summary> before <section>
+line 191 column 293 - Warning: discarding unexpected </summary>
+line 204 column 60 - Warning: missing </summary> before <section>
+line 204 column 709 - Warning: discarding unexpected </summary>
+line 220 column 60 - Warning: missing </summary> before <section>
+line 220 column 619 - Warning: missing </span> before <div>
+line 220 column 670 - Warning: inserting implicit <span>
+line 220 column 789 - Warning: discarding unexpected </span>
+line 220 column 796 - Warning: discarding unexpected </summary>
+line 237 column 60 - Warning: missing </summary> before <section>
+line 237 column 709 - Warning: discarding unexpected </summary>
+line 250 column 60 - Warning: missing </summary> before <section>
+line 251 column 293 - Warning: discarding unexpected </summary>
+line 259 column 60 - Warning: missing </summary> before <section>
+line 260 column 309 - Warning: discarding unexpected </summary>
+line 271 column 60 - Warning: missing </summary> before <section>
+line 272 column 309 - Warning: discarding unexpected </summary>
+line 284 column 60 - Warning: missing </summary> before <section>
+line 284 column 582 - Warning: discarding unexpected </summary>
+line 314 column 60 - Warning: missing </summary> before <section>
+line 314 column 546 - Warning: discarding unexpected </summary>
+line 327 column 60 - Warning: missing </summary> before <section>
+line 327 column 564 - Warning: discarding unexpected </summary>
+line 337 column 60 - Warning: missing </summary> before <section>
+line 337 column 830 - Warning: discarding unexpected </summary>
+line 347 column 60 - Warning: missing </summary> before <section>
+line 347 column 854 - Warning: discarding unexpected </summary>
+line 355 column 60 - Warning: missing </summary> before <section>
+line 355 column 843 - Warning: discarding unexpected </summary>
+line 363 column 60 - Warning: missing </summary> before <section>
+line 363 column 834 - Warning: discarding unexpected </summary>
+line 370 column 60 - Warning: missing </summary> before <section>
+line 370 column 827 - Warning: discarding unexpected </summary>
+line 383 column 60 - Warning: missing </summary> before <section>
+line 383 column 512 - Warning: discarding unexpected </summary>
+line 396 column 60 - Warning: missing </summary> before <section>
+line 396 column 800 - Warning: discarding unexpected </summary>
+line 411 column 60 - Warning: missing </summary> before <section>
+line 411 column 515 - Warning: discarding unexpected </summary>
+line 429 column 60 - Warning: missing </summary> before <section>
+line 429 column 512 - Warning: discarding unexpected </summary>
+line 442 column 60 - Warning: missing </summary> before <section>
+line 442 column 526 - Warning: discarding unexpected </summary>
+line 459 column 248 - Warning: missing </summary> before <section>
+line 459 column 758 - Warning: discarding unexpected </summary>
+line 459 column 821 - Warning: missing </summary> before <section>
+line 459 column 1262 - Warning: discarding unexpected </summary>
+line 459 column 1392 - Warning: missing </summary> before <section>
+line 459 column 1886 - Warning: discarding unexpected </summary>
+line 459 column 5091 - Warning: missing </summary> before <section>
+line 460 column 171 - Warning: discarding unexpected </summary>
+line 460 column 248 - Warning: missing </summary> before <section>
+line 460 column 753 - Warning: discarding unexpected </summary>
+line 460 column 1009 - Warning: missing </summary> before <section>
+line 461 column 161 - Warning: discarding unexpected </summary>
+line 461 column 238 - Warning: missing </summary> before <section>
+line 461 column 719 - Warning: discarding unexpected </summary>
+line 461 column 968 - Warning: missing </summary> before <section>
+line 462 column 161 - Warning: discarding unexpected </summary>
+line 462 column 238 - Warning: missing </summary> before <section>
+line 462 column 746 - Warning: discarding unexpected </summary>
+line 462 column 1000 - Warning: missing </summary> before <section>
+line 462 column 1445 - Warning: discarding unexpected </summary>
+line 462 column 1522 - Warning: missing </summary> before <section>
+line 462 column 1895 - Warning: discarding unexpected </summary>
+line 463 column 77 - Warning: missing </summary> before <section>
+line 464 column 168 - Warning: discarding unexpected </summary>
+line 464 column 245 - Warning: missing </summary> before <section>
+line 464 column 618 - Warning: discarding unexpected </summary>
+line 467 column 77 - Warning: missing </summary> before <section>
+line 467 column 282 - Warning: discarding unexpected </summary>
+line 467 column 345 - Warning: missing </summary> before <section>
+line 467 column 662 - Warning: discarding unexpected </summary>
+line 467 column 764 - Warning: missing </summary> before <section>
+line 467 column 974 - Warning: discarding unexpected </summary>
+line 467 column 1091 - Warning: missing </summary> before <section>
+line 467 column 1404 - Warning: discarding unexpected </summary>
+line 467 column 1553 - Warning: missing </summary> before <section>
+line 467 column 1957 - Warning: discarding unexpected </summary>
+line 467 column 2096 - Warning: missing </summary> before <section>
+line 467 column 2512 - Warning: discarding unexpected </summary>
+line 467 column 2659 - Warning: missing </summary> before <section>
+line 467 column 2936 - Warning: discarding unexpected </summary>
+line 467 column 3110 - Warning: missing </summary> before <section>
+line 468 column 168 - Warning: discarding unexpected </summary>
+line 468 column 231 - Warning: missing </summary> before <section>
+line 468 column 679 - Warning: discarding unexpected </summary>
+line 468 column 823 - Warning: missing </summary> before <section>
+line 468 column 1690 - Warning: discarding unexpected </summary>
+line 468 column 1822 - Warning: missing </summary> before <section>
+line 469 column 177 - Warning: discarding unexpected </summary>
+line 469 column 240 - Warning: missing </summary> before <section>
+line 469 column 881 - Warning: discarding unexpected </summary>
+line 469 column 1025 - Warning: missing </summary> before <section>
+line 469 column 1888 - Warning: discarding unexpected </summary>
+line 1 column 6365 - Warning: trimming empty <span>
+line 4 column 916 - Warning: trimming empty <summary>
+line 10 column 60 - Warning: trimming empty <summary>
+line 11 column 530 - Warning: trimming empty <summary>
+line 17 column 60 - Warning: trimming empty <summary>
+line 27 column 60 - Warning: trimming empty <summary>
+line 36 column 60 - Warning: trimming empty <summary>
+line 48 column 60 - Warning: trimming empty <summary>
+line 54 column 60 - Warning: trimming empty <summary>
+line 70 column 60 - Warning: trimming empty <summary>
+line 76 column 60 - Warning: trimming empty <summary>
+line 94 column 60 - Warning: trimming empty <summary>
+line 116 column 60 - Warning: trimming empty <summary>
+line 137 column 60 - Warning: trimming empty <summary>
+line 151 column 60 - Warning: trimming empty <summary>
+line 172 column 60 - Warning: trimming empty <summary>
+line 190 column 60 - Warning: trimming empty <summary>
+line 204 column 60 - Warning: trimming empty <summary>
+line 220 column 60 - Warning: trimming empty <summary>
+line 220 column 619 - Warning: trimming empty <span>
+line 237 column 60 - Warning: trimming empty <summary>
+line 250 column 60 - Warning: trimming empty <summary>
+line 259 column 60 - Warning: trimming empty <summary>
+line 271 column 60 - Warning: trimming empty <summary>
+line 284 column 60 - Warning: trimming empty <summary>
+line 314 column 60 - Warning: trimming empty <summary>
+line 327 column 60 - Warning: trimming empty <summary>
+line 337 column 60 - Warning: trimming empty <summary>
+line 347 column 60 - Warning: trimming empty <summary>
+line 355 column 60 - Warning: trimming empty <summary>
+line 363 column 60 - Warning: trimming empty <summary>
+line 370 column 60 - Warning: trimming empty <summary>
+line 383 column 60 - Warning: trimming empty <summary>
+line 396 column 60 - Warning: trimming empty <summary>
+line 411 column 60 - Warning: trimming empty <summary>
+line 429 column 60 - Warning: trimming empty <summary>
+line 442 column 60 - Warning: trimming empty <summary>
+line 459 column 248 - Warning: trimming empty <summary>
+line 459 column 821 - Warning: trimming empty <summary>
+line 459 column 1392 - Warning: trimming empty <summary>
+line 459 column 5091 - Warning: trimming empty <summary>
+line 460 column 248 - Warning: trimming empty <summary>
+line 460 column 1009 - Warning: trimming empty <summary>
+line 461 column 238 - Warning: trimming empty <summary>
+line 461 column 968 - Warning: trimming empty <summary>
+line 462 column 238 - Warning: trimming empty <summary>
+line 462 column 1000 - Warning: trimming empty <summary>
+line 462 column 1522 - Warning: trimming empty <summary>
+line 463 column 77 - Warning: trimming empty <summary>
+line 464 column 245 - Warning: trimming empty <summary>
+line 467 column 77 - Warning: trimming empty <summary>
+line 467 column 345 - Warning: trimming empty <summary>
+line 467 column 764 - Warning: trimming empty <summary>
+line 467 column 1091 - Warning: trimming empty <summary>
+line 467 column 1553 - Warning: trimming empty <summary>
+line 467 column 2096 - Warning: trimming empty <summary>
+line 467 column 2659 - Warning: trimming empty <summary>
+line 467 column 3110 - Warning: trimming empty <summary>
+line 468 column 231 - Warning: trimming empty <summary>
+line 468 column 823 - Warning: trimming empty <summary>
+line 468 column 1822 - Warning: trimming empty <summary>
+line 469 column 240 - Warning: trimming empty <summary>
+line 469 column 1025 - Warning: trimming empty <summary>
+./docs/cargo_auto/constant.RESET.html
+line 1 column 2876 - Warning: trimming empty <span>
+./docs/cargo_auto/template_new_auto_mod/fn.get_vec_file.html
+line 1 column 2984 - Warning: trimming empty <span>
+./docs/cargo_auto/template_new_auto_mod/index.html
+line 1 column 3076 - Warning: trimming empty <span>
+./docs/cargo_auto/template_new_auto_mod/fn.build_project_automation_tasks_rs.html
+line 1 column 2959 - Warning: trimming empty <span>
+./docs/cargo_auto/template_new_auto_mod/fn.build_automation_tasks_rs_if_needed.html
+line 1 column 3024 - Warning: trimming empty <span>
+./docs/cargo_auto/template_new_auto_mod/fn.copy_to_files.html
+line 1 column 2986 - Warning: trimming empty <span>
+./docs/cargo_auto/template_new_auto_mod/fn.new_auto.html
+line 1 column 3051 - Warning: trimming empty <span>
+./docs/cargo_auto/template_new_wasm_mod/fn.new_wasm.html
+line 1 column 2976 - Warning: trimming empty <span>
+./docs/cargo_auto/template_new_wasm_mod/fn.get_vec_file.html
+line 1 column 2984 - Warning: trimming empty <span>
+./docs/cargo_auto/template_new_wasm_mod/index.html
+line 1 column 3076 - Warning: trimming empty <span>
+./docs/cargo_auto/template_new_wasm_mod/fn.copy_to_files.html
+line 1 column 2986 - Warning: trimming empty <span>
+./docs/cargo_auto/struct.PATH_GITIGNORE.html
+line 4 column 916 - Warning: missing </summary> before <section>
+line 4 column 1406 - Warning: discarding unexpected </summary>
+line 10 column 60 - Warning: missing </summary> before <section>
+line 10 column 522 - Warning: discarding unexpected </summary>
+line 11 column 530 - Warning: missing </summary> before <section>
+line 11 column 1042 - Warning: discarding unexpected </summary>
+line 17 column 60 - Warning: missing </summary> before <section>
+line 17 column 594 - Warning: discarding unexpected </summary>
+line 27 column 60 - Warning: missing </summary> before <section>
+line 27 column 652 - Warning: discarding unexpected </summary>
+line 36 column 60 - Warning: missing </summary> before <section>
+line 36 column 671 - Warning: discarding unexpected </summary>
+line 48 column 60 - Warning: missing </summary> before <section>
+line 48 column 566 - Warning: discarding unexpected </summary>
+line 54 column 60 - Warning: missing </summary> before <section>
+line 54 column 527 - Warning: discarding unexpected </summary>
+line 70 column 60 - Warning: missing </summary> before <section>
+line 70 column 527 - Warning: discarding unexpected </summary>
+line 76 column 60 - Warning: missing </summary> before <section>
+line 76 column 518 - Warning: discarding unexpected </summary>
+line 94 column 60 - Warning: missing </summary> before <section>
+line 94 column 684 - Warning: discarding unexpected </summary>
+line 116 column 60 - Warning: missing </summary> before <section>
+line 116 column 578 - Warning: discarding unexpected </summary>
+line 137 column 60 - Warning: missing </summary> before <section>
+line 137 column 709 - Warning: discarding unexpected </summary>
+line 151 column 60 - Warning: missing </summary> before <section>
+line 152 column 293 - Warning: discarding unexpected </summary>
+line 172 column 60 - Warning: missing </summary> before <section>
+line 173 column 293 - Warning: discarding unexpected </summary>
+line 190 column 60 - Warning: missing </summary> before <section>
+line 191 column 293 - Warning: discarding unexpected </summary>
+line 204 column 60 - Warning: missing </summary> before <section>
+line 204 column 709 - Warning: discarding unexpected </summary>
+line 220 column 60 - Warning: missing </summary> before <section>
+line 220 column 619 - Warning: missing </span> before <div>
+line 220 column 670 - Warning: inserting implicit <span>
+line 220 column 789 - Warning: discarding unexpected </span>
+line 220 column 796 - Warning: discarding unexpected </summary>
+line 237 column 60 - Warning: missing </summary> before <section>
+line 237 column 709 - Warning: discarding unexpected </summary>
+line 250 column 60 - Warning: missing </summary> before <section>
+line 251 column 293 - Warning: discarding unexpected </summary>
+line 259 column 60 - Warning: missing </summary> before <section>
+line 260 column 309 - Warning: discarding unexpected </summary>
+line 271 column 60 - Warning: missing </summary> before <section>
+line 272 column 309 - Warning: discarding unexpected </summary>
+line 284 column 60 - Warning: missing </summary> before <section>
+line 284 column 582 - Warning: discarding unexpected </summary>
+line 314 column 60 - Warning: missing </summary> before <section>
+line 314 column 546 - Warning: discarding unexpected </summary>
+line 327 column 60 - Warning: missing </summary> before <section>
+line 327 column 564 - Warning: discarding unexpected </summary>
+line 337 column 60 - Warning: missing </summary> before <section>
+line 337 column 830 - Warning: discarding unexpected </summary>
+line 347 column 60 - Warning: missing </summary> before <section>
+line 347 column 854 - Warning: discarding unexpected </summary>
+line 355 column 60 - Warning: missing </summary> before <section>
+line 355 column 843 - Warning: discarding unexpected </summary>
+line 363 column 60 - Warning: missing </summary> before <section>
+line 363 column 834 - Warning: discarding unexpected </summary>
+line 370 column 60 - Warning: missing </summary> before <section>
+line 370 column 827 - Warning: discarding unexpected </summary>
+line 383 column 60 - Warning: missing </summary> before <section>
+line 383 column 512 - Warning: discarding unexpected </summary>
+line 396 column 60 - Warning: missing </summary> before <section>
+line 396 column 800 - Warning: discarding unexpected </summary>
+line 411 column 60 - Warning: missing </summary> before <section>
+line 411 column 515 - Warning: discarding unexpected </summary>
+line 429 column 60 - Warning: missing </summary> before <section>
+line 429 column 512 - Warning: discarding unexpected </summary>
+line 442 column 60 - Warning: missing </summary> before <section>
+line 442 column 526 - Warning: discarding unexpected </summary>
+line 459 column 248 - Warning: missing </summary> before <section>
+line 459 column 753 - Warning: discarding unexpected </summary>
+line 459 column 816 - Warning: missing </summary> before <section>
+line 459 column 1257 - Warning: discarding unexpected </summary>
+line 459 column 1387 - Warning: missing </summary> before <section>
+line 459 column 1881 - Warning: discarding unexpected </summary>
+line 459 column 5056 - Warning: missing </summary> before <section>
+line 460 column 171 - Warning: discarding unexpected </summary>
+line 460 column 248 - Warning: missing </summary> before <section>
+line 460 column 753 - Warning: discarding unexpected </summary>
+line 460 column 1009 - Warning: missing </summary> before <section>
+line 461 column 161 - Warning: discarding unexpected </summary>
+line 461 column 238 - Warning: missing </summary> before <section>
+line 461 column 719 - Warning: discarding unexpected </summary>
+line 461 column 968 - Warning: missing </summary> before <section>
+line 462 column 161 - Warning: discarding unexpected </summary>
+line 462 column 238 - Warning: missing </summary> before <section>
+line 462 column 746 - Warning: discarding unexpected </summary>
+line 462 column 1000 - Warning: missing </summary> before <section>
+line 462 column 1443 - Warning: discarding unexpected </summary>
+line 462 column 1520 - Warning: missing </summary> before <section>
+line 462 column 1893 - Warning: discarding unexpected </summary>
+line 463 column 77 - Warning: missing </summary> before <section>
+line 464 column 168 - Warning: discarding unexpected </summary>
+line 464 column 245 - Warning: missing </summary> before <section>
+line 464 column 618 - Warning: discarding unexpected </summary>
+line 467 column 77 - Warning: missing </summary> before <section>
+line 467 column 280 - Warning: discarding unexpected </summary>
+line 467 column 343 - Warning: missing </summary> before <section>
+line 467 column 660 - Warning: discarding unexpected </summary>
+line 467 column 762 - Warning: missing </summary> before <section>
+line 467 column 972 - Warning: discarding unexpected </summary>
+line 467 column 1089 - Warning: missing </summary> before <section>
+line 467 column 1402 - Warning: discarding unexpected </summary>
+line 467 column 1551 - Warning: missing </summary> before <section>
+line 467 column 1955 - Warning: discarding unexpected </summary>
+line 467 column 2094 - Warning: missing </summary> before <section>
+line 467 column 2510 - Warning: discarding unexpected </summary>
+line 467 column 2657 - Warning: missing </summary> before <section>
+line 467 column 2934 - Warning: discarding unexpected </summary>
+line 467 column 3108 - Warning: missing </summary> before <section>
+line 468 column 168 - Warning: discarding unexpected </summary>
+line 468 column 231 - Warning: missing </summary> before <section>
+line 468 column 679 - Warning: discarding unexpected </summary>
+line 468 column 823 - Warning: missing </summary> before <section>
+line 468 column 1690 - Warning: discarding unexpected </summary>
+line 468 column 1822 - Warning: missing </summary> before <section>
+line 469 column 177 - Warning: discarding unexpected </summary>
+line 469 column 240 - Warning: missing </summary> before <section>
+line 469 column 881 - Warning: discarding unexpected </summary>
+line 469 column 1025 - Warning: missing </summary> before <section>
+line 469 column 1888 - Warning: discarding unexpected </summary>
+line 1 column 6348 - Warning: trimming empty <span>
+line 4 column 916 - Warning: trimming empty <summary>
+line 10 column 60 - Warning: trimming empty <summary>
+line 11 column 530 - Warning: trimming empty <summary>
+line 17 column 60 - Warning: trimming empty <summary>
+line 27 column 60 - Warning: trimming empty <summary>
+line 36 column 60 - Warning: trimming empty <summary>
+line 48 column 60 - Warning: trimming empty <summary>
+line 54 column 60 - Warning: trimming empty <summary>
+line 70 column 60 - Warning: trimming empty <summary>
+line 76 column 60 - Warning: trimming empty <summary>
+line 94 column 60 - Warning: trimming empty <summary>
+line 116 column 60 - Warning: trimming empty <summary>
+line 137 column 60 - Warning: trimming empty <summary>
+line 151 column 60 - Warning: trimming empty <summary>
+line 172 column 60 - Warning: trimming empty <summary>
+line 190 column 60 - Warning: trimming empty <summary>
+line 204 column 60 - Warning: trimming empty <summary>
+line 220 column 60 - Warning: trimming empty <summary>
+line 220 column 619 - Warning: trimming empty <span>
+line 237 column 60 - Warning: trimming empty <summary>
+line 250 column 60 - Warning: trimming empty <summary>
+line 259 column 60 - Warning: trimming empty <summary>
+line 271 column 60 - Warning: trimming empty <summary>
+line 284 column 60 - Warning: trimming empty <summary>
+line 314 column 60 - Warning: trimming empty <summary>
+line 327 column 60 - Warning: trimming empty <summary>
+line 337 column 60 - Warning: trimming empty <summary>
+line 347 column 60 - Warning: trimming empty <summary>
+line 355 column 60 - Warning: trimming empty <summary>
+line 363 column 60 - Warning: trimming empty <summary>
+line 370 column 60 - Warning: trimming empty <summary>
+line 383 column 60 - Warning: trimming empty <summary>
+line 396 column 60 - Warning: trimming empty <summary>
+line 411 column 60 - Warning: trimming empty <summary>
+line 429 column 60 - Warning: trimming empty <summary>
+line 442 column 60 - Warning: trimming empty <summary>
+line 459 column 248 - Warning: trimming empty <summary>
+line 459 column 816 - Warning: trimming empty <summary>
+line 459 column 1387 - Warning: trimming empty <summary>
+line 459 column 5056 - Warning: trimming empty <summary>
+line 460 column 248 - Warning: trimming empty <summary>
+line 460 column 1009 - Warning: trimming empty <summary>
+line 461 column 238 - Warning: trimming empty <summary>
+line 461 column 968 - Warning: trimming empty <summary>
+line 462 column 238 - Warning: trimming empty <summary>
+line 462 column 1000 - Warning: trimming empty <summary>
+line 462 column 1520 - Warning: trimming empty <summary>
+line 463 column 77 - Warning: trimming empty <summary>
+line 464 column 245 - Warning: trimming empty <summary>
+line 467 column 77 - Warning: trimming empty <summary>
+line 467 column 343 - Warning: trimming empty <summary>
+line 467 column 762 - Warning: trimming empty <summary>
+line 467 column 1089 - Warning: trimming empty <summary>
+line 467 column 1551 - Warning: trimming empty <summary>
+line 467 column 2094 - Warning: trimming empty <summary>
+line 467 column 2657 - Warning: trimming empty <summary>
+line 467 column 3108 - Warning: trimming empty <summary>
+line 468 column 231 - Warning: trimming empty <summary>
+line 468 column 823 - Warning: trimming empty <summary>
+line 468 column 1822 - Warning: trimming empty <summary>
+line 469 column 240 - Warning: trimming empty <summary>
+line 469 column 1025 - Warning: trimming empty <summary>
+./docs/cargo_auto/inside_of_rust_project_mod/fn.completion.html
+line 1 column 3019 - Warning: trimming empty <span>
+./docs/cargo_auto/inside_of_rust_project_mod/fn.print_help_from_cargo_auto.html
+line 1 column 3278 - Warning: trimming empty <span>
+./docs/cargo_auto/inside_of_rust_project_mod/fn.match_first_argument.html
+line 1 column 3236 - Warning: trimming empty <span>
+./docs/cargo_auto/inside_of_rust_project_mod/index.html
+line 1 column 3033 - Warning: trimming empty <span>
+./docs/cargo_auto/inside_of_rust_project_mod/fn.parse_args.html
+line 1 column 2990 - Warning: trimming empty <span>
+./docs/cargo_auto/inside_of_rust_project_mod/fn.already_exists_automation_tasks_rs.html
+line 1 column 2989 - Warning: trimming empty <span>
+./docs/cargo_auto/struct.PATH_SRC_MAIN_RS.html
+line 4 column 916 - Warning: missing </summary> before <section>
+line 4 column 1406 - Warning: discarding unexpected </summary>
+line 10 column 60 - Warning: missing </summary> before <section>
+line 10 column 522 - Warning: discarding unexpected </summary>
+line 11 column 530 - Warning: missing </summary> before <section>
+line 11 column 1042 - Warning: discarding unexpected </summary>
+line 17 column 60 - Warning: missing </summary> before <section>
+line 17 column 594 - Warning: discarding unexpected </summary>
+line 27 column 60 - Warning: missing </summary> before <section>
+line 27 column 652 - Warning: discarding unexpected </summary>
+line 36 column 60 - Warning: missing </summary> before <section>
+line 36 column 671 - Warning: discarding unexpected </summary>
+line 48 column 60 - Warning: missing </summary> before <section>
+line 48 column 566 - Warning: discarding unexpected </summary>
+line 54 column 60 - Warning: missing </summary> before <section>
+line 54 column 527 - Warning: discarding unexpected </summary>
+line 70 column 60 - Warning: missing </summary> before <section>
+line 70 column 527 - Warning: discarding unexpected </summary>
+line 76 column 60 - Warning: missing </summary> before <section>
+line 76 column 518 - Warning: discarding unexpected </summary>
+line 94 column 60 - Warning: missing </summary> before <section>
+line 94 column 684 - Warning: discarding unexpected </summary>
+line 116 column 60 - Warning: missing </summary> before <section>
+line 116 column 578 - Warning: discarding unexpected </summary>
+line 137 column 60 - Warning: missing </summary> before <section>
+line 137 column 709 - Warning: discarding unexpected </summary>
+line 151 column 60 - Warning: missing </summary> before <section>
+line 152 column 293 - Warning: discarding unexpected </summary>
+line 172 column 60 - Warning: missing </summary> before <section>
+line 173 column 293 - Warning: discarding unexpected </summary>
+line 190 column 60 - Warning: missing </summary> before <section>
+line 191 column 293 - Warning: discarding unexpected </summary>
+line 204 column 60 - Warning: missing </summary> before <section>
+line 204 column 709 - Warning: discarding unexpected </summary>
+line 220 column 60 - Warning: missing </summary> before <section>
+line 220 column 619 - Warning: missing </span> before <div>
+line 220 column 670 - Warning: inserting implicit <span>
+line 220 column 789 - Warning: discarding unexpected </span>
+line 220 column 796 - Warning: discarding unexpected </summary>
+line 237 column 60 - Warning: missing </summary> before <section>
+line 237 column 709 - Warning: discarding unexpected </summary>
+line 250 column 60 - Warning: missing </summary> before <section>
+line 251 column 293 - Warning: discarding unexpected </summary>
+line 259 column 60 - Warning: missing </summary> before <section>
+line 260 column 309 - Warning: discarding unexpected </summary>
+line 271 column 60 - Warning: missing </summary> before <section>
+line 272 column 309 - Warning: discarding unexpected </summary>
+line 284 column 60 - Warning: missing </summary> before <section>
+line 284 column 582 - Warning: discarding unexpected </summary>
+line 314 column 60 - Warning: missing </summary> before <section>
+line 314 column 546 - Warning: discarding unexpected </summary>
+line 327 column 60 - Warning: missing </summary> before <section>
+line 327 column 564 - Warning: discarding unexpected </summary>
+line 337 column 60 - Warning: missing </summary> before <section>
+line 337 column 830 - Warning: discarding unexpected </summary>
+line 347 column 60 - Warning: missing </summary> before <section>
+line 347 column 854 - Warning: discarding unexpected </summary>
+line 355 column 60 - Warning: missing </summary> before <section>
+line 355 column 843 - Warning: discarding unexpected </summary>
+line 363 column 60 - Warning: missing </summary> before <section>
+line 363 column 834 - Warning: discarding unexpected </summary>
+line 370 column 60 - Warning: missing </summary> before <section>
+line 370 column 827 - Warning: discarding unexpected </summary>
+line 383 column 60 - Warning: missing </summary> before <section>
+line 383 column 512 - Warning: discarding unexpected </summary>
+line 396 column 60 - Warning: missing </summary> before <section>
+line 396 column 800 - Warning: discarding unexpected </summary>
+line 411 column 60 - Warning: missing </summary> before <section>
+line 411 column 515 - Warning: discarding unexpected </summary>
+line 429 column 60 - Warning: missing </summary> before <section>
+line 429 column 512 - Warning: discarding unexpected </summary>
+line 442 column 60 - Warning: missing </summary> before <section>
+line 442 column 526 - Warning: discarding unexpected </summary>
+line 459 column 248 - Warning: missing </summary> before <section>
+line 459 column 763 - Warning: discarding unexpected </summary>
+line 459 column 826 - Warning: missing </summary> before <section>
+line 459 column 1267 - Warning: discarding unexpected </summary>
+line 459 column 1397 - Warning: missing </summary> before <section>
+line 459 column 1891 - Warning: discarding unexpected </summary>
+line 459 column 5126 - Warning: missing </summary> before <section>
+line 460 column 171 - Warning: discarding unexpected </summary>
+line 460 column 248 - Warning: missing </summary> before <section>
+line 460 column 753 - Warning: discarding unexpected </summary>
+line 460 column 1009 - Warning: missing </summary> before <section>
+line 461 column 161 - Warning: discarding unexpected </summary>
+line 461 column 238 - Warning: missing </summary> before <section>
+line 461 column 719 - Warning: discarding unexpected </summary>
+line 461 column 968 - Warning: missing </summary> before <section>
+line 462 column 161 - Warning: discarding unexpected </summary>
+line 462 column 238 - Warning: missing </summary> before <section>
+line 462 column 746 - Warning: discarding unexpected </summary>
+line 462 column 1000 - Warning: missing </summary> before <section>
+line 462 column 1447 - Warning: discarding unexpected </summary>
+line 462 column 1524 - Warning: missing </summary> before <section>
+line 462 column 1897 - Warning: discarding unexpected </summary>
+line 463 column 77 - Warning: missing </summary> before <section>
+line 464 column 168 - Warning: discarding unexpected </summary>
+line 464 column 245 - Warning: missing </summary> before <section>
+line 464 column 618 - Warning: discarding unexpected </summary>
+line 467 column 77 - Warning: missing </summary> before <section>
+line 467 column 284 - Warning: discarding unexpected </summary>
+line 467 column 347 - Warning: missing </summary> before <section>
+line 467 column 664 - Warning: discarding unexpected </summary>
+line 467 column 766 - Warning: missing </summary> before <section>
+line 467 column 976 - Warning: discarding unexpected </summary>
+line 467 column 1093 - Warning: missing </summary> before <section>
+line 467 column 1406 - Warning: discarding unexpected </summary>
+line 467 column 1555 - Warning: missing </summary> before <section>
+line 467 column 1959 - Warning: discarding unexpected </summary>
+line 467 column 2098 - Warning: missing </summary> before <section>
+line 467 column 2514 - Warning: discarding unexpected </summary>
+line 467 column 2661 - Warning: missing </summary> before <section>
+line 467 column 2938 - Warning: discarding unexpected </summary>
+line 467 column 3112 - Warning: missing </summary> before <section>
+line 468 column 168 - Warning: discarding unexpected </summary>
+line 468 column 231 - Warning: missing </summary> before <section>
+line 468 column 679 - Warning: discarding unexpected </summary>
+line 468 column 823 - Warning: missing </summary> before <section>
+line 468 column 1690 - Warning: discarding unexpected </summary>
+line 468 column 1822 - Warning: missing </summary> before <section>
+line 469 column 177 - Warning: discarding unexpected </summary>
+line 469 column 240 - Warning: missing </summary> before <section>
+line 469 column 881 - Warning: discarding unexpected </summary>
+line 469 column 1025 - Warning: missing </summary> before <section>
+line 469 column 1888 - Warning: discarding unexpected </summary>
+line 1 column 6382 - Warning: trimming empty <span>
+line 4 column 916 - Warning: trimming empty <summary>
+line 10 column 60 - Warning: trimming empty <summary>
+line 11 column 530 - Warning: trimming empty <summary>
+line 17 column 60 - Warning: trimming empty <summary>
+line 27 column 60 - Warning: trimming empty <summary>
+line 36 column 60 - Warning: trimming empty <summary>
+line 48 column 60 - Warning: trimming empty <summary>
+line 54 column 60 - Warning: trimming empty <summary>
+line 70 column 60 - Warning: trimming empty <summary>
+line 76 column 60 - Warning: trimming empty <summary>
+line 94 column 60 - Warning: trimming empty <summary>
+line 116 column 60 - Warning: trimming empty <summary>
+line 137 column 60 - Warning: trimming empty <summary>
+line 151 column 60 - Warning: trimming empty <summary>
+line 172 column 60 - Warning: trimming empty <summary>
+line 190 column 60 - Warning: trimming empty <summary>
+line 204 column 60 - Warning: trimming empty <summary>
+line 220 column 60 - Warning: trimming empty <summary>
+line 220 column 619 - Warning: trimming empty <span>
+line 237 column 60 - Warning: trimming empty <summary>
+line 250 column 60 - Warning: trimming empty <summary>
+line 259 column 60 - Warning: trimming empty <summary>
+line 271 column 60 - Warning: trimming empty <summary>
+line 284 column 60 - Warning: trimming empty <summary>
+line 314 column 60 - Warning: trimming empty <summary>
+line 327 column 60 - Warning: trimming empty <summary>
+line 337 column 60 - Warning: trimming empty <summary>
+line 347 column 60 - Warning: trimming empty <summary>
+line 355 column 60 - Warning: trimming empty <summary>
+line 363 column 60 - Warning: trimming empty <summary>
+line 370 column 60 - Warning: trimming empty <summary>
+line 383 column 60 - Warning: trimming empty <summary>
+line 396 column 60 - Warning: trimming empty <summary>
+line 411 column 60 - Warning: trimming empty <summary>
+line 429 column 60 - Warning: trimming empty <summary>
+line 442 column 60 - Warning: trimming empty <summary>
+line 459 column 248 - Warning: trimming empty <summary>
+line 459 column 826 - Warning: trimming empty <summary>
+line 459 column 1397 - Warning: trimming empty <summary>
+line 459 column 5126 - Warning: trimming empty <summary>
+line 460 column 248 - Warning: trimming empty <summary>
+line 460 column 1009 - Warning: trimming empty <summary>
+line 461 column 238 - Warning: trimming empty <summary>
+line 461 column 968 - Warning: trimming empty <summary>
+line 462 column 238 - Warning: trimming empty <summary>
+line 462 column 1000 - Warning: trimming empty <summary>
+line 462 column 1524 - Warning: trimming empty <summary>
+line 463 column 77 - Warning: trimming empty <summary>
+line 464 column 245 - Warning: trimming empty <summary>
+line 467 column 77 - Warning: trimming empty <summary>
+line 467 column 347 - Warning: trimming empty <summary>
+line 467 column 766 - Warning: trimming empty <summary>
+line 467 column 1093 - Warning: trimming empty <summary>
+line 467 column 1555 - Warning: trimming empty <summary>
+line 467 column 2098 - Warning: trimming empty <summary>
+line 467 column 2661 - Warning: trimming empty <summary>
+line 467 column 3112 - Warning: trimming empty <summary>
+line 468 column 231 - Warning: trimming empty <summary>
+line 468 column 823 - Warning: trimming empty <summary>
+line 468 column 1822 - Warning: trimming empty <summary>
+line 469 column 240 - Warning: trimming empty <summary>
+line 469 column 1025 - Warning: trimming empty <summary>
+./docs/cargo_auto/struct.PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.html
+line 4 column 916 - Warning: missing </summary> before <section>
+line 4 column 1406 - Warning: discarding unexpected </summary>
+line 10 column 60 - Warning: missing </summary> before <section>
+line 10 column 522 - Warning: discarding unexpected </summary>
+line 11 column 530 - Warning: missing </summary> before <section>
+line 11 column 1042 - Warning: discarding unexpected </summary>
+line 17 column 60 - Warning: missing </summary> before <section>
+line 17 column 594 - Warning: discarding unexpected </summary>
+line 27 column 60 - Warning: missing </summary> before <section>
+line 27 column 652 - Warning: discarding unexpected </summary>
+line 36 column 60 - Warning: missing </summary> before <section>
+line 36 column 671 - Warning: discarding unexpected </summary>
+line 48 column 60 - Warning: missing </summary> before <section>
+line 48 column 566 - Warning: discarding unexpected </summary>
+line 54 column 60 - Warning: missing </summary> before <section>
+line 54 column 527 - Warning: discarding unexpected </summary>
+line 70 column 60 - Warning: missing </summary> before <section>
+line 70 column 527 - Warning: discarding unexpected </summary>
+line 76 column 60 - Warning: missing </summary> before <section>
+line 76 column 518 - Warning: discarding unexpected </summary>
+line 94 column 60 - Warning: missing </summary> before <section>
+line 94 column 684 - Warning: discarding unexpected </summary>
+line 116 column 60 - Warning: missing </summary> before <section>
+line 116 column 578 - Warning: discarding unexpected </summary>
+line 137 column 60 - Warning: missing </summary> before <section>
+line 137 column 709 - Warning: discarding unexpected </summary>
+line 151 column 60 - Warning: missing </summary> before <section>
+line 152 column 293 - Warning: discarding unexpected </summary>
+line 172 column 60 - Warning: missing </summary> before <section>
+line 173 column 293 - Warning: discarding unexpected </summary>
+line 190 column 60 - Warning: missing </summary> before <section>
+line 191 column 293 - Warning: discarding unexpected </summary>
+line 204 column 60 - Warning: missing </summary> before <section>
+line 204 column 709 - Warning: discarding unexpected </summary>
+line 220 column 60 - Warning: missing </summary> before <section>
+line 220 column 619 - Warning: missing </span> before <div>
+line 220 column 670 - Warning: inserting implicit <span>
+line 220 column 789 - Warning: discarding unexpected </span>
+line 220 column 796 - Warning: discarding unexpected </summary>
+line 237 column 60 - Warning: missing </summary> before <section>
+line 237 column 709 - Warning: discarding unexpected </summary>
+line 250 column 60 - Warning: missing </summary> before <section>
+line 251 column 293 - Warning: discarding unexpected </summary>
+line 259 column 60 - Warning: missing </summary> before <section>
+line 260 column 309 - Warning: discarding unexpected </summary>
+line 271 column 60 - Warning: missing </summary> before <section>
+line 272 column 309 - Warning: discarding unexpected </summary>
+line 284 column 60 - Warning: missing </summary> before <section>
+line 284 column 582 - Warning: discarding unexpected </summary>
+line 314 column 60 - Warning: missing </summary> before <section>
+line 314 column 546 - Warning: discarding unexpected </summary>
+line 327 column 60 - Warning: missing </summary> before <section>
+line 327 column 564 - Warning: discarding unexpected </summary>
+line 337 column 60 - Warning: missing </summary> before <section>
+line 337 column 830 - Warning: discarding unexpected </summary>
+line 347 column 60 - Warning: missing </summary> before <section>
+line 347 column 854 - Warning: discarding unexpected </summary>
+line 355 column 60 - Warning: missing </summary> before <section>
+line 355 column 843 - Warning: discarding unexpected </summary>
+line 363 column 60 - Warning: missing </summary> before <section>
+line 363 column 834 - Warning: discarding unexpected </summary>
+line 370 column 60 - Warning: missing </summary> before <section>
+line 370 column 827 - Warning: discarding unexpected </summary>
+line 383 column 60 - Warning: missing </summary> before <section>
+line 383 column 512 - Warning: discarding unexpected </summary>
+line 396 column 60 - Warning: missing </summary> before <section>
+line 396 column 800 - Warning: discarding unexpected </summary>
+line 411 column 60 - Warning: missing </summary> before <section>
+line 411 column 515 - Warning: discarding unexpected </summary>
+line 429 column 60 - Warning: missing </summary> before <section>
+line 429 column 512 - Warning: discarding unexpected </summary>
+line 442 column 60 - Warning: missing </summary> before <section>
+line 442 column 526 - Warning: discarding unexpected </summary>
+line 459 column 248 - Warning: missing </summary> before <section>
+line 459 column 868 - Warning: discarding unexpected </summary>
+line 459 column 931 - Warning: missing </summary> before <section>
+line 459 column 1372 - Warning: discarding unexpected </summary>
+line 459 column 1502 - Warning: missing </summary> before <section>
+line 459 column 1996 - Warning: discarding unexpected </summary>
+line 459 column 5861 - Warning: missing </summary> before <section>
+line 460 column 171 - Warning: discarding unexpected </summary>
+line 460 column 248 - Warning: missing </summary> before <section>
+line 460 column 753 - Warning: discarding unexpected </summary>
+line 460 column 1009 - Warning: missing </summary> before <section>
+line 461 column 161 - Warning: discarding unexpected </summary>
+line 461 column 238 - Warning: missing </summary> before <section>
+line 461 column 719 - Warning: discarding unexpected </summary>
+line 461 column 968 - Warning: missing </summary> before <section>
+line 462 column 161 - Warning: discarding unexpected </summary>
+line 462 column 238 - Warning: missing </summary> before <section>
+line 462 column 746 - Warning: discarding unexpected </summary>
+line 462 column 1000 - Warning: missing </summary> before <section>
+line 462 column 1489 - Warning: discarding unexpected </summary>
+line 462 column 1566 - Warning: missing </summary> before <section>
+line 462 column 1939 - Warning: discarding unexpected </summary>
+line 463 column 77 - Warning: missing </summary> before <section>
+line 464 column 168 - Warning: discarding unexpected </summary>
+line 464 column 245 - Warning: missing </summary> before <section>
+line 464 column 618 - Warning: discarding unexpected </summary>
+line 467 column 77 - Warning: missing </summary> before <section>
+line 467 column 326 - Warning: discarding unexpected </summary>
+line 467 column 389 - Warning: missing </summary> before <section>
+line 467 column 706 - Warning: discarding unexpected </summary>
+line 467 column 808 - Warning: missing </summary> before <section>
+line 467 column 1018 - Warning: discarding unexpected </summary>
+line 467 column 1135 - Warning: missing </summary> before <section>
+line 467 column 1448 - Warning: discarding unexpected </summary>
+line 467 column 1597 - Warning: missing </summary> before <section>
+line 467 column 2001 - Warning: discarding unexpected </summary>
+line 467 column 2140 - Warning: missing </summary> before <section>
+line 467 column 2556 - Warning: discarding unexpected </summary>
+line 467 column 2703 - Warning: missing </summary> before <section>
+line 467 column 2980 - Warning: discarding unexpected </summary>
+line 467 column 3154 - Warning: missing </summary> before <section>
+line 468 column 168 - Warning: discarding unexpected </summary>
+line 468 column 231 - Warning: missing </summary> before <section>
+line 468 column 679 - Warning: discarding unexpected </summary>
+line 468 column 823 - Warning: missing </summary> before <section>
+line 468 column 1690 - Warning: discarding unexpected </summary>
+line 468 column 1822 - Warning: missing </summary> before <section>
+line 469 column 177 - Warning: discarding unexpected </summary>
+line 469 column 240 - Warning: missing </summary> before <section>
+line 469 column 881 - Warning: discarding unexpected </summary>
+line 469 column 1025 - Warning: missing </summary> before <section>
+line 469 column 1888 - Warning: discarding unexpected </summary>
+line 1 column 6739 - Warning: trimming empty <span>
+line 4 column 916 - Warning: trimming empty <summary>
+line 10 column 60 - Warning: trimming empty <summary>
+line 11 column 530 - Warning: trimming empty <summary>
+line 17 column 60 - Warning: trimming empty <summary>
+line 27 column 60 - Warning: trimming empty <summary>
+line 36 column 60 - Warning: trimming empty <summary>
+line 48 column 60 - Warning: trimming empty <summary>
+line 54 column 60 - Warning: trimming empty <summary>
+line 70 column 60 - Warning: trimming empty <summary>
+line 76 column 60 - Warning: trimming empty <summary>
+line 94 column 60 - Warning: trimming empty <summary>
+line 116 column 60 - Warning: trimming empty <summary>
+line 137 column 60 - Warning: trimming empty <summary>
+line 151 column 60 - Warning: trimming empty <summary>
+line 172 column 60 - Warning: trimming empty <summary>
+line 190 column 60 - Warning: trimming empty <summary>
+line 204 column 60 - Warning: trimming empty <summary>
+line 220 column 60 - Warning: trimming empty <summary>
+line 220 column 619 - Warning: trimming empty <span>
+line 237 column 60 - Warning: trimming empty <summary>
+line 250 column 60 - Warning: trimming empty <summary>
+line 259 column 60 - Warning: trimming empty <summary>
+line 271 column 60 - Warning: trimming empty <summary>
+line 284 column 60 - Warning: trimming empty <summary>
+line 314 column 60 - Warning: trimming empty <summary>
+line 327 column 60 - Warning: trimming empty <summary>
+line 337 column 60 - Warning: trimming empty <summary>
+line 347 column 60 - Warning: trimming empty <summary>
+line 355 column 60 - Warning: trimming empty <summary>
+line 363 column 60 - Warning: trimming empty <summary>
+line 370 column 60 - Warning: trimming empty <summary>
+line 383 column 60 - Warning: trimming empty <summary>
+line 396 column 60 - Warning: trimming empty <summary>
+line 411 column 60 - Warning: trimming empty <summary>
+line 429 column 60 - Warning: trimming empty <summary>
+line 442 column 60 - Warning: trimming empty <summary>
+line 459 column 248 - Warning: trimming empty <summary>
+line 459 column 931 - Warning: trimming empty <summary>
+line 459 column 1502 - Warning: trimming empty <summary>
+line 459 column 5861 - Warning: trimming empty <summary>
+line 460 column 248 - Warning: trimming empty <summary>
+line 460 column 1009 - Warning: trimming empty <summary>
+line 461 column 238 - Warning: trimming empty <summary>
+line 461 column 968 - Warning: trimming empty <summary>
+line 462 column 238 - Warning: trimming empty <summary>
+line 462 column 1000 - Warning: trimming empty <summary>
+line 462 column 1566 - Warning: trimming empty <summary>
+line 463 column 77 - Warning: trimming empty <summary>
+line 464 column 245 - Warning: trimming empty <summary>
+line 467 column 77 - Warning: trimming empty <summary>
+line 467 column 389 - Warning: trimming empty <summary>
+line 467 column 808 - Warning: trimming empty <summary>
+line 467 column 1135 - Warning: trimming empty <summary>
+line 467 column 1597 - Warning: trimming empty <summary>
+line 467 column 2140 - Warning: trimming empty <summary>
+line 467 column 2703 - Warning: trimming empty <summary>
+line 467 column 3154 - Warning: trimming empty <summary>
+line 468 column 231 - Warning: trimming empty <summary>
+line 468 column 823 - Warning: trimming empty <summary>
+line 468 column 1822 - Warning: trimming empty <summary>
+line 469 column 240 - Warning: trimming empty <summary>
+line 469 column 1025 - Warning: trimming empty <summary>
+./docs/src/cargo_auto/inside_of_rust_project_mod.rs.html
+line 1 column 2671 - Warning: trimming empty <span>
+./docs/src/cargo_auto/template_new_auto_mod.rs.html
+line 1 column 2661 - Warning: trimming empty <span>
+./docs/src/cargo_auto/file_hashes_mod.rs.html
+line 1 column 2649 - Warning: trimming empty <span>
+./docs/src/cargo_auto/outside_of_rust_project_mod.rs.html
+line 1 column 2673 - Warning: trimming empty <span>
+./docs/src/cargo_auto/template_new_wasm_mod.rs.html
+line 1 column 2661 - Warning: trimming empty <span>
+./docs/src/cargo_auto/template_new_cli_mod.rs.html
+line 1 column 2659 - Warning: trimming empty <span>
+./docs/src/cargo_auto/main.rs.html
+line 1 column 2627 - Warning: trimming empty <span>
+./docs/src/cargo_auto/template_new_pwa_wasm_mod.rs.html
+line 1 column 2669 - Warning: trimming empty <span>
+./docs/index.html
+line 1 column 1 - Warning: missing <!DOCTYPE> declaration
+line 1 column 1 - Warning: inserting missing 'title' element
+./docs/settings.html
+line 1 column 2731 - Warning: trimming empty <span>
