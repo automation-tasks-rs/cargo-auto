@@ -51,7 +51,7 @@ pub fn get_vec_file() -> Vec<crate::FileItem> {
 [//]: # (auto_cargo_toml_to_md start)
 
 **template for a minimal WASM project for browser**  
-***version: 2023.519.1012 date: 2023-05-19 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo_auto_template_new_wasm)***  
+***version: 2024.519.1012 date: 2024-05-19 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo_auto_template_new_wasm)***  
 
 [//]: # (auto_cargo_toml_to_md end)
 
@@ -247,7 +247,7 @@ p{
         file_name: "Cargo.toml",
         file_content: r###"[package]
 name = "cargo_auto_template_new_wasm"
-version = "2023.519.1012"
+version = "2024.519.1012"
 authors = ["bestia.dev"]
 homepage = "https://bestia.dev"
 edition = "2021"
@@ -578,7 +578,7 @@ fn print_help() {
     This command should return an error:
     http://localhost:4000/cargo_auto_template_new_wasm#upper/WORLD
 
-    © 2023 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
+    © 2024 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
 "#,
     );
 }
@@ -1091,7 +1091,7 @@ fn print_help() {
 {GREEN}cargo auto publish_to_web - publish to web, git tag{RESET}
     {YELLOW}(You need credentials for publishing over SSH. Use ssh-agent and ssh-add to store the credentials for SSH.){RESET}
 
-    {YELLOW}© 2023 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
+    {YELLOW}© 2024 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
 "#
     );
     print_examples_cmd();
@@ -1276,7 +1276,7 @@ https://bestia.dev/{package_name}
         file_name: "LICENSE",
         file_content: r###"MIT License
 
-Copyright (c) 2023 bestia.dev
+Copyright (c) 2024 bestia.dev
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -285,7 +285,7 @@ pub fn get_vec_file() -> Vec<crate::FileItem> {
 [//]: # (auto_cargo_toml_to_md start)
 
 **pwa_description**  
-***version: 2023.530.1200 date: 2023-05-30 author: [project_author](project_homepage) repository: [GitHub](project_repository)***  
+***version: 2024.530.1200 date: 2024-05-30 author: [project_author](project_homepage) repository: [GitHub](project_repository)***  
 
 [//]: # (auto_cargo_toml_to_md end)
 
@@ -7374,7 +7374,7 @@ navigator.serviceWorker.addEventListener('controllerchange', function () {
         file_name: "Cargo.toml",
         file_content: r###"[package]
 name = "rust_project_name"
-version = "2023.519.1012"
+version = "2024.519.1012"
 authors = ["project_author"]
 homepage = "project_homepage"
 edition = "2021"
@@ -7866,7 +7866,7 @@ http://localhost:4000/pwa_short_name/#upper/world
 This command should return an error:
 http://localhost:4000/pwa_short_name/#upper/WORLD
 
-© 2023 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
+© 2024 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
 "#,
     );
 }
@@ -8387,7 +8387,7 @@ fn print_help() {
 {GREEN}cargo auto publish_to_web - publish to web, git tag{RESET}
     {YELLOW}(You need credentials for publishing over SSH. Use ssh-agent and ssh-add to store the credentials for SSH.){RESET}
 
-    {YELLOW}© 2023 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
+    {YELLOW}© 2024 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
 "#
     );
     print_examples_cmd();
@@ -8573,7 +8573,7 @@ https://bestia.dev/{package_name}
         file_name: "LICENSE",
         file_content: r###"MIT License
 
-Copyright (c) 2023 bestia.dev
+Copyright (c) 2024 bestia.dev
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
