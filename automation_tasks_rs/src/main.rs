@@ -7,10 +7,10 @@ use cargo_auto_lib as cl;
 // traits must be in scope (Rust strangeness)
 use cl::CargoTomlPublicApiMethods;
 
-use cargo_auto_lib::RED as RED;
-use cargo_auto_lib::YELLOW as YELLOW;
-use cargo_auto_lib::GREEN as GREEN;
-use cargo_auto_lib::RESET as RESET;
+use cargo_auto_lib::GREEN;
+use cargo_auto_lib::RED;
+use cargo_auto_lib::RESET;
+use cargo_auto_lib::YELLOW;
 // region: library with basic automation tasks
 
 use cargo_auto_github_lib::*;
@@ -90,12 +90,12 @@ fn print_help() {
 }
 
 /// all example commands in one place
-fn print_examples_cmd(){
-/*
-    println!(r#"{YELLOW}run examples:{RESET}
-{GREEN}cargo run --example example1{RESET}
-"#);
-*/
+fn print_examples_cmd() {
+    /*
+        println!(r#"{YELLOW}run examples:{RESET}
+    {GREEN}cargo run --example example1{RESET}
+    "#);
+    */
 }
 
 /// sub-command for bash auto-completion of `cargo auto` using the crate `dev_bestia_cargo_completion`
@@ -105,7 +105,15 @@ fn completion() {
     let last_word = args[3].as_str();
 
     if last_word == "cargo-auto" || last_word == "auto" {
-        let sub_commands = vec!["build", "release", "doc", "test", "commit_and_push", "publish_to_crates_io", "github_new_release"];
+        let sub_commands = vec![
+            "build",
+            "release",
+            "doc",
+            "test",
+            "commit_and_push",
+            "publish_to_crates_io",
+            "github_new_release",
+        ];
         cl::completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
     /*
@@ -126,20 +134,24 @@ fn task_build() {
     let cargo_toml = cl::CargoToml::read();
 
     copy_files_to_strings_mod::copy_folder_files_into_module(
-        std::path::Path::new("template_new_auto"), 
-        std::path::Path::new("src/template_new_auto_mod.rs"));
- 
-    copy_files_to_strings_mod::copy_folder_files_into_module(
-        std::path::Path::new("template_new_cli"), 
-        std::path::Path::new("src/template_new_cli_mod.rs"));
+        std::path::Path::new("template_new_auto"),
+        std::path::Path::new("src/template_new_auto_mod.rs"),
+    );
 
     copy_files_to_strings_mod::copy_folder_files_into_module(
-        std::path::Path::new("template_new_wasm"), 
-        std::path::Path::new("src/template_new_wasm_mod.rs"));        
-            
-        copy_files_to_strings_mod::copy_folder_files_into_module(
-    std::path::Path::new("template_new_pwa_wasm"), 
-    std::path::Path::new("src/template_new_pwa_wasm_mod.rs"));   
+        std::path::Path::new("template_new_cli"),
+        std::path::Path::new("src/template_new_cli_mod.rs"),
+    );
+
+    copy_files_to_strings_mod::copy_folder_files_into_module(
+        std::path::Path::new("template_new_wasm"),
+        std::path::Path::new("src/template_new_wasm_mod.rs"),
+    );
+
+    copy_files_to_strings_mod::copy_folder_files_into_module(
+        std::path::Path::new("template_new_pwa_wasm"),
+        std::path::Path::new("src/template_new_pwa_wasm_mod.rs"),
+    );
 
     cl::auto_version_increment_semver_or_date();
     cl::run_shell_command("cargo fmt");
@@ -151,29 +163,32 @@ fn task_build() {
     {YELLOW}if ok, then,{RESET}
 {GREEN}cargo auto release{RESET}
 "#,
-package_name = cargo_toml.package_name(),
+        package_name = cargo_toml.package_name(),
     );
     print_examples_cmd();
 }
 
 /// cargo build --release
 fn task_release() {
+    copy_files_to_strings_mod::copy_folder_files_into_module(
+        std::path::Path::new("template_new_auto"),
+        std::path::Path::new("src/template_new_auto_mod.rs"),
+    );
 
     copy_files_to_strings_mod::copy_folder_files_into_module(
-        std::path::Path::new("template_new_auto"), 
-        std::path::Path::new("src/template_new_auto_mod.rs"));
- 
-    copy_files_to_strings_mod::copy_folder_files_into_module(
-        std::path::Path::new("template_new_cli"), 
-        std::path::Path::new("src/template_new_cli_mod.rs"));
+        std::path::Path::new("template_new_cli"),
+        std::path::Path::new("src/template_new_cli_mod.rs"),
+    );
 
     copy_files_to_strings_mod::copy_folder_files_into_module(
-        std::path::Path::new("template_new_wasm"), 
-        std::path::Path::new("src/template_new_wasm_mod.rs"));
+        std::path::Path::new("template_new_wasm"),
+        std::path::Path::new("src/template_new_wasm_mod.rs"),
+    );
 
     copy_files_to_strings_mod::copy_folder_files_into_module(
-        std::path::Path::new("template_new_pwa_wasm"), 
-        std::path::Path::new("src/template_new_pwa_wasm_mod.rs"));
+        std::path::Path::new("template_new_pwa_wasm"),
+        std::path::Path::new("src/template_new_pwa_wasm_mod.rs"),
+    );
 
     let cargo_toml = cl::CargoToml::read();
     cl::auto_version_increment_semver_or_date();
@@ -185,7 +200,7 @@ fn task_release() {
     cl::run_shell_command(&format!(
         "strip target/release/{package_name}",
         package_name = cargo_toml.package_name()
-    )); 
+    ));
     println!(
         r#"
     {YELLOW}After `cargo auto release`, run the compiled binary, examples and/or tests{RESET}
@@ -193,7 +208,7 @@ fn task_release() {
     {YELLOW}if ok, then,{RESET}
 {GREEN}cargo auto doc{RESET}
 "#,
-package_name = cargo_toml.package_name(),
+        package_name = cargo_toml.package_name(),
     );
     print_examples_cmd();
 }
@@ -212,11 +227,33 @@ fn task_doc() {
     // Create simple index.html file in docs directory
     cl::run_shell_command(&format!(
         "echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",
-        cargo_toml.package_name().replace("-","_")
+        cargo_toml.package_name().replace("-", "_")
     ));
-    // use tidy HTML to format the html files to be human readable and usable for git diff
-    // TODO: what happens if tidy is not installed on the system?
-    cl::run_shell_command("find . -name '*.html' -type f -print -exec tidy -mq '{}' \\;");
+
+    // region: tidy HTML
+    // The HTML generated by `cargo doc` is ugly and difficult to `git diff`
+    // tidy HTML is a HTML checker and formatter installed on most Linuxes.
+    // If it is not installed run: `sudo apt install -y tidy`
+    // From the bash you can install it inside the podman container like this:
+    // `podman exec --user root rust_dev_vscode_cnt apt install -y tidy`
+    //
+    // First we check if tidy is installed on the system
+    // Run a dummy command and write the std/err output to tidy_warnings.txt.
+    // The command `2>` will overwrite the file and not append like `2>>`.
+    cl::run_shell_command("tidy xxx 2> docs/tidy_warnings.txt");
+    // Check if it contains `command not found`
+    let text = std::fs::read_to_string("docs/tidy_warnings.txt").unwrap();
+    // don't need this file anymore
+    cl::run_shell_command("rm -f docs/tidy_warnings.txt");
+    if !text.contains("command not found") {
+        // Use tidy HTML to format the docs/*.html files to be human readable and usable for git diff.
+        // Options: -m modify file, -q quiet suppress nonessential output, -w wrap at 160,
+        // The warnings and errors are appended to the file docs/tidy_warnings.txt
+        cl::run_shell_command(
+            r#"find ./docs -name '*.html' -type f -print -exec tidy -mq -w 160 '{}' \; >> docs/tidy_warnings.txt 2>&1 "#,
+        );
+    }
+    // endregion: tidy HTML
     cl::run_shell_command("cargo fmt");
     // message to help user with next move
     println!(
@@ -247,7 +284,10 @@ fn task_commit_and_push(arg_2: Option<String>) {
             // separate commit for docs if they changed, to not make a lot of noise in the real commit
             cl::run_shell_command(r#"git add docs && git diff --staged --quiet || git commit -m "update docs" "#);
             // the real commit of code
-            cl::run_shell_command(&format!(r#"git add -A && git diff --staged --quiet || git commit -m "{}" "#, message));
+            cl::run_shell_command(&format!(
+                r#"git add -A && git diff --staged --quiet || git commit -m "{}" "#,
+                message
+            ));
             cl::run_shell_command("git push");
             println!(
                 r#"
@@ -318,7 +358,7 @@ r#"## Changed
         // compress files tar.gz
         let tar_name = format!("{repo_name}-{tag_name_version}-x86_64-unknown-linux-gnu.tar.gz");
         cl::run_shell_command(&format!("tar -zcvf {tar_name} target/release/{repo_name}"));
-        
+
         // upload asset     
         auto_github_upload_asset_to_release(&owner, &repo_name, &release_id, &tar_name).await;
         cl::run_shell_command(&format!("rm {tar_name}"));  

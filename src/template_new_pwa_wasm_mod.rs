@@ -362,7 +362,7 @@ So I can drink a free beer for your health :-)
 // but the new service worker will not be activated until all 
 // tabs with this webapp are closed.
 
-const CACHE_NAME = '2024.209.128';
+const CACHE_NAME = '2024.209.135';
 
 self.addEventListener('install', event => {
     console.log('event install ', CACHE_NAME);
@@ -459,69 +459,71 @@ self.addEventListener('fetch', event => {
         file_content: r###"<!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- classic header for a web page -->
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-    <title>pwa_name</title>
-    <meta name="Description" content="pwa_description">
-    <meta name="author" content="project_author">    
-    <meta name="viewport" content="width = device-width,initial-scale = 1.0" />
-    <link rel="stylesheet" href="css/normalize.css" />
-    <link rel="stylesheet" href="css/basic_style.css" />
-    <link rel="stylesheet" href="css/fontawesome.css" />    
-
-    <!-- favicons generic-->
-    <link rel="icon" type="image/png" href="icons/icon-032.png" sizes="32x32">
-    <link rel="icon" type="image/png" href="icons/icon-128.png" sizes="128x128">
-    <link rel="icon" type="image/png" href="icons/icon-192.png" sizes="192x192">
-    <!-- favicons Android -->
-    <link rel="shortcut icon" href="icons/icon-196.png" sizes="196x196">
-    <!-- favicons iOS -->
-    <link rel="apple-touch-icon" href="icons/icon-152.png" sizes="152x152">
-    <link rel="apple-touch-icon" href="icons/icon-167.png" sizes="167x167">
-    <link rel="apple-touch-icon" href="icons/icon-180.png" sizes="180x180">
-
-    <!-- Metadata for PWA -->
-    <link rel="manifest" href="manifest.json">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="theme-color" content="#000000">
-    <link rel="apple-touch-icon" sizes="120x120" href="icons/icon-120.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-180.png">
+<meta name="generator" content=
+"HTML Tidy for HTML5 for Linux version 5.6.0">
+<!-- classic header for a web page -->
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+<title>pwa_name</title>
+<meta name="Description" content="pwa_description">
+<meta name="author" content="project_author">
+<meta name="viewport" content=
+"width = device-width,initial-scale = 1.0">
+<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/basic_style.css">
+<link rel="stylesheet" href="css/fontawesome.css">
+<!-- favicons generic-->
+<link rel="icon" type="image/png" href="icons/icon-032.png" sizes=
+"32x32">
+<link rel="icon" type="image/png" href="icons/icon-128.png" sizes=
+"128x128">
+<link rel="icon" type="image/png" href="icons/icon-192.png" sizes=
+"192x192"><!-- favicons Android -->
+<link rel="shortcut icon" href="icons/icon-196.png" sizes=
+"196x196"><!-- favicons iOS -->
+<link rel="apple-touch-icon" href="icons/icon-152.png" sizes=
+"152x152">
+<link rel="apple-touch-icon" href="icons/icon-167.png" sizes=
+"167x167">
+<link rel="apple-touch-icon" href="icons/icon-180.png" sizes=
+"180x180"><!-- Metadata for PWA -->
+<link rel="manifest" href="manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content=
+"black-translucent">
+<meta name="theme-color" content="#000000">
+<link rel="apple-touch-icon" sizes="120x120" href=
+"icons/icon-120.png">
+<link rel="apple-touch-icon" sizes="180x180" href=
+"icons/icon-180.png">
 </head>
 <body>
-    <!-- a standard service worker is a must for PWA -->
-    <script src="start_service_worker.js"></script>
-    <!-- warning if javascript is not enabled -->
-    <noscript>
-        <h2>
-            !!!???!!!<br>
-            This web app <br>
-            cannot work <br>
-            without javascript<br>
-            enabled<br>
-            !!!???!!!
-        </h2>
-    </noscript>
-
-    <!-- display a text while waiting for wasm download. 
+<!-- a standard service worker is a must for PWA -->
+<script src="start_service_worker.js"></script> 
+<!-- warning if javascript is not enabled -->
+ <noscript>
+<h2>!!!???!!!<br>
+This web app<br>
+cannot work<br>
+without javascript<br>
+enabled<br>
+!!!???!!!</h2>
+</noscript> <!-- display a text while waiting for wasm download. 
     This content will change from the wasm code.-->
-    <div id="div_for_wasm_html_injecting">
-        <h2>
-            Waiting to<br>
-            download <br>
-            the web app...<br>
-            This is <br>
-            very quick on fast<br>
-            networks...<br>
-        </h2>
-    </div>
-    <div class="fc_red" id="div_for_errors"></div>
-    <!-- import and init the wasm code -->
-    <script type="module">
+<div id="div_for_wasm_html_injecting">
+<h2>Waiting to<br>
+download<br>
+the web app...<br>
+This is<br>
+very quick on fast<br>
+networks...<br></h2>
+</div>
+<div class="fc_red" id="div_for_errors"></div>
+<!-- import and init the wasm code -->
+<script type="module">
         import init from "./pkg/rust_project_name.js";
         init("./pkg/rust_project_name_bg.wasm");
-    </script>
+</script>
 </body>
 </html>
 "###,
@@ -7969,7 +7971,7 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2024.209.128 date: 2024-02-09 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2024.209.135 date: 2024-02-09 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
 //!
 //!  ![status](https://img.shields.io/badge/maintained-green)
 //!  ![status](https://img.shields.io/badge/ready_for_use-green)
@@ -7982,11 +7984,11 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
 //!  [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!  ![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9181-green.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-471-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9179-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-1227-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-349-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-1526-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-1524-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
 //! Hashtags: #rustlang #tutorial #buildtool #developmenttool #cli  
 //! My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).

@@ -7,7 +7,11 @@ use base64ct::Encoding;
 /// the string will be in a vector with the file name
 /// first we create the complete text, then we check if the old text needs to be replaced
 pub fn copy_folder_files_into_module(folder_path: &std::path::Path, module_path: &std::path::Path) {
-    println!("copy_folder_files_into_module {}, {}", folder_path.to_string_lossy(), module_path.to_string_lossy() );
+    println!(
+        "copy_folder_files_into_module {}, {}",
+        folder_path.to_string_lossy(),
+        module_path.to_string_lossy()
+    );
     // traverse and get all file_names
     let files = cargo_auto_lib::traverse_dir_with_exclude_dir(
         &folder_path,
@@ -18,55 +22,62 @@ pub fn copy_folder_files_into_module(folder_path: &std::path::Path, module_path:
     .unwrap();
     let mut new_code = String::new();
     for file_name in files.iter() {
-        let file_name_short = file_name.trim_start_matches(&format!("{}/",folder_path.to_string_lossy()));
+        let file_name_short = file_name.trim_start_matches(&format!("{}/", folder_path.to_string_lossy()));
         // avoid Cargo.lock file
-        if file_name_short=="Cargo.lock"{
+        if file_name_short == "Cargo.lock" {
             continue;
         }
-        let file_content = if 
-            file_name_short.ends_with(".ico") 
+        let file_content = if file_name_short.ends_with(".ico")
             || file_name_short.ends_with(".png")
             || file_name_short.ends_with(".woff2")
         {
             // convert binary file to base64
             let b = std::fs::read(&file_name).unwrap();
             base64ct::Base64::encode_string(&b)
-        }
-        else{
+        } else {
             // all others are text files
             // dbg!(&file_name_short);
             std::fs::read_to_string(&file_name).unwrap()
         };
 
-        new_code.push_str(&format!(r####"vec_file.push(crate::FileItem{{
+        new_code.push_str(&format!(
+            r####"vec_file.push(crate::FileItem{{
             file_name :"{}",
             file_content : r###"{}"###,
 }});    
-"####, &file_name_short, &file_content));
+"####,
+            &file_name_short, &file_content
+        ));
     }
 
     // read the content of the module, delimited by markers
-    let module_content =  std::fs::read_to_string(module_path).unwrap();
-    let start_pos = find_pos_start_data_after_delimiter(&module_content, 0, "// region: files copied into strings by automation tasks\n").expect("didn't find // region: files copied..");
-    let end_pos = find_pos_end_data_before_delimiter(&module_content, 0, "// endregion: files copied into strings by automation tasks").expect("didn't find // endregion: files copied..");
+    let module_content = std::fs::read_to_string(module_path).unwrap();
+    let start_pos = find_pos_start_data_after_delimiter(
+        &module_content,
+        0,
+        "// region: files copied into strings by automation tasks\n",
+    )
+    .expect("didn't find // region: files copied..");
+    let end_pos = find_pos_end_data_before_delimiter(
+        &module_content,
+        0,
+        "// endregion: files copied into strings by automation tasks",
+    )
+    .expect("didn't find // endregion: files copied..");
     let old_code = &module_content[start_pos..end_pos];
 
     // compare the text, if different replace
-    if old_code != new_code{       
+    if old_code != new_code {
         let mut new_module_content = String::new();
         new_module_content.push_str(&module_content[..start_pos]);
         new_module_content.push_str(&new_code);
         new_module_content.push_str(&module_content[end_pos..]);
-        std::fs::write(module_path, &new_module_content).unwrap();  
+        std::fs::write(module_path, &new_module_content).unwrap();
     }
 }
 
 /// return the position of start of the delimited data after the delimiter
-pub fn find_pos_start_data_after_delimiter(
-    md_text_content: &str,
-    pos: usize,
-    delimiter: &str,
-) -> Option<usize> {
+pub fn find_pos_start_data_after_delimiter(md_text_content: &str, pos: usize, delimiter: &str) -> Option<usize> {
     if let Some(pos_start_data) = find_from(md_text_content, pos, delimiter) {
         let pos_start_data = pos_start_data + delimiter.len();
         return Some(pos_start_data);
@@ -76,11 +87,7 @@ pub fn find_pos_start_data_after_delimiter(
 }
 
 /// return the position of end of the delimited data before the delimiter
-pub fn find_pos_end_data_before_delimiter(
-    md_text_content: &str,
-    pos: usize,
-    delimiter: &str,
-) -> Option<usize> {
+pub fn find_pos_end_data_before_delimiter(md_text_content: &str, pos: usize, delimiter: &str) -> Option<usize> {
     if let Some(pos_end_data) = find_from(md_text_content, pos, delimiter) {
         return Some(pos_end_data);
     }
@@ -100,4 +107,3 @@ pub fn find_from(text: &str, from_pos: usize, find: &str) -> Option<usize> {
         option_location
     }
 }
-
