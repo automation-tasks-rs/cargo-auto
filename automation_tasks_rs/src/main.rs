@@ -247,10 +247,10 @@ fn task_doc() {
     cl::run_shell_command("rm -f docs/tidy_warnings.txt");
     if !text.contains("command not found") {
         // Use tidy HTML to format the docs/*.html files to be human readable and usable for git diff.
-        // Options: -m modify file, -q quiet suppress nonessential output, -w wrap at 160,
+        // Options: -m modify file, -q quiet suppress nonessential output, -w wrap at 160, -i indent 2 spaces
         // The warnings and errors are appended to the file docs/tidy_warnings.txt
         cl::run_shell_command(
-            r#"find ./docs -name '*.html' -type f -print -exec tidy -mq -w 160 '{}' \; >> docs/tidy_warnings.txt 2>&1 "#,
+            r#"find ./docs -name '*.html' -type f -print -exec tidy -mq -w 160 -i 2 '{}' \; >> docs/tidy_warnings.txt 2>&1 "#,
         );
     }
     // endregion: tidy HTML
