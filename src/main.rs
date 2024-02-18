@@ -1,11 +1,14 @@
 // main.rs
 
 // logo for docs.rs in png
-#![doc(html_logo_url = "https://github.com/bestia-dev/cargo-auto/raw/main/images/logo/logo_cargo_auto_512x512.jpg")]
+#![doc(html_logo_url = "https://github.com/bestia-dev/cargo-auto/raw/main/images/logo/logo_cargo_auto.svg")]
 // even favicon ico can be changed
 // #![doc(html_favicon_url = "/logo.ico")]
 // playground for examples
 #![doc(html_playground_url = "https://play.rust-lang.org/")]
+// example how to insert a svg file inside the documentation
+// #![doc=include_str!("shared-bus.svg")]
+
 // region: auto_md_to_doc_comments include README.md A //!
 //! # cargo-auto  
 //!
@@ -24,9 +27,9 @@
 //!  [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!  ![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9191-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9193-green.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-1175-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-433-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-435-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-6332-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
