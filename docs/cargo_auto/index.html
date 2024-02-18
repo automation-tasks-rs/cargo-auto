@@ -29,12 +29,12 @@
   <!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
   <nav class="mobile-topbar">
     <button class="sidebar-menu-toggle">☰</button><a class="logo-container" href="../cargo_auto/index.html"><img src=
-    "https://raw.githubusercontent.com/bestia-dev/cargo-auto/main/images/logo/logo_cargo_auto.svg" alt=""></a>
+    "https://github.com/bestia-dev/cargo-auto/raw/main/images/logo/logo_cargo_auto_512x512.png" alt=""></a>
   </nav>
   <nav class="sidebar">
     <div class="sidebar-crate">
       <a class="logo-container" href="../cargo_auto/index.html"><img src=
-      "https://raw.githubusercontent.com/bestia-dev/cargo-auto/main/images/logo/logo_cargo_auto.svg" alt="logo"></a>
+      "https://github.com/bestia-dev/cargo-auto/raw/main/images/logo/logo_cargo_auto_512x512.png" alt="logo"></a>
       <h2><a href="../cargo_auto/index.html">cargo_auto</a><span class="version">2024.209.504</span></h2>
     </div>
     <div class="sidebar-elems">
@@ -82,7 +82,7 @@
         <div class="main-heading">
           <h1>Crate <a class="mod" href="#">cargo_auto</a><button id="copy-path" title="Copy item path to clipboard"><img src=
           "../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src"
-          href="../src/cargo_auto/main.rs.html#4-318">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>−</span>]</button></span>
+          href="../src/cargo_auto/main.rs.html#4-322">source</a> · <button id="toggle-all-docs" title="collapse all docs">[<span>−</span>]</button></span>
         </div>
         <details class="toggle top-doc" open="">
           <summary class="hideme">
@@ -103,10 +103,10 @@
             "License"></a> <a href="https://github.com/bestia-dev/cargo-auto/"><img src=
             "https://github.com/bestia-dev/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg" alt="Rust"></a> <img src=
             "https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg" alt="Hits"></p>
-            <p><a href="https://github.com/bestia-dev/cargo-auto/"><img src="https://img.shields.io/badge/Lines_in_Rust-9191-green.svg" alt=
+            <p><a href="https://github.com/bestia-dev/cargo-auto/"><img src="https://img.shields.io/badge/Lines_in_Rust-9192-green.svg" alt=
             "Lines in Rust code"></a> <a href="https://github.com/bestia-dev/cargo-auto/"><img src=
-            "https://img.shields.io/badge/Lines_in_Doc_comments-1227-blue.svg" alt="Lines in Doc comments"></a> <a href=
-            "https://github.com/bestia-dev/cargo-auto/"><img src="https://img.shields.io/badge/Lines_in_comments-430-purple.svg" alt="Lines in Comments"></a>
+            "https://img.shields.io/badge/Lines_in_Doc_comments-1175-blue.svg" alt="Lines in Doc comments"></a> <a href=
+            "https://github.com/bestia-dev/cargo-auto/"><img src="https://img.shields.io/badge/Lines_in_comments-433-purple.svg" alt="Lines in Comments"></a>
             <a href="https://github.com/bestia-dev/cargo-auto/"><img src="https://img.shields.io/badge/Lines_in_examples-0-yellow.svg" alt=
             "Lines in examples"></a> <a href="https://github.com/bestia-dev/cargo-auto/"><img src="https://img.shields.io/badge/Lines_in_tests-6332-orange.svg"
             alt="Lines in tests"></a></p>
@@ -282,7 +282,8 @@ cargo auto docs - builds the docs
 }
 
 <span class="comment">// endregion: tasks
-</span></code></pre>
+</span></code></pre><a class="test-arrow" target="_blank" href=
+"https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0A///+match+arguments+and+call+tasks+functions%0Afn+match_arguments_and_call_tasks(mut+args:+std::env::Args)%7B%0A++++//+the+first+argument+is+the+user+defined+task:+(no+argument+for+help),+build,+release,...%0A++++let+arg_1+=+args.next();%0A++++match+arg_1+%7B%0A++++++++None+=%3E+print_help(),%0A++++++++Some(task)+=%3E+%7B++++++++++++%0A++++++++++++println!(%22Running+auto+task:+%7B%7D%22,+%26task);%0A++++++++++++if+%26task+==+%22build%22%7B%0A++++++++++++++++task_build();%0A++++++++++++%7D+else+if+%26task+==+%22release%22+%7B%0A++++++++++++++++task_release();%0A++++++++++++%7D+else+if+%26task+==+%22doc%22+%7B%0A++++++++++++++++task_doc();%0A++++++++++++%7D+else+%7B%0A++++++++++++++++println!(%22Task+%7B%7D+is+unknown.%22,+%26task);%0A++++++++++++++++print_help();%0A++++++++++++%7D%0A++++++++%7D%0A++++%7D%0A%7D%0A%0A///+write+a+comprehensible+help+for+user+defined+tasks%0Afn+print_help()+%7B%0A++++println!(r%23%22%0A++++User+defined+tasks+in+automation_tasks_rs:%0Acargo+auto+build+-+builds+the+crate+in+debug+mode%0Acargo+auto+release+-+builds+the+crate+in+release+mode%0Acargo+auto+docs+-+builds+the+docs%0A%22%23);%0A%7D%0A%0A//+region:+tasks%0A%0A///+cargo+build%0Afn+task_build()+%7B%0A++++run_shell_command(%22cargo+fmt%22);%0A++++run_shell_command(%22cargo+build%22);%0A%7D%0A%0A///+cargo+build+--release%0Afn+task_release()+%7B%0A++++run_shell_command(%22cargo+fmt%22);%0A++++run_shell_command(%22cargo+build+--release%22);%0A%7D%0A%0A///+cargo+doc,+then+copies+to+/docs/+folder,+because+this+is+a+github+standard+folder%0Afn+task_doc()+%7B%0A++++run_shell_command(%22cargo+doc+--no-deps+--document-private-items%22);%0A++++//+copy+target/doc+into+docs/+because+it+is+github+standard%0A++++run_shell_command(%22rsync+-a+--info=progress2+--delete-after+target/doc/+docs/%22);%0A++++//+Create+simple+index.html+file+in+docs+directory%0A++++run_shell_command(%26format!(%0A++++++++%22echo+%5C%22%3Cmeta+http-equiv=%5C%5C%5C%22refresh%5C%5C%5C%22+content=%5C%5C%5C%220;+url=%7B%7D/index.html%5C%5C%5C%22+/%3E%5C%22+%3E+docs/index.html%22,%0A++++++++cargo_toml.package_name().replace(%22-%22,%22_%22)%0A++++));%0A++++run_shell_command(%22cargo+fmt%22);%0A%7D%0A%0A//+endregion:+tasks%0A%7D&amp;edition=2021">Run</a>
             </div>
             <h3 id="more-complex-tasks"><a href="#more-complex-tasks">more complex tasks</a></h3>
             <p>You can write more complex tasks in Rust language.<br>
