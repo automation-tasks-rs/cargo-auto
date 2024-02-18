@@ -33,7 +33,6 @@
 Hashtags: #rustlang #tutorial #buildtool #developmenttool #cli  
 My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
 
-
 ## Try it
 
 First, we will use `cargo-auto` to create a new empty CLI Rust project similar to `cargo new`, but with a more complete project structure.  
@@ -230,7 +229,7 @@ Read the changelog in a separate md file:
 
 ## TODO
 
-new wasm, new wasm_pwa, new wasm_pwa_server, new wasm_pwa_server_pgrsql
+Nothing big in the near future.
 
 ## Open-source and free as a beer
 
