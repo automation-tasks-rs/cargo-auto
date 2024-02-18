@@ -1,5 +1,7 @@
+// main.rs
 
-#![doc(html_logo_url = "https://optimisticpeach.github.io/Logo.svg")]
+// logo for docs.rs
+#![doc(html_logo_url = "https://raw.githubusercontent.com/bestia-dev/cargo-auto/af9b167041096eef89c4723231cfdcea60f52d48/images/logo/logo_cargo_auto.svg")]
 
 // region: auto_md_to_doc_comments include README.md A //!
 //! # cargo-auto  
