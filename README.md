@@ -2,7 +2,6 @@
 
 # cargo-auto  
 
-
 [//]: # (auto_cargo_toml_to_md start)
 
 **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
@@ -10,6 +9,7 @@
 
 [//]: # (auto_cargo_toml_to_md end)
 
+ ![logo](https://raw.githubusercontent.com/bestia-dev/cargo-auto/main/images/logo/logo_cargo_auto.svg)
  ![status](https://img.shields.io/badge/maintained-green)
  ![status](https://img.shields.io/badge/ready_for_use-green)
 
@@ -33,7 +33,6 @@
 Hashtags: #rustlang #tutorial #buildtool #developmenttool #cli  
 My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
 
-![](https://raw.githubusercontent.com/bestia-dev/cargo-auto/af9b167041096eef89c4723231cfdcea60f52d48/images/logo/logo_cargo_auto.svg)
 
 ## Try it
 
