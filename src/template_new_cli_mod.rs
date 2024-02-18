@@ -422,8 +422,9 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-//! ***version: 2024.209.504 date: 2024-02-09 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
+//! ***version: 2024.209.504 date: 2024-02-18 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
 //!
+//!  ![logo](https://raw.githubusercontent.com/bestia-dev/cargo-auto/main/images/logo/logo_cargo_auto.svg)
 //!  ![status](https://img.shields.io/badge/maintained-green)
 //!  ![status](https://img.shields.io/badge/ready_for_use-green)
 //!
@@ -435,14 +436,15 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
 //!  [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!  ![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9189-green.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-471-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-428-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9191-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-1227-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-430-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-6334-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-6332-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 //!
 //! Hashtags: #rustlang #tutorial #buildtool #developmenttool #cli  
 //! My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
+//!
 //!
 //! ## Try it
 //!
@@ -484,6 +486,23 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
 //! There are many different build systems and task runners there: `make`, `cmake`, `shell scripts`, `cargo-xtask`, `cargo-make`, `cargo-task`, `cargo-script`, `cargo-run-script`, `runner`, `python scripts`, `powershell scripts`, `cmd prompt scripts`, ...  
 //! Sadly there is no standard in the Rust community for now.  
 //! I want something similar to [build.rs](https://doc.rust-lang.org/cargo/reference/build-scripts.html), so I can write my "tasks" in pure Rust I don't want to learn another meta language with weird syntax and difficulty to debug. So I will make something really simple, easy, rusty, and extensible.  
+//!
+//! ## cargo auto subcommand
+//!
+//! The command `cargo install cargo-auto` will add a new subcommand to cargo:
+//!
+//! ```bash
+//! cargo auto
+//! ```
+//!
+//! This binary is super simple. It has only 1 trivial dependency: `lazy_static`.  
+//! The binary only reads the CLI arguments and runs the `automation_tasks_rs` binary with them. If needed it will compile `automation_tasks_rs` first.  
+//! The code-flow of the source code of `cargo-auto` is simple, fully commented, and straightforward to audit.  
+//! The source code is on [GitHub](https://github.com/bestia-dev/cargo-auto) with MIT open-source licensing.  
+//!
+//! ## bash auto-completion
+//!
+//! With the help of the crate [dev_bestia_cargo_completion](https://crates.io/crates/dev_bestia_cargo_completion), the commands `cargo` and `cargo auto` get bash auto-completion. Try it!  
 //!
 //! ## cargo auto new_cli
 //!
@@ -603,29 +622,6 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
 //!
 //! ```
 //!
-//! ## cargo auto subcommand
-//!
-//! The command `cargo install cargo-auto` will add a new subcommand to cargo:
-//!
-//! ```bash
-//! cargo auto
-//! ```
-//!
-//! This binary is super simple. It has only 1 trivial dependency: `lazy_static`.  
-//! The binary only reads the CLI arguments and runs the `automation_tasks_rs` binary with them. If needed it will compile `automation_tasks_rs` first.  
-//! The code-flow of the source code of `cargo-auto` is simple, fully commented, and straightforward to audit.  
-//! The source code is on [GitHub](https://github.com/bestia-dev/cargo-auto) with MIT open-source licensing.  
-//!
-//! ## bash auto-completion
-//!
-//! With the help of the crate [dev_bestia_cargo_completion](https://crates.io/crates/dev_bestia_cargo_completion), the commands `cargo` and `cargo auto` get bash auto-completion. Try it!  
-//!
-//! ## cargo auto new_auto
-//!
-//! Inside the cargo-auto project, there is a Rust sub-project that is a template. I can open a new editor for these directories and build this crate independently. So it is easy to debug and develop.  
-//! Sadly, I cannot publish these directories and files to `crates.io`. I can effectively publish only the source code inside my main Rust project `cargo-auto`.  
-//! Therefore, before publishing I copy the content of these files into the modules `template_new_auto_mod.rs` on every build. It is not difficult now that Rust has fantastic [raw strings](https://doc.rust-lang.org/rust-by-example/std/str.html).  
-//!
 //! ## more complex tasks
 //!
 //! You can write more complex tasks in Rust language.  
@@ -634,28 +630,19 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
 //! <https://github.com/bestia-dev/cargo_crev_reviews_workspace>  
 //! There is no end to your imagination. If you write something that looks like it can help other developers, please share it with me and I will add it here.
 //!
-//! ## development
+//! ## Development details
 //!
-//! Usually, I compile and run the code of `cargo-auto` with added arguments like this:  
+//! Read the development details in a separate md file:  
+//! [DEVELOPMENT.md](https://github.com/bestia-dev/cargo-auto/blob/main/DEVELOPMENT.md)
 //!
-//! ```bash
-//! cargo run -- new_auto
-//! cargo run -- build
-//! cargo run -- release
-//! ```
+//! ## Changelog
+//!
+//! Read the changelog in a separate md file:  
+//! [RELEASES.md](https://github.com/bestia-dev/cargo-auto/blob/main/RELEASES.md)
 //!
 //! ## TODO
 //!
 //! new wasm, new wasm_pwa, new wasm_pwa_server, new wasm_pwa_server_pgrsql
-//!
-//! ## cargo crev reviews and advisory
-//!
-//! We live in times of danger with [supply chain attacks](https://en.wikipedia.org/wiki/Supply_chain_attack).  
-//! It is recommended to always use [cargo-crev](https://github.com/crev-dev/cargo-crev)  
-//! to verify the trustworthiness of each of your dependencies.  
-//! Please, spread this info.  
-//! You can also read reviews quickly on the web:  
-//! <https://web.crev.dev/rust-reviews/crates/>  
 //!
 //! ## Open-source and free as a beer
 //!
