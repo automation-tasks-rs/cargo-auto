@@ -1,3 +1,0 @@
-(function() {var implementors = {
-"cargo_auto":[["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.74.1/core/fmt/trait.Debug.html\" title=\"trait core::fmt::Debug\">Debug</a> for <a class=\"struct\" href=\"cargo_auto/template_new_pwa_wasm_mod/struct.PwaJson5.html\" title=\"struct cargo_auto::template_new_pwa_wasm_mod::PwaJson5\">PwaJson5</a>"]]
-};if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
