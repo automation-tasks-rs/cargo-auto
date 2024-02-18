@@ -1,12 +1,9 @@
 // src/lib.rs
-
 // This file has just the wasm_bindgen_start() function
 // and calls into main_mod.rs.
 // So the structure of the project modules can be similar to a binary CLI executable.
 
-// region: auto_md_to_doc_comments include README.md A //!
-
-// endregion: auto_md_to_doc_comments include README.md A //!
+#![doc=include_str!("../README.md")]
 
 use wasm_bindgen::prelude::*;
 
