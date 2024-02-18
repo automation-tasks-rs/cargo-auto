@@ -1,5 +1,10 @@
 # Releases
 
+## Release v2024.218.2136 Latest
+
+cargo_auto_lib = "1.1.23"
+added tidy HTML function to make pretty docs HTML
+
 ## Release v2024.204.206
 
 updated dependency to cargo_auto_lib to 1.0.96  
