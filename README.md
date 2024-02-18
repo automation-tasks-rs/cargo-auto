@@ -1,5 +1,3 @@
-[//]: # (auto_md_to_doc_comments segment start A)
-
 # cargo-auto  
 
 [//]: # (auto_cargo_toml_to_md start)
@@ -23,8 +21,8 @@
 
 [//]: # (auto_lines_of_code start)
 [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9193-green.svg)](https://github.com/bestia-dev/cargo-auto/)
-[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-1175-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
-[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-435-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-936-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-433-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
 [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-6332-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 
@@ -244,5 +242,3 @@ So I can drink a free beer for your health :-)
 [//github.com/bestia-dev](https://github.com/bestia-dev)  
 [//bestiadev.substack.com](https://bestiadev.substack.com)  
 [//youtube.com/@bestia-dev-tutorials](https://youtube.com/@bestia-dev-tutorials)  
-
-[//]: # (auto_md_to_doc_comments segment end A)

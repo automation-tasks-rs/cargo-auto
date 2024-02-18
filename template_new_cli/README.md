@@ -1,5 +1,3 @@
-[//]: # (auto_md_to_doc_comments segment start A)
-
 # cargo_auto_template_new_cli
 
 [//]: # (auto_cargo_toml_to_md start)
@@ -20,13 +18,6 @@
 [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-30-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 
 [//]: # (auto_lines_of_code end)
-
-## Edit this README.md file
-
-Edit this README file with your data. But leave the markers: auto_md_to_doc_comments, auto_lines_of_code, auto_cargo_toml_to_md and similar, because the automation tasks need them.  
-Modify the title and description only in Cargo.toml. Automation tasks will copy that into README.md.  
-Lines of code are filled automatically from automation tasks.  
-Find `bestia.dev` everywhere and change it with your username.
 
 ## Motivation
 
@@ -87,7 +78,6 @@ new text: '
 **Basic Rust project template for CLI, more than just `cargo new hello`**
 ***version: 0.1.21 date: 2024-04-01 author: [bestia.dev](bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo_auto_template_new_cli)***'
 
-include_into_readme_md write file: README.md
 $ cargo fmt
 $ cargo build --release
 Compiling cargo_auto_template_new_cli v0.1.21 (/home/rustdevuser/rustprojects/cargo_auto_template_new_cli)
@@ -159,14 +149,6 @@ cargo login
 cargo auto publish_to_crates_io
 ```
 
-## lib.rs doc-comments
-
-The entire README.md is copied into lib.rs. This can be annoying to watch. You can collapse the entire section by clicking on `// region: auto_md_to_doc_comments include README.md`.
-
-You can use `// region:` and `// endregion:` to mark sections you want to collapse in the editor.
-
-From this doc-comments the `docs` will be created. Take a look and try to write what other users would want to read in the `docs`.
-
 ## Modules
 
 I added one module `hello_mod.rs` just to showcase how modules are used in separate files.
@@ -222,5 +204,3 @@ But I need also to drink. If you find my projects and tutorials helpful, please 
 You know the price of a beer in your local bar ;-) So I can drink a free beer for your health :-)
 
 [Na zdravje!](https://translate.google.com/?hl=en&sl=sl&tl=en&text=Na%20zdravje&op=translate) [Alla salute!](https://dictionary.cambridge.org/dictionary/italian-english/alla-salute) [Prost!](https://dictionary.cambridge.org/dictionary/german-english/prost) [Nazdravlje!](https://matadornetwork.com/nights/how-to-say-cheers-in-50-languages/) 🍻
-
-[//]: # (auto_md_to_doc_comments segment end A)
