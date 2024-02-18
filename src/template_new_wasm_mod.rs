@@ -758,7 +758,7 @@ cargo_auto_lib = "1.1.2""###,
     });
     vec_file.push(crate::FileItem{
             file_name :"automation_tasks_rs/src/main.rs",
-            file_content : r###"//! automation_tasks_rs for cargo_auto_template_new_wasm
+            file_content : r###"// automation_tasks_rs for cargo_auto_template_new_wasm
 
 // region: library with basic automation tasks
 use cargo_auto_lib as cl;
@@ -962,17 +962,18 @@ fn task_doc() {
         // Options: -m modify file, -q quiet suppress nonessential output, -w wrap at 160, -i indent 2 spaces
         // The warnings and errors are appended to the file docs/tidy_warnings.txt
         cl::run_shell_command(
-            r#"find ./docs -name '*.html' -type f -print -exec tidy -mq -w 160 -i 2 '{}' \; >> docs/tidy_warnings.txt 2>&1 "#,
+            r#"find ./docs -name '*.html' -type f -print -exec tidy -mq -w 160 -i 2 '{}' \; >> docs/tidy_warnings.txt 2>&1 "#
         );
     }
     // endregion: tidy HTML
+
     cl::run_shell_command("cargo fmt");
     // message to help user with next move
     println!(
         r#"
     {YELLOW}After `cargo auto doc`, check `docs/index.html`. If ok, then test the documentation code examples{RESET}
 {GREEN}cargo auto test{RESET}
-    {YELLOW}{RESET}"#
+"#
     );
 }
 

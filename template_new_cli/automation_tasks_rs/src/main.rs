@@ -1,4 +1,4 @@
-//! automation_tasks_rs for cargo_auto_template_new_cli
+// automation_tasks_rs for cargo_auto_template_new_cli
 
 // region: library with basic automation tasks
 use cargo_auto_lib as cl;
@@ -9,9 +9,10 @@ use cargo_auto_lib::GREEN;
 use cargo_auto_lib::RED;
 use cargo_auto_lib::RESET;
 use cargo_auto_lib::YELLOW;
-// region: library with basic automation tasks
 
-// use cargo_auto_github_lib::*;
+// use cargo_auto_github_lib as cgl;
+
+// region: library with basic automation tasks
 
 fn main() {
     cl::exit_if_not_run_in_rust_project_root_directory();
@@ -211,17 +212,18 @@ fn task_doc() {
         // Options: -m modify file, -q quiet suppress nonessential output, -w wrap at 160, -i indent 2 spaces
         // The warnings and errors are appended to the file docs/tidy_warnings.txt
         cl::run_shell_command(
-            r#"find ./docs -name '*.html' -type f -print -exec tidy -mq -w 160 -i 2 '{}' \; >> docs/tidy_warnings.txt 2>&1 "#,
+            r#"find ./docs -name '*.html' -type f -print -exec tidy -mq -w 160 -i 2 '{}' \; >> docs/tidy_warnings.txt 2>&1 "#
         );
     }
     // endregion: tidy HTML
+
     cl::run_shell_command("cargo fmt");
     // message to help user with next move
     println!(
         r#"
     {YELLOW}After `cargo auto doc`, check `docs/index.html`. If ok, then test the documentation code examples{RESET}
 {GREEN}cargo auto test{RESET}
-    {YELLOW}{RESET}"#
+"#
     );
 }
 
@@ -317,7 +319,7 @@ r#"## Changed
 
 "#);
 
-        let release_id =  auto_github_create_new_release(&owner, &repo_name, &tag_name_version, &release_name, branch, body_md_text).await;
+        let release_id =  cgl::auto_github_create_new_release(&owner, &repo_name, &tag_name_version, &release_name, branch, body_md_text).await;
         println!("    {YELLOW}New release created, now uploading release asset. This can take some time if the files are big. Wait...{RESET}");
 
         // compress files tar.gz
@@ -325,7 +327,7 @@ r#"## Changed
         cl::run_shell_command(&format!("tar -zcvf {tar_name} target/release/{repo_name}"));
 
         // upload asset
-        auto_github_upload_asset_to_release(&owner, &repo_name, &release_id, &tar_name).await;
+        cgl::auto_github_upload_asset_to_release(&owner, &repo_name, &release_id, &tar_name).await;
         cl::run_shell_command(&format!("rm {tar_name}"));
 
         println!("    {YELLOW}Asset uploaded. Open and edit the description on GitHub-Releases in the browser.{RESET}");
