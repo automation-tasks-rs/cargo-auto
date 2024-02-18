@@ -1,3 +1,6 @@
+
+#![doc(html_logo_url = "https://optimisticpeach.github.io/Logo.svg")]
+
 // region: auto_md_to_doc_comments include README.md A //!
 //! # cargo-auto  
 //!
