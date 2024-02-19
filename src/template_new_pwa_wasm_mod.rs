@@ -358,7 +358,7 @@ So I can drink a free beer for your health :-)
 // but the new service worker will not be activated until all 
 // tabs with this webapp are closed.
 
-const CACHE_NAME = '2024.218.2135';
+const CACHE_NAME = '2024.219.243';
 
 self.addEventListener('install', event => {
     console.log('event install ', CACHE_NAME);
@@ -516,7 +516,10 @@ self.addEventListener('fetch', event => {
     <!-- import and init the wasm code -->
     <script type="module">
         import init from "./pkg/rust_project_name.js";
-        init("./pkg/rust_project_name_bg.wasm");
+        async function run() {
+            await init();
+        }
+        run();
     </script>
 </body>
 </html>"###,
@@ -8013,7 +8016,6 @@ pub fn wasm_bindgen_start() -> Result<(), JsValue> {
 
 # result of compilation does not need to go to repository
 /pkg/
-
 
 # not needed in commits, but also not a problem if they are committed
 /.automation_tasks_rs_file_hashes.json

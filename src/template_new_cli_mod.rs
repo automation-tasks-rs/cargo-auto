@@ -9,11 +9,11 @@ pub fn new_cli(arg_2: Option<String>) {
         Some(project_name) => {
             copy_to_files(&project_name);
             println!("");
-            println!("    {YELLOW}The command `crate auto new_cli` generated the directory `{project_name}`{RESET}");
+            println!("    {YELLOW}The command `cargo auto new_cli` generated the directory `{project_name}`{RESET}");
             println!("    {YELLOW}You can open this new Rust project `{project_name}` in a new Rust editor.{RESET}",);
             println!("    {YELLOW}For example VSCode:{RESET}");
             println!("{GREEN}code {project_name}{RESET}");
-            println!("    {YELLOW}Then build with:{RESET}");
+            println!("    {YELLOW}Then build inside the VSCode terminal with:{RESET}");
             println!("{GREEN}cargo auto build{RESET}");
             println!("    {YELLOW}and follow the detailed instructions.{RESET}");
         }

@@ -143,7 +143,7 @@ pub fn save_json_file_for_file_meta_data(vec_of_metadata: Vec<FileMetaData>) {
     let x = FileHashes {
         vec_file_metadata: vec_of_metadata,
     };
-    let y = serde_json::to_string(&x).unwrap();
+    let y = serde_json::to_string_pretty(&x).unwrap();
     let json_filepath = crate::PATH_FILE_HASHES_JSON.as_path();
     let _f = std::fs::write(json_filepath, y);
 }

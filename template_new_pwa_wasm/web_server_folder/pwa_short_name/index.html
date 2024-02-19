@@ -62,7 +62,10 @@
     <!-- import and init the wasm code -->
     <script type="module">
         import init from "./pkg/rust_project_name.js";
-        init("./pkg/rust_project_name_bg.wasm");
+        async function run() {
+            await init();
+        }
+        run();
     </script>
 </body>
 </html>

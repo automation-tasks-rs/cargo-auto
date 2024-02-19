@@ -156,7 +156,10 @@ So I can drink a free beer for your health :-)
       <!-- import and init the wasm code -->
       <script type="module">
             import init from "./pkg/cargo_auto_template_new_wasm.js";
-            init("./pkg/cargo_auto_template_new_wasm_bg.wasm");
+            async function run() {
+                  await init();
+            }
+            run();
       </script>
 </body>
 

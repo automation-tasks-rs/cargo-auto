@@ -36,14 +36,14 @@ pub fn parse_args(args: &mut std::env::Args) {
 fn print_help_from_cargo_auto() {
     println!(
         r#"
-    {YELLOW}Welcome to cargo-auto !
+    {YELLOW}Welcome to cargo-auto!
     This program automates your custom tasks when developing a Rust project.{RESET}
 
-    {YELLOW}Outside of a Rust project, cargo-auto can create a new Rust project for CLI, simple yet complete:{RESET}
-{GREEN}cargo auto new_cli project_name{RESET}
-{GREEN}cargo auto new_wasm project_name{RESET}
-{GREEN}cargo auto new_pwa_wasm project_name{RESET}{YELLOW} - On first call, it will create the `pwa.json5` and `icon512x512.png` files.
-    {YELLOW}Modify them and then repeat the same command.{RESET}
+    {YELLOW}Outside of a Rust project, cargo-auto can create a new Rust project:{RESET}
+{GREEN}cargo auto new_cli project_name{RESET}{YELLOW} - a simple yet complete CLI application, better then `cargo new`{RESET}
+{GREEN}cargo auto new_wasm project_name{RESET}{YELLOW} - a complete wasm application that works inside the browser{RESET}
+{GREEN}cargo auto new_pwa_wasm project_name{RESET}{YELLOW} - On first call, it will create the `pwa.json5` and `icon512x512.png` files.{RESET}
+    {YELLOW}Modify them with the required data for your pwa project and then repeat the same command.{RESET}
 
     {YELLOW}© 2024 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
 "#
