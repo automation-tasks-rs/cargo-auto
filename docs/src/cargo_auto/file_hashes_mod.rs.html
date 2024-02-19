@@ -348,7 +348,7 @@
     <span class="kw">let </span>x = FileHashes {
         vec_file_metadata: vec_of_metadata,
     };
-    <span class="kw">let </span>y = serde_json::to_string(<span class="kw-2">&</span>x).unwrap();
+    <span class="kw">let </span>y = serde_json::to_string_pretty(<span class="kw-2">&</span>x).unwrap();
     <span class="kw">let </span>json_filepath = <span class="kw">crate</span>::PATH_FILE_HASHES_JSON.as_path();
     <span class="kw">let </span>_f = std::fs::write(json_filepath, y);
 }

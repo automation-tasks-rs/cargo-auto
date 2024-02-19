@@ -2696,6 +2696,9 @@
 <a href="#2645" id="2645">2645</a>
 <a href="#2646" id="2646">2646</a>
 <a href="#2647" id="2647">2647</a>
+<a href="#2648" id="2648">2648</a>
+<a href="#2649" id="2649">2649</a>
+<a href="#2650" id="2650">2650</a>
 </pre>
         </div>
         <pre class="rust"><code><span class="doccomment">//! this strings are copied from the template_new_wasm folder
@@ -2859,7 +2862,10 @@ So I can drink a free beer for your health :-)
       &lt;!-- import and init the wasm code --&gt;
       &lt;script type="module"&gt;
             import init from "./pkg/cargo_auto_template_new_wasm.js";
-            init("./pkg/cargo_auto_template_new_wasm_bg.wasm");
+            async function run() {
+                  await init();
+            }
+            run();
       &lt;/script&gt;
 &lt;/body&gt;
 

@@ -9994,6 +9994,8 @@
 <a href="#9943" id="9943">9943</a>
 <a href="#9944" id="9944">9944</a>
 <a href="#9945" id="9945">9945</a>
+<a href="#9946" id="9946">9946</a>
+<a href="#9947" id="9947">9947</a>
 </pre>
         </div>
         <pre class="rust"><code><span class="doccomment">//! this strings are copied from the template_new_pwa_wasm folder
@@ -10371,7 +10373,7 @@ So I can drink a free beer for your health :-)
 // but the new service worker will not be activated until all 
 // tabs with this webapp are closed.
 
-const CACHE_NAME = '2024.218.2135';
+const CACHE_NAME = '2024.219.243';
 
 self.addEventListener('install', event =&gt; {
     console.log('event install ', CACHE_NAME);
@@ -10530,7 +10532,10 @@ self.addEventListener('fetch', event =&gt; {
     &lt;!-- import and init the wasm code --&gt;
     &lt;script type="module"&gt;
         import init from "./pkg/rust_project_name.js";
-        init("./pkg/rust_project_name_bg.wasm");
+        async function run() {
+            await init();
+        }
+        run();
     &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;"###</span>,
@@ -18029,7 +18034,6 @@ pub fn wasm_bindgen_start() -&gt; Result&lt;(), JsValue&gt; {
 
 # result of compilation does not need to go to repository
 /pkg/
-
 
 # not needed in commits, but also not a problem if they are committed
 /.automation_tasks_rs_file_hashes.json
