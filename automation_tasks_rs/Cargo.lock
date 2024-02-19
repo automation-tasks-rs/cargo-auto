@@ -153,9 +153,9 @@ dependencies = [
 
 [[package]]
 name = "cargo_auto_lib"
-version = "1.1.23"
+version = "1.1.32"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "b1ec8b0db4413553d58ee0092ac3f4b9db7715b9f51e55a6c77cbff5cce4e001"
+checksum = "3b8182e8f17a3aa07191b51d04bcfe8701faeeb86c51bce9b999c27626794f82"
 dependencies = [
  "anyhow",
  "base64ct",

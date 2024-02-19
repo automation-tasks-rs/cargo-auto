@@ -3,7 +3,7 @@
 [//]: # (auto_cargo_toml_to_md start)
 
 **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-***version: 2024.219.243 date: 2024-02-19 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
+***version: 2024.219.258 date: 2024-02-19 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
 
 [//]: # (auto_cargo_toml_to_md end)
 
