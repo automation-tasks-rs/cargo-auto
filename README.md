@@ -3,7 +3,7 @@
 [//]: # (auto_cargo_toml_to_md start)
 
 **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-***version: 2024.219.258 date: 2024-02-19 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
+***version: 2024.220.752 date: 2024-02-20 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
 
 [//]: # (auto_cargo_toml_to_md end)
 
@@ -20,11 +20,11 @@
  ![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 
 [//]: # (auto_lines_of_code start)
-[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9163-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9169-green.svg)](https://github.com/bestia-dev/cargo-auto/)
 [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-216-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
-[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-371-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-379-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
 [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-6309-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-6636-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 
 [//]: # (auto_lines_of_code end)
 
@@ -96,6 +96,10 @@ I composed an opinionated template for a Rust CLI project. It is easy to run:
 
 ```bash
 cargo auto new_cli project_name
+# then
+cd project_name
+cargo auto build
+# then follow detailed instructions
 ```
 
 ## cargo auto new_wasm
@@ -108,7 +112,7 @@ cargo auto new_wasm project_name
 # then
 cd project_name
 cargo auto build
-# follow detailed instructions
+# then follow detailed instructions
 ```
 
 ## cargo auto new_pwa_wasm
@@ -120,12 +124,12 @@ It is easy to run:
 ```bash
 cargo auto new_pwa_wasm
 # on first run it will just create the `pwa.json5` and `icon512x512.png` files
-# modify these files for your new app
+# modify these files with data for your new app and then repeat
 cargo auto new_pwa_wasm
 # then
 cd project_name
 cargo auto build
-# follow detailed instructions
+# then follow detailed instructions
 ```
 
 ## scripting with rust
@@ -133,9 +137,9 @@ cargo auto build
 Rust is a compiled language. It is not really a scripting or interpreted language. But the compilation of small projects is really fast and can be ignored. Subsequent calls will use the already-built binary so the speed will be even faster.  
 This tool `cargo-auto` is meant for Rust projects, so it means that all the Rust infrastructure is already in place.  
 
-## automation_tasks_rs helper project
+## automation_tasks_rs Rust sub-project
 
-The command `cargo auto new_auto` will create a new directory `automation_tasks_rs` with a template for a helper Rust project in the root directory of your `main Rust project`. It should not interfere with the main Rust project. This directory will be added to git commits and pushed to remote repositories as part of the main project. It has its own `.gitignore` to avoid committing to its target directory.  
+The command `cargo auto new_auto` will create a new Rust sub-project`automation_tasks_rs` inside your `Rust project`. It should not interfere with the main Rust project. This directory will be added to git commits and pushed to remote repositories as part of the main project. It has its own `.gitignore` to avoid committing to its target directory.  
 The `automation_tasks_rs` helper project contains user-defined tasks in Rust code. Your tasks. This helper project should be opened in a new editor starting from the `automation_tasks_rs` directory. It does not share dependencies with the main project. It is completely separate and independent.  
 You can edit it and add your dependencies and Rust code. No limits. Freedom of expression.  
 This is now your code, your tasks, and your helper Rust project!  

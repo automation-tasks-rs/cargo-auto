@@ -358,7 +358,7 @@ So I can drink a free beer for your health :-)
 // but the new service worker will not be activated until all 
 // tabs with this webapp are closed.
 
-const CACHE_NAME = '2024.219.257';
+const CACHE_NAME = '2024.220.750';
 
 self.addEventListener('install', event => {
     console.log('event install ', CACHE_NAME);
@@ -7985,6 +7985,109 @@ pub fn wasm_bindgen_start() -> Result<(), JsValue> {
 "###,
     });
     vec_file.push(crate::FileItem {
+        file_name: ".github/workflows/rust_fmt_auto_build_test.yml",
+        file_content: r###"name: rust_fmt_auto_build_test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  rust_fmt_auto_build_test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4
+
+    - name: cargo fmt -- --check
+      run: cargo fmt -- --check
+
+    - name: Run cache for rust dependencies
+      uses: Swatinem/rust-cache@v2.7.3
+
+    - name: Configure sccache
+      run: echo "RUSTC_WRAPPER=sccache" >> $GITHUB_ENV; echo "SCCACHE_GHA_ENABLED=true" >> $GITHUB_ENV
+
+    - name: Run sccache-cache for artifacts
+      uses: mozilla-actions/sccache-action@v0.0.4
+
+    - name: install and cache cargo-auto
+      uses: baptiste0928/cargo-install@v3.0.0
+      with:
+        crate: cargo-auto
+
+    - name: Cache for automation tasks
+      uses: actions/cache@v4.0.0
+      with:
+        path: |
+          /home/runner/work/cargo-auto/cargo-auto/automation_tasks_rs/.file_hashes.json 
+          /home/runner/work/cargo-auto/cargo-auto/automation_tasks_rs/target 
+          /home/runner/work/cargo-auto/cargo-auto/automation_tasks_rs/Cargo.toml
+        key: automation_tasks_rs
+
+    - name: cargo auto build
+      run: cargo auto build
+
+    - name: cargo auto test
+      run: cargo auto test
+      
+"###,
+    });
+    vec_file.push(crate::FileItem {
+        file_name: ".github/workflows/docs_pages.yml",
+        file_content: r###"# Simple workflow for deploying static content to GitHub Pages
+name: docs_pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: 'docs'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+"###,
+    });
+    vec_file.push(crate::FileItem {
         file_name: ".gitattributes",
         file_content: r###"# Specific git config for the project
 
@@ -8049,7 +8152,7 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "1.1.32""###,
+cargo_auto_lib = "1.1.35""###,
     });
     vec_file.push(crate::FileItem{
             file_name :"automation_tasks_rs/src/main.rs",
@@ -8235,7 +8338,7 @@ fn task_doc() {
     cl::run_shell_command("rsync -a --info=progress2 --delete-after target/doc/ docs/");
     // Create simple index.html file in docs directory
     cl::run_shell_command(&format!(
-        "echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",
+        r#"echo "<meta http-equiv=\"refresh\" content=\"0; url={}/index.html\" />" > docs/index.html"#,
         cargo_toml.package_name().replace("-", "_")
     ));
     // pretty html
@@ -8265,24 +8368,32 @@ fn task_test() {
 
 /// commit and push
 fn task_commit_and_push(arg_2: Option<String>) {
-    match arg_2 {
-        None => println!("{RED}Error: Message for commit is mandatory.{RESET}"),
-        Some(message) => {
-            // separate commit for docs if they changed, to not make a lot of noise in the real commit
-            cl::run_shell_command(r#"git add docs && git diff --staged --quiet || git commit -m "update docs" "#);
-            // the real commit of code
-            cl::run_shell_command(&format!(
-                r#"git add -A && git diff --staged --quiet || git commit -m "{}" "#,
-                message
-            ));
-            cl::run_shell_command("git push");
-            println!(
-                r#"
+    let Some(message) = arg_2 else {
+        eprintln!("{RED}Error: Message for commit is mandatory. Exiting.{RESET}");
+        // early exit
+        return;
+    };
+
+    // init repository if needed. If it is not init then normal commit and push.
+    if !cl::init_repository_if_needed(&message) {
+        // separate commit for docs if they changed, to not make a lot of noise in the real commit
+        if std::path::Path::new("docs").exists() {
+            cl::run_shell_command(
+                r#"git add docs && git diff --staged --quiet || git commit -m "update docs" "#,
+            );
+        }
+        // the real commit of code
+        cl::run_shell_command(&format!(
+            r#"git add -A && git diff --staged --quiet || git commit -m "{}" "#,
+            message
+        ));
+        cl::run_shell_command("git push");
+        println!(
+            r#"
     {YELLOW}After `cargo auto commit_and_push "message"`{RESET}
 {GREEN}cargo auto publish_to_crates_io{RESET}
 "#
-            );
-        }
+        );
     }
 }
 

@@ -180,7 +180,7 @@ fn task_doc() {
     cl::run_shell_command("rsync -a --info=progress2 --delete-after target/doc/ docs/");
     // Create simple index.html file in docs directory
     cl::run_shell_command(&format!(
-        "echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",
+        r#"echo "<meta http-equiv=\"refresh\" content=\"0; url={}/index.html\" />" > docs/index.html"#,
         cargo_toml.package_name().replace("-", "_")
     ));
     // pretty html
@@ -210,24 +210,32 @@ fn task_test() {
 
 /// commit and push
 fn task_commit_and_push(arg_2: Option<String>) {
-    match arg_2 {
-        None => println!("{RED}Error: Message for commit is mandatory.{RESET}"),
-        Some(message) => {
-            // separate commit for docs if they changed, to not make a lot of noise in the real commit
-            cl::run_shell_command(r#"git add docs && git diff --staged --quiet || git commit -m "update docs" "#);
-            // the real commit of code
-            cl::run_shell_command(&format!(
-                r#"git add -A && git diff --staged --quiet || git commit -m "{}" "#,
-                message
-            ));
-            cl::run_shell_command("git push");
-            println!(
-                r#"
+    let Some(message) = arg_2 else {
+        eprintln!("{RED}Error: Message for commit is mandatory. Exiting.{RESET}");
+        // early exit
+        return;
+    };
+
+    // init repository if needed. If it is not init then normal commit and push.
+    if !cl::init_repository_if_needed(&message) {
+        // separate commit for docs if they changed, to not make a lot of noise in the real commit
+        if std::path::Path::new("docs").exists() {
+            cl::run_shell_command(
+                r#"git add docs && git diff --staged --quiet || git commit -m "update docs" "#,
+            );
+        }
+        // the real commit of code
+        cl::run_shell_command(&format!(
+            r#"git add -A && git diff --staged --quiet || git commit -m "{}" "#,
+            message
+        ));
+        cl::run_shell_command("git push");
+        println!(
+            r#"
     {YELLOW}After `cargo auto commit_and_push "message"`{RESET}
 {GREEN}cargo auto publish_to_crates_io{RESET}
 "#
-            );
-        }
+        );
     }
 }
 
