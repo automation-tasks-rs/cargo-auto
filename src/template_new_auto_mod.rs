@@ -214,7 +214,8 @@ fn print_help() {
     {YELLOW}In that case the task needs the Personal Access Token Classic from <https://github.com/settings/tokens>{RESET}
 
     {YELLOW}© 2024 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
-"# /*
+"# 
+/*
 {GREEN}cargo auto publish_to_crates_io{RESET}{YELLOW} - publish to crates.io, git tag{RESET}
     {YELLOW}You need the API token for publishing. Get the token on <https://crates.io/settings/tokens>. Then use the command{RESET}
     {YELLOW}`cargo login` and paste the token when prompted. This will save it to a local credentials file.{RESET}

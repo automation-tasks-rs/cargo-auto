@@ -1,7 +1,5 @@
 // automation_tasks_rs for cargo-auto
 
-mod copy_files_to_strings_mod;
-
 // region: library with basic automation tasks
 use cargo_auto_lib as cl;
 // traits must be in scope (Rust strangeness)
@@ -11,8 +9,6 @@ use cargo_auto_lib::GREEN;
 use cargo_auto_lib::RED;
 use cargo_auto_lib::RESET;
 use cargo_auto_lib::YELLOW;
-
-use cargo_auto_github_lib as cgl;
 
 // region: library with basic automation tasks
 
@@ -55,7 +51,7 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args) {
                 } else if &task == "github_new_release" {
                     task_github_new_release();
                 } else {
-                    println!("{RED}Error: Task {task} is unknown.{RESET}");
+                    eprintln!("{RED}Error: Task {task} is unknown.{RESET}");
                     print_help();
                 }
             }
@@ -95,9 +91,12 @@ fn print_help() {
 /// all example commands in one place
 fn print_examples_cmd() {
     /*
-        println!(r#"{YELLOW}run examples:{RESET}
-    {GREEN}cargo run --example example1{RESET}
-    "#);
+        println!(
+            r#"
+        {YELLOW}run examples:{RESET}
+    {GREEN}cargo run --example plantuml1{RESET}
+    "#
+        );
     */
 }
 
@@ -135,25 +134,34 @@ fn completion() {
 /// cargo build
 fn task_build() {
     let cargo_toml = cl::CargoToml::read();
-
-    copy_files_to_strings_mod::copy_folder_files_into_module(
+    let ext_for_binary_files = vec![".ico", ".jpg", ".png", ".woff2"];
+    let exclude_big_folders = vec!["/.git".to_string(), "/target".to_string(), "/docs".to_string()];
+    cl::copy_folder_files_into_module(
         std::path::Path::new("template_new_auto"),
         std::path::Path::new("src/template_new_auto_mod.rs"),
+        &ext_for_binary_files,
+        &exclude_big_folders,
     );
 
-    copy_files_to_strings_mod::copy_folder_files_into_module(
+    cl::copy_folder_files_into_module(
         std::path::Path::new("template_new_cli"),
         std::path::Path::new("src/template_new_cli_mod.rs"),
+        &ext_for_binary_files,
+        &exclude_big_folders,
     );
 
-    copy_files_to_strings_mod::copy_folder_files_into_module(
+    cl::copy_folder_files_into_module(
         std::path::Path::new("template_new_wasm"),
         std::path::Path::new("src/template_new_wasm_mod.rs"),
+        &ext_for_binary_files,
+        &exclude_big_folders,
     );
 
-    copy_files_to_strings_mod::copy_folder_files_into_module(
+    cl::copy_folder_files_into_module(
         std::path::Path::new("template_new_pwa_wasm"),
         std::path::Path::new("src/template_new_pwa_wasm_mod.rs"),
+        &ext_for_binary_files,
+        &exclude_big_folders,
     );
 
     cl::auto_version_increment_semver_or_date();
@@ -173,24 +181,35 @@ fn task_build() {
 
 /// cargo build --release
 fn task_release() {
-    copy_files_to_strings_mod::copy_folder_files_into_module(
+    let ext_for_binary_files = vec![".ico", ".jpg", ".png", ".woff2"];
+    let exclude_big_folders = vec!["/.git".to_string(), "/target".to_string(), "/docs".to_string()];
+
+    cl::copy_folder_files_into_module(
         std::path::Path::new("template_new_auto"),
         std::path::Path::new("src/template_new_auto_mod.rs"),
+        &ext_for_binary_files,
+        &exclude_big_folders,
     );
 
-    copy_files_to_strings_mod::copy_folder_files_into_module(
+    cl::copy_folder_files_into_module(
         std::path::Path::new("template_new_cli"),
         std::path::Path::new("src/template_new_cli_mod.rs"),
+        &ext_for_binary_files,
+        &exclude_big_folders,
     );
 
-    copy_files_to_strings_mod::copy_folder_files_into_module(
+    cl::copy_folder_files_into_module(
         std::path::Path::new("template_new_wasm"),
         std::path::Path::new("src/template_new_wasm_mod.rs"),
+        &ext_for_binary_files,
+        &exclude_big_folders,
     );
 
-    copy_files_to_strings_mod::copy_folder_files_into_module(
+    cl::copy_folder_files_into_module(
         std::path::Path::new("template_new_pwa_wasm"),
         std::path::Path::new("src/template_new_pwa_wasm_mod.rs"),
+        &ext_for_binary_files,
+        &exclude_big_folders,
     );
 
     let cargo_toml = cl::CargoToml::read();
@@ -268,9 +287,7 @@ fn task_commit_and_push(arg_2: Option<String>) {
     if !cl::init_repository_if_needed(&message) {
         // separate commit for docs if they changed, to not make a lot of noise in the real commit
         if std::path::Path::new("docs").exists() {
-            cl::run_shell_command(
-                r#"git add docs && git diff --staged --quiet || git commit -m "update docs" "#,
-            );
+            cl::run_shell_command(r#"git add docs && git diff --staged --quiet || git commit -m "update docs" "#);
         }
         // the real commit of code
         cl::run_shell_command(&format!(
@@ -290,12 +307,10 @@ fn task_commit_and_push(arg_2: Option<String>) {
 /// publish to crates.io and git tag
 fn task_publish_to_crates_io() {
     let cargo_toml = cl::CargoToml::read();
-    // git tag
-    let shell_command = format!(
-        "git tag -f -a v{version} -m version_{version}",
-        version = cargo_toml.package_version()
-    );
-    cl::run_shell_command(&shell_command);
+    let package_name = cargo_toml.package_name();
+    let version = cargo_toml.package_version();
+    // take care of tags
+    let tag_name_version = cl::git_tag_sync_check_create_push(&version);
 
     // cargo publish
     cl::run_shell_command("cargo publish");
@@ -306,51 +321,71 @@ fn task_publish_to_crates_io() {
     {YELLOW}Install the crate with{RESET}
 {GREEN}cargo install {package_name}{RESET}
     {YELLOW}and check how it works.{RESET}
-    {YELLOW}Then create the GitHub-Release and upload the assets.{RESET}    
+    {YELLOW}Then create the GitHub-Release for {tag_name_version}.{RESET}
+    {YELLOW}And upload the assets (compressed files).{RESET}
+    {YELLOW}First write the content of the release in the RELEASES.md in the `## Unreleased` section, then{RESET}
 {GREEN}cargo auto github_new_release{RESET}
-"#,
-        package_name = cargo_toml.package_name(),
-        // package_version = cargo_toml.package_version()
+"#
     );
 }
 
 /// create a new release on github
 fn task_github_new_release() {
     let cargo_toml = cl::CargoToml::read();
-    println!("    {YELLOW}The env variable GITHUB_TOKEN must be set:  export GITHUB_TOKEN=paste_token_here{RESET}");
+    let version = cargo_toml.package_version();
+    // take care of tags
+    let tag_name_version = cl::git_tag_sync_check_create_push(&version);
 
-    // the git tag was already created when we published to crates.io
+    let owner = cargo_toml.github_owner().unwrap();
+    let repo_name = cargo_toml.package_name();
+    let now_date = cl::now_utc_date_iso();
+    let release_name = format!("Version {} ({})", &version, now_date);
+    let branch = "main";
 
-    // async block inside sync code with tokio
-    use tokio::runtime::Runtime;
-    let rt = Runtime::new().unwrap();
-    rt.block_on(async move {
-        let owner = cargo_auto_github_lib::github_owner();
-        let repo_name = cargo_toml.package_name();
-        let tag_name_version = format!("v{}", cargo_toml.package_version());
-        let release_name = format!("Release v{}", cargo_toml.package_version());
-        let branch = "main";
+    // First, the user must write the content into file RELEASES.md in the section ## Unreleased.
+    // Then the automation task will copy the content to GitHub release
+    // and create a new Version title in RELEASES.md.
+    let body_md_text = cl::body_text_from_releases_md(&release_name).unwrap();
 
-        let body_md_text = &format!(
-r#"## Changed
+    let release_id = cl::github_api_create_new_release(
+        &owner,
+        &repo_name,
+        &tag_name_version,
+        &release_name,
+        branch,
+        &body_md_text,
+    );
 
-- edit the list of changes
-          
-"#);
+    println!(
+        "
+    {YELLOW}New GitHub release created: {release_name}.{RESET}
+"
+    );
 
-        let release_id =  cgl::auto_github_create_new_release(&owner, &repo_name, &tag_name_version, &release_name, branch, body_md_text).await;
-        println!("    {YELLOW}New release created, now uploading release asset. This can take some time if the files are big. Wait...{RESET}");
+    // region: upload asset only for executables, not for libraries
+    println!(
+        "
+    {YELLOW}Now uploading release asset. This can take some time if the files are big. Wait...{RESET}
+"
+    );
+    // compress files tar.gz
+    let tar_name = format!("{repo_name}-{tag_name_version}-x86_64-unknown-linux-gnu.tar.gz");
+    cl::run_shell_command(&format!("tar -zcvf {tar_name} target/release/{repo_name}"));
 
-        // compress files tar.gz
-        let tar_name = format!("{repo_name}-{tag_name_version}-x86_64-unknown-linux-gnu.tar.gz");
-        cl::run_shell_command(&format!("tar -zcvf {tar_name} target/release/{repo_name}"));
+    // upload asset
+    cl::github_api_upload_asset_to_release(&owner, &repo_name, &release_id, &tar_name);
+    cl::run_shell_command(&format!("rm {tar_name}"));
 
-        // upload asset     
-        cgl::auto_github_upload_asset_to_release(&owner, &repo_name, &release_id, &tar_name).await;
-        cl::run_shell_command(&format!("rm {tar_name}"));  
-
-        println!("    {YELLOW}Asset uploaded. Open and edit the description on GitHub-Releases in the browser.{RESET}");
-        println!("{GREEN}https://github.com/{owner}/{repo_name}/releases{RESET}");
-    });
+    println!(
+        "
+    {YELLOW}Asset uploaded. Open and edit the description on GitHub Releases in the browser.{RESET}
+"
+    );
+    // endregion: upload asset only for executables, not for libraries
+    println!(
+        "
+{GREEN}https://github.com/{owner}/{repo_name}/releases{RESET}
+    "
+    );
 }
 // endregion: tasks

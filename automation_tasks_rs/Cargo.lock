@@ -69,10 +69,8 @@ checksum = "d468802bab17cbc0cc575e9b053f41e72aa36bfa6b7f55e3529ffa43161b97fa"
 name = "automation_tasks_rs"
 version = "0.1.2"
 dependencies = [
- "base64ct",
- "cargo_auto_github_lib",
  "cargo_auto_lib",
- "tokio",
+ "pretty_dbg",
 ]
 
 [[package]]
@@ -136,30 +134,12 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a2bd12c1caf447e69cd4528f47f94d203fd2582878ecb9e9465484c4148a8223"
 
 [[package]]
-name = "cargo_auto_github_lib"
-version = "0.1.24"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f569b2fb2849ca8ba1c6b541a62107ae36852dec98501eb9468fcb0d870d5fd8"
-dependencies = [
- "cargo_toml 0.15.3",
- "json",
- "lazy_static",
- "reqwest",
- "tokio",
- "tokio-util",
- "unwrap",
- "url",
-]
-
-[[package]]
 name = "cargo_auto_lib"
-version = "1.1.35"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3a5348bbd7407ad4c9cf11deecd7e96321eee997687f06725c196e044cafc6a2"
+version = "1.2.12"
 dependencies = [
  "anyhow",
  "base64ct",
- "cargo_toml 0.19.1",
+ "cargo_toml",
  "chrono",
  "data-encoding",
  "deflate",
@@ -182,18 +162,10 @@ dependencies = [
  "ssh2-config",
  "termion",
  "thiserror",
- "toml 0.8.10",
- "unwrap",
-]
-
-[[package]]
-name = "cargo_toml"
-version = "0.15.3"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "599aa35200ffff8f04c1925aa1acc92fa2e08874379ef42e210a80e527e60838"
-dependencies = [
- "serde",
- "toml 0.7.8",
+ "tokio",
+ "tokio-util",
+ "toml",
+ "url",
 ]
 
 [[package]]
@@ -203,7 +175,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3dc9f7a067415ab5058020f04c60ec7b557084dbec0e021217bbabc7a8d38d14"
 dependencies = [
  "serde",
- "toml 0.8.10",
+ "toml",
 ]
 
 [[package]]
@@ -710,12 +682,6 @@ checksum = "406cda4b368d531c842222cf9d2600a9a4acce8d29423695379c6868a143a9ee"
 dependencies = [
  "wasm-bindgen",
 ]
-
-[[package]]
-name = "json"
-version = "0.12.4"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "078e285eafdfb6c4b434e0d31e8cfcb5115b651496faca5749b88fafd4f23bfd"
 
 [[package]]
 name = "lazy_static"
@@ -1474,18 +1440,6 @@ dependencies = [
 
 [[package]]
 name = "toml"
-version = "0.7.8"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "dd79e69d3b627db300ff956027cc6c3798cef26d22526befdfcd12feeb6d2257"
-dependencies = [
- "serde",
- "serde_spanned",
- "toml_datetime",
- "toml_edit 0.19.15",
-]
-
-[[package]]
-name = "toml"
 version = "0.8.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "9a9aad4a3066010876e8dcf5a8a06e70a558751117a145c6ce2b82c2e2054290"
@@ -1493,7 +1447,7 @@ dependencies = [
  "serde",
  "serde_spanned",
  "toml_datetime",
- "toml_edit 0.22.4",
+ "toml_edit",
 ]
 
 [[package]]
@@ -1503,19 +1457,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3550f4e9685620ac18a50ed434eb3aec30db8ba93b0287467bca5826ea25baf1"
 dependencies = [
  "serde",
-]
-
-[[package]]
-name = "toml_edit"
-version = "0.19.15"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "1b5bb770da30e5cbfde35a2d7b9b8a2c4b8ef89548a7a6aeab5c9a576e3e7421"
-dependencies = [
- "indexmap",
- "serde",
- "serde_spanned",
- "toml_datetime",
- "winnow",
 ]
 
 [[package]]
@@ -1606,12 +1547,6 @@ name = "untrusted"
 version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8ecb6da28b8a351d773b68d5825ac39017e680750f980f3a1a85cd8dd28a47c1"
-
-[[package]]
-name = "unwrap"
-version = "1.2.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7e33648dd74328e622c7be51f3b40a303c63f93e6fa5f08778b6203a4c25c20f"
 
 [[package]]
 name = "url"
