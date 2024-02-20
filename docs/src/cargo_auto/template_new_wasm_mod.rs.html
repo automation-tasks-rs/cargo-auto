@@ -2810,6 +2810,10 @@
 <a href="#2759" id="2759">2759</a>
 <a href="#2760" id="2760">2760</a>
 <a href="#2761" id="2761">2761</a>
+<a href="#2762" id="2762">2762</a>
+<a href="#2763" id="2763">2763</a>
+<a href="#2764" id="2764">2764</a>
+<a href="#2765" id="2765">2765</a>
 </pre>
         </div>
         <pre class="rust"><code><span class="doccomment">//! this strings are copied from the template_new_wasm folder
@@ -3752,9 +3756,13 @@ fn print_help() {
 {GREEN}cargo auto doc{RESET}{YELLOW} - builds the docs, copy to docs directory{RESET}
 {GREEN}cargo auto test{RESET}{YELLOW} - runs all the tests{RESET}
 {GREEN}cargo auto commit_and_push "message"{RESET}{YELLOW} - commits with message and push with mandatory message{RESET}
-    {YELLOW}(If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.){RESET}
+    {YELLOW}It is preferred to use SSH for git push to GitHub.{RESET}
+    {YELLOW}&lt;https://github.com/bestia-dev/docker_rust_development/blob/main/ssh_easy.md&gt;{YELLOW}
+    {YELLOW}On the very first commit, this task will initialize a new local git repository and create a remote GitHub repo.{RESET}
+    {YELLOW}In that case the task needs the Personal Access Token Classic from &lt;https://github.com/settings/tokens&gt;{RESET}
 {GREEN}cargo auto publish_to_web - publish to web, git tag{RESET}
-    {YELLOW}(You need credentials for publishing over SSH. Use ssh-agent and ssh-add to store the credentials for SSH.){RESET}
+    {YELLOW}It is preferred to use SSH to publish to web and remotely manage the web server.{RESET}
+    {YELLOW}&lt;https://github.com/bestia-dev/docker_rust_development/blob/main/ssh_easy.md&gt;{YELLOW}
 
     {YELLOW}© 2024 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
 "#
