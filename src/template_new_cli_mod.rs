@@ -295,7 +295,7 @@ You know the price of a beer in your local bar ;-) So I can drink a free beer fo
         file_name: "Cargo.toml",
         file_content: r###"[package]
 name = "cargo_auto_template_new_cli"
-version = "1.0.12"
+version = "1.0.13"
 description = "Basic Rust project template for CLI and library, more than just `cargo new hello`"
 authors = ["bestia.dev"]
 homepage = "https://bestia.dev"
@@ -630,6 +630,29 @@ jobs:
 /.auto_version_from_date.json"###,
     });
     vec_file.push(crate::FileItem {
+        file_name: ".automation_tasks_rs_file_hashes.json",
+        file_content: r###"{
+  "vec_file_metadata": [
+    {
+      "filename": "Cargo.toml",
+      "filehash": "fb354c771322a06d6ce18259233983c83e2db22b80991a5fa2cd44104a117b57"
+    },
+    {
+      "filename": "src/bin/cargo_auto_template_new_cli/main.rs",
+      "filehash": "d389d00aaea401786f89b5cba01fdb766aa818ad301a507bc03e4ed2f1be6906"
+    },
+    {
+      "filename": "src/lib.rs",
+      "filehash": "15036298af904cc9eb806c5b6c898644454e4a65d4fa8a7820cf16c1111b4202"
+    },
+    {
+      "filename": "src/hello_mod.rs",
+      "filehash": "198dad5e7e7f4ed01da2cd5e9b5e16be5391cdb8c77e86a8a04f0c203a4bb992"
+    }
+  ]
+}"###,
+    });
+    vec_file.push(crate::FileItem {
         file_name: "automation_tasks_rs/.vscode/settings.json",
         file_content: r###"{
     "cSpell.words": [
@@ -656,7 +679,8 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "1.1.35""###,
+cargo_auto_lib = "1.2.13"
+pretty_dbg = "1.0.49""###,
     });
     vec_file.push(crate::FileItem{
             file_name :"automation_tasks_rs/src/main.rs",
@@ -671,8 +695,6 @@ use cargo_auto_lib::GREEN;
 use cargo_auto_lib::RED;
 use cargo_auto_lib::RESET;
 use cargo_auto_lib::YELLOW;
-
-// use cargo_auto_github_lib as cgl;
 
 // region: library with basic automation tasks
 
@@ -710,14 +732,12 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args) {
                 } else if &task == "commit_and_push" {
                     let arg_2 = args.next();
                     task_commit_and_push(arg_2);
-                /*
                 } else if &task == "publish_to_crates_io" {
                     task_publish_to_crates_io();
                 } else if &task == "github_new_release" {
                     task_github_new_release();
-                */
                 } else {
-                    println!("{RED}Error: Task {task} is unknown.{RESET}");
+                    eprintln!("{RED}Error: Task {task} is unknown.{RESET}");
                     print_help();
                 }
             }
@@ -742,16 +762,14 @@ fn print_help() {
     {YELLOW}<https://github.com/bestia-dev/docker_rust_development/blob/main/ssh_easy.md>{YELLOW}
     {YELLOW}On the very first commit, this task will initialize a new local git repository and create a remote GitHub repo.{RESET}
     {YELLOW}In that case the task needs the Personal Access Token Classic from <https://github.com/settings/tokens>{RESET}
-
-    {YELLOW}© 2024 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
-"# 
-/*
 {GREEN}cargo auto publish_to_crates_io{RESET}{YELLOW} - publish to crates.io, git tag{RESET}
     {YELLOW}You need the API token for publishing. Get the token on <https://crates.io/settings/tokens>. Then use the command{RESET}
     {YELLOW}`cargo login` and paste the token when prompted. This will save it to a local credentials file.{RESET}
 {GREEN}cargo auto github_new_release{RESET}{YELLOW} - creates new release on github{RESET}
     {YELLOW}This task needs the Personal Access Token Classic from <https://github.com/settings/tokens>{RESET}
-*/
+
+    {YELLOW}© 2024 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
+"#
     );
     print_examples_cmd();
 }
@@ -772,8 +790,8 @@ fn completion() {
     let last_word = args[3].as_str();
 
     if last_word == "cargo-auto" || last_word == "auto" {
-        let sub_commands = vec!["build", "release", "doc", "test", "commit_and_push"];
-        // , "publish_to_crates_io", "github_new_release"
+        let sub_commands = vec![
+"build", "release", "doc", "test", "commit_and_push","publish_to_crates_io", "github_new_release"];
         cl::completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
     /*
@@ -911,16 +929,13 @@ fn task_commit_and_push(arg_2: Option<String>) {
     }
 }
 
-/*
 /// publish to crates.io and git tag
 fn task_publish_to_crates_io() {
     let cargo_toml = cl::CargoToml::read();
-    // git tag
-    let shell_command = format!(
-        "git tag -f -a v{version} -m version_{version}",
-        version = cargo_toml.package_version()
-    );
-    cl::run_shell_command(&shell_command);
+    let package_name = cargo_toml.package_name();
+    let version = cargo_toml.package_version();
+    // take care of tags
+    let tag_name_version = cl::git_tag_sync_check_create_push(&version);
 
     // cargo publish
     cl::run_shell_command("cargo publish");
@@ -928,63 +943,74 @@ fn task_publish_to_crates_io() {
         r#"
     {YELLOW}After `cargo auto publish_to_crates_io`, check in browser{RESET}
 {GREEN}https://crates.io/crates/{package_name}{RESET}
-    {YELLOW}Install the crate with{RESET}
-{GREEN}cargo install {package_name}{RESET}
-    {YELLOW}and check how it works.{RESET}
-    {YELLOW}Add the dependency{RESET}
-{GREEN}{package_name} = "{package_version}"{RESET}
-    {YELLOW}to your Rust project and check how it works.{RESET}
-    {YELLOW}Then create the GitHub-Release and upload the assets.{RESET}
+    {YELLOW}Add the dependency to your Rust project and check how it works.{RESET}
+{GREEN}{package_name} = "{version}"{RESET}
+    {YELLOW}Then create the GitHub-Release for {tag_name_version}.{RESET}
+    {YELLOW}First write the content of the release in the RELEASES.md in the `## Unreleased` section, then{RESET}
 {GREEN}cargo auto github_new_release{RESET}
-"#,
-        package_name = cargo_toml.package_name(),
-        package_version = cargo_toml.package_version()
+"#
     );
 }
 
 /// create a new release on github
 fn task_github_new_release() {
     let cargo_toml = cl::CargoToml::read();
-    println!("    {YELLOW}The env variable GITHUB_TOKEN must be set:  export GITHUB_TOKEN=paste_token_here{RESET}");
+    let version = cargo_toml.package_version();
+    // take care of tags
+    let tag_name_version = cl::git_tag_sync_check_create_push(&version);
 
-    // the git tag was already created when we published to crates.io
+    let owner = cargo_toml.github_owner().unwrap();
+    let repo_name = cargo_toml.package_name();
+    let now_date = cl::now_utc_date_iso();
+    let release_name = format!("Version {} ({})", &version, now_date);
+    let branch = "main";
 
-    // async block inside sync code with tokio
-    use tokio::runtime::Runtime;
-    let rt = Runtime::new().unwrap();
-    rt.block_on(async move {
-        let owner = cargo_auto_github_lib::github_owner();
-        let repo_name = cargo_toml.package_name();
-        let tag_name_version = format!("v{}", cargo_toml.package_version());
-        let release_name = format!("Release v{}", cargo_toml.package_version());
-        let branch = "main";
+    // First, the user must write the content into file RELEASES.md in the section ## Unreleased.
+    // Then the automation task will copy the content to GitHub release
+    // and create a new Version title in RELEASES.md.
+    let body_md_text = cl::body_text_from_releases_md(&release_name).unwrap();
 
-        let body_md_text = &format!(
-r#"## Changed
+    let _release_id = cl::github_api_create_new_release(
+        &owner,
+        &repo_name,
+        &tag_name_version,
+        &release_name,
+        branch,
+        &body_md_text,
+    );
 
-- edit the list of changes
+    println!(
+        "
+    {YELLOW}New GitHub release created: {release_name}.{RESET}
+"
+    );
 
-"#);
-
-        let release_id =  cgl::auto_github_create_new_release(&owner, &repo_name, &tag_name_version, &release_name, branch, body_md_text).await;
-        println!("    {YELLOW}New release created, now uploading release asset. This can take some time if the files are big. Wait...{RESET}");
-
+    /*
+        // region: upload asset only for executables, not for libraries
+        println!("
+        {YELLOW}Now uploading release asset. This can take some time if the files are big. Wait...{RESET}
+    ");
         // compress files tar.gz
         let tar_name = format!("{repo_name}-{tag_name_version}-x86_64-unknown-linux-gnu.tar.gz");
         cl::run_shell_command(&format!("tar -zcvf {tar_name} target/release/{repo_name}"));
 
         // upload asset
-        cgl::auto_github_upload_asset_to_release(&owner, &repo_name, &release_id, &tar_name).await;
+        cl::github_api_upload_asset_to_release(&owner, &repo_name, &release_id, &tar_name).await;
         cl::run_shell_command(&format!("rm {tar_name}"));
 
-        println!("    {YELLOW}Asset uploaded. Open and edit the description on GitHub-Releases in the browser.{RESET}");
-        println!("{GREEN}https://github.com/{owner}/{repo_name}/releases{RESET}");
-    });
-}
-*/
+        println!("
+        {YELLOW}Asset uploaded. Open and edit the description on GitHub Releases in the browser.{RESET}
+    ");
+        // endregion: upload asset only for executables, not for libraries
 
-// endregion: tasks
-"###,
+        */
+    println!(
+        "
+{GREEN}https://github.com/{owner}/{repo_name}/releases{RESET}
+    "
+    );
+}
+// endregion: tasks"###,
 });
     vec_file.push(crate::FileItem {
         file_name: "automation_tasks_rs/.gitignore",
@@ -993,6 +1019,25 @@ r#"## Changed
 # not needed in commits, but also not a problem if they are committed
 /.file_hashes.json
 "###,
+    });
+    vec_file.push(crate::FileItem {
+        file_name: "automation_tasks_rs/.file_hashes.json",
+        file_content: r###"{
+  "vec_file_metadata": [
+    {
+      "filename": "automation_tasks_rs/Cargo.toml",
+      "filehash": "55eef2dc82f193e7fcdf566b0c5214166c70e682cb0614b10a5e8fdd719d172b"
+    },
+    {
+      "filename": "automation_tasks_rs/target/debug/automation_tasks_rs",
+      "filehash": "58277c216d94fc650721df95db0de521017bc4f8c16f095a36e3f08360c575f0"
+    },
+    {
+      "filename": "automation_tasks_rs/src/main.rs",
+      "filehash": "862afac4717c3f120e2334245d9070551fd49f51765a997a2b3ba927b8b47bee"
+    }
+  ]
+}"###,
     });
     vec_file.push(crate::FileItem {
         file_name: "automation_tasks_rs/Cargo.lock",
@@ -1068,6 +1113,7 @@ name = "automation_tasks_rs"
 version = "1.0.1"
 dependencies = [
  "cargo_auto_lib",
+ "pretty_dbg",
 ]
 
 [[package]]
@@ -1132,9 +1178,9 @@ checksum = "a2bd12c1caf447e69cd4528f47f94d203fd2582878ecb9e9465484c4148a8223"
 
 [[package]]
 name = "cargo_auto_lib"
-version = "1.1.2"
+version = "1.2.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e1f87d809127bc54c9dfe61007640dd082f38d6978c344b792bdf021152c9108"
+checksum = "94d92d8df6e9898e1032585e15804484d2eaeddd777679b285551e24bb16b1be"
 dependencies = [
  "anyhow",
  "base64ct",
@@ -1144,7 +1190,10 @@ dependencies = [
  "deflate",
  "filetime",
  "glob",
+ "home",
+ "inquire",
  "lazy_static",
+ "pretty_dbg",
  "radix64",
  "reader_for_microxml",
  "regex",
@@ -1155,10 +1204,13 @@ dependencies = [
  "serde_derive",
  "serde_json",
  "sha2",
+ "ssh2-config",
  "termion",
  "thiserror",
+ "tokio",
+ "tokio-util",
  "toml",
- "unwrap",
+ "url",
 ]
 
 [[package]]
@@ -1232,6 +1284,31 @@ dependencies = [
 ]
 
 [[package]]
+name = "crossterm"
+version = "0.25.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e64e6c0fbe2c17357405f7c758c1ef960fce08bdfb2c03d88d2a18d7e09c4b67"
+dependencies = [
+ "bitflags 1.3.2",
+ "crossterm_winapi",
+ "libc",
+ "mio",
+ "parking_lot",
+ "signal-hook",
+ "signal-hook-mio",
+ "winapi",
+]
+
+[[package]]
+name = "crossterm_winapi"
+version = "0.9.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "acdd7c62a3665c7f6830a51635d9ac9b23ed385797f70a83bb8bafe9c572ab2b"
+dependencies = [
+ "winapi",
+]
+
+[[package]]
 name = "crypto-common"
 version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1265,6 +1342,33 @@ dependencies = [
  "block-buffer",
  "crypto-common",
 ]
+
+[[package]]
+name = "dirs"
+version = "5.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "44c45a9d03d6676652bcb5e724c7e988de1acad23a711b5217ab9cbecbec2225"
+dependencies = [
+ "dirs-sys",
+]
+
+[[package]]
+name = "dirs-sys"
+version = "0.4.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "520f05a5cbd335fae5a99ff7a6ab8627577660ee5cfd6a94a6a929b52ff0321c"
+dependencies = [
+ "libc",
+ "option-ext",
+ "redox_users",
+ "windows-sys 0.48.0",
+]
+
+[[package]]
+name = "dyn-clone"
+version = "1.0.16"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "545b22097d44f8a9581187cdf93de7a71e4722bf51200cfaba810865b49a495d"
 
 [[package]]
 name = "encoding_rs"
@@ -1361,6 +1465,17 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "a44623e20b9681a318efdd71c299b6b222ed6f231972bfe2f224ebad6311f0c1"
 
 [[package]]
+name = "futures-macro"
+version = "0.3.30"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "87750cf4b7a4c0625b1529e4c543c2182106e4dedc60a2a6455e00d212c489ac"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
 name = "futures-sink"
 version = "0.3.30"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1380,6 +1495,8 @@ checksum = "3d6401deb83407ab3da39eba7e33987a73c3df0c82b4bb5813ee871c19c41d48"
 dependencies = [
  "futures-core",
  "futures-io",
+ "futures-macro",
+ "futures-sink",
  "futures-task",
  "memchr",
  "pin-project-lite",
@@ -1450,6 +1567,15 @@ name = "hermit-abi"
 version = "0.3.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d0c62115964e08cb8039170eb33c1d0e2388a256930279edca206fff675f82c3"
+
+[[package]]
+name = "home"
+version = "0.5.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e3d1354bf6b7235cb4a0576c2619fd4ed18183f689b12b006a0ee7329eeff9a5"
+dependencies = [
+ "windows-sys 0.52.0",
+]
 
 [[package]]
 name = "http"
@@ -1566,6 +1692,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "inquire"
+version = "0.6.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "c33e7c1ddeb15c9abcbfef6029d8e29f69b52b6d6c891031b88ed91b5065803b"
+dependencies = [
+ "bitflags 1.3.2",
+ "crossterm",
+ "dyn-clone",
+ "lazy_static",
+ "newline-converter",
+ "thiserror",
+ "unicode-segmentation",
+ "unicode-width",
+]
+
+[[package]]
 name = "ipnet"
 version = "2.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1600,6 +1742,17 @@ checksum = "9c198f91728a82281a64e1f4f9eeb25d82cb32a5de251c6bd1b5154d63a8e7bd"
 
 [[package]]
 name = "libredox"
+version = "0.0.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "85c833ca1e66078851dba29046874e38f08b2c883700aa29a03ddd3b23814ee8"
+dependencies = [
+ "bitflags 2.4.2",
+ "libc",
+ "redox_syscall",
+]
+
+[[package]]
+name = "libredox"
 version = "0.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3af92c55d7d839293953fcd0fda5ecfe93297cfde6ffbdec13b41d99c0ba6607"
@@ -1614,6 +1767,16 @@ name = "linux-raw-sys"
 version = "0.4.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "01cda141df6706de531b6c46c3a33ecca755538219bd484262fa09410c13539c"
+
+[[package]]
+name = "lock_api"
+version = "0.4.11"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3c168f8615b12bc01f9c17e2eb0cc07dcae1940121185446edc3744920e8ef45"
+dependencies = [
+ "autocfg",
+ "scopeguard",
+]
 
 [[package]]
 name = "log"
@@ -1649,6 +1812,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8f3d0b296e374a4e6f3c7b0a1f5a51d748a0d34c85e7dc48fc3fa9a87657fe09"
 dependencies = [
  "libc",
+ "log",
  "wasi",
  "windows-sys 0.48.0",
 ]
@@ -1669,6 +1833,15 @@ dependencies = [
  "security-framework",
  "security-framework-sys",
  "tempfile",
+]
+
+[[package]]
+name = "newline-converter"
+version = "0.2.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "1f71d09d5c87634207f894c6b31b6a2b2c64ea3bdcf71bd5599fdbbe1600c00f"
+dependencies = [
+ "unicode-segmentation",
 ]
 
 [[package]]
@@ -1756,6 +1929,35 @@ dependencies = [
 ]
 
 [[package]]
+name = "option-ext"
+version = "0.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "04744f49eae99ab78e0d5c0b603ab218f515ea8cfe5a456d7629ad883a3b6e7d"
+
+[[package]]
+name = "parking_lot"
+version = "0.12.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3742b2c103b9f06bc9fff0a37ff4912935851bee6d36f3c02bcc755bcfec228f"
+dependencies = [
+ "lock_api",
+ "parking_lot_core",
+]
+
+[[package]]
+name = "parking_lot_core"
+version = "0.9.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "4c42a9226546d68acdd9c0a280d17ce19bfe27a46bf68784e4066115788d008e"
+dependencies = [
+ "cfg-if 1.0.0",
+ "libc",
+ "redox_syscall",
+ "smallvec",
+ "windows-targets 0.48.5",
+]
+
+[[package]]
 name = "percent-encoding"
 version = "2.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -1778,6 +1980,12 @@ name = "pkg-config"
 version = "0.3.29"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "2900ede94e305130c13ddd391e0ab7cbaeb783945ae07a279c268cb05109c6cb"
+
+[[package]]
+name = "pretty_dbg"
+version = "1.0.49"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "85c9cc6dcf2ee8ab93287669c0beaca467eb8dfcfef3ba71b6beb72bd81b11e1"
 
 [[package]]
 name = "proc-macro2"
@@ -1827,6 +2035,17 @@ name = "redox_termios"
 version = "0.1.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "20145670ba436b55d91fc92d25e71160fbfbdd57831631c8d7d36377a476f1cb"
+
+[[package]]
+name = "redox_users"
+version = "0.4.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "a18479200779601e498ada4e8c1e1f50e3ee19deb0259c25825a98b5603b2cb4"
+dependencies = [
+ "getrandom",
+ "libredox 0.0.1",
+ "thiserror",
+]
 
 [[package]]
 name = "regex"
@@ -1889,10 +2108,12 @@ dependencies = [
  "system-configuration",
  "tokio",
  "tokio-native-tls",
+ "tokio-util",
  "tower-service",
  "url",
  "wasm-bindgen",
  "wasm-bindgen-futures",
+ "wasm-streams",
  "web-sys",
  "winreg",
 ]
@@ -1953,6 +2174,12 @@ checksum = "fbc91545643bcf3a0bbb6569265615222618bdf33ce4ffbbd13c4bbd4c093534"
 dependencies = [
  "windows-sys 0.52.0",
 ]
+
+[[package]]
+name = "scopeguard"
+version = "1.2.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "94143f37725109f92c262ed2cf5e59bce7498c01bcc1502d7b9afe439a4e9f49"
 
 [[package]]
 name = "security-framework"
@@ -2047,6 +2274,36 @@ dependencies = [
 ]
 
 [[package]]
+name = "signal-hook"
+version = "0.3.17"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "8621587d4798caf8eb44879d42e56b9a93ea5dcd315a6487c357130095b62801"
+dependencies = [
+ "libc",
+ "signal-hook-registry",
+]
+
+[[package]]
+name = "signal-hook-mio"
+version = "0.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "29ad2e15f37ec9a6cc544097b78a1ec90001e9f71b81338ca39f430adaca99af"
+dependencies = [
+ "libc",
+ "mio",
+ "signal-hook",
+]
+
+[[package]]
+name = "signal-hook-registry"
+version = "1.4.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d8229b473baa5980ac72ef434c4415e70c4b5e71b423043adb4ba059f89c99a1"
+dependencies = [
+ "libc",
+]
+
+[[package]]
 name = "slab"
 version = "0.4.9"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2054,6 +2311,12 @@ checksum = "8f92a496fb766b417c996b9c5e57daf2f7ad3b0bebe1ccfca4856390e3d3bb67"
 dependencies = [
  "autocfg",
 ]
+
+[[package]]
+name = "smallvec"
+version = "1.13.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e6ecd384b10a64542d77071bd64bd7b231f4ed5940fba55e98c3de13824cf3d7"
 
 [[package]]
 name = "socket2"
@@ -2070,6 +2333,18 @@ name = "spin"
 version = "0.9.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6980e8d7511241f8acf4aebddbb1ff938df5eebe98691418c4468d0b72a96a67"
+
+[[package]]
+name = "ssh2-config"
+version = "0.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "98150bad1e8fe53df07f38b53364f4d34e84a6cc2ee9f933e43629571060af65"
+dependencies = [
+ "bitflags 2.4.2",
+ "dirs",
+ "thiserror",
+ "wildmatch",
+]
 
 [[package]]
 name = "syn"
@@ -2128,7 +2403,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "417813675a504dfbbf21bfde32c03e5bf9f2413999962b479023c02848c1c7a5"
 dependencies = [
  "libc",
- "libredox",
+ "libredox 0.0.2",
  "numtoa",
  "redox_termios",
 ]
@@ -2301,16 +2576,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "unicode-segmentation"
+version = "1.11.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d4c87d22b6e3f4a18d4d40ef354e97c90fcb14dd91d7dc0aa9d8a1172ebf7202"
+
+[[package]]
+name = "unicode-width"
+version = "0.1.11"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e51733f11c9c4f72aa0c160008246859e340b00807569a0da0e7a1079b27ba85"
+
+[[package]]
 name = "untrusted"
 version = "0.9.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8ecb6da28b8a351d773b68d5825ac39017e680750f980f3a1a85cd8dd28a47c1"
-
-[[package]]
-name = "unwrap"
-version = "1.2.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7e33648dd74328e622c7be51f3b40a303c63f93e6fa5f08778b6203a4c25c20f"
 
 [[package]]
 name = "url"
@@ -2417,6 +2698,19 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4f186bd2dcf04330886ce82d6f33dd75a7bfcf69ecf5763b89fcde53b6ac9838"
 
 [[package]]
+name = "wasm-streams"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b65dc4c90b63b118468cf747d8bf3566c1913ef60be765b5730ead9e0a3ba129"
+dependencies = [
+ "futures-util",
+ "js-sys",
+ "wasm-bindgen",
+ "wasm-bindgen-futures",
+ "web-sys",
+]
+
+[[package]]
 name = "web-sys"
 version = "0.3.68"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2425,6 +2719,34 @@ dependencies = [
  "js-sys",
  "wasm-bindgen",
 ]
+
+[[package]]
+name = "wildmatch"
+version = "2.3.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "495ec47bf3c1345005f40724f0269362c8556cbc43aed0526ed44cae1d35fceb"
+
+[[package]]
+name = "winapi"
+version = "0.3.9"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5c839a674fcd7a98952e593242ea400abe93992746761e38641405d28b00f419"
+dependencies = [
+ "winapi-i686-pc-windows-gnu",
+ "winapi-x86_64-pc-windows-gnu",
+]
+
+[[package]]
+name = "winapi-i686-pc-windows-gnu"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ac3b87c63620426dd9b991e5ce0329eff545bccbbb34f3be09ff6fb6ab51b7b6"
+
+[[package]]
+name = "winapi-x86_64-pc-windows-gnu"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "712e227841d057c1ee1cd2fb22fa7e5a5461ae8e48fa2ca79ec42cfc1931183f"
 
 [[package]]
 name = "windows-core"

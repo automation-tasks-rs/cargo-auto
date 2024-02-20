@@ -9,9 +9,8 @@ use cargo_auto_lib::GREEN;
 use cargo_auto_lib::RED;
 use cargo_auto_lib::RESET;
 use cargo_auto_lib::YELLOW;
-// region: library with basic automation tasks
 
-// use cargo_auto_github_lib::*;
+// region: library with basic automation tasks
 
 fn main() {
     cl::exit_if_not_run_in_rust_project_root_directory();
@@ -49,6 +48,8 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args) {
                     task_commit_and_push(arg_2);
                 } else if &task == "publish_to_web" {
                     task_publish_to_web();
+                } else if &task == "github_new_release" {
+                    task_github_new_release();
                 } else {
                     println!("{RED}Error: Task {task} is unknown.{RESET}");
                     print_help();
@@ -78,6 +79,8 @@ fn print_help() {
 {GREEN}cargo auto publish_to_web - publish to web, git tag{RESET}
     {YELLOW}It is preferred to use SSH to publish to web and remotely manage the web server.{RESET}
     {YELLOW}<https://github.com/bestia-dev/docker_rust_development/blob/main/ssh_easy.md>{YELLOW}
+{GREEN}cargo auto github_new_release{RESET}{YELLOW} - creates new release on github{RESET}
+    {YELLOW}This task needs the Personal Access Token Classic from <https://github.com/settings/tokens>{RESET}
 
     {YELLOW}© 2024 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
 "#
@@ -101,7 +104,7 @@ fn completion() {
     let last_word = args[3].as_str();
 
     if last_word == "cargo-auto" || last_word == "auto" {
-        let sub_commands = vec!["build", "release", "doc", "test", "commit_and_push", "publish_to_web"];
+        let sub_commands = vec!["build", "release", "doc", "test", "commit_and_push", "publish_to_web", "github_new_release",];
         cl::completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
     /*
@@ -128,8 +131,8 @@ fn task_build() {
     cl::run_shell_command("\\rsync -a --delete-after pkg/ web_server_folder/pwa_short_name/pkg/");
     println!(
         r#"
-    {YELLOW}After `cargo auto build`, open port 4000 in VSCode and run the basic web server
-    in a separate VSCode bash terminal, so it can serve constantly in the background.{RESET}
+    {YELLOW}After `cargo auto build`, open port 4000 in VSCode and run the basic web server{RESET}
+    {YELLOW}in a separate VSCode bash terminal, so it can serve constantly in the background.{RESET}
 {GREEN}basic-http-server -a 0.0.0.0:4000 ./web_server_folder{RESET}
     {YELLOW}and open the browser on{RESET}
 {GREEN}http://localhost:4000/pwa_short_name/{RESET}
@@ -155,8 +158,8 @@ fn task_release() {
     cl::run_shell_command("\\rsync -a --delete-after pkg/ web_server_folder/pwa_short_name/pkg/");
     println!(
         r#"
-    {YELLOW}After `cargo auto build`, open port 4000 in VSCode and run the basic web server
-    in a separate VSCode bash terminal, so it can serve constantly in the background.{RESET}
+    {YELLOW}After `cargo auto build`, open port 4000 in VSCode and run the basic web server{RESET}
+    {YELLOW}in a separate VSCode bash terminal, so it can serve constantly in the background.{RESET}
 {GREEN}basic-http-server -a 0.0.0.0:4000 ./web_server_folder{RESET}
     {YELLOW}and open the browser on{RESET}
 {GREEN}http://localhost:4000/pwa_short_name/{RESET}    
@@ -247,12 +250,11 @@ fn task_commit_and_push(arg_2: Option<String>) {
 fn task_publish_to_web() {
     println!(r#"{YELLOW}Use ssh-agent and ssh-add to store your credentials for publish to web.{RESET}"#);
     let cargo_toml = cl::CargoToml::read();
-    // git tag
-    let shell_command = format!(
-        "git tag -f -a v{version} -m version_{version}",
-        version = cargo_toml.package_version()
-    );
-    cl::run_shell_command(&shell_command);
+    let _package_name = cargo_toml.package_name();
+    let version = cargo_toml.package_version();
+    // take care of tags
+    let _tag_name_version = cl::git_tag_sync_check_create_push(&version);
+
     let shell_command = format!(
         "rsync -e ssh -a --info=progress2 --delete-after ~/rustprojects/{package_name}/web_server_folder/ project_author@project_homepage:/var/www/project_homepage/pwa_short_name/",
         package_name = cargo_toml.package_name()
@@ -268,4 +270,62 @@ https://bestia.dev/{package_name}
     );
 }
 
+/// create a new release on github
+fn task_github_new_release() {
+    let cargo_toml = cl::CargoToml::read();
+    let version = cargo_toml.package_version();
+    // take care of tags
+    let tag_name_version = cl::git_tag_sync_check_create_push(&version);
+
+    let owner = cargo_toml.github_owner().unwrap();
+    let repo_name = cargo_toml.package_name();
+    let now_date = cl::now_utc_date_iso();
+    let release_name = format!("Version {} ({})", &version, now_date);
+    let branch = "main";
+
+    // First, the user must write the content into file RELEASES.md in the section ## Unreleased.
+    // Then the automation task will copy the content to GitHub release
+    // and create a new Version title in RELEASES.md.
+    let body_md_text = cl::body_text_from_releases_md(&release_name).unwrap();
+
+    let _release_id = cl::github_api_create_new_release(
+        &owner,
+        &repo_name,
+        &tag_name_version,
+        &release_name,
+        branch,
+        &body_md_text,
+    );
+
+    println!(
+        "
+    {YELLOW}New GitHub release created: {release_name}.{RESET}
+"
+    );
+
+    /*
+        // region: upload asset only for executables, not for libraries
+        println!("
+        {YELLOW}Now uploading release asset. This can take some time if the files are big. Wait...{RESET}
+    ");
+        // compress files tar.gz
+        let tar_name = format!("{repo_name}-{tag_name_version}-x86_64-unknown-linux-gnu.tar.gz");
+        cl::run_shell_command(&format!("tar -zcvf {tar_name} target/release/{repo_name}"));
+
+        // upload asset
+        cl::github_api_upload_asset_to_release(&owner, &repo_name, &release_id, &tar_name).await;
+        cl::run_shell_command(&format!("rm {tar_name}"));
+
+        println!("
+        {YELLOW}Asset uploaded. Open and edit the description on GitHub Releases in the browser.{RESET}
+    ");
+        // endregion: upload asset only for executables, not for libraries
+
+        */
+    println!(
+        "
+{GREEN}https://github.com/{owner}/{repo_name}/releases{RESET}
+    "
+    );
+}
 // endregion: tasks

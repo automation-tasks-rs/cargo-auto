@@ -1,6 +1,6 @@
 [package]
 name = "cargo_auto_template_new_wasm"
-version = "2024.519.1012"
+version = "2024.220.2215"
 authors = ["bestia.dev"]
 homepage = "https://bestia.dev"
 edition = "2021"

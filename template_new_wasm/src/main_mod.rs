@@ -51,7 +51,7 @@ pub fn main() {
             match args.get(2).copied() {
                 // second argument
                 Some(greet_name) => print_greet_name(greet_name),
-                None => wsm::set_html_element_inner_text("div_for_errors","Error: Missing second argument for print."),
+                None => wsm::set_html_element_inner_text("div_for_errors", "Error: Missing second argument for print."),
             }
         }
         Some("upper") => {
@@ -63,20 +63,23 @@ pub fn main() {
                         // do nothing
                         Ok(()) => (),
                         // log error from anyhow
-                        Err(err) => wsm::set_html_element_inner_text("div_for_errors",&format!("Error: {err}")),
+                        Err(err) => wsm::set_html_element_inner_text("div_for_errors", &format!("Error: {err}")),
                     }
                 }
-                None => wsm::set_html_element_inner_text("div_for_errors","Error: Missing second argument for upper."),
+                None => wsm::set_html_element_inner_text("div_for_errors", "Error: Missing second argument for upper."),
             }
         }
-        _ => wsm::set_html_element_inner_text("div_for_errors","Error: Unrecognized arguments. Try \n http://localhost:4000/cargo_auto_template_new_wasm#help"),
+        _ => wsm::set_html_element_inner_text(
+            "div_for_errors",
+            "Error: Unrecognized arguments. Try \n http://localhost:4000/cargo_auto_template_new_wasm#help",
+        ),
     }
 }
 
-
 /// print help
 fn print_help() {
-    wsm::set_html_element_inner_text("div_for_wasm_html_injecting",
+    wsm::set_html_element_inner_text(
+        "div_for_wasm_html_injecting",
         r#"
     Welcome to cargo_auto_template_new_wasm !
     
@@ -121,7 +124,7 @@ pub fn page_with_inputs() {
 
     // WARNING for HTML INJECTION! Never put user provided strings in set_html_element_inner_html.
     // Only correctly html encoded strings can use this function.
-    wsm::set_html_element_inner_html("div_for_wasm_html_injecting",html);
+    wsm::set_html_element_inner_html("div_for_wasm_html_injecting", html);
     wsm::add_listener_to_button("btn_run", &on_click_btn_run);
 }
 
@@ -135,26 +138,26 @@ fn on_click_btn_run() {
         wsm::open_url_in_new_tab(&url);
     } else {
         // write on the same web page
-        wsm::set_html_element_inner_text(
-            "div_for_errors",
-            &format!("Error: Both arguments are mandatory."),
-        );
+        wsm::set_html_element_inner_text("div_for_errors", &format!("Error: Both arguments are mandatory."));
     }
 }
 
 // remove downloading message
 fn remove_downloading_message() {
-    wsm::set_html_element_inner_text("div_for_wasm_html_injecting","");
+    wsm::set_html_element_inner_text("div_for_wasm_html_injecting", "");
 }
 
 /// print my name
 fn print_greet_name(greet_name: &str) {
-    wsm::set_html_element_inner_text("div_for_wasm_html_injecting",&format!(
-r#"The result is
+    wsm::set_html_element_inner_text(
+        "div_for_wasm_html_injecting",
+        &format!(
+            r#"The result is
 {}
 "#,
-    lib_mod::format_hello_phrase(greet_name)
-    ));
+            lib_mod::format_hello_phrase(greet_name)
+        ),
+    );
 }
 
 /// print my name upper, can return error
@@ -162,11 +165,14 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
     // the function from `lib.rs`, can return error
     // use the ? syntax to bubble the error up one level or continue (early return)
     let upper = lib_mod::format_upper_hello_phrase(greet_name)?;
-    wsm::set_html_element_inner_text("div_for_wasm_html_injecting",&format!(
-r#"The result is
+    wsm::set_html_element_inner_text(
+        "div_for_wasm_html_injecting",
+        &format!(
+            r#"The result is
 {upper}
 "#
-    ));
+        ),
+    );
     // return
     Ok(())
 }

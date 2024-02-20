@@ -9,4 +9,5 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "1.1.35"
+cargo_auto_lib = "1.2.13"
+pretty_dbg = "1.0.49"

@@ -76,10 +76,7 @@ fn routing_by_arguments(args: Vec<String>) {
             match args.get(2).copied() {
                 // second argument
                 Some(greet_name) => print_greet_name(greet_name),
-                None => wsm::set_html_element_inner_text(
-                    "div_for_errors",
-                    "Error: Missing second argument for print.",
-                ),
+                None => wsm::set_html_element_inner_text("div_for_errors", "Error: Missing second argument for print."),
             }
         }
         Some("upper") => {
@@ -91,16 +88,10 @@ fn routing_by_arguments(args: Vec<String>) {
                         // do nothing
                         Ok(()) => (),
                         // log error from anyhow
-                        Err(err) => wsm::set_html_element_inner_text(
-                            "div_for_errors",
-                            &format!("Error: {err}"),
-                        ),
+                        Err(err) => wsm::set_html_element_inner_text("div_for_errors", &format!("Error: {err}")),
                     }
                 }
-                None => wsm::set_html_element_inner_text(
-                    "div_for_errors",
-                    "Error: Missing second argument for upper.",
-                ),
+                None => wsm::set_html_element_inner_text("div_for_errors", "Error: Missing second argument for upper."),
             }
         }
         _ => wsm::set_html_element_inner_text(
@@ -161,7 +152,7 @@ fn page_with_inputs() {
     // rust has `Raw string literals` that are great!
     // just add r# before the starting double quotes and # after the ending double quotes.
     let mut html_source_code = wsm::HtmlSourceCode::new(
-r#"<h1>pwa_short_name</h1>
+        r#"<h1>pwa_short_name</h1>
 <p>Write a command in the Argument 1: print or upper</p>
 <div class="input-wrap">
     <label for="arg_1">Argument 1:</label>  
@@ -177,7 +168,8 @@ r#"<h1>pwa_short_name</h1>
     <input type="button" class="button" id="btn_run" value="Run"/>
 </div>
 {ph_elem_p_1}
-        "#);
+        "#,
+    );
 
     // {ph_...} is the prefix for placeholder to make the string unique and distinctive
     html_source_code.replace_attribute_value("{ph_arg_1}", "upper");
@@ -203,10 +195,7 @@ fn on_click_btn_run() {
         wsm::open_url(&url);
     } else {
         // write on the same web page
-        wsm::set_html_element_inner_text(
-            "div_for_errors",
-            &format!("Error: Both arguments are mandatory."),
-        );
+        wsm::set_html_element_inner_text("div_for_errors", &format!("Error: Both arguments are mandatory."));
     }
 }
 
