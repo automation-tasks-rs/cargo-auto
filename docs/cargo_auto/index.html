@@ -35,7 +35,7 @@
     <div class="sidebar-crate">
       <a class="logo-container" href="../cargo_auto/index.html"><img src="https://github.com/bestia-dev/cargo-auto/raw/main/images/logo/logo_cargo_auto.svg"
       alt="logo"></a>
-      <h2><a href="../cargo_auto/index.html">cargo_auto</a><span class="version">2024.219.258</span></h2>
+      <h2><a href="../cargo_auto/index.html">cargo_auto</a><span class="version">2024.220.752</span></h2>
     </div>
     <div class="sidebar-elems">
       <ul class="block">
@@ -91,7 +91,7 @@
           <div class="docblock">
             <h2 id="cargo-auto"><a href="#cargo-auto">cargo-auto</a></h2>
             <p><strong>cargo-auto - automation tasks written in Rust language for the build process of Rust projects</strong><br>
-            <em><strong>version: 2024.219.258 date: 2024-02-19 author: <a href="https://bestia.dev">bestia.dev</a> repository: <a href=
+            <em><strong>version: 2024.220.752 date: 2024-02-20 author: <a href="https://bestia.dev">bestia.dev</a> repository: <a href=
             "https://github.com/bestia-dev/cargo-auto">GitHub</a></strong></em></p>
             <p><img src="https://raw.githubusercontent.com/bestia-dev/cargo-auto/main/images/logo/logo_cargo_auto.svg" alt="logo"> <img src=
             "https://img.shields.io/badge/maintained-green" alt="status"> <img src="https://img.shields.io/badge/ready_for_use-green" alt="status"></p>
@@ -103,12 +103,12 @@
             "License"></a> <a href="https://github.com/bestia-dev/cargo-auto/"><img src=
             "https://github.com/bestia-dev/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg" alt="Rust"></a> <img src=
             "https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg" alt="Hits"></p>
-            <p><a href="https://github.com/bestia-dev/cargo-auto/"><img src="https://img.shields.io/badge/Lines_in_Rust-9163-green.svg" alt=
+            <p><a href="https://github.com/bestia-dev/cargo-auto/"><img src="https://img.shields.io/badge/Lines_in_Rust-9169-green.svg" alt=
             "Lines in Rust code"></a> <a href="https://github.com/bestia-dev/cargo-auto/"><img src=
             "https://img.shields.io/badge/Lines_in_Doc_comments-216-blue.svg" alt="Lines in Doc comments"></a> <a href=
-            "https://github.com/bestia-dev/cargo-auto/"><img src="https://img.shields.io/badge/Lines_in_comments-371-purple.svg" alt="Lines in Comments"></a>
+            "https://github.com/bestia-dev/cargo-auto/"><img src="https://img.shields.io/badge/Lines_in_comments-379-purple.svg" alt="Lines in Comments"></a>
             <a href="https://github.com/bestia-dev/cargo-auto/"><img src="https://img.shields.io/badge/Lines_in_examples-0-yellow.svg" alt=
-            "Lines in examples"></a> <a href="https://github.com/bestia-dev/cargo-auto/"><img src="https://img.shields.io/badge/Lines_in_tests-6309-orange.svg"
+            "Lines in examples"></a> <a href="https://github.com/bestia-dev/cargo-auto/"><img src="https://img.shields.io/badge/Lines_in_tests-6636-orange.svg"
             alt="Lines in tests"></a></p>
             <p>Hashtags: #rustlang #tutorial #buildtool #developmenttool #cli<br>
             My projects on GitHub are more like a tutorial than a finished product: <a href="https://github.com/bestia-dev/tutorials_rust_wasm">bestia-dev
@@ -174,6 +174,10 @@ cargo auto build
             I composed an opinionated template for a Rust CLI project. It is easy to run:</p>
             <div class="example-wrap">
               <pre class="language-bash"><code>cargo auto new_cli project_name
+# then
+cd project_name
+cargo auto build
+# then follow detailed instructions
 </code></pre>
             </div>
             <h3 id="cargo-auto-new_wasm"><a href="#cargo-auto-new_wasm">cargo auto new_wasm</a></h3>
@@ -184,7 +188,7 @@ cargo auto build
 # then
 cd project_name
 cargo auto build
-# follow detailed instructions
+# then follow detailed instructions
 </code></pre>
             </div>
             <h3 id="cargo-auto-new_pwa_wasm"><a href="#cargo-auto-new_pwa_wasm">cargo auto new_pwa_wasm</a></h3>
@@ -196,23 +200,22 @@ cargo auto build
             <div class="example-wrap">
               <pre class="language-bash"><code>cargo auto new_pwa_wasm
 # on first run it will just create the `pwa.json5` and `icon512x512.png` files
-# modify these files for your new app
+# modify these files with data for your new app and then repeat
 cargo auto new_pwa_wasm
 # then
 cd project_name
 cargo auto build
-# follow detailed instructions
+# then follow detailed instructions
 </code></pre>
             </div>
             <h3 id="scripting-with-rust"><a href="#scripting-with-rust">scripting with rust</a></h3>
             <p>Rust is a compiled language. It is not really a scripting or interpreted language. But the compilation of small projects is really fast and can
             be ignored. Subsequent calls will use the already-built binary so the speed will be even faster.<br>
             This tool <code>cargo-auto</code> is meant for Rust projects, so it means that all the Rust infrastructure is already in place.</p>
-            <h3 id="automation_tasks_rs-helper-project"><a href="#automation_tasks_rs-helper-project">automation_tasks_rs helper project</a></h3>
-            <p>The command <code>cargo auto new_auto</code> will create a new directory <code>automation_tasks_rs</code> with a template for a helper Rust
-            project in the root directory of your <code>main Rust project</code>. It should not interfere with the main Rust project. This directory will be
-            added to git commits and pushed to remote repositories as part of the main project. It has its own <code>.gitignore</code> to avoid committing to
-            its target directory.<br>
+            <h3 id="automation_tasks_rs-rust-sub-project"><a href="#automation_tasks_rs-rust-sub-project">automation_tasks_rs Rust sub-project</a></h3>
+            <p>The command <code>cargo auto new_auto</code> will create a new Rust sub-project<code>automation_tasks_rs</code> inside your <code>Rust
+            project</code>. It should not interfere with the main Rust project. This directory will be added to git commits and pushed to remote repositories
+            as part of the main project. It has its own <code>.gitignore</code> to avoid committing to its target directory.<br>
             The <code>automation_tasks_rs</code> helper project contains user-defined tasks in Rust code. Your tasks. This helper project should be opened in a
             new editor starting from the <code>automation_tasks_rs</code> directory. It does not share dependencies with the main project. It is completely
             separate and independent.<br>
