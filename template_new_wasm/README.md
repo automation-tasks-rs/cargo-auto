@@ -53,6 +53,20 @@ We use cargo auto for automation tasks. Run:
 `cargo auto build`  
 and follow the detailed instructions.
 
+## Development details
+
+Read the development details in a separate md file:
+[DEVELOPMENT.md](DEVELOPMENT.md)
+
+## Releases changelog
+
+Read the releases changelog in a separate md file:
+[RELEASES.md](RELEASES.md)
+
+## TODO
+
+Nothing for now.
+
 ## Open-source and free as a beer
 
 My open-source projects are free as a beer (MIT license).  

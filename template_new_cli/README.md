@@ -184,17 +184,19 @@ The bin-executable does not want to be involved in every possible error separate
 Inside the code, mostly propagate the errors with the `?` Operator after the `Result` value instead of unwrap() or the match expression.
 In the tests we don't want to work with Error handling. There, instead of `.unwrap()`, use the similar function `.expect(&str)` that has an additional description string.
 
-## cargo crev reviews and advisory
+## Development details
 
-We live in times of danger with [supply chain attacks](https://en.wikipedia.org/wiki/Supply_chain_attack).
+Read the development details in a separate md file:
+[DEVELOPMENT.md](DEVELOPMENT.md)
 
-It is recommended to always use [cargo-crev](https://github.com/crev-dev/cargo-crev) to verify the trustworthiness of each of your dependencies.
+## Releases changelog
 
-Please, spread this info.
+Read the releases changelog in a separate md file:
+[RELEASES.md](RELEASES.md)
 
-You can also read crev reviews quickly on the web:
+## TODO
 
-<https://web.crev.dev/rust-reviews/crates/>
+Nothing for now.
 
 ## open-source and free as a beer
 
