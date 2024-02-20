@@ -224,7 +224,7 @@ There is no end to your imagination. If you write something that looks like it c
 Read the development details in a separate md file:  
 [DEVELOPMENT.md](https://github.com/bestia-dev/cargo-auto/blob/main/DEVELOPMENT.md)
 
-## Changelog
+## Releases changelog
 
 Read the changelog in a separate md file:  
 [RELEASES.md](https://github.com/bestia-dev/cargo-auto/blob/main/RELEASES.md)

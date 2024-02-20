@@ -1,6 +1,20 @@
-# Releases
+# Releases changelog of cargo-auto
 
-## Release v2024.218.2136 Latest
+## Release v2024.220.752 Latest
+
+cargo_auto_lib = "1.1.35"
+automation task commit can now init local git repository and create new remote GitHub repo
+
+## Release v2024.219.258
+
+cargo_auto_lib = "1.1.32"
+
+## Release v2024.219.243
+
+update templates wasm
+pretty json
+
+## Release v2024.218.2136
 
 cargo_auto_lib = "1.1.23"
 added tidy HTML function to make pretty docs HTML
