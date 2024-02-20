@@ -935,9 +935,13 @@ fn print_help() {
 {GREEN}cargo auto doc{RESET}{YELLOW} - builds the docs, copy to docs directory{RESET}
 {GREEN}cargo auto test{RESET}{YELLOW} - runs all the tests{RESET}
 {GREEN}cargo auto commit_and_push "message"{RESET}{YELLOW} - commits with message and push with mandatory message{RESET}
-    {YELLOW}(If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.){RESET}
+    {YELLOW}It is preferred to use SSH for git push to GitHub.{RESET}
+    {YELLOW}<https://github.com/bestia-dev/docker_rust_development/blob/main/ssh_easy.md>{YELLOW}
+    {YELLOW}On the very first commit, this task will initialize a new local git repository and create a remote GitHub repo.{RESET}
+    {YELLOW}In that case the task needs the Personal Access Token Classic from <https://github.com/settings/tokens>{RESET}
 {GREEN}cargo auto publish_to_web - publish to web, git tag{RESET}
-    {YELLOW}(You need credentials for publishing over SSH. Use ssh-agent and ssh-add to store the credentials for SSH.){RESET}
+    {YELLOW}It is preferred to use SSH to publish to web and remotely manage the web server.{RESET}
+    {YELLOW}<https://github.com/bestia-dev/docker_rust_development/blob/main/ssh_easy.md>{YELLOW}
 
     {YELLOW}© 2024 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
 "#

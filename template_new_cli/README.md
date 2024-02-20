@@ -58,7 +58,10 @@ cargo auto build - builds the crate in debug mode, fmt
 cargo auto release - builds the crate in release mode, version from date, fmt, strip
 cargo auto doc - builds the docs, copy to docs directory
 cargo auto commit_and_push - commits with message and push with mandatory message
- if you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git
+    {YELLOW}It is preferred to use SSH for git push to GitHub.{RESET}
+    {YELLOW}<https://github.com/bestia-dev/docker_rust_development/blob/main/ssh_easy.md>{YELLOW}
+    {YELLOW}On the very first commit, this task will initialize a new local git repository and create a remote GitHub repo.{RESET}
+    {YELLOW}In that case the task needs the Personal Access Token Classic from <https://github.com/settings/tokens>{RESET}
 cargo auto publish_to_crates_io - publish to crates.io, git tag
 ```
 
@@ -141,11 +144,11 @@ After `cargo auto commit and push`
 run `cargo auto publish_to_crates_io`
 ```
 
-And finally, if you want to publish it on crates.io. First, you need the `access token` you get from crates.io.
+And finally, if you want to publish it on crates.io. First, you need the `API token` you get from <https://crates.io/settings/tokens>.
 
 ```bash
 cargo login
-# type the access token
+# paste the API token
 cargo auto publish_to_crates_io
 ```
 

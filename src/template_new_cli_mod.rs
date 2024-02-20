@@ -102,7 +102,10 @@ cargo auto build - builds the crate in debug mode, fmt
 cargo auto release - builds the crate in release mode, version from date, fmt, strip
 cargo auto doc - builds the docs, copy to docs directory
 cargo auto commit_and_push - commits with message and push with mandatory message
- if you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git
+    {YELLOW}It is preferred to use SSH for git push to GitHub.{RESET}
+    {YELLOW}<https://github.com/bestia-dev/docker_rust_development/blob/main/ssh_easy.md>{YELLOW}
+    {YELLOW}On the very first commit, this task will initialize a new local git repository and create a remote GitHub repo.{RESET}
+    {YELLOW}In that case the task needs the Personal Access Token Classic from <https://github.com/settings/tokens>{RESET}
 cargo auto publish_to_crates_io - publish to crates.io, git tag
 ```
 
@@ -185,11 +188,11 @@ After `cargo auto commit and push`
 run `cargo auto publish_to_crates_io`
 ```
 
-And finally, if you want to publish it on crates.io. First, you need the `access token` you get from crates.io.
+And finally, if you want to publish it on crates.io. First, you need the `API token` you get from <https://crates.io/settings/tokens>.
 
 ```bash
 cargo login
-# type the access token
+# paste the API token
 cargo auto publish_to_crates_io
 ```
 
@@ -735,17 +738,19 @@ fn print_help() {
 {GREEN}cargo auto doc{RESET}{YELLOW} - builds the docs, copy to docs directory{RESET}
 {GREEN}cargo auto test{RESET}{YELLOW} - runs all the tests{RESET}
 {GREEN}cargo auto commit_and_push "message"{RESET}{YELLOW} - commits with message and push with mandatory message{RESET}
-    {YELLOW}(If you use SSH, it is easy to start the ssh-agent in the background and ssh-add your credentials for git.){RESET}
+    {YELLOW}It is preferred to use SSH for git push to GitHub.{RESET}
+    {YELLOW}<https://github.com/bestia-dev/docker_rust_development/blob/main/ssh_easy.md>{YELLOW}
+    {YELLOW}On the very first commit, this task will initialize a new local git repository and create a remote GitHub repo.{RESET}
+    {YELLOW}In that case the task needs the Personal Access Token Classic from <https://github.com/settings/tokens>{RESET}
 
     {YELLOW}© 2024 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
 "# /*
-           {GREEN}cargo auto publish_to_crates_io{RESET}{YELLOW} - publish to crates.io, git tag{RESET}
-               {YELLOW}(You need credentials for publishing. On crates.io get the 'access token'. Then save it locally once and forever with the command{RESET}
-               {YELLOW}`cargo login TOKEN` use a space before the command to avoid saving the secret token in bash history.){RESET}
-           {GREEN}cargo auto github_new_release{RESET}{YELLOW} - creates new release on github{RESET}
-               {YELLOW}This task needs PAT (personal access token from github) in the env variable:{RESET}
-           {GREEN} export GITHUB_TOKEN=paste_token_here{RESET}
-           */
+{GREEN}cargo auto publish_to_crates_io{RESET}{YELLOW} - publish to crates.io, git tag{RESET}
+    {YELLOW}You need the API token for publishing. Get the token on <https://crates.io/settings/tokens>. Then use the command{RESET}
+    {YELLOW}`cargo login` and paste the token when prompted. This will save it to a local credentials file.{RESET}
+{GREEN}cargo auto github_new_release{RESET}{YELLOW} - creates new release on github{RESET}
+    {YELLOW}This task needs the Personal Access Token Classic from <https://github.com/settings/tokens>{RESET}
+*/
     );
     print_examples_cmd();
 }
@@ -908,8 +913,6 @@ fn task_commit_and_push(arg_2: Option<String>) {
 /*
 /// publish to crates.io and git tag
 fn task_publish_to_crates_io() {
-    println!(r#"{YELLOW}The crates.io access token must already be saved locally with `cargo login TOKEN`{RESET}"#);
-
     let cargo_toml = cl::CargoToml::read();
     // git tag
     let shell_command = format!(
