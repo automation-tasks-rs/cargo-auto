@@ -17,10 +17,7 @@ pub fn wasm_bindgen_start() -> Result<(), JsValue> {
     // Initialize debugging for when/if something goes wrong.
     console_error_panic_hook::set_once();
     // write the app version just for debug purposes
-    wsm::debug_write(&format!(
-        "cargo_auto_template_new_wasm v{}",
-        env!("CARGO_PKG_VERSION")
-    ));
+    wsm::debug_write(&format!("cargo_auto_template_new_wasm v{}", env!("CARGO_PKG_VERSION")));
 
     main_mod::main();
     // return

@@ -3,16 +3,16 @@
 [//]: # (auto_cargo_toml_to_md start)
 
 **pwa_description**  
-***version: 2024.530.1200 date: 2024-05-30 author: [project_author](project_homepage) repository: [GitHub](project_repository)***  
+***version: 2024.220.2211 date: 2024-02-20 author: [project_author](project_homepage) repository: [GitHub](project_repository)***  
 
 [//]: # (auto_cargo_toml_to_md end)
 
 [//]: # (auto_lines_of_code start)
-[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-342-green.svg)](project_repository)
-[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-40-blue.svg)](project_repository)
-[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-76-purple.svg)](project_repository)
-[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](project_repository)
-[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-19-orange.svg)](project_repository)
+[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-361-green.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-70-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-68-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-16-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
 
 [//]: # (auto_lines_of_code end)
 

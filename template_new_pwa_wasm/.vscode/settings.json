@@ -30,6 +30,7 @@
         "plantuml",
         "Prost",
         "rustlang",
+        "rustprojects",
         "substack",
         "thiserror",
         "webassembly",

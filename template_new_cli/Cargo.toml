@@ -1,6 +1,6 @@
 [package]
 name = "cargo_auto_template_new_cli"
-version = "1.0.12"
+version = "1.0.13"
 description = "Basic Rust project template for CLI and library, more than just `cargo new hello`"
 authors = ["bestia.dev"]
 homepage = "https://bestia.dev"

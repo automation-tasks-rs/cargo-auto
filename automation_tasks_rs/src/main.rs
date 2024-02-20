@@ -363,11 +363,9 @@ fn task_github_new_release() {
     );
 
     // region: upload asset only for executables, not for libraries
-    println!(
-        "
+    println!("
     {YELLOW}Now uploading release asset. This can take some time if the files are big. Wait...{RESET}
-"
-    );
+    ");
     // compress files tar.gz
     let tar_name = format!("{repo_name}-{tag_name_version}-x86_64-unknown-linux-gnu.tar.gz");
     cl::run_shell_command(&format!("tar -zcvf {tar_name} target/release/{repo_name}"));

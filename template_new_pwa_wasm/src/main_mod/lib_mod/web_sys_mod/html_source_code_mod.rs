@@ -39,27 +39,20 @@ impl HtmlSourceCode {
     /// This must be pure text, no html element are allowed for bold or italic...  
     /// We trust the programmer that it will replace only the anticipated placeholders.  
     pub fn replace_text_node(&mut self, placeholder: &'static str, text: &str) {
-        self.html = self
-            .html
-            .replace(placeholder, &html_escape::encode_text(text));
+        self.html = self.html.replace(placeholder, &html_escape::encode_text(text));
     }
 
     /// The attribute value must be double_quoted.  
     /// We trust the programmer that it will replace only the anticipated placeholders.  
     pub fn replace_attribute_value(&mut self, placeholder: &'static str, value: &str) {
-        self.html = self.html.replace(
-            placeholder,
-            &html_escape::encode_double_quoted_attribute(value),
-        );
+        self.html = self
+            .html
+            .replace(placeholder, &html_escape::encode_double_quoted_attribute(value));
     }
 
     /// We expect the HtmlSourceCode to be well formed. For that we trust the programmer.  
     /// We trust the programmer that it will replace only the anticipated placeholders.  
-    pub fn replace_html_source_code(
-        &mut self,
-        placeholder: &'static str,
-        html_source_code: &HtmlSourceCode,
-    ) {
+    pub fn replace_html_source_code(&mut self, placeholder: &'static str, html_source_code: &HtmlSourceCode) {
         self.html = self.html.replace(placeholder, &html_source_code.get_html());
     }
 
