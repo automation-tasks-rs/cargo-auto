@@ -8,8 +8,8 @@
 [//]: # (auto_cargo_toml_to_md end)
 
  ![logo](https://raw.githubusercontent.com/bestia-dev/cargo-auto/main/images/logo/logo_cargo_auto.svg)
- ![status](https://img.shields.io/badge/maintained-green)
- ![status](https://img.shields.io/badge/ready_for_use-green)
+ ![maintained](https://img.shields.io/badge/maintained-green)
+ ![ready_for_use](https://img.shields.io/badge/ready_for_use-green)
 
  [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
  [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)
@@ -17,7 +17,7 @@
  [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/)
  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo-auto/blob/master/LICENSE)
  [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/bestia-dev/cargo-auto/)
- ![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
+ ![cargo-auto](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 
 [//]: # (auto_lines_of_code start)
 [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9173-green.svg)](https://github.com/bestia-dev/cargo-auto/)
