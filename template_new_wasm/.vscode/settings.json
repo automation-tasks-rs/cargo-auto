@@ -24,6 +24,7 @@
         "onchange",
         "onclick",
         "plantuml",
+        "rustc",
         "rustlang",
         "thiserror",
         "webassembly"

@@ -86,7 +86,7 @@ dependencies = [
 
 [[package]]
 name = "rust_project_name"
-version = "2024.220.2211"
+version = "0.0.1"
 dependencies = [
  "anyhow",
  "console_error_panic_hook",

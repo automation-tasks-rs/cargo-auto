@@ -16,7 +16,7 @@ checksum = "c764d619ca78fccbf3069b37bd7af92577f044bb15236036662d79b6559f25b7"
 
 [[package]]
 name = "cargo_auto_template_new_wasm"
-version = "2024.220.2215"
+version = "0.0.1"
 dependencies = [
  "anyhow",
  "console_error_panic_hook",

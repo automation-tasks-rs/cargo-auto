@@ -1,6 +1,6 @@
 [package]
 name = "rust_project_name"
-version = "2024.220.2211"
+version = "0.0.1"
 authors = ["project_author"]
 homepage = "project_homepage"
 edition = "2021"

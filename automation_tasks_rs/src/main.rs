@@ -135,7 +135,7 @@ fn completion() {
 fn task_build() {
     let cargo_toml = cl::CargoToml::read();
     let ext_for_binary_files = vec![".ico", ".jpg", ".png", ".woff2"];
-    let exclude_big_folders = vec!["/.git".to_string(), "/target".to_string(), "/docs".to_string()];
+    let exclude_big_folders = vec!["/.git".to_string(), "/target".to_string(), "/docs".to_string(), "/pkg".to_string()];
     cl::copy_folder_files_into_module(
         std::path::Path::new("template_new_auto"),
         std::path::Path::new("src/template_new_auto_mod.rs"),

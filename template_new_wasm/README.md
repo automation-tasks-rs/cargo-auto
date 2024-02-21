@@ -3,55 +3,36 @@
 [//]: # (auto_cargo_toml_to_md start)
 
 **template for a minimal wasm project for browser**  
-***version: 2024.220.2215 date: 2024-02-20 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo_auto_template_new_wasm)***  
+***version: 0.0.1 date: 2024-02-21 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo_auto_template_new_wasm)***  
 
 [//]: # (auto_cargo_toml_to_md end)
 
- [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/blob/master/LICENSE)
- [![Rust](https://github.com/bestia-dev/cargo_auto_template_new_wasm/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/)
- ![Hits](https://bestia.dev/webpage_hit_counter/get_svg_image/638168303.svg)
+  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/blob/master/LICENSE)
+  [![GitHubAction](https://github.com/bestia-dev/cargo_auto_template_new_wasm/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/)
 
 [//]: # (auto_lines_of_code start)
-[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-264-green.svg)](https://github.com/bestia-dev/cargo-auto/)
-[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-28-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
-[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-69-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
-[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-16-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
+
+[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-264-green.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/)
+[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-28-blue.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/)
+[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-69-purple.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/)
+[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/)
+[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-16-orange.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/)
 
 [//]: # (auto_lines_of_code end)
 
 Hashtags: #rustlang #tutorial #pwa #wasm #webassembly  
 My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
 
-## template
+## This template
 
-Just like `cargo new` makes a soft and gentle introduction to Rust projects and development, I want to make the same for an in-browser WASM project with `cargo auto new_wasm`.  
+Just like `cargo new` makes a soft and gentle introduction to Rust projects and development, I want to make the same for an in-browser WASM project with 
+
+```bash
+cargo auto new_wasm project_name
+```
+
 Extremely simple, just the basic moving parts and use-cases.  
-This simplest template does not have a PWA implementation or dedicated web server.
-
-## Containerized Rust Development Environment (CRDE)
-
-I recommend using the Containerized Rust Development Environment (CRDE) to write Rust projects. It contains wasm-pack and basic-http-server that this project needs.  
-<https://github.com/bestia-dev/docker_rust_development>  
-
-## HTML, CSS
-
-The simple static HTML and CSS files are in `web_server_folder/cargo_auto_template_new_wasm`.  
-Then the Rust code injects html elements into the DOM.  
-
-## Web server and wasm
-
-We will need the `basic-http-server` because browser security does not allow the loading of WASM modules from local files.  
-Run the server in a separate VSCode terminal, so it can keep running all the time. In the first VSCode terminal, we can build the project and in the browser, we can refresh the page with F5.  
-
-## Rust and wasm
-
-Cargo.toml is very important to define the output as wasm library and the required dependencies to web-sys, js-sys, and wasm-bindgen.
-Wasm starts from the src/lib.rs. On purpose, I added the main_mod.rs and lib_mod.rs to make the project structure similar to a Rust CLI project. The User Interface UI is completely different in-browser or CLI, but we can reuse the libraries that are UI agnostic.  It is smart to split a project that logic does not contain UI.
-
-We use cargo auto for automation tasks. Run:
-`cargo auto build`  
-and follow the detailed instructions.
+This simplest template does not have a PWA implementation or dedicated web server app.
 
 ## Development details
 
@@ -65,7 +46,7 @@ Read the releases changelog in a separate md file:
 
 ## TODO
 
-Nothing for now.
+And code happily ever after...
 
 ## Open-source and free as a beer
 

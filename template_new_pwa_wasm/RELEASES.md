@@ -10,4 +10,6 @@ The TODO section is part of the [README.md](https://github.com/bestia-dev/rust_p
 
 ## Unreleased
 
-## Version 0.0.0
+## Version 0.0.1
+
+- Rust project created with `cargo auto new_pwa_wasm`
