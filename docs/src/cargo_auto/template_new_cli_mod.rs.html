@@ -2987,50 +2987,6 @@
 <a href="#2936" id="2936">2936</a>
 <a href="#2937" id="2937">2937</a>
 <a href="#2938" id="2938">2938</a>
-<a href="#2939" id="2939">2939</a>
-<a href="#2940" id="2940">2940</a>
-<a href="#2941" id="2941">2941</a>
-<a href="#2942" id="2942">2942</a>
-<a href="#2943" id="2943">2943</a>
-<a href="#2944" id="2944">2944</a>
-<a href="#2945" id="2945">2945</a>
-<a href="#2946" id="2946">2946</a>
-<a href="#2947" id="2947">2947</a>
-<a href="#2948" id="2948">2948</a>
-<a href="#2949" id="2949">2949</a>
-<a href="#2950" id="2950">2950</a>
-<a href="#2951" id="2951">2951</a>
-<a href="#2952" id="2952">2952</a>
-<a href="#2953" id="2953">2953</a>
-<a href="#2954" id="2954">2954</a>
-<a href="#2955" id="2955">2955</a>
-<a href="#2956" id="2956">2956</a>
-<a href="#2957" id="2957">2957</a>
-<a href="#2958" id="2958">2958</a>
-<a href="#2959" id="2959">2959</a>
-<a href="#2960" id="2960">2960</a>
-<a href="#2961" id="2961">2961</a>
-<a href="#2962" id="2962">2962</a>
-<a href="#2963" id="2963">2963</a>
-<a href="#2964" id="2964">2964</a>
-<a href="#2965" id="2965">2965</a>
-<a href="#2966" id="2966">2966</a>
-<a href="#2967" id="2967">2967</a>
-<a href="#2968" id="2968">2968</a>
-<a href="#2969" id="2969">2969</a>
-<a href="#2970" id="2970">2970</a>
-<a href="#2971" id="2971">2971</a>
-<a href="#2972" id="2972">2972</a>
-<a href="#2973" id="2973">2973</a>
-<a href="#2974" id="2974">2974</a>
-<a href="#2975" id="2975">2975</a>
-<a href="#2976" id="2976">2976</a>
-<a href="#2977" id="2977">2977</a>
-<a href="#2978" id="2978">2978</a>
-<a href="#2979" id="2979">2979</a>
-<a href="#2980" id="2980">2980</a>
-<a href="#2981" id="2981">2981</a>
-<a href="#2982" id="2982">2982</a>
 </pre>
         </div>
         <pre class="rust"><code><span class="doccomment">//! this strings are copied from the template_new_cli folder
@@ -3078,7 +3034,26 @@
     <span class="kw">let </span><span class="kw-2">mut </span>vec_file = <span class="macro">vec!</span>[];
 
     <span class="comment">// region: files copied into strings by automation tasks
-    </span>vec_file.push(<span class="kw">crate</span>::FileItem{
+    </span>vec_file.push(<span class="kw">crate</span>::FileItem {
+        file_name: <span class="string">"RELEASES.md"</span>,
+        file_content: <span class="string">r###"# Releases changelog of cargo_auto_template_new_cli
+
+All notable changes to this project will be documented in this file.  
+This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).  
+The library releases will be published on crates.io.  
+The cargo-auto automation task will use the content of the section `## Unreleased` to create
+the GitHub release consistently with this file.  
+The ongoing changes that are not released, are visible in the git commits and github pull requests.  
+The TODO section is part of the [README.md](https://github.com/bestia-dev/cargo_auto_template_new_cli).  
+
+## Unreleased
+
+## Version 0.0.1
+
+- Rust project created with `cargo auto new_cli cargo_auto_template_new_cli`
+"###</span>,
+    });
+    vec_file.push(<span class="kw">crate</span>::FileItem{
             file_name :<span class="string">"README.md"</span>,
             file_content : <span class="string">r###"# cargo_auto_template_new_cli
 
@@ -3089,10 +3064,11 @@
 
 [//]: # (auto_cargo_toml_to_md end)
 
- [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo_auto_template_new_cli/blob/main/LICENSE)
- [![Rust](https://github.com/bestia-dev/cargo_auto_template_new_cli/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo_auto_template_new_cli/)
+  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo_auto_template_new_cli/blob/main/LICENSE)
+  [![Rust](https://github.com/bestia-dev/cargo_auto_template_new_cli/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo_auto_template_new_cli/)
 
 [//]: # (auto_lines_of_code start)
+
 [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-89-green.svg)](https://github.com/bestia-dev/cargo-auto/)
 [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-13-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
 [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-36-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
@@ -3101,182 +3077,32 @@
 
 [//]: # (auto_lines_of_code end)
 
-## Motivation
+Hashtags: #rustlang #tutorial #cli
+My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
 
-The first line I typed when I learned the Rust language was `cargo new hello`. It is extraordinary for learning Rust, but it is a rudimentary example, not really useful in practical life.
+## This template
 
-I created this project template `cargo_auto_template_new_cli` for a simple CLI application that has all the moving parts for a real-life project.
-
-## Separate main.rs and lib.rs
-
-It is always good to split the project between a `main.rs` (executable) and a `lib.rs` (library crate).
-
-Even for the smallest project. Maybe some other program will use the library eventually.
-
-All the input/output is coded in the `main.rs`: keyboard and monitor (stdin and stdout), access to files, and some access to the network.  
-The library must not operate directly with the stdin/stdout, because some other caller of the library can have other ideas around input-output options. Maybe it is a Graphical user interface that does things completely different than CLI applications.
-
-A separate `lib.rs` enables one to make good tests and examples without worrying about input-output.
-
-## super simple argument parsing
-
-I use a super simple code to parse CLI arguments inside the `src/bin/cargo_auto_template_new_cli/main.rs`. There are crate libraries that enable very complex argument parsing if needed.
-
-## automation_tasks_rs
-
-Building a project is always more complex than just `cargo build` and `cargo run`. There are always some files to copy or some content to copy from file to file. For this, I use `cargo-auto` - automation tasks written in Rust language for the build process of Rust projects.
-
-All the sources are inside the folder `automation_tasks_rs`. It is pure Rust, it is easy to understand and modify to your needs.
-
-To start using it just type in `VSCode terminal`:
+Just like `cargo new` makes a soft and gentle introduction to Rust projects and development, I want to make a similar command that creates a real-life Rust project.  
 
 ```bash
-cargo auto
+cargo auto new_cli project_name
 ```
 
-```bash
-User defined tasks in automation_tasks_rs:
-cargo auto build - builds the crate in debug mode, fmt
-cargo auto release - builds the crate in release mode, version from date, fmt, strip
-cargo auto doc - builds the docs, copy to docs directory
-cargo auto commit_and_push - commits with message and push with mandatory message
-    {YELLOW}It is preferred to use SSH for git push to GitHub.{RESET}
-    {YELLOW}&lt;https://github.com/bestia-dev/docker_rust_development/blob/main/ssh_easy.md&gt;{YELLOW}
-    {YELLOW}On the very first commit, this task will initialize a new local git repository and create a remote GitHub repo.{RESET}
-    {YELLOW}In that case the task needs the Personal Access Token Classic from &lt;https://github.com/settings/tokens&gt;{RESET}
-cargo auto publish_to_crates_io - publish to crates.io, git tag
-```
+Extremely simple, just the basic moving parts and use-cases.  
 
-The `bash auto-completion` should work. If you type `cargo auto b` and press `tab` it should auto-complete to `build`. Look at the project &lt;https://github.com/bestia-dev/dev_bestia_cargo_completion&gt;.
+## Development details
 
-After the task, there is a recommendation on what to do next.
+Read the development details in a separate md file:
+[DEVELOPMENT.md](DEVELOPMENT.md)
 
-```bash
-cargo auto release
-```
+## Releases changelog
 
-```bash
-Running automation task: release
-old version: "0.1.20"
-new version: '0.1.21'
-new text: '
-**Basic Rust project template for CLI, more than just `cargo new hello`**
-***version: 0.1.21 date: 2024-04-01 author: [bestia.dev](bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo_auto_template_new_cli)***'
+Read the releases changelog in a separate md file:
+[RELEASES.md](RELEASES.md)
 
-$ cargo fmt
-$ cargo build --release
-Compiling cargo_auto_template_new_cli v0.1.21 (/home/rustdevuser/rustprojects/cargo_auto_template_new_cli)
-Finished release [optimized] target(s) in 1.05s
+## TODO
 
-After `cargo auto release`, , run the compiled binary
-run `./target/release/cargo_auto_template_new_cli print world`
-later
-run `cargo auto doc`
-
-```
-
-Release is incrementing the version number and date, copying the title and description from Cargo.toml to README.md. Calculates the lines of code in the project and makes badges from it in README.md. Copying the README into doc comments, so the documentation can be compiled later.
-
-```bash
-cargo auto doc
-```
-
-```bash
-Running automation task: doc
-$ cargo doc --no-deps --document-private-items
- Documenting cargo_auto_template_new_cli v0.1.21 (/home/rustdevuser/rustprojects/cargo_auto_template_new_cli)
-Finished dev [unoptimized + debuginfo] target(s) in 0.54s
-$ rsync -a --info=progress2 --delete-after target/doc/ docs/
-2,787,371 100% 46.60MB/s 0:00:00 (xfr#56, to-chk=0/61) 
-
-After `cargo auto doc`, check `docs/index.html`. If ok, then 
-run `cargo auto commit_and_push` with mandatory commit message
-```
-
-If you Ctrl+Click on the link `docs/index.html` it will open the file in VSCode editor. In the right corner you can click to see the Live Preview. It will open the preview for the html file in an integrated browser in VSCode. Very useful.
-Now is a good time to run all the tests before committing.
-
-```bash
-cargo test
-```
-
-If we are happy with the changes, we commit and push:
-
-```bash
-cargo auto commit_and_push "my message for commit"
-```
-
-```bash
-Running automation task: commit_and_push
-$ git add -A &amp;& git commit -m "readme"
-[main 3bdcc91] readme
- 9 files changed, 443 insertions(+), 89 deletions(-)
-$ git push
-Enumerating objects: 36, done.
-Counting objects: 100% (36/36), done.
-Delta compression using up to 6 threads
-Compressing objects: 100% (16/16), done.
-Writing objects: 100% (19/19), 6.27 KiB | 1.25 MiB/s, done.
-Total 19 (delta 11), reused 0 (delta 0), pack-reused 0
-remote: Resolving deltas: 100% (11/11), completed with 10 local objects.
-To https://github.com/bestia-dev/cargo_auto_template_new_cli.git
- d0f31d3..3bdcc91 main -&gt; main
-
-After `cargo auto commit and push`
-run `cargo auto publish_to_crates_io`
-```
-
-And finally, if you want to publish it on crates.io. First, you need the `API token` you get from &lt;https://crates.io/settings/tokens&gt;.
-
-```bash
-cargo login
-# paste the API token
-cargo auto publish_to_crates_io
-```
-
-## Modules
-
-I added one module `hello_mod.rs` just to showcase how modules are used in separate files.
-
-## Markdown
-
-README.md and all the doc-comments are in markdown. To separate paragraphs in markdown use an empty line between them.
-I tried other variants like double-space or backslash, but an empty line is the most used in the wild.
-
-## tests
-
-I added a unit-test, just to show how it looks. And an integration-test. So it is "ready-to-go".
-Run them with `cargo test`.
-
-## examples
-
-In the directory `examples` every rs file is a bin-executable.
-Run it with:
-
-```bash
-cargo run --example example_1
-```
-
-## Error handling thiserror and anyhow
-
-Rule number one is never to use `.unwrap()` in your real Rust code. It is a sign, you are not Error handling properly.
-Maybe `unwrap()` can be fine for some fast learning examples, but for any real-life Rust code, you must use some `Error handling`. There are many different ways to do that in Rust. I choose the pair of libraries `thiserror` and `anyhow`. The first is made for libraries, the second is made for bin-executables.  
-The library needs an Enum with all the possible errors that this library can return. With `#[derive(Error)]` this enum gets everything needed to be a true Rust error struct. Every error can have a formatting string and a struct of data.  
-The bin-executable does not want to be involved in every possible error separately. It needs an umbrella for all possible errors with `anyhow::Result`.  
-Inside the code, mostly propagate the errors with the `?` Operator after the `Result` value instead of unwrap() or the match expression.
-In the tests we don't want to work with Error handling. There, instead of `.unwrap()`, use the similar function `.expect(&amp;str)` that has an additional description string.
-
-## cargo crev reviews and advisory
-
-We live in times of danger with [supply chain attacks](https://en.wikipedia.org/wiki/Supply_chain_attack).
-
-It is recommended to always use [cargo-crev](https://github.com/crev-dev/cargo-crev) to verify the trustworthiness of each of your dependencies.
-
-Please, spread this info.
-
-You can also read crev reviews quickly on the web:
-
-&lt;https://web.crev.dev/rust-reviews/crates/&gt;
+And code happily ever after...
 
 ## open-source and free as a beer
 
@@ -3333,7 +3159,7 @@ You know the price of a beer in your local bar ;-) So I can drink a free beer fo
         file_name: <span class="string">"Cargo.toml"</span>,
         file_content: <span class="string">r###"[package]
 name = "cargo_auto_template_new_cli"
-version = "1.0.13"
+version = "0.0.1"
 description = "Basic Rust project template for CLI and library, more than just `cargo new hello`"
 authors = ["bestia.dev"]
 homepage = "https://bestia.dev"
@@ -5947,6 +5773,92 @@ dependencies = [
 ]
 "###</span>,
     });
+    vec_file.push(<span class="kw">crate</span>::FileItem{
+            file_name :<span class="string">"DEVELOPMENT.md"</span>,
+            file_content : <span class="string">r###"# Development details
+
+## CRDE - Containerized Rust Development Environment
+
+I recommend using the CRDE - Containerized Rust Development Environment to write Rust projects. Follow the instructions here &lt;https://github.com/bestia-dev/docker_rust_development&gt;.  
+
+It is an isolated development environment that will not mess with you system.
+It will work on Linux (tested on Debian) and inside WSL (Windows Subsystem for Linux).
+
+You just need to install the newer alternative to Docker: [podman](https://podman.io/). Then you download the prepared container image from DockerHub (3GB). And then a little juggling with ssh keys. All this is simplified by running a few bash scripts. Just follow the easy instructions.  
+
+The container image contains cargo, rustc, wasm-pack, basic-http-server, cargo-auto and other utils that a Rust project needs.  
+
+## Workflow with automation_tasks_rs and cargo-auto
+
+For easy workflow, use the automation tasks that are already coded in the sub-project `automation_tasks_rs`. This is a basic workflow:
+
+```bash
+cargo auto build
+cargo auto release
+cargo auto doc
+cargo auto test
+cargo auto commit_and push
+cargo auto publish_to_crates_io
+cargo auto github_new_release
+```
+
+Every task finishes with instructions how to proceed.  
+The [cargo-auto](https://github.com/bestia-dev/cargo-auto) and [dev_bestia_cargo_completion](https://github.com/bestia-dev/dev_bestia_cargo_completion) are already installed inside the CRDE container.
+
+You can open the automation sub-project in VSCode and then code your own tasks in Rust.
+
+```bash
+code automation_tasks_rs
+```
+
+## Separate main.rs and lib.rs
+
+It is always good to split the project between a `main.rs` (executable) and a `lib.rs` (library crate).
+
+Even for the smallest project. Maybe some other program will use the library eventually.
+
+All the input/output is coded in the `main.rs`: keyboard and monitor (stdin and stdout), access to files, and some access to the network.  
+The library must not operate directly with the stdin/stdout, because some other caller of the library can have other ideas around input-output options. Maybe it is a Graphical user interface that does things completely different than CLI applications.
+
+A separate `lib.rs` enables one to make good tests and examples without worrying about input-output.
+
+## super simple argument parsing
+
+I use a super simple code to parse CLI arguments inside the `src/bin/cargo_auto_template_new_cli/main.rs`. There are crate libraries that enable very complex argument parsing if needed.
+
+## Modules
+
+I added one module `hello_mod.rs` just to showcase how modules are used in separate files.
+
+## Markdown
+
+README.md and all the doc-comments are in markdown. To separate paragraphs in markdown use an empty line between them.
+I tried other variants like double-space or backslash, but an empty line is the most used in the wild.
+
+## tests
+
+I added a unit-test, just to show how it looks. And an integration-test. So it is "ready-to-go".
+Run them with `cargo test`.
+
+## examples
+
+In the directory `examples` every rs file is a bin-executable.
+Run it with:
+
+```bash
+cargo run --example example_1
+```
+
+## Error handling thiserror and anyhow
+
+Rule number one is never to use `.unwrap()` in your real Rust code. It is a sign, you are not Error handling properly.
+Maybe `unwrap()` can be fine for some fast learning examples, but for any real-life Rust code, you must use some `Error handling`. There are many different ways to do that in Rust. I choose the pair of libraries `thiserror` and `anyhow`. The first is made for libraries, the second is made for bin-executables.  
+The library needs an Enum with all the possible errors that this library can return. With `#[derive(Error)]` this enum gets everything needed to be a true Rust error struct. Every error can have a formatting string and a struct of data.  
+The bin-executable does not want to be involved in every possible error separately. It needs an umbrella for all possible errors with `anyhow::Result`.  
+Inside the code, mostly propagate the errors with the `?` Operator after the `Result` value instead of unwrap() or the match expression.
+In the tests we don't want to work with Error handling. There, instead of `.unwrap()`, use the similar function `.expect(&amp;str)` that has an additional description string.
+"###</span>,
+});
     vec_file.push(<span class="kw">crate</span>::FileItem {
         file_name: <span class="string">"examples/example_1.rs"</span>,
         file_content: <span class="string">r###"// examples/example_1.rs

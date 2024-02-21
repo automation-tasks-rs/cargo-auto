@@ -10482,6 +10482,92 @@
 <a href="#10431" id="10431">10431</a>
 <a href="#10432" id="10432">10432</a>
 <a href="#10433" id="10433">10433</a>
+<a href="#10434" id="10434">10434</a>
+<a href="#10435" id="10435">10435</a>
+<a href="#10436" id="10436">10436</a>
+<a href="#10437" id="10437">10437</a>
+<a href="#10438" id="10438">10438</a>
+<a href="#10439" id="10439">10439</a>
+<a href="#10440" id="10440">10440</a>
+<a href="#10441" id="10441">10441</a>
+<a href="#10442" id="10442">10442</a>
+<a href="#10443" id="10443">10443</a>
+<a href="#10444" id="10444">10444</a>
+<a href="#10445" id="10445">10445</a>
+<a href="#10446" id="10446">10446</a>
+<a href="#10447" id="10447">10447</a>
+<a href="#10448" id="10448">10448</a>
+<a href="#10449" id="10449">10449</a>
+<a href="#10450" id="10450">10450</a>
+<a href="#10451" id="10451">10451</a>
+<a href="#10452" id="10452">10452</a>
+<a href="#10453" id="10453">10453</a>
+<a href="#10454" id="10454">10454</a>
+<a href="#10455" id="10455">10455</a>
+<a href="#10456" id="10456">10456</a>
+<a href="#10457" id="10457">10457</a>
+<a href="#10458" id="10458">10458</a>
+<a href="#10459" id="10459">10459</a>
+<a href="#10460" id="10460">10460</a>
+<a href="#10461" id="10461">10461</a>
+<a href="#10462" id="10462">10462</a>
+<a href="#10463" id="10463">10463</a>
+<a href="#10464" id="10464">10464</a>
+<a href="#10465" id="10465">10465</a>
+<a href="#10466" id="10466">10466</a>
+<a href="#10467" id="10467">10467</a>
+<a href="#10468" id="10468">10468</a>
+<a href="#10469" id="10469">10469</a>
+<a href="#10470" id="10470">10470</a>
+<a href="#10471" id="10471">10471</a>
+<a href="#10472" id="10472">10472</a>
+<a href="#10473" id="10473">10473</a>
+<a href="#10474" id="10474">10474</a>
+<a href="#10475" id="10475">10475</a>
+<a href="#10476" id="10476">10476</a>
+<a href="#10477" id="10477">10477</a>
+<a href="#10478" id="10478">10478</a>
+<a href="#10479" id="10479">10479</a>
+<a href="#10480" id="10480">10480</a>
+<a href="#10481" id="10481">10481</a>
+<a href="#10482" id="10482">10482</a>
+<a href="#10483" id="10483">10483</a>
+<a href="#10484" id="10484">10484</a>
+<a href="#10485" id="10485">10485</a>
+<a href="#10486" id="10486">10486</a>
+<a href="#10487" id="10487">10487</a>
+<a href="#10488" id="10488">10488</a>
+<a href="#10489" id="10489">10489</a>
+<a href="#10490" id="10490">10490</a>
+<a href="#10491" id="10491">10491</a>
+<a href="#10492" id="10492">10492</a>
+<a href="#10493" id="10493">10493</a>
+<a href="#10494" id="10494">10494</a>
+<a href="#10495" id="10495">10495</a>
+<a href="#10496" id="10496">10496</a>
+<a href="#10497" id="10497">10497</a>
+<a href="#10498" id="10498">10498</a>
+<a href="#10499" id="10499">10499</a>
+<a href="#10500" id="10500">10500</a>
+<a href="#10501" id="10501">10501</a>
+<a href="#10502" id="10502">10502</a>
+<a href="#10503" id="10503">10503</a>
+<a href="#10504" id="10504">10504</a>
+<a href="#10505" id="10505">10505</a>
+<a href="#10506" id="10506">10506</a>
+<a href="#10507" id="10507">10507</a>
+<a href="#10508" id="10508">10508</a>
+<a href="#10509" id="10509">10509</a>
+<a href="#10510" id="10510">10510</a>
+<a href="#10511" id="10511">10511</a>
+<a href="#10512" id="10512">10512</a>
+<a href="#10513" id="10513">10513</a>
+<a href="#10514" id="10514">10514</a>
+<a href="#10515" id="10515">10515</a>
+<a href="#10516" id="10516">10516</a>
+<a href="#10517" id="10517">10517</a>
+<a href="#10518" id="10518">10518</a>
+<a href="#10519" id="10519">10519</a>
 </pre>
         </div>
         <pre class="rust"><code><span class="doccomment">//! this strings are copied from the template_new_pwa_wasm folder
@@ -10777,61 +10863,79 @@
     <span class="kw">let </span><span class="kw-2">mut </span>vec_file = <span class="macro">vec!</span>[];
 
     <span class="comment">// region: files copied into strings by automation tasks
-    </span>vec_file.push(<span class="kw">crate</span>::FileItem{
+    </span>vec_file.push(<span class="kw">crate</span>::FileItem {
+        file_name: <span class="string">"RELEASES.md"</span>,
+        file_content: <span class="string">r###"# Releases changelog of rust_project_name
+
+All notable changes to this project will be documented in this file.  
+This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).  
+The library releases will be published on crates.io.  
+The cargo-auto automation task will use the content of the section `## Unreleased` to create
+the GitHub release consistently with this file.  
+The ongoing changes that are not released, are visible in the git commits and github pull requests.  
+The TODO section is part of the [README.md](https://github.com/bestia-dev/rust_project_name).  
+
+## Unreleased
+
+## Version 0.0.1
+
+- Rust project created with `cargo auto new_pwa_wasm`
+"###</span>,
+    });
+    vec_file.push(<span class="kw">crate</span>::FileItem{
             file_name :<span class="string">"README.md"</span>,
             file_content : <span class="string">r###"# rust_project_name
 
 [//]: # (auto_cargo_toml_to_md start)
 
 **pwa_description**  
-***version: 2024.220.2211 date: 2024-02-20 author: [project_author](project_homepage) repository: [GitHub](project_repository)***  
+***version: 0.0.1 date: 2024-02-20 author: [project_author](project_homepage) repository: [GitHub](project_repository)***  
 
 [//]: # (auto_cargo_toml_to_md end)
 
+
+ [![License](https://img.shields.io/badge/license-MIT-blue.svg)](project_repository/blob/master/LICENSE)
+  [![GitHubAction](https://github.com/bestia-dev/# rust_project_name
+/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/bestia-dev/# rust_project_name
+/)
+
 [//]: # (auto_lines_of_code start)
-[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-361-green.svg)](https://github.com/bestia-dev/cargo-auto/)
-[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-70-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
-[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-68-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
-[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-16-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
+
+[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-361-green.svg)](https://github.com/bestia-dev/rust_project_name/)
+[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-70-blue.svg)](https://github.com/bestia-dev/rust_project_name/)
+[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-68-purple.svg)](https://github.com/bestia-dev/rust_project_name/)
+[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/rust_project_name/)
+[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-16-orange.svg)](https://github.com/bestia-dev/rust_project_name/)
 
 [//]: # (auto_lines_of_code end)
-
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](project_repository/blob/master/LICENSE)
-[![Rust](project_repository/workflows/RustAction/badge.svg)](project_repository)
 
 Hashtags: #rustlang #tutorial #pwa #wasm #webassembly  
 My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
 
-## template
+## This template
 
-Just like `cargo new` makes a soft and gentle introduction to Rust projects and development, I want to make the same for an in-browser WASM project with `cargo auto new_pwa_wasm`.  
+Just like `cargo new` makes a soft and gentle introduction to Rust projects and development, I want to make the same for an in-browser WASM project with 
+
+```bash
+cargo auto new_pwa_wasm
+```
+
 Extremely simple, just the basic moving parts and use-cases.  
-This simplest template does not have a PWA implementation or dedicated web server.
+This simplest template does not have a PWA implementation or dedicated web server app.
 
-## Containerized Rust Development Environment (CRDE)
+## Development details
 
-I recommend using the Containerized Rust Development Environment (CRDE) to write Rust projects. It contains wasm-pack and basic-http-server that this project needs.  
-&lt;https://github.com/bestia-dev/docker_rust_development&gt;  
+Read the development details in a separate md file:
+[DEVELOPMENT.md](DEVELOPMENT.md)
 
-## HTML, CSS
+## Releases changelog
 
-The simple static HTML and CSS files are in `web_server_folder/pwa_short_name`.  
-Then the Rust code injects html elements into the DOM.  
+Read the releases changelog in a separate md file:
+[RELEASES.md](RELEASES.md)
 
-## Web server and wasm
+## TODO
 
-We will need the `basic-http-server` because browser security does not allow the loading of WASM modules from local files.  
-Run the server in a separate VSCode terminal, so it can keep running all the time. In the first VSCode terminal, we can build the project and in the browser, we can refresh the page with F5.  
-
-## Rust and wasm
-
-Cargo.toml is very important to define the output as wasm library and the required dependencies to web-sys, js-sys and wasm-bindgen.
-Wasm starts from the src/lib.rs. On purpose, I added the main_mod.rs and lib_mod.rs to make the project structure similar to a Rust CLI project. The User Interface UI is completely different in-browser or CLI, but we can reuse the libraries that are UI agnostic.  It is smart to split a project that logic does not contain UI.
-
-We use cargo auto for automation tasks. Run:
-`cargo auto build`  
-and follow the detailed instructions.
+And code happily ever after...
 
 ## Open-source and free as a beer
 
@@ -10859,7 +10963,7 @@ So I can drink a free beer for your health :-)
 // but the new service worker will not be activated until all 
 // tabs with this webapp are closed.
 
-const CACHE_NAME = '2024.220.2216';
+const CACHE_NAME = '2024.221.2339';
 
 self.addEventListener('install', event =&gt; {
     console.log('event install ', CACHE_NAME);
@@ -17878,7 +17982,7 @@ navigator.serviceWorker.addEventListener('controllerchange', function () {
         file_name: <span class="string">"Cargo.toml"</span>,
         file_content: <span class="string">r###"[package]
 name = "rust_project_name"
-version = "2024.220.2211"
+version = "0.0.1"
 authors = ["project_author"]
 homepage = "project_homepage"
 edition = "2021"
@@ -20905,6 +21009,74 @@ dependencies = [
 ]
 "###</span>,
     });
+    vec_file.push(<span class="kw">crate</span>::FileItem{
+            file_name :<span class="string">"DEVELOPMENT.md"</span>,
+            file_content : <span class="string">r###"# Development details
+
+## CRDE - Containerized Rust Development Environment
+
+I recommend using the CRDE - Containerized Rust Development Environment to write Rust projects. Follow the instructions here &lt;https://github.com/bestia-dev/docker_rust_development&gt;.  
+
+It is an isolated development environment that will not mess with you system.
+It will work on Linux (tested on Debian) and inside WSL (Windows Subsystem for Linux).
+
+You just need to install the newer alternative to Docker: [podman](https://podman.io/). Then you download the prepared container image from DockerHub (3GB). And then a little juggling with ssh keys. All this is simplified by running a few bash scripts. Just follow the easy instructions.  
+
+The container image contains cargo, rustc, wasm-pack, basic-http-server, cargo-auto and other utils that a Rust project needs.  
+
+## Workflow with automation_tasks_rs and cargo-auto
+
+For easy workflow, use the automation tasks that are already coded in the sub-project `automation_tasks_rs`. This is a basic workflow:
+
+```bash
+cargo auto build
+cargo auto release
+cargo auto doc
+cargo auto test
+cargo auto commit_and push
+cargo auto publish_to_crates_io
+cargo auto github_new_release
+```
+
+Every task finishes with instructions how to proceed.  
+The [cargo-auto](https://github.com/bestia-dev/cargo-auto) and [dev_bestia_cargo_completion](https://github.com/bestia-dev/dev_bestia_cargo_completion) are already installed inside the CRDE container.
+
+You can open the automation sub-project in VSCode and then code your own tasks in Rust.
+
+```bash
+code automation_tasks_rs
+```
+
+## HTML, CSS
+
+The simple static HTML and CSS files are in `web_server_folder/cargo_auto_template_new_pwa_wasm`.  
+Then the Rust code injects html elements into the DOM.  
+
+## Web server and wasm
+
+The browser security does not allow the loading of WASM modules from local files. It needs to be loaded from a web server. The CRDE container has the [basic-http-server](https://github.com/brson/basic-http-server) already installed.  
+
+Run the server in a second VSCode terminal, so it can keep running all the time.  
+
+```bash
+basic-http-server -a 0.0.0.0:4000 ./web_server_folder
+```
+
+In the first VSCode terminal, we can build the project.  
+Then in the browser, we can refresh the page &lt;http://localhost:4000/cargo_auto_template_new_pwa_wasm&gt; with F5 to see the changes.  
+
+## Rust and wasm
+
+In the `Cargo.toml` it is important to define the output as wasm library and the required dependencies to web-sys, js-sys, and wasm-bindgen.  
+Wasm starts from the `src/lib.rs`. On purpose, I added the `main_mod.rs` and `lib_mod.rs` to make the project structure similar to a Rust CLI project.  
+The User Interface UI is completely different in-browser than in a CLI, but we can reuse the libraries if they are UI agnostic.  
+It is smart to split a project so that the logic does not contain anything about the UI.
+
+## GitHub
+
+This template contains GitHub actions to build the project on commit and publish the documentation on GutHub pages.  
+"###</span>,
+});
     vec_file.push(<span class="kw">crate</span>::FileItem {
         file_name: <span class="string">"LICENSE"</span>,
         file_content: <span class="string">r###"MIT License
