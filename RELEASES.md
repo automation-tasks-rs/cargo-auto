@@ -10,6 +10,10 @@ The TODO section is part of the [README.md](https://github.com/bestia-dev/rust_p
 
 ## Unreleased
 
+## Version 2024.221.2339 (2024-02-21)
+
+- update DEVELOPMENT.md
+
 ## Version 2024.220.2216 (2024-02-20)
 
 - update templates to 1.2.13
