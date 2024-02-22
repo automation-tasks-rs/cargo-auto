@@ -376,7 +376,7 @@ So I can drink a free beer for your health :-)
 // but the new service worker will not be activated until all 
 // tabs with this webapp are closed.
 
-const CACHE_NAME = '2024.222.1940';
+const CACHE_NAME = '2024.222.2127';
 
 self.addEventListener('install', event => {
     console.log('event install ', CACHE_NAME);
@@ -8174,10 +8174,9 @@ jobs:
     });
     vec_file.push(crate::FileItem {
         file_name: "automation_tasks_rs/Cargo.toml",
-        file_content: r###"
-[package]
+        file_content: r###"[package]
 name = "automation_tasks_rs"
-version = "1.0.1"
+version = "1.0.0"
 authors = ["bestia.dev"]
 homepage = "https://bestia.dev"
 edition = "2021"
@@ -8185,8 +8184,7 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "1.2.13"
-pretty_dbg = "1.0.49""###,
+cargo_auto_lib = "1.3.3""###,
     });
     vec_file.push(crate::FileItem{
             file_name :"automation_tasks_rs/src/main.rs",
@@ -8243,7 +8241,7 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args) {
                 } else if &task == "github_new_release" {
                     task_github_new_release();
                 } else {
-                    println!("{RED}Error: Task {task} is unknown.{RESET}");
+                    eprintln!("{RED}Error: Task {task} is unknown.{RESET}");
                     print_help();
                 }
             }
@@ -8259,11 +8257,11 @@ fn print_help() {
     {YELLOW}This program automates your custom tasks when developing a Rust project.{RESET}
 
     {YELLOW}User defined tasks in automation_tasks_rs:{RESET}
-{GREEN}cargo auto build{RESET}{YELLOW} - builds the crate in debug mode, fmt, increment version{RESET}
-{GREEN}cargo auto release{RESET}{YELLOW} - builds the crate in release mode, fmt, increment version{RESET}
-{GREEN}cargo auto doc{RESET}{YELLOW} - builds the docs, copy to docs directory{RESET}
-{GREEN}cargo auto test{RESET}{YELLOW} - runs all the tests{RESET}
-{GREEN}cargo auto commit_and_push "message"{RESET}{YELLOW} - commits with message and push with mandatory message{RESET}
+{GREEN}cargo auto build{RESET} - {YELLOW}builds the crate in debug mode, fmt, increment version{RESET}
+{GREEN}cargo auto release{RESET} - {YELLOW}builds the crate in release mode, fmt, increment version{RESET}
+{GREEN}cargo auto doc{RESET} - {YELLOW}builds the docs, copy to docs directory{RESET}
+{GREEN}cargo auto test{RESET} - {YELLOW}runs all the tests{RESET}
+{GREEN}cargo auto commit_and_push "message"{RESET} - {YELLOW}commits with message and push with mandatory message{RESET}
     {YELLOW}It is preferred to use SSH for git push to GitHub.{RESET}
     {YELLOW}<https://github.com/bestia-dev/docker_rust_development/blob/main/ssh_easy.md>{YELLOW}
     {YELLOW}On the very first commit, this task will initialize a new local git repository and create a remote GitHub repo.{RESET}
@@ -8271,7 +8269,7 @@ fn print_help() {
 {GREEN}cargo auto publish_to_web - publish to web, git tag{RESET}
     {YELLOW}It is preferred to use SSH to publish to web and remotely manage the web server.{RESET}
     {YELLOW}<https://github.com/bestia-dev/docker_rust_development/blob/main/ssh_easy.md>{YELLOW}
-{GREEN}cargo auto github_new_release{RESET}{YELLOW} - creates new release on github{RESET}
+{GREEN}cargo auto github_new_release{RESET} - {YELLOW}creates new release on github{RESET}
     {YELLOW}This task needs the Personal Access Token Classic from <https://github.com/settings/tokens>{RESET}
 
     {YELLOW}© 2024 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
@@ -8388,7 +8386,7 @@ fn task_doc() {
     // message to help user with next move
     println!(
         r#"
-    {YELLOW}After `cargo auto doc`, check `docs/index.html`. If ok, then test the documentation code examples{RESET}
+    {YELLOW}After `cargo auto doc`, check `docs/index.html`. If ok then test the documentation code examples{RESET}
 {GREEN}cargo auto test{RESET}
 "#
     );
@@ -8400,7 +8398,7 @@ fn task_test() {
     cl::run_shell_command("cargo test");
     println!(
         r#"
-    {YELLOW}After `cargo auto test`. If ok, then {RESET}
+    {YELLOW}After `cargo auto test`. If ok then {RESET}
 {GREEN}cargo auto commit_and_push "message"{RESET}
     {YELLOW}with mandatory commit message{RESET}
 "#
@@ -8440,18 +8438,22 @@ fn task_commit_and_push(arg_2: Option<String>) {
 
 /// publish to web
 fn task_publish_to_web() {
-    println!(r#"{YELLOW}Use ssh-agent and ssh-add to store your credentials for publish to web.{RESET}"#);
     let cargo_toml = cl::CargoToml::read();
-    let _package_name = cargo_toml.package_name();
-    let version = cargo_toml.package_version();
     // take care of tags
-    let _tag_name_version = cl::git_tag_sync_check_create_push(&version);
+    let tag_name_version = cl::git_tag_sync_check_create_push(&version);
 
+    // Find the filename of the identity_file for ssh connection to host_name, to find out if need ssh-add or not.
+    // parse the ~/.ssh/config. 99% probably there should be a record for host_name and there is the identity_file.
+    // else ask user for filename, then run ssh-add
+    cl::ssh_add_resolve("project_homepage","webserverssh1");
+
+    // rsync to copy to server over ssh
     let shell_command = format!(
-        "rsync -e ssh -a --info=progress2 --delete-after ~/rustprojects/{package_name}/web_server_folder/ project_author@project_homepage:/var/www/project_homepage/pwa_short_name/",
+        r#"rsync -e ssh -a --info=progress2 --delete-after ~/rustprojects/{package_name}/web_server_folder/ project_author@project_homepage:/var/www/project_homepage/pwa_short_name/"#,
         package_name = cargo_toml.package_name()
     );
     cl::run_shell_command(&shell_command);
+
     println!(
         r#"{YELLOW}
     After `cargo auto publish_to_web`, 

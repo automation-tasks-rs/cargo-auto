@@ -862,10 +862,9 @@ jobs:
     });
     vec_file.push(crate::FileItem {
         file_name: "automation_tasks_rs/Cargo.toml",
-        file_content: r###"
-[package]
+        file_content: r###"[package]
 name = "automation_tasks_rs"
-version = "1.0.1"
+version = "1.0.0"
 authors = ["bestia.dev"]
 homepage = "https://bestia.dev"
 edition = "2021"
@@ -873,8 +872,7 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "1.2.13"
-pretty_dbg = "1.0.49""###,
+cargo_auto_lib = "1.3.3""###,
     });
     vec_file.push(crate::FileItem{
             file_name :"automation_tasks_rs/src/main.rs",
@@ -947,11 +945,11 @@ fn print_help() {
     {YELLOW}This program automates your custom tasks when developing a Rust project.{RESET}
 
     {YELLOW}User defined tasks in automation_tasks_rs:{RESET}
-{GREEN}cargo auto build{RESET}{YELLOW} - builds the crate in debug mode, fmt, increment version{RESET}
-{GREEN}cargo auto release{RESET}{YELLOW} - builds the crate in release mode, fmt, increment version{RESET}
-{GREEN}cargo auto doc{RESET}{YELLOW} - builds the docs, copy to docs directory{RESET}
-{GREEN}cargo auto test{RESET}{YELLOW} - runs all the tests{RESET}
-{GREEN}cargo auto commit_and_push "message"{RESET}{YELLOW} - commits with message and push with mandatory message{RESET}
+{GREEN}cargo auto build{RESET} - {YELLOW}builds the crate in debug mode, fmt, increment version{RESET}
+{GREEN}cargo auto release{RESET} - {YELLOW}builds the crate in release mode, fmt, increment version{RESET}
+{GREEN}cargo auto doc{RESET} - {YELLOW}builds the docs, copy to docs directory{RESET}
+{GREEN}cargo auto test{RESET} - {YELLOW}runs all the tests{RESET}
+{GREEN}cargo auto commit_and_push "message"{RESET} - {YELLOW}commits with message and push with mandatory message{RESET}
     {YELLOW}It is preferred to use SSH for git push to GitHub.{RESET}
     {YELLOW}<https://github.com/bestia-dev/docker_rust_development/blob/main/ssh_easy.md>{YELLOW}
     {YELLOW}On the very first commit, this task will initialize a new local git repository and create a remote GitHub repo.{RESET}
@@ -959,7 +957,7 @@ fn print_help() {
 {GREEN}cargo auto publish_to_web - publish to web, git tag{RESET}
     {YELLOW}It is preferred to use SSH to publish to web and remotely manage the web server.{RESET}
     {YELLOW}<https://github.com/bestia-dev/docker_rust_development/blob/main/ssh_easy.md>{YELLOW}
-{GREEN}cargo auto github_new_release{RESET}{YELLOW} - creates new release on github{RESET}
+{GREEN}cargo auto github_new_release{RESET} - {YELLOW}creates new release on github{RESET}
     {YELLOW}This task needs the Personal Access Token Classic from <https://github.com/settings/tokens>{RESET}
 
     {YELLOW}© 2024 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
@@ -984,7 +982,7 @@ fn completion() {
     let last_word = args[3].as_str();
 
     if last_word == "cargo-auto" || last_word == "auto" {
-        let sub_commands = vec!["build", "release", "doc", "test", "commit_and_push", "publish_to_web","github_new_release",];
+        let sub_commands = vec!["build", "release", "doc", "test", "commit_and_push", "publish_to_web", "github_new_release",];
         cl::completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
     /*
@@ -1010,8 +1008,8 @@ fn task_build() {
     cl::run_shell_command("\\rsync -a --delete-after pkg/ web_server_folder/cargo_auto_template_new_wasm/pkg/");
     println!(
         r#"
-    {YELLOW}After `cargo auto build`, open port 4000 in VSCode and run the basic web server
-    in a separate VSCode bash terminal, so it can serve constantly in the background.{RESET}
+    {YELLOW}After `cargo auto build`, open port 4000 in VSCode and run the basic web server{RESET}
+    {YELLOW}in a separate VSCode bash terminal, so it can serve constantly in the background.{RESET}
 {GREEN}basic-http-server -a 0.0.0.0:4000 ./web_server_folder{RESET}
     {YELLOW}and open the browser on{RESET}
 {GREEN}http://localhost:4000/cargo_auto_template_new_wasm{RESET}
@@ -1036,8 +1034,8 @@ fn task_release() {
     cl::run_shell_command("\\rsync -a --delete-after pkg/ web_server_folder/cargo_auto_template_new_wasm/pkg/");
     println!(
         r#"
-    {YELLOW}After `cargo auto build`, open port 4000 in VSCode and run the basic web server
-    in a separate VSCode bash terminal, so it can serve constantly in the background.{RESET}
+    {YELLOW}After `cargo auto build`, open port 4000 in VSCode and run the basic web server{RESET}
+    {YELLOW}in a separate VSCode bash terminal, so it can serve constantly in the background.{RESET}
 {GREEN}basic-http-server -a 0.0.0.0:4000 ./web_server_folder{RESET}
     {YELLOW}and open the browser on{RESET}
 {GREEN}http://localhost:4000/cargo_auto_template_new_wasm{RESET}    
@@ -1074,7 +1072,7 @@ fn task_doc() {
     // message to help user with next move
     println!(
         r#"
-    {YELLOW}After `cargo auto doc`, check `docs/index.html`. If ok, then test the documentation code examples{RESET}
+    {YELLOW}After `cargo auto doc`, check `docs/index.html`. If ok then test the documentation code examples{RESET}
 {GREEN}cargo auto test{RESET}
 "#
     );
@@ -1082,10 +1080,11 @@ fn task_doc() {
 
 /// cargo test
 fn task_test() {
+    println!(r#"    {YELLOW}Wasm is a cdylib and therefore doc-tests are not run !{RESET}"#);
     cl::run_shell_command("cargo test");
     println!(
         r#"
-    {YELLOW}After `cargo auto test`. If ok, then {RESET}
+    {YELLOW}After `cargo auto test`. If ok then {RESET}
 {GREEN}cargo auto commit_and_push "message"{RESET}
     {YELLOW}with mandatory commit message{RESET}
 "#
@@ -1125,19 +1124,22 @@ fn task_commit_and_push(arg_2: Option<String>) {
 
 /// publish to web
 fn task_publish_to_web() {
-    println!(r#"{YELLOW}Use ssh-agent and ssh-add to store your credentials for publish to web.{RESET}"#);
     let cargo_toml = cl::CargoToml::read();
-    // git tag
+    // take care of tags
+    let tag_name_version = cl::git_tag_sync_check_create_push(&version);
+
+    // Find the filename of the identity_file for ssh connection to host_name, to find out if need ssh-add or not.
+    // parse the ~/.ssh/config. 99% probably there should be a record for host_name and there is the identity_file.
+    // else ask user for filename, then run ssh-add
+    cl::ssh_add_resolve("project_homepage","webserverssh1");
+
+    // rsync to copy to server over ssh
     let shell_command = format!(
-        "git tag -f -a v{version} -m version_{version}",
-        version = cargo_toml.package_version()
-    );
-    cl::run_shell_command(&shell_command);
-    let shell_command = format!(
-        "rsync -e ssh -a --info=progress2 --delete-after ~/rustprojects/{package_name}/web_server_folder/ project_author@project_homepage:/var/www/project_homepage/pwa_short_name/",
+        r#"rsync -e ssh -a --info=progress2 --delete-after ~/rustprojects/{package_name}/web_server_folder/ project_author@project_homepage:/var/www/project_homepage/pwa_short_name/"#,
         package_name = cargo_toml.package_name()
     );
     cl::run_shell_command(&shell_command);
+
     println!(
         r#"{YELLOW}
     After `cargo auto publish_to_web`, 

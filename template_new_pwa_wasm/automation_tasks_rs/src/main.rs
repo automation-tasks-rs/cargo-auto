@@ -51,7 +51,7 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args) {
                 } else if &task == "github_new_release" {
                     task_github_new_release();
                 } else {
-                    println!("{RED}Error: Task {task} is unknown.{RESET}");
+                    eprintln!("{RED}Error: Task {task} is unknown.{RESET}");
                     print_help();
                 }
             }
@@ -248,18 +248,22 @@ fn task_commit_and_push(arg_2: Option<String>) {
 
 /// publish to web
 fn task_publish_to_web() {
-    println!(r#"{YELLOW}Use ssh-agent and ssh-add to store your credentials for publish to web.{RESET}"#);
     let cargo_toml = cl::CargoToml::read();
-    let _package_name = cargo_toml.package_name();
-    let version = cargo_toml.package_version();
     // take care of tags
-    let _tag_name_version = cl::git_tag_sync_check_create_push(&version);
+    let tag_name_version = cl::git_tag_sync_check_create_push(&version);
 
+    // Find the filename of the identity_file for ssh connection to host_name, to find out if need ssh-add or not.
+    // parse the ~/.ssh/config. 99% probably there should be a record for host_name and there is the identity_file.
+    // else ask user for filename, then run ssh-add
+    cl::ssh_add_resolve("project_homepage","webserverssh1");
+
+    // rsync to copy to server over ssh
     let shell_command = format!(
-        "rsync -e ssh -a --info=progress2 --delete-after ~/rustprojects/{package_name}/web_server_folder/ project_author@project_homepage:/var/www/project_homepage/pwa_short_name/",
+        r#"rsync -e ssh -a --info=progress2 --delete-after ~/rustprojects/{package_name}/web_server_folder/ project_author@project_homepage:/var/www/project_homepage/pwa_short_name/"#,
         package_name = cargo_toml.package_name()
     );
     cl::run_shell_command(&shell_command);
+
     println!(
         r#"{YELLOW}
     After `cargo auto publish_to_web`, 

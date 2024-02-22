@@ -104,7 +104,7 @@ fn completion() {
     let last_word = args[3].as_str();
 
     if last_word == "cargo-auto" || last_word == "auto" {
-        let sub_commands = vec!["build", "release", "doc", "test", "commit_and_push", "publish_to_web","github_new_release",];
+        let sub_commands = vec!["build", "release", "doc", "test", "commit_and_push", "publish_to_web", "github_new_release",];
         cl::completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
     /*
@@ -130,8 +130,8 @@ fn task_build() {
     cl::run_shell_command("\\rsync -a --delete-after pkg/ web_server_folder/cargo_auto_template_new_wasm/pkg/");
     println!(
         r#"
-    {YELLOW}After `cargo auto build`, open port 4000 in VSCode and run the basic web server
-    in a separate VSCode bash terminal, so it can serve constantly in the background.{RESET}
+    {YELLOW}After `cargo auto build`, open port 4000 in VSCode and run the basic web server{RESET}
+    {YELLOW}in a separate VSCode bash terminal, so it can serve constantly in the background.{RESET}
 {GREEN}basic-http-server -a 0.0.0.0:4000 ./web_server_folder{RESET}
     {YELLOW}and open the browser on{RESET}
 {GREEN}http://localhost:4000/cargo_auto_template_new_wasm{RESET}
@@ -156,8 +156,8 @@ fn task_release() {
     cl::run_shell_command("\\rsync -a --delete-after pkg/ web_server_folder/cargo_auto_template_new_wasm/pkg/");
     println!(
         r#"
-    {YELLOW}After `cargo auto build`, open port 4000 in VSCode and run the basic web server
-    in a separate VSCode bash terminal, so it can serve constantly in the background.{RESET}
+    {YELLOW}After `cargo auto build`, open port 4000 in VSCode and run the basic web server{RESET}
+    {YELLOW}in a separate VSCode bash terminal, so it can serve constantly in the background.{RESET}
 {GREEN}basic-http-server -a 0.0.0.0:4000 ./web_server_folder{RESET}
     {YELLOW}and open the browser on{RESET}
 {GREEN}http://localhost:4000/cargo_auto_template_new_wasm{RESET}    
@@ -202,6 +202,7 @@ fn task_doc() {
 
 /// cargo test
 fn task_test() {
+    println!(r#"    {YELLOW}Wasm is a cdylib and therefore doc-tests are not run !{RESET}"#);
     cl::run_shell_command("cargo test");
     println!(
         r#"
@@ -245,19 +246,22 @@ fn task_commit_and_push(arg_2: Option<String>) {
 
 /// publish to web
 fn task_publish_to_web() {
-    println!(r#"{YELLOW}Use ssh-agent and ssh-add to store your credentials for publish to web.{RESET}"#);
     let cargo_toml = cl::CargoToml::read();
-    // git tag
+    // take care of tags
+    let tag_name_version = cl::git_tag_sync_check_create_push(&version);
+
+    // Find the filename of the identity_file for ssh connection to host_name, to find out if need ssh-add or not.
+    // parse the ~/.ssh/config. 99% probably there should be a record for host_name and there is the identity_file.
+    // else ask user for filename, then run ssh-add
+    cl::ssh_add_resolve("project_homepage","webserverssh1");
+
+    // rsync to copy to server over ssh
     let shell_command = format!(
-        "git tag -f -a v{version} -m version_{version}",
-        version = cargo_toml.package_version()
-    );
-    cl::run_shell_command(&shell_command);
-    let shell_command = format!(
-        "rsync -e ssh -a --info=progress2 --delete-after ~/rustprojects/{package_name}/web_server_folder/ project_author@project_homepage:/var/www/project_homepage/pwa_short_name/",
+        r#"rsync -e ssh -a --info=progress2 --delete-after ~/rustprojects/{package_name}/web_server_folder/ project_author@project_homepage:/var/www/project_homepage/pwa_short_name/"#,
         package_name = cargo_toml.package_name()
     );
     cl::run_shell_command(&shell_command);
+
     println!(
         r#"{YELLOW}
     After `cargo auto publish_to_web`, 

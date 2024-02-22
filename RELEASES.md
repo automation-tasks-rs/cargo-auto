@@ -10,6 +10,9 @@ The TODO section is part of the [README.md](https://github.com/bestia-dev/rust_p
 
 ## Unreleased
 
+- cargo_auto_lib = 1.3.3
+- task_publish_to_web
+
 ## Version 2024.221.2339 (2024-02-21)
 
 - update DEVELOPMENT.md
@@ -25,7 +28,7 @@ The TODO section is part of the [README.md](https://github.com/bestia-dev/rust_p
 
 ## Version v2024.220.752
 
-cargo_auto_lib = "1.2.13"
+cargo_auto_lib = 1.2.13
 automation task commit can now init local git repository and create new remote GitHub repo
 
 ## Version v2024.219.258

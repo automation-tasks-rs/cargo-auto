@@ -67,7 +67,7 @@ checksum = "d468802bab17cbc0cc575e9b053f41e72aa36bfa6b7f55e3529ffa43161b97fa"
 
 [[package]]
 name = "automation_tasks_rs"
-version = "0.1.2"
+version = "1.0.0"
 dependencies = [
  "cargo_auto_lib",
  "pretty_dbg",
@@ -135,9 +135,9 @@ checksum = "a2bd12c1caf447e69cd4528f47f94d203fd2582878ecb9e9465484c4148a8223"
 
 [[package]]
 name = "cargo_auto_lib"
-version = "1.2.13"
+version = "1.3.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "94d92d8df6e9898e1032585e15804484d2eaeddd777679b285551e24bb16b1be"
+checksum = "3d8943f05cbeb665c014e392cc74c28e361788b94aaeb317fb9136150514b327"
 dependencies = [
  "anyhow",
  "base64ct",
@@ -940,9 +940,9 @@ checksum = "2900ede94e305130c13ddd391e0ab7cbaeb783945ae07a279c268cb05109c6cb"
 
 [[package]]
 name = "pretty_dbg"
-version = "1.0.49"
+version = "1.0.54"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "85c9cc6dcf2ee8ab93287669c0beaca467eb8dfcfef3ba71b6beb72bd81b11e1"
+checksum = "20d4d8446f2c978b7e89d58579ed7ff5e3d7cca208674c8a6272477adcb73a50"
 
 [[package]]
 name = "proc-macro2"
