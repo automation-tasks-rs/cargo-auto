@@ -1,6 +1,6 @@
 [package]
 name = "automation_tasks_rs"
-version = "0.1.2"
+version = "1.0.0"
 authors = ["bestia.dev"]
 homepage = "https://bestia.dev"
 edition = "2021"
