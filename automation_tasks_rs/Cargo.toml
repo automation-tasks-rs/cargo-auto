@@ -1,6 +1,6 @@
 [package]
 name = "automation_tasks_rs"
-version = "0.1.2"
+version = "1.0.0"
 authors = ["bestia.dev"]
 homepage = "https://bestia.dev"
 edition = "2021"
@@ -10,4 +10,4 @@ publish = false
 [dependencies]
 cargo_auto_lib = "1.2.13"
 # cargo_auto_lib={path="/home/rustdevuser/rustprojects/cargo_auto_lib"}
-pretty_dbg = "1.0.49"
+pretty_dbg = "1.0.53"
