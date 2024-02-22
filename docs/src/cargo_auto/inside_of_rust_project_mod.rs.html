@@ -183,6 +183,8 @@
 <a href="#132" id="132">132</a>
 <a href="#133" id="133">133</a>
 <a href="#134" id="134">134</a>
+<a href="#135" id="135">135</a>
+<a href="#136" id="136">136</a>
 </pre>
         </div>
         <pre class="rust"><code><span class="comment">// inside_of_rust_project_mod.rs
@@ -243,7 +245,8 @@
 "#
         </span>);
     } <span class="kw">else </span>{
-        <span class="kw">crate</span>::template_new_auto_mod::build_automation_tasks_rs_if_needed();
+        <span class="comment">// panic! if cannot compile automation_tasks_rs
+        </span><span class="kw">crate</span>::template_new_auto_mod::compile_automation_tasks_rs_if_needed();
         std::process::Command::new(<span class="kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str())
             .spawn()
             .unwrap()
@@ -278,7 +281,8 @@
             <span class="comment">// early exit
             </span>std::process::exit(<span class="number">0</span>);
         }
-        <span class="kw">crate</span>::template_new_auto_mod::build_automation_tasks_rs_if_needed();
+        <span class="comment">// panic! if cannot compile automation_tasks_rs
+        </span><span class="kw">crate</span>::template_new_auto_mod::compile_automation_tasks_rs_if_needed();
         <span class="comment">// call automation_tasks_rs/target/debug/automation_tasks_rs with all the arguments
         </span><span class="kw">let </span><span class="kw-2">mut </span>command = std::process::Command::new(<span class=
 "kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str());

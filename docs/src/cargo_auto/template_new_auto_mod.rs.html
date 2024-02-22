@@ -519,6 +519,19 @@
 <a href="#468" id="468">468</a>
 <a href="#469" id="469">469</a>
 <a href="#470" id="470">470</a>
+<a href="#471" id="471">471</a>
+<a href="#472" id="472">472</a>
+<a href="#473" id="473">473</a>
+<a href="#474" id="474">474</a>
+<a href="#475" id="475">475</a>
+<a href="#476" id="476">476</a>
+<a href="#477" id="477">477</a>
+<a href="#478" id="478">478</a>
+<a href="#479" id="479">479</a>
+<a href="#480" id="480">480</a>
+<a href="#481" id="481">481</a>
+<a href="#482" id="482">482</a>
+<a href="#483" id="483">483</a>
 </pre>
         </div>
         <pre class="rust"><code><span class="doccomment">//! this strings are copied from the template_new_auto folder
@@ -533,7 +546,8 @@
 /// in runtime use: `cargo auto new_auto`  
 </span><span class="kw">pub fn </span>new_auto() {
     <span class="kw">crate</span>::template_new_auto_mod::copy_to_files(<span class="string">"automation_tasks_rs"</span>);
-    build_automation_tasks_rs_if_needed();
+    <span class="comment">// panic! if cannot compile automation_tasks_rs
+    </span>compile_automation_tasks_rs_if_needed();
 
     <span class="macro">println!</span>(
         <span class="string">r#"
@@ -555,29 +569,43 @@
 }
 
 <span class="doccomment">/// build if the files are different then the hashes in automation_tasks_rs/file_hashes.json
-</span><span class="kw">pub fn </span>build_automation_tasks_rs_if_needed() {
+/// panic! if cannot compile automation_tasks_rs
+</span><span class="kw">pub fn </span>compile_automation_tasks_rs_if_needed() {
     <span class="kw">if </span>!<span class="kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.exists() {
-        build_project_automation_tasks_rs();
+        compile_project_automation_tasks_rs();
         <span class="kw">let </span>vec_of_metadata = file_hashes_mod::read_file_metadata();
         file_hashes_mod::save_json_file_for_file_meta_data(vec_of_metadata);
     } <span class="kw">else if </span>file_hashes_mod::is_project_changed() {
-        build_project_automation_tasks_rs();
+        compile_project_automation_tasks_rs();
         <span class="kw">let </span>vec_of_metadata = file_hashes_mod::read_file_metadata();
         file_hashes_mod::save_json_file_for_file_meta_data(vec_of_metadata);
     }
 }
 
 <span class="doccomment">/// build automation_tasks_rs
-</span><span class="kw">pub fn </span>build_project_automation_tasks_rs() {
+/// panic! if cannot compile automation_tasks_rs
+</span><span class="kw">pub fn </span>compile_project_automation_tasks_rs() {
     <span class="comment">// build in other directory (not in working current directory)
     // cargo build --manifest-path=dir/Cargo.toml
-    </span>std::process::Command::new(<span class="string">"cargo"</span>)
+    </span><span class="kw">let </span>output = std::process::Command::new(<span class="string">"cargo"</span>)
         .arg(<span class="string">"build"</span>)
         .arg(<span class="string">"--manifest-path=automation_tasks_rs/Cargo.toml"</span>)
-        .spawn()
-        .unwrap()
-        .wait()
+        .output()
         .unwrap();
+
+    <span class="comment">// How to catch an error from the process?
+    // Debugging: open cargo-auto in VSCode
+    // build the cargo-auto with `cargo build`
+    // Introduce an error in `automation_tasks_rs/main.rs`
+    // run this version of cargo auto with `./target/debug/cargo-auto build`
+    </span><span class="kw">let </span>stderr = String::from_utf8(output.stderr).unwrap();
+    <span class="comment">// We could catch the error from stderr, but it is not sturdy: stderr.contains("error: could not compile")
+    // Let's try catch the status if exit code is different than 0
+    </span><span class="kw">if </span>output.status.code().unwrap() != <span class="number">0 </span>{
+        <span class="macro">eprintln!</span>(<span class="string">"{}"</span>, stderr);
+        <span class="macro">panic!</span>(<span class=
+"string">"{RED}Cannot compile automation_tasks_rs. Exiting.\nCorrect automation_tasks_rs/main.rs and try again.{RESET}"</span>);
+    }
 }
 
 <span class="kw">pub fn </span>copy_to_files(project_name: <span class="kw-2">&</span>str) {
@@ -640,7 +668,7 @@ For example, there is the crate `cargo_auto_github_lib` if you need to create a 
         file_name: <span class="string">"Cargo.toml"</span>,
         file_content: <span class="string">r###"[package]
 name = "automation_tasks_rs"
-version = "1.0.1"
+version = "1.0.0"
 authors = ["bestia.dev"]
 homepage = "https://bestia.dev"
 edition = "2021"
@@ -648,8 +676,7 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "1.2.13"
-pretty_dbg = "1.0.49""###</span>,
+cargo_auto_lib = "1.3.3""###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem{
             file_name :<span class="string">"src/main.rs"</span>,
@@ -722,19 +749,19 @@ fn print_help() {
     {YELLOW}This program automates your custom tasks when developing a Rust project.{RESET}
 
     {YELLOW}User defined tasks in automation_tasks_rs:{RESET}
-{GREEN}cargo auto build{RESET}{YELLOW} - builds the crate in debug mode, fmt, increment version{RESET}
-{GREEN}cargo auto release{RESET}{YELLOW} - builds the crate in release mode, fmt, increment version{RESET}
-{GREEN}cargo auto doc{RESET}{YELLOW} - builds the docs, copy to docs directory{RESET}
-{GREEN}cargo auto test{RESET}{YELLOW} - runs all the tests{RESET}
-{GREEN}cargo auto commit_and_push "message"{RESET}{YELLOW} - commits with message and push with mandatory message{RESET}
+{GREEN}cargo auto build{RESET} - {YELLOW}builds the crate in debug mode, fmt, increment version{RESET}
+{GREEN}cargo auto release{RESET} - {YELLOW}builds the crate in release mode, fmt, increment version{RESET}
+{GREEN}cargo auto doc{RESET} - {YELLOW}builds the docs, copy to docs directory{RESET}
+{GREEN}cargo auto test{RESET} - {YELLOW}runs all the tests{RESET}
+{GREEN}cargo auto commit_and_push "message"{RESET} - {YELLOW}commits with message and push with mandatory message{RESET}
     {YELLOW}It is preferred to use SSH for git push to GitHub.{RESET}
     {YELLOW}&lt;https://github.com/bestia-dev/docker_rust_development/blob/main/ssh_easy.md&gt;{YELLOW}
     {YELLOW}On the very first commit, this task will initialize a new local git repository and create a remote GitHub repo.{RESET}
     {YELLOW}In that case the task needs the Personal Access Token Classic from &lt;https://github.com/settings/tokens&gt;{RESET}
-{GREEN}cargo auto publish_to_crates_io{RESET}{YELLOW} - publish to crates.io, git tag{RESET}
+{GREEN}cargo auto publish_to_crates_io{RESET} - {YELLOW}publish to crates.io, git tag{RESET}
     {YELLOW}You need the API token for publishing. Get the token on &lt;https://crates.io/settings/tokens&gt;. Then use the command{RESET}
     {YELLOW}`cargo login` and paste the token when prompted. This will save it to a local credentials file.{RESET}
-{GREEN}cargo auto github_new_release{RESET}{YELLOW} - creates new release on github{RESET}
+{GREEN}cargo auto github_new_release{RESET} - {YELLOW}creates new release on github{RESET}
     {YELLOW}This task needs the Personal Access Token Classic from &lt;https://github.com/settings/tokens&gt;{RESET}
 
     {YELLOW}© 2024 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
@@ -793,7 +820,7 @@ fn task_build() {
         r#"
     {YELLOW}After `cargo auto build`, run the compiled binary, examples and/or tests{RESET}
 {GREEN}./target/debug/{package_name} argument{RESET}
-    {YELLOW}if ok, then,{RESET}
+    {YELLOW}if ok then{RESET}
 {GREEN}cargo auto release{RESET}
 "#,
         package_name = cargo_toml.package_name(),
@@ -818,7 +845,7 @@ fn task_release() {
         r#"
     {YELLOW}After `cargo auto release`, run the compiled binary, examples and/or tests{RESET}
 {GREEN}./target/release/{package_name} argument{RESET}
-    {YELLOW}if ok, then,{RESET}
+    {YELLOW}if ok then{RESET}
 {GREEN}cargo auto doc{RESET}
 "#,
         package_name = cargo_toml.package_name(),
@@ -848,7 +875,7 @@ fn task_doc() {
     // message to help user with next move
     println!(
         r#"
-    {YELLOW}After `cargo auto doc`, check `docs/index.html`. If ok, then test the documentation code examples{RESET}
+    {YELLOW}After `cargo auto doc`, check `docs/index.html`. If ok then test the documentation code examples{RESET}
 {GREEN}cargo auto test{RESET}
 "#
     );
@@ -859,7 +886,7 @@ fn task_test() {
     cl::run_shell_command("cargo test");
     println!(
         r#"
-    {YELLOW}After `cargo auto test`. If ok, then {RESET}
+    {YELLOW}After `cargo auto test`. If ok then {RESET}
 {GREEN}cargo auto commit_and_push "message"{RESET}
     {YELLOW}with mandatory commit message{RESET}
 "#

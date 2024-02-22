@@ -1394,19 +1394,19 @@ line 2 column 81 - Warning: trimming empty <span>
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/template_new_auto_mod/fn.build_project_automation_tasks_rs.html
-Document: "2" is not a file!
-
-line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/template_new_auto_mod/fn.build_automation_tasks_rs_if_needed.html
-Document: "2" is not a file!
-
-line 2 column 81 - Warning: trimming empty <span>
 ./docs/cargo_auto/template_new_auto_mod/fn.copy_to_files.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
+./docs/cargo_auto/template_new_auto_mod/fn.compile_automation_tasks_rs_if_needed.html
+Document: "2" is not a file!
+
+line 2 column 81 - Warning: trimming empty <span>
 ./docs/cargo_auto/template_new_auto_mod/fn.new_auto.html
+Document: "2" is not a file!
+
+line 2 column 81 - Warning: trimming empty <span>
+./docs/cargo_auto/template_new_auto_mod/fn.compile_project_automation_tasks_rs.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
