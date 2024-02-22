@@ -10,7 +10,8 @@ use crate::{GREEN, RED, RESET, YELLOW};
 /// in runtime use: `cargo auto new_auto`  
 pub fn new_auto() {
     crate::template_new_auto_mod::copy_to_files("automation_tasks_rs");
-    build_automation_tasks_rs_if_needed();
+    // panic! if cannot compile automation_tasks_rs
+    compile_automation_tasks_rs_if_needed();
 
     println!(
         r#"
@@ -32,29 +33,42 @@ pub fn new_auto() {
 }
 
 /// build if the files are different then the hashes in automation_tasks_rs/file_hashes.json
-pub fn build_automation_tasks_rs_if_needed() {
+/// panic! if cannot compile automation_tasks_rs
+pub fn compile_automation_tasks_rs_if_needed() {
     if !crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.exists() {
-        build_project_automation_tasks_rs();
+        compile_project_automation_tasks_rs();
         let vec_of_metadata = file_hashes_mod::read_file_metadata();
         file_hashes_mod::save_json_file_for_file_meta_data(vec_of_metadata);
     } else if file_hashes_mod::is_project_changed() {
-        build_project_automation_tasks_rs();
+        compile_project_automation_tasks_rs();
         let vec_of_metadata = file_hashes_mod::read_file_metadata();
         file_hashes_mod::save_json_file_for_file_meta_data(vec_of_metadata);
     }
 }
 
 /// build automation_tasks_rs
-pub fn build_project_automation_tasks_rs() {
+/// panic! if cannot compile automation_tasks_rs
+pub fn compile_project_automation_tasks_rs() {
     // build in other directory (not in working current directory)
     // cargo build --manifest-path=dir/Cargo.toml
-    std::process::Command::new("cargo")
+    let output = std::process::Command::new("cargo")
         .arg("build")
         .arg("--manifest-path=automation_tasks_rs/Cargo.toml")
-        .spawn()
-        .unwrap()
-        .wait()
+        .output()
         .unwrap();
+
+    // How to catch an error from the process?
+    // Debugging: open cargo-auto in VSCode
+    // build the cargo-auto with `cargo build`
+    // Introduce an error in `automation_tasks_rs/main.rs`
+    // run this version of cargo auto with `./target/debug/cargo-auto build`
+    let stderr=String::from_utf8(output.stderr).unwrap();
+    // We could catch the error from stderr, but it is not sturdy: stderr.contains("error: could not compile")
+    // Let's try catch the status if exit code is different than 0
+    if output.status.code().unwrap() != 0{
+        eprintln!("{}",stderr);
+        panic!("{RED}Cannot compile automation_tasks_rs. Exiting.\nCorrect automation_tasks_rs/main.rs and try again.{RESET}");
+    }
 }
 
 pub fn copy_to_files(project_name: &str) {

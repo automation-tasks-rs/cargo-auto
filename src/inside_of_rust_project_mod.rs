@@ -56,7 +56,8 @@ fn print_help_from_cargo_auto() {
 "#
         );
     } else {
-        crate::template_new_auto_mod::build_automation_tasks_rs_if_needed();
+        // panic! if cannot compile automation_tasks_rs
+        crate::template_new_auto_mod::compile_automation_tasks_rs_if_needed();
         std::process::Command::new(crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str())
             .spawn()
             .unwrap()
@@ -90,7 +91,8 @@ fn match_first_argument(task: &str, args: &mut std::env::Args) {
             // early exit
             std::process::exit(0);
         }
-        crate::template_new_auto_mod::build_automation_tasks_rs_if_needed();
+        // panic! if cannot compile automation_tasks_rs
+        crate::template_new_auto_mod::compile_automation_tasks_rs_if_needed();
         // call automation_tasks_rs/target/debug/automation_tasks_rs with all the arguments
         let mut command = std::process::Command::new(crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str());
         command.arg(&task);

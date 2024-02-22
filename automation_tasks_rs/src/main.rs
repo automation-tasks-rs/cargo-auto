@@ -11,6 +11,7 @@ use cargo_auto_lib::RESET;
 use cargo_auto_lib::YELLOW;
 
 // region: library with basic automation tasks
+Explicit_compile_errorxx
 
 fn main() {
     cl::exit_if_not_run_in_rust_project_root_directory();
