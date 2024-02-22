@@ -10,7 +10,7 @@ The TODO section is part of the [README.md](https://github.com/bestia-dev/rust_p
 
 ## Unreleased
 
-- cargo_auto_lib = 1.3.3
+- cargo_auto_lib = 1.3.4
 - task_publish_to_web
 
 ## Version 2024.221.2339 (2024-02-21)
