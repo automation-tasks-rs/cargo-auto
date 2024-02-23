@@ -11,6 +11,7 @@ use cargo_auto_lib::RESET;
 use cargo_auto_lib::YELLOW;
 
 // region: library with basic automation tasks
+
 fn main() {
     cl::exit_if_not_run_in_rust_project_root_directory();
 
@@ -266,7 +267,7 @@ fn task_doc() {
 fn task_test() {
     cl::run_shell_command("cargo test");
     println!(
-        r#"
+r#"
     {YELLOW}After `cargo auto test`. If ok then {RESET}
 {GREEN}cargo auto commit_and_push "message"{RESET}
     {YELLOW}with mandatory commit message{RESET}
@@ -293,7 +294,7 @@ fn task_commit_and_push(arg_2: Option<String>) {
         cl::run_shell_command(&format!( r#"git add -A && git diff --staged --quiet || git commit -m "{message}" "#));
         cl::run_shell_command("git push");
         println!(
-            r#"
+r#"
     {YELLOW}After `cargo auto commit_and_push "message"`{RESET}
 {GREEN}cargo auto publish_to_crates_io{RESET}
 "#
@@ -318,9 +319,10 @@ fn task_publish_to_crates_io() {
     {YELLOW}Install the crate with{RESET}
 {GREEN}cargo install {package_name}{RESET}
     {YELLOW}and check how it works.{RESET}
+
+    {YELLOW}First write the content of the release in the RELEASES.md in the `## Unreleased` section, then{RESET}
     {YELLOW}Then create the GitHub-Release for {tag_name_version}.{RESET}
     {YELLOW}And upload the assets (compressed files).{RESET}
-    {YELLOW}First write the content of the release in the RELEASES.md in the `## Unreleased` section, then{RESET}
 {GREEN}cargo auto github_new_release{RESET}
 "#
     );

@@ -204,7 +204,7 @@ fn task_doc() {
 fn task_test() {
     cl::run_shell_command("cargo test");
     println!(
-        r#"
+r#"
     {YELLOW}After `cargo auto test`. If ok then {RESET}
 {GREEN}cargo auto commit_and_push "message"{RESET}
     {YELLOW}with mandatory commit message{RESET}
@@ -224,16 +224,14 @@ fn task_commit_and_push(arg_2: Option<String>) {
     if !cl::init_repository_if_needed(&message) {
         // separate commit for docs if they changed, to not make a lot of noise in the real commit
         if std::path::Path::new("docs").exists() {
-            cl::run_shell_command(
-                r#"git add docs && git diff --staged --quiet || git commit -m "update docs" "#,
-            );
+            cl::run_shell_command(r#"git add docs && git diff --staged --quiet || git commit -m "update docs" "#);
         }
         cl::add_message_to_unreleased(&message);
         // the real commit of code
         cl::run_shell_command(&format!( r#"git add -A && git diff --staged --quiet || git commit -m "{message}" "#));
         cl::run_shell_command("git push");
         println!(
-            r#"
+r#"
     {YELLOW}After `cargo auto commit_and_push "message"`{RESET}
 {GREEN}cargo auto publish_to_crates_io{RESET}
 "#
@@ -257,8 +255,9 @@ fn task_publish_to_crates_io() {
 {GREEN}https://crates.io/crates/{package_name}{RESET}
     {YELLOW}Add the dependency to your Rust project and check how it works.{RESET}
 {GREEN}{package_name} = "{version}"{RESET}
-    {YELLOW}Then create the GitHub-Release for {tag_name_version}.{RESET}
+
     {YELLOW}First write the content of the release in the RELEASES.md in the `## Unreleased` section, then{RESET}
+    {YELLOW}Then create the GitHub-Release for {tag_name_version}.{RESET}
 {GREEN}cargo auto github_new_release{RESET}
 "#
     );
