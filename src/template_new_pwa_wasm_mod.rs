@@ -8445,7 +8445,7 @@ fn task_publish_to_web() {
     // Find the filename of the identity_file for ssh connection to host_name, to find out if need ssh-add or not.
     // parse the ~/.ssh/config. 99% probably there should be a record for host_name and there is the identity_file.
     // else ask user for filename, then run ssh-add
-    cl::ssh_add_resolve("project_homepage","webserverssh1");
+    cl::ssh_add_resolve("project_homepage","bestia_dev_ssh_1");
 
     // rsync to copy to server over ssh
     let shell_command = format!(
