@@ -1,7 +1,7 @@
 # Releases changelog of cargo-auto
 
 All notable changes to this project will be documented in this file.  
-This project does not adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).  
+This project does not adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). The version number represents the datetime of release. This is just fine for binary executables.  
 The executable binary releases will be published on crates.io.  
 The cargo-auto automation task will use the content of the section `## Unreleased` to create
 the GitHub release consistently with this file.  
