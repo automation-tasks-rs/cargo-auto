@@ -376,7 +376,7 @@ So I can drink a free beer for your health :-)
 // but the new service worker will not be activated until all 
 // tabs with this webapp are closed.
 
-const CACHE_NAME = '2024.223.1510';
+const CACHE_NAME = '2024.223.1536';
 
 self.addEventListener('install', event => {
     console.log('event install ', CACHE_NAME);
@@ -8184,7 +8184,7 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "1.3.4""###,
+cargo_auto_lib = "1.3.6""###,
     });
     vec_file.push(crate::FileItem{
             file_name :"automation_tasks_rs/src/main.rs",
@@ -8421,11 +8421,9 @@ fn task_commit_and_push(arg_2: Option<String>) {
                 r#"git add docs && git diff --staged --quiet || git commit -m "update docs" "#,
             );
         }
+        cl::add_message_to_unreleased(&message);
         // the real commit of code
-        cl::run_shell_command(&format!(
-            r#"git add -A && git diff --staged --quiet || git commit -m "{}" "#,
-            message
-        ));
+        cl::run_shell_command(&format!( r#"git add -A && git diff --staged --quiet || git commit -m "{message}" "#));
         cl::run_shell_command("git push");
         println!(
             r#"
