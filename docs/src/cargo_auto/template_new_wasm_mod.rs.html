@@ -3254,8 +3254,6 @@
 <a href="#3203" id="3203">3203</a>
 <a href="#3204" id="3204">3204</a>
 <a href="#3205" id="3205">3205</a>
-<a href="#3206" id="3206">3206</a>
-<a href="#3207" id="3207">3207</a>
 </pre>
         </div>
         <pre class="rust"><code><span class="doccomment">//! this strings are copied from the template_new_wasm folder
@@ -4135,7 +4133,7 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "1.3.4""###</span>,
+cargo_auto_lib = "1.3.6""###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem{
             file_name :<span class="string">"automation_tasks_rs/src/main.rs"</span>,
@@ -4370,11 +4368,9 @@ fn task_commit_and_push(arg_2: Option&lt;String&gt;) {
                 r#"git add docs &amp;& git diff --staged --quiet || git commit -m "update docs" "#,
             );
         }
+        cl::add_message_to_unreleased(&amp;message);
         // the real commit of code
-        cl::run_shell_command(&amp;format!(
-            r#"git add -A &amp;& git diff --staged --quiet || git commit -m "{}" "#,
-            message
-        ));
+        cl::run_shell_command(&amp;format!( r#"git add -A &amp;& git diff --staged --quiet || git commit -m "{message}" "#));
         cl::run_shell_command("git push");
         println!(
             r#"
