@@ -813,8 +813,9 @@ fn task_publish_to_crates_io() {
 {GREEN}https://crates.io/crates/{package_name}{RESET}
     {YELLOW}Add the dependency to your Rust project and check how it works.{RESET}
 {GREEN}{package_name} = "{version}"{RESET}
-    {YELLOW}Then create the GitHub-Release for {tag_name_version}.{RESET}
+
     {YELLOW}First write the content of the release in the RELEASES.md in the `## Unreleased` section, then{RESET}
+    {YELLOW}Then create the GitHub-Release for {tag_name_version}.{RESET}
 {GREEN}cargo auto github_new_release{RESET}
 "#
     );

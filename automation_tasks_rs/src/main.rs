@@ -318,9 +318,10 @@ fn task_publish_to_crates_io() {
     {YELLOW}Install the crate with{RESET}
 {GREEN}cargo install {package_name}{RESET}
     {YELLOW}and check how it works.{RESET}
+
+    {YELLOW}First write the content of the release in the RELEASES.md in the `## Unreleased` section, then{RESET}
     {YELLOW}Then create the GitHub-Release for {tag_name_version}.{RESET}
     {YELLOW}And upload the assets (compressed files).{RESET}
-    {YELLOW}First write the content of the release in the RELEASES.md in the `## Unreleased` section, then{RESET}
 {GREEN}cargo auto github_new_release{RESET}
 "#
     );
