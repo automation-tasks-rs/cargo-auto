@@ -203,7 +203,7 @@ fn task_doc() {
 fn task_test() {
     cl::run_shell_command("cargo test");
     println!(
-        r#"
+r#"
     {YELLOW}After `cargo auto test`. If ok then {RESET}
 {GREEN}cargo auto commit_and_push "message"{RESET}
     {YELLOW}with mandatory commit message{RESET}
@@ -230,7 +230,7 @@ fn task_commit_and_push(arg_2: Option<String>) {
         cl::run_shell_command(&format!( r#"git add -A && git diff --staged --quiet || git commit -m "{message}" "#));
         cl::run_shell_command("git push");
         println!(
-            r#"
+r#"
     {YELLOW}After `cargo auto commit_and_push "message"`{RESET}
 {GREEN}cargo auto publish_to_crates_io{RESET}
 "#

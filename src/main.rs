@@ -1,4 +1,4 @@
-// main.rs
+// cargo-auto/src/main.rs
 
 // logo for docs.rs in png
 #![doc(html_logo_url = "https://github.com/bestia-dev/cargo-auto/raw/main/images/logo/logo_cargo_auto.svg")]
