@@ -190,14 +190,6 @@
 <a href="#139" id="139">139</a>
 <a href="#140" id="140">140</a>
 <a href="#141" id="141">141</a>
-<a href="#142" id="142">142</a>
-<a href="#143" id="143">143</a>
-<a href="#144" id="144">144</a>
-<a href="#145" id="145">145</a>
-<a href="#146" id="146">146</a>
-<a href="#147" id="147">147</a>
-<a href="#148" id="148">148</a>
-<a href="#149" id="149">149</a>
 </pre>
         </div>
         <pre class="rust"><code><span class="comment">// file_hashes_mod.rs
@@ -274,9 +266,7 @@
     </span><span class="kw">let </span>filehash = sha256_digest(<span class="kw-2">&</span><span class=
 "kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS).unwrap();
     vec_of_metadata.push(FileMetaData {
-        filename: <span class="kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS
-            .to_string_lossy()
-            .to_string(),
+        filename: <span class="kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.to_string_lossy().to_string(),
         filehash,
     });
 
@@ -304,9 +294,7 @@
             <span class="comment">// check if file have CRLF instead of LF. This are unusable - create empty struct
             </span><span class="kw">if </span>x.contains(<span class="string">"\r\n"</span>) {
                 <span class="comment">//create empty struct
-                </span>js_struct = FileHashes {
-                    vec_file_metadata: Vec::new(),
-                }
+                </span>js_struct = FileHashes { vec_file_metadata: Vec::new() }
             } <span class="kw">else </span>{
                 <span class="comment">//read struct from file
                 </span>js_struct = serde_json::from_str(x.as_str()).unwrap();
@@ -315,9 +303,7 @@
         <span class="prelude-val">Err</span>(_error) =&gt; {
             <span class="comment">// println!("Creating new file: {}", json_filepath);
             //create empty struct
-            </span>js_struct = FileHashes {
-                vec_file_metadata: Vec::new(),
-            }
+            </span>js_struct = FileHashes { vec_file_metadata: Vec::new() }
         }
     };
     js_struct
@@ -345,9 +331,7 @@
 
 <span class="doccomment">/// save the new file metadata
 </span><span class="kw">pub fn </span>save_json_file_for_file_meta_data(vec_of_metadata: Vec&lt;FileMetaData&gt;) {
-    <span class="kw">let </span>x = FileHashes {
-        vec_file_metadata: vec_of_metadata,
-    };
+    <span class="kw">let </span>x = FileHashes { vec_file_metadata: vec_of_metadata };
     <span class="kw">let </span>y = serde_json::to_string_pretty(<span class="kw-2">&</span>x).unwrap();
     <span class="kw">let </span>json_filepath = <span class="kw">crate</span>::PATH_FILE_HASHES_JSON.as_path();
     <span class="kw">let </span>_f = std::fs::write(json_filepath, y);

@@ -3254,6 +3254,17 @@
 <a href="#3203" id="3203">3203</a>
 <a href="#3204" id="3204">3204</a>
 <a href="#3205" id="3205">3205</a>
+<a href="#3206" id="3206">3206</a>
+<a href="#3207" id="3207">3207</a>
+<a href="#3208" id="3208">3208</a>
+<a href="#3209" id="3209">3209</a>
+<a href="#3210" id="3210">3210</a>
+<a href="#3211" id="3211">3211</a>
+<a href="#3212" id="3212">3212</a>
+<a href="#3213" id="3213">3213</a>
+<a href="#3214" id="3214">3214</a>
+<a href="#3215" id="3215">3215</a>
+<a href="#3216" id="3216">3216</a>
 </pre>
         </div>
         <pre class="rust"><code><span class="doccomment">//! this strings are copied from the template_new_wasm folder
@@ -3286,12 +3297,8 @@
     std::fs::create_dir_all(folder_path).unwrap();
     <span class="kw">for </span>file_item <span class="kw">in </span>get_vec_file() {
         <span class="comment">// rename/replace the project_name
-        </span><span class="kw">let </span>file_name = file_item
-            .file_name
-            .replace(<span class="string">"cargo_auto_template_new_wasm"</span>, project_name);
-        <span class="kw">let </span>file_content = file_item
-            .file_content
-            .replace(<span class="string">"cargo_auto_template_new_wasm"</span>, project_name);
+        </span><span class="kw">let </span>file_name = file_item.file_name.replace(<span class="string">"cargo_auto_template_new_wasm"</span>, project_name);
+        <span class="kw">let </span>file_content = file_item.file_content.replace(<span class="string">"cargo_auto_template_new_wasm"</span>, project_name);
 
         <span class="comment">// create directory if needed
         </span>std::fs::create_dir_all(folder_path.join(<span class="kw-2">&</span>file_name).parent().unwrap()).unwrap();
@@ -3491,8 +3498,8 @@ p{
         "titleBar.inactiveForeground": "#ffffffcc",
         "titleBar.activeBackground": "#477587",
         "titleBar.inactiveBackground": "#3F758DCC"
-      },
-      "spellright.language": [
+    },
+    "spellright.language": [
         "en"
     ],
     "spellright.documentTypes": [
@@ -3530,8 +3537,9 @@ description = "template for a minimal wasm project for browser"
 repository = "https://github.com/bestia-dev/cargo_auto_template_new_wasm"
 readme = "README.md"
 license = "MIT"
-keywords = ["wasm"]
-categories = ["learning"]
+# Keyword must be only one word: lowercase letters, hyphens(-) or numbers, less then 35 characters.
+keywords = ["maintained", "work-in-progress", "rustlang", "wasm"]
+categories = ["wasm"]
 publish = false
 
 [lib]
@@ -4110,6 +4118,21 @@ jobs:
     vec_file.push(<span class="kw">crate</span>::FileItem {
         file_name: <span class="string">"automation_tasks_rs/.vscode/settings.json"</span>,
         file_content: <span class="string">r###"{
+    "workbench.colorCustomizations": {
+        "titleBar.activeForeground": "#fff",
+        "titleBar.inactiveForeground": "#ffffffcc",
+        "titleBar.activeBackground": "#404040",
+        "titleBar.inactiveBackground": "#2d2d2dcc"
+    },
+    "spellright.language": [
+        "en"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext"
+    ],
+    "rust-analyzer.showUnlinkedFileNotification": false,
     "cSpell.words": [
         "alloc",
         "bestia",
@@ -4133,11 +4156,11 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "1.3.6""###</span>,
+cargo_auto_lib = "1.3.17""###</span>,
     });
-    vec_file.push(<span class="kw">crate</span>::FileItem{
-            file_name :<span class="string">"automation_tasks_rs/src/main.rs"</span>,
-            file_content : <span class="string">r###"// automation_tasks_rs for cargo_auto_template_new_wasm
+    vec_file.push(<span class="kw">crate</span>::FileItem {
+        file_name: <span class="string">"automation_tasks_rs/src/main.rs"</span>,
+        file_content: <span class="string">r###"// automation_tasks_rs for cargo_auto_template_new_wasm
 
 // region: library with basic automation tasks
 use cargo_auto_lib as cl;
@@ -4250,7 +4273,7 @@ fn completion() {
     // the second level if needed
     else if last_word == "new" {
         let sub_commands = vec!["x"];
-        completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
+       cl::completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
     */
 }
@@ -4317,6 +4340,7 @@ fn task_doc() {
     cl::auto_cargo_toml_to_md();
     cl::auto_lines_of_code("");
     cl::auto_plantuml(&amp;cargo_toml.package_repository().unwrap());
+    cl::auto_playground_run_code();
     cl::auto_md_to_doc_comments();
 
     cl::run_shell_command("cargo doc --no-deps --document-private-items");
@@ -4364,16 +4388,14 @@ fn task_commit_and_push(arg_2: Option&lt;String&gt;) {
     if !cl::init_repository_if_needed(&amp;message) {
         // separate commit for docs if they changed, to not make a lot of noise in the real commit
         if std::path::Path::new("docs").exists() {
-            cl::run_shell_command(
-                r#"git add docs &amp;& git diff --staged --quiet || git commit -m "update docs" "#,
-            );
+            cl::run_shell_command(r#"git add docs &amp;& git diff --staged --quiet || git commit -m "update docs" "#);
         }
         cl::add_message_to_unreleased(&amp;message);
         // the real commit of code
         cl::run_shell_command(&amp;format!( r#"git add -A &amp;& git diff --staged --quiet || git commit -m "{message}" "#));
         cl::run_shell_command("git push");
         println!(
-            r#"
+r#"
     {YELLOW}After `cargo auto commit_and_push "message"`{RESET}
 {GREEN}cargo auto publish_to_crates_io{RESET}
 "#
@@ -4468,7 +4490,7 @@ fn task_github_new_release() {
     );
 }
 // endregion: tasks"###</span>,
-});
+    });
     vec_file.push(<span class="kw">crate</span>::FileItem {
         file_name: <span class="string">"automation_tasks_rs/.gitignore"</span>,
         file_content: <span class="string">r###"/target

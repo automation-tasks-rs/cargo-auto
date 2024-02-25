@@ -10494,80 +10494,6 @@
 <a href="#10443" id="10443">10443</a>
 <a href="#10444" id="10444">10444</a>
 <a href="#10445" id="10445">10445</a>
-<a href="#10446" id="10446">10446</a>
-<a href="#10447" id="10447">10447</a>
-<a href="#10448" id="10448">10448</a>
-<a href="#10449" id="10449">10449</a>
-<a href="#10450" id="10450">10450</a>
-<a href="#10451" id="10451">10451</a>
-<a href="#10452" id="10452">10452</a>
-<a href="#10453" id="10453">10453</a>
-<a href="#10454" id="10454">10454</a>
-<a href="#10455" id="10455">10455</a>
-<a href="#10456" id="10456">10456</a>
-<a href="#10457" id="10457">10457</a>
-<a href="#10458" id="10458">10458</a>
-<a href="#10459" id="10459">10459</a>
-<a href="#10460" id="10460">10460</a>
-<a href="#10461" id="10461">10461</a>
-<a href="#10462" id="10462">10462</a>
-<a href="#10463" id="10463">10463</a>
-<a href="#10464" id="10464">10464</a>
-<a href="#10465" id="10465">10465</a>
-<a href="#10466" id="10466">10466</a>
-<a href="#10467" id="10467">10467</a>
-<a href="#10468" id="10468">10468</a>
-<a href="#10469" id="10469">10469</a>
-<a href="#10470" id="10470">10470</a>
-<a href="#10471" id="10471">10471</a>
-<a href="#10472" id="10472">10472</a>
-<a href="#10473" id="10473">10473</a>
-<a href="#10474" id="10474">10474</a>
-<a href="#10475" id="10475">10475</a>
-<a href="#10476" id="10476">10476</a>
-<a href="#10477" id="10477">10477</a>
-<a href="#10478" id="10478">10478</a>
-<a href="#10479" id="10479">10479</a>
-<a href="#10480" id="10480">10480</a>
-<a href="#10481" id="10481">10481</a>
-<a href="#10482" id="10482">10482</a>
-<a href="#10483" id="10483">10483</a>
-<a href="#10484" id="10484">10484</a>
-<a href="#10485" id="10485">10485</a>
-<a href="#10486" id="10486">10486</a>
-<a href="#10487" id="10487">10487</a>
-<a href="#10488" id="10488">10488</a>
-<a href="#10489" id="10489">10489</a>
-<a href="#10490" id="10490">10490</a>
-<a href="#10491" id="10491">10491</a>
-<a href="#10492" id="10492">10492</a>
-<a href="#10493" id="10493">10493</a>
-<a href="#10494" id="10494">10494</a>
-<a href="#10495" id="10495">10495</a>
-<a href="#10496" id="10496">10496</a>
-<a href="#10497" id="10497">10497</a>
-<a href="#10498" id="10498">10498</a>
-<a href="#10499" id="10499">10499</a>
-<a href="#10500" id="10500">10500</a>
-<a href="#10501" id="10501">10501</a>
-<a href="#10502" id="10502">10502</a>
-<a href="#10503" id="10503">10503</a>
-<a href="#10504" id="10504">10504</a>
-<a href="#10505" id="10505">10505</a>
-<a href="#10506" id="10506">10506</a>
-<a href="#10507" id="10507">10507</a>
-<a href="#10508" id="10508">10508</a>
-<a href="#10509" id="10509">10509</a>
-<a href="#10510" id="10510">10510</a>
-<a href="#10511" id="10511">10511</a>
-<a href="#10512" id="10512">10512</a>
-<a href="#10513" id="10513">10513</a>
-<a href="#10514" id="10514">10514</a>
-<a href="#10515" id="10515">10515</a>
-<a href="#10516" id="10516">10516</a>
-<a href="#10517" id="10517">10517</a>
-<a href="#10518" id="10518">10518</a>
-<a href="#10519" id="10519">10519</a>
 </pre>
         </div>
         <pre class="rust"><code><span class="doccomment">//! this strings are copied from the template_new_pwa_wasm folder
@@ -10608,100 +10534,35 @@
                 </span><span class="kw">let </span>img = std::fs::read(<span class="string">"icon512x512.png"</span>).unwrap();
                 <span class="kw">let </span>img = decode_png(img);
 
-                resize_image(
-                    <span class="kw-2">&</span>img,
-                    <span class="number">32</span>,
-                    <span class="string">"icon-032.png"</span>,
-                    <span class="kw-2">&</span>pwa_json5.rust_project_name,
-                    <span class="kw-2">&</span>pwa_json5.pwa_short_name,
-                );
-                resize_image(
-                    <span class="kw-2">&</span>img,
-                    <span class="number">72</span>,
-                    <span class="string">"icon-072.png"</span>,
-                    <span class="kw-2">&</span>pwa_json5.rust_project_name,
-                    <span class="kw-2">&</span>pwa_json5.pwa_short_name,
-                );
-                resize_image(
-                    <span class="kw-2">&</span>img,
-                    <span class="number">96</span>,
-                    <span class="string">"icon-096.png"</span>,
-                    <span class="kw-2">&</span>pwa_json5.rust_project_name,
-                    <span class="kw-2">&</span>pwa_json5.pwa_short_name,
-                );
-                resize_image(
-                    <span class="kw-2">&</span>img,
-                    <span class="number">120</span>,
-                    <span class="string">"icon-120.png"</span>,
-                    <span class="kw-2">&</span>pwa_json5.rust_project_name,
-                    <span class="kw-2">&</span>pwa_json5.pwa_short_name,
-                );
-                resize_image(
-                    <span class="kw-2">&</span>img,
-                    <span class="number">128</span>,
-                    <span class="string">"icon-128.png"</span>,
-                    <span class="kw-2">&</span>pwa_json5.rust_project_name,
-                    <span class="kw-2">&</span>pwa_json5.pwa_short_name,
-                );
-                resize_image(
-                    <span class="kw-2">&</span>img,
-                    <span class="number">144</span>,
-                    <span class="string">"icon-144.png"</span>,
-                    <span class="kw-2">&</span>pwa_json5.rust_project_name,
-                    <span class="kw-2">&</span>pwa_json5.pwa_short_name,
-                );
-                resize_image(
-                    <span class="kw-2">&</span>img,
-                    <span class="number">152</span>,
-                    <span class="string">"icon-152.png"</span>,
-                    <span class="kw-2">&</span>pwa_json5.rust_project_name,
-                    <span class="kw-2">&</span>pwa_json5.pwa_short_name,
-                );
-                resize_image(
-                    <span class="kw-2">&</span>img,
-                    <span class="number">167</span>,
-                    <span class="string">"icon-167.png"</span>,
-                    <span class="kw-2">&</span>pwa_json5.rust_project_name,
-                    <span class="kw-2">&</span>pwa_json5.pwa_short_name,
-                );
-                resize_image(
-                    <span class="kw-2">&</span>img,
-                    <span class="number">180</span>,
-                    <span class="string">"icon-180.png"</span>,
-                    <span class="kw-2">&</span>pwa_json5.rust_project_name,
-                    <span class="kw-2">&</span>pwa_json5.pwa_short_name,
-                );
-                resize_image(
-                    <span class="kw-2">&</span>img,
-                    <span class="number">192</span>,
-                    <span class="string">"icon-192.png"</span>,
-                    <span class="kw-2">&</span>pwa_json5.rust_project_name,
-                    <span class="kw-2">&</span>pwa_json5.pwa_short_name,
-                );
-                resize_image(
-                    <span class="kw-2">&</span>img,
-                    <span class="number">196</span>,
-                    <span class="string">"icon-196.png"</span>,
-                    <span class="kw-2">&</span>pwa_json5.rust_project_name,
-                    <span class="kw-2">&</span>pwa_json5.pwa_short_name,
-                );
+                resize_image(<span class="kw-2">&</span>img, <span class="number">32</span>, <span class="string">"icon-032.png"</span>, <span class=
+"kw-2">&</span>pwa_json5.rust_project_name, <span class="kw-2">&</span>pwa_json5.pwa_short_name);
+                resize_image(<span class="kw-2">&</span>img, <span class="number">72</span>, <span class="string">"icon-072.png"</span>, <span class=
+"kw-2">&</span>pwa_json5.rust_project_name, <span class="kw-2">&</span>pwa_json5.pwa_short_name);
+                resize_image(<span class="kw-2">&</span>img, <span class="number">96</span>, <span class="string">"icon-096.png"</span>, <span class=
+"kw-2">&</span>pwa_json5.rust_project_name, <span class="kw-2">&</span>pwa_json5.pwa_short_name);
+                resize_image(<span class="kw-2">&</span>img, <span class="number">120</span>, <span class="string">"icon-120.png"</span>, <span class=
+"kw-2">&</span>pwa_json5.rust_project_name, <span class="kw-2">&</span>pwa_json5.pwa_short_name);
+                resize_image(<span class="kw-2">&</span>img, <span class="number">128</span>, <span class="string">"icon-128.png"</span>, <span class=
+"kw-2">&</span>pwa_json5.rust_project_name, <span class="kw-2">&</span>pwa_json5.pwa_short_name);
+                resize_image(<span class="kw-2">&</span>img, <span class="number">144</span>, <span class="string">"icon-144.png"</span>, <span class=
+"kw-2">&</span>pwa_json5.rust_project_name, <span class="kw-2">&</span>pwa_json5.pwa_short_name);
+                resize_image(<span class="kw-2">&</span>img, <span class="number">152</span>, <span class="string">"icon-152.png"</span>, <span class=
+"kw-2">&</span>pwa_json5.rust_project_name, <span class="kw-2">&</span>pwa_json5.pwa_short_name);
+                resize_image(<span class="kw-2">&</span>img, <span class="number">167</span>, <span class="string">"icon-167.png"</span>, <span class=
+"kw-2">&</span>pwa_json5.rust_project_name, <span class="kw-2">&</span>pwa_json5.pwa_short_name);
+                resize_image(<span class="kw-2">&</span>img, <span class="number">180</span>, <span class="string">"icon-180.png"</span>, <span class=
+"kw-2">&</span>pwa_json5.rust_project_name, <span class="kw-2">&</span>pwa_json5.pwa_short_name);
+                resize_image(<span class="kw-2">&</span>img, <span class="number">192</span>, <span class="string">"icon-192.png"</span>, <span class=
+"kw-2">&</span>pwa_json5.rust_project_name, <span class="kw-2">&</span>pwa_json5.pwa_short_name);
+                resize_image(<span class="kw-2">&</span>img, <span class="number">196</span>, <span class="string">"icon-196.png"</span>, <span class=
+"kw-2">&</span>pwa_json5.rust_project_name, <span class="kw-2">&</span>pwa_json5.pwa_short_name);
                 <span class="comment">// overwrite the default with the new
-                </span>resize_image(
-                    <span class="kw-2">&</span>img,
-                    <span class="number">512</span>,
-                    <span class="string">"icon-512.png"</span>,
-                    <span class="kw-2">&</span>pwa_json5.rust_project_name,
-                    <span class="kw-2">&</span>pwa_json5.pwa_short_name,
-                );
+                </span>resize_image(<span class="kw-2">&</span>img, <span class="number">512</span>, <span class="string">"icon-512.png"</span>, <span class=
+"kw-2">&</span>pwa_json5.rust_project_name, <span class="kw-2">&</span>pwa_json5.pwa_short_name);
 
                 <span class="comment">// maskable icon 192
-                </span>resize_image(
-                    <span class="kw-2">&</span>img,
-                    <span class="number">192</span>,
-                    <span class="string">"icon-maskable.png"</span>,
-                    <span class="kw-2">&</span>pwa_json5.rust_project_name,
-                    <span class="kw-2">&</span>pwa_json5.pwa_short_name,
-                );
+                </span>resize_image(<span class="kw-2">&</span>img, <span class="number">192</span>, <span class=
+"string">"icon-maskable.png"</span>, <span class="kw-2">&</span>pwa_json5.rust_project_name, <span class="kw-2">&</span>pwa_json5.pwa_short_name);
 
                 <span class="comment">// favicon.ico with 16, 32 and 48 icons
                 </span>encode_to_favicon_ico(<span class="kw-2">&</span>img, <span class="kw-2">&</span>pwa_json5.rust_project_name, <span class=
@@ -10744,9 +10605,8 @@
                     </span><span class="kw">for </span>file_item <span class="kw">in </span>get_vec_file() {
                         <span class="kw">if </span>file_item.file_name.ends_with(<span class="string">"icon-512.png"</span>) {
                             <span class="kw">let </span>file_content = file_item.file_content;
-                            <span class="kw">let </span>file_content =
-                                &lt;base64ct::Base64 <span class="kw">as </span>base64ct::Encoding&gt;::decode_vec(<span class=
-"kw-2">&</span>file_content).unwrap();
+                            <span class="kw">let </span>file_content = &lt;base64ct::Base64 <span class=
+"kw">as </span>base64ct::Encoding&gt;::decode_vec(<span class="kw-2">&</span>file_content).unwrap();
                             std::fs::write(<span class="string">"icon512x512.png"</span>, file_content).unwrap();
                             <span class="kw">break</span>;
                         }
@@ -10779,10 +10639,7 @@
 <span class="kw">pub fn </span>favicon_add_entry(img: <span class="kw-2">&</span>image::DynamicImage, size: u32, icon_dir: <span class=
 "kw-2">&amp;mut </span>ico::IconDir) {
     <span class="comment">// icons need smaller images 48, 32 and 16
-    </span><span class="kw">let </span>img_rgba_vec = img
-        .resize(size, size, image::imageops::FilterType::Lanczos3)
-        .into_rgba8()
-        .into_raw();
+    </span><span class="kw">let </span>img_rgba_vec = img.resize(size, size, image::imageops::FilterType::Lanczos3).into_rgba8().into_raw();
     <span class="comment">// create an IconImage from raw RGBA pixel data from another image library
     </span><span class="kw">let </span>icon_image = ico::IconImage::from_rgba_data(size, size, img_rgba_vec);
     icon_dir.add_entry(ico::IconDirEntry::encode(<span class="kw-2">&</span>icon_image).unwrap());
@@ -10808,13 +10665,8 @@
 }
 
 <span class="doccomment">/// resize img
-</span><span class="kw">pub fn </span>resize_image(
-    img: <span class="kw-2">&</span>image::DynamicImage,
-    img_size: u32,
-    file_name: <span class="kw-2">&</span>str,
-    rust_project_name: <span class="kw-2">&</span>str,
-    pwa_short_name: <span class="kw-2">&</span>str,
-) {
+</span><span class="kw">pub fn </span>resize_image(img: <span class="kw-2">&</span>image::DynamicImage, img_size: u32, file_name: <span class=
+"kw-2">&</span>str, rust_project_name: <span class="kw-2">&</span>str, pwa_short_name: <span class="kw-2">&</span>str) {
     <span class="comment">//dbg!("resize_image {img_size}");
     </span><span class="kw">let </span>new_img = img.resize(img_size, img_size, image::imageops::FilterType::Lanczos3);
     <span class="kw">let </span>vec_u8 = encode_to_png(new_img);
@@ -10963,7 +10815,7 @@ So I can drink a free beer for your health :-)
 // but the new service worker will not be activated until all 
 // tabs with this webapp are closed.
 
-const CACHE_NAME = '2024.223.1536';
+const CACHE_NAME = '2024.225.1716';
 
 self.addEventListener('install', event =&gt; {
     console.log('event install ', CACHE_NAME);
@@ -17945,7 +17797,7 @@ navigator.serviceWorker.addEventListener('controllerchange', function () {
         "titleBar.activeBackground": "#477587",
         "titleBar.inactiveBackground": "#3F758DCC"
       },
-      "spellright.language": [
+    "spellright.language": [
         "en"
     ],
     "spellright.documentTypes": [
@@ -17990,8 +17842,9 @@ description = "pwa_description"
 repository = "project_repository"
 readme = "README.md"
 license = "MIT"
-keywords = ["wasm"]
-categories = ["tutorial"]
+# Keyword must be only one word: lowercase letters, hyphens(-) or numbers, less then 35 characters.
+keywords = ["maintained", "work-in-progress", "rustlang", "wasm"]
+categories = ["wasm"]
 publish = false
 
 [lib]
@@ -18186,9 +18039,9 @@ pub fn now_time_as_string() -&gt; String {
 }
 "###</span>,
     });
-    vec_file.push(<span class="kw">crate</span>::FileItem{
-            file_name :<span class="string">"src/main_mod/lib_mod/web_sys_mod/html_source_code_mod.rs"</span>,
-            file_content : <span class="string">r###"//! html_source_code_mod.rs
+    vec_file.push(<span class="kw">crate</span>::FileItem {
+        file_name: <span class="string">"src/main_mod/lib_mod/web_sys_mod/html_source_code_mod.rs"</span>,
+        file_content: <span class="string">r###"//! html_source_code_mod.rs
 
 /// HtmlSourceCode - type to manipulate HTML source code safer than with string functions only  
 /// WARNING for HTML INJECTION!   
@@ -18254,7 +18107,7 @@ impl HtmlSourceCode {
     }
 }
 "###</span>,
-});
+    });
     vec_file.push(<span class="kw">crate</span>::FileItem {
         file_name: <span class="string">"src/main_mod/lib_mod/hello_mod.rs"</span>,
         file_content: <span class="string">r###"// src/hello_mod.rs
@@ -18751,13 +18604,27 @@ jobs:
     vec_file.push(<span class="kw">crate</span>::FileItem {
         file_name: <span class="string">"automation_tasks_rs/.vscode/settings.json"</span>,
         file_content: <span class="string">r###"{
+    "workbench.colorCustomizations": {
+        "titleBar.activeForeground": "#fff",
+        "titleBar.inactiveForeground": "#ffffffcc",
+        "titleBar.activeBackground": "#404040",
+        "titleBar.inactiveBackground": "#2d2d2dcc"
+    },
+    "spellright.language": [
+        "en"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext"
+    ],
+    "rust-analyzer.showUnlinkedFileNotification": false,
     "cSpell.words": [
-        "alloc",
         "bestia",
         "endregion",
-        "new_cli",
-        "octocrab",
         "plantuml",
+        "rustdevuser",
+        "rustprojects",
         "zcvf"
     ]
 }"###</span>,
@@ -18774,11 +18641,11 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "1.3.6""###</span>,
+cargo_auto_lib = "1.3.17""###</span>,
     });
-    vec_file.push(<span class="kw">crate</span>::FileItem{
-            file_name :<span class="string">"automation_tasks_rs/src/main.rs"</span>,
-            file_content : <span class="string">r###"// automation_tasks_rs for rust_project_name
+    vec_file.push(<span class="kw">crate</span>::FileItem {
+        file_name: <span class="string">"automation_tasks_rs/src/main.rs"</span>,
+        file_content: <span class="string">r###"// automation_tasks_rs for rust_project_name
 
 // region: library with basic automation tasks
 use cargo_auto_lib as cl;
@@ -18891,7 +18758,7 @@ fn completion() {
     // the second level if needed
     else if last_word == "new" {
         let sub_commands = vec!["x"];
-        completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
+       cl::completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
     */
 }
@@ -18960,6 +18827,7 @@ fn task_doc() {
     cl::auto_cargo_toml_to_md();
     cl::auto_lines_of_code("");
     cl::auto_plantuml(&amp;cargo_toml.package_repository().unwrap());
+    cl::auto_playground_run_code();
     cl::auto_md_to_doc_comments();
 
     cl::run_shell_command("cargo doc --no-deps --document-private-items");
@@ -19007,16 +18875,14 @@ fn task_commit_and_push(arg_2: Option&lt;String&gt;) {
     if !cl::init_repository_if_needed(&amp;message) {
         // separate commit for docs if they changed, to not make a lot of noise in the real commit
         if std::path::Path::new("docs").exists() {
-            cl::run_shell_command(
-                r#"git add docs &amp;& git diff --staged --quiet || git commit -m "update docs" "#,
-            );
+            cl::run_shell_command(r#"git add docs &amp;& git diff --staged --quiet || git commit -m "update docs" "#);
         }
         cl::add_message_to_unreleased(&amp;message);
         // the real commit of code
         cl::run_shell_command(&amp;format!( r#"git add -A &amp;& git diff --staged --quiet || git commit -m "{message}" "#));
         cl::run_shell_command("git push");
         println!(
-            r#"
+r#"
     {YELLOW}After `cargo auto commit_and_push "message"`{RESET}
 {GREEN}cargo auto publish_to_crates_io{RESET}
 "#
@@ -19111,7 +18977,7 @@ fn task_github_new_release() {
     );
 }
 // endregion: tasks"###</span>,
-});
+    });
     vec_file.push(<span class="kw">crate</span>::FileItem {
         file_name: <span class="string">"automation_tasks_rs/.gitignore"</span>,
         file_content: <span class="string">r###"/target
