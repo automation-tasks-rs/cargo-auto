@@ -9,10 +9,10 @@ The ongoing changes that are not released, are visible in the git commits and gi
 The TODO section is part of the [README.md](https://github.com/bestia-dev/rust_project_name).  
 
 ## Unreleased
+
+## Version 2024.225.1915 (2024-02-25)
+
 - description_and_topics_to_github
-- description_and_topics_to_github
-- description_and_topics_to_github
-- topics
 - cargo_auto_lib = 1.3.33
 
 ## Version 2024.223.1536 (2024-02-23)
