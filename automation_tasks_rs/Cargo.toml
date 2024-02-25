@@ -11,3 +11,4 @@ publish = false
 # cargo_auto_lib = "1.3.17"
 cargo_auto_lib={path="/home/rustdevuser/rustprojects/cargo_auto_lib"}
 pretty_dbg = "1.0.54"
+

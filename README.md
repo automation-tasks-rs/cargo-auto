@@ -3,13 +3,15 @@
 [//]: # (auto_cargo_toml_to_md start)
 
 **cargo-auto - automation tasks written in Rust language for the build process of Rust projects**  
-***version: 2024.225.1717 date: 2024-02-25 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
- ![maintained](https://img.shields.io/badge/maintained-green) ![ready-for-use](https://img.shields.io/badge/ready_for_use-orange) ![rustlang](https://img.shields.io/badge/rustlang-orange) ![make](https://img.shields.io/badge/make-orange)
+***version: 2024.225.1808 date: 2024-02-25 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***  
+ ![maintained](https://img.shields.io/badge/maintained-green)
+ ![ready-for-use](https://img.shields.io/badge/ready_for_use-green)
+ ![rustlang](https://img.shields.io/badge/rustlang-orange)
+ ![make](https://img.shields.io/badge/make-orange)
+
 [//]: # (auto_cargo_toml_to_md end)
 
  ![logo](https://raw.githubusercontent.com/bestia-dev/cargo-auto/main/images/logo/logo_cargo_auto.svg)
- ![maintained](https://img.shields.io/badge/maintained-green)
- ![ready_for_use](https://img.shields.io/badge/ready_for_use-green)
 
  [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
  [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)

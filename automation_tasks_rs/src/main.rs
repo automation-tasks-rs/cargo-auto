@@ -276,6 +276,7 @@ r#"
     );
 }
 
+
 /// commit and push
 fn task_commit_and_push(arg_2: Option<String>) {
     let Some(message) = arg_2 else {
@@ -283,6 +284,9 @@ fn task_commit_and_push(arg_2: Option<String>) {
         // early exit
         return;
     };
+
+        // if description or topics/keywords/tags have changed
+        cl::description_and_topics_to_github();
 
     // init repository if needed. If it is not init then normal commit and push.
     if !cl::init_repository_if_needed(&message) {
@@ -294,8 +298,6 @@ fn task_commit_and_push(arg_2: Option<String>) {
         // the real commit of code
         cl::run_shell_command(&format!( r#"git add -A && git diff --staged --quiet || git commit -m "{message}" "#));
         cl::run_shell_command("git push");
-        // if description or topics/keywords/tags have changed
-        cl::description_and_topics_to_github();
 
         println!(
 r#"
