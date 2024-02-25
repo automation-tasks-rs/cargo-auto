@@ -24,12 +24,7 @@ pub fn new_auto() {
 {RESET}"#
     );
     // call `cargo auto` to show the help of the new automation_tasks_rs
-    std::process::Command::new("cargo")
-        .arg("auto")
-        .spawn()
-        .unwrap()
-        .wait()
-        .unwrap();
+    std::process::Command::new("cargo").arg("auto").spawn().unwrap().wait().unwrap();
 }
 
 /// build if the files are different then the hashes in automation_tasks_rs/file_hashes.json
@@ -51,11 +46,7 @@ pub fn compile_automation_tasks_rs_if_needed() {
 pub fn compile_project_automation_tasks_rs() {
     // build in other directory (not in working current directory)
     // cargo build --manifest-path=dir/Cargo.toml
-    let output = std::process::Command::new("cargo")
-        .arg("build")
-        .arg("--manifest-path=automation_tasks_rs/Cargo.toml")
-        .output()
-        .unwrap();
+    let output = std::process::Command::new("cargo").arg("build").arg("--manifest-path=automation_tasks_rs/Cargo.toml").output().unwrap();
 
     // How to catch an error from the process?
     // Debugging: open cargo-auto in VSCode
@@ -77,11 +68,7 @@ pub fn copy_to_files(project_name: &str) {
     for file_item in get_vec_file() {
         // create directory if needed
         std::fs::create_dir_all(folder_path.join(&file_item.file_name).parent().unwrap()).unwrap();
-        std::fs::write(
-            folder_path.join(&file_item.file_name),
-            file_item.file_content.as_bytes(),
-        )
-        .unwrap();
+        std::fs::write(folder_path.join(&file_item.file_name), file_item.file_content.as_bytes()).unwrap();
     }
 }
 
@@ -132,6 +119,21 @@ So I can drink a free beer for your health :-)
     vec_file.push(crate::FileItem {
         file_name: ".vscode/settings.json",
         file_content: r###"{
+    "workbench.colorCustomizations": {
+        "titleBar.activeForeground": "#fff",
+        "titleBar.inactiveForeground": "#ffffffcc",
+        "titleBar.activeBackground": "#404040",
+        "titleBar.inactiveBackground": "#2d2d2dcc"
+    },
+    "spellright.language": [
+        "en"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext"
+    ],
+    "rust-analyzer.showUnlinkedFileNotification": false,
     "cSpell.words": [
         "bestia",
         "deps",
@@ -153,11 +155,11 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "1.3.6""###,
+cargo_auto_lib = "1.3.17""###,
     });
-    vec_file.push(crate::FileItem{
-            file_name :"src/main.rs",
-            file_content : r###"// automation_tasks_rs for project_name
+    vec_file.push(crate::FileItem {
+        file_name: "src/main.rs",
+        file_content: r###"// automation_tasks_rs for project_name
 
 // region: library with basic automation tasks
 use cargo_auto_lib as cl;
@@ -278,7 +280,7 @@ fn completion() {
     // the second level if needed
     else if last_word == "new" {
         let sub_commands = vec!["x"];
-        completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
+       cl::completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
     */
 }
@@ -336,6 +338,7 @@ fn task_doc() {
     cl::auto_cargo_toml_to_md();
     cl::auto_lines_of_code("");
     cl::auto_plantuml(&cargo_toml.package_repository().unwrap());
+    cl::auto_playground_run_code();
     cl::auto_md_to_doc_comments();
 
     cl::run_shell_command("cargo doc --no-deps --document-private-items");
@@ -362,7 +365,7 @@ fn task_doc() {
 fn task_test() {
     cl::run_shell_command("cargo test");
     println!(
-        r#"
+r#"
     {YELLOW}After `cargo auto test`. If ok then {RESET}
 {GREEN}cargo auto commit_and_push "message"{RESET}
     {YELLOW}with mandatory commit message{RESET}
@@ -389,7 +392,7 @@ fn task_commit_and_push(arg_2: Option<String>) {
         cl::run_shell_command(&format!( r#"git add -A && git diff --staged --quiet || git commit -m "{message}" "#));
         cl::run_shell_command("git push");
         println!(
-            r#"
+r#"
     {YELLOW}After `cargo auto commit_and_push "message"`{RESET}
 {GREEN}cargo auto publish_to_crates_io{RESET}
 "#
@@ -481,7 +484,7 @@ fn task_github_new_release() {
 }
 // endregion: tasks
 "###,
-});
+    });
     vec_file.push(crate::FileItem {
         file_name: ".gitignore",
         file_content: r###"/target

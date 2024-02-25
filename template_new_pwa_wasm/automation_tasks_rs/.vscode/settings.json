@@ -15,12 +15,11 @@
     ],
     "rust-analyzer.showUnlinkedFileNotification": false,
     "cSpell.words": [
-        "alloc",
         "bestia",
         "endregion",
-        "new_cli",
-        "octocrab",
         "plantuml",
+        "rustdevuser",
+        "rustprojects",
         "zcvf"
     ]
 }

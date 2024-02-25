@@ -8,8 +8,9 @@ edition = "2021"
 license = "MIT"
 readme = "README.md"
 repository = "https://github.com/bestia-dev/cargo_auto_template_new_cli"
-categories = ["rust-patterns"]
-keywords = ["Rust cli and library project template"]
+# Keyword must be only one word: lowercase letters, hyphens(-) or numbers, less then 35 characters.
+keywords = ["maintained", "work-in-progress", "rustlang"]
+categories = ["command-line-interface"]
 publish = false
 
 [dependencies]

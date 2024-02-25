@@ -8,8 +8,9 @@ description = "template for a minimal wasm project for browser"
 repository = "https://github.com/bestia-dev/cargo_auto_template_new_wasm"
 readme = "README.md"
 license = "MIT"
-keywords = ["wasm"]
-categories = ["learning"]
+# Keyword must be only one word: lowercase letters, hyphens(-) or numbers, less then 35 characters.
+keywords = ["maintained", "work-in-progress", "rustlang", "wasm"]
+categories = ["wasm"]
 publish = false
 
 [lib]

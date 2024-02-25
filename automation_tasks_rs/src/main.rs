@@ -294,6 +294,9 @@ fn task_commit_and_push(arg_2: Option<String>) {
         // the real commit of code
         cl::run_shell_command(&format!( r#"git add -A && git diff --staged --quiet || git commit -m "{message}" "#));
         cl::run_shell_command("git push");
+        // if description or topics/keywords/tags have changed
+        cl::description_and_topics_to_github();
+
         println!(
 r#"
     {YELLOW}After `cargo auto commit_and_push "message"`{RESET}

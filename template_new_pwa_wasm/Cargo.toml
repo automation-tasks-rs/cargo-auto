@@ -8,8 +8,9 @@ description = "pwa_description"
 repository = "project_repository"
 readme = "README.md"
 license = "MIT"
-keywords = ["wasm"]
-categories = ["tutorial"]
+# Keyword must be only one word: lowercase letters, hyphens(-) or numbers, less then 35 characters.
+keywords = ["maintained", "work-in-progress", "rustlang", "wasm"]
+categories = ["wasm"]
 publish = false
 
 [lib]

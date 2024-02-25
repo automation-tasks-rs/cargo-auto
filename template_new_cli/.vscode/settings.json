@@ -2,9 +2,9 @@
     "workbench.colorCustomizations": {
         "titleBar.activeForeground": "#fff",
         "titleBar.inactiveForeground": "#ffffffcc",
-        "titleBar.activeBackground": "#477587",
-        "titleBar.inactiveBackground": "#3F758DCC"
-      },
+        "titleBar.activeBackground": "#404040",
+        "titleBar.inactiveBackground": "#2d2d2dcc"
+    },
     "spellright.language": [
         "en"
     ],
@@ -15,21 +15,11 @@
     ],
     "rust-analyzer.showUnlinkedFileNotification": false,
     "cSpell.words": [
-        "Alla",
         "bestia",
-        "crev",
-        "debuginfo",
-        "deps",
         "endregion",
-        "Nazdravlje",
         "plantuml",
-        "Prost",
         "rustdevuser",
         "rustprojects",
-        "struct",
-        "termion",
-        "thiserror",
-        "unoptimized",
-        "zdravje"
+        "zcvf"
     ]
 }

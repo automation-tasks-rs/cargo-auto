@@ -58,11 +58,7 @@ fn print_help_from_cargo_auto() {
     } else {
         // panic! if cannot compile automation_tasks_rs
         crate::template_new_auto_mod::compile_automation_tasks_rs_if_needed();
-        std::process::Command::new(crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str())
-            .spawn()
-            .unwrap()
-            .wait()
-            .unwrap();
+        std::process::Command::new(crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str()).spawn().unwrap().wait().unwrap();
     }
 }
 
@@ -78,7 +74,7 @@ fn match_first_argument(task: &str, args: &mut std::env::Args) {
     } else if task == "new_auto" {
         // this task is inside cargo-auto
         if already_exists_automation_tasks_rs() {
-            println!( "{RED}Error: Directory automation_tasks_rs already exists. Cannot create new directory automation_tasks_rs.{RESET}" );
+            println!("{RED}Error: Directory automation_tasks_rs already exists. Cannot create new directory automation_tasks_rs.{RESET}");
             // early exit
             std::process::exit(0);
         }

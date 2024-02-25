@@ -25,12 +25,8 @@ pub fn copy_to_files(project_name: &str) {
     std::fs::create_dir_all(folder_path).unwrap();
     for file_item in get_vec_file() {
         // rename/replace the project_name
-        let file_name = file_item
-            .file_name
-            .replace("cargo_auto_template_new_wasm", project_name);
-        let file_content = file_item
-            .file_content
-            .replace("cargo_auto_template_new_wasm", project_name);
+        let file_name = file_item.file_name.replace("cargo_auto_template_new_wasm", project_name);
+        let file_content = file_item.file_content.replace("cargo_auto_template_new_wasm", project_name);
 
         // create directory if needed
         std::fs::create_dir_all(folder_path.join(&file_name).parent().unwrap()).unwrap();
@@ -230,8 +226,8 @@ p{
         "titleBar.inactiveForeground": "#ffffffcc",
         "titleBar.activeBackground": "#477587",
         "titleBar.inactiveBackground": "#3F758DCC"
-      },
-      "spellright.language": [
+    },
+    "spellright.language": [
         "en"
     ],
     "spellright.documentTypes": [
@@ -269,8 +265,9 @@ description = "template for a minimal wasm project for browser"
 repository = "https://github.com/bestia-dev/cargo_auto_template_new_wasm"
 readme = "README.md"
 license = "MIT"
-keywords = ["wasm"]
-categories = ["learning"]
+# Keyword must be only one word: lowercase letters, hyphens(-) or numbers, less then 35 characters.
+keywords = ["maintained", "work-in-progress", "rustlang", "wasm"]
+categories = ["wasm"]
 publish = false
 
 [lib]
@@ -849,6 +846,21 @@ jobs:
     vec_file.push(crate::FileItem {
         file_name: "automation_tasks_rs/.vscode/settings.json",
         file_content: r###"{
+    "workbench.colorCustomizations": {
+        "titleBar.activeForeground": "#fff",
+        "titleBar.inactiveForeground": "#ffffffcc",
+        "titleBar.activeBackground": "#404040",
+        "titleBar.inactiveBackground": "#2d2d2dcc"
+    },
+    "spellright.language": [
+        "en"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext"
+    ],
+    "rust-analyzer.showUnlinkedFileNotification": false,
     "cSpell.words": [
         "alloc",
         "bestia",
@@ -872,11 +884,11 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "1.3.6""###,
+cargo_auto_lib = "1.3.17""###,
     });
-    vec_file.push(crate::FileItem{
-            file_name :"automation_tasks_rs/src/main.rs",
-            file_content : r###"// automation_tasks_rs for cargo_auto_template_new_wasm
+    vec_file.push(crate::FileItem {
+        file_name: "automation_tasks_rs/src/main.rs",
+        file_content: r###"// automation_tasks_rs for cargo_auto_template_new_wasm
 
 // region: library with basic automation tasks
 use cargo_auto_lib as cl;
@@ -989,7 +1001,7 @@ fn completion() {
     // the second level if needed
     else if last_word == "new" {
         let sub_commands = vec!["x"];
-        completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
+       cl::completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
     */
 }
@@ -1056,6 +1068,7 @@ fn task_doc() {
     cl::auto_cargo_toml_to_md();
     cl::auto_lines_of_code("");
     cl::auto_plantuml(&cargo_toml.package_repository().unwrap());
+    cl::auto_playground_run_code();
     cl::auto_md_to_doc_comments();
 
     cl::run_shell_command("cargo doc --no-deps --document-private-items");
@@ -1103,16 +1116,14 @@ fn task_commit_and_push(arg_2: Option<String>) {
     if !cl::init_repository_if_needed(&message) {
         // separate commit for docs if they changed, to not make a lot of noise in the real commit
         if std::path::Path::new("docs").exists() {
-            cl::run_shell_command(
-                r#"git add docs && git diff --staged --quiet || git commit -m "update docs" "#,
-            );
+            cl::run_shell_command(r#"git add docs && git diff --staged --quiet || git commit -m "update docs" "#);
         }
         cl::add_message_to_unreleased(&message);
         // the real commit of code
         cl::run_shell_command(&format!( r#"git add -A && git diff --staged --quiet || git commit -m "{message}" "#));
         cl::run_shell_command("git push");
         println!(
-            r#"
+r#"
     {YELLOW}After `cargo auto commit_and_push "message"`{RESET}
 {GREEN}cargo auto publish_to_crates_io{RESET}
 "#
@@ -1207,7 +1218,7 @@ fn task_github_new_release() {
     );
 }
 // endregion: tasks"###,
-});
+    });
     vec_file.push(crate::FileItem {
         file_name: "automation_tasks_rs/.gitignore",
         file_content: r###"/target

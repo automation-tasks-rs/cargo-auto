@@ -33,100 +33,22 @@ pub fn new_pwa_wasm(arg_2: Option<String>) {
                 let img = std::fs::read("icon512x512.png").unwrap();
                 let img = decode_png(img);
 
-                resize_image(
-                    &img,
-                    32,
-                    "icon-032.png",
-                    &pwa_json5.rust_project_name,
-                    &pwa_json5.pwa_short_name,
-                );
-                resize_image(
-                    &img,
-                    72,
-                    "icon-072.png",
-                    &pwa_json5.rust_project_name,
-                    &pwa_json5.pwa_short_name,
-                );
-                resize_image(
-                    &img,
-                    96,
-                    "icon-096.png",
-                    &pwa_json5.rust_project_name,
-                    &pwa_json5.pwa_short_name,
-                );
-                resize_image(
-                    &img,
-                    120,
-                    "icon-120.png",
-                    &pwa_json5.rust_project_name,
-                    &pwa_json5.pwa_short_name,
-                );
-                resize_image(
-                    &img,
-                    128,
-                    "icon-128.png",
-                    &pwa_json5.rust_project_name,
-                    &pwa_json5.pwa_short_name,
-                );
-                resize_image(
-                    &img,
-                    144,
-                    "icon-144.png",
-                    &pwa_json5.rust_project_name,
-                    &pwa_json5.pwa_short_name,
-                );
-                resize_image(
-                    &img,
-                    152,
-                    "icon-152.png",
-                    &pwa_json5.rust_project_name,
-                    &pwa_json5.pwa_short_name,
-                );
-                resize_image(
-                    &img,
-                    167,
-                    "icon-167.png",
-                    &pwa_json5.rust_project_name,
-                    &pwa_json5.pwa_short_name,
-                );
-                resize_image(
-                    &img,
-                    180,
-                    "icon-180.png",
-                    &pwa_json5.rust_project_name,
-                    &pwa_json5.pwa_short_name,
-                );
-                resize_image(
-                    &img,
-                    192,
-                    "icon-192.png",
-                    &pwa_json5.rust_project_name,
-                    &pwa_json5.pwa_short_name,
-                );
-                resize_image(
-                    &img,
-                    196,
-                    "icon-196.png",
-                    &pwa_json5.rust_project_name,
-                    &pwa_json5.pwa_short_name,
-                );
+                resize_image(&img, 32, "icon-032.png", &pwa_json5.rust_project_name, &pwa_json5.pwa_short_name);
+                resize_image(&img, 72, "icon-072.png", &pwa_json5.rust_project_name, &pwa_json5.pwa_short_name);
+                resize_image(&img, 96, "icon-096.png", &pwa_json5.rust_project_name, &pwa_json5.pwa_short_name);
+                resize_image(&img, 120, "icon-120.png", &pwa_json5.rust_project_name, &pwa_json5.pwa_short_name);
+                resize_image(&img, 128, "icon-128.png", &pwa_json5.rust_project_name, &pwa_json5.pwa_short_name);
+                resize_image(&img, 144, "icon-144.png", &pwa_json5.rust_project_name, &pwa_json5.pwa_short_name);
+                resize_image(&img, 152, "icon-152.png", &pwa_json5.rust_project_name, &pwa_json5.pwa_short_name);
+                resize_image(&img, 167, "icon-167.png", &pwa_json5.rust_project_name, &pwa_json5.pwa_short_name);
+                resize_image(&img, 180, "icon-180.png", &pwa_json5.rust_project_name, &pwa_json5.pwa_short_name);
+                resize_image(&img, 192, "icon-192.png", &pwa_json5.rust_project_name, &pwa_json5.pwa_short_name);
+                resize_image(&img, 196, "icon-196.png", &pwa_json5.rust_project_name, &pwa_json5.pwa_short_name);
                 // overwrite the default with the new
-                resize_image(
-                    &img,
-                    512,
-                    "icon-512.png",
-                    &pwa_json5.rust_project_name,
-                    &pwa_json5.pwa_short_name,
-                );
+                resize_image(&img, 512, "icon-512.png", &pwa_json5.rust_project_name, &pwa_json5.pwa_short_name);
 
                 // maskable icon 192
-                resize_image(
-                    &img,
-                    192,
-                    "icon-maskable.png",
-                    &pwa_json5.rust_project_name,
-                    &pwa_json5.pwa_short_name,
-                );
+                resize_image(&img, 192, "icon-maskable.png", &pwa_json5.rust_project_name, &pwa_json5.pwa_short_name);
 
                 // favicon.ico with 16, 32 and 48 icons
                 encode_to_favicon_ico(&img, &pwa_json5.rust_project_name, &pwa_json5.pwa_short_name);
@@ -166,8 +88,7 @@ pub fn new_pwa_wasm(arg_2: Option<String>) {
                     for file_item in get_vec_file() {
                         if file_item.file_name.ends_with("icon-512.png") {
                             let file_content = file_item.file_content;
-                            let file_content =
-                                <base64ct::Base64 as base64ct::Encoding>::decode_vec(&file_content).unwrap();
+                            let file_content = <base64ct::Base64 as base64ct::Encoding>::decode_vec(&file_content).unwrap();
                             std::fs::write("icon512x512.png", file_content).unwrap();
                             break;
                         }
@@ -195,10 +116,7 @@ pub fn encode_to_favicon_ico(img: &image::DynamicImage, rust_project_name: &str,
 
 pub fn favicon_add_entry(img: &image::DynamicImage, size: u32, icon_dir: &mut ico::IconDir) {
     // icons need smaller images 48, 32 and 16
-    let img_rgba_vec = img
-        .resize(size, size, image::imageops::FilterType::Lanczos3)
-        .into_rgba8()
-        .into_raw();
+    let img_rgba_vec = img.resize(size, size, image::imageops::FilterType::Lanczos3).into_rgba8().into_raw();
     // create an IconImage from raw RGBA pixel data from another image library
     let icon_image = ico::IconImage::from_rgba_data(size, size, img_rgba_vec);
     icon_dir.add_entry(ico::IconDirEntry::encode(&icon_image).unwrap());
@@ -224,13 +142,7 @@ pub fn encode_to_png(new_img: image::DynamicImage) -> Vec<u8> {
 }
 
 /// resize img
-pub fn resize_image(
-    img: &image::DynamicImage,
-    img_size: u32,
-    file_name: &str,
-    rust_project_name: &str,
-    pwa_short_name: &str,
-) {
+pub fn resize_image(img: &image::DynamicImage, img_size: u32, file_name: &str, rust_project_name: &str, pwa_short_name: &str) {
     //dbg!("resize_image {img_size}");
     let new_img = img.resize(img_size, img_size, image::imageops::FilterType::Lanczos3);
     let vec_u8 = encode_to_png(new_img);
@@ -376,7 +288,7 @@ So I can drink a free beer for your health :-)
 // but the new service worker will not be activated until all 
 // tabs with this webapp are closed.
 
-const CACHE_NAME = '2024.223.1536';
+const CACHE_NAME = '2024.225.1716';
 
 self.addEventListener('install', event => {
     console.log('event install ', CACHE_NAME);
@@ -7355,7 +7267,7 @@ navigator.serviceWorker.addEventListener('controllerchange', function () {
         "titleBar.activeBackground": "#477587",
         "titleBar.inactiveBackground": "#3F758DCC"
       },
-      "spellright.language": [
+    "spellright.language": [
         "en"
     ],
     "spellright.documentTypes": [
@@ -7400,8 +7312,9 @@ description = "pwa_description"
 repository = "project_repository"
 readme = "README.md"
 license = "MIT"
-keywords = ["wasm"]
-categories = ["tutorial"]
+# Keyword must be only one word: lowercase letters, hyphens(-) or numbers, less then 35 characters.
+keywords = ["maintained", "work-in-progress", "rustlang", "wasm"]
+categories = ["wasm"]
 publish = false
 
 [lib]
@@ -7596,9 +7509,9 @@ pub fn now_time_as_string() -> String {
 }
 "###,
     });
-    vec_file.push(crate::FileItem{
-            file_name :"src/main_mod/lib_mod/web_sys_mod/html_source_code_mod.rs",
-            file_content : r###"//! html_source_code_mod.rs
+    vec_file.push(crate::FileItem {
+        file_name: "src/main_mod/lib_mod/web_sys_mod/html_source_code_mod.rs",
+        file_content: r###"//! html_source_code_mod.rs
 
 /// HtmlSourceCode - type to manipulate HTML source code safer than with string functions only  
 /// WARNING for HTML INJECTION!   
@@ -7664,7 +7577,7 @@ impl HtmlSourceCode {
     }
 }
 "###,
-});
+    });
     vec_file.push(crate::FileItem {
         file_name: "src/main_mod/lib_mod/hello_mod.rs",
         file_content: r###"// src/hello_mod.rs
@@ -8161,13 +8074,27 @@ jobs:
     vec_file.push(crate::FileItem {
         file_name: "automation_tasks_rs/.vscode/settings.json",
         file_content: r###"{
+    "workbench.colorCustomizations": {
+        "titleBar.activeForeground": "#fff",
+        "titleBar.inactiveForeground": "#ffffffcc",
+        "titleBar.activeBackground": "#404040",
+        "titleBar.inactiveBackground": "#2d2d2dcc"
+    },
+    "spellright.language": [
+        "en"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext"
+    ],
+    "rust-analyzer.showUnlinkedFileNotification": false,
     "cSpell.words": [
-        "alloc",
         "bestia",
         "endregion",
-        "new_cli",
-        "octocrab",
         "plantuml",
+        "rustdevuser",
+        "rustprojects",
         "zcvf"
     ]
 }"###,
@@ -8184,11 +8111,11 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "1.3.6""###,
+cargo_auto_lib = "1.3.17""###,
     });
-    vec_file.push(crate::FileItem{
-            file_name :"automation_tasks_rs/src/main.rs",
-            file_content : r###"// automation_tasks_rs for rust_project_name
+    vec_file.push(crate::FileItem {
+        file_name: "automation_tasks_rs/src/main.rs",
+        file_content: r###"// automation_tasks_rs for rust_project_name
 
 // region: library with basic automation tasks
 use cargo_auto_lib as cl;
@@ -8301,7 +8228,7 @@ fn completion() {
     // the second level if needed
     else if last_word == "new" {
         let sub_commands = vec!["x"];
-        completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
+       cl::completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
     */
 }
@@ -8370,6 +8297,7 @@ fn task_doc() {
     cl::auto_cargo_toml_to_md();
     cl::auto_lines_of_code("");
     cl::auto_plantuml(&cargo_toml.package_repository().unwrap());
+    cl::auto_playground_run_code();
     cl::auto_md_to_doc_comments();
 
     cl::run_shell_command("cargo doc --no-deps --document-private-items");
@@ -8417,16 +8345,14 @@ fn task_commit_and_push(arg_2: Option<String>) {
     if !cl::init_repository_if_needed(&message) {
         // separate commit for docs if they changed, to not make a lot of noise in the real commit
         if std::path::Path::new("docs").exists() {
-            cl::run_shell_command(
-                r#"git add docs && git diff --staged --quiet || git commit -m "update docs" "#,
-            );
+            cl::run_shell_command(r#"git add docs && git diff --staged --quiet || git commit -m "update docs" "#);
         }
         cl::add_message_to_unreleased(&message);
         // the real commit of code
         cl::run_shell_command(&format!( r#"git add -A && git diff --staged --quiet || git commit -m "{message}" "#));
         cl::run_shell_command("git push");
         println!(
-            r#"
+r#"
     {YELLOW}After `cargo auto commit_and_push "message"`{RESET}
 {GREEN}cargo auto publish_to_crates_io{RESET}
 "#
@@ -8521,7 +8447,7 @@ fn task_github_new_release() {
     );
 }
 // endregion: tasks"###,
-});
+    });
     vec_file.push(crate::FileItem {
         file_name: "automation_tasks_rs/.gitignore",
         file_content: r###"/target
