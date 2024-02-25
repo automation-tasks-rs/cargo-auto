@@ -47,18 +47,15 @@ pub fn compile_project_automation_tasks_rs() {
     // build in other directory (not in working current directory)
     // cargo build --manifest-path=dir/Cargo.toml
     let output = std::process::Command::new("cargo").arg("build").arg("--manifest-path=automation_tasks_rs/Cargo.toml").output().unwrap();
-
-    // How to catch an error from the process?
-    // Debugging: open cargo-auto in VSCode
-    // build the cargo-auto with `cargo build`
-    // Introduce an error in `automation_tasks_rs/main.rs`
-    // run this version of cargo auto with `./target/debug/cargo-auto build`
-    let stderr = String::from_utf8(output.stderr).unwrap();
     // We could catch the error from stderr, but it is not sturdy: stderr.contains("error: could not compile")
     // Let's try catch the status if exit code is different than 0
     if output.status.code().unwrap() != 0 {
+        let stderr = String::from_utf8(output.stderr).unwrap();
         eprintln!("{}", stderr);
         panic!("{RED}Cannot compile automation_tasks_rs. Exiting.\nCorrect automation_tasks_rs/main.rs and try again.{RESET}");
+    } else {
+        let stdout = String::from_utf8(output.stdout).unwrap();
+        println!("{}", stdout);
     }
 }
 
@@ -155,7 +152,7 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "1.3.17""###,
+cargo_auto_lib = "1.3.33""###,
     });
     vec_file.push(crate::FileItem {
         file_name: "src/main.rs",
@@ -380,6 +377,9 @@ fn task_commit_and_push(arg_2: Option<String>) {
         // early exit
         return;
     };
+
+    // if description or topics/keywords/tags have changed
+    cl::description_and_topics_to_github();
 
     // init repository if needed. If it is not init then normal commit and push.
     if !cl::init_repository_if_needed(&message) {

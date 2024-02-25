@@ -884,7 +884,7 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "1.3.17""###,
+cargo_auto_lib = "1.3.33""###,
     });
     vec_file.push(crate::FileItem {
         file_name: "automation_tasks_rs/src/main.rs",
@@ -1111,6 +1111,9 @@ fn task_commit_and_push(arg_2: Option<String>) {
         // early exit
         return;
     };
+
+    // if description or topics/keywords/tags have changed
+    cl::description_and_topics_to_github();
 
     // init repository if needed. If it is not init then normal commit and push.
     if !cl::init_repository_if_needed(&message) {

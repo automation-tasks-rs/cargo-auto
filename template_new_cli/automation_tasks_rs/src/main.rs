@@ -221,6 +221,9 @@ fn task_commit_and_push(arg_2: Option<String>) {
         return;
     };
 
+    // if description or topics/keywords/tags have changed
+    cl::description_and_topics_to_github();
+
     // init repository if needed. If it is not init then normal commit and push.
     if !cl::init_repository_if_needed(&message) {
         // separate commit for docs if they changed, to not make a lot of noise in the real commit
