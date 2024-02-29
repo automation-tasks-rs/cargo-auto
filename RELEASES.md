@@ -10,6 +10,7 @@ The TODO section is part of the [README.md](https://github.com/bestia-dev/rust_p
 
 ## Unreleased
 - run_shell_command_success
+- run_shell_command_success
 
 ## Version 2024.225.1915 (2024-02-25)
 
