@@ -288,7 +288,7 @@ So I can drink a free beer for your health :-)
 // but the new service worker will not be activated until all 
 // tabs with this webapp are closed.
 
-const CACHE_NAME = '2024.229.210';
+const CACHE_NAME = '2024.229.333';
 
 self.addEventListener('install', event => {
     console.log('event install ', CACHE_NAME);
@@ -8111,7 +8111,7 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "1.3.36""###,
+cargo_auto_lib = "1.3.40""###,
     });
     vec_file.push(crate::FileItem {
         file_name: "automation_tasks_rs/src/main.rs",
