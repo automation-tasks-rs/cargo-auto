@@ -24,17 +24,13 @@ pub fn new_auto() {
 {RESET}"#
     );
     // call `cargo auto` to show the help of the new automation_tasks_rs
-    std::process::Command::new("cargo").arg("auto").spawn().unwrap().wait().unwrap();
+    let _success = crate::utils_mod::run_shell_command_success("cargo auto");
 }
 
 /// build if the files are different then the hashes in automation_tasks_rs/file_hashes.json
 /// panic! if cannot compile automation_tasks_rs
 pub fn compile_automation_tasks_rs_if_needed() {
-    if !crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.exists() {
-        compile_project_automation_tasks_rs();
-        let vec_of_metadata = file_hashes_mod::read_file_metadata();
-        file_hashes_mod::save_json_file_for_file_meta_data(vec_of_metadata);
-    } else if file_hashes_mod::is_project_changed() {
+    if !crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.exists() || file_hashes_mod::is_project_changed() {
         compile_project_automation_tasks_rs();
         let vec_of_metadata = file_hashes_mod::read_file_metadata();
         file_hashes_mod::save_json_file_for_file_meta_data(vec_of_metadata);
@@ -46,16 +42,8 @@ pub fn compile_automation_tasks_rs_if_needed() {
 pub fn compile_project_automation_tasks_rs() {
     // build in other directory (not in working current directory)
     // cargo build --manifest-path=dir/Cargo.toml
-    let output = std::process::Command::new("cargo").arg("build").arg("--manifest-path=automation_tasks_rs/Cargo.toml").output().unwrap();
-    // We could catch the error from stderr, but it is not sturdy: stderr.contains("error: could not compile")
-    // Let's try catch the status if exit code is different than 0
-    if output.status.code().unwrap() != 0 {
-        let stderr = String::from_utf8(output.stderr).unwrap();
-        eprintln!("{}", stderr);
+    if !crate::utils_mod::run_shell_command_success("cargo build --manifest-path=automation_tasks_rs/Cargo.toml") {
         panic!("{RED}Cannot compile automation_tasks_rs. Exiting.\nCorrect automation_tasks_rs/main.rs and try again.{RESET}");
-    } else {
-        let stdout = String::from_utf8(output.stdout).unwrap();
-        println!("{}", stdout);
     }
 }
 
@@ -152,7 +140,7 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "1.3.33""###,
+cargo_auto_lib = "1.3.36""###,
     });
     vec_file.push(crate::FileItem {
         file_name: "src/main.rs",

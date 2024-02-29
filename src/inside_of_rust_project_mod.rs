@@ -58,7 +58,7 @@ fn print_help_from_cargo_auto() {
     } else {
         // panic! if cannot compile automation_tasks_rs
         crate::template_new_auto_mod::compile_automation_tasks_rs_if_needed();
-        std::process::Command::new(crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str()).spawn().unwrap().wait().unwrap();
+        let _success = crate::utils_mod::run_shell_command_success(&crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.to_string_lossy());
     }
 }
 

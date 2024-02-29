@@ -17,6 +17,7 @@ mod template_new_auto_mod;
 mod template_new_cli_mod;
 mod template_new_pwa_wasm_mod;
 mod template_new_wasm_mod;
+mod utils_mod;
 
 // region: use statements
 use lazy_static::lazy_static;

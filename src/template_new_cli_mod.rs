@@ -554,7 +554,7 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "1.3.33""###,
+cargo_auto_lib = "1.3.36""###,
     });
     vec_file.push(crate::FileItem {
         file_name: "automation_tasks_rs/src/main.rs",
