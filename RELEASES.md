@@ -9,6 +9,7 @@ The ongoing changes that are not released, are visible in the git commits and gi
 The TODO section is part of the [README.md](https://github.com/bestia-dev/rust_project_name).  
 
 ## Unreleased
+- 1.3.63
 
 ## Version 2024.229.335 (2024-02-29)
 
@@ -56,7 +57,7 @@ automation task commit can now init local git repository and create new remote G
 
 ## Version v2024.219.258
 
-cargo_auto_lib = "1.1.32"
+cargo_auto_lib = 1.1.32
 
 ## Version v2024.219.243
 
@@ -65,7 +66,7 @@ pretty json
 
 ## Version v2024.218.2136
 
-cargo_auto_lib = "1.1.23"
+cargo_auto_lib = 1.1.23
 added tidy HTML function to make pretty docs HTML
 
 ## Version v2024.204.206

@@ -884,7 +884,7 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "1.3.40""###,
+cargo_auto_lib = "1.3.63""###,
     });
     vec_file.push(crate::FileItem {
         file_name: "automation_tasks_rs/src/main.rs",
@@ -1085,7 +1085,11 @@ fn task_doc() {
     // message to help user with next move
     println!(
         r#"
-    {YELLOW}After `cargo auto doc`, check `docs/index.html`. If ok then test the documentation code examples{RESET}
+    {YELLOW}After `cargo auto doc`, ctrl-click on `docs/index.html`. 
+    It will show the index.html in VSCode Explorer, then right-click and choose "Show Preview".
+    This works inside the CRDE container, because of the extension "Live Preview" 
+    <https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server>
+    If ok then run the tests in code and the documentation code examples.{RESET}
 {GREEN}cargo auto test{RESET}
 "#
     );
