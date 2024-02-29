@@ -9,7 +9,9 @@ The ongoing changes that are not released, are visible in the git commits and gi
 The TODO section is part of the [README.md](https://github.com/bestia-dev/rust_project_name).  
 
 ## Unreleased
-- run_shell_command_success
+
+## Version 2024.229.210 (2024-02-29)
+
 - run_shell_command_success
 
 ## Version 2024.225.1915 (2024-02-25)
