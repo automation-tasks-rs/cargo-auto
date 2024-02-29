@@ -243,7 +243,8 @@
     } <span class="kw">else </span>{
         <span class="comment">// panic! if cannot compile automation_tasks_rs
         </span><span class="kw">crate</span>::template_new_auto_mod::compile_automation_tasks_rs_if_needed();
-        std::process::Command::new(<span class="kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str()).spawn().unwrap().wait().unwrap();
+        <span class="kw">let </span>_success = <span class="kw">crate</span>::utils_mod::run_shell_command_success(<span class="kw-2">&</span><span class=
+"kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.to_string_lossy());
     }
 }
 

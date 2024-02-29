@@ -536,18 +536,6 @@
 <a href="#485" id="485">485</a>
 <a href="#486" id="486">486</a>
 <a href="#487" id="487">487</a>
-<a href="#488" id="488">488</a>
-<a href="#489" id="489">489</a>
-<a href="#490" id="490">490</a>
-<a href="#491" id="491">491</a>
-<a href="#492" id="492">492</a>
-<a href="#493" id="493">493</a>
-<a href="#494" id="494">494</a>
-<a href="#495" id="495">495</a>
-<a href="#496" id="496">496</a>
-<a href="#497" id="497">497</a>
-<a href="#498" id="498">498</a>
-<a href="#499" id="499">499</a>
 </pre>
         </div>
         <pre class="rust"><code><span class="doccomment">//! this strings are copied from the template_new_auto folder
@@ -576,17 +564,14 @@
 {RESET}"#
     </span>);
     <span class="comment">// call `cargo auto` to show the help of the new automation_tasks_rs
-    </span>std::process::Command::new(<span class="string">"cargo"</span>).arg(<span class="string">"auto"</span>).spawn().unwrap().wait().unwrap();
+    </span><span class="kw">let </span>_success = <span class="kw">crate</span>::utils_mod::run_shell_command_success(<span class=
+"string">"cargo auto"</span>);
 }
 
 <span class="doccomment">/// build if the files are different then the hashes in automation_tasks_rs/file_hashes.json
 /// panic! if cannot compile automation_tasks_rs
 </span><span class="kw">pub fn </span>compile_automation_tasks_rs_if_needed() {
-    <span class="kw">if </span>!<span class="kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.exists() {
-        compile_project_automation_tasks_rs();
-        <span class="kw">let </span>vec_of_metadata = file_hashes_mod::read_file_metadata();
-        file_hashes_mod::save_json_file_for_file_meta_data(vec_of_metadata);
-    } <span class="kw">else if </span>file_hashes_mod::is_project_changed() {
+    <span class="kw">if </span>!<span class="kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.exists() || file_hashes_mod::is_project_changed() {
         compile_project_automation_tasks_rs();
         <span class="kw">let </span>vec_of_metadata = file_hashes_mod::read_file_metadata();
         file_hashes_mod::save_json_file_for_file_meta_data(vec_of_metadata);
@@ -598,18 +583,10 @@
 </span><span class="kw">pub fn </span>compile_project_automation_tasks_rs() {
     <span class="comment">// build in other directory (not in working current directory)
     // cargo build --manifest-path=dir/Cargo.toml
-    </span><span class="kw">let </span>output = std::process::Command::new(<span class="string">"cargo"</span>).arg(<span class=
-"string">"build"</span>).arg(<span class="string">"--manifest-path=automation_tasks_rs/Cargo.toml"</span>).output().unwrap();
-    <span class="comment">// We could catch the error from stderr, but it is not sturdy: stderr.contains("error: could not compile")
-    // Let's try catch the status if exit code is different than 0
-    </span><span class="kw">if </span>output.status.code().unwrap() != <span class="number">0 </span>{
-        <span class="kw">let </span>stderr = String::from_utf8(output.stderr).unwrap();
-        <span class="macro">eprintln!</span>(<span class="string">"{}"</span>, stderr);
+    </span><span class="kw">if </span>!<span class="kw">crate</span>::utils_mod::run_shell_command_success(<span class=
+"string">"cargo build --manifest-path=automation_tasks_rs/Cargo.toml"</span>) {
         <span class="macro">panic!</span>(<span class=
 "string">"{RED}Cannot compile automation_tasks_rs. Exiting.\nCorrect automation_tasks_rs/main.rs and try again.{RESET}"</span>);
-    } <span class="kw">else </span>{
-        <span class="kw">let </span>stdout = String::from_utf8(output.stdout).unwrap();
-        <span class="macro">println!</span>(<span class="string">"{}"</span>, stdout);
     }
 }
 
@@ -706,7 +683,7 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "1.3.33""###</span>,
+cargo_auto_lib = "1.3.36""###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
         file_name: <span class="string">"src/main.rs"</span>,

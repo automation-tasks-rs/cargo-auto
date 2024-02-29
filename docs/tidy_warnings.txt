@@ -932,6 +932,14 @@ line 2 column 81 - Warning: trimming empty <span>
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
+./docs/cargo_auto/utils_mod/index.html
+Document: "2" is not a file!
+
+line 2 column 81 - Warning: trimming empty <span>
+./docs/cargo_auto/utils_mod/fn.run_shell_command_success.html
+Document: "2" is not a file!
+
+line 2 column 81 - Warning: trimming empty <span>
 ./docs/cargo_auto/template_new_cli_mod/fn.new_cli.html
 Document: "2" is not a file!
 
@@ -2116,6 +2124,10 @@ Document: "2" is not a file!
 
 line 2 column 233 - Warning: trimming empty <span>
 ./docs/src/cargo_auto/template_new_cli_mod.rs.html
+Document: "2" is not a file!
+
+line 2 column 233 - Warning: trimming empty <span>
+./docs/src/cargo_auto/utils_mod.rs.html
 Document: "2" is not a file!
 
 line 2 column 233 - Warning: trimming empty <span>
