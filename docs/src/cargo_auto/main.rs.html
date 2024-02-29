@@ -130,9 +130,6 @@
 <a href="#79" id="79">79</a>
 <a href="#80" id="80">80</a>
 <a href="#81" id="81">81</a>
-<a href="#82" id="82">82</a>
-<a href="#83" id="83">83</a>
-<a href="#84" id="84">84</a>
 </pre>
         </div>
         <pre class="rust"><code><span class="comment">// cargo-auto/src/main.rs
@@ -218,12 +215,9 @@
 }
 
 <span class="doccomment">/// Check if is not run in Rust project root directory
-/// I had problems using the original cargo workspaces to group projects together.
-/// So I invented the Cargo-auto.toml to make a pseudo-workspace. It does not use any original Cargo functionality.
-/// But builds all members using cargo-auto functionality.
 </span><span class="kw">fn </span>is_not_run_in_rust_project_root_directory() -&gt; bool {
     <span class="comment">// return negation of exists
-    </span>!(Path::new(<span class="string">"Cargo.toml"</span>).exists() || Path::new(<span class="string">"Cargo-auto.toml"</span>).exists())
+    </span>!Path::new(<span class="string">"Cargo.toml"</span>).exists()
 }
 </code></pre>
       </div>
