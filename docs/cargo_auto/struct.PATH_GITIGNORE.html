@@ -34,7 +34,7 @@
     <div class="sidebar-crate">
       <a class="logo-container" href="../cargo_auto/index.html"><img src="https://github.com/bestia-dev/cargo-auto/raw/main/images/logo/logo_cargo_auto.svg"
       alt="logo"></a>
-      <h2><a href="../cargo_auto/index.html">cargo_auto</a><span class="version">2024.302.2056</span></h2>
+      <h2><a href="../cargo_auto/index.html">cargo_auto</a><span class="version">2024.302.2122</span></h2>
     </div>
     <h2 class="location"><a href="#">PATH_GITIGNORE</a></h2>
     <div class="sidebar-elems">
@@ -235,7 +235,7 @@
         <div class="main-heading">
           <h1>Struct <a href="index.html">cargo_auto</a>::<wbr><a class="struct" href="#">PATH_GITIGNORE</a><button id="copy-path" title=
           "Copy item path to clipboard"><img src="../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt=
-          "Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../src/cargo_auto/main.rs.html#28-45">source</a> · <button id=
+          "Copy item path"></button></h1><span class="out-of-band"><a class="src" href="../src/cargo_auto/main.rs.html#270-287">source</a> · <button id=
           "toggle-all-docs" title="collapse all docs">[<span>−</span>]</button></span>
         </div>
         <pre class="rust item-decl"><code>pub(crate) struct PATH_GITIGNORE {
@@ -272,9 +272,7 @@
                 <pre class="rust rust-example-rendered"><code><span class="kw">use </span>std::path::{Path, PathBuf};
 
 <span class="kw">let </span>p = PathBuf::from(<span class="string">"/test"</span>);
-<span class="macro">assert_eq!</span>(Path::new(<span class="string">"/test"</span>), p.as_path());</code></pre><a class="test-arrow" target="_blank"
-                href=
-                "https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::%7BPath,+PathBuf%7D;%0A%0Alet+p+=+PathBuf::from(%22/test%22);%0Aassert_eq!(Path::new(%22/test%22),+p.as_path());%0A%7D&amp;edition=2021">Run</a>
+<span class="macro">assert_eq!</span>(Path::new(<span class="string">"/test"</span>), p.as_path());</code></pre>
               </div>
             </div>
           </details>
@@ -312,9 +310,7 @@
                 <pre class="rust rust-example-rendered"><code><span class="kw">use </span>std::path::Path;
 
 <span class="kw">let </span>os_str = Path::new(<span class="string">"foo.txt"</span>).as_os_str();
-<span class="macro">assert_eq!</span>(os_str, std::ffi::OsStr::new(<span class="string">"foo.txt"</span>));</code></pre><a class="test-arrow" target="_blank"
-                href=
-                "https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::Path;%0A%0Alet+os_str+=+Path::new(%22foo.txt%22).as_os_str();%0Aassert_eq!(os_str,+std::ffi::OsStr::new(%22foo.txt%22));%0A%7D&amp;edition=2021">Run</a>
+<span class="macro">assert_eq!</span>(os_str, std::ffi::OsStr::new(<span class="string">"foo.txt"</span>));</code></pre>
               </div>
             </div>
           </details>
@@ -337,9 +333,7 @@
 <span class="macro">assert_ne!</span>(path, Path::new(<span class="string">"foo.txt"</span>));
 
 path.as_mut_os_str().make_ascii_lowercase();
-<span class="macro">assert_eq!</span>(path, Path::new(<span class="string">"foo.txt"</span>));</code></pre><a class="test-arrow" target="_blank"
-                href=
-                "https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::%7BPath,+PathBuf%7D;%0A%0Alet+mut+path+=+PathBuf::from(%22Foo.TXT%22);%0A%0Aassert_ne!(path,+Path::new(%22foo.txt%22));%0A%0Apath.as_mut_os_str().make_ascii_lowercase();%0Aassert_eq!(path,+Path::new(%22foo.txt%22));%0A%7D&amp;edition=2021">Run</a>
+<span class="macro">assert_eq!</span>(path, Path::new(<span class="string">"foo.txt"</span>));</code></pre>
               </div>
             </div>
           </details>
@@ -361,9 +355,7 @@ path.as_mut_os_str().make_ascii_lowercase();
                 <pre class="rust rust-example-rendered"><code><span class="kw">use </span>std::path::Path;
 
 <span class="kw">let </span>path = Path::new(<span class="string">"foo.txt"</span>);
-<span class="macro">assert_eq!</span>(path.to_str(), <span class="prelude-val">Some</span>(<span class=
-                "string">"foo.txt"</span>));</code></pre><a class="test-arrow" target="_blank" href=
-                "https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::Path;%0A%0Alet+path+=+Path::new(%22foo.txt%22);%0Aassert_eq!(path.to_str(),+Some(%22foo.txt%22));%0A%7D&amp;edition=2021">Run</a>
+<span class="macro">assert_eq!</span>(path.to_str(), <span class="prelude-val">Some</span>(<span class="string">"foo.txt"</span>));</code></pre>
               </div>
             </div>
           </details>
@@ -386,9 +378,7 @@ path.as_mut_os_str().make_ascii_lowercase();
                 <pre class="rust rust-example-rendered"><code><span class="kw">use </span>std::path::Path;
 
 <span class="kw">let </span>path = Path::new(<span class="string">"foo.txt"</span>);
-<span class="macro">assert_eq!</span>(path.to_string_lossy(), <span class="string">"foo.txt"</span>);</code></pre><a class="test-arrow" target="_blank"
-                href=
-                "https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::Path;%0A%0Alet+path+=+Path::new(%22foo.txt%22);%0Aassert_eq!(path.to_string_lossy(),+%22foo.txt%22);%0A%7D&amp;edition=2021">Run</a>
+<span class="macro">assert_eq!</span>(path.to_string_lossy(), <span class="string">"foo.txt"</span>);</code></pre>
               </div>
               <p>Had <code>path</code> contained invalid unicode, the <code>to_string_lossy</code> call might have returned <code>"fo�.txt"</code>.</p>
             </div>
@@ -408,9 +398,7 @@ path.as_mut_os_str().make_ascii_lowercase();
                 <pre class="rust rust-example-rendered"><code><span class="kw">use </span>std::path::Path;
 
 <span class="kw">let </span>path_buf = Path::new(<span class="string">"foo.txt"</span>).to_path_buf();
-<span class="macro">assert_eq!</span>(path_buf, std::path::PathBuf::from(<span class="string">"foo.txt"</span>));</code></pre><a class="test-arrow"
-                target="_blank" href=
-                "https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::Path;%0A%0Alet+path_buf+=+Path::new(%22foo.txt%22).to_path_buf();%0Aassert_eq!(path_buf,+std::path::PathBuf::from(%22foo.txt%22));%0A%7D&amp;edition=2021">Run</a>
+<span class="macro">assert_eq!</span>(path_buf, std::path::PathBuf::from(<span class="string">"foo.txt"</span>));</code></pre>
               </div>
             </div>
           </details>
@@ -438,9 +426,7 @@ path.as_mut_os_str().make_ascii_lowercase();
               <div class="example-wrap">
                 <pre class="rust rust-example-rendered"><code><span class="kw">use </span>std::path::Path;
 
-<span class="macro">assert!</span>(!Path::new(<span class="string">"foo.txt"</span>).is_absolute());</code></pre><a class="test-arrow" target="_blank"
-                href=
-                "https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::Path;%0A%0Aassert!(!Path::new(%22foo.txt%22).is_absolute());%0A%7D&amp;edition=2021">Run</a>
+<span class="macro">assert!</span>(!Path::new(<span class="string">"foo.txt"</span>).is_absolute());</code></pre>
               </div>
             </div>
           </details>
@@ -459,9 +445,7 @@ path.as_mut_os_str().make_ascii_lowercase();
               <div class="example-wrap">
                 <pre class="rust rust-example-rendered"><code><span class="kw">use </span>std::path::Path;
 
-<span class="macro">assert!</span>(Path::new(<span class="string">"foo.txt"</span>).is_relative());</code></pre><a class="test-arrow" target="_blank"
-                href=
-                "https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::Path;%0A%0Aassert!(Path::new(%22foo.txt%22).is_relative());%0A%7D&amp;edition=2021">Run</a>
+<span class="macro">assert!</span>(Path::new(<span class="string">"foo.txt"</span>).is_relative());</code></pre>
               </div>
             </div>
           </details>
@@ -491,9 +475,7 @@ path.as_mut_os_str().make_ascii_lowercase();
               <div class="example-wrap">
                 <pre class="rust rust-example-rendered"><code><span class="kw">use </span>std::path::Path;
 
-<span class="macro">assert!</span>(Path::new(<span class="string">"/etc/passwd"</span>).has_root());</code></pre><a class="test-arrow" target="_blank"
-                href=
-                "https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::Path;%0A%0Aassert!(Path::new(%22/etc/passwd%22).has_root());%0A%7D&amp;edition=2021">Run</a>
+<span class="macro">assert!</span>(Path::new(<span class="string">"/etc/passwd"</span>).has_root());</code></pre>
               </div>
             </div>
           </details>
@@ -528,9 +510,7 @@ path.as_mut_os_str().make_ascii_lowercase();
 <span class="kw">let </span>grand_parent = parent.and_then(Path::parent);
 <span class="macro">assert_eq!</span>(grand_parent, <span class="prelude-val">Some</span>(Path::new(<span class="string">""</span>)));
 <span class="kw">let </span>great_grand_parent = grand_parent.and_then(Path::parent);
-<span class="macro">assert_eq!</span>(great_grand_parent, <span class="prelude-val">None</span>);</code></pre><a class="test-arrow" target="_blank"
-                href=
-                "https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::Path;%0A%0Alet+path+=+Path::new(%22/foo/bar%22);%0Alet+parent+=+path.parent().unwrap();%0Aassert_eq!(parent,+Path::new(%22/foo%22));%0A%0Alet+grand_parent+=+parent.parent().unwrap();%0Aassert_eq!(grand_parent,+Path::new(%22/%22));%0Aassert_eq!(grand_parent.parent(),+None);%0A%0Alet+relative_path+=+Path::new(%22foo/bar%22);%0Alet+parent+=+relative_path.parent();%0Aassert_eq!(parent,+Some(Path::new(%22foo%22)));%0Alet+grand_parent+=+parent.and_then(Path::parent);%0Aassert_eq!(grand_parent,+Some(Path::new(%22%22)));%0Alet+great_grand_parent+=+grand_parent.and_then(Path::parent);%0Aassert_eq!(great_grand_parent,+None);%0A%7D&amp;edition=2021">Run</a>
+<span class="macro">assert_eq!</span>(great_grand_parent, <span class="prelude-val">None</span>);</code></pre>
               </div>
             </div>
           </details>
@@ -566,9 +546,7 @@ path.as_mut_os_str().make_ascii_lowercase();
 <span class="macro">assert_eq!</span>(ancestors.next(), <span class="prelude-val">Some</span>(Path::new(<span class="string">"../foo"</span>)));
 <span class="macro">assert_eq!</span>(ancestors.next(), <span class="prelude-val">Some</span>(Path::new(<span class="string">".."</span>)));
 <span class="macro">assert_eq!</span>(ancestors.next(), <span class="prelude-val">Some</span>(Path::new(<span class="string">""</span>)));
-<span class="macro">assert_eq!</span>(ancestors.next(), <span class="prelude-val">None</span>);</code></pre><a class="test-arrow" target="_blank"
-                href=
-                "https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::Path;%0A%0Alet+mut+ancestors+=+Path::new(%22/foo/bar%22).ancestors();%0Aassert_eq!(ancestors.next(),+Some(Path::new(%22/foo/bar%22)));%0Aassert_eq!(ancestors.next(),+Some(Path::new(%22/foo%22)));%0Aassert_eq!(ancestors.next(),+Some(Path::new(%22/%22)));%0Aassert_eq!(ancestors.next(),+None);%0A%0Alet+mut+ancestors+=+Path::new(%22../foo/bar%22).ancestors();%0Aassert_eq!(ancestors.next(),+Some(Path::new(%22../foo/bar%22)));%0Aassert_eq!(ancestors.next(),+Some(Path::new(%22../foo%22)));%0Aassert_eq!(ancestors.next(),+Some(Path::new(%22..%22)));%0Aassert_eq!(ancestors.next(),+Some(Path::new(%22%22)));%0Aassert_eq!(ancestors.next(),+None);%0A%7D&amp;edition=2021">Run</a>
+<span class="macro">assert_eq!</span>(ancestors.next(), <span class="prelude-val">None</span>);</code></pre>
               </div>
             </div>
           </details>
@@ -599,9 +577,7 @@ path.as_mut_os_str().make_ascii_lowercase();
 <span class="macro">assert_eq!</span>(<span class="prelude-val">Some</span>(OsStr::new(<span class="string">"foo.txt"</span>)), Path::new(<span class=
 "string">"foo.txt/.//"</span>).file_name());
 <span class="macro">assert_eq!</span>(<span class="prelude-val">None</span>, Path::new(<span class="string">"foo.txt/.."</span>).file_name());
-<span class="macro">assert_eq!</span>(<span class="prelude-val">None</span>, Path::new(<span class=
-                "string">"/"</span>).file_name());</code></pre><a class="test-arrow" target="_blank" href=
-                "https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::Path;%0Ause+std::ffi::OsStr;%0A%0Aassert_eq!(Some(OsStr::new(%22bin%22)),+Path::new(%22/usr/bin/%22).file_name());%0Aassert_eq!(Some(OsStr::new(%22foo.txt%22)),+Path::new(%22tmp/foo.txt%22).file_name());%0Aassert_eq!(Some(OsStr::new(%22foo.txt%22)),+Path::new(%22foo.txt/.%22).file_name());%0Aassert_eq!(Some(OsStr::new(%22foo.txt%22)),+Path::new(%22foo.txt/.//%22).file_name());%0Aassert_eq!(None,+Path::new(%22foo.txt/..%22).file_name());%0Aassert_eq!(None,+Path::new(%22/%22).file_name());%0A%7D&amp;edition=2021">Run</a>
+<span class="macro">assert_eq!</span>(<span class="prelude-val">None</span>, Path::new(<span class="string">"/"</span>).file_name());</code></pre>
               </div>
             </div>
           </details>
@@ -648,8 +624,7 @@ path.as_mut_os_str().make_ascii_lowercase();
 
 <span class="kw">let </span>prefix = PathBuf::from(<span class="string">"/test/"</span>);
 <span class="macro">assert_eq!</span>(path.strip_prefix(prefix), <span class="prelude-val">Ok</span>(Path::new(<span class=
-"string">"haha/foo.txt"</span>)));</code></pre><a class="test-arrow" target="_blank" href=
-"https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::%7BPath,+PathBuf%7D;%0A%0Alet+path+=+Path::new(%22/test/haha/foo.txt%22);%0A%0Aassert_eq!(path.strip_prefix(%22/%22),+Ok(Path::new(%22test/haha/foo.txt%22)));%0Aassert_eq!(path.strip_prefix(%22/test%22),+Ok(Path::new(%22haha/foo.txt%22)));%0Aassert_eq!(path.strip_prefix(%22/test/%22),+Ok(Path::new(%22haha/foo.txt%22)));%0Aassert_eq!(path.strip_prefix(%22/test/haha/foo.txt%22),+Ok(Path::new(%22%22)));%0Aassert_eq!(path.strip_prefix(%22/test/haha/foo.txt/%22),+Ok(Path::new(%22%22)));%0A%0Aassert!(path.strip_prefix(%22test%22).is_err());%0Aassert!(path.strip_prefix(%22/haha%22).is_err());%0A%0Alet+prefix+=+PathBuf::from(%22/test/%22);%0Aassert_eq!(path.strip_prefix(prefix),+Ok(Path::new(%22haha/foo.txt%22)));%0A%7D&amp;edition=2021">Run</a>
+"string">"haha/foo.txt"</span>)));</code></pre>
               </div>
             </div>
           </details>
@@ -684,9 +659,7 @@ path.as_mut_os_str().make_ascii_lowercase();
 </span><span class="macro">assert!</span>(!path.starts_with(<span class="string">"/e"</span>));
 <span class="macro">assert!</span>(!path.starts_with(<span class="string">"/etc/passwd.txt"</span>));
 
-<span class="macro">assert!</span>(!Path::new(<span class="string">"/etc/foo.rs"</span>).starts_with(<span class=
-"string">"/etc/foo"</span>));</code></pre><a class="test-arrow" target="_blank" href=
-"https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::Path;%0A%0Alet+path+=+Path::new(%22/etc/passwd%22);%0A%0Aassert!(path.starts_with(%22/etc%22));%0Aassert!(path.starts_with(%22/etc/%22));%0Aassert!(path.starts_with(%22/etc/passwd%22));%0Aassert!(path.starts_with(%22/etc/passwd/%22));+//+extra+slash+is+okay%0Aassert!(path.starts_with(%22/etc/passwd///%22));+//+multiple+extra+slashes+are+okay%0A%0Aassert!(!path.starts_with(%22/e%22));%0Aassert!(!path.starts_with(%22/etc/passwd.txt%22));%0A%0Aassert!(!Path::new(%22/etc/foo.rs%22).starts_with(%22/etc/foo%22));%0A%7D&amp;edition=2021">Run</a>
+<span class="macro">assert!</span>(!Path::new(<span class="string">"/etc/foo.rs"</span>).starts_with(<span class="string">"/etc/foo"</span>));</code></pre>
               </div>
             </div>
           </details>
@@ -716,9 +689,7 @@ path.as_mut_os_str().make_ascii_lowercase();
 <span class="macro">assert!</span>(path.ends_with(<span class="string">"/etc/resolv.conf"</span>));
 
 <span class="macro">assert!</span>(!path.ends_with(<span class="string">"/resolv.conf"</span>));
-<span class="macro">assert!</span>(!path.ends_with(<span class="string">"conf"</span>)); <span class=
-"comment">// use .extension() instead</span></code></pre><a class="test-arrow" target="_blank" href=
-"https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::Path;%0A%0Alet+path+=+Path::new(%22/etc/resolv.conf%22);%0A%0Aassert!(path.ends_with(%22resolv.conf%22));%0Aassert!(path.ends_with(%22etc/resolv.conf%22));%0Aassert!(path.ends_with(%22/etc/resolv.conf%22));%0A%0Aassert!(!path.ends_with(%22/resolv.conf%22));%0Aassert!(!path.ends_with(%22conf%22));+//+use+.extension()+instead%0A%7D&amp;edition=2021">Run</a>
+<span class="macro">assert!</span>(!path.ends_with(<span class="string">"conf"</span>)); <span class="comment">// use .extension() instead</span></code></pre>
               </div>
             </div>
           </details>
@@ -749,8 +720,7 @@ path.as_mut_os_str().make_ascii_lowercase();
 
 <span class="macro">assert_eq!</span>(<span class="string">"foo"</span>, Path::new(<span class="string">"foo.rs"</span>).file_stem().unwrap());
 <span class="macro">assert_eq!</span>(<span class="string">"foo.tar"</span>, Path::new(<span class=
-"string">"foo.tar.gz"</span>).file_stem().unwrap());</code></pre><a class="test-arrow" target="_blank" href=
-"https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::Path;%0A%0Aassert_eq!(%22foo%22,+Path::new(%22foo.rs%22).file_stem().unwrap());%0Aassert_eq!(%22foo.tar%22,+Path::new(%22foo.tar.gz%22).file_stem().unwrap());%0A%7D&amp;edition=2021">Run</a>
+"string">"foo.tar.gz"</span>).file_stem().unwrap());</code></pre>
               </div>
               <h5 id="see-also"><a href="#see-also">See Also</a></h5>
               <p>This method is similar to <a href="https://doc.rust-lang.org/1.76.0/std/path/struct.Path.html#method.file_prefix" title=
@@ -788,8 +758,7 @@ path.as_mut_os_str().make_ascii_lowercase();
 
 <span class="macro">assert_eq!</span>(<span class="string">"foo"</span>, Path::new(<span class="string">"foo.rs"</span>).file_prefix().unwrap());
 <span class="macro">assert_eq!</span>(<span class="string">"foo"</span>, Path::new(<span class=
-"string">"foo.tar.gz"</span>).file_prefix().unwrap());</code></pre><a class="test-arrow" target="_blank" href=
-"https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0A%23!%5Bfeature(path_file_prefix)%5D%0Afn+main()+%7B%0Ause+std::path::Path;%0A%0Aassert_eq!(%22foo%22,+Path::new(%22foo.rs%22).file_prefix().unwrap());%0Aassert_eq!(%22foo%22,+Path::new(%22foo.tar.gz%22).file_prefix().unwrap());%0A%7D&amp;version=nightly&amp;edition=2021">Run</a>
+"string">"foo.tar.gz"</span>).file_prefix().unwrap());</code></pre>
               </div>
               <h5 id="see-also-1"><a href="#see-also-1">See Also</a></h5>
               <p>This method is similar to <a href="https://doc.rust-lang.org/1.76.0/std/path/struct.Path.html#method.file_stem" title=
@@ -830,9 +799,7 @@ path.as_mut_os_str().make_ascii_lowercase();
                 <pre class="rust rust-example-rendered"><code><span class="kw">use </span>std::path::Path;
 
 <span class="macro">assert_eq!</span>(<span class="string">"rs"</span>, Path::new(<span class="string">"foo.rs"</span>).extension().unwrap());
-<span class="macro">assert_eq!</span>(<span class="string">"gz"</span>, Path::new(<span class=
-"string">"foo.tar.gz"</span>).extension().unwrap());</code></pre><a class="test-arrow" target="_blank" href=
-"https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::Path;%0A%0Aassert_eq!(%22rs%22,+Path::new(%22foo.rs%22).extension().unwrap());%0Aassert_eq!(%22gz%22,+Path::new(%22foo.tar.gz%22).extension().unwrap());%0A%7D&amp;edition=2021">Run</a>
+<span class="macro">assert_eq!</span>(<span class="string">"gz"</span>, Path::new(<span class="string">"foo.tar.gz"</span>).extension().unwrap());</code></pre>
               </div>
             </div>
           </details>
@@ -861,8 +828,7 @@ path.as_mut_os_str().make_ascii_lowercase();
 <span class="macro">assert_eq!</span>(Path::new(<span class="string">"/etc"</span>).join(<span class="string">"passwd"</span>), PathBuf::from(<span class=
 "string">"/etc/passwd"</span>));
 <span class="macro">assert_eq!</span>(Path::new(<span class="string">"/etc"</span>).join(<span class="string">"/bin/sh"</span>), PathBuf::from(<span class=
-"string">"/bin/sh"</span>));</code></pre><a class="test-arrow" target="_blank" href=
-"https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::%7BPath,+PathBuf%7D;%0A%0Aassert_eq!(Path::new(%22/etc%22).join(%22passwd%22),+PathBuf::from(%22/etc/passwd%22));%0Aassert_eq!(Path::new(%22/etc%22).join(%22/bin/sh%22),+PathBuf::from(%22/bin/sh%22));%0A%7D&amp;edition=2021">Run</a>
+"string">"/bin/sh"</span>));</code></pre>
               </div>
             </div>
           </details>
@@ -892,9 +858,7 @@ path.as_mut_os_str().make_ascii_lowercase();
 <span class="macro">assert_eq!</span>(path.with_file_name(<span class="string">"bar.txt"</span>), PathBuf::from(<span class="string">"/tmp/bar.txt"</span>));
 
 <span class="kw">let </span>path = Path::new(<span class="string">"/tmp"</span>);
-<span class="macro">assert_eq!</span>(path.with_file_name(<span class="string">"var"</span>), PathBuf::from(<span class=
-"string">"/var"</span>));</code></pre><a class="test-arrow" target="_blank" href=
-"https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::%7BPath,+PathBuf%7D;%0A%0Alet+path+=+Path::new(%22/tmp/foo.png%22);%0Aassert_eq!(path.with_file_name(%22bar%22),+PathBuf::from(%22/tmp/bar%22));%0Aassert_eq!(path.with_file_name(%22bar.txt%22),+PathBuf::from(%22/tmp/bar.txt%22));%0A%0Alet+path+=+Path::new(%22/tmp%22);%0Aassert_eq!(path.with_file_name(%22var%22),+PathBuf::from(%22/var%22));%0A%7D&amp;edition=2021">Run</a>
+<span class="macro">assert_eq!</span>(path.with_file_name(<span class="string">"var"</span>), PathBuf::from(<span class="string">"/var"</span>));</code></pre>
               </div>
             </div>
           </details>
@@ -926,8 +890,7 @@ path.as_mut_os_str().make_ascii_lowercase();
 <span class="macro">assert_eq!</span>(path.with_extension(<span class="string">""</span>), PathBuf::from(<span class="string">"foo.tar"</span>));
 <span class="macro">assert_eq!</span>(path.with_extension(<span class="string">"xz"</span>), PathBuf::from(<span class="string">"foo.tar.xz"</span>));
 <span class="macro">assert_eq!</span>(path.with_extension(<span class="string">""</span>).with_extension(<span class=
-"string">"txt"</span>), PathBuf::from(<span class="string">"foo.txt"</span>));</code></pre><a class="test-arrow" target="_blank" href=
-"https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::%7BPath,+PathBuf%7D;%0A%0Alet+path+=+Path::new(%22foo.rs%22);%0Aassert_eq!(path.with_extension(%22txt%22),+PathBuf::from(%22foo.txt%22));%0A%0Alet+path+=+Path::new(%22foo.tar.gz%22);%0Aassert_eq!(path.with_extension(%22%22),+PathBuf::from(%22foo.tar%22));%0Aassert_eq!(path.with_extension(%22xz%22),+PathBuf::from(%22foo.tar.xz%22));%0Aassert_eq!(path.with_extension(%22%22).with_extension(%22txt%22),+PathBuf::from(%22foo.txt%22));%0A%7D&amp;edition=2021">Run</a>
+"string">"txt"</span>), PathBuf::from(<span class="string">"foo.txt"</span>));</code></pre>
               </div>
             </div>
           </details>
@@ -970,9 +933,7 @@ path.as_mut_os_str().make_ascii_lowercase();
 "string">"tmp"</span>))));
 <span class="macro">assert_eq!</span>(components.next(), <span class="prelude-val">Some</span>(Component::Normal(OsStr::new(<span class=
 "string">"foo.txt"</span>))));
-<span class="macro">assert_eq!</span>(components.next(), <span class="prelude-val">None</span>)</code></pre><a class="test-arrow" target="_blank"
-                href=
-                "https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::%7BPath,+Component%7D;%0Ause+std::ffi::OsStr;%0A%0Alet+mut+components+=+Path::new(%22/tmp/foo.txt%22).components();%0A%0Aassert_eq!(components.next(),+Some(Component::RootDir));%0Aassert_eq!(components.next(),+Some(Component::Normal(OsStr::new(%22tmp%22))));%0Aassert_eq!(components.next(),+Some(Component::Normal(OsStr::new(%22foo.txt%22))));%0Aassert_eq!(components.next(),+None)%0A%7D&amp;edition=2021">Run</a>
+<span class="macro">assert_eq!</span>(components.next(), <span class="prelude-val">None</span>)</code></pre>
               </div>
             </div>
           </details>
@@ -999,8 +960,7 @@ path.as_mut_os_str().make_ascii_lowercase();
 "kw-2">&</span>path::MAIN_SEPARATOR.to_string())));
 <span class="macro">assert_eq!</span>(it.next(), <span class="prelude-val">Some</span>(OsStr::new(<span class="string">"tmp"</span>)));
 <span class="macro">assert_eq!</span>(it.next(), <span class="prelude-val">Some</span>(OsStr::new(<span class="string">"foo.txt"</span>)));
-<span class="macro">assert_eq!</span>(it.next(), <span class="prelude-val">None</span>)</code></pre><a class="test-arrow" target="_blank" href=
-"https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::%7Bself,+Path%7D;%0Ause+std::ffi::OsStr;%0A%0Alet+mut+it+=+Path::new(%22/tmp/foo.txt%22).iter();%0Aassert_eq!(it.next(),+Some(OsStr::new(%26path::MAIN_SEPARATOR.to_string())));%0Aassert_eq!(it.next(),+Some(OsStr::new(%22tmp%22)));%0Aassert_eq!(it.next(),+Some(OsStr::new(%22foo.txt%22)));%0Aassert_eq!(it.next(),+None)%0A%7D&amp;edition=2021">Run</a>
+<span class="macro">assert_eq!</span>(it.next(), <span class="prelude-val">None</span>)</code></pre>
               </div>
             </div>
           </details>
@@ -1022,8 +982,7 @@ path.as_mut_os_str().make_ascii_lowercase();
 
 <span class="kw">let </span>path = Path::new(<span class="string">"/tmp/foo.rs"</span>);
 
-<span class="macro">println!</span>(<span class="string">"{}"</span>, path.display());</code></pre><a class="test-arrow" target="_blank" href=
-"https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::Path;%0A%0Alet+path+=+Path::new(%22/tmp/foo.rs%22);%0A%0Aprintln!(%22%7B%7D%22,+path.display());%0A%7D&amp;edition=2021">Run</a>
+<span class="macro">println!</span>(<span class="string">"{}"</span>, path.display());</code></pre>
               </div>
             </div>
           </details>
@@ -1047,9 +1006,7 @@ path.as_mut_os_str().make_ascii_lowercase();
 
 <span class="kw">let </span>path = Path::new(<span class="string">"/Minas/tirith"</span>);
 <span class="kw">let </span>metadata = path.metadata().expect(<span class="string">"metadata call failed"</span>);
-<span class="macro">println!</span>(<span class="string">"{:?}"</span>, metadata.file_type());</code></pre><a class="test-arrow" target="_blank"
-                href=
-                "https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::Path;%0A%0Alet+path+=+Path::new(%22/Minas/tirith%22);%0Alet+metadata+=+path.metadata().expect(%22metadata+call+failed%22);%0Aprintln!(%22%7B:?%7D%22,+metadata.file_type());%0A%7D&amp;edition=2021">Run</a>
+<span class="macro">println!</span>(<span class="string">"{:?}"</span>, metadata.file_type());</code></pre>
               </div>
             </div>
           </details>
@@ -1072,9 +1029,7 @@ path.as_mut_os_str().make_ascii_lowercase();
 
 <span class="kw">let </span>path = Path::new(<span class="string">"/Minas/tirith"</span>);
 <span class="kw">let </span>metadata = path.symlink_metadata().expect(<span class="string">"symlink_metadata call failed"</span>);
-<span class="macro">println!</span>(<span class="string">"{:?}"</span>, metadata.file_type());</code></pre><a class="test-arrow" target="_blank"
-                href=
-                "https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::Path;%0A%0Alet+path+=+Path::new(%22/Minas/tirith%22);%0Alet+metadata+=+path.symlink_metadata().expect(%22symlink_metadata+call+failed%22);%0Aprintln!(%22%7B:?%7D%22,+metadata.file_type());%0A%7D&amp;edition=2021">Run</a>
+<span class="macro">println!</span>(<span class="string">"{:?}"</span>, metadata.file_type());</code></pre>
               </div>
             </div>
           </details>
@@ -1096,9 +1051,7 @@ path.as_mut_os_str().make_ascii_lowercase();
                 <pre class="rust rust-example-rendered"><code><span class="kw">use </span>std::path::{Path, PathBuf};
 
 <span class="kw">let </span>path = Path::new(<span class="string">"/foo/test/../test/bar.rs"</span>);
-<span class="macro">assert_eq!</span>(path.canonicalize().unwrap(), PathBuf::from(<span class=
-                "string">"/foo/test/bar.rs"</span>));</code></pre><a class="test-arrow" target="_blank" href=
-                "https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::%7BPath,+PathBuf%7D;%0A%0Alet+path+=+Path::new(%22/foo/test/../test/bar.rs%22);%0Aassert_eq!(path.canonicalize().unwrap(),+PathBuf::from(%22/foo/test/bar.rs%22));%0A%7D&amp;edition=2021">Run</a>
+<span class="macro">assert_eq!</span>(path.canonicalize().unwrap(), PathBuf::from(<span class="string">"/foo/test/bar.rs"</span>));</code></pre>
               </div>
             </div>
           </details>
@@ -1120,9 +1073,7 @@ path.as_mut_os_str().make_ascii_lowercase();
                 <pre class="rust rust-example-rendered"><code><span class="kw">use </span>std::path::Path;
 
 <span class="kw">let </span>path = Path::new(<span class="string">"/laputa/sky_castle.rs"</span>);
-<span class="kw">let </span>path_link = path.read_link().expect(<span class="string">"read_link call failed"</span>);</code></pre><a class="test-arrow"
-                target="_blank" href=
-                "https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::Path;%0A%0Alet+path+=+Path::new(%22/laputa/sky_castle.rs%22);%0Alet+path_link+=+path.read_link().expect(%22read_link+call+failed%22);%0A%7D&amp;edition=2021">Run</a>
+<span class="kw">let </span>path_link = path.read_link().expect(<span class="string">"read_link call failed"</span>);</code></pre>
               </div>
             </div>
           </details>
@@ -1151,8 +1102,7 @@ path.as_mut_os_str().make_ascii_lowercase();
     <span class="kw">if let </span><span class="prelude-val">Ok</span>(entry) = entry {
         <span class="macro">println!</span>(<span class="string">"{:?}"</span>, entry.path());
     }
-}</code></pre><a class="test-arrow" target="_blank" href=
-"https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::Path;%0A%0Alet+path+=+Path::new(%22/laputa%22);%0Afor+entry+in+path.read_dir().expect(%22read_dir+call+failed%22)+%7B%0A++++if+let+Ok(entry)+=+entry+%7B%0A++++++++println!(%22%7B:?%7D%22,+entry.path());%0A++++%7D%0A%7D%0A%7D&amp;edition=2021">Run</a>
+}</code></pre>
               </div>
             </div>
           </details>
@@ -1174,9 +1124,7 @@ path.as_mut_os_str().make_ascii_lowercase();
               <h5 id="examples-29"><a href="#examples-29">Examples</a></h5>
               <div class="example-wrap">
                 <pre class="rust rust-example-rendered"><code><span class="kw">use </span>std::path::Path;
-<span class="macro">assert!</span>(!Path::new(<span class="string">"does_not_exist.txt"</span>).exists());</code></pre><a class="test-arrow" target="_blank"
-                href=
-                "https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::Path;%0Aassert!(!Path::new(%22does_not_exist.txt%22).exists());%0A%7D&amp;edition=2021">Run</a>
+<span class="macro">assert!</span>(!Path::new(<span class="string">"does_not_exist.txt"</span>).exists());</code></pre>
               </div>
               <h5 id="see-also-2"><a href="#see-also-2">See Also</a></h5>
               <p>This is a convenience function that coerces errors to false. If you want to check errors, call <a href=
@@ -1209,9 +1157,7 @@ path.as_mut_os_str().make_ascii_lowercase();
                 <pre class="rust rust-example-rendered"><code><span class="kw">use </span>std::path::Path;
 <span class="macro">assert!</span>(!Path::new(<span class="string">"does_not_exist.txt"</span>).try_exists().expect(<span class=
 "string">"Can't check existence of file does_not_exist.txt"</span>));
-<span class="macro">assert!</span>(Path::new(<span class="string">"/root/secret_file.txt"</span>).try_exists().is_err());</code></pre><a class="test-arrow"
-                target="_blank" href=
-                "https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::Path;%0Aassert!(!Path::new(%22does_not_exist.txt%22).try_exists().expect(%22Can't+check+existence+of+file+does_not_exist.txt%22));%0Aassert!(Path::new(%22/root/secret_file.txt%22).try_exists().is_err());%0A%7D&amp;edition=2021">Run</a>
+<span class="macro">assert!</span>(Path::new(<span class="string">"/root/secret_file.txt"</span>).try_exists().is_err());</code></pre>
               </div>
             </div>
           </details>
@@ -1231,9 +1177,7 @@ path.as_mut_os_str().make_ascii_lowercase();
               <div class="example-wrap">
                 <pre class="rust rust-example-rendered"><code><span class="kw">use </span>std::path::Path;
 <span class="macro">assert_eq!</span>(Path::new(<span class="string">"./is_a_directory/"</span>).is_file(), <span class="bool-val">false</span>);
-<span class="macro">assert_eq!</span>(Path::new(<span class="string">"a_file.txt"</span>).is_file(), <span class=
-                "bool-val">true</span>);</code></pre><a class="test-arrow" target="_blank" href=
-                "https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::Path;%0Aassert_eq!(Path::new(%22./is_a_directory/%22).is_file(),+false);%0Aassert_eq!(Path::new(%22a_file.txt%22).is_file(),+true);%0A%7D&amp;edition=2021">Run</a>
+<span class="macro">assert_eq!</span>(Path::new(<span class="string">"a_file.txt"</span>).is_file(), <span class="bool-val">true</span>);</code></pre>
               </div>
               <h5 id="see-also-3"><a href="#see-also-3">See Also</a></h5>
               <p>This is a convenience function that coerces errors to false. If you want to check errors, call <a href=
@@ -1266,9 +1210,7 @@ path.as_mut_os_str().make_ascii_lowercase();
               <div class="example-wrap">
                 <pre class="rust rust-example-rendered"><code><span class="kw">use </span>std::path::Path;
 <span class="macro">assert_eq!</span>(Path::new(<span class="string">"./is_a_directory/"</span>).is_dir(), <span class="bool-val">true</span>);
-<span class="macro">assert_eq!</span>(Path::new(<span class="string">"a_file.txt"</span>).is_dir(), <span class=
-                "bool-val">false</span>);</code></pre><a class="test-arrow" target="_blank" href=
-                "https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::Path;%0Aassert_eq!(Path::new(%22./is_a_directory/%22).is_dir(),+true);%0Aassert_eq!(Path::new(%22a_file.txt%22).is_dir(),+false);%0A%7D&amp;edition=2021">Run</a>
+<span class="macro">assert_eq!</span>(Path::new(<span class="string">"a_file.txt"</span>).is_dir(), <span class="bool-val">false</span>);</code></pre>
               </div>
               <h5 id="see-also-4"><a href="#see-also-4">See Also</a></h5>
               <p>This is a convenience function that coerces errors to false. If you want to check errors, call <a href=
@@ -1298,9 +1240,7 @@ path.as_mut_os_str().make_ascii_lowercase();
 <span class="kw">let </span>link_path = Path::new(<span class="string">"link"</span>);
 symlink(<span class="string">"/origin_does_not_exist/"</span>, link_path).unwrap();
 <span class="macro">assert_eq!</span>(link_path.is_symlink(), <span class="bool-val">true</span>);
-<span class="macro">assert_eq!</span>(link_path.exists(), <span class="bool-val">false</span>);</code></pre><a class="test-arrow" target="_blank"
-                href=
-                "https://play.rust-lang.org/?code=%23!%5Ballow(unused)%5D%0Afn+main()+%7B%0Ause+std::path::Path;%0Ause+std::os::unix::fs::symlink;%0A%0Alet+link_path+=+Path::new(%22link%22);%0Asymlink(%22/origin_does_not_exist/%22,+link_path).unwrap();%0Aassert_eq!(link_path.is_symlink(),+true);%0Aassert_eq!(link_path.exists(),+false);%0A%7D&amp;edition=2021">Run</a>
+<span class="macro">assert_eq!</span>(link_path.exists(), <span class="bool-val">false</span>);</code></pre>
               </div>
               <h5 id="see-also-5"><a href="#see-also-5">See Also</a></h5>
               <p>This is a convenience function that coerces errors to false. If you want to check errors, call <a href=
@@ -1316,7 +1256,7 @@ symlink(<span class="string">"/origin_does_not_exist/"</span>, link_path).unwrap
         <div id="trait-implementations-list">
           <details class="toggle implementors-toggle" open="">
             <section id="impl-__Deref-for-PATH_GITIGNORE" class="impl">
-              <a class="src rightside" href="../src/cargo_auto/main.rs.html#28-45">source</a><a href="#impl-__Deref-for-PATH_GITIGNORE" class="anchor">§</a>
+              <a class="src rightside" href="../src/cargo_auto/main.rs.html#270-287">source</a><a href="#impl-__Deref-for-PATH_GITIGNORE" class="anchor">§</a>
               <h3 class="code-header">impl <a class="trait" href="https://doc.rust-lang.org/1.76.0/core/ops/deref/trait.Deref.html" title=
               "trait core::ops::deref::Deref">Deref</a> for <a class="struct" href="struct.PATH_GITIGNORE.html" title=
               "struct cargo_auto::PATH_GITIGNORE">PATH_GITIGNORE</a></h3>
@@ -1335,7 +1275,7 @@ symlink(<span class="string">"/origin_does_not_exist/"</span>, link_path).unwrap
               </details>
               <details class="toggle method-toggle" open="">
                 <section id="method.deref" class="method trait-impl">
-                  <a class="src rightside" href="../src/cargo_auto/main.rs.html#28-45">source</a><a href="#method.deref" class="anchor">§</a>
+                  <a class="src rightside" href="../src/cargo_auto/main.rs.html#270-287">source</a><a href="#method.deref" class="anchor">§</a>
                   <h4 class="code-header">fn <a href="https://doc.rust-lang.org/1.76.0/core/ops/deref/trait.Deref.html#tymethod.deref" class=
                   "fn">deref</a>(&amp;self) -&gt; &<a class="struct" href="https://doc.rust-lang.org/1.76.0/std/path/struct.PathBuf.html" title=
                   "struct std::path::PathBuf">PathBuf</a></h4>
@@ -1347,7 +1287,7 @@ symlink(<span class="string">"/origin_does_not_exist/"</span>, link_path).unwrap
             </div>
           </details>
           <section id="impl-LazyStatic-for-PATH_GITIGNORE" class="impl">
-            <a class="src rightside" href="../src/cargo_auto/main.rs.html#28-45">source</a><a href="#impl-LazyStatic-for-PATH_GITIGNORE" class="anchor">§</a>
+            <a class="src rightside" href="../src/cargo_auto/main.rs.html#270-287">source</a><a href="#impl-LazyStatic-for-PATH_GITIGNORE" class="anchor">§</a>
             <h3 class="code-header">impl <a class="trait" href="https://docs.rs/lazy_static/1.4.0/lazy_static/trait.LazyStatic.html" title=
             "trait lazy_static::LazyStatic">LazyStatic</a> for <a class="struct" href="struct.PATH_GITIGNORE.html" title=
             "struct cargo_auto::PATH_GITIGNORE">PATH_GITIGNORE</a></h3>
