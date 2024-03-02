@@ -1,11 +1,14 @@
 // cargo_auto_template_new_cli/src/lib.rs
+
 // The `main.rs` has all the stdin and stdout.
 // The `lib.rs` must be in/out agnostic. That is the responsibility of the `main.rs`
 // The `lib.rs` does not have any real code. All the code is in modules in separate files.
 // The `lib.rs` has just the list of modules, it publishes module's functions or class for the caller
 // and it has some global stuff like the Error enum.
 
-#![doc=include_str!("../README.md")]
+// region: auto_md_to_doc_comments include README.md A //!
+
+// endregion: auto_md_to_doc_comments include README.md A //!
 
 // access to modules
 mod hello_mod;

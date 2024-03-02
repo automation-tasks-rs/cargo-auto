@@ -3,7 +3,9 @@
 // and calls into main_mod.rs.
 // So the structure of the project modules can be similar to a binary CLI executable.
 
-#![doc=include_str!("../README.md")]
+// region: auto_md_to_doc_comments include README.md A //!
+
+// endregion: auto_md_to_doc_comments include README.md A //!
 
 use wasm_bindgen::prelude::*;
 
