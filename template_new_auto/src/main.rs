@@ -210,8 +210,8 @@ fn task_test() {
     println!(
 r#"
     {YELLOW}After `cargo auto test`. If ok then {RESET}
+    {YELLOW}(commit message is mandatory){RESET}
 {GREEN}cargo auto commit_and_push "message"{RESET}
-    {YELLOW}with mandatory commit message{RESET}
 "#
     );
 }
@@ -219,7 +219,7 @@ r#"
 /// commit and push
 fn task_commit_and_push(arg_2: Option<String>) {
     let Some(message) = arg_2 else {
-        eprintln!("{RED}Error: Message for commit is mandatory. Exiting.{RESET}");
+        eprintln!("{RED}Error: Message for commit is mandatory. Exiting...RESET}");
         // early exit
         return;
     };

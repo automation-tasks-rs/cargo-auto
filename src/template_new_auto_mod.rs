@@ -43,7 +43,7 @@ pub fn compile_project_automation_tasks_rs() {
     // build in other directory (not in working current directory)
     // cargo build --manifest-path=dir/Cargo.toml
     if !crate::utils_mod::run_shell_command_success("cargo build --manifest-path=automation_tasks_rs/Cargo.toml") {
-        panic!("{RED}Cannot compile automation_tasks_rs. Exiting.\nCorrect automation_tasks_rs/main.rs and try again.{RESET}");
+        panic!("{RED}Cannot compile automation_tasks_rs. Exiting...{RESET}");
     }
 }
 
@@ -140,7 +140,7 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "1.3.63""###,
+cargo_auto_lib = "1.4.4""###,
     });
     vec_file.push(crate::FileItem {
         file_name: "src/main.rs",
@@ -356,8 +356,8 @@ fn task_test() {
     println!(
 r#"
     {YELLOW}After `cargo auto test`. If ok then {RESET}
+    {YELLOW}(commit message is mandatory){RESET}
 {GREEN}cargo auto commit_and_push "message"{RESET}
-    {YELLOW}with mandatory commit message{RESET}
 "#
     );
 }
@@ -365,7 +365,7 @@ r#"
 /// commit and push
 fn task_commit_and_push(arg_2: Option<String>) {
     let Some(message) = arg_2 else {
-        eprintln!("{RED}Error: Message for commit is mandatory. Exiting.{RESET}");
+        eprintln!("{RED}Error: Message for commit is mandatory. Exiting...{RESET}");
         // early exit
         return;
     };
