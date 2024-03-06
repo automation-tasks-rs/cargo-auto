@@ -5,7 +5,7 @@ authors = ["bestia.dev"]
 homepage = "https://bestia.dev"
 edition = "2021"
 description = "Automation tasks coded in Rust language for the workflow of Rust projects"
-repository = "https://github.com/bestia-dev/cargo-auto"
+repository = "https://github.com/automation-tasks-rs/cargo-auto"
 readme = "README.md"
 license = "MIT"
 # Keyword must be only one word: lowercase letters, hyphens(-) or numbers, less then 35 characters.
