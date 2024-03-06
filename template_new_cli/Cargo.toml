@@ -7,7 +7,7 @@ homepage = "https://bestia.dev"
 edition = "2021"
 license = "MIT"
 readme = "README.md"
-repository = "https://github.com/bestia-dev/cargo_auto_template_new_cli"
+repository = "https://github.com/automation-tasks-rs/cargo_auto_template_new_cli"
 # Keyword must be only one word: lowercase letters, hyphens(-) or numbers, less then 35 characters.
 keywords = ["maintained", "work-in-progress", "rustlang"]
 categories = ["command-line-interface"]

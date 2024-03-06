@@ -14,15 +14,17 @@
 
 [//]: # (auto_cargo_toml_to_md end)
 
- ![logo](https://raw.githubusercontent.com/bestia-dev/cargo-auto/main/images/logo/logo_cargo_auto.svg)
+ ![logo](https://raw.githubusercontent.com/automation-tasks-rs/cargo-auto/main/images/logo/logo_cargo_auto.svg)
+ cargo-auto is part of [automation_tasks_rs](https://github.com/automation-tasks-rs) project
 
  [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
  [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)
  [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/cargo-auto.svg)](https://web.crev.dev/rust-reviews/crate/cargo-auto/)
- 
-[![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/)
+ [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/)
+
  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/blob/master/LICENSE)
  [![Rust](https://github.com/automation-tasks-rs/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+ [![Newest docs](https://img.shields.io/badge/newest_docs-brown.svg)](https://bestia-dev.github.io/cargo-auto/cargo_auto/index.html)
  ![cargo-auto](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 
 [//]: # (auto_lines_of_code start)

@@ -5,25 +5,25 @@
 [//]: # (auto_cargo_toml_to_md start)
 
 **Basic Rust project template for CLI and library, more than just `cargo new hello`**  
-***version: 1.0.4 date: 2024-04-21 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo_auto_template_new_cli)***  
+***version: 1.0.4 date: 2024-04-21 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli)***  
 
 [//]: # (auto_cargo_toml_to_md end)
 
-  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo_auto_template_new_cli/blob/main/LICENSE)
-  [![Rust](https://github.com/bestia-dev/cargo_auto_template_new_cli/workflows/RustAction/badge.svg)](https://github.com/bestia-dev/cargo_auto_template_new_cli/)
+  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/blob/main/LICENSE)
+  [![Rust](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/workflows/RustAction/badge.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/)
 
 [//]: # (auto_lines_of_code start)
 
-[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-89-green.svg)](https://github.com/bestia-dev/cargo-auto/)
-[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-13-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
-[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-36-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
-[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-19-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-30-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
+[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-89-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-13-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-36-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-19-yellow.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-30-orange.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 
 [//]: # (auto_lines_of_code end)
 
 Hashtags: #rustlang #tutorial #cli
-My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
+My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/automation-tasks-rs/tutorials_rust_wasm).
 
 ## This template
 

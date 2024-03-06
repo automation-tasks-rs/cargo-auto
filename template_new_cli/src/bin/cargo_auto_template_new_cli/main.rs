@@ -58,7 +58,7 @@ fn print_help() {
     {YELLOW}This command should return an error:{RESET}
 {GREEN}cargo_auto_template_new_cli upper WORLD{RESET}
   
-    {YELLOW}© 2024 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
+    {YELLOW}© 2024 bestia.dev  MIT License github.com/automation-tasks-rs/cargo-auto{RESET}
 "#
     );
 }

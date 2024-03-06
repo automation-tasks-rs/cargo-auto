@@ -219,7 +219,7 @@ fn print_help() {
 {GREEN}cargo auto test{RESET} - {YELLOW}runs all the tests{RESET}
 {GREEN}cargo auto commit_and_push "message"{RESET} - {YELLOW}commits with message and push with mandatory message{RESET}
     {YELLOW}It is preferred to use SSH for git push to GitHub.{RESET}
-    {YELLOW}<https://github.com/bestia-dev/docker_rust_development/blob/main/ssh_easy.md>{YELLOW}
+    {YELLOW}<https://github.com/automation-tasks-rs/docker_rust_development/blob/main/ssh_easy.md>{YELLOW}
     {YELLOW}On the very first commit, this task will initialize a new local git repository and create a remote GitHub repo.{RESET}
     {YELLOW}In that case the task needs the Personal Access Token Classic from <https://github.com/settings/tokens>{RESET}
 {GREEN}cargo auto publish_to_crates_io{RESET} - {YELLOW}publish to crates.io, git tag{RESET}
@@ -228,7 +228,7 @@ fn print_help() {
 {GREEN}cargo auto github_new_release{RESET} - {YELLOW}creates new release on github{RESET}
     {YELLOW}This task needs the Personal Access Token Classic from <https://github.com/settings/tokens>{RESET}
 
-    {YELLOW}© 2024 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
+    {YELLOW}© 2024 bestia.dev  MIT License github.com/automation-tasks-rs/cargo-auto{RESET}
 "#
     );
     print_examples_cmd();

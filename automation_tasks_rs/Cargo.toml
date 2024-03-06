@@ -4,7 +4,7 @@ version = "1.0.0"
 authors = ["bestia.dev"]
 homepage = "https://bestia.dev"
 edition = "2021"
-description = "cargo auto - automation tasks written in Rust language"
+description = "Automation tasks coded in Rust language for the workflow of Rust projects"
 publish = false
 
 [dependencies]

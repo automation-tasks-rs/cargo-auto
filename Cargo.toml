@@ -9,7 +9,7 @@ repository = "https://github.com/automation-tasks-rs/cargo-auto"
 readme = "README.md"
 license = "MIT"
 # Keyword must be only one word: lowercase letters, hyphens(-) or numbers, less then 35 characters.
-keywords = ["maintained", "ready-for-use", "rustlang", "make"]
+keywords = ["maintained", "ready-for-use", "rustlang","automation","workflow"]
 categories = ["command-line-interface","development-tools::build-utils","development-tools::cargo-plugins"]
 # publish as a cargo tool. Only this files.
 publish = true

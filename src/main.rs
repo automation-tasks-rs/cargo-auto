@@ -1,37 +1,38 @@
 // cargo-auto/src/main.rs
 
 // logo for docs.rs in png
-#![doc(html_logo_url = "https://github.com/bestia-dev/cargo-auto/raw/main/images/logo/logo_cargo_auto.svg")]
+#![doc(html_logo_url = "https://github.com/automation-tasks-rs/cargo-auto/raw/main/images/logo/logo_cargo_auto.svg")]
+
 // region: auto_md_to_doc_comments include README.md A //!
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks coded in Rust language for the workflow of Rust projects**  
-//! ***version: 2024.302.2122 date: 2024-03-02 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***
+//! ***version: 2024.302.2122 date: 2024-03-02 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
 //!
 //!  ![maintained](https://img.shields.io/badge/maintained-green)
 //!  ![ready-for-use](https://img.shields.io/badge/ready_for_use-green)
 //!  ![rustlang](https://img.shields.io/badge/rustlang-orange)
 //!  ![make](https://img.shields.io/badge/make-orange)
 //!
-//!  ![logo](https://raw.githubusercontent.com/bestia-dev/cargo-auto/main/images/logo/logo_cargo_auto.svg)
+//!  ![logo](https://raw.githubusercontent.com/automation-tasks-rs/cargo-auto/main/images/logo/logo_cargo_auto.svg)
 //!
 //!  [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
 //!  [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)
 //!  [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/cargo-auto.svg)](https://web.crev.dev/rust-reviews/crate/cargo-auto/)
 //!  
 //! [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/)
-//!  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo-auto/blob/master/LICENSE)
-//!  [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/bestia-dev/cargo-auto/)
+//!  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/blob/master/LICENSE)
+//!  [![Rust](https://github.com/automation-tasks-rs/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //!  ![cargo-auto](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-8992-green.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-218-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-417-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-7954-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-8992-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-218-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-417-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-7954-orange.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //!
 //! Hashtags: #rustlang #tutorial #buildtool #developmenttool #cli  
-//! My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
+//! My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/automation-tasks-rs/tutorials_rust_wasm).
 //!
 //! ## Try it
 //!
@@ -85,7 +86,7 @@
 //! This binary is super simple. It has only 1 trivial dependency: `lazy_static`.  
 //! The binary only reads the CLI arguments and runs the `automation_tasks_rs` binary with them. If needed it will compile `automation_tasks_rs` first.  
 //! The code-flow of the source code of `cargo-auto` is simple, fully commented, and straightforward to audit.  
-//! The source code is on [GitHub](https://github.com/bestia-dev/cargo-auto) with MIT open-source licensing.  
+//! The source code is on [GitHub](https://github.com/automation-tasks-rs/cargo-auto) with MIT open-source licensing.  
 //!
 //! ## bash auto-completion
 //!
@@ -216,20 +217,20 @@
 //! ## more complex tasks
 //!
 //! You can write more complex tasks in Rust language.  
-//! For example in this project I use automation to create GitHub Releases: <https://github.com/bestia-dev/dropbox_backup_to_external_disk>  
+//! For example in this project I use automation to create GitHub Releases: <https://github.com/automation-tasks-rs/dropbox_backup_to_external_disk>  
 //! Here is a pretty complex workspace with more sub-projects:  
-//! <https://github.com/bestia-dev/cargo_crev_reviews_workspace>  
+//! <https://github.com/automation-tasks-rs/cargo_crev_reviews_workspace>  
 //! There is no end to your imagination. If you write something that looks like it can help other developers, please share it with me and I will add it here.
 //!
 //! ## Development details
 //!
 //! Read the development details in a separate md file:  
-//! [DEVELOPMENT.md](https://github.com/bestia-dev/cargo-auto/blob/main/DEVELOPMENT.md)
+//! [DEVELOPMENT.md](https://github.com/automation-tasks-rs/cargo-auto/blob/main/DEVELOPMENT.md)
 //!
 //! ## Releases changelog
 //!
 //! Read the changelog in a separate md file:  
-//! [RELEASES.md](https://github.com/bestia-dev/cargo-auto/blob/main/RELEASES.md)
+//! [RELEASES.md](https://github.com/automation-tasks-rs/cargo-auto/blob/main/RELEASES.md)
 //!
 //! ## TODO
 //!

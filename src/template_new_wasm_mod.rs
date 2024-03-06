@@ -48,7 +48,7 @@ The library releases will be published on crates.io.
 The cargo-auto automation task will use the content of the section `## Unreleased` to create
 the GitHub release consistently with this file.  
 The ongoing changes that are not released, are visible in the git commits and github pull requests.  
-The TODO section is part of the [README.md](https://github.com/bestia-dev/cargo_auto_template_new_wasm).  
+The TODO section is part of the [README.md](https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm).  
 
 ## Unreleased
 
@@ -64,25 +64,25 @@ The TODO section is part of the [README.md](https://github.com/bestia-dev/cargo_
 [//]: # (auto_cargo_toml_to_md start)
 
 **template for a minimal wasm project for browser**  
-***version: 0.0.1 date: 2024-02-21 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo_auto_template_new_wasm)***  
+***version: 0.0.1 date: 2024-02-21 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm)***  
 
 [//]: # (auto_cargo_toml_to_md end)
 
-  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/blob/master/LICENSE)
-  [![GitHubAction](https://github.com/bestia-dev/cargo_auto_template_new_wasm/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/)
+  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm/blob/master/LICENSE)
+  [![GitHubAction](https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm/)
 
 [//]: # (auto_lines_of_code start)
 
-[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-264-green.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/)
-[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-28-blue.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/)
-[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-69-purple.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/)
-[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/)
-[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-16-orange.svg)](https://github.com/bestia-dev/cargo_auto_template_new_wasm/)
+[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-264-green.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm/)
+[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-28-blue.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm/)
+[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-69-purple.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm/)
+[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm/)
+[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-16-orange.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm/)
 
 [//]: # (auto_lines_of_code end)
 
 Hashtags: #rustlang #tutorial #pwa #wasm #webassembly  
-My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
+My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/automation-tasks-rs/tutorials_rust_wasm).
 
 ## This template
 
@@ -134,7 +134,7 @@ So I can drink a free beer for your health :-)
       <title>cargo_auto_template_new_wasm</title>
       <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
       <meta name="Description" content="template for a minimal wasm project for browser">
-      <meta name="author" content="https://github.com/bestia-dev/cargo_auto_template_new_wasm">    
+      <meta name="author" content="https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm">    
       <link rel="stylesheet" href="css/basic_style.css">
       
 </head>
@@ -262,7 +262,7 @@ authors = ["bestia.dev"]
 homepage = "https://bestia.dev"
 edition = "2021"
 description = "template for a minimal wasm project for browser"
-repository = "https://github.com/bestia-dev/cargo_auto_template_new_wasm"
+repository = "https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm"
 readme = "README.md"
 license = "MIT"
 # Keyword must be only one word: lowercase letters, hyphens(-) or numbers, less then 35 characters.
@@ -589,7 +589,7 @@ fn print_help() {
     This command should return an error:
     http://localhost:4000/cargo_auto_template_new_wasm#upper/WORLD
 
-    © 2024 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
+    © 2024 bestia.dev  MIT License github.com/automation-tasks-rs/cargo-auto
 "#,
     );
 }
@@ -684,32 +684,32 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
 //! # cargo-auto  
 //!
 //! **cargo-auto - automation tasks coded in Rust language for the workflow of Rust projects**  
-//! ***version: 2024.302.2122 date: 2024-03-02 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***
+//! ***version: 2024.302.2122 date: 2024-03-02 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
 //!
 //!  ![maintained](https://img.shields.io/badge/maintained-green)
 //!  ![ready-for-use](https://img.shields.io/badge/ready_for_use-green)
 //!  ![rustlang](https://img.shields.io/badge/rustlang-orange)
 //!  ![make](https://img.shields.io/badge/make-orange)
 //!
-//!  ![logo](https://raw.githubusercontent.com/bestia-dev/cargo-auto/main/images/logo/logo_cargo_auto.svg)
+//!  ![logo](https://raw.githubusercontent.com/automation-tasks-rs/cargo-auto/main/images/logo/logo_cargo_auto.svg)
 //!
 //!  [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
 //!  [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)
 //!  [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/cargo-auto.svg)](https://web.crev.dev/rust-reviews/crate/cargo-auto/)
 //!  
 //! [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/)
-//!  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo-auto/blob/master/LICENSE)
-//!  [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/bestia-dev/cargo-auto/)
+//!  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/blob/master/LICENSE)
+//!  [![Rust](https://github.com/automation-tasks-rs/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //!  ![cargo-auto](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-8992-green.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-218-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-417-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-7954-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-8992-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-218-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-417-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-7954-orange.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //!
 //! Hashtags: #rustlang #tutorial #buildtool #developmenttool #cli  
-//! My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
+//! My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/automation-tasks-rs/tutorials_rust_wasm).
 //!
 //! ## Try it
 //!
@@ -763,7 +763,7 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
 //! This binary is super simple. It has only 1 trivial dependency: `lazy_static`.  
 //! The binary only reads the CLI arguments and runs the `automation_tasks_rs` binary with them. If needed it will compile `automation_tasks_rs` first.  
 //! The code-flow of the source code of `cargo-auto` is simple, fully commented, and straightforward to audit.  
-//! The source code is on [GitHub](https://github.com/bestia-dev/cargo-auto) with MIT open-source licensing.  
+//! The source code is on [GitHub](https://github.com/automation-tasks-rs/cargo-auto) with MIT open-source licensing.  
 //!
 //! ## bash auto-completion
 //!
@@ -894,20 +894,20 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
 //! ## more complex tasks
 //!
 //! You can write more complex tasks in Rust language.  
-//! For example in this project I use automation to create GitHub Releases: <https://github.com/bestia-dev/dropbox_backup_to_external_disk>  
+//! For example in this project I use automation to create GitHub Releases: <https://github.com/automation-tasks-rs/dropbox_backup_to_external_disk>  
 //! Here is a pretty complex workspace with more sub-projects:  
-//! <https://github.com/bestia-dev/cargo_crev_reviews_workspace>  
+//! <https://github.com/automation-tasks-rs/cargo_crev_reviews_workspace>  
 //! There is no end to your imagination. If you write something that looks like it can help other developers, please share it with me and I will add it here.
 //!
 //! ## Development details
 //!
 //! Read the development details in a separate md file:  
-//! [DEVELOPMENT.md](https://github.com/bestia-dev/cargo-auto/blob/main/DEVELOPMENT.md)
+//! [DEVELOPMENT.md](https://github.com/automation-tasks-rs/cargo-auto/blob/main/DEVELOPMENT.md)
 //!
 //! ## Releases changelog
 //!
 //! Read the changelog in a separate md file:  
-//! [RELEASES.md](https://github.com/bestia-dev/cargo-auto/blob/main/RELEASES.md)
+//! [RELEASES.md](https://github.com/automation-tasks-rs/cargo-auto/blob/main/RELEASES.md)
 //!
 //! ## TODO
 //!
@@ -1210,16 +1210,16 @@ fn print_help() {
 {GREEN}cargo auto test{RESET} - {YELLOW}runs all the tests{RESET}
 {GREEN}cargo auto commit_and_push "message"{RESET} - {YELLOW}commits with message and push with mandatory message{RESET}
     {YELLOW}It is preferred to use SSH for git push to GitHub.{RESET}
-    {YELLOW}<https://github.com/bestia-dev/docker_rust_development/blob/main/ssh_easy.md>{YELLOW}
+    {YELLOW}<https://github.com/automation-tasks-rs/docker_rust_development/blob/main/ssh_easy.md>{YELLOW}
     {YELLOW}On the very first commit, this task will initialize a new local git repository and create a remote GitHub repo.{RESET}
     {YELLOW}In that case the task needs the Personal Access Token Classic from <https://github.com/settings/tokens>{RESET}
 {GREEN}cargo auto publish_to_web - publish to web, git tag{RESET}
     {YELLOW}It is preferred to use SSH to publish to web and remotely manage the web server.{RESET}
-    {YELLOW}<https://github.com/bestia-dev/docker_rust_development/blob/main/ssh_easy.md>{YELLOW}
+    {YELLOW}<https://github.com/automation-tasks-rs/docker_rust_development/blob/main/ssh_easy.md>{YELLOW}
 {GREEN}cargo auto github_new_release{RESET} - {YELLOW}creates new release on github{RESET}
     {YELLOW}This task needs the Personal Access Token Classic from <https://github.com/settings/tokens>{RESET}
 
-    {YELLOW}© 2024 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
+    {YELLOW}© 2024 bestia.dev  MIT License github.com/automation-tasks-rs/cargo-auto{RESET}
 "#
     );
     print_examples_cmd();
@@ -3376,7 +3376,7 @@ dependencies = [
 
 ## CRDE - Containerized Rust Development Environment
 
-I recommend using the CRDE - Containerized Rust Development Environment to write Rust projects. Follow the instructions here <https://github.com/bestia-dev/docker_rust_development>.  
+I recommend using the CRDE - Containerized Rust Development Environment to write Rust projects. Follow the instructions here <https://github.com/automation-tasks-rs/docker_rust_development>.  
 
 It is an isolated development environment that will not mess with you system.
 It will work on Linux (tested on Debian) and inside WSL (Windows Subsystem for Linux).
@@ -3400,7 +3400,7 @@ cargo auto github_new_release
 ```
 
 Every task finishes with instructions how to proceed.  
-The [cargo-auto](https://github.com/bestia-dev/cargo-auto) and [dev_bestia_cargo_completion](https://github.com/bestia-dev/dev_bestia_cargo_completion) are already installed inside the CRDE container.
+The [cargo-auto](https://github.com/automation-tasks-rs/cargo-auto) and [dev_bestia_cargo_completion](https://github.com/automation-tasks-rs/dev_bestia_cargo_completion) are already installed inside the CRDE container.
 
 You can open the automation sub-project in VSCode and then code your own tasks in Rust.
 

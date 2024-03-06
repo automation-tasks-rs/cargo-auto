@@ -94,7 +94,7 @@ fn print_help() {
     This command should return an error:
     http://localhost:4000/cargo_auto_template_new_wasm#upper/WORLD
 
-    © 2024 bestia.dev  MIT License github.com/bestia-dev/cargo-auto
+    © 2024 bestia.dev  MIT License github.com/automation-tasks-rs/cargo-auto
 "#,
     );
 }

@@ -45,7 +45,7 @@ fn print_help_from_cargo_auto() {
 {GREEN}cargo auto new_pwa_wasm project_name{RESET}{YELLOW} - On first call, it will create the `pwa.json5` and `icon512x512.png` files.{RESET}
     {YELLOW}Modify them with the required data for your pwa project and then repeat the same command.{RESET}
 
-    {YELLOW}© 2024 bestia.dev  MIT License github.com/bestia-dev/cargo-auto{RESET}
+    {YELLOW}© 2024 bestia.dev  MIT License github.com/automation-tasks-rs/cargo-auto{RESET}
 "#
     );
 }

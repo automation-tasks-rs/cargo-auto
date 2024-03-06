@@ -11,22 +11,22 @@
 
 
  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](project_repository/blob/master/LICENSE)
-  [![GitHubAction](https://github.com/bestia-dev/# rust_project_name
-/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/bestia-dev/# rust_project_name
+  [![GitHubAction](https://github.com/automation-tasks-rs/# rust_project_name
+/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/automation-tasks-rs/# rust_project_name
 /)
 
 [//]: # (auto_lines_of_code start)
 
-[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-361-green.svg)](https://github.com/bestia-dev/rust_project_name/)
-[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-70-blue.svg)](https://github.com/bestia-dev/rust_project_name/)
-[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-68-purple.svg)](https://github.com/bestia-dev/rust_project_name/)
-[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/rust_project_name/)
-[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-16-orange.svg)](https://github.com/bestia-dev/rust_project_name/)
+[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-361-green.svg)](https://github.com/automation-tasks-rs/rust_project_name/)
+[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-70-blue.svg)](https://github.com/automation-tasks-rs/rust_project_name/)
+[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-68-purple.svg)](https://github.com/automation-tasks-rs/rust_project_name/)
+[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/automation-tasks-rs/rust_project_name/)
+[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-16-orange.svg)](https://github.com/automation-tasks-rs/rust_project_name/)
 
 [//]: # (auto_lines_of_code end)
 
 Hashtags: #rustlang #tutorial #pwa #wasm #webassembly  
-My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
+My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/automation-tasks-rs/tutorials_rust_wasm).
 
 ## This template
 
