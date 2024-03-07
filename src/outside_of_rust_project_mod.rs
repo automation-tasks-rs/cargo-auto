@@ -1,5 +1,7 @@
 // outside_of_rust_project_mod.rs
 
+//! commands accessible outside a Rust project folder
+
 // region: use statements
 // endregion
 

@@ -1,5 +1,9 @@
-//! this strings are copied from the template_new_cli folder
-//! because when publishing to crates.io, only the main bin-executable is transferred
+// template_new_cli_mod.rs
+
+//! template for new_cli
+//!
+//! An automation task copy the content of the template_new_wasm folder into this strings.
+//! When installing a crate from crates.io, only the code is transferred. No additional files.
 
 use crate::{GREEN, RED, RESET, YELLOW};
 

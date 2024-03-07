@@ -270,36 +270,38 @@ use std::path::{Path, PathBuf};
 
 // paths
 lazy_static! {
-    /// constant paths for read/write
+    /// automation_tasks_rs
     static ref PATH_AUTOMATION_TASKS_RS: PathBuf = PathBuf::from("automation_tasks_rs");
-    /// constant paths for read/write
+    /// automation_tasks_rs/Cargo.toml
     static ref PATH_CARGO_TOML: PathBuf = PathBuf::from("automation_tasks_rs/Cargo.toml");
-    /// constant paths for read/write
+    /// automation_tasks_rs/.gitignore
     static ref PATH_GITIGNORE: PathBuf = PathBuf::from("automation_tasks_rs/.gitignore");
-    /// constant paths for read/write
+    /// automation_tasks_rs/src/main.rs
     static ref PATH_SRC_MAIN_RS: PathBuf = PathBuf::from("automation_tasks_rs/src/main.rs");
-    /// constant paths for folder
+    /// automation_tasks_rs/src
     static ref PATH_SRC: PathBuf = PathBuf::from("automation_tasks_rs/src");
-    /// constant paths for read/write
+    /// automation_tasks_rs/target/debug/automation_tasks_rs
     static ref PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS: PathBuf =
         PathBuf::from("automation_tasks_rs/target/debug/automation_tasks_rs");
-    /// constant paths for read/write
+    /// automation_tasks_rs/.file_hashes.json
     static ref PATH_FILE_HASHES_JSON: PathBuf =
         PathBuf::from("automation_tasks_rs/.file_hashes.json");
 }
 
+// region: Public API constants
 // ANSI colors for Linux terminal
 // https://github.com/shiena/ansicolor/blob/master/README.md
-#[allow(dead_code)]
+/// ANSI color
 pub const RED: &str = "\x1b[31m";
-#[allow(dead_code)]
+/// ANSI color
 pub const YELLOW: &str = "\x1b[33m";
-#[allow(dead_code)]
+/// ANSI color
 pub const GREEN: &str = "\x1b[32m";
-#[allow(dead_code)]
+/// ANSI color
 pub const RESET: &str = "\x1b[0m";
+// endregion: Public API constants
 
-/// file item
+/// FileItem to copy text file into String for generators
 pub struct FileItem {
     file_name: &'static str,
     file_content: &'static str,

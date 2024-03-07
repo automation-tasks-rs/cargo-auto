@@ -1,5 +1,10 @@
 // file_hashes_mod.rs
 
+//! calculate file hashes
+//!
+//! File hashes are used to check if some file has changed.
+//! Then we can run commands like compile only if a file has changed.
+
 use serde_derive::{Deserialize, Serialize};
 
 // region: structs

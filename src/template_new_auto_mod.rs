@@ -1,5 +1,9 @@
-//! this strings are copied from the template_new_auto folder
-//! because when publishing to crates.io, only the main bin-executable is transferred
+// template_new_auto_mod.rs
+
+//! template for new_auto (automation_tasks_rs)
+//!
+//! An automation task copy the content of the template_new_wasm folder into this strings.
+//! When installing a crate from crates.io, only the code is transferred. No additional files.
 
 use crate::file_hashes_mod;
 #[allow(unused)]
