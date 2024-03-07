@@ -9,11 +9,7 @@
 
 [//]: # (auto_cargo_toml_to_md end)
 
-
  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](project_repository/blob/master/LICENSE)
-  [![GitHubAction](https://github.com/automation-tasks-rs/# rust_project_name
-/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/automation-tasks-rs/# rust_project_name
-/)
 
 [//]: # (auto_lines_of_code start)
 
@@ -25,8 +21,9 @@
 
 [//]: # (auto_lines_of_code end)
 
-Hashtags: #rustlang #tutorial #pwa #wasm #webassembly  
-My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/automation-tasks-rs/tutorials_rust_wasm).
+Hashtags: #maintained #ready-for-use #rustlang #automation #workflow  
+My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).  
+I recommend using the [CRDE - Containerized Rust Development Environment](https://github.com/automation-tasks-rs/docker_rust_development) to write Rust projects on Linux, isolated from your system.  
 
 ## This template
 
@@ -36,7 +33,7 @@ Just like `cargo new` makes a soft and gentle introduction to Rust projects and 
 cargo auto new_pwa_wasm
 ```
 
-Extremely simple, just the basic moving parts and use-cases.  
+Extremely simple, just the basic moving parts and use cases.  
 This simplest template does not have a PWA implementation or dedicated web server app.
 
 ## Development details

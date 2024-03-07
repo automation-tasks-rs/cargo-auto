@@ -22,8 +22,9 @@
 
 [//]: # (auto_lines_of_code end)
 
-Hashtags: #rustlang #tutorial #cli
-My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/automation-tasks-rs/tutorials_rust_wasm).
+Hashtags: #maintained #ready-for-use #rustlang #automation #workflow  
+My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).  
+I recommend using the [CRDE - Containerized Rust Development Environment](https://github.com/automation-tasks-rs/docker_rust_development) to write Rust projects on Linux, isolated from your system.  
 
 ## This template
 
