@@ -9,6 +9,9 @@ The ongoing changes that are not released, are visible in the git commits and gi
 The TODO section is part of the [README.md](https://github.com/automation-tasks-rs/rust_project_name).  
 
 ## Unreleased
+
+## Version 2024.307.14 (2024-03-07)
+
 - lib and bin for doc
 
 ## Version 2024.302.2122 (2024-03-02)

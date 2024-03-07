@@ -269,7 +269,7 @@ description = "template for a minimal wasm project for browser"
 repository = "https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm"
 readme = "README.md"
 license = "MIT"
-# Keyword must be only one word: lowercase letters, hyphens(-) or numbers, less then 35 characters.
+# Keyword must be only one word: lowercase letters, hyphens(-) or numbers, less then 35 characters, at most 5 keywords per crate
 keywords = ["maintained", "work-in-progress", "rustlang", "wasm"]
 categories = ["wasm"]
 publish = false
