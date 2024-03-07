@@ -5,12 +5,13 @@
 [//]: # (auto_cargo_toml_to_md start)
 
 **Automation tasks coded in Rust language for the workflow of Rust projects**  
-***version: 2024.302.2122 date: 2024-03-02 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
+***version: 2024.307.14 date: 2024-03-07 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
 
  ![maintained](https://img.shields.io/badge/maintained-green)
  ![ready-for-use](https://img.shields.io/badge/ready_for_use-green)
  ![rustlang](https://img.shields.io/badge/rustlang-orange)
- ![make](https://img.shields.io/badge/make-orange)
+ ![automation](https://img.shields.io/badge/automation-orange)
+ ![workflow](https://img.shields.io/badge/workflow-orange)
 
 [//]: # (auto_cargo_toml_to_md end)
 
@@ -28,11 +29,11 @@
  ![cargo-auto](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 
 [//]: # (auto_lines_of_code start)
-[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-8992-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-218-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-417-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9023-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-1463-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-421-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-7954-orange.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-7838-orange.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 
 [//]: # (auto_lines_of_code end)
 
@@ -155,7 +156,7 @@ Because only you know what you want to automate and how to do it.
 Never write secrets, passwords, passcodes, or tokens inside your Rust code. Because then it is pushed to GitHub and the whole world can read it in the next second!
 Basic example (most of the useful functions are already there):  
 
-```rust
+```rust ignore
 /// match arguments and call tasks functions
 fn match_arguments_and_call_tasks(mut args: std::env::Args){
     // the first argument is the user defined task: (no argument for help), build, release,...

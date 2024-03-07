@@ -1,6 +1,6 @@
 [package]
 name = "cargo-auto"
-version = "2024.302.2122"
+version = "2024.307.14"
 authors = ["bestia.dev"]
 homepage = "https://bestia.dev"
 edition = "2021"
@@ -32,3 +32,15 @@ data-encoding = "2.5.0"
 anyhow="1.0.79"
 serde_derive = "1.0.196"
 serde_json = "1.0.113"
+
+[lib]
+name = "cargo_auto_local_lib"
+path = "src/lib.rs"
+# A flag for enabling documentation of this target. This is used by `cargo doc`.
+doc = true
+
+[[bin]]
+name = "cargo-auto"
+path = "src/bin/cargo-auto/main.rs"
+# A flag for enabling documentation of this target. This is used by `cargo doc`.
+doc = true

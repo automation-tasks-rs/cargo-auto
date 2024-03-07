@@ -2,34 +2,36 @@
 
 // logo for docs.rs in png
 #![doc(html_logo_url = "https://github.com/automation-tasks-rs/cargo-auto/raw/main/images/logo/logo_cargo_auto.svg")]
-
 // region: auto_md_to_doc_comments include README.md A //!
 //! # cargo-auto  
 //!
-//! **cargo-auto - automation tasks coded in Rust language for the workflow of Rust projects**  
-//! ***version: 2024.302.2122 date: 2024-03-02 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
+//! **Automation tasks coded in Rust language for the workflow of Rust projects**  
+//! ***version: 2024.307.14 date: 2024-03-07 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
 //!
 //!  ![maintained](https://img.shields.io/badge/maintained-green)
 //!  ![ready-for-use](https://img.shields.io/badge/ready_for_use-green)
 //!  ![rustlang](https://img.shields.io/badge/rustlang-orange)
-//!  ![make](https://img.shields.io/badge/make-orange)
+//!  ![automation](https://img.shields.io/badge/automation-orange)
+//!  ![workflow](https://img.shields.io/badge/workflow-orange)
 //!
 //!  ![logo](https://raw.githubusercontent.com/automation-tasks-rs/cargo-auto/main/images/logo/logo_cargo_auto.svg)
+//!  cargo-auto is part of [automation_tasks_rs](https://github.com/automation-tasks-rs) project
 //!
 //!  [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
 //!  [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)
 //!  [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/cargo-auto.svg)](https://web.crev.dev/rust-reviews/crate/cargo-auto/)
-//!  
-//! [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/)
+//!  [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/)
+//!
 //!  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/blob/master/LICENSE)
 //!  [![Rust](https://github.com/automation-tasks-rs/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//!  [![Newest docs](https://img.shields.io/badge/newest_docs-brown.svg)](https://automation-tasks-rs.github.io/cargo-auto/cargo_auto/index.html)
 //!  ![cargo-auto](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-8992-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-218-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-417-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9023-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-1463-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-421-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-7954-orange.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-7838-orange.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //!
 //! Hashtags: #rustlang #tutorial #buildtool #developmenttool #cli  
 //! My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/automation-tasks-rs/tutorials_rust_wasm).
@@ -150,7 +152,7 @@
 //! Never write secrets, passwords, passcodes, or tokens inside your Rust code. Because then it is pushed to GitHub and the whole world can read it in the next second!
 //! Basic example (most of the useful functions are already there):  
 //!
-//! ```rust
+//! ```rust ignore
 //! /// match arguments and call tasks functions
 //! fn match_arguments_and_call_tasks(mut args: std::env::Args){
 //!     // the first argument is the user defined task: (no argument for help), build, release,...
@@ -246,15 +248,15 @@
 //! [Na zdravje!](https://translate.google.com/?hl=en&sl=sl&tl=en&text=Na%20zdravje&op=translate) [Alla salute!](https://dictionary.cambridge.org/dictionary/italian-english/alla-salute) [Prost!](https://dictionary.cambridge.org/dictionary/german-english/prost) [Nazdravlje!](https://matadornetwork.com/nights/how-to-say-cheers-in-50-languages/) 🍻
 //!
 //! [//bestia.dev](https://bestia.dev)  
-//! [//github.com/bestia-dev](https://github.com/bestia-dev)  
+//! [//github.com/automation-tasks-rs](https://github.com/automation-tasks-rs)  
 //! [//bestiadev.substack.com](https://bestiadev.substack.com)  
 //! [//youtube.com/@bestia-dev-tutorials](https://youtube.com/@bestia-dev-tutorials)  
 //!
 // endregion: auto_md_to_doc_comments include README.md A //!
 
 mod file_hashes_mod;
-mod inside_of_rust_project_mod;
-mod outside_of_rust_project_mod;
+pub mod inside_of_rust_project_mod;
+pub mod outside_of_rust_project_mod;
 mod template_new_auto_mod;
 mod template_new_cli_mod;
 mod template_new_pwa_wasm_mod;
@@ -303,21 +305,8 @@ pub struct FileItem {
     file_content: &'static str,
 }
 
-fn main() {
-    // get CLI arguments
-    let mut args = std::env::args();
-    // the zero argument is the name of the program
-    let _arg_0 = args.next();
-
-    if is_not_run_in_rust_project_root_directory() {
-        outside_of_rust_project_mod::parse_args(&mut args);
-    } else {
-        inside_of_rust_project_mod::parse_args(&mut args);
-    }
-}
-
 /// Check if is not run in Rust project root directory
-fn is_not_run_in_rust_project_root_directory() -> bool {
+pub fn is_not_run_in_rust_project_root_directory() -> bool {
     // return negation of exists
     !Path::new("Cargo.toml").exists()
 }

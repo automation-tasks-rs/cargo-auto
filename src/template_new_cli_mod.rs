@@ -59,7 +59,9 @@ The TODO section is part of the [README.md](https://github.com/automation-tasks-
     });
     vec_file.push(crate::FileItem{
             file_name :"README.md",
-            file_content : r###"# cargo_auto_template_new_cli
+            file_content : r###"[//]: # (auto_md_to_doc_comments segment start A)
+
+# cargo_auto_template_new_cli
 
 [//]: # (auto_cargo_toml_to_md start)
 
@@ -121,6 +123,8 @@ So I can drink a free beer for your health :-)
 [//github.com/bestia-dev](https://github.com/bestia-dev)  
 [//bestiadev.substack.com](https://bestiadev.substack.com)  
 [//youtube.com/@bestia-dev-tutorials](https://youtube.com/@bestia-dev-tutorials)  
+
+[//]: # (auto_md_to_doc_comments segment end A)
 "###,
 });
     vec_file.push(crate::FileItem {
@@ -172,7 +176,20 @@ publish = false
 log = "0.4"
 pretty_env_logger="0.5.0"
 thiserror = "1.0.30"
-anyhow="1.0.56""###,
+anyhow="1.0.56"
+
+[lib]
+name = "cargo_auto_template_new_cli_lib"
+path = "src/lib.rs"
+# A flag for enabling documentation of this target. This is used by `cargo doc`.
+doc = true
+
+[[bin]]
+name = "cargo_auto_template_new_cli"
+path = "src/bin/cargo_auto_template_new_cli/main.rs"
+# A flag for enabling documentation of this target. This is used by `cargo doc`.
+doc = true
+"###,
     });
     vec_file.push(crate::FileItem {
         file_name: "src/bin/cargo_auto_template_new_cli/main.rs",
@@ -261,6 +278,7 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
     vec_file.push(crate::FileItem {
         file_name: "src/lib.rs",
         file_content: r###"// cargo_auto_template_new_cli/src/lib.rs
+
 // The `main.rs` has all the stdin and stdout.
 // The `lib.rs` must be in/out agnostic. That is the responsibility of the `main.rs`
 // The `lib.rs` does not have any real code. All the code is in modules in separate files.
@@ -270,30 +288,33 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
 // region: auto_md_to_doc_comments include README.md A //!
 //! # cargo-auto  
 //!
-//! **cargo-auto - automation tasks coded in Rust language for the workflow of Rust projects**  
-//! ***version: 2024.302.2122 date: 2024-03-02 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
+//! **Automation tasks coded in Rust language for the workflow of Rust projects**  
+//! ***version: 2024.307.14 date: 2024-03-07 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
 //!
 //!  ![maintained](https://img.shields.io/badge/maintained-green)
 //!  ![ready-for-use](https://img.shields.io/badge/ready_for_use-green)
 //!  ![rustlang](https://img.shields.io/badge/rustlang-orange)
-//!  ![make](https://img.shields.io/badge/make-orange)
+//!  ![automation](https://img.shields.io/badge/automation-orange)
+//!  ![workflow](https://img.shields.io/badge/workflow-orange)
 //!
 //!  ![logo](https://raw.githubusercontent.com/automation-tasks-rs/cargo-auto/main/images/logo/logo_cargo_auto.svg)
+//!  cargo-auto is part of [automation_tasks_rs](https://github.com/automation-tasks-rs) project
 //!
 //!  [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
 //!  [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)
 //!  [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/cargo-auto.svg)](https://web.crev.dev/rust-reviews/crate/cargo-auto/)
-//!  
-//! [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/)
+//!  [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/)
+//!
 //!  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/blob/master/LICENSE)
 //!  [![Rust](https://github.com/automation-tasks-rs/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//!  [![Newest docs](https://img.shields.io/badge/newest_docs-brown.svg)](https://automation-tasks-rs.github.io/cargo-auto/cargo_auto/index.html)
 //!  ![cargo-auto](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-8992-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-218-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-417-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9023-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-1463-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-421-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-7954-orange.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-7838-orange.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //!
 //! Hashtags: #rustlang #tutorial #buildtool #developmenttool #cli  
 //! My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/automation-tasks-rs/tutorials_rust_wasm).
@@ -414,7 +435,7 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
 //! Never write secrets, passwords, passcodes, or tokens inside your Rust code. Because then it is pushed to GitHub and the whole world can read it in the next second!
 //! Basic example (most of the useful functions are already there):  
 //!
-//! ```rust
+//! ```rust ignore
 //! /// match arguments and call tasks functions
 //! fn match_arguments_and_call_tasks(mut args: std::env::Args){
 //!     // the first argument is the user defined task: (no argument for help), build, release,...
@@ -510,7 +531,7 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
 //! [Na zdravje!](https://translate.google.com/?hl=en&sl=sl&tl=en&text=Na%20zdravje&op=translate) [Alla salute!](https://dictionary.cambridge.org/dictionary/italian-english/alla-salute) [Prost!](https://dictionary.cambridge.org/dictionary/german-english/prost) [Nazdravlje!](https://matadornetwork.com/nights/how-to-say-cheers-in-50-languages/) 🍻
 //!
 //! [//bestia.dev](https://bestia.dev)  
-//! [//github.com/bestia-dev](https://github.com/bestia-dev)  
+//! [//github.com/automation-tasks-rs](https://github.com/automation-tasks-rs)  
 //! [//bestiadev.substack.com](https://bestiadev.substack.com)  
 //! [//youtube.com/@bestia-dev-tutorials](https://youtube.com/@bestia-dev-tutorials)  
 //!
@@ -738,29 +759,6 @@ jobs:
 /.auto_version_from_date.json"###,
     });
     vec_file.push(crate::FileItem {
-        file_name: ".automation_tasks_rs_file_hashes.json",
-        file_content: r###"{
-  "vec_file_metadata": [
-    {
-      "filename": "Cargo.toml",
-      "filehash": "fb354c771322a06d6ce18259233983c83e2db22b80991a5fa2cd44104a117b57"
-    },
-    {
-      "filename": "src/bin/cargo_auto_template_new_cli/main.rs",
-      "filehash": "d389d00aaea401786f89b5cba01fdb766aa818ad301a507bc03e4ed2f1be6906"
-    },
-    {
-      "filename": "src/lib.rs",
-      "filehash": "15036298af904cc9eb806c5b6c898644454e4a65d4fa8a7820cf16c1111b4202"
-    },
-    {
-      "filename": "src/hello_mod.rs",
-      "filehash": "198dad5e7e7f4ed01da2cd5e9b5e16be5391cdb8c77e86a8a04f0c203a4bb992"
-    }
-  ]
-}"###,
-    });
-    vec_file.push(crate::FileItem {
         file_name: "automation_tasks_rs/.vscode/settings.json",
         file_content: r###"{
     "workbench.colorCustomizations": {
@@ -801,7 +799,7 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "1.4.4""###,
+cargo_auto_lib = "1.4.8""###,
     });
     vec_file.push(crate::FileItem {
         file_name: "automation_tasks_rs/src/main.rs",
@@ -1146,25 +1144,6 @@ fn task_github_new_release() {
 # not needed in commits, but also not a problem if they are committed
 /.file_hashes.json
 "###,
-    });
-    vec_file.push(crate::FileItem {
-        file_name: "automation_tasks_rs/.file_hashes.json",
-        file_content: r###"{
-  "vec_file_metadata": [
-    {
-      "filename": "automation_tasks_rs/Cargo.toml",
-      "filehash": "55eef2dc82f193e7fcdf566b0c5214166c70e682cb0614b10a5e8fdd719d172b"
-    },
-    {
-      "filename": "automation_tasks_rs/target/debug/automation_tasks_rs",
-      "filehash": "58277c216d94fc650721df95db0de521017bc4f8c16f095a36e3f08360c575f0"
-    },
-    {
-      "filename": "automation_tasks_rs/src/main.rs",
-      "filehash": "862afac4717c3f120e2334245d9070551fd49f51765a997a2b3ba927b8b47bee"
-    }
-  ]
-}"###,
     });
     vec_file.push(crate::FileItem {
         file_name: "automation_tasks_rs/Cargo.lock",

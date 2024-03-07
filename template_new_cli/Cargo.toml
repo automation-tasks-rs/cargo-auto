@@ -18,3 +18,15 @@ log = "0.4"
 pretty_env_logger="0.5.0"
 thiserror = "1.0.30"
 anyhow="1.0.56"
+
+[lib]
+name = "cargo_auto_template_new_cli_lib"
+path = "src/lib.rs"
+# A flag for enabling documentation of this target. This is used by `cargo doc`.
+doc = true
+
+[[bin]]
+name = "cargo_auto_template_new_cli"
+path = "src/bin/cargo_auto_template_new_cli/main.rs"
+# A flag for enabling documentation of this target. This is used by `cargo doc`.
+doc = true

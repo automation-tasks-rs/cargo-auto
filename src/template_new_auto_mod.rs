@@ -63,7 +63,9 @@ pub fn get_vec_file() -> Vec<crate::FileItem> {
     // region: files copied into strings by automation tasks
     vec_file.push(crate::FileItem{
             file_name :"README.md",
-            file_content : r###"# automation_tasks_rs
+            file_content : r###"[//]: # (auto_md_to_doc_comments segment start A)
+
+# automation_tasks_rs
 
 In this sub-project `automation_tasks_rs`, you can write tasks that you need when compiling or managing your Rust project.  
 The simple `cargo build` and `cargo build --release` are sometimes not enough. We need to copy some files, to prepare some environment. It is nice to have `all` the tasks in one place with a sort order that new users can easily follow.  
@@ -99,6 +101,8 @@ So I can drink a free beer for your health :-)
 [//github.com/bestia-dev](https://github.com/bestia-dev)  
 [//bestiadev.substack.com](https://bestiadev.substack.com)  
 [//youtube.com/@bestia-dev-tutorials](https://youtube.com/@bestia-dev-tutorials)  
+
+[//]: # (auto_md_to_doc_comments segment end A)
 "###,
 });
     vec_file.push(crate::FileItem {
@@ -140,7 +144,7 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "1.4.4""###,
+cargo_auto_lib = "1.4.8""###,
     });
     vec_file.push(crate::FileItem {
         file_name: "src/main.rs",
