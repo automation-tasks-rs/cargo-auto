@@ -189,9 +189,19 @@
 <a href="#139" id="139">139</a>
 <a href="#140" id="140">140</a>
 <a href="#141" id="141">141</a>
+<a href="#142" id="142">142</a>
+<a href="#143" id="143">143</a>
+<a href="#144" id="144">144</a>
+<a href="#145" id="145">145</a>
+<a href="#146" id="146">146</a>
 </pre>
         </div>
         <pre class="rust"><code><span class="comment">// file_hashes_mod.rs
+
+</span><span class="doccomment">//! calculate file hashes
+//!
+//! File hashes are used to check if some file has changed.
+//! Then we can run commands like compile only if a file has changed.
 
 </span><span class="kw">use </span>serde_derive::{Deserialize, Serialize};
 

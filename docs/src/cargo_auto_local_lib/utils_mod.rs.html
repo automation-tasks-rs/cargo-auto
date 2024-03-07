@@ -59,11 +59,15 @@
 <a href="#9" id="9">9</a>
 <a href="#10" id="10">10</a>
 <a href="#11" id="11">11</a>
+<a href="#12" id="12">12</a>
+<a href="#13" id="13">13</a>
 </pre>
         </div>
         <pre class="rust"><code><span class="comment">// utils_mod.rs
 
-</span><span class="doccomment">/// run one shell command and return true if success
+</span><span class="doccomment">//! various utilities
+
+/// run one shell command and return true if success
 </span><span class="kw">pub fn </span>run_shell_command_success(shell_command: <span class="kw-2">&</span>str) -&gt; bool {
     <span class="kw">if </span>!shell_command.starts_with(<span class="string">"echo "</span>) {
         <span class="macro">println!</span>(<span class="string">"    $ {}"</span>, shell_command);

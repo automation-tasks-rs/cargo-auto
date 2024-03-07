@@ -360,6 +360,8 @@
 <a href="#310" id="310">310</a>
 <a href="#311" id="311">311</a>
 <a href="#312" id="312">312</a>
+<a href="#313" id="313">313</a>
+<a href="#314" id="314">314</a>
 </pre>
         </div>
         <pre class="rust"><code><span class="comment">// cargo-auto/src/main.rs
@@ -371,7 +373,7 @@
 </span><span class="doccomment">//! # cargo-auto  
 //!
 //! **Automation tasks coded in Rust language for the workflow of Rust projects**  
-//! ***version: 2024.307.14 date: 2024-03-07 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
+//! ***version: 2024.307.36 date: 2024-03-07 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
 //!
 //!  ![maintained](https://img.shields.io/badge/maintained-green)
 //!  ![ready-for-use](https://img.shields.io/badge/ready_for_use-green)
@@ -392,11 +394,11 @@
 //!  [![Newest docs](https://img.shields.io/badge/newest_docs-brown.svg)](https://automation-tasks-rs.github.io/cargo-auto/cargo_auto/index.html)
 //!  ![cargo-auto](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9023-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-1463-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-421-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9028-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-735-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-427-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-7838-orange.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-7840-orange.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //!
 //! Hashtags: #rustlang #tutorial #buildtool #developmenttool #cli  
 //! My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/automation-tasks-rs/tutorials_rust_wasm).
@@ -635,41 +637,43 @@
 
 // paths
 </span><span class="macro">lazy_static! </span>{
-    <span class="doccomment">/// constant paths for read/write
+    <span class="doccomment">/// automation_tasks_rs
     </span><span class="kw">static </span><span class="kw-2">ref </span>PATH_AUTOMATION_TASKS_RS: PathBuf = PathBuf::from(<span class=
 "string">"automation_tasks_rs"</span>);
-    <span class="doccomment">/// constant paths for read/write
+    <span class="doccomment">/// automation_tasks_rs/Cargo.toml
     </span><span class="kw">static </span><span class="kw-2">ref </span>PATH_CARGO_TOML: PathBuf = PathBuf::from(<span class=
 "string">"automation_tasks_rs/Cargo.toml"</span>);
-    <span class="doccomment">/// constant paths for read/write
+    <span class="doccomment">/// automation_tasks_rs/.gitignore
     </span><span class="kw">static </span><span class="kw-2">ref </span>PATH_GITIGNORE: PathBuf = PathBuf::from(<span class=
 "string">"automation_tasks_rs/.gitignore"</span>);
-    <span class="doccomment">/// constant paths for read/write
+    <span class="doccomment">/// automation_tasks_rs/src/main.rs
     </span><span class="kw">static </span><span class="kw-2">ref </span>PATH_SRC_MAIN_RS: PathBuf = PathBuf::from(<span class=
 "string">"automation_tasks_rs/src/main.rs"</span>);
-    <span class="doccomment">/// constant paths for folder
+    <span class="doccomment">/// automation_tasks_rs/src
     </span><span class="kw">static </span><span class="kw-2">ref </span>PATH_SRC: PathBuf = PathBuf::from(<span class=
 "string">"automation_tasks_rs/src"</span>);
-    <span class="doccomment">/// constant paths for read/write
+    <span class="doccomment">/// automation_tasks_rs/target/debug/automation_tasks_rs
     </span><span class="kw">static </span><span class="kw-2">ref </span>PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS: PathBuf =
         PathBuf::from(<span class="string">"automation_tasks_rs/target/debug/automation_tasks_rs"</span>);
-    <span class="doccomment">/// constant paths for read/write
+    <span class="doccomment">/// automation_tasks_rs/.file_hashes.json
     </span><span class="kw">static </span><span class="kw-2">ref </span>PATH_FILE_HASHES_JSON: PathBuf =
         PathBuf::from(<span class="string">"automation_tasks_rs/.file_hashes.json"</span>);
 }
 
-<span class="comment">// ANSI colors for Linux terminal
+<span class="comment">// region: Public API constants
+// ANSI colors for Linux terminal
 // https://github.com/shiena/ansicolor/blob/master/README.md
-</span><span class="attr">#[allow(dead_code)]
+</span><span class="doccomment">/// ANSI color
 </span><span class="kw">pub const </span>RED: <span class="kw-2">&</span>str = <span class="string">"\x1b[31m"</span>;
-<span class="attr">#[allow(dead_code)]
+<span class="doccomment">/// ANSI color
 </span><span class="kw">pub const </span>YELLOW: <span class="kw-2">&</span>str = <span class="string">"\x1b[33m"</span>;
-<span class="attr">#[allow(dead_code)]
+<span class="doccomment">/// ANSI color
 </span><span class="kw">pub const </span>GREEN: <span class="kw-2">&</span>str = <span class="string">"\x1b[32m"</span>;
-<span class="attr">#[allow(dead_code)]
+<span class="doccomment">/// ANSI color
 </span><span class="kw">pub const </span>RESET: <span class="kw-2">&</span>str = <span class="string">"\x1b[0m"</span>;
+<span class="comment">// endregion: Public API constants
 
-<span class="doccomment">/// file item
+</span><span class="doccomment">/// FileItem to copy text file into String for generators
 </span><span class="kw">pub struct </span>FileItem {
     file_name: <span class="kw-2">&</span><span class="lifetime">'static </span>str,
     file_content: <span class="kw-2">&</span><span class="lifetime">'static </span>str,
