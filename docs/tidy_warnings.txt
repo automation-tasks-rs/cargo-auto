@@ -2,7 +2,68 @@
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/struct.PATH_FILE_HASHES_JSON.html
+./docs/cargo_auto/all.html
+Document: "2" is not a file!
+
+line 2 column 81 - Warning: trimming empty <span>
+./docs/cargo_auto/index.html
+Document: "2" is not a file!
+
+line 3 column 81 - Warning: trimming empty <span>
+./docs/cargo_auto/fn.main.html
+Document: "2" is not a file!
+
+line 2 column 81 - Warning: trimming empty <span>
+./docs/src/cargo_auto/main.rs.html
+Document: "2" is not a file!
+
+line 2 column 242 - Warning: trimming empty <span>
+./docs/src/cargo_auto_local_lib/inside_of_rust_project_mod.rs.html
+Document: "2" is not a file!
+
+line 2 column 262 - Warning: trimming empty <span>
+./docs/src/cargo_auto_local_lib/template_new_auto_mod.rs.html
+Document: "2" is not a file!
+
+line 2 column 262 - Warning: trimming empty <span>
+./docs/src/cargo_auto_local_lib/file_hashes_mod.rs.html
+Document: "2" is not a file!
+
+line 2 column 262 - Warning: trimming empty <span>
+./docs/src/cargo_auto_local_lib/outside_of_rust_project_mod.rs.html
+Document: "2" is not a file!
+
+line 2 column 262 - Warning: trimming empty <span>
+./docs/src/cargo_auto_local_lib/template_new_wasm_mod.rs.html
+Document: "2" is not a file!
+
+line 2 column 262 - Warning: trimming empty <span>
+./docs/src/cargo_auto_local_lib/template_new_cli_mod.rs.html
+Document: "2" is not a file!
+
+line 2 column 262 - Warning: trimming empty <span>
+./docs/src/cargo_auto_local_lib/lib.rs.html
+Document: "2" is not a file!
+
+line 2 column 262 - Warning: trimming empty <span>
+./docs/src/cargo_auto_local_lib/utils_mod.rs.html
+Document: "2" is not a file!
+
+line 2 column 262 - Warning: trimming empty <span>
+./docs/src/cargo_auto_local_lib/template_new_pwa_wasm_mod.rs.html
+Document: "2" is not a file!
+
+line 2 column 262 - Warning: trimming empty <span>
+./docs/index.html
+Document: "2" is not a file!
+
+line 1 column 1 - Warning: missing <!DOCTYPE> declaration
+line 1 column 1 - Warning: inserting missing 'title' element
+./docs/settings.html
+Document: "2" is not a file!
+
+line 2 column 81 - Warning: trimming empty <span>
+./docs/cargo_auto_local_lib/struct.PATH_FILE_HASHES_JSON.html
 Document: "2" is not a file!
 
 line 5 column 898 - Warning: missing </summary> before <section>
@@ -91,13 +152,13 @@ line 430 column 512 - Warning: discarding unexpected </summary>
 line 443 column 60 - Warning: missing </summary> before <section>
 line 443 column 526 - Warning: discarding unexpected </summary>
 line 460 column 242 - Warning: missing </summary> before <section>
-line 460 column 786 - Warning: discarding unexpected </summary>
-line 460 column 849 - Warning: missing </summary> before <section>
-line 460 column 1290 - Warning: discarding unexpected </summary>
-line 460 column 1420 - Warning: missing </summary> before <section>
-line 460 column 1914 - Warning: discarding unexpected </summary>
-line 460 column 5287 - Warning: missing </summary> before <section>
-line 460 column 5645 - Warning: <div> isn't allowed in <h3> elements
+line 460 column 805 - Warning: discarding unexpected </summary>
+line 460 column 868 - Warning: missing </summary> before <section>
+line 460 column 1309 - Warning: discarding unexpected </summary>
+line 460 column 1439 - Warning: missing </summary> before <section>
+line 460 column 1942 - Warning: discarding unexpected </summary>
+line 460 column 5384 - Warning: missing </summary> before <section>
+line 460 column 5742 - Warning: <div> isn't allowed in <h3> elements
 line 461 column 149 - Warning: discarding unexpected </div>
 line 461 column 170 - Warning: discarding unexpected </summary>
 line 461 column 247 - Warning: missing </summary> before <section>
@@ -192,9 +253,9 @@ line 412 column 60 - Warning: trimming empty <summary>
 line 430 column 60 - Warning: trimming empty <summary>
 line 443 column 60 - Warning: trimming empty <summary>
 line 460 column 242 - Warning: trimming empty <summary>
-line 460 column 849 - Warning: trimming empty <summary>
-line 460 column 1420 - Warning: trimming empty <summary>
-line 460 column 5287 - Warning: trimming empty <summary>
+line 460 column 868 - Warning: trimming empty <summary>
+line 460 column 1439 - Warning: trimming empty <summary>
+line 460 column 5384 - Warning: trimming empty <summary>
 line 461 column 247 - Warning: trimming empty <summary>
 line 461 column 1008 - Warning: trimming empty <summary>
 line 462 column 237 - Warning: trimming empty <summary>
@@ -217,15 +278,15 @@ line 469 column 822 - Warning: trimming empty <summary>
 line 469 column 1821 - Warning: trimming empty <summary>
 line 470 column 239 - Warning: trimming empty <summary>
 line 470 column 1024 - Warning: trimming empty <summary>
-./docs/cargo_auto/all.html
+./docs/cargo_auto_local_lib/all.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/struct.FileItem.html
+./docs/cargo_auto_local_lib/struct.FileItem.html
 Document: "2" is not a file!
 
-line 6 column 3051 - Warning: missing </summary> before <section>
-line 6 column 3409 - Warning: <div> isn't allowed in <h3> elements
+line 6 column 3101 - Warning: missing </summary> before <section>
+line 6 column 3459 - Warning: <div> isn't allowed in <h3> elements
 line 7 column 149 - Warning: discarding unexpected </div>
 line 7 column 170 - Warning: discarding unexpected </summary>
 line 7 column 247 - Warning: missing </summary> before <section>
@@ -283,7 +344,7 @@ line 16 column 880 - Warning: discarding unexpected </summary>
 line 16 column 1024 - Warning: missing </summary> before <section>
 line 16 column 1887 - Warning: discarding unexpected </summary>
 line 2 column 81 - Warning: trimming empty <span>
-line 6 column 3051 - Warning: trimming empty <summary>
+line 6 column 3101 - Warning: trimming empty <summary>
 line 7 column 247 - Warning: trimming empty <summary>
 line 7 column 1008 - Warning: trimming empty <summary>
 line 8 column 237 - Warning: trimming empty <summary>
@@ -306,57 +367,57 @@ line 15 column 822 - Warning: trimming empty <summary>
 line 15 column 1821 - Warning: trimming empty <summary>
 line 16 column 239 - Warning: trimming empty <summary>
 line 16 column 1024 - Warning: trimming empty <summary>
-./docs/cargo_auto/template_new_pwa_wasm_mod/fn.resize_image.html
+./docs/cargo_auto_local_lib/template_new_pwa_wasm_mod/fn.resize_image.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/template_new_pwa_wasm_mod/fn.decode_png.html
+./docs/cargo_auto_local_lib/template_new_pwa_wasm_mod/fn.decode_png.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/template_new_pwa_wasm_mod/fn.new_pwa_wasm.html
+./docs/cargo_auto_local_lib/template_new_pwa_wasm_mod/fn.new_pwa_wasm.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/template_new_pwa_wasm_mod/fn.get_vec_file.html
+./docs/cargo_auto_local_lib/template_new_pwa_wasm_mod/fn.get_vec_file.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/template_new_pwa_wasm_mod/index.html
+./docs/cargo_auto_local_lib/template_new_pwa_wasm_mod/index.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/template_new_pwa_wasm_mod/fn.encode_to_favicon_ico.html
+./docs/cargo_auto_local_lib/template_new_pwa_wasm_mod/fn.encode_to_favicon_ico.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/template_new_pwa_wasm_mod/fn.copy_to_files.html
+./docs/cargo_auto_local_lib/template_new_pwa_wasm_mod/fn.copy_to_files.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/template_new_pwa_wasm_mod/fn.encode_to_png.html
+./docs/cargo_auto_local_lib/template_new_pwa_wasm_mod/fn.encode_to_png.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/template_new_pwa_wasm_mod/fn.favicon_add_entry.html
+./docs/cargo_auto_local_lib/template_new_pwa_wasm_mod/fn.favicon_add_entry.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/template_new_pwa_wasm_mod/struct.PwaJson5.html
+./docs/cargo_auto_local_lib/template_new_pwa_wasm_mod/struct.PwaJson5.html
 Document: "2" is not a file!
 
 line 10 column 2511 - Warning: missing </summary> before <section>
-line 10 column 3018 - Warning: discarding unexpected </summary>
-line 10 column 3095 - Warning: missing </summary> before <section>
-line 10 column 3741 - Warning: discarding unexpected </summary>
-line 10 column 3994 - Warning: missing </summary> before <section>
-line 10 column 4568 - Warning: discarding unexpected </summary>
-line 10 column 4645 - Warning: missing </summary> before <section>
-line 10 column 5365 - Warning: <div> isn't allowed in <h4> elements
+line 10 column 3038 - Warning: discarding unexpected </summary>
+line 10 column 3115 - Warning: missing </summary> before <section>
+line 10 column 3771 - Warning: discarding unexpected </summary>
+line 10 column 4024 - Warning: missing </summary> before <section>
+line 10 column 4618 - Warning: discarding unexpected </summary>
+line 10 column 4695 - Warning: missing </summary> before <section>
+line 10 column 5425 - Warning: <div> isn't allowed in <h4> elements
 line 11 column 163 - Warning: discarding unexpected </div>
 line 11 column 184 - Warning: discarding unexpected </summary>
-line 11 column 2959 - Warning: missing </summary> before <section>
-line 11 column 3317 - Warning: <div> isn't allowed in <h3> elements
+line 11 column 3009 - Warning: missing </summary> before <section>
+line 11 column 3367 - Warning: <div> isn't allowed in <h3> elements
 line 12 column 149 - Warning: discarding unexpected </div>
 line 12 column 170 - Warning: discarding unexpected </summary>
 line 12 column 247 - Warning: missing </summary> before <section>
@@ -417,10 +478,10 @@ line 21 column 2387 - Warning: <div> isn't allowed in <h3> elements
 line 22 column 173 - Warning: discarding unexpected </div>
 line 2 column 81 - Warning: trimming empty <span>
 line 10 column 2511 - Warning: trimming empty <summary>
-line 10 column 3095 - Warning: trimming empty <summary>
-line 10 column 3994 - Warning: trimming empty <summary>
-line 10 column 4645 - Warning: trimming empty <summary>
-line 11 column 2959 - Warning: trimming empty <summary>
+line 10 column 3115 - Warning: trimming empty <summary>
+line 10 column 4024 - Warning: trimming empty <summary>
+line 10 column 4695 - Warning: trimming empty <summary>
+line 11 column 3009 - Warning: trimming empty <summary>
 line 12 column 247 - Warning: trimming empty <summary>
 line 12 column 1008 - Warning: trimming empty <summary>
 line 13 column 237 - Warning: trimming empty <summary>
@@ -443,31 +504,31 @@ line 20 column 822 - Warning: trimming empty <summary>
 line 20 column 1821 - Warning: trimming empty <summary>
 line 21 column 239 - Warning: trimming empty <summary>
 line 21 column 1024 - Warning: trimming empty <summary>
-./docs/cargo_auto/constant.YELLOW.html
+./docs/cargo_auto_local_lib/constant.YELLOW.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/index.html
+./docs/cargo_auto_local_lib/index.html
 Document: "2" is not a file!
 
 line 3 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/file_hashes_mod/struct.FileMetaData.html
+./docs/cargo_auto_local_lib/file_hashes_mod/struct.FileMetaData.html
 Document: "2" is not a file!
 
 line 8 column 226 - Warning: missing </summary> before <section>
-line 8 column 800 - Warning: discarding unexpected </summary>
-line 8 column 877 - Warning: missing </summary> before <section>
-line 8 column 1587 - Warning: <div> isn't allowed in <h4> elements
+line 8 column 820 - Warning: discarding unexpected </summary>
+line 8 column 897 - Warning: missing </summary> before <section>
+line 8 column 1617 - Warning: <div> isn't allowed in <h4> elements
 line 9 column 163 - Warning: discarding unexpected </div>
 line 9 column 184 - Warning: discarding unexpected </summary>
 line 9 column 461 - Warning: missing </summary> before <section>
-line 9 column 987 - Warning: discarding unexpected </summary>
-line 9 column 1064 - Warning: missing </summary> before <section>
-line 9 column 1932 - Warning: <div> isn't allowed in <h4> elements
+line 9 column 1007 - Warning: discarding unexpected </summary>
+line 9 column 1084 - Warning: missing </summary> before <section>
+line 9 column 1962 - Warning: <div> isn't allowed in <h4> elements
 line 10 column 148 - Warning: discarding unexpected </div>
 line 10 column 169 - Warning: discarding unexpected </summary>
-line 10 column 2987 - Warning: missing </summary> before <section>
-line 10 column 3345 - Warning: <div> isn't allowed in <h3> elements
+line 10 column 3037 - Warning: missing </summary> before <section>
+line 10 column 3395 - Warning: <div> isn't allowed in <h3> elements
 line 11 column 149 - Warning: discarding unexpected </div>
 line 11 column 170 - Warning: discarding unexpected </summary>
 line 11 column 247 - Warning: missing </summary> before <section>
@@ -528,10 +589,10 @@ line 20 column 2387 - Warning: <div> isn't allowed in <h3> elements
 line 21 column 173 - Warning: discarding unexpected </div>
 line 2 column 81 - Warning: trimming empty <span>
 line 8 column 226 - Warning: trimming empty <summary>
-line 8 column 877 - Warning: trimming empty <summary>
+line 8 column 897 - Warning: trimming empty <summary>
 line 9 column 461 - Warning: trimming empty <summary>
-line 9 column 1064 - Warning: trimming empty <summary>
-line 10 column 2987 - Warning: trimming empty <summary>
+line 9 column 1084 - Warning: trimming empty <summary>
+line 10 column 3037 - Warning: trimming empty <summary>
 line 11 column 247 - Warning: trimming empty <summary>
 line 11 column 1008 - Warning: trimming empty <summary>
 line 12 column 237 - Warning: trimming empty <summary>
@@ -554,31 +615,31 @@ line 19 column 822 - Warning: trimming empty <summary>
 line 19 column 1821 - Warning: trimming empty <summary>
 line 20 column 239 - Warning: trimming empty <summary>
 line 20 column 1024 - Warning: trimming empty <summary>
-./docs/cargo_auto/file_hashes_mod/fn.save_json_file_for_file_meta_data.html
+./docs/cargo_auto_local_lib/file_hashes_mod/fn.save_json_file_for_file_meta_data.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/file_hashes_mod/index.html
+./docs/cargo_auto_local_lib/file_hashes_mod/index.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/file_hashes_mod/struct.FileHashes.html
+./docs/cargo_auto_local_lib/file_hashes_mod/struct.FileHashes.html
 Document: "2" is not a file!
 
 line 6 column 226 - Warning: missing </summary> before <section>
-line 6 column 791 - Warning: discarding unexpected </summary>
-line 6 column 868 - Warning: missing </summary> before <section>
-line 6 column 1579 - Warning: <div> isn't allowed in <h4> elements
+line 6 column 811 - Warning: discarding unexpected </summary>
+line 6 column 888 - Warning: missing </summary> before <section>
+line 6 column 1609 - Warning: <div> isn't allowed in <h4> elements
 line 7 column 163 - Warning: discarding unexpected </div>
 line 7 column 184 - Warning: discarding unexpected </summary>
 line 7 column 461 - Warning: missing </summary> before <section>
-line 7 column 978 - Warning: discarding unexpected </summary>
-line 7 column 1055 - Warning: missing </summary> before <section>
-line 7 column 1924 - Warning: <div> isn't allowed in <h4> elements
+line 7 column 998 - Warning: discarding unexpected </summary>
+line 7 column 1075 - Warning: missing </summary> before <section>
+line 7 column 1954 - Warning: <div> isn't allowed in <h4> elements
 line 8 column 148 - Warning: discarding unexpected </div>
 line 8 column 169 - Warning: discarding unexpected </summary>
-line 8 column 2937 - Warning: missing </summary> before <section>
-line 8 column 3295 - Warning: <div> isn't allowed in <h3> elements
+line 8 column 2987 - Warning: missing </summary> before <section>
+line 8 column 3345 - Warning: <div> isn't allowed in <h3> elements
 line 9 column 149 - Warning: discarding unexpected </div>
 line 9 column 170 - Warning: discarding unexpected </summary>
 line 9 column 247 - Warning: missing </summary> before <section>
@@ -639,10 +700,10 @@ line 18 column 2387 - Warning: <div> isn't allowed in <h3> elements
 line 19 column 173 - Warning: discarding unexpected </div>
 line 2 column 81 - Warning: trimming empty <span>
 line 6 column 226 - Warning: trimming empty <summary>
-line 6 column 868 - Warning: trimming empty <summary>
+line 6 column 888 - Warning: trimming empty <summary>
 line 7 column 461 - Warning: trimming empty <summary>
-line 7 column 1055 - Warning: trimming empty <summary>
-line 8 column 2937 - Warning: trimming empty <summary>
+line 7 column 1075 - Warning: trimming empty <summary>
+line 8 column 2987 - Warning: trimming empty <summary>
 line 9 column 247 - Warning: trimming empty <summary>
 line 9 column 1008 - Warning: trimming empty <summary>
 line 10 column 237 - Warning: trimming empty <summary>
@@ -665,51 +726,51 @@ line 17 column 822 - Warning: trimming empty <summary>
 line 17 column 1821 - Warning: trimming empty <summary>
 line 18 column 239 - Warning: trimming empty <summary>
 line 18 column 1024 - Warning: trimming empty <summary>
-./docs/cargo_auto/file_hashes_mod/fn.are_all_files_equal.html
+./docs/cargo_auto_local_lib/file_hashes_mod/fn.are_all_files_equal.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/file_hashes_mod/fn.read_file_metadata.html
+./docs/cargo_auto_local_lib/file_hashes_mod/fn.read_file_metadata.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/file_hashes_mod/fn.read_json_file.html
+./docs/cargo_auto_local_lib/file_hashes_mod/fn.read_json_file.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/file_hashes_mod/fn.sha256_digest.html
+./docs/cargo_auto_local_lib/file_hashes_mod/fn.sha256_digest.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/file_hashes_mod/fn.is_project_changed.html
+./docs/cargo_auto_local_lib/file_hashes_mod/fn.is_project_changed.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/outside_of_rust_project_mod/fn.completion.html
+./docs/cargo_auto_local_lib/outside_of_rust_project_mod/fn.completion.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/outside_of_rust_project_mod/fn.print_help_from_cargo_auto.html
+./docs/cargo_auto_local_lib/outside_of_rust_project_mod/fn.print_help_from_cargo_auto.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/outside_of_rust_project_mod/fn.match_first_argument.html
+./docs/cargo_auto_local_lib/outside_of_rust_project_mod/fn.match_first_argument.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/outside_of_rust_project_mod/index.html
+./docs/cargo_auto_local_lib/outside_of_rust_project_mod/index.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/outside_of_rust_project_mod/fn.parse_args.html
+./docs/cargo_auto_local_lib/outside_of_rust_project_mod/fn.parse_args.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/constant.RED.html
+./docs/cargo_auto_local_lib/constant.RED.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/struct.PATH_AUTOMATION_TASKS_RS.html
+./docs/cargo_auto_local_lib/struct.PATH_AUTOMATION_TASKS_RS.html
 Document: "2" is not a file!
 
 line 5 column 898 - Warning: missing </summary> before <section>
@@ -798,13 +859,13 @@ line 430 column 512 - Warning: discarding unexpected </summary>
 line 443 column 60 - Warning: missing </summary> before <section>
 line 443 column 526 - Warning: discarding unexpected </summary>
 line 460 column 242 - Warning: missing </summary> before <section>
-line 460 column 801 - Warning: discarding unexpected </summary>
-line 460 column 864 - Warning: missing </summary> before <section>
-line 460 column 1305 - Warning: discarding unexpected </summary>
-line 460 column 1435 - Warning: missing </summary> before <section>
-line 460 column 1929 - Warning: discarding unexpected </summary>
-line 460 column 5392 - Warning: missing </summary> before <section>
-line 460 column 5750 - Warning: <div> isn't allowed in <h3> elements
+line 460 column 820 - Warning: discarding unexpected </summary>
+line 460 column 883 - Warning: missing </summary> before <section>
+line 460 column 1324 - Warning: discarding unexpected </summary>
+line 460 column 1454 - Warning: missing </summary> before <section>
+line 460 column 1957 - Warning: discarding unexpected </summary>
+line 460 column 5489 - Warning: missing </summary> before <section>
+line 460 column 5847 - Warning: <div> isn't allowed in <h3> elements
 line 461 column 149 - Warning: discarding unexpected </div>
 line 461 column 170 - Warning: discarding unexpected </summary>
 line 461 column 247 - Warning: missing </summary> before <section>
@@ -899,9 +960,9 @@ line 412 column 60 - Warning: trimming empty <summary>
 line 430 column 60 - Warning: trimming empty <summary>
 line 443 column 60 - Warning: trimming empty <summary>
 line 460 column 242 - Warning: trimming empty <summary>
-line 460 column 864 - Warning: trimming empty <summary>
-line 460 column 1435 - Warning: trimming empty <summary>
-line 460 column 5392 - Warning: trimming empty <summary>
+line 460 column 883 - Warning: trimming empty <summary>
+line 460 column 1454 - Warning: trimming empty <summary>
+line 460 column 5489 - Warning: trimming empty <summary>
 line 461 column 247 - Warning: trimming empty <summary>
 line 461 column 1008 - Warning: trimming empty <summary>
 line 462 column 237 - Warning: trimming empty <summary>
@@ -924,43 +985,39 @@ line 469 column 822 - Warning: trimming empty <summary>
 line 469 column 1821 - Warning: trimming empty <summary>
 line 470 column 239 - Warning: trimming empty <summary>
 line 470 column 1024 - Warning: trimming empty <summary>
-./docs/cargo_auto/constant.GREEN.html
+./docs/cargo_auto_local_lib/constant.GREEN.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/fn.is_not_run_in_rust_project_root_directory.html
+./docs/cargo_auto_local_lib/fn.is_not_run_in_rust_project_root_directory.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/utils_mod/index.html
+./docs/cargo_auto_local_lib/utils_mod/index.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/utils_mod/fn.run_shell_command_success.html
+./docs/cargo_auto_local_lib/utils_mod/fn.run_shell_command_success.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/template_new_cli_mod/fn.new_cli.html
+./docs/cargo_auto_local_lib/template_new_cli_mod/fn.new_cli.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/template_new_cli_mod/fn.get_vec_file.html
+./docs/cargo_auto_local_lib/template_new_cli_mod/fn.get_vec_file.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/template_new_cli_mod/index.html
+./docs/cargo_auto_local_lib/template_new_cli_mod/index.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/template_new_cli_mod/fn.copy_to_files.html
+./docs/cargo_auto_local_lib/template_new_cli_mod/fn.copy_to_files.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/fn.main.html
-Document: "2" is not a file!
-
-line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/struct.PATH_SRC.html
+./docs/cargo_auto_local_lib/struct.PATH_SRC.html
 Document: "2" is not a file!
 
 line 5 column 898 - Warning: missing </summary> before <section>
@@ -1049,13 +1106,13 @@ line 430 column 512 - Warning: discarding unexpected </summary>
 line 443 column 60 - Warning: missing </summary> before <section>
 line 443 column 526 - Warning: discarding unexpected </summary>
 line 460 column 242 - Warning: missing </summary> before <section>
-line 460 column 721 - Warning: discarding unexpected </summary>
-line 460 column 784 - Warning: missing </summary> before <section>
-line 460 column 1225 - Warning: discarding unexpected </summary>
-line 460 column 1355 - Warning: missing </summary> before <section>
-line 460 column 1849 - Warning: discarding unexpected </summary>
-line 460 column 4832 - Warning: missing </summary> before <section>
-line 460 column 5190 - Warning: <div> isn't allowed in <h3> elements
+line 460 column 740 - Warning: discarding unexpected </summary>
+line 460 column 803 - Warning: missing </summary> before <section>
+line 460 column 1244 - Warning: discarding unexpected </summary>
+line 460 column 1374 - Warning: missing </summary> before <section>
+line 460 column 1877 - Warning: discarding unexpected </summary>
+line 460 column 4929 - Warning: missing </summary> before <section>
+line 460 column 5287 - Warning: <div> isn't allowed in <h3> elements
 line 461 column 149 - Warning: discarding unexpected </div>
 line 461 column 170 - Warning: discarding unexpected </summary>
 line 461 column 247 - Warning: missing </summary> before <section>
@@ -1150,9 +1207,9 @@ line 412 column 60 - Warning: trimming empty <summary>
 line 430 column 60 - Warning: trimming empty <summary>
 line 443 column 60 - Warning: trimming empty <summary>
 line 460 column 242 - Warning: trimming empty <summary>
-line 460 column 784 - Warning: trimming empty <summary>
-line 460 column 1355 - Warning: trimming empty <summary>
-line 460 column 4832 - Warning: trimming empty <summary>
+line 460 column 803 - Warning: trimming empty <summary>
+line 460 column 1374 - Warning: trimming empty <summary>
+line 460 column 4929 - Warning: trimming empty <summary>
 line 461 column 247 - Warning: trimming empty <summary>
 line 461 column 1008 - Warning: trimming empty <summary>
 line 462 column 237 - Warning: trimming empty <summary>
@@ -1175,7 +1232,7 @@ line 469 column 822 - Warning: trimming empty <summary>
 line 469 column 1821 - Warning: trimming empty <summary>
 line 470 column 239 - Warning: trimming empty <summary>
 line 470 column 1024 - Warning: trimming empty <summary>
-./docs/cargo_auto/struct.PATH_CARGO_TOML.html
+./docs/cargo_auto_local_lib/struct.PATH_CARGO_TOML.html
 Document: "2" is not a file!
 
 line 5 column 898 - Warning: missing </summary> before <section>
@@ -1264,13 +1321,13 @@ line 430 column 512 - Warning: discarding unexpected </summary>
 line 443 column 60 - Warning: missing </summary> before <section>
 line 443 column 526 - Warning: discarding unexpected </summary>
 line 460 column 242 - Warning: missing </summary> before <section>
-line 460 column 756 - Warning: discarding unexpected </summary>
-line 460 column 819 - Warning: missing </summary> before <section>
-line 460 column 1260 - Warning: discarding unexpected </summary>
-line 460 column 1390 - Warning: missing </summary> before <section>
-line 460 column 1884 - Warning: discarding unexpected </summary>
-line 460 column 5077 - Warning: missing </summary> before <section>
-line 460 column 5435 - Warning: <div> isn't allowed in <h3> elements
+line 460 column 775 - Warning: discarding unexpected </summary>
+line 460 column 838 - Warning: missing </summary> before <section>
+line 460 column 1279 - Warning: discarding unexpected </summary>
+line 460 column 1409 - Warning: missing </summary> before <section>
+line 460 column 1912 - Warning: discarding unexpected </summary>
+line 460 column 5174 - Warning: missing </summary> before <section>
+line 460 column 5532 - Warning: <div> isn't allowed in <h3> elements
 line 461 column 149 - Warning: discarding unexpected </div>
 line 461 column 170 - Warning: discarding unexpected </summary>
 line 461 column 247 - Warning: missing </summary> before <section>
@@ -1365,9 +1422,9 @@ line 412 column 60 - Warning: trimming empty <summary>
 line 430 column 60 - Warning: trimming empty <summary>
 line 443 column 60 - Warning: trimming empty <summary>
 line 460 column 242 - Warning: trimming empty <summary>
-line 460 column 819 - Warning: trimming empty <summary>
-line 460 column 1390 - Warning: trimming empty <summary>
-line 460 column 5077 - Warning: trimming empty <summary>
+line 460 column 838 - Warning: trimming empty <summary>
+line 460 column 1409 - Warning: trimming empty <summary>
+line 460 column 5174 - Warning: trimming empty <summary>
 line 461 column 247 - Warning: trimming empty <summary>
 line 461 column 1008 - Warning: trimming empty <summary>
 line 462 column 237 - Warning: trimming empty <summary>
@@ -1390,51 +1447,51 @@ line 469 column 822 - Warning: trimming empty <summary>
 line 469 column 1821 - Warning: trimming empty <summary>
 line 470 column 239 - Warning: trimming empty <summary>
 line 470 column 1024 - Warning: trimming empty <summary>
-./docs/cargo_auto/constant.RESET.html
+./docs/cargo_auto_local_lib/constant.RESET.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/template_new_auto_mod/fn.get_vec_file.html
+./docs/cargo_auto_local_lib/template_new_auto_mod/fn.get_vec_file.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/template_new_auto_mod/index.html
+./docs/cargo_auto_local_lib/template_new_auto_mod/index.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/template_new_auto_mod/fn.copy_to_files.html
+./docs/cargo_auto_local_lib/template_new_auto_mod/fn.copy_to_files.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/template_new_auto_mod/fn.compile_automation_tasks_rs_if_needed.html
+./docs/cargo_auto_local_lib/template_new_auto_mod/fn.compile_automation_tasks_rs_if_needed.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/template_new_auto_mod/fn.new_auto.html
+./docs/cargo_auto_local_lib/template_new_auto_mod/fn.new_auto.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/template_new_auto_mod/fn.compile_project_automation_tasks_rs.html
+./docs/cargo_auto_local_lib/template_new_auto_mod/fn.compile_project_automation_tasks_rs.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/template_new_wasm_mod/fn.new_wasm.html
+./docs/cargo_auto_local_lib/template_new_wasm_mod/fn.new_wasm.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/template_new_wasm_mod/fn.get_vec_file.html
+./docs/cargo_auto_local_lib/template_new_wasm_mod/fn.get_vec_file.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/template_new_wasm_mod/index.html
+./docs/cargo_auto_local_lib/template_new_wasm_mod/index.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/template_new_wasm_mod/fn.copy_to_files.html
+./docs/cargo_auto_local_lib/template_new_wasm_mod/fn.copy_to_files.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/struct.PATH_GITIGNORE.html
+./docs/cargo_auto_local_lib/struct.PATH_GITIGNORE.html
 Document: "2" is not a file!
 
 line 5 column 898 - Warning: missing </summary> before <section>
@@ -1523,13 +1580,13 @@ line 430 column 512 - Warning: discarding unexpected </summary>
 line 443 column 60 - Warning: missing </summary> before <section>
 line 443 column 526 - Warning: discarding unexpected </summary>
 line 460 column 242 - Warning: missing </summary> before <section>
-line 460 column 751 - Warning: discarding unexpected </summary>
-line 460 column 814 - Warning: missing </summary> before <section>
-line 460 column 1255 - Warning: discarding unexpected </summary>
-line 460 column 1385 - Warning: missing </summary> before <section>
-line 460 column 1879 - Warning: discarding unexpected </summary>
-line 460 column 5042 - Warning: missing </summary> before <section>
-line 460 column 5400 - Warning: <div> isn't allowed in <h3> elements
+line 460 column 770 - Warning: discarding unexpected </summary>
+line 460 column 833 - Warning: missing </summary> before <section>
+line 460 column 1274 - Warning: discarding unexpected </summary>
+line 460 column 1404 - Warning: missing </summary> before <section>
+line 460 column 1907 - Warning: discarding unexpected </summary>
+line 460 column 5139 - Warning: missing </summary> before <section>
+line 460 column 5497 - Warning: <div> isn't allowed in <h3> elements
 line 461 column 149 - Warning: discarding unexpected </div>
 line 461 column 170 - Warning: discarding unexpected </summary>
 line 461 column 247 - Warning: missing </summary> before <section>
@@ -1624,9 +1681,9 @@ line 412 column 60 - Warning: trimming empty <summary>
 line 430 column 60 - Warning: trimming empty <summary>
 line 443 column 60 - Warning: trimming empty <summary>
 line 460 column 242 - Warning: trimming empty <summary>
-line 460 column 814 - Warning: trimming empty <summary>
-line 460 column 1385 - Warning: trimming empty <summary>
-line 460 column 5042 - Warning: trimming empty <summary>
+line 460 column 833 - Warning: trimming empty <summary>
+line 460 column 1404 - Warning: trimming empty <summary>
+line 460 column 5139 - Warning: trimming empty <summary>
 line 461 column 247 - Warning: trimming empty <summary>
 line 461 column 1008 - Warning: trimming empty <summary>
 line 462 column 237 - Warning: trimming empty <summary>
@@ -1649,31 +1706,31 @@ line 469 column 822 - Warning: trimming empty <summary>
 line 469 column 1821 - Warning: trimming empty <summary>
 line 470 column 239 - Warning: trimming empty <summary>
 line 470 column 1024 - Warning: trimming empty <summary>
-./docs/cargo_auto/inside_of_rust_project_mod/fn.completion.html
+./docs/cargo_auto_local_lib/inside_of_rust_project_mod/fn.completion.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/inside_of_rust_project_mod/fn.print_help_from_cargo_auto.html
+./docs/cargo_auto_local_lib/inside_of_rust_project_mod/fn.print_help_from_cargo_auto.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/inside_of_rust_project_mod/fn.match_first_argument.html
+./docs/cargo_auto_local_lib/inside_of_rust_project_mod/fn.match_first_argument.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/inside_of_rust_project_mod/index.html
+./docs/cargo_auto_local_lib/inside_of_rust_project_mod/index.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/inside_of_rust_project_mod/fn.parse_args.html
+./docs/cargo_auto_local_lib/inside_of_rust_project_mod/fn.parse_args.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/inside_of_rust_project_mod/fn.already_exists_automation_tasks_rs.html
+./docs/cargo_auto_local_lib/inside_of_rust_project_mod/fn.already_exists_automation_tasks_rs.html
 Document: "2" is not a file!
 
 line 2 column 81 - Warning: trimming empty <span>
-./docs/cargo_auto/struct.PATH_SRC_MAIN_RS.html
+./docs/cargo_auto_local_lib/struct.PATH_SRC_MAIN_RS.html
 Document: "2" is not a file!
 
 line 5 column 898 - Warning: missing </summary> before <section>
@@ -1762,13 +1819,13 @@ line 430 column 512 - Warning: discarding unexpected </summary>
 line 443 column 60 - Warning: missing </summary> before <section>
 line 443 column 526 - Warning: discarding unexpected </summary>
 line 460 column 242 - Warning: missing </summary> before <section>
-line 460 column 761 - Warning: discarding unexpected </summary>
-line 460 column 824 - Warning: missing </summary> before <section>
-line 460 column 1265 - Warning: discarding unexpected </summary>
-line 460 column 1395 - Warning: missing </summary> before <section>
-line 460 column 1889 - Warning: discarding unexpected </summary>
-line 460 column 5112 - Warning: missing </summary> before <section>
-line 460 column 5470 - Warning: <div> isn't allowed in <h3> elements
+line 460 column 780 - Warning: discarding unexpected </summary>
+line 460 column 843 - Warning: missing </summary> before <section>
+line 460 column 1284 - Warning: discarding unexpected </summary>
+line 460 column 1414 - Warning: missing </summary> before <section>
+line 460 column 1917 - Warning: discarding unexpected </summary>
+line 460 column 5209 - Warning: missing </summary> before <section>
+line 460 column 5567 - Warning: <div> isn't allowed in <h3> elements
 line 461 column 149 - Warning: discarding unexpected </div>
 line 461 column 170 - Warning: discarding unexpected </summary>
 line 461 column 247 - Warning: missing </summary> before <section>
@@ -1863,9 +1920,9 @@ line 412 column 60 - Warning: trimming empty <summary>
 line 430 column 60 - Warning: trimming empty <summary>
 line 443 column 60 - Warning: trimming empty <summary>
 line 460 column 242 - Warning: trimming empty <summary>
-line 460 column 824 - Warning: trimming empty <summary>
-line 460 column 1395 - Warning: trimming empty <summary>
-line 460 column 5112 - Warning: trimming empty <summary>
+line 460 column 843 - Warning: trimming empty <summary>
+line 460 column 1414 - Warning: trimming empty <summary>
+line 460 column 5209 - Warning: trimming empty <summary>
 line 461 column 247 - Warning: trimming empty <summary>
 line 461 column 1008 - Warning: trimming empty <summary>
 line 462 column 237 - Warning: trimming empty <summary>
@@ -1888,7 +1945,7 @@ line 469 column 822 - Warning: trimming empty <summary>
 line 469 column 1821 - Warning: trimming empty <summary>
 line 470 column 239 - Warning: trimming empty <summary>
 line 470 column 1024 - Warning: trimming empty <summary>
-./docs/cargo_auto/struct.PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.html
+./docs/cargo_auto_local_lib/struct.PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.html
 Document: "2" is not a file!
 
 line 5 column 898 - Warning: missing </summary> before <section>
@@ -1977,13 +2034,13 @@ line 430 column 512 - Warning: discarding unexpected </summary>
 line 443 column 60 - Warning: missing </summary> before <section>
 line 443 column 526 - Warning: discarding unexpected </summary>
 line 460 column 242 - Warning: missing </summary> before <section>
-line 460 column 866 - Warning: discarding unexpected </summary>
-line 460 column 929 - Warning: missing </summary> before <section>
-line 460 column 1370 - Warning: discarding unexpected </summary>
-line 460 column 1500 - Warning: missing </summary> before <section>
-line 460 column 1994 - Warning: discarding unexpected </summary>
-line 460 column 5847 - Warning: missing </summary> before <section>
-line 460 column 6205 - Warning: <div> isn't allowed in <h3> elements
+line 460 column 885 - Warning: discarding unexpected </summary>
+line 460 column 948 - Warning: missing </summary> before <section>
+line 460 column 1389 - Warning: discarding unexpected </summary>
+line 460 column 1519 - Warning: missing </summary> before <section>
+line 460 column 2022 - Warning: discarding unexpected </summary>
+line 460 column 5944 - Warning: missing </summary> before <section>
+line 460 column 6302 - Warning: <div> isn't allowed in <h3> elements
 line 461 column 149 - Warning: discarding unexpected </div>
 line 461 column 170 - Warning: discarding unexpected </summary>
 line 461 column 247 - Warning: missing </summary> before <section>
@@ -2078,9 +2135,9 @@ line 412 column 60 - Warning: trimming empty <summary>
 line 430 column 60 - Warning: trimming empty <summary>
 line 443 column 60 - Warning: trimming empty <summary>
 line 460 column 242 - Warning: trimming empty <summary>
-line 460 column 929 - Warning: trimming empty <summary>
-line 460 column 1500 - Warning: trimming empty <summary>
-line 460 column 5847 - Warning: trimming empty <summary>
+line 460 column 948 - Warning: trimming empty <summary>
+line 460 column 1519 - Warning: trimming empty <summary>
+line 460 column 5944 - Warning: trimming empty <summary>
 line 461 column 247 - Warning: trimming empty <summary>
 line 461 column 1008 - Warning: trimming empty <summary>
 line 462 column 237 - Warning: trimming empty <summary>
@@ -2103,48 +2160,3 @@ line 469 column 822 - Warning: trimming empty <summary>
 line 469 column 1821 - Warning: trimming empty <summary>
 line 470 column 239 - Warning: trimming empty <summary>
 line 470 column 1024 - Warning: trimming empty <summary>
-./docs/src/cargo_auto/inside_of_rust_project_mod.rs.html
-Document: "2" is not a file!
-
-line 2 column 233 - Warning: trimming empty <span>
-./docs/src/cargo_auto/template_new_auto_mod.rs.html
-Document: "2" is not a file!
-
-line 2 column 233 - Warning: trimming empty <span>
-./docs/src/cargo_auto/file_hashes_mod.rs.html
-Document: "2" is not a file!
-
-line 2 column 233 - Warning: trimming empty <span>
-./docs/src/cargo_auto/outside_of_rust_project_mod.rs.html
-Document: "2" is not a file!
-
-line 2 column 233 - Warning: trimming empty <span>
-./docs/src/cargo_auto/template_new_wasm_mod.rs.html
-Document: "2" is not a file!
-
-line 2 column 233 - Warning: trimming empty <span>
-./docs/src/cargo_auto/template_new_cli_mod.rs.html
-Document: "2" is not a file!
-
-line 2 column 233 - Warning: trimming empty <span>
-./docs/src/cargo_auto/utils_mod.rs.html
-Document: "2" is not a file!
-
-line 2 column 233 - Warning: trimming empty <span>
-./docs/src/cargo_auto/main.rs.html
-Document: "2" is not a file!
-
-line 2 column 233 - Warning: trimming empty <span>
-./docs/src/cargo_auto/template_new_pwa_wasm_mod.rs.html
-Document: "2" is not a file!
-
-line 2 column 233 - Warning: trimming empty <span>
-./docs/index.html
-Document: "2" is not a file!
-
-line 1 column 1 - Warning: missing <!DOCTYPE> declaration
-line 1 column 1 - Warning: inserting missing 'title' element
-./docs/settings.html
-Document: "2" is not a file!
-
-line 2 column 81 - Warning: trimming empty <span>

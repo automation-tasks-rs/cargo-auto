@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="generator" content="rustdoc">
-  <meta name="description" content="Source of the Rust file `src/main.rs`.">
+  <meta name="description" content="Source of the Rust file `src/bin/cargo-auto/main.rs`.">
   <title>main.rs - source</title>
   <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2">
@@ -32,7 +32,7 @@
   <main>
     <nav class="sub">
       <a class="sub-logo-container" href="../../cargo_auto/index.html"><img src=
-      "https://github.com/bestia-dev/cargo-auto/raw/main/images/logo/logo_cargo_auto.svg" alt="cargo_auto"></a>
+      "https://github.com/automation-tasks-rs/cargo-auto/raw/main/images/logo/logo_cargo_auto.svg" alt="cargo_auto"></a>
       <form class="search-form">
         <input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder=
         "Click or press ‘S’ to search, ‘?’ for more options…" type="search">
@@ -318,97 +318,46 @@
 <a href="#268" id="268">268</a>
 <a href="#269" id="269">269</a>
 <a href="#270" id="270">270</a>
-<a href="#271" id="271">271</a>
-<a href="#272" id="272">272</a>
-<a href="#273" id="273">273</a>
-<a href="#274" id="274">274</a>
-<a href="#275" id="275">275</a>
-<a href="#276" id="276">276</a>
-<a href="#277" id="277">277</a>
-<a href="#278" id="278">278</a>
-<a href="#279" id="279">279</a>
-<a href="#280" id="280">280</a>
-<a href="#281" id="281">281</a>
-<a href="#282" id="282">282</a>
-<a href="#283" id="283">283</a>
-<a href="#284" id="284">284</a>
-<a href="#285" id="285">285</a>
-<a href="#286" id="286">286</a>
-<a href="#287" id="287">287</a>
-<a href="#288" id="288">288</a>
-<a href="#289" id="289">289</a>
-<a href="#290" id="290">290</a>
-<a href="#291" id="291">291</a>
-<a href="#292" id="292">292</a>
-<a href="#293" id="293">293</a>
-<a href="#294" id="294">294</a>
-<a href="#295" id="295">295</a>
-<a href="#296" id="296">296</a>
-<a href="#297" id="297">297</a>
-<a href="#298" id="298">298</a>
-<a href="#299" id="299">299</a>
-<a href="#300" id="300">300</a>
-<a href="#301" id="301">301</a>
-<a href="#302" id="302">302</a>
-<a href="#303" id="303">303</a>
-<a href="#304" id="304">304</a>
-<a href="#305" id="305">305</a>
-<a href="#306" id="306">306</a>
-<a href="#307" id="307">307</a>
-<a href="#308" id="308">308</a>
-<a href="#309" id="309">309</a>
-<a href="#310" id="310">310</a>
-<a href="#311" id="311">311</a>
-<a href="#312" id="312">312</a>
-<a href="#313" id="313">313</a>
-<a href="#314" id="314">314</a>
-<a href="#315" id="315">315</a>
-<a href="#316" id="316">316</a>
-<a href="#317" id="317">317</a>
-<a href="#318" id="318">318</a>
-<a href="#319" id="319">319</a>
-<a href="#320" id="320">320</a>
-<a href="#321" id="321">321</a>
-<a href="#322" id="322">322</a>
-<a href="#323" id="323">323</a>
 </pre>
         </div>
         <pre class="rust"><code><span class="comment">// cargo-auto/src/main.rs
 
 // logo for docs.rs in png
 </span><span class="attr">#![doc(html_logo_url = <span class=
-"string">"https://github.com/bestia-dev/cargo-auto/raw/main/images/logo/logo_cargo_auto.svg"</span>)]
-
+"string">"https://github.com/automation-tasks-rs/cargo-auto/raw/main/images/logo/logo_cargo_auto.svg"</span>)]
 </span><span class="comment">// region: auto_md_to_doc_comments include README.md A //!
 </span><span class="doccomment">//! # cargo-auto  
 //!
-//! **cargo-auto - automation tasks coded in Rust language for the workflow of Rust projects**  
-//! ***version: 2024.302.2122 date: 2024-03-02 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/bestia-dev/cargo-auto)***
+//! **Automation tasks coded in Rust language for the workflow of Rust projects**  
+//! ***version: 2024.307.14 date: 2024-03-07 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
 //!
 //!  ![maintained](https://img.shields.io/badge/maintained-green)
 //!  ![ready-for-use](https://img.shields.io/badge/ready_for_use-green)
 //!  ![rustlang](https://img.shields.io/badge/rustlang-orange)
-//!  ![make](https://img.shields.io/badge/make-orange)
+//!  ![automation](https://img.shields.io/badge/automation-orange)
+//!  ![workflow](https://img.shields.io/badge/workflow-orange)
 //!
-//!  ![logo](https://raw.githubusercontent.com/bestia-dev/cargo-auto/main/images/logo/logo_cargo_auto.svg)
+//!  ![logo](https://raw.githubusercontent.com/automation-tasks-rs/cargo-auto/main/images/logo/logo_cargo_auto.svg)
+//!  cargo-auto is part of [automation_tasks_rs](https://github.com/automation-tasks-rs) project
 //!
 //!  [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
 //!  [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)
 //!  [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/cargo-auto.svg)](https://web.crev.dev/rust-reviews/crate/cargo-auto/)
-//!  
-//! [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/)
-//!  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/bestia-dev/cargo-auto/blob/master/LICENSE)
-//!  [![Rust](https://github.com/bestia-dev/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/bestia-dev/cargo-auto/)
+//!  [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/)
+//!
+//!  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/blob/master/LICENSE)
+//!  [![Rust](https://github.com/automation-tasks-rs/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//!  [![Newest docs](https://img.shields.io/badge/newest_docs-brown.svg)](https://automation-tasks-rs.github.io/cargo-auto/cargo_auto/index.html)
 //!  ![cargo-auto](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-8992-green.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-218-blue.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-417-purple.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/bestia-dev/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-7954-orange.svg)](https://github.com/bestia-dev/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9023-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-1463-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-421-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-7838-orange.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //!
 //! Hashtags: #rustlang #tutorial #buildtool #developmenttool #cli  
-//! My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).
+//! My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/automation-tasks-rs/tutorials_rust_wasm).
 //!
 //! ## Try it
 //!
@@ -462,7 +411,7 @@
 //! This binary is super simple. It has only 1 trivial dependency: `lazy_static`.  
 //! The binary only reads the CLI arguments and runs the `automation_tasks_rs` binary with them. If needed it will compile `automation_tasks_rs` first.  
 //! The code-flow of the source code of `cargo-auto` is simple, fully commented, and straightforward to audit.  
-//! The source code is on [GitHub](https://github.com/bestia-dev/cargo-auto) with MIT open-source licensing.  
+//! The source code is on [GitHub](https://github.com/automation-tasks-rs/cargo-auto) with MIT open-source licensing.  
 //!
 //! ## bash auto-completion
 //!
@@ -526,7 +475,7 @@
 //! Never write secrets, passwords, passcodes, or tokens inside your Rust code. Because then it is pushed to GitHub and the whole world can read it in the next second!
 //! Basic example (most of the useful functions are already there):  
 //!
-//! ```rust
+//! ```rust ignore
 //! /// match arguments and call tasks functions
 //! fn match_arguments_and_call_tasks(mut args: std::env::Args){
 //!     // the first argument is the user defined task: (no argument for help), build, release,...
@@ -593,20 +542,20 @@
 //! ## more complex tasks
 //!
 //! You can write more complex tasks in Rust language.  
-//! For example in this project I use automation to create GitHub Releases: &lt;https://github.com/bestia-dev/dropbox_backup_to_external_disk&gt;  
+//! For example in this project I use automation to create GitHub Releases: &lt;https://github.com/automation-tasks-rs/dropbox_backup_to_external_disk&gt;  
 //! Here is a pretty complex workspace with more sub-projects:  
-//! &lt;https://github.com/bestia-dev/cargo_crev_reviews_workspace&gt;  
+//! &lt;https://github.com/automation-tasks-rs/cargo_crev_reviews_workspace&gt;  
 //! There is no end to your imagination. If you write something that looks like it can help other developers, please share it with me and I will add it here.
 //!
 //! ## Development details
 //!
 //! Read the development details in a separate md file:  
-//! [DEVELOPMENT.md](https://github.com/bestia-dev/cargo-auto/blob/main/DEVELOPMENT.md)
+//! [DEVELOPMENT.md](https://github.com/automation-tasks-rs/cargo-auto/blob/main/DEVELOPMENT.md)
 //!
 //! ## Releases changelog
 //!
 //! Read the changelog in a separate md file:  
-//! [RELEASES.md](https://github.com/bestia-dev/cargo-auto/blob/main/RELEASES.md)
+//! [RELEASES.md](https://github.com/automation-tasks-rs/cargo-auto/blob/main/RELEASES.md)
 //!
 //! ## TODO
 //!
@@ -622,67 +571,13 @@
 //! [Na zdravje!](https://translate.google.com/?hl=en&amp;sl=sl&amp;tl=en&amp;text=Na%20zdravje&amp;op=translate) [Alla salute!](https://dictionary.cambridge.org/dictionary/italian-english/alla-salute) [Prost!](https://dictionary.cambridge.org/dictionary/german-english/prost) [Nazdravlje!](https://matadornetwork.com/nights/how-to-say-cheers-in-50-languages/) 🍻
 //!
 //! [//bestia.dev](https://bestia.dev)  
-//! [//github.com/bestia-dev](https://github.com/bestia-dev)  
+//! [//github.com/automation-tasks-rs](https://github.com/automation-tasks-rs)  
 //! [//bestiadev.substack.com](https://bestiadev.substack.com)  
 //! [//youtube.com/@bestia-dev-tutorials](https://youtube.com/@bestia-dev-tutorials)  
 //!
 </span><span class="comment">// endregion: auto_md_to_doc_comments include README.md A //!
 
-</span><span class="kw">mod </span>file_hashes_mod;
-<span class="kw">mod </span>inside_of_rust_project_mod;
-<span class="kw">mod </span>outside_of_rust_project_mod;
-<span class="kw">mod </span>template_new_auto_mod;
-<span class="kw">mod </span>template_new_cli_mod;
-<span class="kw">mod </span>template_new_pwa_wasm_mod;
-<span class="kw">mod </span>template_new_wasm_mod;
-<span class="kw">mod </span>utils_mod;
-
-<span class="comment">// region: use statements
-</span><span class="kw">use </span>lazy_static::lazy_static;
-<span class="kw">use </span>std::path::{Path, PathBuf};
-<span class="comment">// endregion: use statements
-
-// paths
-</span><span class="macro">lazy_static! </span>{
-    <span class="doccomment">/// constant paths for read/write
-    </span><span class="kw">static </span><span class="kw-2">ref </span>PATH_AUTOMATION_TASKS_RS: PathBuf = PathBuf::from(<span class=
-"string">"automation_tasks_rs"</span>);
-    <span class="doccomment">/// constant paths for read/write
-    </span><span class="kw">static </span><span class="kw-2">ref </span>PATH_CARGO_TOML: PathBuf = PathBuf::from(<span class=
-"string">"automation_tasks_rs/Cargo.toml"</span>);
-    <span class="doccomment">/// constant paths for read/write
-    </span><span class="kw">static </span><span class="kw-2">ref </span>PATH_GITIGNORE: PathBuf = PathBuf::from(<span class=
-"string">"automation_tasks_rs/.gitignore"</span>);
-    <span class="doccomment">/// constant paths for read/write
-    </span><span class="kw">static </span><span class="kw-2">ref </span>PATH_SRC_MAIN_RS: PathBuf = PathBuf::from(<span class=
-"string">"automation_tasks_rs/src/main.rs"</span>);
-    <span class="doccomment">/// constant paths for folder
-    </span><span class="kw">static </span><span class="kw-2">ref </span>PATH_SRC: PathBuf = PathBuf::from(<span class=
-"string">"automation_tasks_rs/src"</span>);
-    <span class="doccomment">/// constant paths for read/write
-    </span><span class="kw">static </span><span class="kw-2">ref </span>PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS: PathBuf =
-        PathBuf::from(<span class="string">"automation_tasks_rs/target/debug/automation_tasks_rs"</span>);
-    <span class="doccomment">/// constant paths for read/write
-    </span><span class="kw">static </span><span class="kw-2">ref </span>PATH_FILE_HASHES_JSON: PathBuf =
-        PathBuf::from(<span class="string">"automation_tasks_rs/.file_hashes.json"</span>);
-}
-
-<span class="comment">// ANSI colors for Linux terminal
-// https://github.com/shiena/ansicolor/blob/master/README.md
-</span><span class="attr">#[allow(dead_code)]
-</span><span class="kw">pub const </span>RED: <span class="kw-2">&</span>str = <span class="string">"\x1b[31m"</span>;
-<span class="attr">#[allow(dead_code)]
-</span><span class="kw">pub const </span>YELLOW: <span class="kw-2">&</span>str = <span class="string">"\x1b[33m"</span>;
-<span class="attr">#[allow(dead_code)]
-</span><span class="kw">pub const </span>GREEN: <span class="kw-2">&</span>str = <span class="string">"\x1b[32m"</span>;
-<span class="attr">#[allow(dead_code)]
-</span><span class="kw">pub const </span>RESET: <span class="kw-2">&</span>str = <span class="string">"\x1b[0m"</span>;
-
-<span class="doccomment">/// file item
-</span><span class="kw">pub struct </span>FileItem {
-    file_name: <span class="kw-2">&</span><span class="lifetime">'static </span>str,
-    file_content: <span class="kw-2">&</span><span class="lifetime">'static </span>str,
-}
+</span><span class="kw">use </span>cargo_auto_local_lib <span class="kw">as </span>l;
 
 <span class="kw">fn </span>main() {
     <span class="comment">// get CLI arguments
@@ -690,17 +585,11 @@
     <span class="comment">// the zero argument is the name of the program
     </span><span class="kw">let </span>_arg_0 = args.next();
 
-    <span class="kw">if </span>is_not_run_in_rust_project_root_directory() {
-        outside_of_rust_project_mod::parse_args(<span class="kw-2">&amp;mut </span>args);
+    <span class="kw">if </span>l::is_not_run_in_rust_project_root_directory() {
+        l::outside_of_rust_project_mod::parse_args(<span class="kw-2">&amp;mut </span>args);
     } <span class="kw">else </span>{
-        inside_of_rust_project_mod::parse_args(<span class="kw-2">&amp;mut </span>args);
+        l::inside_of_rust_project_mod::parse_args(<span class="kw-2">&amp;mut </span>args);
     }
-}
-
-<span class="doccomment">/// Check if is not run in Rust project root directory
-</span><span class="kw">fn </span>is_not_run_in_rust_project_root_directory() -&gt; bool {
-    <span class="comment">// return negation of exists
-    </span>!Path::new(<span class="string">"Cargo.toml"</span>).exists()
 }
 </code></pre>
       </div>

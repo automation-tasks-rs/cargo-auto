@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="rustdoc">
+  <meta name="description" content="Source of the Rust file `src/inside_of_rust_project_mod.rs`.">
+  <title>inside_of_rust_project_mod.rs - source</title>
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2">
+  <link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css">
+  <link rel="stylesheet" href="../../static.files/rustdoc-ac92e1bbe349e143.css">
+  <meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="cargo_auto_local_lib" data-themes=""
+  data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js"
+  data-settings-js="settings-4313503d2e1961c2.js">
+  <script src="../../static.files/storage-f2adc0d6ca4d09fb.js"></script>
+  <script defer src="../../static.files/src-script-39ed315d46fb705f.js"></script>
+  <script defer src="../../src-files.js"></script>
+  <script defer src="../../static.files/main-305769736d49e732.js"></script><noscript>
+  <link rel="stylesheet" href="../../static.files/noscript-feafe1bb7466e4bd.css"></noscript>
+  <link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png">
+  <link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png">
+  <link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg">
+</head>
+<body class="rustdoc src">
+  <!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+  <nav class="sidebar"></nav>
+  <div class="sidebar-resizer"></div>
+  <main>
+    <nav class="sub">
+      <a class="sub-logo-container" href="../../cargo_auto_local_lib/index.html"><img src=
+      "https://github.com/automation-tasks-rs/cargo-auto/raw/main/images/logo/logo_cargo_auto.svg" alt="cargo_auto_local_lib"></a>
+      <form class="search-form">
+        <input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder=
+        "Click or press ‘S’ to search, ‘?’ for more options…" type="search">
+        <div id="help-button" tabindex="-1">
+          <a href="../../help.html" title="help">?</a>
+        </div>
+        <div id="settings-menu" tabindex="-1">
+          <a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src=
+          "../../static.files/wheel-7b819b6101059cd0.svg"></a>
+        </div>
+      </form>
+    </nav>
+    <section id="main-content" class="content">
+      <div class="example-wrap">
+        <div data-nosnippet="">
+          <pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<a href="#2" id="2">2</a>
+<a href="#3" id="3">3</a>
+<a href="#4" id="4">4</a>
+<a href="#5" id="5">5</a>
+<a href="#6" id="6">6</a>
+<a href="#7" id="7">7</a>
+<a href="#8" id="8">8</a>
+<a href="#9" id="9">9</a>
+<a href="#10" id="10">10</a>
+<a href="#11" id="11">11</a>
+<a href="#12" id="12">12</a>
+<a href="#13" id="13">13</a>
+<a href="#14" id="14">14</a>
+<a href="#15" id="15">15</a>
+<a href="#16" id="16">16</a>
+<a href="#17" id="17">17</a>
+<a href="#18" id="18">18</a>
+<a href="#19" id="19">19</a>
+<a href="#20" id="20">20</a>
+<a href="#21" id="21">21</a>
+<a href="#22" id="22">22</a>
+<a href="#23" id="23">23</a>
+<a href="#24" id="24">24</a>
+<a href="#25" id="25">25</a>
+<a href="#26" id="26">26</a>
+<a href="#27" id="27">27</a>
+<a href="#28" id="28">28</a>
+<a href="#29" id="29">29</a>
+<a href="#30" id="30">30</a>
+<a href="#31" id="31">31</a>
+<a href="#32" id="32">32</a>
+<a href="#33" id="33">33</a>
+<a href="#34" id="34">34</a>
+<a href="#35" id="35">35</a>
+<a href="#36" id="36">36</a>
+<a href="#37" id="37">37</a>
+<a href="#38" id="38">38</a>
+<a href="#39" id="39">39</a>
+<a href="#40" id="40">40</a>
+<a href="#41" id="41">41</a>
+<a href="#42" id="42">42</a>
+<a href="#43" id="43">43</a>
+<a href="#44" id="44">44</a>
+<a href="#45" id="45">45</a>
+<a href="#46" id="46">46</a>
+<a href="#47" id="47">47</a>
+<a href="#48" id="48">48</a>
+<a href="#49" id="49">49</a>
+<a href="#50" id="50">50</a>
+<a href="#51" id="51">51</a>
+<a href="#52" id="52">52</a>
+<a href="#53" id="53">53</a>
+<a href="#54" id="54">54</a>
+<a href="#55" id="55">55</a>
+<a href="#56" id="56">56</a>
+<a href="#57" id="57">57</a>
+<a href="#58" id="58">58</a>
+<a href="#59" id="59">59</a>
+<a href="#60" id="60">60</a>
+<a href="#61" id="61">61</a>
+<a href="#62" id="62">62</a>
+<a href="#63" id="63">63</a>
+<a href="#64" id="64">64</a>
+<a href="#65" id="65">65</a>
+<a href="#66" id="66">66</a>
+<a href="#67" id="67">67</a>
+<a href="#68" id="68">68</a>
+<a href="#69" id="69">69</a>
+<a href="#70" id="70">70</a>
+<a href="#71" id="71">71</a>
+<a href="#72" id="72">72</a>
+<a href="#73" id="73">73</a>
+<a href="#74" id="74">74</a>
+<a href="#75" id="75">75</a>
+<a href="#76" id="76">76</a>
+<a href="#77" id="77">77</a>
+<a href="#78" id="78">78</a>
+<a href="#79" id="79">79</a>
+<a href="#80" id="80">80</a>
+<a href="#81" id="81">81</a>
+<a href="#82" id="82">82</a>
+<a href="#83" id="83">83</a>
+<a href="#84" id="84">84</a>
+<a href="#85" id="85">85</a>
+<a href="#86" id="86">86</a>
+<a href="#87" id="87">87</a>
+<a href="#88" id="88">88</a>
+<a href="#89" id="89">89</a>
+<a href="#90" id="90">90</a>
+<a href="#91" id="91">91</a>
+<a href="#92" id="92">92</a>
+<a href="#93" id="93">93</a>
+<a href="#94" id="94">94</a>
+<a href="#95" id="95">95</a>
+<a href="#96" id="96">96</a>
+<a href="#97" id="97">97</a>
+<a href="#98" id="98">98</a>
+<a href="#99" id="99">99</a>
+<a href="#100" id="100">100</a>
+<a href="#101" id="101">101</a>
+<a href="#102" id="102">102</a>
+<a href="#103" id="103">103</a>
+<a href="#104" id="104">104</a>
+<a href="#105" id="105">105</a>
+<a href="#106" id="106">106</a>
+<a href="#107" id="107">107</a>
+<a href="#108" id="108">108</a>
+<a href="#109" id="109">109</a>
+<a href="#110" id="110">110</a>
+<a href="#111" id="111">111</a>
+<a href="#112" id="112">112</a>
+<a href="#113" id="113">113</a>
+<a href="#114" id="114">114</a>
+<a href="#115" id="115">115</a>
+<a href="#116" id="116">116</a>
+<a href="#117" id="117">117</a>
+<a href="#118" id="118">118</a>
+<a href="#119" id="119">119</a>
+<a href="#120" id="120">120</a>
+<a href="#121" id="121">121</a>
+<a href="#122" id="122">122</a>
+<a href="#123" id="123">123</a>
+<a href="#124" id="124">124</a>
+<a href="#125" id="125">125</a>
+<a href="#126" id="126">126</a>
+<a href="#127" id="127">127</a>
+<a href="#128" id="128">128</a>
+<a href="#129" id="129">129</a>
+<a href="#130" id="130">130</a>
+<a href="#131" id="131">131</a>
+<a href="#132" id="132">132</a>
+</pre>
+        </div>
+        <pre class="rust"><code><span class="comment">// inside_of_rust_project_mod.rs
+
+// region: use statements
+
+// endregion
+
+</span><span class="kw">use crate</span>::{GREEN, RED, RESET, YELLOW};
+
+<span class="kw">pub fn </span>parse_args(args: <span class="kw-2">&amp;mut </span>std::env::Args) {
+    <span class="comment">// the first argument is the task: (no argument for help), new_auto, build, release,...
+    // wooow! There is a difference if I call the standalone binary or as a cargo subcommand:
+    // cargo-auto build     - build is the arg_1
+    // cargo auto build     - build is the arg_2
+    </span><span class="kw">let </span>arg_1 = args.next();
+    <span class="kw">match </span>arg_1 {
+        <span class="prelude-val">None </span>=&gt; print_help_from_cargo_auto(),
+        <span class="prelude-val">Some</span>(task) =&gt; {
+            <span class="kw">if </span>task != <span class="string">"auto" </span>{
+                <span class="comment">// when calling as `cargo auto build`
+                </span>match_first_argument(<span class="kw-2">&</span>task, args);
+            } <span class="kw">else </span>{
+                <span class="comment">// when calling as `cargo-auto build`
+                </span><span class="kw">let </span>arg_2 = args.next();
+                <span class="kw">match </span>arg_2 {
+                    <span class="prelude-val">None </span>=&gt; print_help_from_cargo_auto(),
+                    <span class="prelude-val">Some</span>(task) =&gt; match_first_argument(<span class="kw-2">&</span>task, args),
+                }
+            }
+        }
+    }
+}
+
+<span class="doccomment">/// already exists automation_tasks_rs directory
+</span><span class="kw">fn </span>already_exists_automation_tasks_rs() -&gt; bool {
+    <span class="comment">// return
+    </span><span class="kw">crate</span>::PATH_AUTOMATION_TASKS_RS.exists()
+}
+
+<span class="doccomment">/// if there is no argument then print help  
+/// if there exists `automation_tasks_rs/Cargo.toml` and `automation_tasks_rs/src/main.rs`  
+/// call automation_tasks_rs with no arguments to print the help prepared in user defined automation_tasks_rs  
+/// else print the help for `cargo auto new_auto`  
+/// in development use: `cargo run`  
+/// in runtime use: `cargo auto`  
+</span><span class="kw">fn </span>print_help_from_cargo_auto() {
+    <span class="kw">if </span>!<span class="kw">crate</span>::PATH_CARGO_TOML.exists() || !<span class="kw">crate</span>::PATH_SRC_MAIN_RS.exists() {
+        <span class="macro">println!</span>(
+            <span class="string">r#"
+    {YELLOW}Welcome to cargo-auto !
+    This program automates your custom tasks when developing a Rust project.
+        
+    To start using `cargo auto` inside your Rust project, you must create a new `automation_tasks_rs` directory with the command:{RESET}
+{GREEN}cargo auto new_auto{RESET}
+
+    {YELLOW}© 2024 bestia.dev  MIT License github.com/automation-tasks-rs/cargo-auto{RESET}
+"#
+        </span>);
+    } <span class="kw">else </span>{
+        <span class="comment">// panic! if cannot compile automation_tasks_rs
+        </span><span class="kw">crate</span>::template_new_auto_mod::compile_automation_tasks_rs_if_needed();
+        <span class="kw">let </span>_success = <span class="kw">crate</span>::utils_mod::run_shell_command_success(<span class="kw-2">&</span><span class=
+"kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.to_string_lossy());
+    }
+}
+
+<span class="doccomment">/// the first argument is the task: new_auto, build, release,...  
+/// the task `new` is processed by `cargo-auto`,  
+/// all other tasks are processed by the used defined `automation_tasks_rs`  
+/// in development use: `cargo run -- new_auto`  
+/// in development use: `cargo run -- build`  
+/// in development use: `cargo run -- release`  
+</span><span class="kw">fn </span>match_first_argument(task: <span class="kw-2">&</span>str, args: <span class="kw-2">&amp;mut </span>std::env::Args) {
+    <span class="kw">if </span>task == <span class="string">"completion" </span>{
+        completion();
+    } <span class="kw">else if </span>task == <span class="string">"new_auto" </span>{
+        <span class="comment">// this task is inside cargo-auto
+        </span><span class="kw">if </span>already_exists_automation_tasks_rs() {
+            <span class="macro">println!</span>(<span class=
+"string">"{RED}Error: Directory automation_tasks_rs already exists. Cannot create new directory automation_tasks_rs.{RESET}"</span>);
+            <span class="comment">// early exit
+            </span>std::process::exit(<span class="number">0</span>);
+        }
+        <span class="kw">crate</span>::template_new_auto_mod::new_auto();
+    } <span class="kw">else </span>{
+        <span class="comment">// these tasks are user defined in automation_tasks_rs
+        </span><span class="kw">if </span>!already_exists_automation_tasks_rs() {
+            <span class="macro">println!</span>(<span class="string">"{RED}Error: Directory automation_tasks_rs does not exist.{RESET}"</span>);
+            print_help_from_cargo_auto();
+            <span class="comment">// early exit
+            </span>std::process::exit(<span class="number">0</span>);
+        }
+        <span class="comment">// panic! if cannot compile automation_tasks_rs
+        </span><span class="kw">crate</span>::template_new_auto_mod::compile_automation_tasks_rs_if_needed();
+        <span class="comment">// call automation_tasks_rs/target/debug/automation_tasks_rs with all the arguments
+        </span><span class="kw">let </span><span class="kw-2">mut </span>command = std::process::Command::new(<span class=
+"kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str());
+        command.arg(<span class="kw-2">&</span>task);
+        <span class="kw">while let </span><span class="prelude-val">Some</span>(arg_x) = args.next() {
+            command.arg(<span class="kw-2">&</span>arg_x);
+        }
+        <span class="kw">let </span><span class="kw-2">mut </span>child = command.spawn().unwrap();
+        child.wait().unwrap();
+    }
+}
+
+<span class="doccomment">/// sub-command for bash auto-completion of `cargo auto` using the crate `dev_bestia_cargo_completion`
+</span><span class="kw">fn </span>completion() {
+    <span class="doccomment">/// println one, more or all sub_commands
+    </span><span class="kw">fn </span>completion_return_one_or_more_sub_commands(sub_commands: Vec&lt;<span class=
+"kw-2">&</span>str&gt;, word_being_completed: <span class="kw-2">&</span>str) {
+        <span class="kw">let </span><span class="kw-2">mut </span>sub_found = <span class="bool-val">false</span>;
+        <span class="kw">for </span>sub_command <span class="kw">in </span>sub_commands.iter() {
+            <span class="kw">if </span>sub_command.starts_with(word_being_completed) {
+                <span class="macro">println!</span>(<span class="string">"{}"</span>, sub_command);
+                sub_found = <span class="bool-val">true</span>;
+            }
+        }
+        <span class="kw">if </span>sub_found == <span class="bool-val">false </span>{
+            <span class="comment">// print all sub-commands
+            </span><span class="kw">for </span>sub_command <span class="kw">in </span>sub_commands.iter() {
+                <span class="macro">println!</span>(<span class="string">"{}"</span>, sub_command);
+            }
+        }
+    }
+
+    <span class="kw">let </span>args: Vec&lt;String&gt; = std::env::args().collect();
+    <span class="kw">let </span>last_word = args[<span class="number">2</span>].as_str();
+    <span class="kw">let </span><span class="kw-2">mut </span>word_being_completed = <span class="string">" "</span>;
+    <span class="kw">if </span>args.len() &gt; <span class="number">3 </span>{
+        word_being_completed = args[<span class="number">3</span>].as_str();
+    }
+    <span class="kw">if </span>last_word == <span class="string">"cargo-auto" </span>|| last_word == <span class="string">"auto" </span>{
+        <span class="kw">let </span>sub_commands = <span class="macro">vec!</span>[<span class="string">"new_auto"</span>];
+        completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
+    }
+}
+</code></pre>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

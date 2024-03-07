@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="generator" content="rustdoc">
+  <meta name="description" content="cargo-auto">
+  <title>cargo_auto_local_lib - Rust</title>
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../static.files/FiraSans-Regular-018c141bf0843ffd.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../static.files/FiraSans-Medium-8f9a781e4970d388.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2">
+  <link rel="stylesheet" href="../static.files/normalize-76eba96aa4d2e634.css">
+  <link rel="stylesheet" href="../static.files/rustdoc-ac92e1bbe349e143.css">
+  <meta name="rustdoc-vars" data-root-path="../" data-static-root-path="../static.files/" data-current-crate="cargo_auto_local_lib" data-themes=""
+  data-resource-suffix="" data-rustdoc-version="1.76.0 (07dca489a 2024-02-04)" data-channel="1.76.0" data-search-js="search-2b6ce74ff89ae146.js"
+  data-settings-js="settings-4313503d2e1961c2.js">
+  <script src="../static.files/storage-f2adc0d6ca4d09fb.js"></script>
+  <script defer src="../crates.js"></script>
+  <script defer src="../static.files/main-305769736d49e732.js"></script><noscript>
+  <link rel="stylesheet" href="../static.files/noscript-feafe1bb7466e4bd.css"></noscript>
+  <link rel="alternate icon" type="image/png" href="../static.files/favicon-16x16-8b506e7a72182f1c.png">
+  <link rel="alternate icon" type="image/png" href="../static.files/favicon-32x32-422f7d1d52889060.png">
+  <link rel="icon" type="image/svg+xml" href="../static.files/favicon-2c020d218678b618.svg">
+</head>
+<body class="rustdoc mod crate">
+  <!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
+  <nav class="mobile-topbar">
+    <button class="sidebar-menu-toggle">☰</button><a class="logo-container" href="../cargo_auto_local_lib/index.html"><img src=
+    "https://github.com/automation-tasks-rs/cargo-auto/raw/main/images/logo/logo_cargo_auto.svg" alt=""></a>
+  </nav>
+  <nav class="sidebar">
+    <div class="sidebar-crate">
+      <a class="logo-container" href="../cargo_auto_local_lib/index.html"><img src=
+      "https://github.com/automation-tasks-rs/cargo-auto/raw/main/images/logo/logo_cargo_auto.svg" alt="logo"></a>
+      <h2><a href="../cargo_auto_local_lib/index.html">cargo_auto_local_lib</a><span class="version">2024.307.14</span></h2>
+    </div>
+    <div class="sidebar-elems">
+      <ul class="block">
+        <li>
+          <a id="all-types" href="all.html">All Items</a>
+        </li>
+      </ul>
+      <section>
+        <ul class="block">
+          <li>
+            <a href="#modules">Modules</a>
+          </li>
+          <li>
+            <a href="#structs">Structs</a>
+          </li>
+          <li>
+            <a href="#constants">Constants</a>
+          </li>
+          <li>
+            <a href="#functions">Functions</a>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </nav>
+  <div class="sidebar-resizer"></div>
+  <main>
+    <div class="width-limiter">
+      <nav class="sub">
+        <form class="search-form">
+          <div id="sidebar-button" tabindex="-1">
+            <a href="../cargo_auto_local_lib/all.html" title="show sidebar"></a>
+          </div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder=
+          "Click or press ‘S’ to search, ‘?’ for more options…" type="search">
+          <div id="help-button" tabindex="-1">
+            <a href="../help.html" title="help">?</a>
+          </div>
+          <div id="settings-menu" tabindex="-1">
+            <a href="../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src="../static.files/wheel-7b819b6101059cd0.svg"></a>
+          </div>
+        </form>
+      </nav>
+      <section id="main-content" class="content">
+        <div class="main-heading">
+          <h1>Crate <a class="mod" href="#">cargo_auto_local_lib</a><button id="copy-path" title="Copy item path to clipboard"><img src=
+          "../static.files/clipboard-7571035ce49a181d.svg" width="19" height="18" alt="Copy item path"></button></h1><span class="out-of-band"><a class="src"
+          href="../src/cargo_auto_local_lib/lib.rs.html#4-312">source</a> · <button id="toggle-all-docs" title=
+          "collapse all docs">[<span>−</span>]</button></span>
+        </div>
+        <details class="toggle top-doc" open="">
+          <summary class="hideme">
+            <span>Expand description</span>
+          </summary>
+          <div class="docblock">
+            <h2 id="cargo-auto"><a href="#cargo-auto">cargo-auto</a></h2>
+            <p><strong>Automation tasks coded in Rust language for the workflow of Rust projects</strong><br>
+            <em><strong>version: 2024.307.14 date: 2024-03-07 author: <a href="https://bestia.dev">bestia.dev</a> repository: <a href=
+            "https://github.com/automation-tasks-rs/cargo-auto">GitHub</a></strong></em></p>
+            <p><img src="https://img.shields.io/badge/maintained-green" alt="maintained"> <img src="https://img.shields.io/badge/ready_for_use-green" alt=
+            "ready-for-use"> <img src="https://img.shields.io/badge/rustlang-orange" alt="rustlang"> <img src="https://img.shields.io/badge/automation-orange"
+            alt="automation"> <img src="https://img.shields.io/badge/workflow-orange" alt="workflow"></p>
+            <p><img src="https://raw.githubusercontent.com/automation-tasks-rs/cargo-auto/main/images/logo/logo_cargo_auto.svg" alt="logo"> cargo-auto is part
+            of <a href="https://github.com/automation-tasks-rs">automation_tasks_rs</a> project</p>
+            <p><a href="https://crates.io/crates/cargo-auto"><img src="https://img.shields.io/crates/v/cargo-auto.svg" alt="crates.io"></a> <a href=
+            "https://docs.rs/cargo-auto/"><img src="https://docs.rs/cargo-auto/badge.svg" alt="Documentation"></a> <a href=
+            "https://web.crev.dev/rust-reviews/crate/cargo-auto/"><img src="https://web.crev.dev/rust-reviews/badge/crev_count/cargo-auto.svg" alt=
+            "crev reviews"></a> <a href="https://lib.rs/crates/cargo-auto/"><img src="https://img.shields.io/badge/Lib.rs-rust-orange.svg" alt=
+            "Lib.rs"></a></p>
+            <p><a href="https://github.com/automation-tasks-rs/cargo-auto/blob/master/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg"
+            alt="License"></a> <a href="https://github.com/automation-tasks-rs/cargo-auto/"><img src=
+            "https://github.com/automation-tasks-rs/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg" alt="Rust"></a> <a href=
+            "https://automation-tasks-rs.github.io/cargo-auto/cargo_auto/index.html"><img src="https://img.shields.io/badge/newest_docs-brown.svg" alt=
+            "Newest docs"></a> <img src="https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg" alt="cargo-auto"></p>
+            <p><a href="https://github.com/automation-tasks-rs/cargo-auto/"><img src="https://img.shields.io/badge/Lines_in_Rust-9023-green.svg" alt=
+            "Lines in Rust code"></a> <a href="https://github.com/automation-tasks-rs/cargo-auto/"><img src=
+            "https://img.shields.io/badge/Lines_in_Doc_comments-1463-blue.svg" alt="Lines in Doc comments"></a> <a href=
+            "https://github.com/automation-tasks-rs/cargo-auto/"><img src="https://img.shields.io/badge/Lines_in_comments-421-purple.svg" alt=
+            "Lines in Comments"></a> <a href="https://github.com/automation-tasks-rs/cargo-auto/"><img src=
+            "https://img.shields.io/badge/Lines_in_examples-0-yellow.svg" alt="Lines in examples"></a> <a href=
+            "https://github.com/automation-tasks-rs/cargo-auto/"><img src="https://img.shields.io/badge/Lines_in_tests-7838-orange.svg" alt=
+            "Lines in tests"></a></p>
+            <p>Hashtags: #rustlang #tutorial #buildtool #developmenttool #cli<br>
+            My projects on GitHub are more like a tutorial than a finished product: <a href=
+            "https://github.com/automation-tasks-rs/tutorials_rust_wasm">bestia-dev tutorials</a>.</p>
+            <h3 id="try-it"><a href="#try-it">Try it</a></h3>
+            <p>First, we will use <code>cargo-auto</code> to create a new empty CLI Rust project similar to <code>cargo new</code>, but with a more complete
+            project structure.</p>
+            <div class="example-wrap">
+              <pre class="language-bash"><code>cargo install cargo-auto
+cargo auto new_cli my_hello_project
+cd my_hello_project
+cargo auto
+# it lists all the prepared automation tasks
+# try a few
+cargo auto build
+cargo auto release
+cargo auto doc
+cargo auto test
+</code></pre>
+            </div>
+            <p>We can also add <code>automation tasks</code> to an existing Rust project. Inside your Rust project directory (the one with Cargo.toml) run:</p>
+            <div class="example-wrap">
+              <pre class="language-bash"><code>cargo auto new_auto
+cargo auto
+# it lists all the prepared automation tasks
+# try to build
+cargo auto build
+</code></pre>
+            </div>
+            <p>Congratulations! You are already using <code>cargo-auto</code>. Simple as that.<br>
+            Now you can modify the tasks to your needs. It is all Rust language.</p>
+            <h3 id="motivation"><a href="#motivation">Motivation</a></h3>
+            <p>Cargo is a great tool for building Rust projects. It has all the basics: <code>cargo build</code>, <code>cargo build --release</code>,
+            <code>cargo fmt</code>, <code>cargo test</code>, <code>cargo doc</code>,…<br>
+            But sometimes we need to do more things like copying some files, publishing to FTP, or entering long commands. These repetitive tasks must be
+            automated.<br>
+            Task automation makes work easier and faster, and simplifies the workflow while improving the consistency and accuracy of workflows.<br>
+            This is also sometimes referred to as “workflow automation.”<br>
+            There are many different build systems and task runners there: <code>make</code>, <code>cmake</code>, <code>shell scripts</code>,
+            <code>cargo-xtask</code>, <code>cargo-make</code>, <code>cargo-task</code>, <code>cargo-script</code>, <code>cargo-run-script</code>,
+            <code>runner</code>, <code>python scripts</code>, <code>powershell scripts</code>, <code>cmd prompt scripts</code>, …<br>
+            Sadly there is no standard in the Rust community for now.<br>
+            I want something similar to <a href="https://doc.rust-lang.org/cargo/reference/build-scripts.html">build.rs</a>, so I can write my “tasks” in pure
+            Rust I don’t want to learn another meta language with weird syntax and difficulty to debug. So I will make something really simple, easy, rusty,
+            and extensible.</p>
+            <h3 id="cargo-auto-subcommand"><a href="#cargo-auto-subcommand">cargo auto subcommand</a></h3>
+            <p>The command <code>cargo install cargo-auto</code> will add a new subcommand to cargo:</p>
+            <div class="example-wrap">
+              <pre class="language-bash"><code>cargo auto
+</code></pre>
+            </div>
+            <p>This binary is super simple. It has only 1 trivial dependency: <code>lazy_static</code>.<br>
+            The binary only reads the CLI arguments and runs the <code>automation_tasks_rs</code> binary with them. If needed it will compile
+            <code>automation_tasks_rs</code> first.<br>
+            The code-flow of the source code of <code>cargo-auto</code> is simple, fully commented, and straightforward to audit.<br>
+            The source code is on <a href="https://github.com/automation-tasks-rs/cargo-auto">GitHub</a> with MIT open-source licensing.</p>
+            <h3 id="bash-auto-completion"><a href="#bash-auto-completion">bash auto-completion</a></h3>
+            <p>With the help of the crate <a href="https://crates.io/crates/dev_bestia_cargo_completion">dev_bestia_cargo_completion</a>, the commands
+            <code>cargo</code> and <code>cargo auto</code> get bash auto-completion. Try it!</p>
+            <h3 id="cargo-auto-new_cli"><a href="#cargo-auto-new_cli">cargo auto new_cli</a></h3>
+            <p>I like very much that Rust has the command <code>cargo new project_name</code>. It creates a super simple Rust Hello project that can be built
+            and run immediately. But this example is too simple. It lacks the basic file structures of a serious CLI program.<br>
+            I composed an opinionated template for a Rust CLI project. It is easy to run:</p>
+            <div class="example-wrap">
+              <pre class="language-bash"><code>cargo auto new_cli project_name
+# then
+cd project_name
+cargo auto build
+# then follow detailed instructions
+</code></pre>
+            </div>
+            <h3 id="cargo-auto-new_wasm"><a href="#cargo-auto-new_wasm">cargo auto new_wasm</a></h3>
+            <p>I composed an opinionated template for a simple Rust WASM project for a browser. It is very similar to the new_cli template but for WASM.<br>
+            It is easy to run:</p>
+            <div class="example-wrap">
+              <pre class="language-bash"><code>cargo auto new_wasm project_name
+# then
+cd project_name
+cargo auto build
+# then follow detailed instructions
+</code></pre>
+            </div>
+            <h3 id="cargo-auto-new_pwa_wasm"><a href="#cargo-auto-new_pwa_wasm">cargo auto new_pwa_wasm</a></h3>
+            <p>I composed an opinionated template for a simple Rust PWA-WASM project for a browser. It is very similar to the new_cli template but for WASM. It
+            adds the PWA standard functionality to work as an offline app.<br>
+            The template needs the title, name, long name, and description inside a <code>pwa.json5</code> file and the <code>icon512x512.png</code> file for
+            the icons.<br>
+            It is easy to run:</p>
+            <div class="example-wrap">
+              <pre class="language-bash"><code>cargo auto new_pwa_wasm
+# on first run it will just create the `pwa.json5` and `icon512x512.png` files
+# modify these files with data for your new app and then repeat
+cargo auto new_pwa_wasm
+# then
+cd project_name
+cargo auto build
+# then follow detailed instructions
+</code></pre>
+            </div>
+            <h3 id="scripting-with-rust"><a href="#scripting-with-rust">scripting with rust</a></h3>
+            <p>Rust is a compiled language. It is not really a scripting or interpreted language. But the compilation of small projects is really fast and can
+            be ignored. Subsequent calls will use the already-built binary so the speed will be even faster.<br>
+            This tool <code>cargo-auto</code> is meant for Rust projects, so it means that all the Rust infrastructure is already in place.</p>
+            <h3 id="automation_tasks_rs-rust-sub-project"><a href="#automation_tasks_rs-rust-sub-project">automation_tasks_rs Rust sub-project</a></h3>
+            <p>The command <code>cargo auto new_auto</code> will create a new Rust sub-project<code>automation_tasks_rs</code> inside your <code>Rust
+            project</code>. It should not interfere with the main Rust project. This directory will be added to git commits and pushed to remote repositories
+            as part of the main project. It has its own <code>.gitignore</code> to avoid committing to its target directory.<br>
+            The <code>automation_tasks_rs</code> helper project contains user-defined tasks in Rust code. Your tasks. This helper project should be opened in a
+            new editor starting from the <code>automation_tasks_rs</code> directory. It does not share dependencies with the main project. It is completely
+            separate and independent.<br>
+            You can edit it and add your dependencies and Rust code. No limits. Freedom of expression.<br>
+            This is now your code, your tasks, and your helper Rust project!<br>
+            Because only you know what you want to automate and how to do it.<br>
+            Never write secrets, passwords, passcodes, or tokens inside your Rust code. Because then it is pushed to GitHub and the whole world can read it in
+            the next second! Basic example (most of the useful functions are already there):</p>
+            <div class="example-wrap ignore">
+              <a href="#" class="tooltip" title="This example is not tested">ⓘ</a>
+              <pre class="rust rust-example-rendered"><code><span class="doccomment">/// match arguments and call tasks functions
+</span><span class="kw">fn </span>match_arguments_and_call_tasks(<span class="kw-2">mut </span>args: std::env::Args){
+    <span class="comment">// the first argument is the user defined task: (no argument for help), build, release,...
+    </span><span class="kw">let </span>arg_1 = args.next();
+    <span class="kw">match </span>arg_1 {
+        <span class="prelude-val">None </span>=&gt; print_help(),
+        <span class="prelude-val">Some</span>(task) =&gt; {            
+            <span class="macro">println!</span>(<span class="string">"Running auto task: {}"</span>, <span class="kw-2">&</span>task);
+            <span class="kw">if </span><span class="kw-2">&</span>task == <span class="string">"build"</span>{
+                task_build();
+            } <span class="kw">else if </span><span class="kw-2">&</span>task == <span class="string">"release" </span>{
+                task_release();
+            } <span class="kw">else if </span><span class="kw-2">&</span>task == <span class="string">"doc" </span>{
+                task_doc();
+            } <span class="kw">else </span>{
+                <span class="macro">println!</span>(<span class="string">"Task {} is unknown."</span>, <span class="kw-2">&</span>task);
+                print_help();
+            }
+        }
+    }
+}
+
+<span class="doccomment">/// write a comprehensible help for user defined tasks
+</span><span class="kw">fn </span>print_help() {
+    <span class="macro">println!</span>(<span class="string">r#"
+    User defined tasks in automation_tasks_rs:
+cargo auto build - builds the crate in debug mode
+cargo auto release - builds the crate in release mode
+cargo auto docs - builds the docs
+"#</span>);
+}
+
+<span class="comment">// region: tasks
+
+</span><span class="doccomment">/// cargo build
+</span><span class="kw">fn </span>task_build() {
+    run_shell_command(<span class="string">"cargo fmt"</span>);
+    run_shell_command(<span class="string">"cargo build"</span>);
+}
+
+<span class="doccomment">/// cargo build --release
+</span><span class="kw">fn </span>task_release() {
+    run_shell_command(<span class="string">"cargo fmt"</span>);
+    run_shell_command(<span class="string">"cargo build --release"</span>);
+}
+
+<span class="doccomment">/// cargo doc, then copies to /docs/ folder, because this is a github standard folder
+</span><span class="kw">fn </span>task_doc() {
+    run_shell_command(<span class="string">"cargo doc --no-deps --document-private-items"</span>);
+    <span class="comment">// copy target/doc into docs/ because it is github standard
+    </span>run_shell_command(<span class="string">"rsync -a --info=progress2 --delete-after target/doc/ docs/"</span>);
+    <span class="comment">// Create simple index.html file in docs directory
+    </span>run_shell_command(<span class="kw-2">&</span><span class="macro">format!</span>(
+        <span class="string">"echo \"&lt;meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" /&gt;\" &gt; docs/index.html"</span>,
+        cargo_toml.package_name().replace(<span class="string">"-"</span>,<span class="string">"_"</span>)
+    ));
+    run_shell_command(<span class="string">"cargo fmt"</span>);
+}
+
+<span class="comment">// endregion: tasks
+</span></code></pre>
+            </div>
+            <h3 id="more-complex-tasks"><a href="#more-complex-tasks">more complex tasks</a></h3>
+            <p>You can write more complex tasks in Rust language.<br>
+            For example in this project I use automation to create GitHub Releases: <a href=
+            "https://github.com/automation-tasks-rs/dropbox_backup_to_external_disk">https://github.com/automation-tasks-rs/dropbox_backup_to_external_disk</a><br>
+
+            Here is a pretty complex workspace with more sub-projects:<br>
+            <a href=
+            "https://github.com/automation-tasks-rs/cargo_crev_reviews_workspace">https://github.com/automation-tasks-rs/cargo_crev_reviews_workspace</a><br>
+            There is no end to your imagination. If you write something that looks like it can help other developers, please share it with me and I will add it
+            here.</p>
+            <h3 id="development-details"><a href="#development-details">Development details</a></h3>
+            <p>Read the development details in a separate md file:<br>
+            <a href="https://github.com/automation-tasks-rs/cargo-auto/blob/main/DEVELOPMENT.md">DEVELOPMENT.md</a></p>
+            <h3 id="releases-changelog"><a href="#releases-changelog">Releases changelog</a></h3>
+            <p>Read the changelog in a separate md file:<br>
+            <a href="https://github.com/automation-tasks-rs/cargo-auto/blob/main/RELEASES.md">RELEASES.md</a></p>
+            <h3 id="todo"><a href="#todo">TODO</a></h3>
+            <p>Nothing big in the near future.</p>
+            <h3 id="open-source-and-free-as-a-beer"><a href="#open-source-and-free-as-a-beer">Open-source and free as a beer</a></h3>
+            <p>My open-source projects are free as a beer (MIT license).<br>
+            I just love programming.<br>
+            But I need also to drink. If you find my projects and tutorials helpful, please buy me a beer by donating to my <a href=
+            "https://paypal.me/LucianoBestia">PayPal</a>.<br>
+            You know the price of a beer in your local bar ;-)<br>
+            So I can drink a free beer for your health :-)<br>
+            <a href="https://translate.google.com/?hl=en&amp;sl=sl&amp;tl=en&amp;text=Na%20zdravje&amp;op=translate">Na zdravje!</a> <a href=
+            "https://dictionary.cambridge.org/dictionary/italian-english/alla-salute">Alla salute!</a> <a href=
+            "https://dictionary.cambridge.org/dictionary/german-english/prost">Prost!</a> <a href=
+            "https://matadornetwork.com/nights/how-to-say-cheers-in-50-languages/">Nazdravlje!</a> 🍻</p>
+            <p><a href="https://bestia.dev">//bestia.dev</a><br>
+            <a href="https://github.com/automation-tasks-rs">//github.com/automation-tasks-rs</a><br>
+            <a href="https://bestiadev.substack.com">//bestiadev.substack.com</a><br>
+            <a href="https://youtube.com/@bestia-dev-tutorials">//youtube.com/@bestia-dev-tutorials</a></p>
+          </div>
+        </details>
+        <h2 id="modules" class="section-header"><a href="#modules">Modules</a></h2>
+        <ul class="item-table">
+          <li>
+            <div class="item-name">
+              <a class="mod" href="file_hashes_mod/index.html" title="mod cargo_auto_local_lib::file_hashes_mod">file_hashes_mod</a><span title=
+              "Restricted Visibility">&nbsp;🔒</span>
+            </div>
+          </li>
+          <li>
+            <div class="item-name">
+              <a class="mod" href="inside_of_rust_project_mod/index.html" title=
+              "mod cargo_auto_local_lib::inside_of_rust_project_mod">inside_of_rust_project_mod</a>
+            </div>
+          </li>
+          <li>
+            <div class="item-name">
+              <a class="mod" href="outside_of_rust_project_mod/index.html" title=
+              "mod cargo_auto_local_lib::outside_of_rust_project_mod">outside_of_rust_project_mod</a>
+            </div>
+          </li>
+          <li>
+            <div class="item-name">
+              <a class="mod" href="template_new_auto_mod/index.html" title=
+              "mod cargo_auto_local_lib::template_new_auto_mod">template_new_auto_mod</a><span title="Restricted Visibility">&nbsp;🔒</span>
+            </div>
+            <div class="desc docblock-short">
+              this strings are copied from the template_new_auto folder because when publishing to crates.io, only the main bin-executable is transferred
+            </div>
+          </li>
+          <li>
+            <div class="item-name">
+              <a class="mod" href="template_new_cli_mod/index.html" title="mod cargo_auto_local_lib::template_new_cli_mod">template_new_cli_mod</a><span title=
+              "Restricted Visibility">&nbsp;🔒</span>
+            </div>
+            <div class="desc docblock-short">
+              this strings are copied from the template_new_cli folder because when publishing to crates.io, only the main bin-executable is transferred
+            </div>
+          </li>
+          <li>
+            <div class="item-name">
+              <a class="mod" href="template_new_pwa_wasm_mod/index.html" title=
+              "mod cargo_auto_local_lib::template_new_pwa_wasm_mod">template_new_pwa_wasm_mod</a><span title="Restricted Visibility">&nbsp;🔒</span>
+            </div>
+            <div class="desc docblock-short">
+              this strings are copied from the template_new_pwa_wasm folder because when publishing to crates.io, only the main bin-executable is transferred
+            </div>
+          </li>
+          <li>
+            <div class="item-name">
+              <a class="mod" href="template_new_wasm_mod/index.html" title=
+              "mod cargo_auto_local_lib::template_new_wasm_mod">template_new_wasm_mod</a><span title="Restricted Visibility">&nbsp;🔒</span>
+            </div>
+            <div class="desc docblock-short">
+              this strings are copied from the template_new_wasm folder because when publishing to crates.io, only the main bin-executable is transferred
+            </div>
+          </li>
+          <li>
+            <div class="item-name">
+              <a class="mod" href="utils_mod/index.html" title="mod cargo_auto_local_lib::utils_mod">utils_mod</a><span title=
+              "Restricted Visibility">&nbsp;🔒</span>
+            </div>
+          </li>
+        </ul>
+        <h2 id="structs" class="section-header"><a href="#structs">Structs</a></h2>
+        <ul class="item-table">
+          <li>
+            <div class="item-name">
+              <a class="struct" href="struct.FileItem.html" title="struct cargo_auto_local_lib::FileItem">FileItem</a>
+            </div>
+            <div class="desc docblock-short">
+              file item
+            </div>
+          </li>
+          <li>
+            <div class="item-name">
+              <a class="struct" href="struct.PATH_AUTOMATION_TASKS_RS.html" title=
+              "struct cargo_auto_local_lib::PATH_AUTOMATION_TASKS_RS">PATH_AUTOMATION_TASKS_RS</a><span title="Restricted Visibility">&nbsp;🔒</span>
+            </div>
+            <div class="desc docblock-short">
+              constant paths for read/write
+            </div>
+          </li>
+          <li>
+            <div class="item-name">
+              <a class="struct" href="struct.PATH_CARGO_TOML.html" title="struct cargo_auto_local_lib::PATH_CARGO_TOML">PATH_CARGO_TOML</a><span title=
+              "Restricted Visibility">&nbsp;🔒</span>
+            </div>
+            <div class="desc docblock-short">
+              constant paths for read/write
+            </div>
+          </li>
+          <li>
+            <div class="item-name">
+              <a class="struct" href="struct.PATH_FILE_HASHES_JSON.html" title=
+              "struct cargo_auto_local_lib::PATH_FILE_HASHES_JSON">PATH_FILE_HASHES_JSON</a><span title="Restricted Visibility">&nbsp;🔒</span>
+            </div>
+            <div class="desc docblock-short">
+              constant paths for read/write
+            </div>
+          </li>
+          <li>
+            <div class="item-name">
+              <a class="struct" href="struct.PATH_GITIGNORE.html" title="struct cargo_auto_local_lib::PATH_GITIGNORE">PATH_GITIGNORE</a><span title=
+              "Restricted Visibility">&nbsp;🔒</span>
+            </div>
+            <div class="desc docblock-short">
+              constant paths for read/write
+            </div>
+          </li>
+          <li>
+            <div class="item-name">
+              <a class="struct" href="struct.PATH_SRC.html" title="struct cargo_auto_local_lib::PATH_SRC">PATH_SRC</a><span title=
+              "Restricted Visibility">&nbsp;🔒</span>
+            </div>
+            <div class="desc docblock-short">
+              constant paths for folder
+            </div>
+          </li>
+          <li>
+            <div class="item-name">
+              <a class="struct" href="struct.PATH_SRC_MAIN_RS.html" title="struct cargo_auto_local_lib::PATH_SRC_MAIN_RS">PATH_SRC_MAIN_RS</a><span title=
+              "Restricted Visibility">&nbsp;🔒</span>
+            </div>
+            <div class="desc docblock-short">
+              constant paths for read/write
+            </div>
+          </li>
+          <li>
+            <div class="item-name">
+              <a class="struct" href="struct.PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.html" title=
+              "struct cargo_auto_local_lib::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS">PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS</a><span title=
+              "Restricted Visibility">&nbsp;🔒</span>
+            </div>
+            <div class="desc docblock-short">
+              constant paths for read/write
+            </div>
+          </li>
+        </ul>
+        <h2 id="constants" class="section-header"><a href="#constants">Constants</a></h2>
+        <ul class="item-table">
+          <li>
+            <div class="item-name">
+              <a class="constant" href="constant.GREEN.html" title="constant cargo_auto_local_lib::GREEN">GREEN</a>
+            </div>
+          </li>
+          <li>
+            <div class="item-name">
+              <a class="constant" href="constant.RED.html" title="constant cargo_auto_local_lib::RED">RED</a>
+            </div>
+          </li>
+          <li>
+            <div class="item-name">
+              <a class="constant" href="constant.RESET.html" title="constant cargo_auto_local_lib::RESET">RESET</a>
+            </div>
+          </li>
+          <li>
+            <div class="item-name">
+              <a class="constant" href="constant.YELLOW.html" title="constant cargo_auto_local_lib::YELLOW">YELLOW</a>
+            </div>
+          </li>
+        </ul>
+        <h2 id="functions" class="section-header"><a href="#functions">Functions</a></h2>
+        <ul class="item-table">
+          <li>
+            <div class="item-name">
+              <a class="fn" href="fn.is_not_run_in_rust_project_root_directory.html" title=
+              "fn cargo_auto_local_lib::is_not_run_in_rust_project_root_directory">is_not_run_in_rust_project_root_directory</a>
+            </div>
+            <div class="desc docblock-short">
+              Check if is not run in Rust project root directory
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

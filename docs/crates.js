@@ -1,1 +1,1 @@
-window.ALL_CRATES = ["cargo_auto"];
+window.ALL_CRATES = ["cargo_auto","cargo_auto_local_lib"];
