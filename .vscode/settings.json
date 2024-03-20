@@ -13,6 +13,9 @@
         "latex",
         "plaintext"
     ],
+    "files.associations": {
+        "LICENSE": "plain text"
+    },
     "rust-analyzer.showUnlinkedFileNotification": false,
     "cSpell.words": [
         "Alla",
