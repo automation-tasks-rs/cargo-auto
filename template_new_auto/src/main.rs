@@ -196,7 +196,7 @@ fn task_doc() {
         r#"
     {YELLOW}After `cargo auto doc`, ctrl-click on `docs/index.html`. 
     It will show the index.html in VSCode Explorer, then right-click and choose "Show Preview".
-    This works inside the CRDE container, because of the extension "Live Preview" 
+    This works inside the CRUSTDE container, because of the extension "Live Preview" 
     <https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server>
     If ok then run the tests in code and the documentation code examples.{RESET}
 {GREEN}cargo auto test{RESET}

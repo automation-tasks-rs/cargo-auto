@@ -1,8 +1,8 @@
 # Development details
 
-## CRDE - Containerized Rust Development Environment
+## CRUSTDE - Containerized Rust Development Environment
 
-I recommend using the CRDE - Containerized Rust Development Environment to write Rust projects.  
+I recommend using the CRUSTDE - Containerized Rust Development Environment to write Rust projects.  
 Follow the instructions here  
 <https://github.com/automation-tasks-rs/docker_rust_development>.  
 
@@ -32,7 +32,7 @@ cargo auto github_new_release
 ```
 
 Every task finishes with instructions how to proceed.  
-The [cargo-auto](https://github.com/automation-tasks-rs/cargo-auto) and [dev_bestia_cargo_completion](https://github.com/automation-tasks-rs/dev_bestia_cargo_completion) are already installed inside the CRDE container.
+The [cargo-auto](https://github.com/automation-tasks-rs/cargo-auto) and [dev_bestia_cargo_completion](https://github.com/automation-tasks-rs/dev_bestia_cargo_completion) are already installed inside the CRUSTDE container.
 
 You can open the automation sub-project in VSCode and then code your own tasks in Rust.
 

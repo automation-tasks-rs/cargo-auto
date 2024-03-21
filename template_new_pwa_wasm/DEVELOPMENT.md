@@ -1,8 +1,8 @@
 # Development details
 
-## CRDE - Containerized Rust Development Environment
+## CRUSTDE - Containerized Rust Development Environment
 
-I recommend using the CRDE - Containerized Rust Development Environment to write Rust projects. Follow the instructions here <https://github.com/automation-tasks-rs/docker_rust_development>.  
+I recommend using the CRUSTDE - Containerized Rust Development Environment to write Rust projects. Follow the instructions here <https://github.com/automation-tasks-rs/docker_rust_development>.  
 
 It is an isolated development environment that will not mess with you system.
 It will work on Linux (tested on Debian) and inside WSL (Windows Subsystem for Linux).
@@ -26,7 +26,7 @@ cargo auto github_new_release
 ```
 
 Every task finishes with instructions how to proceed.  
-The [cargo-auto](https://github.com/automation-tasks-rs/cargo-auto) and [dev_bestia_cargo_completion](https://github.com/automation-tasks-rs/dev_bestia_cargo_completion) are already installed inside the CRDE container.
+The [cargo-auto](https://github.com/automation-tasks-rs/cargo-auto) and [dev_bestia_cargo_completion](https://github.com/automation-tasks-rs/dev_bestia_cargo_completion) are already installed inside the CRUSTDE container.
 
 You can open the automation sub-project in VSCode and then code your own tasks in Rust.
 
@@ -41,7 +41,7 @@ Then the Rust code injects html elements into the DOM.
 
 ## Web server and wasm
 
-The browser security does not allow the loading of WASM modules from local files. It needs to be loaded from a web server. The CRDE container has the [basic-http-server](https://github.com/brson/basic-http-server) already installed.  
+The browser security does not allow the loading of WASM modules from local files. It needs to be loaded from a web server. The CRUSTDE container has the [basic-http-server](https://github.com/brson/basic-http-server) already installed.  
 
 Run the server in a second VSCode terminal, so it can keep running all the time.  
 

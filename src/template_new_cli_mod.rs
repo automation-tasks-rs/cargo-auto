@@ -89,7 +89,7 @@ The TODO section is part of the [README.md](https://github.com/automation-tasks-
 
 Hashtags: #maintained #ready-for-use #rustlang #automation #workflow  
 My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).  
-I recommend using the [CRDE - Containerized Rust Development Environment](https://github.com/automation-tasks-rs/docker_rust_development) to write Rust projects on Linux, isolated from your system.  
+I recommend using the [CRUSTDE - Containerized Rust Development Environment](https://github.com/automation-tasks-rs/docker_rust_development) to write Rust projects on Linux, isolated from your system.  
 
 ## This template
 
@@ -322,7 +322,7 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
 //!
 //! Hashtags: #maintained #ready-for-use #rustlang #automation #workflow  
 //! My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).  
-//! I recommend using the [CRDE - Containerized Rust Development Environment](https://github.com/automation-tasks-rs/docker_rust_development) to write Rust projects on Linux, isolated from your system.  
+//! I recommend using the [CRUSTDE - Containerized Rust Development Environment](https://github.com/automation-tasks-rs/docker_rust_development) to write Rust projects on Linux, isolated from your system.  
 //!
 //! ## Try it
 //!
@@ -1007,7 +1007,7 @@ fn task_doc() {
         r#"
     {YELLOW}After `cargo auto doc`, ctrl-click on `docs/index.html`. 
     It will show the index.html in VSCode Explorer, then right-click and choose "Show Preview".
-    This works inside the CRDE container, because of the extension "Live Preview" 
+    This works inside the CRUSTDE container, because of the extension "Live Preview" 
     <https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server>
     If ok then run the tests in code and the documentation code examples.{RESET}
 {GREEN}cargo auto test{RESET}
@@ -3024,9 +3024,9 @@ dependencies = [
             file_name :"DEVELOPMENT.md",
             file_content : r###"# Development details
 
-## CRDE - Containerized Rust Development Environment
+## CRUSTDE - Containerized Rust Development Environment
 
-I recommend using the CRDE - Containerized Rust Development Environment to write Rust projects. Follow the instructions here <https://github.com/automation-tasks-rs/docker_rust_development>.  
+I recommend using the CRUSTDE - Containerized Rust Development Environment to write Rust projects. Follow the instructions here <https://github.com/automation-tasks-rs/docker_rust_development>.  
 
 It is an isolated development environment that will not mess with you system.
 It will work on Linux (tested on Debian) and inside WSL (Windows Subsystem for Linux).
@@ -3050,7 +3050,7 @@ cargo auto github_new_release
 ```
 
 Every task finishes with instructions how to proceed.  
-The [cargo-auto](https://github.com/automation-tasks-rs/cargo-auto) and [dev_bestia_cargo_completion](https://github.com/automation-tasks-rs/dev_bestia_cargo_completion) are already installed inside the CRDE container.
+The [cargo-auto](https://github.com/automation-tasks-rs/cargo-auto) and [dev_bestia_cargo_completion](https://github.com/automation-tasks-rs/dev_bestia_cargo_completion) are already installed inside the CRUSTDE container.
 
 You can open the automation sub-project in VSCode and then code your own tasks in Rust.
 
