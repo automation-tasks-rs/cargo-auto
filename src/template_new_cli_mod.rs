@@ -89,7 +89,7 @@ The TODO section is part of the [README.md](https://github.com/automation-tasks-
 
 Hashtags: #maintained #ready-for-use #rustlang #automation #workflow  
 My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).  
-I recommend using the [CRUSTDE - Containerized Rust Development Environment](https://github.com/automation-tasks-rs/docker_rust_development) to write Rust projects on Linux, isolated from your system.  
+I recommend using the [CRUSTDE - Containerized Rust Development Environment](https://github.com/CRUSTDE-Containerized-Rust-DevEnv/crustde_cnt_img_pod) to write Rust projects on Linux, isolated from your system.  
 
 ## This template
 
@@ -322,7 +322,7 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
 //!
 //! Hashtags: #maintained #ready-for-use #rustlang #automation #workflow  
 //! My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).  
-//! I recommend using the [CRUSTDE - Containerized Rust Development Environment](https://github.com/automation-tasks-rs/docker_rust_development) to write Rust projects on Linux, isolated from your system.  
+//! I recommend using the [CRUSTDE - Containerized Rust Development Environment](https://github.com/CRUSTDE-Containerized-Rust-DevEnv/crustde_cnt_img_pod) to write Rust projects on Linux, isolated from your system.  
 //!
 //! ## Try it
 //!
@@ -883,7 +883,7 @@ fn print_help() {
 {GREEN}cargo auto test{RESET} - {YELLOW}runs all the tests{RESET}
 {GREEN}cargo auto commit_and_push "message"{RESET} - {YELLOW}commits with message and push with mandatory message{RESET}
     {YELLOW}It is preferred to use SSH for git push to GitHub.{RESET}
-    {YELLOW}<https://github.com/automation-tasks-rs/docker_rust_development/blob/main/ssh_easy.md>{YELLOW}
+    {YELLOW}<https://github.com/CRUSTDE-Containerized-Rust-DevEnv/crustde_cnt_img_pod/blob/main/ssh_easy.md>{YELLOW}
     {YELLOW}On the very first commit, this task will initialize a new local git repository and create a remote GitHub repo.{RESET}
     {YELLOW}In that case the task needs the Personal Access Token Classic from <https://github.com/settings/tokens>{RESET}
 {GREEN}cargo auto publish_to_crates_io{RESET} - {YELLOW}publish to crates.io, git tag{RESET}
@@ -3026,7 +3026,7 @@ dependencies = [
 
 ## CRUSTDE - Containerized Rust Development Environment
 
-I recommend using the CRUSTDE - Containerized Rust Development Environment to write Rust projects. Follow the instructions here <https://github.com/automation-tasks-rs/docker_rust_development>.  
+I recommend using the CRUSTDE - Containerized Rust Development Environment to write Rust projects. Follow the instructions here <https://github.com/CRUSTDE-Containerized-Rust-DevEnv/crustde_cnt_img_pod>.  
 
 It is an isolated development environment that will not mess with you system.
 It will work on Linux (tested on Debian) and inside WSL (Windows Subsystem for Linux).

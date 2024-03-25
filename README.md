@@ -38,7 +38,7 @@
 
 Hashtags: #maintained #ready-for-use #rustlang #automation #workflow  
 My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).  
-I recommend using the [CRUSTDE - Containerized Rust Development Environment](https://github.com/automation-tasks-rs/docker_rust_development) to write Rust projects on Linux, isolated from your system.  
+I recommend using the [CRUSTDE - Containerized Rust Development Environment](https://github.com/CRUSTDE-Containerized-Rust-DevEnv/crustde_cnt_img_pod) to write Rust projects on Linux, isolated from your system.  
 
 ## Try it
 
