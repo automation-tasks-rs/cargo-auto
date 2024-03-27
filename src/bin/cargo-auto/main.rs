@@ -34,7 +34,7 @@
 //!
 //! Hashtags: #maintained #ready-for-use #rustlang #automation #workflow  
 //! My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).  
-//! I recommend using the [CRUSTDE - Containerized Rust Development Environment](https://github.com/CRUSTDE-Containerized-Rust-DevEnv/crustde_cnt_img_pod) to write Rust projects on Linux, isolated from your system.  
+//! I recommend using the [CRUSTDE - Containerized Rust Development Environment](https://github.com/CRUSTDE-ContainerizedRustDevEnv/crustde_cnt_img_pod) to write Rust projects on Linux, isolated from your system.  
 //!
 //! ## Try it
 //!
@@ -206,7 +206,7 @@
 //!     run_shell_command("rsync -a --info=progress2 --delete-after target/doc/ docs/");
 //!     // Create simple index.html file in docs directory
 //!     run_shell_command(&format!(
-//!         "echo \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\" > docs/index.html",
+//!         "printf \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\\n\" > docs/index.html",
 //!         cargo_toml.package_name().replace("-","_")
 //!     ));
 //!     run_shell_command("cargo fmt");

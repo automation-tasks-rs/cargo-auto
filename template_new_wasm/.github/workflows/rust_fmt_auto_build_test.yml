@@ -25,7 +25,7 @@ jobs:
       uses: Swatinem/rust-cache@v2.7.3
 
     - name: Configure sccache
-      run: echo "RUSTC_WRAPPER=sccache" >> $GITHUB_ENV; echo "SCCACHE_GHA_ENABLED=true" >> $GITHUB_ENV
+      run: printf "RUSTC_WRAPPER=sccache\n" >> $GITHUB_ENV; printf "SCCACHE_GHA_ENABLED=true\n" >> $GITHUB_ENV
 
     - name: Run sccache-cache for artifacts
       uses: mozilla-actions/sccache-action@v0.0.4

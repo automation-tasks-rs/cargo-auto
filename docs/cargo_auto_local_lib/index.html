@@ -119,7 +119,7 @@
             <p>Hashtags: #maintained #ready-for-use #rustlang #automation #workflow<br>
             My projects on GitHub are more like a tutorial than a finished product: <a href="https://github.com/bestia-dev/tutorials_rust_wasm">bestia-dev
             tutorials</a>.<br>
-            I recommend using the <a href="https://github.com/CRUSTDE-Containerized-Rust-DevEnv/crustde_cnt_img_pod">CRUSTDE - Containerized Rust Development
+            I recommend using the <a href="https://github.com/CRUSTDE-ContainerizedRustDevEnv/crustde_cnt_img_pod">CRUSTDE - Containerized Rust Development
             Environment</a> to write Rust projects on Linux, isolated from your system.</p>
             <h3 id="try-it"><a href="#try-it">Try it</a></h3>
             <p>First, we will use <code>cargo-auto</code> to create a new empty CLI Rust project similar to <code>cargo new</code>, but with a more complete
@@ -287,7 +287,7 @@ cargo auto docs - builds the docs
     </span>run_shell_command(<span class="string">"rsync -a --info=progress2 --delete-after target/doc/ docs/"</span>);
     <span class="comment">// Create simple index.html file in docs directory
     </span>run_shell_command(<span class="kw-2">&</span><span class="macro">format!</span>(
-        <span class="string">"echo \"&lt;meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" /&gt;\" &gt; docs/index.html"</span>,
+        <span class="string">"printf \"&lt;meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" /&gt;\" &gt; docs/index.html"</span>,
         cargo_toml.package_name().replace(<span class="string">"-"</span>,<span class="string">"_"</span>)
     ));
     run_shell_command(<span class="string">"cargo fmt"</span>);

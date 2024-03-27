@@ -3323,7 +3323,7 @@ The TODO section is part of the [README.md](https://github.com/automation-tasks-
 
 Hashtags: #maintained #ready-for-use #rustlang #automation #workflow  
 My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).  
-I recommend using the [CRUSTDE - Containerized Rust Development Environment](https://github.com/CRUSTDE-Containerized-Rust-DevEnv/crustde_cnt_img_pod) to write Rust projects on Linux, isolated from your system.  
+I recommend using the [CRUSTDE - Containerized Rust Development Environment](https://github.com/CRUSTDE-ContainerizedRustDevEnv/crustde_cnt_img_pod) to write Rust projects on Linux, isolated from your system.  
 
 ## This template
 
@@ -3556,7 +3556,7 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //!
 //! Hashtags: #maintained #ready-for-use #rustlang #automation #workflow  
 //! My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).  
-//! I recommend using the [CRUSTDE - Containerized Rust Development Environment](https://github.com/CRUSTDE-Containerized-Rust-DevEnv/crustde_cnt_img_pod) to write Rust projects on Linux, isolated from your system.  
+//! I recommend using the [CRUSTDE - Containerized Rust Development Environment](https://github.com/CRUSTDE-ContainerizedRustDevEnv/crustde_cnt_img_pod) to write Rust projects on Linux, isolated from your system.  
 //!
 //! ## Try it
 //!
@@ -3728,7 +3728,7 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //!     run_shell_command("rsync -a --info=progress2 --delete-after target/doc/ docs/");
 //!     // Create simple index.html file in docs directory
 //!     run_shell_command(&amp;format!(
-//!         "echo \"&lt;meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" /&gt;\" &gt; docs/index.html",
+//!         "printf \"&lt;meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" /&gt;\" &gt; docs/index.html",
 //!         cargo_toml.package_name().replace("-","_")
 //!     ));
 //!     run_shell_command("cargo fmt");
@@ -3891,7 +3891,7 @@ jobs:
       uses: Swatinem/rust-cache@v2.7.3
 
     - name: Configure sccache
-      run: echo "RUSTC_WRAPPER=sccache" &gt;&gt; $GITHUB_ENV; echo "SCCACHE_GHA_ENABLED=true" &gt;&gt; $GITHUB_ENV
+      run: printf "RUSTC_WRAPPER=sccache\n" &gt;&gt; $GITHUB_ENV; printf "SCCACHE_GHA_ENABLED=true\n" &gt;&gt; $GITHUB_ENV
 
     - name: Run sccache-cache for artifacts
       uses: mozilla-actions/sccache-action@v0.0.4
@@ -4117,7 +4117,7 @@ fn print_help() {
 {GREEN}cargo auto test{RESET} - {YELLOW}runs all the tests{RESET}
 {GREEN}cargo auto commit_and_push "message"{RESET} - {YELLOW}commits with message and push with mandatory message{RESET}
     {YELLOW}It is preferred to use SSH for git push to GitHub.{RESET}
-    {YELLOW}&lt;https://github.com/CRUSTDE-Containerized-Rust-DevEnv/crustde_cnt_img_pod/blob/main/ssh_easy.md&gt;{YELLOW}
+    {YELLOW}&lt;https://github.com/CRUSTDE-ContainerizedRustDevEnv/crustde_cnt_img_pod/blob/main/ssh_easy.md&gt;{YELLOW}
     {YELLOW}On the very first commit, this task will initialize a new local git repository and create a remote GitHub repo.{RESET}
     {YELLOW}In that case the task needs the Personal Access Token Classic from &lt;https://github.com/settings/tokens&gt;{RESET}
 {GREEN}cargo auto publish_to_crates_io{RESET} - {YELLOW}publish to crates.io, git tag{RESET}
@@ -4230,7 +4230,7 @@ fn task_doc() {
     cl::run_shell_command("rsync -a --info=progress2 --delete-after target/doc/ docs/");
     // Create simple index.html file in docs directory
     cl::run_shell_command(&amp;format!(
-        r#"echo "&lt;meta http-equiv=\"refresh\" content=\"0; url={}/index.html\" /&gt;" &gt; docs/index.html"#,
+        r#"printf "&lt;meta http-equiv=\"refresh\" content=\"0; url={}/index.html\" /&gt;" &gt; docs/index.html\n"#,
         cargo_toml.package_name().replace("-", "_")
     ));
     // pretty html
@@ -6260,7 +6260,7 @@ dependencies = [
 
 ## CRUSTDE - Containerized Rust Development Environment
 
-I recommend using the CRUSTDE - Containerized Rust Development Environment to write Rust projects. Follow the instructions here &lt;https://github.com/CRUSTDE-Containerized-Rust-DevEnv/crustde_cnt_img_pod&gt;.  
+I recommend using the CRUSTDE - Containerized Rust Development Environment to write Rust projects. Follow the instructions here &lt;https://github.com/CRUSTDE-ContainerizedRustDevEnv/crustde_cnt_img_pod&gt;.  
 
 It is an isolated development environment that will not mess with you system.
 It will work on Linux (tested on Debian) and inside WSL (Windows Subsystem for Linux).

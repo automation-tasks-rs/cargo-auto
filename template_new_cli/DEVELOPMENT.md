@@ -2,7 +2,7 @@
 
 ## CRUSTDE - Containerized Rust Development Environment
 
-I recommend using the CRUSTDE - Containerized Rust Development Environment to write Rust projects. Follow the instructions here <https://github.com/CRUSTDE-Containerized-Rust-DevEnv/crustde_cnt_img_pod>.  
+I recommend using the CRUSTDE - Containerized Rust Development Environment to write Rust projects. Follow the instructions here <https://github.com/CRUSTDE-ContainerizedRustDevEnv/crustde_cnt_img_pod>.  
 
 It is an isolated development environment that will not mess with you system.
 It will work on Linux (tested on Debian) and inside WSL (Windows Subsystem for Linux).

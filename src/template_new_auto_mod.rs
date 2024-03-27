@@ -227,7 +227,7 @@ fn print_help() {
 {GREEN}cargo auto test{RESET} - {YELLOW}runs all the tests{RESET}
 {GREEN}cargo auto commit_and_push "message"{RESET} - {YELLOW}commits with message and push with mandatory message{RESET}
     {YELLOW}It is preferred to use SSH for git push to GitHub.{RESET}
-    {YELLOW}<https://github.com/CRUSTDE-Containerized-Rust-DevEnv/crustde_cnt_img_pod/blob/main/ssh_easy.md>{YELLOW}
+    {YELLOW}<https://github.com/CRUSTDE-ContainerizedRustDevEnv/crustde_cnt_img_pod/blob/main/ssh_easy.md>{YELLOW}
     {YELLOW}On the very first commit, this task will initialize a new local git repository and create a remote GitHub repo.{RESET}
     {YELLOW}In that case the task needs the Personal Access Token Classic from <https://github.com/settings/tokens>{RESET}
 {GREEN}cargo auto publish_to_crates_io{RESET} - {YELLOW}publish to crates.io, git tag{RESET}
@@ -339,7 +339,7 @@ fn task_doc() {
     cl::run_shell_command("rsync -a --info=progress2 --delete-after target/doc/ docs/");
     // Create simple index.html file in docs directory
     cl::run_shell_command(&format!(
-        r#"echo "<meta http-equiv=\"refresh\" content=\"0; url={}/index.html\" />" > docs/index.html"#,
+        r#"printf"<meta http-equiv=\"refresh\" content=\"0; url={}/index.html\" />" > docs/index.html\n"#,
         cargo_toml.package_name().replace("-", "_")
     ));
     // pretty html
