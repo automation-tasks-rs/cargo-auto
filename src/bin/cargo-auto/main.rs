@@ -6,7 +6,7 @@
 //! # cargo-auto  
 //!
 //! **Automation tasks coded in Rust language for the workflow of Rust projects**  
-//! ***version: 2024.328.520 date: 2024-03-28 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
+//! ***version: 2024.328.526 date: 2024-03-28 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
 //!
 //!  ![maintained](https://img.shields.io/badge/maintained-green)
 //!  ![ready-for-use](https://img.shields.io/badge/ready_for_use-green)
@@ -26,7 +26,7 @@
 //!  [![Newest docs](https://img.shields.io/badge/newest_docs-blue.svg)](https://automation-tasks-rs.github.io/cargo-auto/cargo_auto/index.html)
 //!  ![cargo-auto](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-8545-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-8541-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-735-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-427-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
