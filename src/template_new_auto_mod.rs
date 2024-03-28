@@ -65,90 +65,12 @@ pub fn get_vec_file() -> Vec<crate::FileItem> {
     let mut vec_file = vec![];
 
     // region: files copied into strings by automation tasks
-    vec_file.push(crate::FileItem{
-            file_name :"README.md",
-            file_content : r###"[//]: # (auto_md_to_doc_comments segment start A)
-
-# automation_tasks_rs
-
-In this sub-project `automation_tasks_rs`, you can write tasks that you need when compiling or managing your Rust project.  
-The simple `cargo build` and `cargo build --release` are sometimes not enough. We need to copy some files, to prepare some environment. It is nice to have `all` the tasks in one place with a sort order that new users can easily follow.  
-It is a Rust project, so you don't have to learn another strange language for automation.  
-This helper project is used in combination with the program `cargo-auto`. Install it with `cargo install cargo-auto`.
-You can use also the cargo bash completion program `cargo install dev_bestia_cargo_completion`.  
-
-Don't put any secrets like passwords, passphrases, or tokens here, because this helper project is pushed to the remote repository together with the main Rust project.  
-
-In the main  project folder (where the Cargo.toml file is) run
-
-```bash
-cargo auto
-```
-
-You will get the list of possible tasks with descriptions like this:
-user-defined tasks
-
-You can write any task you need. You have all the power of the Rust language under your fingertips.  
-You can use or write a library for some specific tasks you need.  
-For example, there is the crate `cargo_auto_github_lib` if you need to create a Release on GitHub.  
-
-## Open-source and free as a beer
-
-My open-source projects are free as a beer (MIT license).  
-I just love programming.  
-But I need also to drink. If you find my projects and tutorials helpful, please buy me a beer by donating to my [PayPal](https://paypal.me/LucianoBestia).  
-You know the price of a beer in your local bar ;-)  
-So I can drink a free beer for your health :-)  
-[Na zdravje!](https://translate.google.com/?hl=en&sl=sl&tl=en&text=Na%20zdravje&op=translate) [Alla salute!](https://dictionary.cambridge.org/dictionary/italian-english/alla-salute) [Prost!](https://dictionary.cambridge.org/dictionary/german-english/prost) [Nazdravlje!](https://matadornetwork.com/nights/how-to-say-cheers-in-50-languages/) 🍻
-
-[//bestia.dev](https://bestia.dev)  
-[//github.com/bestia-dev](https://github.com/bestia-dev)  
-[//bestiadev.substack.com](https://bestiadev.substack.com)  
-[//youtube.com/@bestia-dev-tutorials](https://youtube.com/@bestia-dev-tutorials)  
-
-[//]: # (auto_md_to_doc_comments segment end A)
-"###,
-});
     vec_file.push(crate::FileItem {
-        file_name: ".vscode/settings.json",
-        file_content: r###"{
-    "workbench.colorCustomizations": {
-        "titleBar.activeForeground": "#fff",
-        "titleBar.inactiveForeground": "#ffffffcc",
-        "titleBar.activeBackground": "#404040",
-        "titleBar.inactiveBackground": "#2d2d2dcc"
-    },
-    "spellright.language": [
-        "en"
-    ],
-    "spellright.documentTypes": [
-        "markdown",
-        "latex",
-        "plaintext"
-    ],
-    "rust-analyzer.showUnlinkedFileNotification": false,
-    "cSpell.words": [
-        "bestia",
-        "deps",
-        "endregion",
-        "plantuml",
-        "zcvf"
-    ]
-}"###,
-    });
-    vec_file.push(crate::FileItem {
-        file_name: "Cargo.toml",
-        file_content: r###"[package]
-name = "automation_tasks_rs"
-version = "1.0.0"
-authors = ["bestia.dev"]
-homepage = "https://bestia.dev"
-edition = "2021"
-description = "cargo auto - automation tasks written in Rust language"
-publish = false
+        file_name: ".gitignore",
+        file_content: r###"/target
 
-[dependencies]
-cargo_auto_lib = "2.0.4""###,
+# not needed in commits, but also not a problem if they are committed
+/.file_hashes.json"###,
     });
     vec_file.push(crate::FileItem {
         file_name: "src/main.rs",
@@ -339,7 +261,7 @@ fn task_doc() {
     cl::run_shell_command("rsync -a --info=progress2 --delete-after target/doc/ docs/");
     // Create simple index.html file in docs directory
     cl::run_shell_command(&format!(
-        r#"printf"<meta http-equiv=\"refresh\" content=\"0; url={}/index.html\" />" > docs/index.html\n"#,
+        r#"printf "<meta http-equiv=\"refresh\" content=\"0; url={}/index.html\" />\n" > docs/index.html"#,
         cargo_toml.package_name().replace("-", "_")
     ));
     // pretty html
@@ -487,11 +409,92 @@ fn task_github_new_release() {
 "###,
     });
     vec_file.push(crate::FileItem {
-        file_name: ".gitignore",
-        file_content: r###"/target
+        file_name: "Cargo.toml",
+        file_content: r###"[package]
+name = "automation_tasks_rs"
+version = "1.0.0"
+authors = ["bestia.dev"]
+homepage = "https://bestia.dev"
+edition = "2021"
+description = "cargo auto - automation tasks written in Rust language"
+publish = false
 
-# not needed in commits, but also not a problem if they are committed
-/.file_hashes.json"###,
+[dependencies]
+cargo_auto_lib = "2.0.4""###,
+    });
+    vec_file.push(crate::FileItem{
+            file_name :"README.md",
+            file_content : r###"[//]: # (auto_md_to_doc_comments segment start A)
+
+# automation_tasks_rs
+
+In this sub-project `automation_tasks_rs`, you can write tasks that you need when compiling or managing your Rust project.  
+The simple `cargo build` and `cargo build --release` are sometimes not enough. We need to copy some files, to prepare some environment. It is nice to have `all` the tasks in one place with a sort order that new users can easily follow.  
+It is a Rust project, so you don't have to learn another strange language for automation.  
+This helper project is used in combination with the program `cargo-auto`. Install it with `cargo install cargo-auto`.
+You can use also the cargo bash completion program `cargo install dev_bestia_cargo_completion`.  
+
+Don't put any secrets like passwords, passphrases, or tokens here, because this helper project is pushed to the remote repository together with the main Rust project.  
+
+In the main  project folder (where the Cargo.toml file is) run
+
+```bash
+cargo auto
+```
+
+You will get the list of possible tasks with descriptions like this:
+user-defined tasks
+
+You can write any task you need. You have all the power of the Rust language under your fingertips.  
+You can use or write a library for some specific tasks you need.  
+For example, there is the crate `cargo_auto_github_lib` if you need to create a Release on GitHub.  
+
+## Open-source and free as a beer
+
+My open-source projects are free as a beer (MIT license).  
+I just love programming.  
+But I need also to drink. If you find my projects and tutorials helpful, please buy me a beer by donating to my [PayPal](https://paypal.me/LucianoBestia).  
+You know the price of a beer in your local bar ;-)  
+So I can drink a free beer for your health :-)  
+[Na zdravje!](https://translate.google.com/?hl=en&sl=sl&tl=en&text=Na%20zdravje&op=translate) [Alla salute!](https://dictionary.cambridge.org/dictionary/italian-english/alla-salute) [Prost!](https://dictionary.cambridge.org/dictionary/german-english/prost) [Nazdravlje!](https://matadornetwork.com/nights/how-to-say-cheers-in-50-languages/) 🍻
+
+[//bestia.dev](https://bestia.dev)  
+[//github.com/bestia-dev](https://github.com/bestia-dev)  
+[//bestiadev.substack.com](https://bestiadev.substack.com)  
+[//youtube.com/@bestia-dev-tutorials](https://youtube.com/@bestia-dev-tutorials)  
+
+[//]: # (auto_md_to_doc_comments segment end A)
+"###,
+});
+    vec_file.push(crate::FileItem {
+        file_name: ".vscode/settings.json",
+        file_content: r###"{
+    "workbench.colorCustomizations": {
+        "titleBar.activeForeground": "#fff",
+        "titleBar.inactiveForeground": "#ffffffcc",
+        "titleBar.activeBackground": "#404040",
+        "titleBar.inactiveBackground": "#2d2d2dcc"
+    },
+    "spellright.language": [
+        "en"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext"
+    ],
+    "files.associations": {
+        "LICENSE": "plain text"
+    },
+    "rust-analyzer.showUnlinkedFileNotification": false,
+    "cSpell.words": [
+        "bestia",
+        "deps",
+        "endregion",
+        "plantuml",
+        "zcvf"
+    ]
+}"###,
     });
     // endregion: files copied into strings by automation tasks
 

@@ -43,695 +43,6 @@ pub fn get_vec_file() -> Vec<crate::FileItem> {
 
     // region: files copied into strings by automation tasks
     vec_file.push(crate::FileItem {
-        file_name: "RELEASES.md",
-        file_content: r###"# Releases changelog of cargo_auto_template_new_cli
-
-All notable changes to this project will be documented in this file.  
-This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).  
-The library releases will be published on crates.io.  
-The cargo-auto automation task will use the content of the section `## Unreleased` to create
-the GitHub release consistently with this file.  
-The ongoing changes that are not released, are visible in the git commits and github pull requests.  
-The TODO section is part of the [README.md](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli).  
-
-## Unreleased
-
-## Version 0.0.1
-
-- Rust project created with `cargo auto new_cli cargo_auto_template_new_cli`
-"###,
-    });
-    vec_file.push(crate::FileItem{
-            file_name :"README.md",
-            file_content : r###"[//]: # (auto_md_to_doc_comments segment start A)
-
-# cargo_auto_template_new_cli
-
-[//]: # (auto_cargo_toml_to_md start)
-
-**Basic Rust project template for CLI and library, more than just `cargo new hello`**  
-***version: 1.0.4 date: 2024-04-21 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli)***  
-
-[//]: # (auto_cargo_toml_to_md end)
-
-  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/blob/main/LICENSE)
-  [![Rust](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/workflows/RustAction/badge.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/)
-
-[//]: # (auto_lines_of_code start)
-
-[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-89-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-13-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-36-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-19-yellow.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-30-orange.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-
-[//]: # (auto_lines_of_code end)
-
-Hashtags: #maintained #ready-for-use #rustlang #automation #workflow  
-My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).  
-I recommend using the [CRUSTDE - Containerized Rust Development Environment](https://github.com/CRUSTDE-ContainerizedRustDevEnv/crustde_cnt_img_pod) to write Rust projects on Linux, isolated from your system.  
-
-## This template
-
-Just like `cargo new` makes a soft and gentle introduction to Rust projects and development, I want to make a similar command that creates a real-life Rust project.  
-
-```bash
-cargo auto new_cli project_name
-```
-
-Extremely simple, just the basic moving parts and use-cases.  
-
-## Development details
-
-Read the development details in a separate md file:
-[DEVELOPMENT.md](DEVELOPMENT.md)
-
-## Releases changelog
-
-Read the releases changelog in a separate md file:
-[RELEASES.md](RELEASES.md)
-
-## TODO
-
-And code happily ever after...
-
-## Open-source and free as a beer
-
-My open-source projects are free as a beer (MIT license).  
-I just love programming.  
-But I need also to drink. If you find my projects and tutorials helpful, please buy me a beer by donating to my [PayPal](https://paypal.me/LucianoBestia).  
-You know the price of a beer in your local bar ;-)  
-So I can drink a free beer for your health :-)  
-[Na zdravje!](https://translate.google.com/?hl=en&sl=sl&tl=en&text=Na%20zdravje&op=translate) [Alla salute!](https://dictionary.cambridge.org/dictionary/italian-english/alla-salute) [Prost!](https://dictionary.cambridge.org/dictionary/german-english/prost) [Nazdravlje!](https://matadornetwork.com/nights/how-to-say-cheers-in-50-languages/) 🍻
-
-[//bestia.dev](https://bestia.dev)  
-[//github.com/bestia-dev](https://github.com/bestia-dev)  
-[//bestiadev.substack.com](https://bestiadev.substack.com)  
-[//youtube.com/@bestia-dev-tutorials](https://youtube.com/@bestia-dev-tutorials)  
-
-[//]: # (auto_md_to_doc_comments segment end A)
-"###,
-});
-    vec_file.push(crate::FileItem {
-        file_name: ".vscode/settings.json",
-        file_content: r###"{
-    "workbench.colorCustomizations": {
-        "titleBar.activeForeground": "#fff",
-        "titleBar.inactiveForeground": "#ffffffcc",
-        "titleBar.activeBackground": "#404040",
-        "titleBar.inactiveBackground": "#2d2d2dcc"
-    },
-    "spellright.language": [
-        "en"
-    ],
-    "spellright.documentTypes": [
-        "markdown",
-        "latex",
-        "plaintext"
-    ],
-    "rust-analyzer.showUnlinkedFileNotification": false,
-    "cSpell.words": [
-        "bestia",
-        "endregion",
-        "plantuml",
-        "rustdevuser",
-        "rustprojects",
-        "zcvf"
-    ]
-}"###,
-    });
-    vec_file.push(crate::FileItem {
-        file_name: "Cargo.toml",
-        file_content: r###"[package]
-name = "cargo_auto_template_new_cli"
-version = "0.0.1"
-description = "Basic Rust project template for CLI and library, more than just `cargo new hello`"
-authors = ["bestia.dev"]
-homepage = "https://bestia.dev"
-edition = "2021"
-license = "MIT"
-readme = "README.md"
-repository = "https://github.com/automation-tasks-rs/cargo_auto_template_new_cli"
-# Keyword must be only one word: lowercase letters, hyphens(-) or numbers, less then 35 characters, at most 5 keywords per crate
-keywords = ["maintained", "work-in-progress", "rustlang"]
-categories = ["command-line-interface"]
-publish = false
-
-[dependencies]
-log = "0.4"
-pretty_env_logger="0.5.0"
-thiserror = "1.0.30"
-anyhow="1.0.56"
-
-[lib]
-name = "cargo_auto_template_new_cli_lib"
-path = "src/lib.rs"
-# A flag for enabling documentation of this target. This is used by `cargo doc`.
-doc = true
-
-[[bin]]
-name = "cargo_auto_template_new_cli"
-path = "src/bin/cargo_auto_template_new_cli/main.rs"
-# A flag for enabling documentation of this target. This is used by `cargo doc`.
-doc = true
-"###,
-    });
-    vec_file.push(crate::FileItem {
-        file_name: "src/bin/cargo_auto_template_new_cli/main.rs",
-        file_content: r###"//! src/bin/cargo_auto_template_new_cli/main.rs
-
-// This `main.rs` is the code for the CLI application.
-// The build of this project will create the CLI application.
-// The `main.rs` has all the stdin and stdout.
-// The `lib.rs` must be in/out agnostic. That is the responsibility of the `main.rs`
-// This `lib.rs` can be used as dependency crate for other projects.
-
-// The `main.rs` uses the `anyhow` error library.
-// The `lib.rs` uses the `thiserror` library.
-
-// Linux terminal colors
-use cargo_auto_template_new_cli::{GREEN, RED, RESET, YELLOW};
-
-/// entry point into the bin-executable
-fn main() {
-    // logging is essential for every project
-    pretty_env_logger::init();
-
-    // super simple argument parsing. There are crates that can parse more complex arguments.
-    match std::env::args().nth(1).as_deref() {
-        None | Some("--help") | Some("-h") => print_help(),
-        Some("print") => match std::env::args().nth(2).as_deref() {
-            // second argument
-            Some(greet_name) => {
-                print_greet_name(greet_name);
-            }
-            None => println!("{RED}Error: Missing arguments `greet_name`.{RESET}"),
-        },
-        Some("upper") => match std::env::args().nth(2).as_deref() {
-            // second argument
-            Some(greet_name) => {
-                // this can return an error. Here is the last place I can deal with the error.
-                match upper_greet_name(greet_name) {
-                    // do nothing
-                    Ok(()) => (),
-                    // log error from anyhow
-                    Err(err) => println!("{RED}Error: {err}{RESET}"),
-                }
-            }
-            None => println!("{RED}Error: Missing arguments `greet_name`.{RESET}"),
-        },
-        _ => println!("{RED}Error: Unrecognized arguments. Try `cargo_auto_template_new_cli --help`{RESET}"),
-    }
-}
-
-/// print help
-fn print_help() {
-    println!(
-        r#"
-    {YELLOW}Welcome to cargo_auto_template_new_cli !
-    This is a simple yet complete template for a CLI program written in Rust.{RESET}
-
-{GREEN}cargo_auto_template_new_cli --help{RESET}
-{GREEN}cargo_auto_template_new_cli print world{RESET}
-{GREEN}cargo_auto_template_new_cli upper world{RESET}
-
-    {YELLOW}This command should return an error:{RESET}
-{GREEN}cargo_auto_template_new_cli upper WORLD{RESET}
-  
-    {YELLOW}© 2024 bestia.dev  MIT License github.com/automation-tasks-rs/cargo-auto{RESET}
-"#
-    );
-}
-
-/// print my name
-fn print_greet_name(greet_name: &str) {
-    // call the function from the `lib.rs`
-    println!("{}", cargo_auto_template_new_cli::format_hello_phrase(greet_name));
-}
-
-/// print my name upper, can return error
-fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
-    // the function from `lib.rs`, can return error
-    // use the ? syntax to bubble the error up one level or continue (early return)
-    let upper = cargo_auto_template_new_cli::format_upper_hello_phrase(greet_name)?;
-    println!("{}", upper);
-    // return
-    Ok(())
-}
-"###,
-    });
-    vec_file.push(crate::FileItem {
-        file_name: "src/lib.rs",
-        file_content: r###"// cargo_auto_template_new_cli/src/lib.rs
-
-// The `main.rs` has all the stdin and stdout.
-// The `lib.rs` must be in/out agnostic. That is the responsibility of the `main.rs`
-// The `lib.rs` does not have any real code. All the code is in modules in separate files.
-// The `lib.rs` has just the list of modules, it publishes module's functions or class for the caller
-// and it has some global stuff like the Error enum.
-
-// region: auto_md_to_doc_comments include README.md A //!
-//! # cargo-auto  
-//!
-//! **Automation tasks coded in Rust language for the workflow of Rust projects**  
-//! ***version: 2024.307.2040 date: 2024-03-07 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
-//!
-//!  ![maintained](https://img.shields.io/badge/maintained-green)
-//!  ![ready-for-use](https://img.shields.io/badge/ready_for_use-green)
-//!  ![rustlang](https://img.shields.io/badge/rustlang-orange)
-//!  ![automation](https://img.shields.io/badge/automation-orange)
-//!  ![workflow](https://img.shields.io/badge/workflow-orange)
-//!
-//!  ![logo](https://raw.githubusercontent.com/automation-tasks-rs/cargo-auto/main/images/logo/logo_cargo_auto.svg)
-//!  cargo-auto is part of the [automation_tasks_rs](https://github.com/automation-tasks-rs) project
-//!
-//!  [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
-//!  [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)
-//!  [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/cargo-auto.svg)](https://web.crev.dev/rust-reviews/crate/cargo-auto/)
-//!  [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/)  
-//!  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/blob/master/LICENSE)
-//!  [![Rust](https://github.com/automation-tasks-rs/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//!  [![Newest docs](https://img.shields.io/badge/newest_docs-blue.svg)](https://automation-tasks-rs.github.io/cargo-auto/cargo_auto/index.html)
-//!  ![cargo-auto](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
-//!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-9026-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-735-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-427-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-7840-orange.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//!
-//! Hashtags: #maintained #ready-for-use #rustlang #automation #workflow  
-//! My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).  
-//! I recommend using the [CRUSTDE - Containerized Rust Development Environment](https://github.com/CRUSTDE-ContainerizedRustDevEnv/crustde_cnt_img_pod) to write Rust projects on Linux, isolated from your system.  
-//!
-//! ## Try it
-//!
-//! First, we will use `cargo-auto` to create a new empty CLI Rust project similar to `cargo new`, but with a more complete project structure.  
-//!
-//!  ```bash
-//! cargo install cargo-auto
-//! cargo auto new_cli my_hello_project
-//! cd my_hello_project
-//! cargo auto
-//! # it lists all the prepared automation tasks
-//! # try a few
-//! cargo auto build
-//! cargo auto release
-//! cargo auto doc
-//! cargo auto test
-//! ```
-//!
-//! We can also add `automation tasks` to an existing Rust project.
-//! Inside your Rust project directory (the one with Cargo.toml) run:  
-//!
-//! ```bash
-//! cargo auto new_auto
-//! cargo auto
-//! # it lists all the prepared automation tasks
-//! # try to build
-//! cargo auto build
-//! ```
-//!
-//! Congratulations! You are already using `cargo-auto`. Simple as that.  
-//! Now you can modify the tasks to your needs. It is all Rust language.  
-//!
-//! ## Motivation
-//!
-//! Cargo is a great tool for building Rust projects. It has all the basics: `cargo build`, `cargo build --release`, `cargo fmt`, `cargo test`, `cargo doc`,...  
-//! But sometimes we need to do more things like copying some files, publishing to FTP, or entering long commands. These repetitive tasks must be automated.  
-//! Task automation makes work easier and faster, and simplifies the workflow while improving the consistency and accuracy of workflows.  
-//! This is also sometimes referred to as "workflow automation."  
-//! There are many different build systems and task runners there: `make`, `cmake`, `shell scripts`, `cargo-xtask`, `cargo-make`, `cargo-task`, `cargo-script`, `cargo-run-script`, `runner`, `python scripts`, `powershell scripts`, `cmd prompt scripts`, ...  
-//! Sadly there is no standard in the Rust community for now.  
-//! I want something similar to [build.rs](https://doc.rust-lang.org/cargo/reference/build-scripts.html), so I can write my "tasks" in pure Rust I don't want to learn another meta language with weird syntax and difficulty to debug. So I will make something really simple, easy, rusty, and extensible.  
-//!
-//! ## cargo auto subcommand
-//!
-//! The command `cargo install cargo-auto` will add a new subcommand to cargo:
-//!
-//! ```bash
-//! cargo auto
-//! ```
-//!
-//! This binary is super simple. It has only 1 trivial dependency: `lazy_static`.  
-//! The binary only reads the CLI arguments and runs the `automation_tasks_rs` binary with them. If needed it will compile `automation_tasks_rs` first.  
-//! The code-flow of the source code of `cargo-auto` is simple, fully commented, and straightforward to audit.  
-//! The source code is on [GitHub](https://github.com/automation-tasks-rs/cargo-auto) with MIT open-source licensing.  
-//!
-//! ## bash auto-completion
-//!
-//! With the help of the crate [dev_bestia_cargo_completion](https://crates.io/crates/dev_bestia_cargo_completion), the commands `cargo` and `cargo auto` get bash auto-completion. Try it!  
-//!
-//! ## cargo auto new_cli
-//!
-//! I like very much that Rust has the command `cargo new project_name`. It creates a super simple Rust Hello project that can be built and run immediately. But this example is too simple. It lacks the basic file structures of a serious CLI program.  
-//! I composed an opinionated template for a Rust CLI project. It is easy to run:
-//!
-//! ```bash
-//! cargo auto new_cli project_name
-//! # then
-//! cd project_name
-//! cargo auto build
-//! # then follow detailed instructions
-//! ```
-//!
-//! ## cargo auto new_wasm
-//!
-//! I composed an opinionated template for a simple Rust WASM project for a browser. It is very similar to the new_cli template but for WASM.  
-//! It is easy to run:
-//!
-//! ```bash
-//! cargo auto new_wasm project_name
-//! # then
-//! cd project_name
-//! cargo auto build
-//! # then follow detailed instructions
-//! ```
-//!
-//! ## cargo auto new_pwa_wasm
-//!
-//! I composed an opinionated template for a simple Rust PWA-WASM project for a browser. It is very similar to the new_cli template but for WASM. It adds the PWA standard functionality to work as an offline app.  
-//! The template needs the title, name, long name, and description inside a `pwa.json5` file and the `icon512x512.png` file for the icons.  
-//! It is easy to run:
-//!
-//! ```bash
-//! cargo auto new_pwa_wasm
-//! # on first run it will just create the `pwa.json5` and `icon512x512.png` files
-//! # modify these files with data for your new app and then repeat
-//! cargo auto new_pwa_wasm
-//! # then
-//! cd project_name
-//! cargo auto build
-//! # then follow detailed instructions
-//! ```
-//!
-//! ## scripting with rust
-//!
-//! Rust is a compiled language. It is not really a scripting or interpreted language. But the compilation of small projects is really fast and can be ignored. Subsequent calls will use the already-built binary so the speed will be even faster.  
-//! This tool `cargo-auto` is meant for Rust projects, so it means that all the Rust infrastructure is already in place.  
-//!
-//! ## automation_tasks_rs Rust sub-project
-//!
-//! The command `cargo auto new_auto` will create a new Rust sub-project`automation_tasks_rs` inside your `Rust project`. It should not interfere with the main Rust project. This directory will be added to git commits and pushed to remote repositories as part of the main project. It has its own `.gitignore` to avoid committing to its target directory.  
-//! The `automation_tasks_rs` helper project contains user-defined tasks in Rust code. Your tasks. This helper project should be opened in a new editor starting from the `automation_tasks_rs` directory. It does not share dependencies with the main project. It is completely separate and independent.  
-//! You can edit it and add your dependencies and Rust code. No limits. Freedom of expression.  
-//! This is now your code, your tasks, and your helper Rust project!  
-//! Because only you know what you want to automate and how to do it.  
-//! Never write secrets, passwords, passcodes, or tokens inside your Rust code. Because then it is pushed to GitHub and the whole world can read it in the next second!
-//! Basic example (most of the useful functions are already there):  
-//!
-//! ```rust ignore
-//! /// match arguments and call tasks functions
-//! fn match_arguments_and_call_tasks(mut args: std::env::Args){
-//!     // the first argument is the user defined task: (no argument for help), build, release,...
-//!     let arg_1 = args.next();
-//!     match arg_1 {
-//!         None => print_help(),
-//!         Some(task) => {            
-//!             println!("Running auto task: {}", &task);
-//!             if &task == "build"{
-//!                 task_build();
-//!             } else if &task == "release" {
-//!                 task_release();
-//!             } else if &task == "doc" {
-//!                 task_doc();
-//!             } else {
-//!                 println!("Task {} is unknown.", &task);
-//!                 print_help();
-//!             }
-//!         }
-//!     }
-//! }
-//!
-//! /// write a comprehensible help for user defined tasks
-//! fn print_help() {
-//!     println!(r#"
-//!     User defined tasks in automation_tasks_rs:
-//! cargo auto build - builds the crate in debug mode
-//! cargo auto release - builds the crate in release mode
-//! cargo auto docs - builds the docs
-//! "#);
-//! }
-//!
-//! // region: tasks
-//!
-//! /// cargo build
-//! fn task_build() {
-//!     run_shell_command("cargo fmt");
-//!     run_shell_command("cargo build");
-//! }
-//!
-//! /// cargo build --release
-//! fn task_release() {
-//!     run_shell_command("cargo fmt");
-//!     run_shell_command("cargo build --release");
-//! }
-//!
-//! /// cargo doc, then copies to /docs/ folder, because this is a github standard folder
-//! fn task_doc() {
-//!     run_shell_command("cargo doc --no-deps --document-private-items");
-//!     // copy target/doc into docs/ because it is github standard
-//!     run_shell_command("rsync -a --info=progress2 --delete-after target/doc/ docs/");
-//!     // Create simple index.html file in docs directory
-//!     run_shell_command(&format!(
-//!         "printf \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\\n\" > docs/index.html",
-//!         cargo_toml.package_name().replace("-","_")
-//!     ));
-//!     run_shell_command("cargo fmt");
-//! }
-//!
-//! // endregion: tasks
-//!
-//! ```
-//!
-//! ## more complex tasks
-//!
-//! You can write more complex tasks in Rust language.  
-//! For example in this project I use automation to create GitHub Releases: <https://github.com/automation-tasks-rs/dropbox_backup_to_external_disk>  
-//! Here is a pretty complex workspace with more sub-projects:  
-//! <https://github.com/automation-tasks-rs/cargo_crev_reviews_workspace>  
-//! There is no end to your imagination. If you write something that looks like it can help other developers, please share it with me and I will add it here.
-//!
-//! ## Development details
-//!
-//! Read the development details in a separate md file:  
-//! [DEVELOPMENT.md](https://github.com/automation-tasks-rs/cargo-auto/blob/main/DEVELOPMENT.md)
-//!
-//! ## Releases changelog
-//!
-//! Read the changelog in a separate md file:  
-//! [RELEASES.md](https://github.com/automation-tasks-rs/cargo-auto/blob/main/RELEASES.md)
-//!
-//! ## TODO
-//!
-//! Nothing big in the near future.
-//!
-//! ## Open-source and free as a beer
-//!
-//! My open-source projects are free as a beer (MIT license).  
-//! I just love programming.  
-//! But I need also to drink. If you find my projects and tutorials helpful, please buy me a beer by donating to my [PayPal](https://paypal.me/LucianoBestia).  
-//! You know the price of a beer in your local bar ;-)  
-//! So I can drink a free beer for your health :-)  
-//! [Na zdravje!](https://translate.google.com/?hl=en&sl=sl&tl=en&text=Na%20zdravje&op=translate) [Alla salute!](https://dictionary.cambridge.org/dictionary/italian-english/alla-salute) [Prost!](https://dictionary.cambridge.org/dictionary/german-english/prost) [Nazdravlje!](https://matadornetwork.com/nights/how-to-say-cheers-in-50-languages/) 🍻
-//!
-//! [//bestia.dev](https://bestia.dev)  
-//! [//github.com/automation-tasks-rs](https://github.com/automation-tasks-rs)  
-//! [//bestiadev.substack.com](https://bestiadev.substack.com)  
-//! [//youtube.com/@bestia-dev-tutorials](https://youtube.com/@bestia-dev-tutorials)  
-//!
-// endregion: auto_md_to_doc_comments include README.md A //!
-
-// access to modules
-mod hello_mod;
-
-// `pub use` allows the caller of the lib to access modules functions, structs or all(*)
-pub use hello_mod::format_hello_phrase;
-pub use hello_mod::format_upper_hello_phrase;
-
-// The `main.rs` uses the `anyhow` error library.
-// The `lib.rs` uses the `thiserror` library.
-use thiserror::Error;
-
-/// all possible library errors for `thiserror`
-#[derive(Error, Debug)]
-pub enum LibraryError {
-    #[error("Name `{0}` is already uppercase.")]
-    Uppercase(String),
-    #[error("Unknown error.")]
-    Unknown,
-}
-
-// ANSI colors for Linux terminal
-// https://github.com/shiena/ansicolor/blob/master/README.md
-#[allow(dead_code)]
-pub const RED: &str = "\x1b[31m";
-#[allow(dead_code)]
-pub const YELLOW: &str = "\x1b[33m";
-#[allow(dead_code)]
-pub const GREEN: &str = "\x1b[32m";
-#[allow(dead_code)]
-pub const RESET: &str = "\x1b[0m";
-"###,
-    });
-    vec_file.push(crate::FileItem {
-        file_name: "src/hello_mod.rs",
-        file_content: r###"// cargo_auto_template_new_cli/src/hello_mod.rs
-
-//! All the real code is inside modules in separate files.
-//!
-//! This doc-comments will be compiled into the `docs`.
-
-/// format the hello phrase
-pub fn format_hello_phrase(greet_name: &str) -> String {
-    log::info!("start format_hello_phrase()");
-    // return
-    format!("Hello {}!", greet_name)
-}
-
-/// format the hello phrase with uppercase name
-/// if it is already uppercase, return error with thiserror
-pub fn format_upper_hello_phrase(greet_name: &str) -> Result<String, crate::LibraryError> {
-    log::info!("start format_upper_hello_phrase()");
-    // shadowing the same variable name:
-    let upper_greet_name = make_uppercase(greet_name);
-    if upper_greet_name == greet_name {
-        return Err(crate::LibraryError::Uppercase(greet_name.to_string()));
-    }
-
-    // return
-    Ok(format!("Hello {}!", &upper_greet_name))
-}
-
-/// return uppercase
-pub fn make_uppercase(greet_name: &str) -> String {
-    // return
-    greet_name.to_uppercase()
-}
-
-#[cfg(test)]
-mod test {
-    use super::*;
-
-    #[test]
-    pub fn test_format_upper_hello_phrase() {
-        assert_eq!(format_upper_hello_phrase("abcd").expect("error"), "Hello ABCD!");
-        assert!(format_upper_hello_phrase("ABCD").is_err());
-    }
-
-    #[test]
-    pub fn test_make_uppercase() {
-        assert_eq!(make_uppercase("abcd"), "ABCD");
-        assert_eq!(make_uppercase("1234abcd"), "1234ABCD");
-        assert_eq!(make_uppercase("čšž"), "ČŠŽ");
-    }
-}
-"###,
-    });
-    vec_file.push(crate::FileItem {
-        file_name: ".github/workflows/rust_fmt_auto_build_test.yml",
-        file_content: r###"name: rust_fmt_auto_build_test
-
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
-env:
-  CARGO_TERM_COLOR: always
-
-jobs:
-  rust_fmt_auto_build_test:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: checkout
-      uses: actions/checkout@v4
-
-    - name: cargo fmt -- --check
-      run: cargo fmt -- --check
-
-    - name: Run cache for rust dependencies
-      uses: Swatinem/rust-cache@v2.7.3
-
-    - name: Configure sccache
-      run: printf "RUSTC_WRAPPER=sccache\n" >> $GITHUB_ENV; printf "SCCACHE_GHA_ENABLED=true\n" >> $GITHUB_ENV
-
-    - name: Run sccache-cache for artifacts
-      uses: mozilla-actions/sccache-action@v0.0.4
-
-    - name: install and cache cargo-auto
-      uses: baptiste0928/cargo-install@v3.0.0
-      with:
-        crate: cargo-auto
-
-    - name: Cache for automation tasks
-      uses: actions/cache@v4.0.0
-      with:
-        path: |
-          /home/runner/work/cargo-auto/cargo-auto/automation_tasks_rs/.file_hashes.json 
-          /home/runner/work/cargo-auto/cargo-auto/automation_tasks_rs/target 
-          /home/runner/work/cargo-auto/cargo-auto/automation_tasks_rs/Cargo.toml
-        key: automation_tasks_rs
-
-    - name: cargo auto build
-      run: cargo auto build
-
-    - name: cargo auto test
-      run: cargo auto test
-      
-"###,
-    });
-    vec_file.push(crate::FileItem {
-        file_name: ".github/workflows/docs_pages.yml",
-        file_content: r###"# Simple workflow for deploying static content to GitHub Pages
-name: docs_pages
-
-on:
-  # Runs on pushes targeting the default branch
-  push:
-    branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
-# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
-
-jobs:
-  # Single deploy job since we're just deploying
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          # Upload entire repository
-          path: 'docs'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-"###,
-    });
-    vec_file.push(crate::FileItem {
         file_name: ".gitattributes",
         file_content: r###"# Specific git config for the project
 
@@ -764,47 +75,12 @@ jobs:
 /.auto_version_from_date.json"###,
     });
     vec_file.push(crate::FileItem {
-        file_name: "automation_tasks_rs/.vscode/settings.json",
-        file_content: r###"{
-    "workbench.colorCustomizations": {
-        "titleBar.activeForeground": "#fff",
-        "titleBar.inactiveForeground": "#ffffffcc",
-        "titleBar.activeBackground": "#404040",
-        "titleBar.inactiveBackground": "#2d2d2dcc"
-    },
-    "spellright.language": [
-        "en"
-    ],
-    "spellright.documentTypes": [
-        "markdown",
-        "latex",
-        "plaintext"
-    ],
-    "rust-analyzer.showUnlinkedFileNotification": false,
-    "cSpell.words": [
-        "alloc",
-        "bestia",
-        "endregion",
-        "new_cli",
-        "octocrab",
-        "plantuml",
-        "zcvf"
-    ]
-}"###,
-    });
-    vec_file.push(crate::FileItem {
-        file_name: "automation_tasks_rs/Cargo.toml",
-        file_content: r###"[package]
-name = "automation_tasks_rs"
-version = "1.0.0"
-authors = ["bestia.dev"]
-homepage = "https://bestia.dev"
-edition = "2021"
-description = "cargo auto - automation tasks written in Rust language"
-publish = false
+        file_name: "automation_tasks_rs/.gitignore",
+        file_content: r###"/target
 
-[dependencies]
-cargo_auto_lib = "2.0.4""###,
+# not needed in commits, but also not a problem if they are committed
+/.file_hashes.json
+"###,
     });
     vec_file.push(crate::FileItem {
         file_name: "automation_tasks_rs/src/main.rs",
@@ -996,7 +272,7 @@ fn task_doc() {
     cl::run_shell_command("rsync -a --info=progress2 --delete-after target/doc/ docs/");
     // Create simple index.html file in docs directory
     cl::run_shell_command(&format!(
-        r#"printf"<meta http-equiv=\"refresh\" content=\"0; url={}/index.html\" />" > docs/index.html\n"#,
+        r#"printf "<meta http-equiv=\"refresh\" content=\"0; url={}/index.html\" />\n" > docs/index.html"#,
         cargo_toml.package_name().replace("-", "_")
     ));
     // pretty html
@@ -1143,12 +419,18 @@ fn task_github_new_release() {
 // endregion: tasks"###,
     });
     vec_file.push(crate::FileItem {
-        file_name: "automation_tasks_rs/.gitignore",
-        file_content: r###"/target
+        file_name: "automation_tasks_rs/Cargo.toml",
+        file_content: r###"[package]
+name = "automation_tasks_rs"
+version = "1.0.0"
+authors = ["bestia.dev"]
+homepage = "https://bestia.dev"
+edition = "2021"
+description = "cargo auto - automation tasks written in Rust language"
+publish = false
 
-# not needed in commits, but also not a problem if they are committed
-/.file_hashes.json
-"###,
+[dependencies]
+cargo_auto_lib = "2.0.4""###,
     });
     vec_file.push(crate::FileItem {
         file_name: "automation_tasks_rs/Cargo.lock",
@@ -3020,6 +2302,628 @@ dependencies = [
 ]
 "###,
     });
+    vec_file.push(crate::FileItem {
+        file_name: "automation_tasks_rs/.vscode/settings.json",
+        file_content: r###"{
+    "workbench.colorCustomizations": {
+        "titleBar.activeForeground": "#fff",
+        "titleBar.inactiveForeground": "#ffffffcc",
+        "titleBar.activeBackground": "#404040",
+        "titleBar.inactiveBackground": "#2d2d2dcc"
+    },
+    "spellright.language": [
+        "en"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext"
+    ],
+    "files.associations": {
+        "LICENSE": "plain text"
+    },
+    "rust-analyzer.showUnlinkedFileNotification": false,
+    "cSpell.words": [
+        "alloc",
+        "bestia",
+        "endregion",
+        "new_cli",
+        "octocrab",
+        "plantuml",
+        "zcvf"
+    ]
+}"###,
+    });
+    vec_file.push(crate::FileItem {
+        file_name: "RELEASES.md",
+        file_content: r###"# Releases changelog of cargo_auto_template_new_cli
+
+All notable changes to this project will be documented in this file.  
+This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).  
+The library releases will be published on crates.io.  
+The cargo-auto automation task will use the content of the section `## Unreleased` to create
+the GitHub release consistently with this file.  
+The ongoing changes that are not released, are visible in the git commits and github pull requests.  
+The TODO section is part of the [README.md](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli).  
+
+## Unreleased
+
+## Version 0.0.1
+
+- Rust project created with `cargo auto new_cli cargo_auto_template_new_cli`
+"###,
+    });
+    vec_file.push(crate::FileItem {
+        file_name: "src/bin/cargo_auto_template_new_cli/main.rs",
+        file_content: r###"//! src/bin/cargo_auto_template_new_cli/main.rs
+
+// This `main.rs` is the code for the CLI application.
+// The build of this project will create the CLI application.
+// The `main.rs` has all the stdin and stdout.
+// The `lib.rs` must be in/out agnostic. That is the responsibility of the `main.rs`
+// This `lib.rs` can be used as dependency crate for other projects.
+
+// The `main.rs` uses the `anyhow` error library.
+// The `lib.rs` uses the `thiserror` library.
+
+// Linux terminal colors
+use cargo_auto_template_new_cli_lib::{GREEN, RED, RESET, YELLOW};
+
+/// entry point into the bin-executable
+fn main() {
+    // logging is essential for every project
+    pretty_env_logger::init();
+
+    // super simple argument parsing. There are crates that can parse more complex arguments.
+    match std::env::args().nth(1).as_deref() {
+        None | Some("--help") | Some("-h") => print_help(),
+        Some("print") => match std::env::args().nth(2).as_deref() {
+            // second argument
+            Some(greet_name) => {
+                print_greet_name(greet_name);
+            }
+            None => println!("{RED}Error: Missing arguments `greet_name`.{RESET}"),
+        },
+        Some("upper") => match std::env::args().nth(2).as_deref() {
+            // second argument
+            Some(greet_name) => {
+                // this can return an error. Here is the last place I can deal with the error.
+                match upper_greet_name(greet_name) {
+                    // do nothing
+                    Ok(()) => (),
+                    // log error from anyhow
+                    Err(err) => println!("{RED}Error: {err}{RESET}"),
+                }
+            }
+            None => println!("{RED}Error: Missing arguments `greet_name`.{RESET}"),
+        },
+        _ => println!("{RED}Error: Unrecognized arguments. Try `cargo_auto_template_new_cli --help`{RESET}"),
+    }
+}
+
+/// print help
+fn print_help() {
+    println!(
+        r#"
+    {YELLOW}Welcome to cargo_auto_template_new_cli !
+    This is a simple yet complete template for a CLI program written in Rust.{RESET}
+
+{GREEN}cargo_auto_template_new_cli --help{RESET}
+{GREEN}cargo_auto_template_new_cli print world{RESET}
+{GREEN}cargo_auto_template_new_cli upper world{RESET}
+
+    {YELLOW}This command should return an error:{RESET}
+{GREEN}cargo_auto_template_new_cli upper WORLD{RESET}
+  
+    {YELLOW}© 2024 bestia.dev  MIT License github.com/automation-tasks-rs/cargo-auto{RESET}
+"#
+    );
+}
+
+/// print my name
+fn print_greet_name(greet_name: &str) {
+    // call the function from the `lib.rs`
+    println!("{}", cargo_auto_template_new_cli_lib::format_hello_phrase(greet_name));
+}
+
+/// print my name upper, can return error
+fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
+    // the function from `lib.rs`, can return error
+    // use the ? syntax to bubble the error up one level or continue (early return)
+    let upper = cargo_auto_template_new_cli_lib::format_upper_hello_phrase(greet_name)?;
+    println!("{}", upper);
+    // return
+    Ok(())
+}
+"###,
+    });
+    vec_file.push(crate::FileItem {
+        file_name: "src/lib.rs",
+        file_content: r###"// cargo_auto_template_new_cli/src/lib.rs
+
+// The `main.rs` has all the stdin and stdout.
+// The `lib.rs` must be in/out agnostic. That is the responsibility of the `main.rs`
+// The `lib.rs` does not have any real code. All the code is in modules in separate files.
+// The `lib.rs` has just the list of modules, it publishes module's functions or class for the caller
+// and it has some global stuff like the Error enum.
+
+// region: auto_md_to_doc_comments include README.md A //!
+//! # cargo-auto  
+//!
+//! **Automation tasks coded in Rust language for the workflow of Rust projects**  
+//! ***version: 2024.328.429 date: 2024-03-28 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
+//!
+//!  ![maintained](https://img.shields.io/badge/maintained-green)
+//!  ![ready-for-use](https://img.shields.io/badge/ready_for_use-green)
+//!  ![rustlang](https://img.shields.io/badge/rustlang-orange)
+//!  ![automation](https://img.shields.io/badge/automation-orange)
+//!  ![workflow](https://img.shields.io/badge/workflow-orange)
+//!
+//!  ![logo](https://raw.githubusercontent.com/automation-tasks-rs/cargo-auto/main/images/logo/logo_cargo_auto.svg)
+//!  cargo-auto is part of the [automation_tasks_rs](https://github.com/automation-tasks-rs) project
+//!
+//!  [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
+//!  [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)
+//!  [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/cargo-auto.svg)](https://web.crev.dev/rust-reviews/crate/cargo-auto/)
+//!  [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/)  
+//!  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/blob/master/LICENSE)
+//!  [![Rust](https://github.com/automation-tasks-rs/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//!  [![Newest docs](https://img.shields.io/badge/newest_docs-blue.svg)](https://automation-tasks-rs.github.io/cargo-auto/cargo_auto/index.html)
+//!  ![cargo-auto](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
+//!
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-8544-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-1482-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-427-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-8340-orange.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//!
+//! Hashtags: #maintained #ready-for-use #rustlang #automation #workflow  
+//! My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).  
+//! I recommend using the [CRUSTDE - Containerized Rust Development Environment](https://github.com/CRUSTDE-ContainerizedRustDevEnvrustde_cnt_img_pod) to write Rust projects on Linux, isolated from your system.  
+//!
+//! ## Try it
+//!
+//! First, we will use `cargo-auto` to create a new empty CLI Rust project similar to `cargo new`, but with a more complete project structure.  
+//!
+//!  ```bash
+//! cargo install cargo-auto
+//! cargo auto new_cli my_hello_project
+//! cd my_hello_project
+//! cargo auto
+//! # it lists all the prepared automation tasks
+//! # try a few
+//! cargo auto build
+//! cargo auto release
+//! cargo auto doc
+//! cargo auto test
+//! ```
+//!
+//! We can also add `automation tasks` to an existing Rust project.
+//! Inside your Rust project directory (the one with Cargo.toml) run:  
+//!
+//! ```bash
+//! cargo auto new_auto
+//! cargo auto
+//! # it lists all the prepared automation tasks
+//! # try to build
+//! cargo auto build
+//! ```
+//!
+//! Congratulations! You are already using `cargo-auto`. Simple as that.  
+//! Now you can modify the tasks to your needs. It is all Rust language.  
+//!
+//! ## Motivation
+//!
+//! Cargo is a great tool for building Rust projects. It has all the basics: `cargo build`, `cargo build --release`, `cargo fmt`, `cargo test`, `cargo doc`,...  
+//! But sometimes we need to do more things like copying some files, publishing to FTP, or entering long commands. These repetitive tasks must be automated.  
+//! Task automation makes work easier and faster, and simplifies the workflow while improving the consistency and accuracy of workflows.  
+//! This is also sometimes referred to as "workflow automation."  
+//! There are many different build systems and task runners there: `make`, `cmake`, `shell scripts`, `cargo-xtask`, `cargo-make`, `cargo-task`, `cargo-script`, `cargo-run-script`, `runner`, `python scripts`, `powershell scripts`, `cmd prompt scripts`, ...  
+//! Sadly there is no standard in the Rust community for now.  
+//! I want something similar to [build.rs](https://doc.rust-lang.org/cargo/reference/build-scripts.html), so I can write my "tasks" in pure Rust I don't want to learn another meta language with weird syntax and difficulty to debug. So I will make something really simple, easy, rusty, and extensible.  
+//!
+//! ## cargo auto subcommand
+//!
+//! The command `cargo install cargo-auto` will add a new subcommand to cargo:
+//!
+//! ```bash
+//! cargo auto
+//! ```
+//!
+//! This binary is super simple. It has only 1 trivial dependency: `lazy_static`.  
+//! The binary only reads the CLI arguments and runs the `automation_tasks_rs` binary with them. If needed it will compile `automation_tasks_rs` first.  
+//! The code-flow of the source code of `cargo-auto` is simple, fully commented, and straightforward to audit.  
+//! The source code is on [GitHub](https://github.com/automation-tasks-rs/cargo-auto) with MIT open-source licensing.  
+//!
+//! ## bash auto-completion
+//!
+//! With the help of the crate [dev_bestia_cargo_completion](https://crates.io/crates/dev_bestia_cargo_completion), the commands `cargo` and `cargo auto` get bash auto-completion. Try it!  
+//!
+//! ## cargo auto new_cli
+//!
+//! I like very much that Rust has the command `cargo new project_name`. It creates a super simple Rust Hello project that can be built and run immediately. But this example is too simple. It lacks the basic file structures of a serious CLI program.  
+//! I composed an opinionated template for a Rust CLI project. It is easy to run:
+//!
+//! ```bash
+//! cargo auto new_cli project_name
+//! # then
+//! cd project_name
+//! cargo auto build
+//! # then follow detailed instructions
+//! ```
+//!
+//! ## cargo auto new_wasm
+//!
+//! I composed an opinionated template for a simple Rust WASM project for a browser. It is very similar to the new_cli template but for WASM.  
+//! It is easy to run:
+//!
+//! ```bash
+//! cargo auto new_wasm project_name
+//! # then
+//! cd project_name
+//! cargo auto build
+//! # then follow detailed instructions
+//! ```
+//!
+//! ## cargo auto new_pwa_wasm
+//!
+//! I composed an opinionated template for a simple Rust PWA-WASM project for a browser. It is very similar to the new_cli template but for WASM. It adds the PWA standard functionality to work as an offline app.  
+//! The template needs the title, name, long name, and description inside a `pwa.json5` file and the `icon512x512.png` file for the icons.  
+//! It is easy to run:
+//!
+//! ```bash
+//! cargo auto new_pwa_wasm
+//! # on first run it will just create the `pwa.json5` and `icon512x512.png` files
+//! # modify these files with data for your new app and then repeat
+//! cargo auto new_pwa_wasm
+//! # then
+//! cd project_name
+//! cargo auto build
+//! # then follow detailed instructions
+//! ```
+//!
+//! ## scripting with rust
+//!
+//! Rust is a compiled language. It is not really a scripting or interpreted language. But the compilation of small projects is really fast and can be ignored. Subsequent calls will use the already-built binary so the speed will be even faster.  
+//! This tool `cargo-auto` is meant for Rust projects, so it means that all the Rust infrastructure is already in place.  
+//!
+//! ## automation_tasks_rs Rust sub-project
+//!
+//! The command `cargo auto new_auto` will create a new Rust sub-project`automation_tasks_rs` inside your `Rust project`. It should not interfere with the main Rust project. This directory will be added to git commits and pushed to remote repositories as part of the main project. It has its own `.gitignore` to avoid committing to its target directory.  
+//! The `automation_tasks_rs` helper project contains user-defined tasks in Rust code. Your tasks. This helper project should be opened in a new editor starting from the `automation_tasks_rs` directory. It does not share dependencies with the main project. It is completely separate and independent.  
+//! You can edit it and add your dependencies and Rust code. No limits. Freedom of expression.  
+//! This is now your code, your tasks, and your helper Rust project!  
+//! Because only you know what you want to automate and how to do it.  
+//! Never write secrets, passwords, passcodes, or tokens inside your Rust code. Because then it is pushed to GitHub and the whole world can read it in the next second!
+//! Basic example (most of the useful functions are already there):  
+//!
+//! ```rust ignore
+//! /// match arguments and call tasks functions
+//! fn match_arguments_and_call_tasks(mut args: std::env::Args){
+//!     // the first argument is the user defined task: (no argument for help), build, release,...
+//!     let arg_1 = args.next();
+//!     match arg_1 {
+//!         None => print_help(),
+//!         Some(task) => {            
+//!             println!("Running auto task: {}", &task);
+//!             if &task == "build"{
+//!                 task_build();
+//!             } else if &task == "release" {
+//!                 task_release();
+//!             } else if &task == "doc" {
+//!                 task_doc();
+//!             } else {
+//!                 println!("Task {} is unknown.", &task);
+//!                 print_help();
+//!             }
+//!         }
+//!     }
+//! }
+//!
+//! /// write a comprehensible help for user defined tasks
+//! fn print_help() {
+//!     println!(r#"
+//!     User defined tasks in automation_tasks_rs:
+//! cargo auto build - builds the crate in debug mode
+//! cargo auto release - builds the crate in release mode
+//! cargo auto docs - builds the docs
+//! "#);
+//! }
+//!
+//! // region: tasks
+//!
+//! /// cargo build
+//! fn task_build() {
+//!     run_shell_command("cargo fmt");
+//!     run_shell_command("cargo build");
+//! }
+//!
+//! /// cargo build --release
+//! fn task_release() {
+//!     run_shell_command("cargo fmt");
+//!     run_shell_command("cargo build --release");
+//! }
+//!
+//! /// cargo doc, then copies to /docs/ folder, because this is a github standard folder
+//! fn task_doc() {
+//!     run_shell_command("cargo doc --no-deps --document-private-items");
+//!     // copy target/doc into docs/ because it is github standard
+//!     run_shell_command("rsync -a --info=progress2 --delete-after target/doc/ docs/");
+//!     // Create simple index.html file in docs directory
+//!     run_shell_command(&format!(
+//!         "printf \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\\n\" > docs/index.html",
+//!         cargo_toml.package_name().replace("-","_")
+//!     ));
+//!     run_shell_command("cargo fmt");
+//! }
+//!
+//! // endregion: tasks
+//!
+//! ```
+//!
+//! ## more complex tasks
+//!
+//! You can write more complex tasks in Rust language.  
+//! For example in this project I use automation to create GitHub Releases: <https://github.com/automation-tasks-rs/dropbox_backup_to_external_disk>  
+//! Here is a pretty complex workspace with more sub-projects:  
+//! <https://github.com/automation-tasks-rs/cargo_crev_reviews_workspace>  
+//! There is no end to your imagination. If you write something that looks like it can help other developers, please share it with me and I will add it here.
+//!
+//! ## Development details
+//!
+//! Read the development details in a separate md file:  
+//! [DEVELOPMENT.md](https://github.com/automation-tasks-rs/cargo-auto/blob/main/DEVELOPMENT.md)
+//!
+//! ## Releases changelog
+//!
+//! Read the changelog in a separate md file:  
+//! [RELEASES.md](https://github.com/automation-tasks-rs/cargo-auto/blob/main/RELEASES.md)
+//!
+//! ## TODO
+//!
+//! Nothing big in the near future.
+//!
+//! ## Open-source and free as a beer
+//!
+//! My open-source projects are free as a beer (MIT license).  
+//! I just love programming.  
+//! But I need also to drink. If you find my projects and tutorials helpful, please buy me a beer by donating to my [PayPal](https://paypal.me/LucianoBestia).  
+//! You know the price of a beer in your local bar ;-)  
+//! So I can drink a free beer for your health :-)  
+//! [Na zdravje!](https://translate.google.com/?hl=en&sl=sl&tl=en&text=Na%20zdravje&op=translate) [Alla salute!](https://dictionary.cambridge.org/dictionary/italian-english/alla-salute) [Prost!](https://dictionary.cambridge.org/dictionary/german-english/prost) [Nazdravlje!](https://matadornetwork.com/nights/how-to-say-cheers-in-50-languages/) 🍻
+//!
+//! [//bestia.dev](https://bestia.dev)  
+//! [//github.com/automation-tasks-rs](https://github.com/automation-tasks-rs)  
+//! [//bestiadev.substack.com](https://bestiadev.substack.com)  
+//! [//youtube.com/@bestia-dev-tutorials](https://youtube.com/@bestia-dev-tutorials)  
+//!
+// endregion: auto_md_to_doc_comments include README.md A //!
+
+// access to modules
+mod hello_mod;
+
+// `pub use` allows the caller of the lib to access modules functions, structs or all(*)
+pub use hello_mod::format_hello_phrase;
+pub use hello_mod::format_upper_hello_phrase;
+
+// The `main.rs` uses the `anyhow` error library.
+// The `lib.rs` uses the `thiserror` library.
+use thiserror::Error;
+
+/// all possible library errors for `thiserror`
+#[derive(Error, Debug)]
+pub enum LibraryError {
+    #[error("Name `{0}` is already uppercase.")]
+    Uppercase(String),
+    #[error("Unknown error.")]
+    Unknown,
+}
+
+// ANSI colors for Linux terminal
+// https://github.com/shiena/ansicolor/blob/master/README.md
+#[allow(dead_code)]
+pub const RED: &str = "\x1b[31m";
+#[allow(dead_code)]
+pub const YELLOW: &str = "\x1b[33m";
+#[allow(dead_code)]
+pub const GREEN: &str = "\x1b[32m";
+#[allow(dead_code)]
+pub const RESET: &str = "\x1b[0m";
+"###,
+    });
+    vec_file.push(crate::FileItem {
+        file_name: "src/hello_mod.rs",
+        file_content: r###"// cargo_auto_template_new_cli/src/hello_mod.rs
+
+//! All the real code is inside modules in separate files.
+//!
+//! This doc-comments will be compiled into the `docs`.
+
+/// format the hello phrase
+pub fn format_hello_phrase(greet_name: &str) -> String {
+    log::info!("start format_hello_phrase()");
+    // return
+    format!("Hello {}!", greet_name)
+}
+
+/// format the hello phrase with uppercase name
+/// if it is already uppercase, return error with thiserror
+pub fn format_upper_hello_phrase(greet_name: &str) -> Result<String, crate::LibraryError> {
+    log::info!("start format_upper_hello_phrase()");
+    // shadowing the same variable name:
+    let upper_greet_name = make_uppercase(greet_name);
+    if upper_greet_name == greet_name {
+        return Err(crate::LibraryError::Uppercase(greet_name.to_string()));
+    }
+
+    // return
+    Ok(format!("Hello {}!", &upper_greet_name))
+}
+
+/// return uppercase
+pub fn make_uppercase(greet_name: &str) -> String {
+    // return
+    greet_name.to_uppercase()
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    #[test]
+    pub fn test_format_upper_hello_phrase() {
+        assert_eq!(format_upper_hello_phrase("abcd").expect("error"), "Hello ABCD!");
+        assert!(format_upper_hello_phrase("ABCD").is_err());
+    }
+
+    #[test]
+    pub fn test_make_uppercase() {
+        assert_eq!(make_uppercase("abcd"), "ABCD");
+        assert_eq!(make_uppercase("1234abcd"), "1234ABCD");
+        assert_eq!(make_uppercase("čšž"), "ČŠŽ");
+    }
+}
+"###,
+    });
+    vec_file.push(crate::FileItem {
+        file_name: ".github/workflows/rust_fmt_auto_build_test.yml",
+        file_content: r###"name: rust_fmt_auto_build_test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  rust_fmt_auto_build_test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4
+
+    - name: cargo fmt -- --check
+      run: cargo fmt -- --check
+
+    - name: Run cache for rust dependencies
+      uses: Swatinem/rust-cache@v2.7.3
+
+    - name: Configure sccache
+      run: printf "RUSTC_WRAPPER=sccache\n" >> $GITHUB_ENV; printf "SCCACHE_GHA_ENABLED=true\n" >> $GITHUB_ENV
+
+    - name: Run sccache-cache for artifacts
+      uses: mozilla-actions/sccache-action@v0.0.4
+
+    - name: install and cache cargo-auto
+      uses: baptiste0928/cargo-install@v3.0.0
+      with:
+        crate: cargo-auto
+
+    - name: Cache for automation tasks
+      uses: actions/cache@v4.0.0
+      with:
+        path: |
+          /home/runner/work/cargo-auto/cargo-auto/automation_tasks_rs/.file_hashes.json 
+          /home/runner/work/cargo-auto/cargo-auto/automation_tasks_rs/target 
+          /home/runner/work/cargo-auto/cargo-auto/automation_tasks_rs/Cargo.toml
+        key: automation_tasks_rs
+
+    - name: cargo auto build
+      run: cargo auto build
+
+    - name: cargo auto test
+      run: cargo auto test
+      
+"###,
+    });
+    vec_file.push(crate::FileItem {
+        file_name: ".github/workflows/docs_pages.yml",
+        file_content: r###"# Simple workflow for deploying static content to GitHub Pages
+name: docs_pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["main"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  # Single deploy job since we're just deploying
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: 'docs'
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+"###,
+    });
+    vec_file.push(crate::FileItem {
+        file_name: "Cargo.toml",
+        file_content: r###"[package]
+name = "cargo_auto_template_new_cli"
+version = "0.0.1"
+description = "Basic Rust project template for CLI and library, more than just `cargo new hello`"
+authors = ["bestia.dev"]
+homepage = "https://bestia.dev"
+edition = "2021"
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/automation-tasks-rs/cargo_auto_template_new_cli"
+# Keyword must be only one word: lowercase letters, hyphens(-) or numbers, less then 35 characters, at most 5 keywords per crate
+keywords = ["maintained", "work-in-progress", "rustlang"]
+categories = ["command-line-interface"]
+publish = false
+
+[dependencies]
+log = "0.4"
+pretty_env_logger="0.5.0"
+thiserror = "1.0.30"
+anyhow="1.0.56"
+
+[lib]
+name = "cargo_auto_template_new_cli_lib"
+path = "src/lib.rs"
+# A flag for enabling documentation of this target. This is used by `cargo doc`.
+doc = true
+
+[[bin]]
+name = "cargo_auto_template_new_cli"
+path = "src/bin/cargo_auto_template_new_cli/main.rs"
+# A flag for enabling documentation of this target. This is used by `cargo doc`.
+doc = true
+"###,
+    });
     vec_file.push(crate::FileItem{
             file_name :"DEVELOPMENT.md",
             file_content : r###"# Development details
@@ -3130,24 +3034,6 @@ fn main() {
 "###,
     });
     vec_file.push(crate::FileItem {
-        file_name: "tests/integration_test.rs",
-        file_content: r###"// tests/integration_test.rs
-
-use cargo_auto_template_new_cli::*;
-
-#[test]
-fn integration_test_01() {
-    assert_eq!(format_hello_phrase("abcd"), "Hello abcd!");
-    assert_eq!(format_upper_hello_phrase("abcd").expect("error"), "Hello ABCD!");
-}
-
-#[test]
-fn integration_test_02_error_check() {
-    assert!(format_upper_hello_phrase("ABCD").is_err());
-}
-"###,
-    });
-    vec_file.push(crate::FileItem {
         file_name: "LICENSE",
         file_content: r###"MIT License
 
@@ -3171,6 +3057,126 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 "###,
+    });
+    vec_file.push(crate::FileItem{
+            file_name :"README.md",
+            file_content : r###"[//]: # (auto_md_to_doc_comments segment start A)
+
+# cargo_auto_template_new_cli
+
+[//]: # (auto_cargo_toml_to_md start)
+
+**Basic Rust project template for CLI and library, more than just `cargo new hello`**  
+***version: 1.0.4 date: 2024-04-21 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli)***  
+
+[//]: # (auto_cargo_toml_to_md end)
+
+  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/blob/main/LICENSE)
+  [![Rust](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/workflows/RustAction/badge.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/)
+
+[//]: # (auto_lines_of_code start)
+
+[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-89-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-13-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-36-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-19-yellow.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-30-orange.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+
+[//]: # (auto_lines_of_code end)
+
+Hashtags: #maintained #ready-for-use #rustlang #automation #workflow  
+My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).  
+I recommend using the [CRUSTDE - Containerized Rust Development Environment](https://github.com/CRUSTDE-ContainerizedRustDevEnv/crustde_cnt_img_pod) to write Rust projects on Linux, isolated from your system.  
+
+## This template
+
+Just like `cargo new` makes a soft and gentle introduction to Rust projects and development, I want to make a similar command that creates a real-life Rust project.  
+
+```bash
+cargo auto new_cli project_name
+```
+
+Extremely simple, just the basic moving parts and use-cases.  
+
+## Development details
+
+Read the development details in a separate md file:
+[DEVELOPMENT.md](DEVELOPMENT.md)
+
+## Releases changelog
+
+Read the releases changelog in a separate md file:
+[RELEASES.md](RELEASES.md)
+
+## TODO
+
+And code happily ever after...
+
+## Open-source and free as a beer
+
+My open-source projects are free as a beer (MIT license).  
+I just love programming.  
+But I need also to drink. If you find my projects and tutorials helpful, please buy me a beer by donating to my [PayPal](https://paypal.me/LucianoBestia).  
+You know the price of a beer in your local bar ;-)  
+So I can drink a free beer for your health :-)  
+[Na zdravje!](https://translate.google.com/?hl=en&sl=sl&tl=en&text=Na%20zdravje&op=translate) [Alla salute!](https://dictionary.cambridge.org/dictionary/italian-english/alla-salute) [Prost!](https://dictionary.cambridge.org/dictionary/german-english/prost) [Nazdravlje!](https://matadornetwork.com/nights/how-to-say-cheers-in-50-languages/) 🍻
+
+[//bestia.dev](https://bestia.dev)  
+[//github.com/bestia-dev](https://github.com/bestia-dev)  
+[//bestiadev.substack.com](https://bestiadev.substack.com)  
+[//youtube.com/@bestia-dev-tutorials](https://youtube.com/@bestia-dev-tutorials)  
+
+[//]: # (auto_md_to_doc_comments segment end A)
+"###,
+});
+    vec_file.push(crate::FileItem {
+        file_name: "tests/integration_test.rs",
+        file_content: r###"// tests/integration_test.rs
+
+use cargo_auto_template_new_cli::*;
+
+#[test]
+fn integration_test_01() {
+    assert_eq!(format_hello_phrase("abcd"), "Hello abcd!");
+    assert_eq!(format_upper_hello_phrase("abcd").expect("error"), "Hello ABCD!");
+}
+
+#[test]
+fn integration_test_02_error_check() {
+    assert!(format_upper_hello_phrase("ABCD").is_err());
+}
+"###,
+    });
+    vec_file.push(crate::FileItem {
+        file_name: ".vscode/settings.json",
+        file_content: r###"{
+    "workbench.colorCustomizations": {
+        "titleBar.activeForeground": "#fff",
+        "titleBar.inactiveForeground": "#ffffffcc",
+        "titleBar.activeBackground": "#404040",
+        "titleBar.inactiveBackground": "#2d2d2dcc"
+    },
+    "spellright.language": [
+        "en"
+    ],
+    "spellright.documentTypes": [
+        "markdown",
+        "latex",
+        "plaintext"
+    ],
+    "files.associations": {
+        "LICENSE": "plain text"
+    },
+    "rust-analyzer.showUnlinkedFileNotification": false,
+    "cSpell.words": [
+        "bestia",
+        "endregion",
+        "plantuml",
+        "rustdevuser",
+        "rustprojects",
+        "zcvf"
+    ]
+}"###,
     });
     // endregion: files copied into strings by automation tasks
 
