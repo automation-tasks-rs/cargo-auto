@@ -10,7 +10,7 @@
 // The `lib.rs` uses the `thiserror` library.
 
 // Linux terminal colors
-use cargo_auto_template_new_cli::{GREEN, RED, RESET, YELLOW};
+use cargo_auto_template_new_cli_lib::{GREEN, RED, RESET, YELLOW};
 
 /// entry point into the bin-executable
 fn main() {
@@ -66,14 +66,14 @@ fn print_help() {
 /// print my name
 fn print_greet_name(greet_name: &str) {
     // call the function from the `lib.rs`
-    println!("{}", cargo_auto_template_new_cli::format_hello_phrase(greet_name));
+    println!("{}", cargo_auto_template_new_cli_lib::format_hello_phrase(greet_name));
 }
 
 /// print my name upper, can return error
 fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
     // the function from `lib.rs`, can return error
     // use the ? syntax to bubble the error up one level or continue (early return)
-    let upper = cargo_auto_template_new_cli::format_upper_hello_phrase(greet_name)?;
+    let upper = cargo_auto_template_new_cli_lib::format_upper_hello_phrase(greet_name)?;
     println!("{}", upper);
     // return
     Ok(())

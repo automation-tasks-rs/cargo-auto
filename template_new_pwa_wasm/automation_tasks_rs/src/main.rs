@@ -188,7 +188,7 @@ fn task_doc() {
     cl::run_shell_command("rsync -a --info=progress2 --delete-after target/doc/ docs/");
     // Create simple index.html file in docs directory
     cl::run_shell_command(&format!(
-        r#"printf"<meta http-equiv=\"refresh\" content=\"0; url={}/index.html\" />" > docs/index.html\n"#,
+        r#"printf "<meta http-equiv=\"refresh\" content=\"0; url={}/index.html\" />\n" > docs/index.html"#,
         cargo_toml.package_name().replace("-", "_")
     ));
     // pretty html
@@ -223,7 +223,7 @@ fn task_test() {
 /// commit and push
 fn task_commit_and_push(arg_2: Option<String>) {
     let Some(message) = arg_2 else {
-        eprintln!("{RED}Error: Message for commit is mandatory. Exiting...RESET}");
+        eprintln!("{RED}Error: Message for commit is mandatory. Exiting...{RESET}");
         // early exit
         return;
     };
