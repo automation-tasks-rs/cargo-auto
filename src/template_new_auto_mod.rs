@@ -378,11 +378,10 @@ fn task_commit_and_push(arg_2: Option<String>) {
         return;
     };
 
-    // if description or topics/keywords/tags have changed
-    cl::description_and_topics_to_github();
-
     // init repository if needed. If it is not init then normal commit and push.
     if !cl::init_repository_if_needed(&message) {
+        // if description or topics/keywords/tags have changed
+        cl::description_and_topics_to_github();
         // separate commit for docs if they changed, to not make a lot of noise in the real commit
         if std::path::Path::new("docs").exists() {
             cl::run_shell_command(r#"git add docs && git diff --staged --quiet || git commit -m "update docs" "#);
