@@ -1,6 +1,6 @@
 // tests/integration_test.rs
 
-use cargo_auto_template_new_cli::*;
+use cargo_auto_template_new_cli_lib::*;
 
 #[test]
 fn integration_test_01() {
