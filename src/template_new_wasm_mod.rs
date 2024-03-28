@@ -1369,7 +1369,7 @@ fn task_test() {
 /// commit and push
 fn task_commit_and_push(arg_2: Option<String>) {
     let Some(message) = arg_2 else {
-        eprintln!("{RED}Error: Message for commit is mandatory. Exiting...RESET}");
+        eprintln!("{RED}Error: Message for commit is mandatory. Exiting...{RESET}");
         // early exit
         return;
     };
