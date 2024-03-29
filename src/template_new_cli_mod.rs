@@ -57,7 +57,9 @@ pub fn get_vec_file() -> Vec<crate::FileItem> {
 *.html text eol=lf
 *.js text eol=lf
 *.css text eol=lf
-"###,
+LICENSE text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf"###,
     });
     vec_file.push(crate::FileItem {
         file_name: ".gitignore",
@@ -429,7 +431,7 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "2.0.5""###,
+cargo_auto_lib = "2.0.6""###,
     });
     vec_file.push(crate::FileItem {
         file_name: "automation_tasks_rs/Cargo.lock",
@@ -2323,6 +2325,16 @@ dependencies = [
     },
     "rust-analyzer.showUnlinkedFileNotification": false,
     "cSpell.words": [
+        "zdravje"
+        "zcvf",
+        "thiserror",
+        "substack",
+        "struct",
+        "Prost",
+        "Nazdravlje",
+        "CRUSTDE",
+        "bestiadev",
+        "Alla",
         "alloc",
         "bestia",
         "endregion",
@@ -2450,7 +2462,7 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
 //! # cargo-auto  
 //!
 //! **Automation tasks coded in Rust language for the workflow of Rust projects**  
-//! ***version: 2024.328.526 date: 2024-03-28 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
+//! ***version: 2024.329.2014 date: 2024-03-29 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
 //!
 //!  ![maintained](https://img.shields.io/badge/maintained-green)
 //!  ![ready-for-use](https://img.shields.io/badge/ready_for_use-green)
@@ -2470,11 +2482,11 @@ fn upper_greet_name(greet_name: &str) -> anyhow::Result<()> {
 //!  [![Newest docs](https://img.shields.io/badge/newest_docs-blue.svg)](https://automation-tasks-rs.github.io/cargo-auto/cargo_auto/index.html)
 //!  ![cargo-auto](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-8541-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-8588-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-735-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-427-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-8342-orange.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-8362-orange.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //!
 //! Hashtags: #maintained #ready-for-use #rustlang #automation #workflow  
 //! My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).  
@@ -3168,6 +3180,16 @@ fn integration_test_02_error_check() {
     },
     "rust-analyzer.showUnlinkedFileNotification": false,
     "cSpell.words": [
+        "zdravje"
+        "zcvf",
+        "thiserror",
+        "substack",
+        "struct",
+        "Prost",
+        "Nazdravlje",
+        "CRUSTDE",
+        "bestiadev",
+        "Alla",
         "bestia",
         "endregion",
         "plantuml",
