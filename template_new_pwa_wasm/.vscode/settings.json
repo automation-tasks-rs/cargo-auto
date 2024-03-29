@@ -18,6 +18,8 @@
     },
     "rust-analyzer.showUnlinkedFileNotification": false,
     "cSpell.words": [
+        "zcvf",
+        "struct",
         "Alla",
         "apos",
         "bestia",
