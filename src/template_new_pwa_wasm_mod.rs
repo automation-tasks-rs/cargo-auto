@@ -593,7 +593,7 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "2.0.6""###,
+cargo_auto_lib = "2.0.8""###,
     });
     vec_file.push(crate::FileItem {
         file_name: "automation_tasks_rs/Cargo.lock",
@@ -3048,7 +3048,7 @@ pub const RESET: &str = "\x1b[0m";
 //! # cargo-auto  
 //!
 //! **Automation tasks coded in Rust language for the workflow of Rust projects**  
-//! ***version: 2024.329.2014 date: 2024-03-29 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
+//! ***version: 2024.330.139 date: 2024-03-30 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
 //!
 //!  ![maintained](https://img.shields.io/badge/maintained-green)
 //!  ![ready-for-use](https://img.shields.io/badge/ready_for_use-green)
@@ -3430,7 +3430,7 @@ jobs:
 // but the new service worker will not be activated until all 
 // tabs with this webapp are closed.
 
-const CACHE_NAME = '2024.328.526';
+const CACHE_NAME = '2024.329.2014';
 
 self.addEventListener('install', event => {
     console.log('event install ', CACHE_NAME);

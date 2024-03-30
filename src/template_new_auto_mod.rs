@@ -419,7 +419,7 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "2.0.6""###,
+cargo_auto_lib = "2.0.8""###,
     });
     vec_file.push(crate::FileItem{
             file_name :"README.md",
