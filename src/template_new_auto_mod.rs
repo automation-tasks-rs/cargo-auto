@@ -419,7 +419,7 @@ description = "cargo auto - automation tasks written in Rust language"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "2.0.5""###,
+cargo_auto_lib = "2.0.6""###,
     });
     vec_file.push(crate::FileItem{
             file_name :"README.md",
@@ -487,6 +487,16 @@ So I can drink a free beer for your health :-)
     },
     "rust-analyzer.showUnlinkedFileNotification": false,
     "cSpell.words": [
+        "zdravje"
+        "zcvf",
+        "thiserror",
+        "substack",
+        "struct",
+        "Prost",
+        "Nazdravlje",
+        "CRUSTDE",
+        "bestiadev",
+        "Alla",
         "bestia",
         "deps",
         "endregion",
