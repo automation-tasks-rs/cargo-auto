@@ -46,7 +46,7 @@ pub fn compile_automation_tasks_rs_if_needed() {
 pub fn compile_project_automation_tasks_rs() {
     // build in other directory (not in working current directory)
     // cargo build --manifest-path=dir/Cargo.toml
-    if !crate::utils_mod::run_shell_command_success("cargo build --manifest-path=automation_tasks_rs/Cargo.toml") {
+    if !crate::utils_mod::run_shell_command_success("cargo build --manifest-path=automation_tasks_rs/Cargo.toml --release") {
         panic!("{RED}Cannot compile automation_tasks_rs. Exiting...{RESET}");
     }
 }
