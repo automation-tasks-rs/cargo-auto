@@ -257,6 +257,7 @@
 use cargo_auto_local_lib as l;
 
 fn main() {
+    human_panic::setup_panic!();
     // get CLI arguments
     let mut args = std::env::args();
     // the zero argument is the name of the program

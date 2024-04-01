@@ -32,6 +32,7 @@ data-encoding = "2.5.0"
 anyhow="1.0.79"
 serde_derive = "1.0.196"
 serde_json = "1.0.113"
+human-panic = "1.2.3"
 
 [lib]
 name = "cargo_auto_local_lib"
