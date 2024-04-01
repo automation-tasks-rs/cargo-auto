@@ -91,7 +91,7 @@ fn match_first_argument(task: &str, args: &mut std::env::Args) {
         }
         // panic! if cannot compile automation_tasks_rs
         crate::template_new_auto_mod::compile_automation_tasks_rs_if_needed();
-        // call automation_tasks_rs/target/release/automation_tasks_rs with all the arguments
+        // call automation_tasks_rs/target/debug/automation_tasks_rs with all the arguments
         let mut command = std::process::Command::new(crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str());
         command.arg(&task);
         while let Some(arg_x) = args.next() {

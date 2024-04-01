@@ -280,9 +280,9 @@ lazy_static! {
     static ref PATH_SRC_MAIN_RS: PathBuf = PathBuf::from("automation_tasks_rs/src/main.rs");
     /// automation_tasks_rs/src
     static ref PATH_SRC: PathBuf = PathBuf::from("automation_tasks_rs/src");
-    /// automation_tasks_rs/target/release/automation_tasks_rs
+    /// automation_tasks_rs/target/debug/automation_tasks_rs
     static ref PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS: PathBuf =
-        PathBuf::from("automation_tasks_rs/target/release/automation_tasks_rs");
+        PathBuf::from("automation_tasks_rs/target/debug/automation_tasks_rs");
     /// automation_tasks_rs/.file_hashes.json
     static ref PATH_FILE_HASHES_JSON: PathBuf =
         PathBuf::from("automation_tasks_rs/.file_hashes.json");
