@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css">
   <link rel="stylesheet" href="../../static.files/rustdoc-5bc39a1768837dd0.css">
   <meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="cargo_auto_local_lib" data-themes=""
-  data-resource-suffix="" data-rustdoc-version="1.77.0 (aedd173a2 2024-03-17)" data-channel="1.77.0" data-search-js="search-dd67cee4cfa65049.js"
+  data-resource-suffix="" data-rustdoc-version="1.77.1 (7cf61ebde 2024-03-27)" data-channel="1.77.1" data-search-js="search-dd67cee4cfa65049.js"
   data-settings-js="settings-4313503d2e1961c2.js">
   <script src="../../static.files/storage-4c98445ec4002617.js"></script>
   <script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script>
@@ -198,6 +198,7 @@
 <a href="#144" id="144">144</a>
 <a href="#145" id="145">145</a>
 <a href="#146" id="146">146</a>
+<a href="#147" id="147">147</a>
 </pre>
         </div>
         <pre class="rust"><code><span class="comment">// file_hashes_mod.rs
@@ -268,14 +269,14 @@
 </span><span class="kw">pub fn </span>read_file_metadata() -&gt; Vec&lt;FileMetaData&gt; {
     <span class="kw">let </span><span class="kw-2">mut </span>vec_of_metadata: Vec&lt;FileMetaData&gt; = Vec::new();
 
-    <span class="comment">// calculate hash of file
+    <span class="comment">// calculate hash of Cargo.toml
     </span><span class="kw">let </span>filehash = sha256_digest(<span class="kw-2">&</span><span class="kw">crate</span>::PATH_CARGO_TOML).unwrap();
     vec_of_metadata.push(FileMetaData {
         filename: <span class="kw">crate</span>::PATH_CARGO_TOML.to_string_lossy().to_string(),
         filehash,
     });
 
-    <span class="comment">// calculate hash of file
+    <span class="comment">// calculate hash of file of the executable file
     </span><span class="kw">let </span>filehash = sha256_digest(<span class="kw-2">&</span><span class=
 "kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS).unwrap();
     vec_of_metadata.push(FileMetaData {
@@ -283,7 +284,8 @@
         filehash,
     });
 
-    <span class="kw">for </span>entry <span class="kw">in </span>std::fs::read_dir(<span class="kw">crate</span>::PATH_SRC.as_path()).unwrap() {
+    <span class="comment">// all files in the src/ directory
+    </span><span class="kw">for </span>entry <span class="kw">in </span>std::fs::read_dir(<span class="kw">crate</span>::PATH_SRC.as_path()).unwrap() {
         <span class="kw">let </span>entry = entry.unwrap();
         <span class="kw">let </span>path = entry.file_name();
 
