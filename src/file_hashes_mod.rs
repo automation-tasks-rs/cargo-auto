@@ -65,20 +65,21 @@ fn are_all_files_equal(vec_of_metadata: &Vec<FileMetaData>, js_vec_of_metadata: 
 pub fn read_file_metadata() -> Vec<FileMetaData> {
     let mut vec_of_metadata: Vec<FileMetaData> = Vec::new();
 
-    // calculate hash of file
+    // calculate hash of Cargo.toml
     let filehash = sha256_digest(&crate::PATH_CARGO_TOML).unwrap();
     vec_of_metadata.push(FileMetaData {
         filename: crate::PATH_CARGO_TOML.to_string_lossy().to_string(),
         filehash,
     });
 
-    // calculate hash of file
+    // calculate hash of file of the executable file
     let filehash = sha256_digest(&crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS).unwrap();
     vec_of_metadata.push(FileMetaData {
         filename: crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.to_string_lossy().to_string(),
         filehash,
     });
 
+    // all files in the src/ directory
     for entry in std::fs::read_dir(crate::PATH_SRC.as_path()).unwrap() {
         let entry = entry.unwrap();
         let path = entry.file_name();

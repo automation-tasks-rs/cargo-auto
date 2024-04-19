@@ -234,11 +234,11 @@ fn task_release() {
 
     cl::run_shell_command_static("cargo fmt").unwrap_or_else(|e| panic!("{e}"));
     cl::run_shell_command_static("cargo build --release").unwrap_or_else(|e| panic!("{e}"));
-    // TODO: sanitize
-    cl::run_shell_command(&format!(
-        "strip target/release/{package_name}",
-        package_name = cargo_toml.package_name()
-    ));
+
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"strip "target/release/{package_name}" "#).unwrap_or_else(|e| panic!("{e}"))
+    .arg("{package_name}", &cargo_toml.package_name()).unwrap_or_else(|e| panic!("{e}"))
+    .run().unwrap_or_else(|e| panic!("{e}"));
+
     println!(
         r#"
     {YELLOW}After `cargo auto release`, run the compiled binary, examples and/or tests{RESET}
@@ -269,10 +269,9 @@ fn task_doc() {
     cl::run_shell_command_static("rsync -a --info=progress2 --delete-after target/doc/ docs/").unwrap_or_else(|e| panic!("{e}"));
 
     // Create simple index.html file in docs directory
-    let mut shell_command_sanitized =
-        cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"printf "<meta http-equiv=\"refresh\" content=\"0; url={url_sanitized_for_double_quote}/index.html\" />\n" > docs/index.html"#);
-    shell_command_sanitized.replace_placeholder_forbidden_double_quotes("{url_sanitized_for_double_quote}", &cargo_toml.package_name().replace("-", "_"));
-    shell_command_sanitized.run();
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"printf "<meta http-equiv=\"refresh\" content=\"0; url={url_sanitized_for_double_quote}/index.html\" />\n" > docs/index.html"#).unwrap_or_else(|e| panic!("{e}"))
+    .arg("{url_sanitized_for_double_quote}", &cargo_toml.package_name().replace("-", "_")).unwrap_or_else(|e| panic!("{e}"))
+    .run().unwrap_or_else(|e| panic!("{e}"));
 
     // pretty html
     cl::auto_doc_tidy_html().unwrap();
@@ -332,9 +331,9 @@ fn task_commit_and_push(arg_2: Option<String>) {
 
         cl::add_message_to_unreleased(&message);
         // the real commit of code
-        let mut shell_command_sanitized = cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"git add -A && git diff --staged --quiet || git commit -m "{message_sanitized_for_double_quote}" "#);
-        shell_command_sanitized.replace_placeholder_forbidden_double_quotes("{message_sanitized_for_double_quote}", &message);
-        shell_command_sanitized.run();
+        cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"git add -A && git diff --staged --quiet || git commit -m "{message_sanitized_for_double_quote}" "#).unwrap_or_else(|e| panic!("{e}"))
+        .arg("{message_sanitized_for_double_quote}", &message).unwrap_or_else(|e| panic!("{e}"))
+        .run().unwrap_or_else(|e| panic!("{e}"));
 
         cl::run_shell_command_static("git push").unwrap_or_else(|e| panic!("{e}"));
     }
@@ -426,18 +425,17 @@ fn task_github_new_release() {
     // compress files tar.gz
     let tar_name = format!("{repo_name}-{tag_name_version}-x86_64-unknown-linux-gnu.tar.gz");
 
-    let mut shell_command_sanitized =
-        cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"tar -zcvf "{tar_name_sanitized_for_double_quote}" "target/release/{repo_name_sanitized_for_double_quote}" "#);
-    shell_command_sanitized.replace_placeholder_forbidden_double_quotes("{tar_name_sanitized_for_double_quote}", &tar_name);
-    shell_command_sanitized.replace_placeholder_forbidden_double_quotes("{repo_name_sanitized_for_double_quote}", &repo_name);
-    shell_command_sanitized.run();
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"tar -zcvf "{tar_name_sanitized_for_double_quote}" "target/release/{repo_name_sanitized_for_double_quote}" "#).unwrap_or_else(|e| panic!("{e}"))
+    .arg("{tar_name_sanitized_for_double_quote}", &tar_name).unwrap_or_else(|e| panic!("{e}"))
+    .arg("{repo_name_sanitized_for_double_quote}", &repo_name).unwrap_or_else(|e| panic!("{e}"))
+    .run().unwrap_or_else(|e| panic!("{e}"));
 
     // upload asset
     cgl::github_api_upload_asset_to_release(&github_client, &owner, &repo_name, &release_id, &tar_name);
 
-    let mut shell_command_sanitized = cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"rm "{tar_name_sanitized_for_double_quote}" "#);
-    shell_command_sanitized.replace_placeholder_forbidden_double_quotes("{tar_name_sanitized_for_double_quote}", &tar_name);
-    shell_command_sanitized.run();
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"rm "{tar_name_sanitized_for_double_quote}" "#).unwrap_or_else(|e| panic!("{e}"))
+    .arg("{tar_name_sanitized_for_double_quote}", &tar_name).unwrap_or_else(|e| panic!("{e}"))
+    .run().unwrap_or_else(|e| panic!("{e}"));
 
     println!(
         r#"

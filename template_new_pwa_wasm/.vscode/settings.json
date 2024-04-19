@@ -4,7 +4,7 @@
         "titleBar.inactiveForeground": "#ffffffcc",
         "titleBar.activeBackground": "#477587",
         "titleBar.inactiveBackground": "#3F758DCC"
-      },
+    },
     "spellright.language": [
         "en"
     ],
@@ -18,8 +18,6 @@
     },
     "rust-analyzer.showUnlinkedFileNotification": false,
     "cSpell.words": [
-        "zcvf",
-        "struct",
         "Alla",
         "apos",
         "bestia",
@@ -31,14 +29,16 @@
         "Nazdravlje",
         "onchange",
         "onclick",
-        "onhashchange",
         "plantuml",
         "Prost",
+        "rustc",
         "rustlang",
         "rustprojects",
+        "struct",
         "substack",
         "thiserror",
         "webassembly",
+        "zcvf",
         "zdravje"
     ]
 }
