@@ -39,7 +39,8 @@ fn main() {
 ///
 /// The folder logs/ is in .gitignore and will not be committed.
 pub fn tracing_init() {
-    let file_appender = tracing_appender::rolling::daily("logs", "automation_tasks_rs.log");
+    // uncomment this line to enable tracing to file
+    // let file_appender = tracing_appender::rolling::daily("logs", "automation_tasks_rs.log");
 
     let offset = time::UtcOffset::current_local_offset().expect("should get local offset!");
     let timer = tracing_subscriber::fmt::time::OffsetTime::new(offset, time::macros::format_description!("[hour]:[minute]:[second].[subsecond digits:6]"));
@@ -62,7 +63,7 @@ pub fn tracing_init() {
         .with_timer(timer)
         .with_line_number(true)
         .with_ansi(false)
-        .with_writer(file_appender)
+        //.with_writer(file_appender)
         .with_env_filter(filter)
         .init();
 }
