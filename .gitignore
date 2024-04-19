@@ -1,5 +1,5 @@
 /target
+/logs
 
 # not needed in commits, but also not a problem if they are committed
 /.automation_tasks_rs_file_hashes.json
-/.auto_version_from_date.json
