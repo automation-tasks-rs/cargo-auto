@@ -366,7 +366,7 @@ fn task_commit_and_push(arg_2: Option<String>) {
     }
 
     // If needed, ask to create a GitHub remote repository
-    if !cl::git_has_remote() {
+    if !cgl::git_has_remote() || !cgl::git_has_upstream() {
         let github_client = github_mod::GitHubClient::new_with_stored_token();
         cgl::new_remote_github_repository(&github_client).unwrap();
         cgl::description_and_topics_to_github(&github_client);
@@ -382,10 +382,12 @@ fn task_commit_and_push(arg_2: Option<String>) {
 
         cl::add_message_to_unreleased(&message);
         // the real commit of code
+        dbg!("ShellCommandLimitedDoubleQuotesSanitizer");
         cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"git add -A && git diff --staged --quiet || git commit -m "{message_sanitized_for_double_quote}" "#).unwrap_or_else(|e| panic!("{e}"))
         .arg("{message_sanitized_for_double_quote}", &message).unwrap_or_else(|e| panic!("{e}"))
         .run().unwrap_or_else(|e| panic!("{e}"));
 
+        println!("push");
         cl::run_shell_command_static("git push").unwrap_or_else(|e| panic!("{e}"));
     }
 

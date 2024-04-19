@@ -11,7 +11,7 @@ publish = false
 cargo_auto_lib = "2.3.8"
 ### cargo_auto_lib = {path="../../cargo_auto_lib"}
 
-cargo_auto_github_lib = "1.1.1"
+cargo_auto_github_lib = "1.1.2"
 ### cargo_auto_github_lib = {path="../../cargo_auto_github_lib"}
 
 cargo_auto_encrypt_secret_lib = "1.0.7"

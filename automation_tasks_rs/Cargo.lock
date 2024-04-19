@@ -121,7 +121,7 @@ dependencies = [
  "camino",
  "cargo_auto_encrypt_secret_lib",
  "cargo_auto_github_lib",
- "cargo_auto_lib",
+ "cargo_auto_lib 2.3.8",
  "inquire",
  "reqwest",
  "rsa",
@@ -273,19 +273,51 @@ dependencies = [
 
 [[package]]
 name = "cargo_auto_github_lib"
-version = "1.0.4"
+version = "1.1.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "fb70a4df6f543b4e224b16f49990b6e5112fb3595e4f7001fc2ca345712a3a40"
+checksum = "08d5d264a98613301c3a2c21e1bc0634a520af7d4110cb06a2a8e4b74c399b07"
 dependencies = [
  "camino",
- "cargo_auto_lib",
+ "cargo_auto_lib 2.3.8 (registry+https://github.com/rust-lang/crates.io-index)",
  "inquire",
  "json",
  "reqwest",
+ "serde",
  "serde_json",
  "tokio",
  "tokio-util",
  "url",
+]
+
+[[package]]
+name = "cargo_auto_lib"
+version = "2.3.8"
+dependencies = [
+ "anyhow",
+ "base64ct",
+ "camino",
+ "cargo_toml",
+ "chrono",
+ "data-encoding",
+ "deflate",
+ "filetime",
+ "glob",
+ "home",
+ "inquire",
+ "lazy_static",
+ "radix64",
+ "reader_for_microxml",
+ "regex",
+ "reqwest",
+ "ring",
+ "secrecy",
+ "semver",
+ "serde",
+ "serde_derive",
+ "serde_json",
+ "sha2",
+ "thiserror",
+ "urlencoding",
 ]
 
 [[package]]
@@ -1895,18 +1927,18 @@ checksum = "92d43fe69e652f3df9bdc2b85b2854a0825b86e4fb76bc44d945137d053639ca"
 
 [[package]]
 name = "serde"
-version = "1.0.197"
+version = "1.0.198"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "3fb1c873e1b9b056a4dc4c0c198b24c3ffa059243875552b2bd0933b1aee4ce2"
+checksum = "9846a40c979031340571da2545a4e5b7c4163bdae79b301d5f86d03979451fcc"
 dependencies = [
  "serde_derive",
 ]
 
 [[package]]
 name = "serde_derive"
-version = "1.0.197"
+version = "1.0.198"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7eb0b34b42edc17f6b7cac84a52a1c5f0e1bb2227e997ca9011ea3dd34e8610b"
+checksum = "e88edab869b01783ba905e7d0153f9fc1a6505a96e4ad3018011eedb838566d9"
 dependencies = [
  "proc-macro2",
  "quote",

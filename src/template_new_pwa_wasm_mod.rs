@@ -1390,7 +1390,7 @@ publish = false
 cargo_auto_lib = "2.3.8"
 ### cargo_auto_lib = {path="../../cargo_auto_lib"}
 
-cargo_auto_github_lib = "1.1.1"
+cargo_auto_github_lib = "1.1.2"
 ### cargo_auto_github_lib = {path="../../cargo_auto_github_lib"}
 
 cargo_auto_encrypt_secret_lib = "1.0.7"
@@ -2010,7 +2010,7 @@ pub const RESET: &str = "\x1b[0m";
 //! # cargo-auto  
 //!
 //! **Automation tasks coded in Rust language for the workflow of Rust projects**  
-//! ***version: 2024.419.1726 date: 2024-04-19 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
+//! ***version: 2024.419.1740 date: 2024-04-19 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
 //!
 //!  ![maintained](https://img.shields.io/badge/maintained-green)
 //!  ![ready-for-use](https://img.shields.io/badge/ready_for_use-green)
