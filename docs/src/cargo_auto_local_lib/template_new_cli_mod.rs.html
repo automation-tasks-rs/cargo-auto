@@ -2581,7 +2581,7 @@ fn task_commit_and_push(arg_2: Option&lt;String&gt;) {
     }
 
     // If needed, ask to create a GitHub remote repository
-    if !cl::git_has_remote() {
+    if !cgl::git_has_remote() || !cgl::git_has_upstream() {
         let github_client = github_mod::GitHubClient::new_with_stored_token();
         cgl::new_remote_github_repository(&amp;github_client).unwrap();
         cgl::description_and_topics_to_github(&amp;github_client);
@@ -3337,7 +3337,7 @@ publish = false
 
 [dependencies]
 cargo_auto_lib = "2.3.8"
-cargo_auto_github_lib = "1.0.4"
+cargo_auto_github_lib = "1.1.1"
 cargo_auto_encrypt_secret_lib = "1.0.7"
 
 inquire = "0.7.0"
@@ -3530,7 +3530,7 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //! # cargo-auto  
 //!
 //! **Automation tasks coded in Rust language for the workflow of Rust projects**  
-//! ***version: 2024.419.1726 date: 2024-04-19 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
+//! ***version: 2024.419.1740 date: 2024-04-19 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
 //!
 //!  ![maintained](https://img.shields.io/badge/maintained-green)
 //!  ![ready-for-use](https://img.shields.io/badge/ready_for_use-green)
