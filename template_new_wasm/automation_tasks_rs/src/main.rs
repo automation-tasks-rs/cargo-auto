@@ -4,7 +4,6 @@
 
 // for projects that don't use GitHub, delete all the mentions of GitHub
 mod secrets_always_local_mod;
-use crate::secrets_always_local_mod::crate_io_mod;
 use crate::secrets_always_local_mod::github_mod;
 
 use cargo_auto_github_lib as cgl;
@@ -205,22 +204,28 @@ fn task_build() {
     let cargo_toml = cl::CargoToml::read();
     cl::auto_version_increment_semver_or_date();
     cl::run_shell_command_static("cargo fmt").unwrap_or_else(|e| panic!("{e}"));
-    cl::run_shell_command_static("wasm-pack build --target web").unwrap_or_else(|e| panic!("{e}"));;
-    cl::run_shell_command_static("\\rsync -a --delete-after pkg/ web_server_folder/cargo_auto_template_new_wasm/pkg/").unwrap_or_else(|e| panic!("{e}"));;
+    cl::run_shell_command_static("wasm-pack build --target web").unwrap_or_else(|e| panic!("{e}"));
+
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"rsync -a --delete-after pkg/ "web_server_folder/{package_name}/pkg/" "#).unwrap_or_else(|e| panic!("{e}"))
+    .arg("{package_name}", &cargo_toml.package_name()).unwrap_or_else(|e| panic!("{e}"))
+    .run().unwrap_or_else(|e| panic!("{e}"));
+
     println!(
         r#"
     {YELLOW}After `cargo auto build`, open port 4000 in VSCode and run the basic web server{RESET}
     {YELLOW}in a separate VSCode bash terminal, so it can serve constantly in the background.{RESET}
 {GREEN}basic-http-server -a 0.0.0.0:4000 ./web_server_folder{RESET}
     {YELLOW}and open the browser on{RESET}
-{GREEN}http://localhost:4000/cargo_auto_template_new_wasm{RESET}
-{GREEN}http://localhost:4000/cargo_auto_template_new_wasm#print/world{RESET}
-{GREEN}http://localhost:4000/cargo_auto_template_new_wasm#upper/world{RESET}
+{GREEN}http://localhost:4000/{package_name}{RESET}
+{GREEN}http://localhost:4000/{package_name}#print/world{RESET}
+{GREEN}http://localhost:4000/{package_name}#upper/world{RESET}
     {YELLOW}This will return an error:{RESET}
-{GREEN}http://localhost:4000/cargo_auto_template_new_wasm#upper/WORLD{RESET}
+{GREEN}http://localhost:4000/{package_name}#upper/WORLD{RESET}
     {YELLOW}If all is fine, run{RESET}
 {GREEN}cargo auto release{RESET}
-"#
+"#,
+    package_name = cargo_toml.package_name()
+
     );
 }
 
@@ -233,21 +238,26 @@ fn task_release() {
 
     cl::run_shell_command_static("cargo fmt").unwrap_or_else(|e| panic!("{e}"));
     cl::run_shell_command_static("wasm-pack build --target web").unwrap_or_else(|e| panic!("{e}"));
-    cl::run_shell_command_static("\\rsync -a --delete-after pkg/ web_server_folder/cargo_auto_template_new_wasm/pkg/").unwrap_or_else(|e| panic!("{e}"));
+
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"rsync -a --delete-after pkg/ "web_server_folder/{package_name}/pkg/" "#).unwrap_or_else(|e| panic!("{e}"))
+    .arg("{package_name}", &cargo_toml.package_name()).unwrap_or_else(|e| panic!("{e}"))
+    .run().unwrap_or_else(|e| panic!("{e}"));
+
     println!(
         r#"
     {YELLOW}After `cargo auto build`, open port 4000 in VSCode and run the basic web server{RESET}
     {YELLOW}in a separate VSCode bash terminal, so it can serve constantly in the background.{RESET}
 {GREEN}basic-http-server -a 0.0.0.0:4000 ./web_server_folder{RESET}
     {YELLOW}and open the browser on{RESET}
-{GREEN}http://localhost:4000/cargo_auto_template_new_wasm{RESET}    
-{GREEN}http://localhost:4000/cargo_auto_template_new_wasm#print/world{RESET}
-{GREEN}http://localhost:4000/cargo_auto_template_new_wasm#upper/world{RESET}
+{GREEN}http://localhost:4000/{package_name}{RESET}    
+{GREEN}http://localhost:4000/{package_name}#print/world{RESET}
+{GREEN}http://localhost:4000/{package_name}#upper/world{RESET}
     {YELLOW}This will return an error:{RESET}
-{GREEN}http://localhost:4000/cargo_auto_template_new_wasm#upper/WORLD{RESET}
+{GREEN}http://localhost:4000/{package_name}#upper/WORLD{RESET}
     {YELLOW}If all is fine, run{RESET}
 {GREEN}cargo auto doc{RESET}
-"#
+"#,
+    package_name = cargo_toml.package_name()
     );
     print_examples_cmd();
 }
@@ -266,10 +276,9 @@ fn task_doc() {
     cl::run_shell_command_static("rsync -a --info=progress2 --delete-after target/doc/ docs/").unwrap_or_else(|e| panic!("{e}"));
 
     // Create simple index.html file in docs directory
-    let mut shell_command_sanitized =
-        cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"printf "<meta http-equiv=\"refresh\" content=\"0; url={url_sanitized_for_double_quote}/index.html\" />\n" > docs/index.html"#);
-    shell_command_sanitized.replace_placeholder_forbidden_double_quotes("{url_sanitized_for_double_quote}", &cargo_toml.package_name().replace("-", "_"));
-    shell_command_sanitized.run();
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"printf "<meta http-equiv=\"refresh\" content=\"0; url={url_sanitized_for_double_quote}/index.html\" />\n" > docs/index.html"#).unwrap_or_else(|e| panic!("{e}"))
+    .arg("{url_sanitized_for_double_quote}", &cargo_toml.package_name().replace("-", "_")).unwrap_or_else(|e| panic!("{e}"))
+    .run().unwrap_or_else(|e| panic!("{e}"));
 
     // pretty html
     cl::auto_doc_tidy_html().unwrap();
@@ -314,7 +323,7 @@ fn task_commit_and_push(arg_2: Option<String>) {
     }
 
     // If needed, ask to create a GitHub remote repository
-    if !cl::git_has_remote() {
+    if !cgl::git_has_remote() || !cgl::git_has_upstream() {
         let github_client = github_mod::GitHubClient::new_with_stored_token();
         cgl::new_remote_github_repository(&github_client).unwrap();
         cgl::description_and_topics_to_github(&github_client);
@@ -330,9 +339,9 @@ fn task_commit_and_push(arg_2: Option<String>) {
 
         cl::add_message_to_unreleased(&message);
         // the real commit of code
-        let mut shell_command_sanitized = cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"git add -A && git diff --staged --quiet || git commit -m "{message_sanitized_for_double_quote}" "#);
-        shell_command_sanitized.replace_placeholder_forbidden_double_quotes("{message_sanitized_for_double_quote}", &message);
-        shell_command_sanitized.run();
+        cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"git add -A && git diff --staged --quiet || git commit -m "{message_sanitized_for_double_quote}" "#).unwrap_or_else(|e| panic!("{e}"))
+        .arg("{message_sanitized_for_double_quote}", &message).unwrap_or_else(|e| panic!("{e}"))
+        .run().unwrap_or_else(|e| panic!("{e}"));
 
         cl::run_shell_command_static("git push").unwrap_or_else(|e| panic!("{e}"));
     }
@@ -340,7 +349,7 @@ fn task_commit_and_push(arg_2: Option<String>) {
     println!(
         r#"
     {YELLOW}After `cargo auto commit_and_push "message"`{RESET}
-{GREEN}cargo auto publish_to_crates_io{RESET}
+{GREEN}cargo auto publish_to_web{RESET}
 "#
     );
 }
@@ -348,28 +357,49 @@ fn task_commit_and_push(arg_2: Option<String>) {
 /// publish to web
 fn task_publish_to_web() {
     let cargo_toml = cl::CargoToml::read();
+    let version = cargo_toml.package_version();
     // take care of tags
-    let tag_name_version = cl::git_tag_sync_check_create_push(&version);
+    let _tag_name_version = cl::git_tag_sync_check_create_push(&version);
 
-    // Find the filename of the identity_file for ssh connection to host_name, to find out if need ssh-add or not.
-    // parse the ~/.ssh/config. 99% probably there should be a record for host_name and there is the identity_file.
-    // else ask user for filename, then run ssh-add
-    cl::ssh_add_resolve("project_homepage","bestia_dev_ssh_1");
+    // rsync to copy to server over ssh into a temporary installation folder
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(
+r#"rsync -e ssh -a --info=progress2 --delete-after "web_server_folder/{package_name}/" "{project_author}@{project_homepage}:/var/www/transfer_folder/{package_name}" "#).unwrap_or_else(|e| panic!("{e}"))
+    .arg("{package_name}", &cargo_toml.package_name()).unwrap_or_else(|e| panic!("{e}"))
+    .arg("{project_author}", "luciano_bestia").unwrap_or_else(|e| panic!("{e}"))
+    .arg("{project_homepage}", "bestia.dev").unwrap_or_else(|e| panic!("{e}"))    
+    .run().unwrap_or_else(|e| panic!("{e}"));
 
-    // rsync to copy to server over ssh
-    // TODO: sanitize
-    let shell_command = format!(
-        r#"rsync -e ssh -a --info=progress2 --delete-after ~/rustprojects/{package_name}/web_server_folder/ project_author@project_homepage:/var/www/project_homepage/pwa_short_name/"#,
-        package_name = cargo_toml.package_name()
-    );
-    cl::run_shell_command(&shell_command);
+    // rsync to copy to server over ssh the installation script
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(
+r#"rsync -e ssh -a --info=progress2 --delete-after "publish_script/hello_world_publish.sh" "{project_author}@{project_homepage}:/var/www/scripts/{package_name}/" "#).unwrap_or_else(|e| panic!("{e}"))
+    .arg("{package_name}", &cargo_toml.package_name()).unwrap_or_else(|e| panic!("{e}"))
+    .arg("{project_author}", "luciano_bestia").unwrap_or_else(|e| panic!("{e}"))
+    .arg("{project_homepage}", "bestia.dev").unwrap_or_else(|e| panic!("{e}"))    
+    .run().unwrap_or_else(|e| panic!("{e}"));
+
+    //make the bash script executable
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(
+r#"ssh "{project_author}@{project_homepage}" chmod +x  "/var/www/scripts/{package_name}/hello_world_publish.sh" "#).unwrap_or_else(|e| panic!("{e}"))
+    .arg("{package_name}", &cargo_toml.package_name()).unwrap_or_else(|e| panic!("{e}"))
+    .arg("{project_author}", "luciano_bestia").unwrap_or_else(|e| panic!("{e}"))
+    .arg("{project_homepage}", "bestia.dev").unwrap_or_else(|e| panic!("{e}"))    
+    .run().unwrap_or_else(|e| panic!("{e}"));
+
+    // run installation script over ssh on the server to copy from the installation folder to production folder
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(
+r#"ssh "{project_author}@{project_homepage}" "/var/www/scripts/{package_name}/hello_world_publish.sh" "#).unwrap_or_else(|e| panic!("{e}"))
+    .arg("{package_name}", &cargo_toml.package_name()).unwrap_or_else(|e| panic!("{e}"))
+    .arg("{project_author}", "luciano_bestia").unwrap_or_else(|e| panic!("{e}"))
+    .arg("{project_homepage}", "bestia.dev").unwrap_or_else(|e| panic!("{e}"))    
+    .run().unwrap_or_else(|e| panic!("{e}"));
 
     println!(
-        r#"{YELLOW}
-    After `cargo auto publish_to_web`, 
-    check 
-https://bestia.dev/{package_name}
-{RESET}"#,
+        r#"
+    {YELLOW}After `cargo auto publish_to_web`check {RESET}
+{GREEN}https://bestia.dev/{package_name}{RESET}
+    {YELLOW}    {YELLOW}If all is fine, run{RESET}
+{GREEN}cargo auto github_new_release{RESET}
+"#,
         package_name = cargo_toml.package_name()
     );
 }
@@ -427,18 +457,17 @@ fn task_github_new_release() {
     // compress files tar.gz
     let tar_name = format!("{repo_name}-{tag_name_version}-x86_64-unknown-linux-gnu.tar.gz");
 
-    let mut shell_command_sanitized =
-        cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"tar -zcvf "{tar_name_sanitized_for_double_quote}" "target/release/{repo_name_sanitized_for_double_quote}" "#);
-    shell_command_sanitized.replace_placeholder_forbidden_double_quotes("{tar_name_sanitized_for_double_quote}", &tar_name);
-    shell_command_sanitized.replace_placeholder_forbidden_double_quotes("{repo_name_sanitized_for_double_quote}", &repo_name);
-    shell_command_sanitized.run();
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"tar -zcvf "{tar_name_sanitized_for_double_quote}" "target/release/{repo_name_sanitized_for_double_quote}" "#)
+    .arg("{tar_name_sanitized_for_double_quote}", &tar_name)
+    .arg("{repo_name_sanitized_for_double_quote}", &repo_name)
+    .run().unwrap_or_else(|e| panic!("{e}"));
 
     // upload asset
     cgl::github_api_upload_asset_to_release(&github_client, &owner, &repo_name, &release_id, &tar_name);
 
-    let mut shell_command_sanitized = cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"rm "{tar_name_sanitized_for_double_quote}" "#);
-    shell_command_sanitized.replace_placeholder_forbidden_double_quotes("{tar_name_sanitized_for_double_quote}", &tar_name);
-    shell_command_sanitized.run();
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"rm "{tar_name_sanitized_for_double_quote}" "#)
+    .arg("{tar_name_sanitized_for_double_quote}", &tar_name)
+    .run().unwrap_or_else(|e| panic!("{e}"));
 
     println!(
         r#"

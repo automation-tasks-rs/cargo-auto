@@ -66,29 +66,50 @@ pub fn get_vec_file() -> Vec<crate::FileItem> {
 
     // region: files copied into strings by automation tasks
     vec_file.push(crate::FileItem {
+        file_name: "rustfmt.toml",
+        file_content: r###"max_width = 200"###,
+    });
+    vec_file.push(crate::FileItem {
         file_name: ".gitignore",
         file_content: r###"/target
+/logs
+
+# so the GitHub action gets the fresh libraries
+Cargo.lock
 
 # not needed in commits, but also not a problem if they are committed
-/.file_hashes.json"###,
+/.file_hashes.json
+"###,
     });
     vec_file.push(crate::FileItem {
         file_name: "src/main.rs",
-        file_content: r###"// automation_tasks_rs for project_name
+        file_content: r###"// automation_tasks_rs for cargo_auto_template_new_cli
 
-// region: library with basic automation tasks
+// region: library and modules with basic automation tasks
+
+// for projects that don't use GitHub, delete all the mentions of GitHub
+mod secrets_always_local_mod;
+use crate::secrets_always_local_mod::crate_io_mod;
+use crate::secrets_always_local_mod::github_mod;
+
+use cargo_auto_github_lib as cgl;
 use cargo_auto_lib as cl;
-// traits must be in scope (Rust strangeness)
-use cl::CargoTomlPublicApiMethods;
 
-use cargo_auto_lib::GREEN;
-use cargo_auto_lib::RED;
-use cargo_auto_lib::RESET;
-use cargo_auto_lib::YELLOW;
+use cl::GREEN;
+use cl::RED;
+use cl::RESET;
+use cl::YELLOW;
+
+// traits must be in scope (Rust strangeness)
+use cgl::SendToGitHubApi;
+use cl::CargoTomlPublicApiMethods;
+use cl::ShellCommandLimitedDoubleQuotesSanitizerTrait;
 
 // region: library with basic automation tasks
 
 fn main() {
+    std::panic::set_hook(Box::new(|panic_info| panic_set_hook(panic_info)));
+    tracing_init();
     cl::exit_if_not_run_in_rust_project_root_directory();
 
     // get CLI arguments
@@ -97,6 +118,68 @@ fn main() {
     let _arg_0 = args.next();
     match_arguments_and_call_tasks(args);
 }
+
+// region: general functions
+
+/// Initialize tracing to file logs/automation_tasks_rs.log
+///
+/// The folder logs/ is in .gitignore and will not be committed.
+pub fn tracing_init() {
+    let file_appender = tracing_appender::rolling::daily("logs", "automation_tasks_rs.log");
+
+    let offset = time::UtcOffset::current_local_offset().expect("should get local offset!");
+    let timer = tracing_subscriber::fmt::time::OffsetTime::new(offset, time::macros::format_description!("[hour]:[minute]:[second].[subsecond digits:6]"));
+
+    // Filter out logs from: hyper_util, reqwest
+    // A filter consists of one or more comma-separated directives
+    // target[span{field=value}]=level
+    // examples: tokio::net=info
+    // directives can be added with the RUST_LOG environment variable:
+    // export RUST_LOG=automation_tasks_rs=trace
+    // Unset the environment variable RUST_LOG
+    // unset RUST_LOG
+    let filter = tracing_subscriber::EnvFilter::from_default_env()
+        .add_directive("hyper_util=error".parse().unwrap())
+        .add_directive("reqwest=error".parse().unwrap());
+
+    tracing_subscriber::fmt()
+        .with_file(true)
+        .with_max_level(tracing::Level::DEBUG)
+        .with_timer(timer)
+        .with_line_number(true)
+        .with_ansi(false)
+        .with_writer(file_appender)
+        .with_env_filter(filter)
+        .init();
+}
+
+/// The original Rust report of the panic is ugly for the end user
+///
+/// I use panics extensively to stop the execution. I am lazy to implement a super complicated error handling.
+/// I just need to stop the execution on every little bit of error. This utility is for developers. They will understand me.
+/// For errors I print the location. If the message contains "Exiting..." than it is a "not-error exit" and  the location is not important.
+fn panic_set_hook(panic_info: &std::panic::PanicInfo) {
+    let mut string_message = "".to_string();
+    if let Some(message) = panic_info.payload().downcast_ref::<String>() {
+        string_message = message.to_owned();
+    }
+    if let Some(message) = panic_info.payload().downcast_ref::<&str>() {
+        string_message.push_str(message);
+    }
+
+    tracing::debug!("{string_message}");
+    eprintln!("{string_message}");
+
+    if !string_message.contains("Exiting...") {
+        let file = panic_info.location().unwrap().file();
+        let line = panic_info.location().unwrap().line();
+        let column = panic_info.location().unwrap().column();
+        tracing::debug!("Location: {file}:{line}:{column}");
+        eprintln!("Location: {file}:{line}:{column}");
+    }
+}
+
+// endregion: general functions
 
 // region: match, help and completion
 
@@ -151,12 +234,20 @@ fn print_help() {
     {YELLOW}It is preferred to use SSH for git push to GitHub.{RESET}
     {YELLOW}<https://github.com/CRUSTDE-ContainerizedRustDevEnv/crustde_cnt_img_pod/blob/main/ssh_easy.md>{YELLOW}
     {YELLOW}On the very first commit, this task will initialize a new local git repository and create a remote GitHub repo.{RESET}
-    {YELLOW}In that case the task needs the Personal Access Token Classic from <https://github.com/settings/tokens>{RESET}
+    {YELLOW}For the GitHub API the task needs the Personal Access Token Classic from <https://github.com/settings/tokens>{RESET}
+    {YELLOW}You can choose to type the token every time or to store it in a file encrypted with an SSH key.{RESET}
+    {YELLOW}Then you can type the passphrase of the private key every time. This is pretty secure.{RESET}
+    {YELLOW}Somewhat less secure (but more comfortable) way is to store the private key in ssh-agent.{RESET}
 {GREEN}cargo auto publish_to_crates_io{RESET} - {YELLOW}publish to crates.io, git tag{RESET}
-    {YELLOW}You need the API token for publishing. Get the token on <https://crates.io/settings/tokens>. Then use the command{RESET}
-    {YELLOW}`cargo login` and paste the token when prompted. This will save it to a local credentials file.{RESET}
-{GREEN}cargo auto github_new_release{RESET} - {YELLOW}creates new release on github{RESET}
-    {YELLOW}This task needs the Personal Access Token Classic from <https://github.com/settings/tokens>{RESET}
+    {YELLOW}You need the API token for publishing. Get the token on <https://crates.io/settings/tokens>.{RESET}
+    {YELLOW}You can choose to type the token every time or to store it in a file encrypted with an SSH key.{RESET}
+    {YELLOW}Then you can type the passphrase of the private key every time. This is pretty secure.{RESET}
+    {YELLOW}Somewhat less secure (but more comfortable) way is to store the private key in ssh-agent.{RESET}
+{GREEN}cargo auto github_new_release{RESET} - {YELLOW}creates new release on GitHub{RESET}
+    {YELLOW}For the GitHub API the task needs the Personal Access Token Classic from <https://github.com/settings/tokens>{RESET}
+    {YELLOW}You can choose to type the token every time or to store it in a file encrypted with an SSH key.{RESET}
+    {YELLOW}Then you can type the passphrase of the private key every time. This is pretty secure.{RESET}
+    {YELLOW}Somewhat less secure (but more comfortable) way is to store the private key in ssh-agent.{RESET}
 
     {YELLOW}© 2024 bestia.dev  MIT License github.com/automation-tasks-rs/cargo-auto{RESET}
 "#
@@ -166,11 +257,12 @@ fn print_help() {
 
 /// all example commands in one place
 fn print_examples_cmd() {
-    /*
-        println!(r#"{YELLOW}run examples:{RESET}
-    {GREEN}cargo run --example example1{RESET}
-    "#);
-    */
+    println!(
+        r#"
+    {YELLOW}run examples:{RESET}
+{GREEN}cargo run --example plantuml1{RESET}
+"#
+    );
 }
 
 /// sub-command for bash auto-completion of `cargo auto` using the crate `dev_bestia_cargo_completion`
@@ -180,15 +272,7 @@ fn completion() {
     let last_word = args[3].as_str();
 
     if last_word == "cargo-auto" || last_word == "auto" {
-        let sub_commands = vec![
-            "build",
-            "release",
-            "doc",
-            "test",
-            "commit_and_push",
-            "publish_to_crates_io",
-            "github_new_release",
-        ];
+        let sub_commands = vec!["build", "release", "doc", "test", "commit_and_push", "publish_to_crates_io", "github_new_release"];
         cl::completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
     /*
@@ -208,12 +292,16 @@ fn completion() {
 fn task_build() {
     let cargo_toml = cl::CargoToml::read();
     cl::auto_version_increment_semver_or_date();
-    cl::run_shell_command("cargo fmt");
-    cl::run_shell_command("cargo build");
+    cl::run_shell_command_static("cargo fmt").unwrap_or_else(|e| panic!("{e}"));
+    cl::run_shell_command_static("cargo build").unwrap_or_else(|e| panic!("{e}"));
     println!(
         r#"
     {YELLOW}After `cargo auto build`, run the compiled binary, examples and/or tests{RESET}
-{GREEN}./target/debug/{package_name} argument{RESET}
+{GREEN}./target/debug/{package_name} print world{RESET}
+    {YELLOW}If ok then{RESET}
+{GREEN}./target/debug/{package_name} upper world{RESET}
+    {YELLOW}If ok then{RESET}
+{GREEN}./target/debug/{package_name} upper WORLD{RESET}
     {YELLOW}if ok then{RESET}
 {GREEN}cargo auto release{RESET}
 "#,
@@ -229,8 +317,9 @@ fn task_release() {
     cl::auto_cargo_toml_to_md();
     cl::auto_lines_of_code("");
 
-    cl::run_shell_command("cargo fmt");
-    cl::run_shell_command("cargo build --release");
+    cl::run_shell_command_static("cargo fmt").unwrap_or_else(|e| panic!("{e}"));
+    cl::run_shell_command_static("cargo build --release").unwrap_or_else(|e| panic!("{e}"));
+    // TODO: sanitize
     cl::run_shell_command(&format!(
         "strip target/release/{package_name}",
         package_name = cargo_toml.package_name()
@@ -238,7 +327,11 @@ fn task_release() {
     println!(
         r#"
     {YELLOW}After `cargo auto release`, run the compiled binary, examples and/or tests{RESET}
-{GREEN}./target/release/{package_name} argument{RESET}
+{GREEN}./target/release/{package_name} print world{RESET}
+    {YELLOW}If ok then{RESET}
+{GREEN}./target/release/{package_name} upper world{RESET}
+    {YELLOW}If ok then{RESET}
+{GREEN}./target/release/{package_name} upper WORLD{RESET}
     {YELLOW}if ok then{RESET}
 {GREEN}cargo auto doc{RESET}
 "#,
@@ -247,7 +340,7 @@ fn task_release() {
     print_examples_cmd();
 }
 
-/// cargo doc, then copies to /docs/ folder, because this is a github standard folder
+/// cargo doc, then copies to /docs/ folder, because this is a GitHub standard folder
 fn task_doc() {
     let cargo_toml = cl::CargoToml::read();
     cl::auto_cargo_toml_to_md();
@@ -256,17 +349,19 @@ fn task_doc() {
     cl::auto_playground_run_code();
     cl::auto_md_to_doc_comments();
 
-    cl::run_shell_command("cargo doc --no-deps --document-private-items");
-    // copy target/doc into docs/ because it is github standard
-    cl::run_shell_command("rsync -a --info=progress2 --delete-after target/doc/ docs/");
+    cl::run_shell_command_static("cargo doc --no-deps --document-private-items").unwrap_or_else(|e| panic!("{e}"));
+    // copy target/doc into docs/ because it is GitHub standard
+    cl::run_shell_command_static("rsync -a --info=progress2 --delete-after target/doc/ docs/").unwrap_or_else(|e| panic!("{e}"));
+
     // Create simple index.html file in docs directory
-    cl::run_shell_command(&format!(
-        r#"printf "<meta http-equiv=\"refresh\" content=\"0; url={}/index.html\" />\n" > docs/index.html"#,
-        cargo_toml.package_name().replace("-", "_")
-    ));
+    let mut shell_command_sanitized =
+        cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"printf "<meta http-equiv=\"refresh\" content=\"0; url={url_sanitized_for_double_quote}/index.html\" />\n" > docs/index.html"#);
+    shell_command_sanitized.replace_placeholder_forbidden_double_quotes("{url_sanitized_for_double_quote}", &cargo_toml.package_name().replace("-", "_"));
+    shell_command_sanitized.run();
+
     // pretty html
     cl::auto_doc_tidy_html().unwrap();
-    cl::run_shell_command("cargo fmt");
+    cl::run_shell_command_static("cargo fmt").unwrap_or_else(|e| panic!("{e}"));
     // message to help user with next move
     println!(
         r#"
@@ -282,9 +377,9 @@ fn task_doc() {
 
 /// cargo test
 fn task_test() {
-    cl::run_shell_command("cargo test");
+    cl::run_shell_command_static("cargo test").unwrap_or_else(|e| panic!("{e}"));
     println!(
-r#"
+        r#"
     {YELLOW}After `cargo auto test`. If ok then {RESET}
     {YELLOW}(commit message is mandatory){RESET}
 {GREEN}cargo auto commit_and_push "message"{RESET}
@@ -295,30 +390,46 @@ r#"
 /// commit and push
 fn task_commit_and_push(arg_2: Option<String>) {
     let Some(message) = arg_2 else {
-        eprintln!("{RED}Error: Message for commit is mandatory. Exiting...{RESET}");
+        eprintln!("{RED}Error: Message for commit is mandatory.{RESET}");
         // early exit
         return;
     };
 
-    // init repository if needed. If it is not init then normal commit and push.
-    if !cl::init_repository_if_needed(&message) {
+    // If needed, ask to create new local git repository
+    if !cl::git_is_local_repository() {
+        cl::new_local_repository(&message).unwrap();
+    }
+
+    // If needed, ask to create a GitHub remote repository
+    if !cl::git_has_remote() {
+        let github_client = github_mod::GitHubClient::new_with_stored_token();
+        cgl::new_remote_github_repository(&github_client).unwrap();
+        cgl::description_and_topics_to_github(&github_client);
+    } else {
+        let github_client = github_mod::GitHubClient::new_with_stored_token();
         // if description or topics/keywords/tags have changed
-        cl::description_and_topics_to_github();
+        cgl::description_and_topics_to_github(&github_client);
+
         // separate commit for docs if they changed, to not make a lot of noise in the real commit
         if std::path::Path::new("docs").exists() {
-            cl::run_shell_command(r#"git add docs && git diff --staged --quiet || git commit -m "update docs" "#);
+            cl::run_shell_command_static(r#"git add docs && git diff --staged --quiet || git commit -m "update docs" "#).unwrap_or_else(|e| panic!("{e}"));
         }
+
         cl::add_message_to_unreleased(&message);
         // the real commit of code
-        cl::run_shell_command(&format!( r#"git add -A && git diff --staged --quiet || git commit -m "{message}" "#));
-        cl::run_shell_command("git push");
-        println!(
-r#"
+        let mut shell_command_sanitized = cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"git add -A && git diff --staged --quiet || git commit -m "{message_sanitized_for_double_quote}" "#);
+        shell_command_sanitized.replace_placeholder_forbidden_double_quotes("{message_sanitized_for_double_quote}", &message);
+        shell_command_sanitized.run();
+
+        cl::run_shell_command_static("git push").unwrap_or_else(|e| panic!("{e}"));
+    }
+
+    println!(
+        r#"
     {YELLOW}After `cargo auto commit_and_push "message"`{RESET}
 {GREEN}cargo auto publish_to_crates_io{RESET}
 "#
-        );
-    }
+    );
 }
 
 /// publish to crates.io and git tag
@@ -330,7 +441,8 @@ fn task_publish_to_crates_io() {
     let tag_name_version = cl::git_tag_sync_check_create_push(&version);
 
     // cargo publish with encrypted secret token
-    cl::publish_to_crates_io_with_secret_token();
+    let crate_io_client = crate_io_mod::CratesIoClient::new_with_stored_token();
+    crate_io_client.publish_to_crates_io();
 
     println!(
         r#"
@@ -361,17 +473,26 @@ fn task_github_new_release() {
 
     // First, the user must write the content into file RELEASES.md in the section ## Unreleased.
     // Then the automation task will copy the content to GitHub release
-    // and create a new Version title in RELEASES.md.
-    let body_md_text = cl::body_text_from_releases_md(&release_name).unwrap();
+    let body_md_text = cl::body_text_from_releases_md().unwrap();
 
-    let _release_id = cl::github_api_create_new_release(
-        &owner,
-        &repo_name,
-        &tag_name_version,
-        &release_name,
-        branch,
-        &body_md_text,
-    );
+    let github_client = github_mod::GitHubClient::new_with_stored_token();
+    let json_value = github_client.send_to_github_api(cgl::github_api_create_new_release(&owner, &repo_name, &tag_name_version, &release_name, branch, &body_md_text));
+    // early exit on error
+    if let Some(error_message) = json_value.get("message") {
+        eprintln!("{RED}{error_message}{RESET}");
+        if let Some(errors) = json_value.get("errors") {
+            let errors = errors.as_array().unwrap();
+            for error in errors.iter() {
+                if let Some(code) = error.get("code") {
+                    eprintln!("{RED}{code}{RESET}");
+                }
+            }
+        }
+        panic!("{RED}Call to GitHub API returned an error.{RESET}")
+    }
+
+    // Create a new Version title in RELEASES.md.
+    cl::create_new_version_in_releases_md(&release_name).unwrap();
 
     println!(
         "
@@ -379,32 +500,649 @@ fn task_github_new_release() {
 "
     );
 
-    /*
-        // region: upload asset only for executables, not for libraries
-        println!("
-        {YELLOW}Now uploading release asset. This can take some time if the files are big. Wait...{RESET}
-    ");
-        // compress files tar.gz
-        let tar_name = format!("{repo_name}-{tag_name_version}-x86_64-unknown-linux-gnu.tar.gz");
-        cl::run_shell_command(&format!("tar -zcvf {tar_name} target/release/{repo_name}"));
+    // region: upload asset only for executables, not for libraries
 
-        // upload asset
-        cl::github_api_upload_asset_to_release(&owner, &repo_name, &release_id, &tar_name).await;
-        cl::run_shell_command(&format!("rm {tar_name}"));
-
-        println!("
-        {YELLOW}Asset uploaded. Open and edit the description on GitHub Releases in the browser.{RESET}
-    ");
-        // endregion: upload asset only for executables, not for libraries
-
-        */
+    let release_id = json_value.get("id").unwrap().as_i64().unwrap().to_string();
     println!(
         "
-{GREEN}https://github.com/{owner}/{repo_name}/releases{RESET}
+        {YELLOW}Now uploading release asset. This can take some time if the files are big. Wait...{RESET}
     "
+    );
+    // compress files tar.gz
+    let tar_name = format!("{repo_name}-{tag_name_version}-x86_64-unknown-linux-gnu.tar.gz");
+
+    let mut shell_command_sanitized =
+        cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"tar -zcvf "{tar_name_sanitized_for_double_quote}" "target/release/{repo_name_sanitized_for_double_quote}" "#);
+    shell_command_sanitized.replace_placeholder_forbidden_double_quotes("{tar_name_sanitized_for_double_quote}", &tar_name);
+    shell_command_sanitized.replace_placeholder_forbidden_double_quotes("{repo_name_sanitized_for_double_quote}", &repo_name);
+    shell_command_sanitized.run();
+
+    // upload asset
+    cgl::github_api_upload_asset_to_release(&github_client, &owner, &repo_name, &release_id, &tar_name);
+
+    let mut shell_command_sanitized = cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"rm "{tar_name_sanitized_for_double_quote}" "#);
+    shell_command_sanitized.replace_placeholder_forbidden_double_quotes("{tar_name_sanitized_for_double_quote}", &tar_name);
+    shell_command_sanitized.run();
+
+    println!(
+        r#"
+    {YELLOW}Asset uploaded. Open and edit the description on GitHub Releases in the browser.{RESET}
+    "#
+    );
+
+    // endregion: upload asset only for executables, not for libraries
+
+    println!(
+        r#"
+{GREEN}https://github.com/{owner}/{repo_name}/releases{RESET}
+    "#
     );
 }
 // endregion: tasks
+"###,
+    });
+    vec_file.push(crate::FileItem {
+        file_name: "src/secrets_always_local_mod.rs",
+        file_content: r###"// secrets_always_local_mod.rs
+
+/// Secrets like GitHub API token, crates.io token, SSH private key passphrase and similar
+/// must never go out of this crate. Never pass any secret to an external crate library as much as possible.
+/// The user has the source code under his fingers in this crate. So he knows nobody will mess with this code
+/// once he inspected and reviewed it.
+/// All the modules are in one file to avoid clutter in the automation_tasks_rs folder.
+/// The simple program flow of functions that need secrets is butchered to avoid secrets leaving this crate.
+/// Now it looks like a mess, but the goal is achieved. The secrets never leave this crate.
+
+pub(crate) mod decrypt_mod {
+
+    use cargo_auto_lib::RED;
+    use cargo_auto_lib::RESET;
+    use secrecy::ExposeSecret;
+
+    /// The secrets must not leave this crate.
+    /// They are never going into an external library crate.
+    /// This crate is "user code" and is easy to review and inspect.
+    pub(crate) struct Decryptor<'a> {
+        secret_string: secrecy::SecretString,
+        secret_passcode_bytes: &'a secrecy::SecretVec<u8>,
+    }
+
+    impl<'a> Decryptor<'a> {
+        pub(crate) fn new_for_decrypt(secret_passcode_bytes: &'a secrecy::SecretVec<u8>) -> Self {
+            Decryptor {
+                secret_string: secrecy::SecretString::new("".to_string()),
+                secret_passcode_bytes,
+            }
+        }
+        pub(crate) fn return_secret_string(&self) -> &secrecy::SecretString {
+            &self.secret_string
+        }
+
+        /// Decrypts encrypted_string with secret_passcode_bytes
+        ///
+        /// secret_passcode_bytes must be 32 bytes or more
+        /// Returns the secret_string
+        pub(crate) fn decrypt_symmetric(&mut self, encrypted_string: &cargo_auto_encrypt_secret_lib::EncryptedString) {
+            let encrypted_bytes = <base64ct::Base64 as base64ct::Encoding>::decode_vec(&encrypted_string.0).unwrap();
+            //only first 32 bytes
+            let mut secret_passcode_32bytes = [0u8; 32];
+            secret_passcode_32bytes.copy_from_slice(&self.secret_passcode_bytes.expose_secret()[0..32]);
+
+            let cipher = <aes_gcm::Aes256Gcm as aes_gcm::KeyInit>::new(&secret_passcode_32bytes.into());
+            // nonce is salt
+            let nonce = rsa::sha2::digest::generic_array::GenericArray::from_slice(&encrypted_bytes[..12]);
+            let cipher_text = &encrypted_bytes[12..];
+
+            let Ok(decrypted_bytes) = aes_gcm::aead::Aead::decrypt(&cipher, nonce, cipher_text) else {
+                panic!("{RED}Error: Decryption failed. {RESET}");
+            };
+            let decrypted_string = String::from_utf8(decrypted_bytes).unwrap();
+            self.secret_string = secrecy::SecretString::new(decrypted_string)
+        }
+    }
+}
+
+pub(crate) mod encrypt_mod {
+
+    use cargo_auto_lib::RED;
+    use cargo_auto_lib::RESET;
+
+    // bring trait to scope
+    use secrecy::ExposeSecret;
+
+    /// The secrets must not leave this crate.
+    /// They are never going into an external library crate.
+    /// This crate is "user code" and is easy to review and inspect.
+    pub(crate) struct Encryptor<'a> {
+        secret_string: secrecy::SecretString,
+        secret_passcode_bytes: &'a secrecy::SecretVec<u8>,
+    }
+
+    impl<'a> Encryptor<'a> {
+        pub(crate) fn new_for_encrypt(secret_string: secrecy::SecretString, secret_passcode_bytes: &'a secrecy::SecretVec<u8>) -> Self {
+            Encryptor { secret_string, secret_passcode_bytes }
+        }
+
+        /// Encrypts secret_string with secret_passcode_bytes
+        ///
+        /// secret_passcode_bytes must be 32 bytes or more
+        /// returns the encrypted_string
+        pub(crate) fn encrypt_symmetric(&self) -> Option<cargo_auto_encrypt_secret_lib::EncryptedString> {
+            //only first 32 bytes
+            let mut secret_passcode_32bytes = [0u8; 32];
+            secret_passcode_32bytes.copy_from_slice(&self.secret_passcode_bytes.expose_secret()[0..32]);
+
+            let cipher = <aes_gcm::Aes256Gcm as aes_gcm::KeyInit>::new(&secret_passcode_32bytes.into());
+            // nonce is salt
+            let nonce = <aes_gcm::Aes256Gcm as aes_gcm::AeadCore>::generate_nonce(&mut aes_gcm::aead::OsRng);
+
+            let Ok(cipher_text) = aes_gcm::aead::Aead::encrypt(&cipher, &nonce, self.secret_string.expose_secret().as_bytes()) else {
+                panic!("{RED}Error: Encryption failed. {RESET}");
+            };
+
+            let mut encrypted_bytes = nonce.to_vec();
+            encrypted_bytes.extend_from_slice(&cipher_text);
+            let encrypted_string = <base64ct::Base64 as base64ct::Encoding>::encode_string(&encrypted_bytes);
+            Some(cargo_auto_encrypt_secret_lib::EncryptedString(encrypted_string))
+        }
+    }
+}
+
+pub(crate) mod secrecy_mod {
+
+    //! The crate secrecy is probably great.
+    //! But I want to encrypt the content, so I will make a wrapper.
+    //! The secrets must always be moved to secrecy types as soon as possible.
+
+    use cargo_auto_encrypt_secret_lib::EncryptedString;
+
+    pub struct SecretEncryptedString {
+        encrypted_string: EncryptedString,
+    }
+
+    impl SecretEncryptedString {
+        pub fn new_with_secret_string(secret_string: secrecy::SecretString, session_passcode: &secrecy::SecretVec<u8>) -> Self {
+            let encryptor = super::encrypt_mod::Encryptor::new_for_encrypt(secret_string, &session_passcode);
+            let encrypted_string = encryptor.encrypt_symmetric().unwrap();
+
+            SecretEncryptedString { encrypted_string }
+        }
+
+        pub fn new_with_string(secret_string: String, session_passcode: &secrecy::SecretVec<u8>) -> Self {
+            let secret_string = secrecy::SecretString::new(secret_string);
+            Self::new_with_secret_string(secret_string, session_passcode)
+        }
+
+        pub fn expose_decrypted_secret(&self, session_passcode: &secrecy::SecretVec<u8>) -> secrecy::SecretString {
+            let mut decryptor = super::decrypt_mod::Decryptor::new_for_decrypt(&session_passcode);
+            decryptor.decrypt_symmetric(&self.encrypted_string);
+            decryptor.return_secret_string().clone()
+        }
+    }
+}
+
+pub(crate) mod ssh_mod {
+
+    #[allow(unused_imports)]
+    use cargo_auto_lib::BLUE;
+    use cargo_auto_lib::GREEN;
+    use cargo_auto_lib::RED;
+    use cargo_auto_lib::RESET;
+    use cargo_auto_lib::YELLOW;
+
+    use crate::secrets_always_local_mod::*;
+
+    // bring trait into scope
+    use secrecy::ExposeSecret;
+
+    pub struct SshContext {
+        signed_passcode_is_a_secret: secrecy::SecretVec<u8>,
+        decrypted_string: secrecy::SecretString,
+    }
+
+    impl SshContext {
+        pub fn new() -> Self {
+            SshContext {
+                signed_passcode_is_a_secret: secrecy::SecretVec::new(vec![]),
+                decrypted_string: secrecy::SecretString::new("".to_string()),
+            }
+        }
+        pub fn get_decrypted_string(&self) -> secrecy::SecretString {
+            self.decrypted_string.clone()
+        }
+    }
+
+    impl cargo_auto_encrypt_secret_lib::SshContextTrait for SshContext {
+        /// decrypt from file data and write the decrypted secret in private field for later use in this crate, not in external library crates
+        fn decrypt_from_file_data(&mut self, encrypted_string: &cargo_auto_encrypt_secret_lib::EncryptedString) {
+            let mut decryptor = decrypt_mod::Decryptor::new_for_decrypt(&self.signed_passcode_is_a_secret);
+            decryptor.decrypt_symmetric(encrypted_string);
+            self.decrypted_string = decryptor.return_secret_string().clone();
+        }
+
+        /// get token and encrypt
+        fn get_token_and_encrypt(&self) -> cargo_auto_encrypt_secret_lib::EncryptedString {
+            /// Internal function used only for test configuration
+            ///
+            /// It is not interactive, but reads from a env var.
+            #[cfg(test)]
+            fn get_token() -> secrecy::SecretString {
+                secrecy::SecretString::new(std::env::var("TEST_TOKEN").unwrap())
+            }
+            /// Internal function get_passphrase interactively ask user to type the passphrase
+            ///
+            /// This is used for normal code execution.
+            #[cfg(not(test))]
+            fn get_token() -> secrecy::SecretString {
+                eprintln!(" ");
+                eprintln!("   {BLUE}Enter the API token to encrypt:{RESET}");
+                secrecy::SecretString::new(
+                    inquire::Password::new("")
+                        .without_confirmation()
+                        .with_display_mode(inquire::PasswordDisplayMode::Masked)
+                        .prompt()
+                        .unwrap(),
+                )
+            }
+            let token_is_a_secret = get_token();
+            // use this signed as password for symmetric encryption
+            let encryptor = encrypt_mod::Encryptor::new_for_encrypt(token_is_a_secret, &self.signed_passcode_is_a_secret);
+
+            let encrypted_token = encryptor.encrypt_symmetric().unwrap();
+            // return
+            encrypted_token
+        }
+
+        /// Sign with ssh-agent or with identity_file
+        ///
+        /// get passphrase interactively
+        /// returns secret_password_bytes:Vec u8
+        fn sign_with_ssh_agent_or_identity_file(&mut self, identity_private_file_path: &camino::Utf8Path, seed_bytes_not_a_secret: &[u8; 32]) {
+            /// Internal function used only for test configuration
+            ///
+            /// It is not interactive, but reads from a env var.
+            #[cfg(test)]
+            fn get_passphrase() -> secrecy::SecretString {
+                secrecy::SecretString::new(std::env::var("TEST_PASSPHRASE").unwrap())
+            }
+            /// Internal function get_passphrase interactively ask user to type the passphrase
+            ///
+            /// This is used for normal code execution.
+            #[cfg(not(test))]
+            fn get_passphrase() -> secrecy::SecretString {
+                eprintln!(" ");
+                eprintln!("   {BLUE}Enter the passphrase for the SSH private key:{RESET}");
+                secrecy::SecretString::new(
+                    inquire::Password::new("")
+                        .without_confirmation()
+                        .with_display_mode(inquire::PasswordDisplayMode::Masked)
+                        .prompt()
+                        .unwrap(),
+                )
+            }
+
+            let identity_private_file_path_expanded = cargo_auto_encrypt_secret_lib::file_path_home_expand(identity_private_file_path);
+            if !camino::Utf8Path::new(&identity_private_file_path_expanded).exists() {
+                eprintln!("{RED}Identity file {identity_private_file_path_expanded} that contains the SSH private key does not exist! {RESET}");
+                eprintln!("    {YELLOW}Create the SSH key manually in bash with this command:{RESET}");
+                if identity_private_file_path_expanded.as_str().contains("github_api") {
+                    eprintln!(r#"{GREEN}ssh-keygen -t ed25519 -f \"{identity_private_file_path_expanded}\" -C \"github api token\"{RESET}"#);
+                } else if identity_private_file_path_expanded.as_str().contains("github_api") {
+                    eprintln!(r#"{GREEN}ssh-keygen -t ed25519 -f \"{identity_private_file_path_expanded}\" -C \"crates io token\"{RESET}"#);
+                }
+                eprintln!(" ");
+                panic!("{RED}Error: File {identity_private_file_path_expanded} does not exist! {RESET}");
+            }
+
+            let fingerprint_from_file = cargo_auto_encrypt_secret_lib::get_fingerprint_from_file(&identity_private_file_path_expanded);
+
+            let mut ssh_agent_client = cargo_auto_encrypt_secret_lib::crate_ssh_agent_client();
+            match cargo_auto_encrypt_secret_lib::ssh_add_list_contains_fingerprint(&mut ssh_agent_client, &fingerprint_from_file) {
+                Some(public_key) => {
+                    // sign with public key from ssh-agent
+                    let signature_is_the_new_secret_password = ssh_agent_client.sign(&public_key, seed_bytes_not_a_secret).unwrap();
+                    // only the data part of the signature goes into as_bytes.
+                    self.signed_passcode_is_a_secret = secrecy::SecretVec::new(signature_is_the_new_secret_password.as_bytes().to_owned());
+                }
+                None => {
+                    // ask user to think about adding with ssh-add
+                    eprintln!("   {YELLOW}SSH key for encrypted token is not found in the ssh-agent.{RESET}");
+                    eprintln!("   {YELLOW}Without ssh-agent, you will have to type the private key passphrase every time. This is more secure, but inconvenient.{RESET}");
+                    eprintln!("   {YELLOW}You can manually add the SSH identity to ssh-agent for 1 hour:{RESET}");
+                    eprintln!("   {YELLOW}WARNING: using ssh-agent is less secure, because there is no need for user interaction.{RESET}");
+                    eprintln!("{GREEN}ssh-add -t 1h {identity_private_file_path_expanded}{RESET}");
+
+                    // just for test purpose I will use env var to read this passphrase. Don't use it in production.
+
+                    let passphrase_is_a_secret = get_passphrase();
+                    let private_key = ssh_key::PrivateKey::read_openssh_file(identity_private_file_path_expanded.as_std_path()).unwrap();
+                    let mut private_key = private_key.decrypt(passphrase_is_a_secret.expose_secret()).unwrap();
+
+                    // FYI: this type of signature is compatible with ssh-agent because it does not involve namespace
+                    let signature_is_the_new_secret_password = rsa::signature::SignerMut::try_sign(&mut private_key, seed_bytes_not_a_secret).unwrap();
+
+                    // only the data part of the signature goes into as_bytes.
+                    self.signed_passcode_is_a_secret = secrecy::SecretVec::new(signature_is_the_new_secret_password.as_bytes().to_owned());
+                }
+            }
+        }
+    }
+}
+
+pub(crate) mod github_mod {
+
+    //! Every API call needs the GitHub API token. This is a secret important just like a password.
+    //! I don't want to pass this secret to an "obscure" library crate that is difficult to review.
+    //! This secret will stay here in this codebase that every developer can easily inspect.
+    //! Instead of the token, I will pass the struct GitHubClient with the trait SendToGitHubApi.
+    //! This way, the secret token will be encapsulated.
+
+    use cargo_auto_github_lib as cgl;
+
+    use cargo_auto_lib::BLUE;
+    use cargo_auto_lib::RED;
+    use cargo_auto_lib::RESET;
+
+    use reqwest::Client;
+    // bring trait into scope
+    use secrecy::ExposeSecret;
+
+    /// Struct GitHubClient contains only private fields
+    /// This fields are accessible only to methods in implementation of traits.
+    pub struct GitHubClient {
+        /// Passcode for encrypt the token_is_a_secret to encrypted_token in memory.
+        /// So that the secret is in memory as little as possible as plain text.
+        /// For every session (program start) a new random passcode is created.
+        session_passcode: secrecy::SecretVec<u8>,
+
+        /// private field is set only once in the new() constructor
+        encrypted_token: super::secrecy_mod::SecretEncryptedString,
+    }
+
+    impl GitHubClient {
+        /// Create new GitHub client
+        ///
+        /// Interactively ask the user to input the GitHub token.
+        pub fn new_interactive_input_token() -> Self {
+            let mut github_client = Self::new_wo_token();
+
+            println!("{BLUE}Enter the GitHub API token:{RESET}");
+            github_client.encrypted_token =
+                super::secrecy_mod::SecretEncryptedString::new_with_string(inquire::Password::new("").without_confirmation().prompt().unwrap(), &github_client.session_passcode);
+
+            // return
+            github_client
+        }
+
+        /// Create new GitHub client without token
+        fn new_wo_token() -> Self {
+            /// Internal function Generate a random password
+            fn random_byte_passcode() -> [u8; 32] {
+                let mut password = [0_u8; 32];
+                use aes_gcm::aead::rand_core::RngCore;
+                aes_gcm::aead::OsRng.fill_bytes(&mut password);
+                password
+            }
+
+            let session_passcode = secrecy::SecretVec::new(random_byte_passcode().to_vec());
+            let encrypted_token = super::secrecy_mod::SecretEncryptedString::new_with_string("".to_string(), &session_passcode);
+
+            GitHubClient { session_passcode, encrypted_token }
+        }
+
+        /// Use the stored API token
+        ///
+        /// If the token not exists ask user to interactively input the token.
+        /// To decrypt it, use the SSH passphrase. That is much easier to type than typing the token.
+        /// it is then possible also to have the ssh key in ssh-agent and write the passphrase only once.
+        /// But this great user experience comes with security concerns. The token is accessible if the attacker is very dedicated.
+        pub fn new_with_stored_token() -> Self {
+            /// Internal function for DRY Don't Repeat Yourself
+            fn read_token_and_decrypt_return_github_client(mut ssh_context: super::ssh_mod::SshContext, encrypted_string_file_path: &camino::Utf8Path) -> GitHubClient {
+                // read the token and decrypt
+                cargo_auto_encrypt_secret_lib::decrypt_with_ssh_interactive_from_file(&mut ssh_context, encrypted_string_file_path);
+                let token_is_a_secret = ssh_context.get_decrypted_string();
+                let mut github_client = GitHubClient::new_wo_token();
+                github_client.encrypted_token = super::secrecy_mod::SecretEncryptedString::new_with_secret_string(token_is_a_secret, &github_client.session_passcode);
+                github_client
+            }
+
+            let encrypted_string_file_path = camino::Utf8Path::new("~/.ssh/github_api_token_encrypted.txt");
+            let encrypted_string_file_path_expanded = cargo_auto_encrypt_secret_lib::file_path_home_expand(encrypted_string_file_path);
+
+            let identity_file_path = camino::Utf8Path::new("~/.ssh/github_api_token_ssh_1");
+            if !encrypted_string_file_path_expanded.exists() {
+                // ask interactive
+                println!("    {BLUE}Do you want to store the GitHub API token encrypted with an SSH key? (y/n){RESET}");
+                let answer = inquire::Text::new("").prompt().unwrap();
+                if answer.to_lowercase() != "y" {
+                    // enter the token manually, not storing
+                    return Self::new_interactive_input_token();
+                } else {
+                    // get the passphrase and token interactively
+                    let mut ssh_context = super::ssh_mod::SshContext::new();
+                    // encrypt and save the encrypted token
+                    cargo_auto_encrypt_secret_lib::encrypt_with_ssh_interactive_save_file(&mut ssh_context, identity_file_path, encrypted_string_file_path);
+                    // read the token and decrypt, return GitHubClient
+                    read_token_and_decrypt_return_github_client(ssh_context, encrypted_string_file_path)
+                }
+            } else {
+                // file exists
+                let ssh_context = super::ssh_mod::SshContext::new();
+                // read the token and decrypt, return GitHubClient
+                read_token_and_decrypt_return_github_client(ssh_context, encrypted_string_file_path)
+            }
+        }
+
+        /// decrypts the secret token in memory
+        pub fn decrypt_token_in_memory(&self) -> secrecy::SecretString {
+            self.encrypted_token.expose_decrypted_secret(&self.session_passcode)
+        }
+    }
+
+    /// trait from the crate library, so the 2 crates can share a function
+    impl cgl::SendToGitHubApi for GitHubClient {
+        /// Send GitHub API request
+        ///
+        /// This function encapsulates the secret API token.
+        /// The RequestBuilder is created somewhere in the library crate.
+        /// The client can be passed to the library. It will not reveal the secret token.
+        fn send_to_github_api(&self, req: reqwest::blocking::RequestBuilder) -> serde_json::Value {
+            // I must build the request to be able then to inspect it.
+            let req = req.bearer_auth(self.decrypt_token_in_memory().expose_secret()).build().unwrap();
+
+            // region: Assert the correct url and https
+            // It is important that the request coming from a external crate/library
+            // is only sent always and only to GitHub API and not some other malicious url,
+            // because the request contains the secret GitHub API token.
+            // And it must always use https
+            let host_str = req.url().host_str().unwrap();
+            assert!(host_str == "api.github.com", "{RED}Error: Url is not correct: {host_str}. It must be always api.github.com.{RESET}");
+            let scheme = req.url().scheme();
+            assert!(scheme == "https", "{RED}Error: Scheme is not correct: {scheme}. It must be always https.{RESET}");
+            // endregion: Assert the correct url and https
+
+            let reqwest_client = reqwest::blocking::Client::new();
+            let response_text = reqwest_client.execute(req).unwrap().text().unwrap();
+
+            let json_value: serde_json::Value = serde_json::from_str(&response_text).unwrap();
+
+            // panic if "message": String("Bad credentials"),
+            if let Some(m) = json_value.get("message") {
+                if m == "Bad credentials" {
+                    panic!("{RED}Error: Bad credentials for GitHub API. {RESET}");
+                }
+            }
+
+            // return
+            json_value
+        }
+
+        /// Upload to GitHub
+        ///
+        /// This function encapsulates the secret API token.
+        /// The RequestBuilder is created somewhere in the library crate.
+        /// The client can be passed to the library. It will not reveal the secret token.
+        /// This is basically an async fn, but use of `async fn` in public traits is discouraged...
+        async fn upload_to_github(&self, req: reqwest::RequestBuilder) -> serde_json::Value {
+            // I must build the request to be able then to inspect it.
+            let req = req.bearer_auth(self.decrypt_token_in_memory().expose_secret()).build().unwrap();
+
+            // region: Assert the correct url and https
+            // It is important that the request coming from a external crate/library
+            // is only sent always and only to GitHub uploads and not some other malicious url,
+            // because the request contains the secret GitHub API token.
+            // And it must always use https
+            let host_str = req.url().host_str().unwrap();
+            assert!(host_str == "uploads.github.com", "{RED}Error: Url is not correct: {host_str}. It must be always api.github.com.{RESET}");
+            let scheme = req.url().scheme();
+            assert!(scheme == "https", "{RED}Error: Scheme is not correct: {scheme}. It must be always https.{RESET}");
+            // endregion: Assert the correct url and https
+
+            let reqwest_client = Client::new();
+            let response_text = reqwest_client.execute(req).await.unwrap().text().await.unwrap();
+
+            let json_value: serde_json::Value = serde_json::from_str(&response_text).unwrap();
+
+            // panic if "message": String("Bad credentials"),
+            if let Some(m) = json_value.get("message") {
+                if m == "Bad credentials" {
+                    panic!("{RED}Error: Bad credentials for GitHub API. {RESET}");
+                }
+            }
+
+            // return
+            json_value
+        }
+    }
+}
+
+pub(crate) mod crate_io_mod {
+
+    //! Publish to crates.io needs the crates.io token. This is a secret important just like a password.
+    //! I don't want to pass this secret to an "obscure" library crate that is difficult to review.
+    //! This secret will stay here in this codebase that every developer can easily inspect.
+    //! Instead of the token, I will pass the struct CratesIoClient with the trait SendToCratesIo.
+    //! This way, the secret token will be encapsulated.
+
+    use cargo_auto_lib::BLUE;
+    use cargo_auto_lib::RED;
+    use cargo_auto_lib::RESET;
+    use cargo_auto_lib::YELLOW;
+
+    // bring trait into scope
+    use secrecy::ExposeSecret;
+
+    /// Struct CratesIoClient contains only private fields
+    /// This fields are accessible only to methods in implementation of traits.
+    pub struct CratesIoClient {
+        /// Passcode for encrypt the token_is_a_secret to encrypted_token in memory.
+        /// So that the secret is in memory as little as possible as plain text.
+        /// For every session (program start) a new random passcode is created.
+        session_passcode: secrecy::SecretVec<u8>,
+
+        /// private field is set only once in the new() constructor
+        encrypted_token: super::secrecy_mod::SecretEncryptedString,
+    }
+
+    impl CratesIoClient {
+        /// Create new CratesIo client
+        ///
+        /// Interactively ask the user to input the crates.io token.
+        #[allow(dead_code)]
+        pub fn new_interactive_input_token() -> Self {
+            let mut crates_io_client = Self::new_wo_token();
+
+            println!("{BLUE}Enter the crates.io token:{RESET}");
+            crates_io_client.encrypted_token =
+                super::secrecy_mod::SecretEncryptedString::new_with_string(inquire::Password::new("").without_confirmation().prompt().unwrap(), &crates_io_client.session_passcode);
+
+            // return
+            crates_io_client
+        }
+
+        /// Create new CratesIo client without token
+        #[allow(dead_code)]
+        fn new_wo_token() -> Self {
+            /// Internal function Generate a random password
+            fn random_byte_passcode() -> [u8; 32] {
+                let mut password = [0_u8; 32];
+                use aes_gcm::aead::rand_core::RngCore;
+                aes_gcm::aead::OsRng.fill_bytes(&mut password);
+                password
+            }
+
+            let session_passcode = secrecy::SecretVec::new(random_byte_passcode().to_vec());
+            let encrypted_token = super::secrecy_mod::SecretEncryptedString::new_with_string("".to_string(), &session_passcode);
+
+            CratesIoClient { session_passcode, encrypted_token }
+        }
+
+        /// Use the stored crates.io token
+        ///
+        /// If the token not exists ask user to interactively input the token.
+        /// To decrypt it, use the SSH passphrase. That is much easier to type than typing the token.
+        /// It is then possible also to have the ssh key in ssh-agent and write the passphrase only once.
+        /// But this great user experience comes with security concerns. The token is accessible if the attacker is very dedicated.
+        #[allow(dead_code)]
+        pub fn new_with_stored_token() -> Self {
+            /// Internal function for DRY Don't Repeat Yourself
+            fn read_token_and_decrypt_return_crate_io_client(mut ssh_context: super::ssh_mod::SshContext, encrypted_string_file_path: &camino::Utf8Path) -> CratesIoClient {
+                cargo_auto_encrypt_secret_lib::decrypt_with_ssh_interactive_from_file(&mut ssh_context, encrypted_string_file_path);
+                let token_is_a_secret = ssh_context.get_decrypted_string();
+                let mut crates_io_client = CratesIoClient::new_wo_token();
+                crates_io_client.encrypted_token = super::secrecy_mod::SecretEncryptedString::new_with_secret_string(token_is_a_secret, &crates_io_client.session_passcode);
+                crates_io_client
+            }
+
+            let encrypted_string_file_path = camino::Utf8Path::new("~/.ssh/crates_io_token_encrypted.txt");
+            let encrypted_string_file_path_expanded = cargo_auto_encrypt_secret_lib::file_path_home_expand(encrypted_string_file_path);
+
+            let identity_file_path = camino::Utf8Path::new("~/.ssh/crates_io_token_ssh_1");
+            if !encrypted_string_file_path_expanded.exists() {
+                // ask interactive
+                println!("    {BLUE}Do you want to store the crates.io token encrypted with an SSH key? (y/n){RESET}");
+                let answer = inquire::Text::new("").prompt().unwrap();
+                if answer.to_lowercase() != "y" {
+                    // enter the token manually, not storing
+                    return Self::new_interactive_input_token();
+                } else {
+                    // get the passphrase and token interactively
+                    let mut ssh_context = super::ssh_mod::SshContext::new();
+                    // encrypt and save the encrypted token
+                    cargo_auto_encrypt_secret_lib::encrypt_with_ssh_interactive_save_file(&mut ssh_context, identity_file_path, encrypted_string_file_path);
+                    // read the token and decrypt, return CratesIoClient
+                    read_token_and_decrypt_return_crate_io_client(ssh_context, encrypted_string_file_path)
+                }
+            } else {
+                // file exists
+                let ssh_context = super::ssh_mod::SshContext::new();
+                // read the token and decrypt, return CratesIoClient
+                read_token_and_decrypt_return_crate_io_client(ssh_context, encrypted_string_file_path)
+            }
+        }
+
+        /// decrypts the secret token in memory
+        pub fn decrypt_token_in_memory(&self) -> secrecy::SecretString {
+            self.encrypted_token.expose_decrypted_secret(&self.session_passcode)
+        }
+
+        /// Publish to crates.io
+        ///
+        /// This function encapsulates the secret crates.io token.
+        /// The client can be passed to the library. It will not reveal the secret token.
+        pub fn publish_to_crates_io(&self) {
+            // print command without the token
+            println!("{YELLOW}cargo publish --token [REDACTED]{RESET}");
+            let shell_command = format!("cargo publish --token {}", self.decrypt_token_in_memory().expose_secret());
+            let status = std::process::Command::new("sh").arg("-c").arg(shell_command).spawn().unwrap().wait().unwrap();
+            let exit_code = status.code().expect(&format!("{RED}Error: publish to crates.io error. {RESET}"));
+            if exit_code != 0 {
+                panic!("{RED}Error: publish to crates.io error {exit_code}. {RESET}");
+            }
+        }
+    }
+}
 "###,
     });
     vec_file.push(crate::FileItem {
@@ -415,11 +1153,32 @@ version = "1.0.0"
 authors = ["bestia.dev"]
 homepage = "https://bestia.dev"
 edition = "2021"
-description = "cargo auto - automation tasks written in Rust language"
+description = "Automation tasks coded in Rust language for the workflow of Rust projects"
 publish = false
 
 [dependencies]
-cargo_auto_lib = "2.0.8""###,
+cargo_auto_lib = "2.2.1"
+cargo_auto_github_lib = "1.0.4"
+cargo_auto_encrypt_secret_lib = "1.0.7"
+
+inquire = "0.7.0"
+serde_json = {version= "1.0.114", features=["std"]}
+
+# the version of reqwest must be the same as the version in the library cargo_auto_github_lib
+reqwest = { version = "0.12.3", features = ["blocking", "stream"] }
+
+camino = "1.1.6"
+aes-gcm = "0.10.3"
+ssh-key = { version = "0.6.4", features = [ "rsa", "encryption"] }
+rsa = { version = "0.9.6", features = ["sha2","pem"] }
+secrecy = { version="0.8.0", features=["alloc"]}
+base64ct = {version = "1.6.0", features = ["alloc"] }
+
+tracing = "0.1.40"
+tracing-subscriber = { version = "0.3.18", features = ["env-filter", "std", "fmt", "time"] }
+tracing-appender="0.2.2"
+time = {version="0.3.36", features=["macros","local-offset"]}
+"###,
     });
     vec_file.push(crate::FileItem{
             file_name :"README.md",
@@ -471,8 +1230,8 @@ So I can drink a free beer for your health :-)
     "workbench.colorCustomizations": {
         "titleBar.activeForeground": "#fff",
         "titleBar.inactiveForeground": "#ffffffcc",
-        "titleBar.activeBackground": "#404040",
-        "titleBar.inactiveBackground": "#2d2d2dcc"
+        "titleBar.activeBackground": "#a81c1c",
+        "titleBar.inactiveBackground": "#630b0bcc"
     },
     "spellright.language": [
         "en"
@@ -487,21 +1246,35 @@ So I can drink a free beer for your health :-)
     },
     "rust-analyzer.showUnlinkedFileNotification": false,
     "cSpell.words": [
-        "zdravje"
-        "zcvf",
-        "thiserror",
-        "substack",
-        "struct",
-        "Prost",
-        "Nazdravlje",
-        "CRUSTDE",
-        "bestiadev",
         "Alla",
+        "alloc",
+        "appender",
         "bestia",
-        "deps",
+        "bestiadev",
+        "camino",
+        "CRUSTDE",
+        "decryptor",
+        "encryptor",
         "endregion",
+        "keygen",
+        "Nazdravlje",
+        "new_cli",
+        "octocrab",
+        "passcode",
         "plantuml",
-        "zcvf"
+        "Prost",
+        "reqwest",
+        "rustdevuser",
+        "rustprojects",
+        "serde",
+        "sshadd",
+        "struct",
+        "subsecond",
+        "substack",
+        "thiserror",
+        "zcvf",
+        "zdravje",
+        "zeroize"
     ]
 }"###,
     });

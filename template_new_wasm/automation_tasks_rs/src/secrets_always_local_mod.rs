@@ -578,6 +578,7 @@ pub(crate) mod crate_io_mod {
         }
 
         /// decrypts the secret token in memory
+        #[allow(dead_code)]
         pub fn decrypt_token_in_memory(&self) -> secrecy::SecretString {
             self.encrypted_token.expose_decrypted_secret(&self.session_passcode)
         }
@@ -586,6 +587,7 @@ pub(crate) mod crate_io_mod {
         ///
         /// This function encapsulates the secret crates.io token.
         /// The client can be passed to the library. It will not reveal the secret token.
+        #[allow(dead_code)]
         pub fn publish_to_crates_io(&self) {
             // print command without the token
             println!("{YELLOW}cargo publish --token [REDACTED]{RESET}");

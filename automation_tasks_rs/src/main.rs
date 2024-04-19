@@ -238,7 +238,7 @@ fn copy_files_into_module(){
 
 /// cargo build
 fn task_build() {
-    copy_files_into_module()
+    copy_files_into_module();
     let cargo_toml = cl::CargoToml::read();
     cl::auto_version_increment_semver_or_date();
     cl::run_shell_command_static("cargo fmt").unwrap_or_else(|e| panic!("{e}"));
@@ -246,7 +246,33 @@ fn task_build() {
     println!(
         r#"
     {YELLOW}After `cargo auto build`, run the compiled binary, examples and/or tests{RESET}
-{GREEN}./target/debug/{package_name} argument{RESET}
+    {YELLOW}Check if the template `new_cli` is working. Open a new terminal in VSCode and run:{RESET}
+{GREEN}cd ~/rustprojects{RESET}
+{GREEN}./cargo-auto/target/debug/{package_name} new_cli hello_world;{RESET}
+{GREEN}code hello_world{RESET}
+    {YELLOW}In the new VSCODE window terminal, first change in Cargo.toml/repository from "github_owner" to your github username.{RESET}
+    {YELLOW} Then try the workflow: cargo auto build, cargo auto release, cargo auto doc,... all to the end.{RESET}
+    {YELLOW}If ok, close the VSCode window. Back in the first terminal check the next template:{RESET}
+{GREEN}rm -rf hello_world{RESET}
+
+    {YELLOW}Check if the template `new_wasm` is working. Open a new terminal in VSCode and run:{RESET}
+{GREEN}cd ~/rustprojects{RESET}
+{GREEN}./cargo-auto/target/debug/{package_name} new_wasm hello_world{RESET}
+{GREEN}code hello_world{RESET}
+    {YELLOW}In the new VSCODE window terminal, first change in Cargo.toml/repository from "github_owner" to your github username.{RESET}
+    {YELLOW} Then try the workflow: cargo auto build, cargo auto release, cargo auto doc,... all to the end.{RESET}
+    {YELLOW}If ok, close the VSCode window.{RESET}
+{GREEN}rm -rf hello_world{RESET}
+
+    {YELLOW}Check if the template `new_pwa_wasm` is working. Open a new terminal in VSCode and run:{RESET}
+{GREEN}cd ~/rustprojects{RESET}
+{GREEN}./cargo-auto/target/debug/{package_name} new_pwa_wasm hello_world{RESET}
+{GREEN}code hello_world{RESET}
+    {YELLOW}In the new VSCODE window terminal, first change in Cargo.toml/repository from "github_owner" to your github username.{RESET}
+    {YELLOW} Then try the workflow: cargo auto build, cargo auto release, cargo auto doc,... all to the end.{RESET}
+    {YELLOW}If ok, close the VSCode window.{RESET}
+{GREEN}rm -rf hello_world{RESET}
+
     {YELLOW}if ok then{RESET}
 {GREEN}cargo auto release{RESET}
 "#,
@@ -257,7 +283,7 @@ fn task_build() {
 
 /// cargo build --release
 fn task_release() {
-    copy_files_into_module()
+    copy_files_into_module();
     let cargo_toml = cl::CargoToml::read();
     cl::auto_version_increment_semver_or_date();
     cl::auto_cargo_toml_to_md();
@@ -270,7 +296,34 @@ fn task_release() {
     println!(
         r#"
     {YELLOW}After `cargo auto release`, run the compiled binary, examples and/or tests{RESET}
-{GREEN}./target/release/{package_name} argument{RESET}
+    {YELLOW}Check if the template `new_cli` is working. Open a new terminal in VSCode and run:{RESET}
+{GREEN}cd ~/rustprojects{RESET}
+{GREEN}./cargo-auto/target/release/{package_name} new_cli hello_world;{RESET}
+{GREEN}code hello_world{RESET}
+    {YELLOW}In the new VSCODE window terminal, first change in Cargo.toml/repository from "github_owner" to your github username.{RESET}
+    {YELLOW} Then try the workflow: cargo auto build, cargo auto release, cargo auto doc,... all to the end.{RESET}
+    {YELLOW}If ok, close the VSCode window. Back in the first terminal check the next template:{RESET}
+{GREEN}rm -rf hello_world{RESET}
+
+    {YELLOW}Check if the template `new_wasm` is working. Open a new terminal in VSCode and run:{RESET}
+{GREEN}cd ~/rustprojects{RESET}
+{GREEN}./cargo-auto/target/release/{package_name} new_wasm hello_world{RESET}
+{GREEN}code hello_world{RESET}
+    {YELLOW}In the new VSCODE window terminal, first change in Cargo.toml/repository from "github_owner" to your github username.{RESET}
+    {YELLOW} Then try the workflow: cargo auto build, cargo auto release, cargo auto doc,... all to the end.{RESET}
+    {YELLOW}If ok, close the VSCode window.{RESET}
+{GREEN}rm -rf hello_world{RESET}
+
+    {YELLOW}Check if the template `new_pwa_wasm` is working. Open a new terminal in VSCode and run:{RESET}
+{GREEN}cd ~/rustprojects{RESET}
+{GREEN}./cargo-auto/target/release/{package_name} new_pwa_wasm hello_world{RESET}
+{GREEN}code hello_world{RESET}
+    {YELLOW}In the new VSCODE window terminal, first change in Cargo.toml/repository from "github_owner" to your github username.{RESET}
+    {YELLOW} Then try the workflow: cargo auto build, cargo auto release, cargo auto doc,... all to the end.{RESET}
+
+    {YELLOW}If ok, close the VSCode window.{RESET}
+{GREEN}rm -rf hello_world{RESET}
+
     {YELLOW}if ok then{RESET}
 {GREEN}cargo auto doc{RESET}
 "#,

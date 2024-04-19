@@ -9,8 +9,8 @@ publish = false
 
 [dependencies]# the dependency to crates.io must be set for the GitHub action to succeed.
 cargo_auto_lib = "2.2.1"
-cargo_auto_github_lib = "1.0.2"
-cargo_auto_encrypt_secret_lib = "1.0.5"
+cargo_auto_github_lib = "1.0.4"
+cargo_auto_encrypt_secret_lib = "1.0.7"
 
 inquire = "0.7.0"
 serde_json = {version= "1.0.114", features=["std"]}

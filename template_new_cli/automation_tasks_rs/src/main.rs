@@ -73,7 +73,10 @@ pub fn tracing_init() {
 /// I use panics extensively to stop the execution. I am lazy to implement a super complicated error handling.
 /// I just need to stop the execution on every little bit of error. This utility is for developers. They will understand me.
 /// For errors I print the location. If the message contains "Exiting..." than it is a "not-error exit" and  the location is not important.
+/// unwrap() makes ugly panics. It converts the error message into a debug print. Ugly!
+/// Instead I use the long, but more descriptive: .unwrap_or_else(|e| panic!("{e}"))
 fn panic_set_hook(panic_info: &std::panic::PanicInfo) {
+
     let mut string_message = "".to_string();
     if let Some(message) = panic_info.payload().downcast_ref::<String>() {
         string_message = message.to_owned();

@@ -11,7 +11,14 @@ repository = "https://github.com/github_owner/cargo_auto_template_new_cli"
 # Keyword must be only one word: lowercase letters, hyphens(-) or numbers, less then 35 characters, at most 5 keywords per crate
 keywords = ["maintained", "work-in-progress", "rustlang"]
 categories = ["command-line-interface"]
+# publish as a cargo tool. Only this files.
 publish = false
+include = [
+    "Cargo.toml",
+    "LICENSE",
+    "README.md",
+    "src/*"
+]
 
 [dependencies]
 log = "0.4"
