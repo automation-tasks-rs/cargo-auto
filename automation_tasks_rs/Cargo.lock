@@ -121,7 +121,7 @@ dependencies = [
  "camino",
  "cargo_auto_encrypt_secret_lib",
  "cargo_auto_github_lib",
- "cargo_auto_lib 2.3.8",
+ "cargo_auto_lib",
  "inquire",
  "reqwest",
  "rsa",
@@ -278,7 +278,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "08d5d264a98613301c3a2c21e1bc0634a520af7d4110cb06a2a8e4b74c399b07"
 dependencies = [
  "camino",
- "cargo_auto_lib 2.3.8 (registry+https://github.com/rust-lang/crates.io-index)",
+ "cargo_auto_lib",
  "inquire",
  "json",
  "reqwest",
@@ -287,37 +287,6 @@ dependencies = [
  "tokio",
  "tokio-util",
  "url",
-]
-
-[[package]]
-name = "cargo_auto_lib"
-version = "2.3.8"
-dependencies = [
- "anyhow",
- "base64ct",
- "camino",
- "cargo_toml",
- "chrono",
- "data-encoding",
- "deflate",
- "filetime",
- "glob",
- "home",
- "inquire",
- "lazy_static",
- "radix64",
- "reader_for_microxml",
- "regex",
- "reqwest",
- "ring",
- "secrecy",
- "semver",
- "serde",
- "serde_derive",
- "serde_json",
- "sha2",
- "thiserror",
- "urlencoding",
 ]
 
 [[package]]
