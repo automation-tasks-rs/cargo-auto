@@ -1,0 +1,51 @@
+name: cleanup caches on main
+
+# Configure Manual Trigger with workflow_dispatch
+on:
+  workflow_dispatch:
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    permissions:
+      # `actions:write` permission is required to delete caches
+      #   See also: https://docs.github.com/en/rest/actions/cache?apiVersion=2022-11-28#delete-a-github-actions-cache-for-a-repository-using-a-cache-id
+      actions: write
+      contents: read
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: Cleanup
+        run: |
+          gh extension install actions/gh-actions-cache
+          
+          REPO=${{ github.repository }}
+          printf "$REPO\n"
+          BRANCH=main
+          printf "$BRANCH\n"
+
+          # loop until the list is empty, because it deletes only 30 per page
+          has_items=true
+          while [ "$has_items" = true ]
+          do
+            printf "\033[0;33m     Fetching list of cache key\n\033[0m\n"
+            printf "\033[0;32m gh actions-cache list -R $REPO -B $BRANCH | cut -f 1 \n\033[0m\n"
+            cache_keys=$(gh actions-cache list -R $REPO -B $BRANCH | cut -f 1 )
+            # printf "$cache_keys\n"
+            if [ -z "$cache_keys" ]; then 
+              printf "\033[0;35m    gh actions-cache list returned nothing.\n\033[0m\n"
+              has_items=false
+            fi
+            ## Setting this to not fail the workflow while deleting cache keys. 
+            set +e
+            for cacheKey in $cache_keys
+            do
+                # printf "\033[0;32m gh actions-cache delete $cacheKey -R $REPO -B $BRANCH --confirm\n\033[0m\n"
+                gh actions-cache delete $cacheKey -R $REPO -B $BRANCH --confirm
+            done
+          done          
+          printf "\033[0;33m    Done\n\033[0m\n"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
