@@ -55,8 +55,8 @@ pub fn tracing_init() {
     // Unset the environment variable RUST_LOG
     // unset RUST_LOG
     let filter = tracing_subscriber::EnvFilter::from_default_env()
-        .add_directive("hyper_util=error".parse().unwrap())
-        .add_directive("reqwest=error".parse().unwrap());
+        .add_directive("hyper_util=error".parse().unwrap_or_else(|e| panic!("{e}")))
+        .add_directive("reqwest=error".parse().unwrap_or_else(|e| panic!("{e}")));
 
     tracing_subscriber::fmt()
         .with_file(true)
@@ -247,9 +247,11 @@ fn task_build() {
     println!(
         r#"
     {YELLOW}After `cargo auto build`, run the compiled binary, examples and/or tests{RESET}
+{GREEN}./target/debug/{package_name} arg_1{RESET}
     {YELLOW}if ok then{RESET}
 {GREEN}cargo auto release{RESET}
-"#
+"#,
+        package_name = cargo_toml.package_name(),
     );
     print_examples_cmd();
 }
@@ -326,7 +328,7 @@ fn task_doc() {
     .run().unwrap_or_else(|e| panic!("{e}"));
 
     // pretty html
-    cl::auto_doc_tidy_html().unwrap();
+    cl::auto_doc_tidy_html().unwrap_or_else(|e| panic!("{e}"));
     cl::run_shell_command_static("cargo fmt").unwrap_or_else(|e| panic!("{e}"));
     // message to help user with next move
     println!(
@@ -387,7 +389,6 @@ fn task_commit_and_push(arg_2: Option<String>) {
         .arg("{message_sanitized_for_double_quote}", &message).unwrap_or_else(|e| panic!("{e}"))
         .run().unwrap_or_else(|e| panic!("{e}"));
 
-        println!("push");
         cl::run_shell_command_static("git push").unwrap_or_else(|e| panic!("{e}"));
     }
 
