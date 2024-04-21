@@ -240,7 +240,7 @@ fn copy_files_into_module(){
 /// cargo build
 fn task_build() {
     copy_files_into_module();
-    let _cargo_toml = cl::CargoToml::read();
+    let cargo_toml = cl::CargoToml::read();
     cl::auto_version_increment_semver_or_date();
     cl::run_shell_command_static("cargo fmt").unwrap_or_else(|e| panic!("{e}"));
     cl::run_shell_command_static("cargo build").unwrap_or_else(|e| panic!("{e}"));

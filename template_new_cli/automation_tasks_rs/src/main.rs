@@ -55,8 +55,8 @@ pub fn tracing_init() {
     // Unset the environment variable RUST_LOG
     // unset RUST_LOG
     let filter = tracing_subscriber::EnvFilter::from_default_env()
-        .add_directive("hyper_util=error".parse().unwrap())
-        .add_directive("reqwest=error".parse().unwrap());
+        .add_directive("hyper_util=error".parse().unwrap_or_else(|e| panic!("{e}")))
+        .add_directive("reqwest=error".parse().unwrap_or_else(|e| panic!("{e}")));
 
     tracing_subscriber::fmt()
         .with_file(true)
@@ -173,12 +173,14 @@ fn print_help() {
 
 /// all example commands in one place
 fn print_examples_cmd() {
+/*
     println!(
         r#"
     {YELLOW}run examples:{RESET}
 {GREEN}cargo run --example plantuml1{RESET}
 "#
     );
+*/
 }
 
 /// sub-command for bash auto-completion of `cargo auto` using the crate `dev_bestia_cargo_completion`
@@ -275,7 +277,7 @@ fn task_doc() {
     .run().unwrap_or_else(|e| panic!("{e}"));
 
     // pretty html
-    cl::auto_doc_tidy_html().unwrap();
+    cl::auto_doc_tidy_html().unwrap_or_else(|e| panic!("{e}"));
     cl::run_shell_command_static("cargo fmt").unwrap_or_else(|e| panic!("{e}"));
     // message to help user with next move
     println!(

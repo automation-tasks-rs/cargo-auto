@@ -54,8 +54,8 @@ pub fn tracing_init() {
     // Unset the environment variable RUST_LOG
     // unset RUST_LOG
     let filter = tracing_subscriber::EnvFilter::from_default_env()
-        .add_directive("hyper_util=error".parse().unwrap())
-        .add_directive("reqwest=error".parse().unwrap());
+        .add_directive("hyper_util=error".parse().unwrap_or_else(|e| panic!("{e}")))
+        .add_directive("reqwest=error".parse().unwrap_or_else(|e| panic!("{e}")));
 
     tracing_subscriber::fmt()
         .with_file(true)
@@ -171,9 +171,12 @@ fn print_help() {
 /// all example commands in one place
 fn print_examples_cmd() {
 /*
-    println!(r#"{YELLOW}run examples:{RESET}
-{GREEN}cargo run --example example1{RESET}
-"#);
+    println!(
+        r#"
+    {YELLOW}run examples:{RESET}
+{GREEN}cargo run --example plantuml1{RESET}
+"#
+    );
 */
 }
 
@@ -282,7 +285,7 @@ fn task_doc() {
     .run().unwrap_or_else(|e| panic!("{e}"));
 
     // pretty html
-    cl::auto_doc_tidy_html().unwrap();
+    cl::auto_doc_tidy_html().unwrap_or_else(|e| panic!("{e}"));
     cl::run_shell_command_static("cargo fmt").unwrap_or_else(|e| panic!("{e}"));
     // message to help user with next move
     println!(
@@ -458,16 +461,16 @@ fn task_github_new_release() {
     // compress files tar.gz
     let tar_name = format!("{repo_name}-{tag_name_version}-x86_64-unknown-linux-gnu.tar.gz");
 
-    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"tar -zcvf "{tar_name_sanitized_for_double_quote}" "target/release/{repo_name_sanitized_for_double_quote}" "#)
-    .arg("{tar_name_sanitized_for_double_quote}", &tar_name)
-    .arg("{repo_name_sanitized_for_double_quote}", &repo_name)
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"tar -zcvf "{tar_name_sanitized_for_double_quote}" "target/release/{repo_name_sanitized_for_double_quote}" "#).unwrap_or_else(|e| panic!("{e}"))
+    .arg("{tar_name_sanitized_for_double_quote}", &tar_name).unwrap_or_else(|e| panic!("{e}"))
+    .arg("{repo_name_sanitized_for_double_quote}", &repo_name).unwrap_or_else(|e| panic!("{e}"))
     .run().unwrap_or_else(|e| panic!("{e}"));
 
     // upload asset
     cgl::github_api_upload_asset_to_release(&github_client, &owner, &repo_name, &release_id, &tar_name);
 
-    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"rm "{tar_name_sanitized_for_double_quote}" "#)
-    .arg("{tar_name_sanitized_for_double_quote}", &tar_name)
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"rm "{tar_name_sanitized_for_double_quote}" "#).unwrap_or_else(|e| panic!("{e}"))
+    .arg("{tar_name_sanitized_for_double_quote}", &tar_name).unwrap_or_else(|e| panic!("{e}"))
     .run().unwrap_or_else(|e| panic!("{e}"));
 
     println!(
