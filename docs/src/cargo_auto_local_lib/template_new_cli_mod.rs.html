@@ -2243,6 +2243,20 @@
 <a href="#2189" id="2189">2189</a>
 <a href="#2190" id="2190">2190</a>
 <a href="#2191" id="2191">2191</a>
+<a href="#2192" id="2192">2192</a>
+<a href="#2193" id="2193">2193</a>
+<a href="#2194" id="2194">2194</a>
+<a href="#2195" id="2195">2195</a>
+<a href="#2196" id="2196">2196</a>
+<a href="#2197" id="2197">2197</a>
+<a href="#2198" id="2198">2198</a>
+<a href="#2199" id="2199">2199</a>
+<a href="#2200" id="2200">2200</a>
+<a href="#2201" id="2201">2201</a>
+<a href="#2202" id="2202">2202</a>
+<a href="#2203" id="2203">2203</a>
+<a href="#2204" id="2204">2204</a>
+<a href="#2205" id="2205">2205</a>
 </pre>
         </div>
         <pre class="rust"><code><span class="comment">// template_new_cli_mod.rs
@@ -2352,6 +2366,7 @@ Cargo.lock
 
 # not needed in commits, but also not a problem if they are committed
 /.file_hashes.json
+/.old_metadata.json
 "###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem{
@@ -3218,6 +3233,7 @@ pub(crate) mod github_mod {
         }
 
         /// decrypts the secret token in memory
+        #[allow(dead_code)]
         pub fn decrypt_token_in_memory(&amp;self) -&gt; secrecy::SecretString {
             self.encrypted_token.expose_decrypted_secret(&amp;self.session_passcode)
         }
@@ -3409,6 +3425,7 @@ pub(crate) mod crate_io_mod {
         }
 
         /// decrypts the secret token in memory
+        #[allow(dead_code)]
         pub fn decrypt_token_in_memory(&amp;self) -&gt; secrecy::SecretString {
             self.encrypted_token.expose_decrypted_secret(&amp;self.session_passcode)
         }
@@ -3417,6 +3434,7 @@ pub(crate) mod crate_io_mod {
         ///
         /// This function encapsulates the secret crates.io token.
         /// The client can be passed to the library. It will not reveal the secret token.
+        #[allow(dead_code)]
         pub fn publish_to_crates_io(&amp;self) {
             // print command without the token
             println!("{YELLOW}cargo publish --token [REDACTED]{RESET}");
@@ -3637,7 +3655,7 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //! # cargo-auto  
 //!
 //! **Automation tasks coded in Rust language for the workflow of Rust projects**  
-//! ***version: 2024.422.132 date: 2024-04-22 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
+//! ***version: 2024.422.214 date: 2024-04-22 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
 //!
 //!  ![maintained](https://img.shields.io/badge/maintained-green)
 //!  ![ready-for-use](https://img.shields.io/badge/ready_for_use-green)
@@ -3657,11 +3675,11 @@ fn upper_greet_name(greet_name: &amp;str) -&gt; anyhow::Result&lt;()&gt; {
 //!  [![Newest docs](https://img.shields.io/badge/newest_docs-blue.svg)](https://automation-tasks-rs.github.io/cargo-auto/cargo_auto/index.html)
 //!  ![cargo-auto](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-3141-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-1950-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-3145-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-1203-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-704-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-10898-orange.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-10949-orange.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //!
 //! Hashtags: #maintained #ready-for-use #rustlang #automation #workflow  
 //! My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).  
@@ -4418,17 +4436,27 @@ fn integration_test_02_error_check() {
     "rust-analyzer.showUnlinkedFileNotification": false,
     "cSpell.words": [
         "Alla",
+        "alloc",
+        "appender",
         "bestia",
         "bestiadev",
+        "camino",
         "CRUSTDE",
+        "Decryptor",
+        "Encryptor",
         "endregion",
+        "keygen",
         "Nazdravlje",
+        "passcode",
         "plantuml",
         "Prost",
+        "reqwest",
         "rustdevuser",
         "rustlang",
         "rustprojects",
+        "serde",
         "struct",
+        "subsecond",
         "substack",
         "thiserror",
         "zcvf",

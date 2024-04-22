@@ -1351,6 +1351,10 @@
 <a href="#1297" id="1297">1297</a>
 <a href="#1298" id="1298">1298</a>
 <a href="#1299" id="1299">1299</a>
+<a href="#1300" id="1300">1300</a>
+<a href="#1301" id="1301">1301</a>
+<a href="#1302" id="1302">1302</a>
+<a href="#1303" id="1303">1303</a>
 </pre>
         </div>
         <pre class="rust"><code><span class="comment">// template_new_auto_mod.rs
@@ -1437,6 +1441,7 @@ Cargo.lock
 
 # not needed in commits, but also not a problem if they are committed
 /.file_hashes.json
+/.old_metadata.json
 "###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem{
@@ -2303,6 +2308,7 @@ pub(crate) mod github_mod {
         }
 
         /// decrypts the secret token in memory
+        #[allow(dead_code)]
         pub fn decrypt_token_in_memory(&amp;self) -&gt; secrecy::SecretString {
             self.encrypted_token.expose_decrypted_secret(&amp;self.session_passcode)
         }
@@ -2494,6 +2500,7 @@ pub(crate) mod crate_io_mod {
         }
 
         /// decrypts the secret token in memory
+        #[allow(dead_code)]
         pub fn decrypt_token_in_memory(&amp;self) -&gt; secrecy::SecretString {
             self.encrypted_token.expose_decrypted_secret(&amp;self.session_passcode)
         }
@@ -2502,6 +2509,7 @@ pub(crate) mod crate_io_mod {
         ///
         /// This function encapsulates the secret crates.io token.
         /// The client can be passed to the library. It will not reveal the secret token.
+        #[allow(dead_code)]
         pub fn publish_to_crates_io(&amp;self) {
             // print command without the token
             println!("{YELLOW}cargo publish --token [REDACTED]{RESET}");
