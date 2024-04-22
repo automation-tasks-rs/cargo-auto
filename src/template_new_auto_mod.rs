@@ -783,18 +783,7 @@ pub(crate) mod ssh_mod {
                 )
             }
 
-            let identity_private_file_path_expanded = cargo_auto_encrypt_secret_lib::file_path_home_expand(identity_private_file_path);
-            if !camino::Utf8Path::new(&identity_private_file_path_expanded).exists() {
-                eprintln!("{RED}Identity file {identity_private_file_path_expanded} that contains the SSH private key does not exist! {RESET}");
-                eprintln!("    {YELLOW}Create the SSH key manually in bash with this command:{RESET}");
-                if identity_private_file_path_expanded.as_str().contains("github_api") {
-                    eprintln!(r#"{GREEN}ssh-keygen -t ed25519 -f \"{identity_private_file_path_expanded}\" -C \"github api token\"{RESET}"#);
-                } else if identity_private_file_path_expanded.as_str().contains("github_api") {
-                    eprintln!(r#"{GREEN}ssh-keygen -t ed25519 -f \"{identity_private_file_path_expanded}\" -C \"crates io token\"{RESET}"#);
-                }
-                eprintln!(" ");
-                panic!("{RED}Error: File {identity_private_file_path_expanded} does not exist! {RESET}");
-            }
+            let identity_private_file_path_expanded = expand_path_check_private_key_exists(identity_private_file_path);
 
             let fingerprint_from_file = cargo_auto_encrypt_secret_lib::get_fingerprint_from_file(&identity_private_file_path_expanded);
 
@@ -828,6 +817,24 @@ pub(crate) mod ssh_mod {
                 }
             }
         }
+    }
+    /// Expand path and check if identity file exists
+    ///
+    /// Inform the user how to generate identity file.
+    pub fn expand_path_check_private_key_exists(identity_private_file_path: &camino::Utf8Path) -> camino::Utf8PathBuf {
+        let identity_private_file_path_expanded = cargo_auto_encrypt_secret_lib::file_path_home_expand(identity_private_file_path);
+        if !camino::Utf8Path::new(&identity_private_file_path_expanded).exists() {
+            eprintln!("{RED}Identity file {identity_private_file_path_expanded} that contains the SSH private key does not exist! {RESET}");
+            eprintln!("    {YELLOW}Create the SSH key manually in bash with this command:{RESET}");
+            if identity_private_file_path_expanded.as_str().contains("github_api") {
+                eprintln!(r#"{GREEN}ssh-keygen -t ed25519 -f "{identity_private_file_path_expanded}" -C "github api token"{RESET}"#);
+            } else if identity_private_file_path_expanded.as_str().contains("crates_io") {
+                eprintln!(r#"{GREEN}ssh-keygen -t ed25519 -f "{identity_private_file_path_expanded}" -C "crates io token"{RESET}"#);
+            }
+            eprintln!(" ");
+            panic!("{RED}Error: File {identity_private_file_path_expanded} does not exist! {RESET}");
+        }
+        identity_private_file_path_expanded
     }
 }
 
@@ -912,7 +919,9 @@ pub(crate) mod github_mod {
             let encrypted_string_file_path = camino::Utf8Path::new("~/.ssh/github_api_token_encrypted.txt");
             let encrypted_string_file_path_expanded = cargo_auto_encrypt_secret_lib::file_path_home_expand(encrypted_string_file_path);
 
-            let identity_file_path = camino::Utf8Path::new("~/.ssh/github_api_token_ssh_1");
+            let identity_private_file_path = camino::Utf8Path::new("~/.ssh/github_api_token_ssh_1");
+            let _identity_private_file_path_expanded = crate::secrets_always_local_mod::ssh_mod::expand_path_check_private_key_exists(identity_private_file_path);
+
             if !encrypted_string_file_path_expanded.exists() {
                 // ask interactive
                 println!("    {BLUE}Do you want to store the GitHub API token encrypted with an SSH key? (y/n){RESET}");
@@ -924,7 +933,7 @@ pub(crate) mod github_mod {
                     // get the passphrase and token interactively
                     let mut ssh_context = super::ssh_mod::SshContext::new();
                     // encrypt and save the encrypted token
-                    cargo_auto_encrypt_secret_lib::encrypt_with_ssh_interactive_save_file(&mut ssh_context, identity_file_path, encrypted_string_file_path);
+                    cargo_auto_encrypt_secret_lib::encrypt_with_ssh_interactive_save_file(&mut ssh_context, identity_private_file_path, encrypted_string_file_path);
                     // read the token and decrypt, return GitHubClient
                     read_token_and_decrypt_return_github_client(ssh_context, encrypted_string_file_path)
                 }
@@ -1100,7 +1109,10 @@ pub(crate) mod crate_io_mod {
             let encrypted_string_file_path = camino::Utf8Path::new("~/.ssh/crates_io_token_encrypted.txt");
             let encrypted_string_file_path_expanded = cargo_auto_encrypt_secret_lib::file_path_home_expand(encrypted_string_file_path);
 
-            let identity_file_path = camino::Utf8Path::new("~/.ssh/crates_io_token_ssh_1");
+            let identity_private_file_path = camino::Utf8Path::new("~/.ssh/crates_io_token_ssh_1");
+            
+            let _identity_private_file_path_expanded = crate::secrets_always_local_mod::ssh_mod::expand_path_check_private_key_exists(identity_private_file_path);
+
             if !encrypted_string_file_path_expanded.exists() {
                 // ask interactive
                 println!("    {BLUE}Do you want to store the crates.io token encrypted with an SSH key? (y/n){RESET}");
@@ -1112,7 +1124,7 @@ pub(crate) mod crate_io_mod {
                     // get the passphrase and token interactively
                     let mut ssh_context = super::ssh_mod::SshContext::new();
                     // encrypt and save the encrypted token
-                    cargo_auto_encrypt_secret_lib::encrypt_with_ssh_interactive_save_file(&mut ssh_context, identity_file_path, encrypted_string_file_path);
+                    cargo_auto_encrypt_secret_lib::encrypt_with_ssh_interactive_save_file(&mut ssh_context, identity_private_file_path, encrypted_string_file_path);
                     // read the token and decrypt, return CratesIoClient
                     read_token_and_decrypt_return_crate_io_client(ssh_context, encrypted_string_file_path)
                 }

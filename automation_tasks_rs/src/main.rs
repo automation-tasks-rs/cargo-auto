@@ -277,7 +277,7 @@ fn task_release() {
 
     {YELLOW}1. Check if the template `new_cli` is working. Open a new terminal in VSCode and run:{RESET}
 {GREEN}cd ~/rustprojects{RESET}
-{GREEN}./cargo-auto/target/release/{package_name} new_cli hello_world bestia.dev;{RESET}
+{GREEN}./cargo-auto/target/release/{package_name} new_cli hello_world bestia-dev;{RESET}
 {GREEN}code hello_world{RESET}
     {YELLOW}In the new VSCODE window terminal, first change in Cargo.toml/repository from "github_owner" to your github username.{RESET}
     {YELLOW} Then try the workflow: cargo auto build, cargo auto release, cargo auto doc,... all to the end.{RESET}
@@ -286,7 +286,7 @@ fn task_release() {
 
     {YELLOW}2. Check if the template `new_wasm` is working. Open a new terminal in VSCode and run:{RESET}
 {GREEN}cd ~/rustprojects{RESET}
-{GREEN}./cargo-auto/target/release/{package_name} new_wasm hello_world bestia.dev luciano_bestia;{RESET}
+{GREEN}./cargo-auto/target/release/{package_name} new_wasm hello_world bestia-dev bestia.dev luciano_bestia;{RESET}
 {GREEN}code hello_world{RESET}
     {YELLOW}In the new VSCODE window terminal, first change in Cargo.toml/repository from "github_owner" to your github username.{RESET}
     {YELLOW} Then try the workflow: cargo auto build, cargo auto release, cargo auto doc,... all to the end.{RESET}
