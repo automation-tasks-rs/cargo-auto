@@ -10,7 +10,7 @@
 [//]: # (auto_cargo_toml_to_md end)
 
   [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/github_owner/cargo_auto_template_new_cli/blob/main/LICENSE)
-  [![Rust](https://github.com/github_owner/cargo_auto_template_new_cli/workflows/RustAction/badge.svg)](https://github.com/github_owner/cargo_auto_template_new_cli/)
+  [![Rust](https://github.com/github_owner/cargo_auto_template_new_cli/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/github_owner/cargo_auto_template_new_cli/)
 
 [//]: # (auto_lines_of_code start)
 
