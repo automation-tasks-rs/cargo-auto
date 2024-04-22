@@ -400,7 +400,7 @@ r#"ssh "{server_username}@{web_server_domain}" "/var/www/scripts/{package_name}/
     println!(
         r#"
     {YELLOW}After `cargo auto publish_to_web`check {RESET}
-{GREEN}https://web_server/{package_name}{RESET}
+{GREEN}https://web_server_domain/{package_name}{RESET}
     {YELLOW}    {YELLOW}If all is fine, run{RESET}
 {GREEN}cargo auto github_new_release{RESET}
 "#,
