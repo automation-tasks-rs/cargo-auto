@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css">
   <link rel="stylesheet" href="../../static.files/rustdoc-5bc39a1768837dd0.css">
   <meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="cargo_auto_local_lib" data-themes=""
-  data-resource-suffix="" data-rustdoc-version="1.77.1 (7cf61ebde 2024-03-27)" data-channel="1.77.1" data-search-js="search-dd67cee4cfa65049.js"
+  data-resource-suffix="" data-rustdoc-version="1.77.2 (25ef9e3d8 2024-04-09)" data-channel="1.77.2" data-search-js="search-dd67cee4cfa65049.js"
   data-settings-js="settings-4313503d2e1961c2.js">
   <script src="../../static.files/storage-4c98445ec4002617.js"></script>
   <script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script>
@@ -1336,6 +1336,21 @@
 <a href="#1282" id="1282">1282</a>
 <a href="#1283" id="1283">1283</a>
 <a href="#1284" id="1284">1284</a>
+<a href="#1285" id="1285">1285</a>
+<a href="#1286" id="1286">1286</a>
+<a href="#1287" id="1287">1287</a>
+<a href="#1288" id="1288">1288</a>
+<a href="#1289" id="1289">1289</a>
+<a href="#1290" id="1290">1290</a>
+<a href="#1291" id="1291">1291</a>
+<a href="#1292" id="1292">1292</a>
+<a href="#1293" id="1293">1293</a>
+<a href="#1294" id="1294">1294</a>
+<a href="#1295" id="1295">1295</a>
+<a href="#1296" id="1296">1296</a>
+<a href="#1297" id="1297">1297</a>
+<a href="#1298" id="1298">1298</a>
+<a href="#1299" id="1299">1299</a>
 </pre>
         </div>
         <pre class="rust"><code><span class="comment">// template_new_auto_mod.rs
@@ -1409,7 +1424,8 @@
     <span class="comment">// region: files copied into strings by automation tasks
     </span>vec_file.push(<span class="kw">crate</span>::FileItem {
         file_name: <span class="string">"rustfmt.toml"</span>,
-        file_content: <span class="string">r###"max_width = 200"###</span>,
+        file_content: <span class="string">r###"max_width = 200
+"###</span>,
     });
     vec_file.push(<span class="kw">crate</span>::FileItem {
         file_name: <span class="string">".gitignore"</span>,
@@ -1482,8 +1498,8 @@ pub fn tracing_init() {
     // Unset the environment variable RUST_LOG
     // unset RUST_LOG
     let filter = tracing_subscriber::EnvFilter::from_default_env()
-        .add_directive("hyper_util=error".parse().unwrap())
-        .add_directive("reqwest=error".parse().unwrap());
+        .add_directive("hyper_util=error".parse().unwrap_or_else(|e| panic!("{e}")))
+        .add_directive("reqwest=error".parse().unwrap_or_else(|e| panic!("{e}")));
 
     tracing_subscriber::fmt()
         .with_file(true)
@@ -1600,12 +1616,14 @@ fn print_help() {
 
 /// all example commands in one place
 fn print_examples_cmd() {
+/*
     println!(
         r#"
     {YELLOW}run examples:{RESET}
 {GREEN}cargo run --example plantuml1{RESET}
 "#
     );
+*/
 }
 
 /// sub-command for bash auto-completion of `cargo auto` using the crate `dev_bestia_cargo_completion`
@@ -1702,7 +1720,7 @@ fn task_doc() {
     .run().unwrap_or_else(|e| panic!("{e}"));
 
     // pretty html
-    cl::auto_doc_tidy_html().unwrap();
+    cl::auto_doc_tidy_html().unwrap_or_else(|e| panic!("{e}"));
     cl::run_shell_command_static("cargo fmt").unwrap_or_else(|e| panic!("{e}"));
     // message to help user with next move
     println!(
@@ -2122,18 +2140,7 @@ pub(crate) mod ssh_mod {
                 )
             }
 
-            let identity_private_file_path_expanded = cargo_auto_encrypt_secret_lib::file_path_home_expand(identity_private_file_path);
-            if !camino::Utf8Path::new(&amp;identity_private_file_path_expanded).exists() {
-                eprintln!("{RED}Identity file {identity_private_file_path_expanded} that contains the SSH private key does not exist! {RESET}");
-                eprintln!("    {YELLOW}Create the SSH key manually in bash with this command:{RESET}");
-                if identity_private_file_path_expanded.as_str().contains("github_api") {
-                    eprintln!(r#"{GREEN}ssh-keygen -t ed25519 -f \"{identity_private_file_path_expanded}\" -C \"github api token\"{RESET}"#);
-                } else if identity_private_file_path_expanded.as_str().contains("github_api") {
-                    eprintln!(r#"{GREEN}ssh-keygen -t ed25519 -f \"{identity_private_file_path_expanded}\" -C \"crates io token\"{RESET}"#);
-                }
-                eprintln!(" ");
-                panic!("{RED}Error: File {identity_private_file_path_expanded} does not exist! {RESET}");
-            }
+            let identity_private_file_path_expanded = expand_path_check_private_key_exists(identity_private_file_path);
 
             let fingerprint_from_file = cargo_auto_encrypt_secret_lib::get_fingerprint_from_file(&amp;identity_private_file_path_expanded);
 
@@ -2167,6 +2174,24 @@ pub(crate) mod ssh_mod {
                 }
             }
         }
+    }
+    /// Expand path and check if identity file exists
+    ///
+    /// Inform the user how to generate identity file.
+    pub fn expand_path_check_private_key_exists(identity_private_file_path: &amp;camino::Utf8Path) -&gt; camino::Utf8PathBuf {
+        let identity_private_file_path_expanded = cargo_auto_encrypt_secret_lib::file_path_home_expand(identity_private_file_path);
+        if !camino::Utf8Path::new(&amp;identity_private_file_path_expanded).exists() {
+            eprintln!("{RED}Identity file {identity_private_file_path_expanded} that contains the SSH private key does not exist! {RESET}");
+            eprintln!("    {YELLOW}Create the SSH key manually in bash with this command:{RESET}");
+            if identity_private_file_path_expanded.as_str().contains("github_api") {
+                eprintln!(r#"{GREEN}ssh-keygen -t ed25519 -f "{identity_private_file_path_expanded}" -C "github api token"{RESET}"#);
+            } else if identity_private_file_path_expanded.as_str().contains("crates_io") {
+                eprintln!(r#"{GREEN}ssh-keygen -t ed25519 -f "{identity_private_file_path_expanded}" -C "crates io token"{RESET}"#);
+            }
+            eprintln!(" ");
+            panic!("{RED}Error: File {identity_private_file_path_expanded} does not exist! {RESET}");
+        }
+        identity_private_file_path_expanded
     }
 }
 
@@ -2251,7 +2276,9 @@ pub(crate) mod github_mod {
             let encrypted_string_file_path = camino::Utf8Path::new("~/.ssh/github_api_token_encrypted.txt");
             let encrypted_string_file_path_expanded = cargo_auto_encrypt_secret_lib::file_path_home_expand(encrypted_string_file_path);
 
-            let identity_file_path = camino::Utf8Path::new("~/.ssh/github_api_token_ssh_1");
+            let identity_private_file_path = camino::Utf8Path::new("~/.ssh/github_api_token_ssh_1");
+            let _identity_private_file_path_expanded = crate::secrets_always_local_mod::ssh_mod::expand_path_check_private_key_exists(identity_private_file_path);
+
             if !encrypted_string_file_path_expanded.exists() {
                 // ask interactive
                 println!("    {BLUE}Do you want to store the GitHub API token encrypted with an SSH key? (y/n){RESET}");
@@ -2263,7 +2290,7 @@ pub(crate) mod github_mod {
                     // get the passphrase and token interactively
                     let mut ssh_context = super::ssh_mod::SshContext::new();
                     // encrypt and save the encrypted token
-                    cargo_auto_encrypt_secret_lib::encrypt_with_ssh_interactive_save_file(&amp;mut ssh_context, identity_file_path, encrypted_string_file_path);
+                    cargo_auto_encrypt_secret_lib::encrypt_with_ssh_interactive_save_file(&amp;mut ssh_context, identity_private_file_path, encrypted_string_file_path);
                     // read the token and decrypt, return GitHubClient
                     read_token_and_decrypt_return_github_client(ssh_context, encrypted_string_file_path)
                 }
@@ -2439,7 +2466,10 @@ pub(crate) mod crate_io_mod {
             let encrypted_string_file_path = camino::Utf8Path::new("~/.ssh/crates_io_token_encrypted.txt");
             let encrypted_string_file_path_expanded = cargo_auto_encrypt_secret_lib::file_path_home_expand(encrypted_string_file_path);
 
-            let identity_file_path = camino::Utf8Path::new("~/.ssh/crates_io_token_ssh_1");
+            let identity_private_file_path = camino::Utf8Path::new("~/.ssh/crates_io_token_ssh_1");
+            
+            let _identity_private_file_path_expanded = crate::secrets_always_local_mod::ssh_mod::expand_path_check_private_key_exists(identity_private_file_path);
+
             if !encrypted_string_file_path_expanded.exists() {
                 // ask interactive
                 println!("    {BLUE}Do you want to store the crates.io token encrypted with an SSH key? (y/n){RESET}");
@@ -2451,7 +2481,7 @@ pub(crate) mod crate_io_mod {
                     // get the passphrase and token interactively
                     let mut ssh_context = super::ssh_mod::SshContext::new();
                     // encrypt and save the encrypted token
-                    cargo_auto_encrypt_secret_lib::encrypt_with_ssh_interactive_save_file(&amp;mut ssh_context, identity_file_path, encrypted_string_file_path);
+                    cargo_auto_encrypt_secret_lib::encrypt_with_ssh_interactive_save_file(&amp;mut ssh_context, identity_private_file_path, encrypted_string_file_path);
                     // read the token and decrypt, return CratesIoClient
                     read_token_and_decrypt_return_crate_io_client(ssh_context, encrypted_string_file_path)
                 }

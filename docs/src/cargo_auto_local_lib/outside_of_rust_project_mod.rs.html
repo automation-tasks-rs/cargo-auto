@@ -14,7 +14,7 @@
   <link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css">
   <link rel="stylesheet" href="../../static.files/rustdoc-5bc39a1768837dd0.css">
   <meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="cargo_auto_local_lib" data-themes=""
-  data-resource-suffix="" data-rustdoc-version="1.77.1 (7cf61ebde 2024-03-27)" data-channel="1.77.1" data-search-js="search-dd67cee4cfa65049.js"
+  data-resource-suffix="" data-rustdoc-version="1.77.2 (25ef9e3d8 2024-04-09)" data-channel="1.77.2" data-search-js="search-dd67cee4cfa65049.js"
   data-settings-js="settings-4313503d2e1961c2.js">
   <script src="../../static.files/storage-4c98445ec4002617.js"></script>
   <script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script>
@@ -155,6 +155,15 @@
 <a href="#101" id="101">101</a>
 <a href="#102" id="102">102</a>
 <a href="#103" id="103">103</a>
+<a href="#104" id="104">104</a>
+<a href="#105" id="105">105</a>
+<a href="#106" id="106">106</a>
+<a href="#107" id="107">107</a>
+<a href="#108" id="108">108</a>
+<a href="#109" id="109">109</a>
+<a href="#110" id="110">110</a>
+<a href="#111" id="111">111</a>
+<a href="#112" id="112">112</a>
 </pre>
         </div>
         <pre class="rust"><code><span class="comment">// outside_of_rust_project_mod.rs
@@ -201,9 +210,9 @@
     This program automates your custom tasks when developing a Rust project.{RESET}
 
     {YELLOW}Outside of a Rust project, cargo-auto can create a new Rust project:{RESET}
-{GREEN}cargo auto new_cli project_name{RESET}{YELLOW} - a simple yet complete CLI application, better then `cargo new`{RESET}
-{GREEN}cargo auto new_wasm project_name{RESET}{YELLOW} - a complete wasm application that works inside the browser{RESET}
-{GREEN}cargo auto new_pwa_wasm project_name{RESET}{YELLOW} - On first call, it will create the `pwa.json5` and `icon512x512.png` files.{RESET}
+{GREEN}cargo auto new_cli project_name github_owner{RESET}{YELLOW} - a simple yet complete CLI application, better then `cargo new`{RESET}
+{GREEN}cargo auto new_wasm project_name github_owner web_server_domain server_username{RESET}{YELLOW} - a complete wasm application that works inside the browser{RESET}
+{GREEN}cargo auto new_pwa_wasm {RESET}{YELLOW} - On first call, it will create the `pwa.json5` and `icon512x512.png` files.{RESET}
     {YELLOW}Modify them with the required data for your pwa project and then repeat the same command.{RESET}
 
     {YELLOW}© 2024 bestia.dev  MIT License github.com/automation-tasks-rs/cargo-auto{RESET}
@@ -217,14 +226,23 @@
     <span class="kw">if </span>task == <span class="string">"completion" </span>{
         completion();
     } <span class="kw">else if </span>task == <span class="string">"new_cli" </span>{
-        <span class="kw">let </span>arg_2 = args.next();
-        <span class="kw">crate</span>::template_new_cli_mod::new_cli(arg_2);
+        <span class="comment">// project_name
+        </span><span class="kw">let </span>arg_2 = args.next();
+        <span class="comment">// github_owner
+        </span><span class="kw">let </span>arg_3 = args.next();
+        <span class="kw">crate</span>::template_new_cli_mod::new_cli(arg_2, arg_3);
     } <span class="kw">else if </span>task == <span class="string">"new_wasm" </span>{
-        <span class="kw">let </span>arg_2 = args.next();
-        <span class="kw">crate</span>::template_new_wasm_mod::new_wasm(arg_2);
+        <span class="comment">// project_name
+        </span><span class="kw">let </span>arg_2 = args.next();
+        <span class="comment">// github_owner
+        </span><span class="kw">let </span>arg_3 = args.next();
+        <span class="comment">// web server URL
+        </span><span class="kw">let </span>arg_4 = args.next();
+        <span class="comment">// web server username
+        </span><span class="kw">let </span>arg_5 = args.next();
+        <span class="kw">crate</span>::template_new_wasm_mod::new_wasm(arg_2, arg_3, arg_4, arg_5);
     } <span class="kw">else if </span>task == <span class="string">"new_pwa_wasm" </span>{
-        <span class="kw">let </span>arg_2 = args.next();
-        <span class="kw">crate</span>::template_new_pwa_wasm_mod::new_pwa_wasm(arg_2);
+        <span class="kw">crate</span>::template_new_pwa_wasm_mod::new_pwa_wasm();
     } <span class="kw">else </span>{
         print_help_from_cargo_auto();
     }

@@ -1,3 +1,3 @@
 (function() {var implementors = {
-"cargo_auto_local_lib":[["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.77.1/core/fmt/trait.Debug.html\" title=\"trait core::fmt::Debug\">Debug</a> for <a class=\"struct\" href=\"cargo_auto_local_lib/template_new_pwa_wasm_mod/struct.PwaJson5.html\" title=\"struct cargo_auto_local_lib::template_new_pwa_wasm_mod::PwaJson5\">PwaJson5</a>"]]
+"cargo_auto_local_lib":[["impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.77.2/core/fmt/trait.Debug.html\" title=\"trait core::fmt::Debug\">Debug</a> for <a class=\"struct\" href=\"cargo_auto_local_lib/template_new_pwa_wasm_mod/struct.PwaJson5.html\" title=\"struct cargo_auto_local_lib::template_new_pwa_wasm_mod::PwaJson5\">PwaJson5</a>"]]
 };if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
