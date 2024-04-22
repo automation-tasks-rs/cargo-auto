@@ -5,19 +5,19 @@
 [//]: # (auto_cargo_toml_to_md start)
 
 **template for a minimal wasm project for browser**  
-***version: 0.0.1 date: 2024-02-21 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm)***  
+***version: 0.0.1 date: 2024-02-21 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/github_owner/cargo_auto_template_new_wasm)***  
 
 [//]: # (auto_cargo_toml_to_md end)
 
-  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm/blob/master/LICENSE)
+  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/github_owner/cargo_auto_template_new_wasm/blob/master/LICENSE)
 
 [//]: # (auto_lines_of_code start)
 
-[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-264-green.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm/)
-[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-28-blue.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm/)
-[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-69-purple.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm/)
-[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm/)
-[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-16-orange.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm/)
+[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-264-green.svg)](https://github.com/github_owner/cargo_auto_template_new_wasm/)
+[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-28-blue.svg)](https://github.com/github_owner/cargo_auto_template_new_wasm/)
+[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-69-purple.svg)](https://github.com/github_owner/cargo_auto_template_new_wasm/)
+[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/github_owner/cargo_auto_template_new_wasm/)
+[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-16-orange.svg)](https://github.com/github_owner/cargo_auto_template_new_wasm/)
 
 [//]: # (auto_lines_of_code end)
 

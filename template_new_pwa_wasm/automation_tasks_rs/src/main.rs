@@ -367,40 +367,40 @@ fn task_publish_to_web() {
 
     // rsync to copy to server over ssh into a temporary installation folder
     cl::ShellCommandLimitedDoubleQuotesSanitizer::new(
-r#"rsync -e ssh -a --info=progress2 --delete-after "web_server_folder/{package_name}/" "{project_author}@{project_homepage}:/var/www/transfer_folder/{package_name}" "#).unwrap_or_else(|e| panic!("{e}"))
+r#"rsync -e ssh -a --info=progress2 --delete-after "web_server_folder/{package_name}/" "{server_username}@{web_server_domain}:/var/www/transfer_folder/{package_name}" "#).unwrap_or_else(|e| panic!("{e}"))
     .arg("{package_name}", &cargo_toml.package_name()).unwrap_or_else(|e| panic!("{e}"))
-    .arg("{project_author}", "luciano_bestia").unwrap_or_else(|e| panic!("{e}"))
-    .arg("{project_homepage}", "bestia.dev").unwrap_or_else(|e| panic!("{e}"))    
+    .arg("{server_username}", "server_username").unwrap_or_else(|e| panic!("{e}"))
+    .arg("{web_server_domain}", "web_server_domain").unwrap_or_else(|e| panic!("{e}"))    
     .run().unwrap_or_else(|e| panic!("{e}"));
 
     // rsync to copy to server over ssh the installation script
     cl::ShellCommandLimitedDoubleQuotesSanitizer::new(
-r#"rsync -e ssh -a --info=progress2 --delete-after "publish_script/hello_world_publish.sh" "{project_author}@{project_homepage}:/var/www/scripts/{package_name}/" "#).unwrap_or_else(|e| panic!("{e}"))
+r#"rsync -e ssh -a --info=progress2 --delete-after "publish_script/hello_world_publish.sh" "{server_username}@{web_server_domain}:/var/www/scripts/{package_name}/" "#).unwrap_or_else(|e| panic!("{e}"))
     .arg("{package_name}", &cargo_toml.package_name()).unwrap_or_else(|e| panic!("{e}"))
-    .arg("{project_author}", "luciano_bestia").unwrap_or_else(|e| panic!("{e}"))
-    .arg("{project_homepage}", "bestia.dev").unwrap_or_else(|e| panic!("{e}"))    
+    .arg("{server_username}", "server_username").unwrap_or_else(|e| panic!("{e}"))
+    .arg("{web_server_domain}", "web_server_domain").unwrap_or_else(|e| panic!("{e}"))    
     .run().unwrap_or_else(|e| panic!("{e}"));
 
     //make the bash script executable
     cl::ShellCommandLimitedDoubleQuotesSanitizer::new(
-r#"ssh "{project_author}@{project_homepage}" chmod +x  "/var/www/scripts/{package_name}/hello_world_publish.sh" "#).unwrap_or_else(|e| panic!("{e}"))
+r#"ssh "{server_username}@{web_server_domain}" chmod +x  "/var/www/scripts/{package_name}/hello_world_publish.sh" "#).unwrap_or_else(|e| panic!("{e}"))
     .arg("{package_name}", &cargo_toml.package_name()).unwrap_or_else(|e| panic!("{e}"))
-    .arg("{project_author}", "luciano_bestia").unwrap_or_else(|e| panic!("{e}"))
-    .arg("{project_homepage}", "bestia.dev").unwrap_or_else(|e| panic!("{e}"))    
+    .arg("{server_username}", "server_username").unwrap_or_else(|e| panic!("{e}"))
+    .arg("{web_server_domain}", "web_server_domain").unwrap_or_else(|e| panic!("{e}"))    
     .run().unwrap_or_else(|e| panic!("{e}"));
 
     // run installation script over ssh on the server to copy from the installation folder to production folder
     cl::ShellCommandLimitedDoubleQuotesSanitizer::new(
-r#"ssh "{project_author}@{project_homepage}" "/var/www/scripts/{package_name}/hello_world_publish.sh" "#).unwrap_or_else(|e| panic!("{e}"))
+r#"ssh "{server_username}@{web_server_domain}" "/var/www/scripts/{package_name}/hello_world_publish.sh" "#).unwrap_or_else(|e| panic!("{e}"))
     .arg("{package_name}", &cargo_toml.package_name()).unwrap_or_else(|e| panic!("{e}"))
-    .arg("{project_author}", "luciano_bestia").unwrap_or_else(|e| panic!("{e}"))
-    .arg("{project_homepage}", "bestia.dev").unwrap_or_else(|e| panic!("{e}"))    
+    .arg("{server_username}", "server_username").unwrap_or_else(|e| panic!("{e}"))
+    .arg("{web_server_domain}", "web_server_domain").unwrap_or_else(|e| panic!("{e}"))    
     .run().unwrap_or_else(|e| panic!("{e}"));
 
     println!(
         r#"
     {YELLOW}After `cargo auto publish_to_web`check {RESET}
-{GREEN}https://bestia.dev/{package_name}{RESET}
+{GREEN}https://web_server_domain/{package_name}{RESET}
     {YELLOW}    {YELLOW}If all is fine, run{RESET}
 {GREEN}cargo auto github_new_release{RESET}
 "#,

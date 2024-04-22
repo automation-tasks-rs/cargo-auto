@@ -6,7 +6,7 @@ The library releases will be published on crates.io.
 The cargo-auto automation task will use the content of the section `## Unreleased` to create
 the GitHub release consistently with this file.  
 The ongoing changes that are not released, are visible in the git commits and github pull requests.  
-The TODO section is part of the [README.md](https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm).  
+The TODO section is part of the [README.md](https://github.com/github_owner/cargo_auto_template_new_wasm).  
 
 ## Unreleased
 

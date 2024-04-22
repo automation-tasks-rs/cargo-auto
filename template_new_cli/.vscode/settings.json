@@ -18,21 +18,21 @@
     },
     "rust-analyzer.showUnlinkedFileNotification": false,
     "cSpell.words": [
-        "zdravje",
-        "zcvf",
-        "thiserror",
-        "substack",
-        "struct",
-        "Prost",
-        "Nazdravlje",
-        "CRUSTDE",
-        "bestiadev",
         "Alla",
         "bestia",
+        "bestiadev",
+        "CRUSTDE",
         "endregion",
+        "Nazdravlje",
         "plantuml",
+        "Prost",
         "rustdevuser",
+        "rustlang",
         "rustprojects",
-        "zcvf"
+        "struct",
+        "substack",
+        "thiserror",
+        "zcvf",
+        "zdravje"
     ]
 }

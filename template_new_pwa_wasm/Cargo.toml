@@ -1,8 +1,8 @@
 [package]
 name = "rust_project_name"
 version = "0.0.1"
-authors = ["project_author"]
-homepage = "project_homepage"
+authors = ["web_server_domain"]
+homepage = "https://web_server_domain"
 edition = "2021"
 description = "pwa_description"
 repository = "project_repository"

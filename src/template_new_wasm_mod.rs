@@ -7,30 +7,49 @@
 
 use crate::{GREEN, RED, RESET, YELLOW};
 
-pub fn new_wasm(arg_2: Option<String>) {
-    match arg_2 {
-        None => println!("{RED}Error: Project name argument is missing: `cargo auto new_wasm project_name`{RESET}"),
-        Some(project_name) => {
-            copy_to_files(&project_name);
-            println!("");
-            println!("    {YELLOW}The command `crate auto new_wasm` generated the directory `{project_name}`{RESET}");
-            println!("    {YELLOW}You can open this new Rust project `{project_name}` in a new Rust editor.{RESET}",);
-            println!("    {YELLOW}For example VSCode:{RESET}");
-            println!("{GREEN}code {project_name}{RESET}");
-            println!("    {YELLOW}Then build with:{RESET}");
-            println!("{GREEN}cargo auto build{RESET}");
-            println!("    {YELLOW}and follow the detailed instructions.{RESET}");
-        }
+pub fn new_wasm(arg_2: Option<String>, arg_3: Option<String>, arg_4: Option<String>, arg_5: Option<String>) {
+    if arg_2.is_none() {
+        println!("{RED}Error: Project name argument is missing: `cargo auto new_wasm project_name github_owner web_server server_username`{RESET}");
+        return;
     }
+    if arg_3.is_none() {
+        println!("{RED}Error: Github owner argument is missing: `cargo auto new_wasm project_name github_owner web_server server_username`{RESET}");
+        return;
+    }
+    if arg_4.is_none() {
+        println!("{RED}Error: Web server argument is missing: `cargo auto new_wasm project_name github_owner web_server server_username`{RESET}");
+        return;
+    }
+    if arg_5.is_none() {
+        println!("{RED}Error: Server username argument is missing: `cargo auto new_wasm project_name github_owner web_server server_username`{RESET}");
+        return;
+    }
+    let project_name = arg_2.unwrap();
+    let github_owner = arg_3.unwrap();
+    let web_server_domain = arg_4.unwrap();
+    let server_username = arg_5.unwrap();
+
+    copy_to_files(&project_name, &github_owner, &web_server_domain, &server_username);
+    println!("");
+    println!("    {YELLOW}The command `crate auto new_wasm` generated the directory `{project_name}`{RESET}");
+    println!("    {YELLOW}You can open this new Rust project `{project_name}` in a new Rust editor.{RESET}",);
+    println!("    {YELLOW}For example VSCode:{RESET}");
+    println!("{GREEN}code {project_name}{RESET}");
+    println!("    {YELLOW}Then build with:{RESET}");
+    println!("{GREEN}cargo auto build{RESET}");
+    println!("    {YELLOW}and follow the detailed instructions.{RESET}");
 }
 
-pub fn copy_to_files(project_name: &str) {
+pub fn copy_to_files(project_name: &str, github_owner: &str, web_server_domain: &str, server_username: &str) {
     let folder_path = std::path::Path::new(project_name);
     std::fs::create_dir_all(folder_path).unwrap();
     for file_item in get_vec_file() {
         // rename/replace the project_name
         let file_name = file_item.file_name.replace("cargo_auto_template_new_wasm", project_name);
         let file_content = file_item.file_content.replace("cargo_auto_template_new_wasm", project_name);
+        let file_content = file_content.replace("/github_owner/", &format!("/{github_owner}/"));
+        let file_content = file_content.replace("web_server_domain", web_server_domain);
+        let file_content = file_content.replace("server_username", server_username);
 
         // create directory if needed
         std::fs::create_dir_all(folder_path.join(&file_name).parent().unwrap()).unwrap();
@@ -74,8 +93,8 @@ printf "\033[0;33m    RUN ON WEB SERVER: Bash script to publish web site \033[0m
 printf "\n"
 printf "\033[0;33m    First the development files are copied over SSH to the folder 'transfer_folder'. \033[0m\n"
 printf "\033[0;33m    Then copy the files from 'transfer_folder' to the web server folder. \033[0m\n"
-printf "\033[0;33m rsync -avz --delete-after /var/www/transfer_folder/hello_world /var/www/bestia.dev/hello_world \033[0m\n"
-rsync -avz --delete-after rsync -avz --delete-after /var/www/transfer_folder/hello_world/ /var/www/bestia.dev/hello_world/
+printf "\033[0;33m rsync -avz --delete-after /var/www/transfer_folder/cargo_auto_template_new_wasm /var/www/web_server/cargo_auto_template_new_wasm \033[0m\n"
+rsync -avz --delete-after rsync -avz --delete-after /var/www/transfer_folder/cargo_auto_template_new_wasm/ /var/www/web_server/cargo_auto_template_new_wasm/
 
 printf "\033[0;33m    Completed. \033[0m\n"
 printf "\n"
@@ -99,7 +118,6 @@ printf "\n"
 
 # not needed in commits, but also not a problem if they are committed
 /.automation_tasks_rs_file_hashes.json
-/.auto_version_from_date.json
 "###,
     });
     vec_file.push(crate::FileItem {
@@ -176,8 +194,8 @@ pub fn tracing_init() {
     // Unset the environment variable RUST_LOG
     // unset RUST_LOG
     let filter = tracing_subscriber::EnvFilter::from_default_env()
-        .add_directive("hyper_util=error".parse().unwrap())
-        .add_directive("reqwest=error".parse().unwrap());
+        .add_directive("hyper_util=error".parse().unwrap_or_else(|e| panic!("{e}")))
+        .add_directive("reqwest=error".parse().unwrap_or_else(|e| panic!("{e}")));
 
     tracing_subscriber::fmt()
         .with_file(true)
@@ -293,9 +311,12 @@ fn print_help() {
 /// all example commands in one place
 fn print_examples_cmd() {
 /*
-    println!(r#"{YELLOW}run examples:{RESET}
-{GREEN}cargo run --example example1{RESET}
-"#);
+    println!(
+        r#"
+    {YELLOW}run examples:{RESET}
+{GREEN}cargo run --example plantuml1{RESET}
+"#
+    );
 */
 }
 
@@ -404,7 +425,7 @@ fn task_doc() {
     .run().unwrap_or_else(|e| panic!("{e}"));
 
     // pretty html
-    cl::auto_doc_tidy_html().unwrap();
+    cl::auto_doc_tidy_html().unwrap_or_else(|e| panic!("{e}"));
     cl::run_shell_command_static("cargo fmt").unwrap_or_else(|e| panic!("{e}"));
     // message to help user with next move
     println!(
@@ -486,40 +507,40 @@ fn task_publish_to_web() {
 
     // rsync to copy to server over ssh into a temporary installation folder
     cl::ShellCommandLimitedDoubleQuotesSanitizer::new(
-r#"rsync -e ssh -a --info=progress2 --delete-after "web_server_folder/{package_name}/" "{project_author}@{project_homepage}:/var/www/transfer_folder/{package_name}" "#).unwrap_or_else(|e| panic!("{e}"))
+r#"rsync -e ssh -a --info=progress2 --delete-after "web_server_folder/{package_name}/" "{server_username}@{web_server_domain}:/var/www/transfer_folder/{package_name}" "#).unwrap_or_else(|e| panic!("{e}"))
     .arg("{package_name}", &cargo_toml.package_name()).unwrap_or_else(|e| panic!("{e}"))
-    .arg("{project_author}", "luciano_bestia").unwrap_or_else(|e| panic!("{e}"))
-    .arg("{project_homepage}", "bestia.dev").unwrap_or_else(|e| panic!("{e}"))    
+    .arg("{server_username}", "server_username").unwrap_or_else(|e| panic!("{e}"))
+    .arg("{web_server_domain}", "web_server_domain").unwrap_or_else(|e| panic!("{e}"))    
     .run().unwrap_or_else(|e| panic!("{e}"));
 
     // rsync to copy to server over ssh the installation script
     cl::ShellCommandLimitedDoubleQuotesSanitizer::new(
-r#"rsync -e ssh -a --info=progress2 --delete-after "publish_script/hello_world_publish.sh" "{project_author}@{project_homepage}:/var/www/scripts/{package_name}/" "#).unwrap_or_else(|e| panic!("{e}"))
+r#"rsync -e ssh -a --info=progress2 --delete-after "publish_script/{package_name}_publish.sh" "{server_username}@{web_server_domain}:/var/www/scripts/{package_name}/" "#).unwrap_or_else(|e| panic!("{e}"))
     .arg("{package_name}", &cargo_toml.package_name()).unwrap_or_else(|e| panic!("{e}"))
-    .arg("{project_author}", "luciano_bestia").unwrap_or_else(|e| panic!("{e}"))
-    .arg("{project_homepage}", "bestia.dev").unwrap_or_else(|e| panic!("{e}"))    
+    .arg("{server_username}", "server_username").unwrap_or_else(|e| panic!("{e}"))
+    .arg("{web_server_domain}", "web_server_domain").unwrap_or_else(|e| panic!("{e}"))    
     .run().unwrap_or_else(|e| panic!("{e}"));
 
     //make the bash script executable
     cl::ShellCommandLimitedDoubleQuotesSanitizer::new(
-r#"ssh "{project_author}@{project_homepage}" chmod +x  "/var/www/scripts/{package_name}/hello_world_publish.sh" "#).unwrap_or_else(|e| panic!("{e}"))
+r#"ssh "{server_username}@{web_server_domain}" chmod +x  "/var/www/scripts/{package_name}/{package_name}_publish.sh" "#).unwrap_or_else(|e| panic!("{e}"))
     .arg("{package_name}", &cargo_toml.package_name()).unwrap_or_else(|e| panic!("{e}"))
-    .arg("{project_author}", "luciano_bestia").unwrap_or_else(|e| panic!("{e}"))
-    .arg("{project_homepage}", "bestia.dev").unwrap_or_else(|e| panic!("{e}"))    
+    .arg("{server_username}", "server_username").unwrap_or_else(|e| panic!("{e}"))
+    .arg("{web_server_domain}", "web_server_domain").unwrap_or_else(|e| panic!("{e}"))    
     .run().unwrap_or_else(|e| panic!("{e}"));
 
     // run installation script over ssh on the server to copy from the installation folder to production folder
     cl::ShellCommandLimitedDoubleQuotesSanitizer::new(
-r#"ssh "{project_author}@{project_homepage}" "/var/www/scripts/{package_name}/hello_world_publish.sh" "#).unwrap_or_else(|e| panic!("{e}"))
+r#"ssh "{server_username}@{web_server_domain}" "/var/www/scripts/{package_name}/{package_name}_publish.sh" "#).unwrap_or_else(|e| panic!("{e}"))
     .arg("{package_name}", &cargo_toml.package_name()).unwrap_or_else(|e| panic!("{e}"))
-    .arg("{project_author}", "luciano_bestia").unwrap_or_else(|e| panic!("{e}"))
-    .arg("{project_homepage}", "bestia.dev").unwrap_or_else(|e| panic!("{e}"))    
+    .arg("{server_username}", "server_username").unwrap_or_else(|e| panic!("{e}"))
+    .arg("{web_server_domain}", "web_server_domain").unwrap_or_else(|e| panic!("{e}"))    
     .run().unwrap_or_else(|e| panic!("{e}"));
 
     println!(
         r#"
     {YELLOW}After `cargo auto publish_to_web`check {RESET}
-{GREEN}https://bestia.dev/{package_name}{RESET}
+{GREEN}https://web_server/{package_name}{RESET}
     {YELLOW}    {YELLOW}If all is fine, run{RESET}
 {GREEN}cargo auto github_new_release{RESET}
 "#,
@@ -534,7 +555,7 @@ fn task_github_new_release() {
     // take care of tags
     let tag_name_version = cl::git_tag_sync_check_create_push(&version);
 
-    let owner = cargo_toml.github_owner().unwrap();
+    let github_owner = cargo_toml.github_owner().unwrap();
     let repo_name = cargo_toml.package_name();
     let now_date = cl::now_utc_date_iso();
     let release_name = format!("Version {} ({})", &version, now_date);
@@ -545,7 +566,7 @@ fn task_github_new_release() {
     let body_md_text = cl::body_text_from_releases_md().unwrap();
 
     let github_client = github_mod::GitHubClient::new_with_stored_token();
-    let json_value = github_client.send_to_github_api(cgl::github_api_create_new_release(&owner, &repo_name, &tag_name_version, &release_name, branch, &body_md_text));
+    let json_value = github_client.send_to_github_api(cgl::github_api_create_new_release(&github_owner, &repo_name, &tag_name_version, &release_name, branch, &body_md_text));
     // early exit on error
     if let Some(error_message) = json_value.get("message") {
         eprintln!("{RED}{error_message}{RESET}");
@@ -580,16 +601,16 @@ fn task_github_new_release() {
     // compress files tar.gz
     let tar_name = format!("{repo_name}-{tag_name_version}-x86_64-unknown-linux-gnu.tar.gz");
 
-    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"tar -zcvf "{tar_name_sanitized_for_double_quote}" "target/release/{repo_name_sanitized_for_double_quote}" "#)
-    .arg("{tar_name_sanitized_for_double_quote}", &tar_name)
-    .arg("{repo_name_sanitized_for_double_quote}", &repo_name)
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"tar -zcvf "{tar_name_sanitized_for_double_quote}" "target/release/{repo_name_sanitized_for_double_quote}" "#).unwrap_or_else(|e| panic!("{e}"))
+    .arg("{tar_name_sanitized_for_double_quote}", &tar_name).unwrap_or_else(|e| panic!("{e}"))
+    .arg("{repo_name_sanitized_for_double_quote}", &repo_name).unwrap_or_else(|e| panic!("{e}"))
     .run().unwrap_or_else(|e| panic!("{e}"));
 
     // upload asset
-    cgl::github_api_upload_asset_to_release(&github_client, &owner, &repo_name, &release_id, &tar_name);
+    cgl::github_api_upload_asset_to_release(&github_client, &github_owner, &repo_name, &release_id, &tar_name);
 
-    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"rm "{tar_name_sanitized_for_double_quote}" "#)
-    .arg("{tar_name_sanitized_for_double_quote}", &tar_name)
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"rm "{tar_name_sanitized_for_double_quote}" "#).unwrap_or_else(|e| panic!("{e}"))
+    .arg("{tar_name_sanitized_for_double_quote}", &tar_name).unwrap_or_else(|e| panic!("{e}"))
     .run().unwrap_or_else(|e| panic!("{e}"));
 
     println!(
@@ -603,7 +624,7 @@ fn task_github_new_release() {
 */
     println!(
         r#"
-{GREEN}https://github.com/{owner}/{repo_name}/releases{RESET}
+{GREEN}https://github.com/{github_owner}/{repo_name}/releases{RESET}
     "#
     );
 }
@@ -1319,7 +1340,7 @@ The library releases will be published on crates.io.
 The cargo-auto automation task will use the content of the section `## Unreleased` to create
 the GitHub release consistently with this file.  
 The ongoing changes that are not released, are visible in the git commits and github pull requests.  
-The TODO section is part of the [README.md](https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm).  
+The TODO section is part of the [README.md](https://github.com/github_owner/cargo_auto_template_new_wasm).  
 
 ## Unreleased
 
@@ -1705,255 +1726,7 @@ pub const RESET: &str = "\x1b[0m";
 // So the structure of the project modules can be similar to a binary CLI executable.
 
 // region: auto_md_to_doc_comments include README.md A //!
-//! # cargo-auto  
-//!
-//! **Automation tasks coded in Rust language for the workflow of Rust projects**  
-//! ***version: 2024.419.1824 date: 2024-04-19 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
-//!
-//!  ![maintained](https://img.shields.io/badge/maintained-green)
-//!  ![ready-for-use](https://img.shields.io/badge/ready_for_use-green)
-//!  ![rustlang](https://img.shields.io/badge/rustlang-orange)
-//!  ![automation](https://img.shields.io/badge/automation-orange)
-//!  ![workflow](https://img.shields.io/badge/workflow-orange)
-//!
-//!  ![logo](https://raw.githubusercontent.com/automation-tasks-rs/cargo-auto/main/images/logo/logo_cargo_auto.svg)
-//!  cargo-auto is part of the [automation_tasks_rs](https://github.com/automation-tasks-rs) project
-//!
-//!  [![crates.io](https://img.shields.io/crates/v/cargo-auto.svg)](https://crates.io/crates/cargo-auto)
-//!  [![Documentation](https://docs.rs/cargo-auto/badge.svg)](https://docs.rs/cargo-auto/)
-//!  [![crev reviews](https://web.crev.dev/rust-reviews/badge/crev_count/cargo-auto.svg)](https://web.crev.dev/rust-reviews/crate/cargo-auto/)
-//!  [![Lib.rs](https://img.shields.io/badge/Lib.rs-rust-orange.svg)](https://lib.rs/crates/cargo-auto/)  
-//!  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/blob/master/LICENSE)
-//!  [![Rust](https://github.com/automation-tasks-rs/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//!  [![Newest docs](https://img.shields.io/badge/newest_docs-blue.svg)](https://automation-tasks-rs.github.io/cargo-auto/cargo_auto/index.html)
-//!  ![cargo-auto](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
-//!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-3106-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-1191-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-699-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-10704-orange.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//!
-//! Hashtags: #maintained #ready-for-use #rustlang #automation #workflow  
-//! My projects on GitHub are more like a tutorial than a finished product: [bestia-dev tutorials](https://github.com/bestia-dev/tutorials_rust_wasm).  
-//! I recommend using the [CRUSTDE - Containerized Rust Development Environment](https://github.com/CRUSTDE-ContainerizedRustDevEnvrustde_cnt_img_pod) to write Rust projects on Linux, isolated from your system.  
-//!
-//! ## Try it
-//!
-//! First, we will use `cargo-auto` to create a new empty CLI Rust project similar to `cargo new`, but with a more complete project structure.  
-//!
-//!  ```bash
-//! cargo install cargo-auto
-//! cargo auto new_cli my_hello_project
-//! cd my_hello_project
-//! cargo auto
-//! # it lists all the prepared automation tasks
-//! # try a few
-//! cargo auto build
-//! cargo auto release
-//! cargo auto doc
-//! cargo auto test
-//! ```
-//!
-//! We can also add `automation tasks` to an existing Rust project.
-//! Inside your Rust project directory (the one with Cargo.toml) run:  
-//!
-//! ```bash
-//! cargo auto new_auto
-//! cargo auto
-//! # it lists all the prepared automation tasks
-//! # try to build
-//! cargo auto build
-//! ```
-//!
-//! Congratulations! You are already using `cargo-auto`. Simple as that.  
-//! Now you can modify the tasks to your needs. It is all Rust language.  
-//!
-//! ## Motivation
-//!
-//! Cargo is a great tool for building Rust projects. It has all the basics: `cargo build`, `cargo build --release`, `cargo fmt`, `cargo test`, `cargo doc`,...  
-//! But sometimes we need to do more things like copying some files, publishing to FTP, or entering long commands. These repetitive tasks must be automated.  
-//! Task automation makes work easier and faster, and simplifies the workflow while improving the consistency and accuracy of workflows.  
-//! This is also sometimes referred to as "workflow automation."  
-//! There are many different build systems and task runners there: `make`, `cmake`, `shell scripts`, `cargo-xtask`, `cargo-make`, `cargo-task`, `cargo-script`, `cargo-run-script`, `runner`, `python scripts`, `powershell scripts`, `cmd prompt scripts`, ...  
-//! Sadly there is no standard in the Rust community for now.  
-//! I want something similar to [build.rs](https://doc.rust-lang.org/cargo/reference/build-scripts.html), so I can write my "tasks" in pure Rust I don't want to learn another meta language with weird syntax and difficulty to debug. So I will make something really simple, easy, rusty, and extensible.  
-//!
-//! ## cargo auto subcommand
-//!
-//! The command `cargo install cargo-auto` will add a new subcommand to cargo:
-//!
-//! ```bash
-//! cargo auto
-//! ```
-//!
-//! This binary is super simple. It has only 1 trivial dependency: `lazy_static`.  
-//! The binary only reads the CLI arguments and runs the `automation_tasks_rs` binary with them. If needed it will compile `automation_tasks_rs` first.  
-//! The code-flow of the source code of `cargo-auto` is simple, fully commented, and straightforward to audit.  
-//! The source code is on [GitHub](https://github.com/automation-tasks-rs/cargo-auto) with MIT open-source licensing.  
-//!
-//! ## bash auto-completion
-//!
-//! With the help of the crate [dev_bestia_cargo_completion](https://crates.io/crates/dev_bestia_cargo_completion), the commands `cargo` and `cargo auto` get bash auto-completion. Try it!  
-//!
-//! ## cargo auto new_cli
-//!
-//! I like very much that Rust has the command `cargo new project_name`. It creates a super simple Rust Hello project that can be built and run immediately. But this example is too simple. It lacks the basic file structures of a serious CLI program.  
-//! I composed an opinionated template for a Rust CLI project. It is easy to run:
-//!
-//! ```bash
-//! cargo auto new_cli project_name
-//! # then
-//! cd project_name
-//! cargo auto build
-//! # then follow detailed instructions
-//! ```
-//!
-//! ## cargo auto new_wasm
-//!
-//! I composed an opinionated template for a simple Rust WASM project for a browser. It is very similar to the new_cli template but for WASM.  
-//! It is easy to run:
-//!
-//! ```bash
-//! cargo auto new_wasm project_name
-//! # then
-//! cd project_name
-//! cargo auto build
-//! # then follow detailed instructions
-//! ```
-//!
-//! ## cargo auto new_pwa_wasm
-//!
-//! I composed an opinionated template for a simple Rust PWA-WASM project for a browser. It is very similar to the new_cli template but for WASM. It adds the PWA standard functionality to work as an offline app.  
-//! The template needs the title, name, long name, and description inside a `pwa.json5` file and the `icon512x512.png` file for the icons.  
-//! It is easy to run:
-//!
-//! ```bash
-//! cargo auto new_pwa_wasm
-//! # on first run it will just create the `pwa.json5` and `icon512x512.png` files
-//! # modify these files with data for your new app and then repeat
-//! cargo auto new_pwa_wasm
-//! # then
-//! cd project_name
-//! cargo auto build
-//! # then follow detailed instructions
-//! ```
-//!
-//! ## scripting with rust
-//!
-//! Rust is a compiled language. It is not really a scripting or interpreted language. But the compilation of small projects is really fast and can be ignored. Subsequent calls will use the already-built binary so the speed will be even faster.  
-//! This tool `cargo-auto` is meant for Rust projects, so it means that all the Rust infrastructure is already in place.  
-//!
-//! ## automation_tasks_rs Rust sub-project
-//!
-//! The command `cargo auto new_auto` will create a new Rust sub-project`automation_tasks_rs` inside your `Rust project`. It should not interfere with the main Rust project. This directory will be added to git commits and pushed to remote repositories as part of the main project. It has its own `.gitignore` to avoid committing to its target directory.  
-//! The `automation_tasks_rs` helper project contains user-defined tasks in Rust code. Your tasks. This helper project should be opened in a new editor starting from the `automation_tasks_rs` directory. It does not share dependencies with the main project. It is completely separate and independent.  
-//! You can edit it and add your dependencies and Rust code. No limits. Freedom of expression.  
-//! This is now your code, your tasks, and your helper Rust project!  
-//! Because only you know what you want to automate and how to do it.  
-//! Never write secrets, passwords, passphrases, or tokens inside your Rust code. Because then it is pushed to GitHub and the whole world can read it in the next second!
-//! Basic example (most of the useful functions are already there):  
-//!
-//! ```rust ignore
-//! /// match arguments and call tasks functions
-//! fn match_arguments_and_call_tasks(mut args: std::env::Args){
-//!     // the first argument is the user defined task: (no argument for help), build, release,...
-//!     let arg_1 = args.next();
-//!     match arg_1 {
-//!         None => print_help(),
-//!         Some(task) => {            
-//!             println!("Running auto task: {}", &task);
-//!             if &task == "build"{
-//!                 task_build();
-//!             } else if &task == "release" {
-//!                 task_release();
-//!             } else if &task == "doc" {
-//!                 task_doc();
-//!             } else {
-//!                 println!("Task {} is unknown.", &task);
-//!                 print_help();
-//!             }
-//!         }
-//!     }
-//! }
-//!
-//! /// write a comprehensible help for user defined tasks
-//! fn print_help() {
-//!     println!(r#"
-//!     User defined tasks in automation_tasks_rs:
-//! cargo auto build - builds the crate in debug mode
-//! cargo auto release - builds the crate in release mode
-//! cargo auto docs - builds the docs
-//! "#);
-//! }
-//!
-//! // region: tasks
-//!
-//! /// cargo build
-//! fn task_build() {
-//!     run_shell_command("cargo fmt");
-//!     run_shell_command("cargo build");
-//! }
-//!
-//! /// cargo build --release
-//! fn task_release() {
-//!     run_shell_command("cargo fmt");
-//!     run_shell_command("cargo build --release");
-//! }
-//!
-//! /// cargo doc, then copies to /docs/ folder, because this is a github standard folder
-//! fn task_doc() {
-//!     run_shell_command("cargo doc --no-deps --document-private-items");
-//!     // copy target/doc into docs/ because it is github standard
-//!     run_shell_command("rsync -a --info=progress2 --delete-after target/doc/ docs/");
-//!     // Create simple index.html file in docs directory
-//!     run_shell_command(&format!(
-//!         "printf \"<meta http-equiv=\\\"refresh\\\" content=\\\"0; url={}/index.html\\\" />\\n\" > docs/index.html",
-//!         cargo_toml.package_name().replace("-","_")
-//!     ));
-//!     run_shell_command("cargo fmt");
-//! }
-//!
-//! // endregion: tasks
-//!
-//! ```
-//!
-//! ## more complex tasks
-//!
-//! You can write more complex tasks in Rust language.  
-//! For example in this project I use automation to create GitHub Releases: <https://github.com/automation-tasks-rs/dropbox_backup_to_external_disk>  
-//! Here is a pretty complex workspace with more sub-projects:  
-//! <https://github.com/automation-tasks-rs/cargo_crev_reviews_workspace>  
-//! There is no end to your imagination. If you write something that looks like it can help other developers, please share it with me and I will add it here.
-//!
-//! ## Development details
-//!
-//! Read the development details in a separate md file:  
-//! [DEVELOPMENT.md](https://github.com/automation-tasks-rs/cargo-auto/blob/main/DEVELOPMENT.md)
-//!
-//! ## Releases changelog
-//!
-//! Read the changelog in a separate md file:  
-//! [RELEASES.md](https://github.com/automation-tasks-rs/cargo-auto/blob/main/RELEASES.md)
-//!
-//! ## TODO
-//!
-//! Nothing big in the near future.
-//!
-//! ## Open-source and free as a beer
-//!
-//! My open-source projects are free as a beer (MIT license).  
-//! I just love programming.  
-//! But I need also to drink. If you find my projects and tutorials helpful, please buy me a beer by donating to my [PayPal](https://paypal.me/LucianoBestia).  
-//! You know the price of a beer in your local bar ;-)  
-//! So I can drink a free beer for your health :-)  
-//! [Na zdravje!](https://translate.google.com/?hl=en&sl=sl&tl=en&text=Na%20zdravje&op=translate) [Alla salute!](https://dictionary.cambridge.org/dictionary/italian-english/alla-salute) [Prost!](https://dictionary.cambridge.org/dictionary/german-english/prost) [Nazdravlje!](https://matadornetwork.com/nights/how-to-say-cheers-in-50-languages/) 🍻
-//!
-//! [//bestia.dev](https://bestia.dev)  
-//! [//github.com/automation-tasks-rs](https://github.com/automation-tasks-rs)  
-//! [//bestiadev.substack.com](https://bestiadev.substack.com)  
-//! [//youtube.com/@bestia-dev-tutorials](https://youtube.com/@bestia-dev-tutorials)  
-//!
+
 // endregion: auto_md_to_doc_comments include README.md A //!
 
 use wasm_bindgen::prelude::*;
@@ -1974,6 +1747,61 @@ pub fn wasm_bindgen_start() -> Result<(), JsValue> {
     // return
     Ok(())
 }
+"###,
+    });
+    vec_file.push(crate::FileItem {
+        file_name: ".github/workflows/clear_all_cache.yml",
+        file_content: r###"name: cleanup caches on main
+
+# Configure Manual Trigger with workflow_dispatch
+on:
+  workflow_dispatch:
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    permissions:
+      # `actions:write` permission is required to delete caches
+      #   See also: https://docs.github.com/en/rest/actions/cache?apiVersion=2022-11-28#delete-a-github-actions-cache-for-a-repository-using-a-cache-id
+      actions: write
+      contents: read
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: Cleanup
+        run: |
+          gh extension install actions/gh-actions-cache
+          
+          REPO=${{ github.repository }}
+          printf "$REPO\n"
+          BRANCH=main
+          printf "$BRANCH\n"
+
+          # loop until the list is empty, because it deletes only 30 per page
+          has_items=true
+          while [ "$has_items" = true ]
+          do
+            printf "\033[0;33m     Fetching list of cache key\n\033[0m\n"
+            printf "\033[0;32m gh actions-cache list -R $REPO -B $BRANCH | cut -f 1 \n\033[0m\n"
+            cache_keys=$(gh actions-cache list -R $REPO -B $BRANCH | cut -f 1 )
+            # printf "$cache_keys\n"
+            if [ -z "$cache_keys" ]; then 
+              printf "\033[0;35m    gh actions-cache list returned nothing.\n\033[0m\n"
+              has_items=false
+            fi
+            ## Setting this to not fail the workflow while deleting cache keys. 
+            set +e
+            for cacheKey in $cache_keys
+            do
+                # printf "\033[0;32m gh actions-cache delete $cacheKey -R $REPO -B $BRANCH --confirm\n\033[0m\n"
+                gh actions-cache delete $cacheKey -R $REPO -B $BRANCH --confirm
+            done
+          done          
+          printf "\033[0;33m    Done\n\033[0m\n"
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 "###,
     });
     vec_file.push(crate::FileItem {
@@ -2132,7 +1960,7 @@ p{
       <title>cargo_auto_template_new_wasm</title>
       <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
       <meta name="Description" content="template for a minimal wasm project for browser">
-      <meta name="author" content="https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm">    
+      <meta name="author" content="https://github.com/github_owner/cargo_auto_template_new_wasm">    
       <link rel="stylesheet" href="css/basic_style.css">
       
 </head>
@@ -2178,8 +2006,8 @@ p{
         file_content: r###"[package]
 name = "cargo_auto_template_new_wasm"
 version = "0.0.1"
-authors = ["bestia.dev"]
-homepage = "https://bestia.dev"
+authors = ["web_server_domain"]
+homepage = "https://web_server_domain"
 edition = "2021"
 description = "Template for a minimal wasm project for browser"
 repository = "https://github.com/github_owner/cargo_auto_template_new_wasm"
@@ -2326,19 +2154,19 @@ SOFTWARE.
 [//]: # (auto_cargo_toml_to_md start)
 
 **template for a minimal wasm project for browser**  
-***version: 0.0.1 date: 2024-02-21 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm)***  
+***version: 0.0.1 date: 2024-02-21 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/github_owner/cargo_auto_template_new_wasm)***  
 
 [//]: # (auto_cargo_toml_to_md end)
 
-  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm/blob/master/LICENSE)
+  [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/github_owner/cargo_auto_template_new_wasm/blob/master/LICENSE)
 
 [//]: # (auto_lines_of_code start)
 
-[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-264-green.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm/)
-[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-28-blue.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm/)
-[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-69-purple.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm/)
-[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm/)
-[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-16-orange.svg)](https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm/)
+[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-264-green.svg)](https://github.com/github_owner/cargo_auto_template_new_wasm/)
+[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-28-blue.svg)](https://github.com/github_owner/cargo_auto_template_new_wasm/)
+[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-69-purple.svg)](https://github.com/github_owner/cargo_auto_template_new_wasm/)
+[![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/github_owner/cargo_auto_template_new_wasm/)
+[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-16-orange.svg)](https://github.com/github_owner/cargo_auto_template_new_wasm/)
 
 [//]: # (auto_lines_of_code end)
 

@@ -177,7 +177,7 @@ fn page_with_inputs() {
 
     let mut fragment = wsm::HtmlSourceCode::new(r#"<p class="{ph_attr_class_1}">{ph_text_node_1}</p>"#);
     fragment.replace_attribute_value("{ph_attr_class_1}", "small");
-    fragment.replace_text_node("{ph_text_node_1}", "bestia.dev");
+    fragment.replace_text_node("{ph_text_node_1}", "web_server_domain");
     html_source_code.replace_html_source_code("{ph_elem_p_1}", &fragment);
 
     dbg!(html_source_code.get_html());
