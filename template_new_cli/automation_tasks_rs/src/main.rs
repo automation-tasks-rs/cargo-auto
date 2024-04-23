@@ -4,7 +4,7 @@
 
 // for projects that don't use GitHub, delete all the mentions of GitHub
 mod secrets_always_local_mod;
-use crate::secrets_always_local_mod::crate_io_mod;
+use crate::secrets_always_local_mod::crates_io_mod;
 use crate::secrets_always_local_mod::github_mod;
 
 use cargo_auto_github_lib as cgl;
@@ -358,8 +358,8 @@ fn task_publish_to_crates_io() {
     let tag_name_version = cl::git_tag_sync_check_create_push(&version);
 
     // cargo publish with encrypted secret token
-    let crate_io_client = crate_io_mod::CratesIoClient::new_with_stored_token();
-    crate_io_client.publish_to_crates_io();
+    let crates_io_client = crates_io_mod::CratesIoClient::new_with_stored_token();
+    crates_io_client.publish_to_crates_io();
 
     println!(
         r#"

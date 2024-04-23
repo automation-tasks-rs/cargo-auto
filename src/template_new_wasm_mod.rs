@@ -1118,7 +1118,7 @@ pub(crate) mod github_mod {
     }
 }
 
-pub(crate) mod crate_io_mod {
+pub(crate) mod crates_io_mod {
 
     //! Publish to crates.io needs the crates.io token. This is a secret important just like a password.
     //! I don't want to pass this secret to an "obscure" library crate that is difficult to review.
@@ -1188,7 +1188,7 @@ pub(crate) mod crate_io_mod {
         #[allow(dead_code)]
         pub fn new_with_stored_token() -> Self {
             /// Internal function for DRY Don't Repeat Yourself
-            fn read_token_and_decrypt_return_crate_io_client(mut ssh_context: super::ssh_mod::SshContext, encrypted_string_file_path: &camino::Utf8Path) -> CratesIoClient {
+            fn read_token_and_decrypt_return_crates_io_client(mut ssh_context: super::ssh_mod::SshContext, encrypted_string_file_path: &camino::Utf8Path) -> CratesIoClient {
                 cargo_auto_encrypt_secret_lib::decrypt_with_ssh_interactive_from_file(&mut ssh_context, encrypted_string_file_path);
                 let token_is_a_secret = ssh_context.get_decrypted_string();
                 let mut crates_io_client = CratesIoClient::new_wo_token();
@@ -1216,13 +1216,13 @@ pub(crate) mod crate_io_mod {
                     // encrypt and save the encrypted token
                     cargo_auto_encrypt_secret_lib::encrypt_with_ssh_interactive_save_file(&mut ssh_context, identity_private_file_path, encrypted_string_file_path);
                     // read the token and decrypt, return CratesIoClient
-                    read_token_and_decrypt_return_crate_io_client(ssh_context, encrypted_string_file_path)
+                    read_token_and_decrypt_return_crates_io_client(ssh_context, encrypted_string_file_path)
                 }
             } else {
                 // file exists
                 let ssh_context = super::ssh_mod::SshContext::new();
                 // read the token and decrypt, return CratesIoClient
-                read_token_and_decrypt_return_crate_io_client(ssh_context, encrypted_string_file_path)
+                read_token_and_decrypt_return_crates_io_client(ssh_context, encrypted_string_file_path)
             }
         }
 
