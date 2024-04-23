@@ -155,7 +155,7 @@ fn print_help() {
     {YELLOW}Then you can type the passphrase of the private key every time. This is pretty secure.{RESET}
     {YELLOW}Somewhat less secure (but more comfortable) way is to store the private key in ssh-agent.{RESET}
 {GREEN}cargo auto publish_to_crates_io{RESET} - {YELLOW}publish to crates.io, git tag{RESET}
-    {YELLOW}You need the API token for publishing. Get the token on <https://crates.io/settings/tokens>.{RESET}
+    {YELLOW}You need the API secret_token for publishing. Get the token on <https://crates.io/settings/tokens>.{RESET}
     {YELLOW}You can choose to type the token every time or to store it in a file encrypted with an SSH key.{RESET}
     {YELLOW}Then you can type the passphrase of the private key every time. This is pretty secure.{RESET}
     {YELLOW}Somewhat less secure (but more comfortable) way is to store the private key in ssh-agent.{RESET}

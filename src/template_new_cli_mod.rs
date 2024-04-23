@@ -262,7 +262,7 @@ fn print_help() {
     {YELLOW}Then you can type the passphrase of the private key every time. This is pretty secure.{RESET}
     {YELLOW}Somewhat less secure (but more comfortable) way is to store the private key in ssh-agent.{RESET}
 {GREEN}cargo auto publish_to_crates_io{RESET} - {YELLOW}publish to crates.io, git tag{RESET}
-    {YELLOW}You need the API token for publishing. Get the token on <https://crates.io/settings/tokens>.{RESET}
+    {YELLOW}You need the API secret_token for publishing. Get the token on <https://crates.io/settings/tokens>.{RESET}
     {YELLOW}You can choose to type the token every time or to store it in a file encrypted with an SSH key.{RESET}
     {YELLOW}Then you can type the passphrase of the private key every time. This is pretty secure.{RESET}
     {YELLOW}Somewhat less secure (but more comfortable) way is to store the private key in ssh-agent.{RESET}
@@ -568,7 +568,7 @@ fn task_github_new_release() {
         file_name: "automation_tasks_rs/src/secrets_always_local_mod.rs",
         file_content: r###"// secrets_always_local_mod.rs
 
-/// Secrets like GitHub API token, crates.io token, SSH private key passphrase and similar
+/// Secrets like GitHub API secret_token, crates.io secret_token, SSH private key passphrase and similar
 /// must never go out of this crate. Never pass any secret to an external crate library as much as possible.
 /// The user has the source code under his fingers in this crate. So he knows nobody will mess with this code
 /// once he inspected and reviewed it.
@@ -758,7 +758,7 @@ pub(crate) mod ssh_mod {
             #[cfg(not(test))]
             fn get_token() -> secrecy::SecretString {
                 eprintln!(" ");
-                eprintln!("   {BLUE}Enter the API token to encrypt:{RESET}");
+                eprintln!("   {BLUE}Enter the API secret_token to encrypt:{RESET}");
                 secrecy::SecretString::new(
                     inquire::Password::new("")
                         .without_confirmation()
@@ -848,9 +848,9 @@ pub(crate) mod ssh_mod {
             eprintln!("{RED}Identity file {identity_private_file_path_expanded} that contains the SSH private key does not exist! {RESET}");
             eprintln!("    {YELLOW}Create the SSH key manually in bash with this command:{RESET}");
             if identity_private_file_path_expanded.as_str().contains("github_api") {
-                eprintln!(r#"{GREEN}ssh-keygen -t ed25519 -f "{identity_private_file_path_expanded}" -C "github api token"{RESET}"#);
+                eprintln!(r#"{GREEN}ssh-keygen -t ed25519 -f "{identity_private_file_path_expanded}" -C "github API secret_token"{RESET}"#);
             } else if identity_private_file_path_expanded.as_str().contains("crates_io") {
-                eprintln!(r#"{GREEN}ssh-keygen -t ed25519 -f "{identity_private_file_path_expanded}" -C "crates io token"{RESET}"#);
+                eprintln!(r#"{GREEN}ssh-keygen -t ed25519 -f "{identity_private_file_path_expanded}" -C "crates io secret_token"{RESET}"#);
             }
             eprintln!(" ");
             panic!("{RED}Error: File {identity_private_file_path_expanded} does not exist! {RESET}");
@@ -861,7 +861,7 @@ pub(crate) mod ssh_mod {
 
 pub(crate) mod github_mod {
 
-    //! Every API call needs the GitHub API token. This is a secret important just like a password.
+    //! Every API call needs the GitHub API secret_token. This is a secret important just like a password.
     //! I don't want to pass this secret to an "obscure" library crate that is difficult to review.
     //! This secret will stay here in this codebase that every developer can easily inspect.
     //! Instead of the token, I will pass the struct GitHubClient with the trait SendToGitHubApi.
@@ -896,7 +896,7 @@ pub(crate) mod github_mod {
         pub fn new_interactive_input_token() -> Self {
             let mut github_client = Self::new_wo_token();
 
-            println!("{BLUE}Enter the GitHub API token:{RESET}");
+            println!("{BLUE}Enter the GitHub API secret_token:{RESET}");
             github_client.encrypted_token =
                 super::secrecy_mod::SecretEncryptedString::new_with_string(inquire::Password::new("").without_confirmation().prompt().unwrap(), &github_client.session_passcode);
 
@@ -920,7 +920,7 @@ pub(crate) mod github_mod {
             GitHubClient { session_passcode, encrypted_token }
         }
 
-        /// Use the stored API token
+        /// Use the stored API secret_token
         ///
         /// If the token not exists ask user to interactively input the token.
         /// To decrypt it, use the SSH passphrase. That is much easier to type than typing the token.
@@ -945,7 +945,7 @@ pub(crate) mod github_mod {
 
             if !encrypted_string_file_path_expanded.exists() {
                 // ask interactive
-                println!("    {BLUE}Do you want to store the GitHub API token encrypted with an SSH key? (y/n){RESET}");
+                println!("    {BLUE}Do you want to store the GitHub API secret_token encrypted with an SSH key? (y/n){RESET}");
                 let answer = inquire::Text::new("").prompt().unwrap();
                 if answer.to_lowercase() != "y" {
                     // enter the token manually, not storing
@@ -977,7 +977,7 @@ pub(crate) mod github_mod {
     impl cgl::SendToGitHubApi for GitHubClient {
         /// Send GitHub API request
         ///
-        /// This function encapsulates the secret API token.
+        /// This function encapsulates the secret API secret_token.
         /// The RequestBuilder is created somewhere in the library crate.
         /// The client can be passed to the library. It will not reveal the secret token.
         fn send_to_github_api(&self, req: reqwest::blocking::RequestBuilder) -> serde_json::Value {
@@ -987,7 +987,7 @@ pub(crate) mod github_mod {
             // region: Assert the correct url and https
             // It is important that the request coming from a external crate/library
             // is only sent always and only to GitHub API and not some other malicious url,
-            // because the request contains the secret GitHub API token.
+            // because the request contains the secret GitHub API secret_token.
             // And it must always use https
             let host_str = req.url().host_str().unwrap();
             assert!(host_str == "api.github.com", "{RED}Error: Url is not correct: {host_str}. It must be always api.github.com.{RESET}");
@@ -1013,7 +1013,7 @@ pub(crate) mod github_mod {
 
         /// Upload to GitHub
         ///
-        /// This function encapsulates the secret API token.
+        /// This function encapsulates the secret API secret_token.
         /// The RequestBuilder is created somewhere in the library crate.
         /// The client can be passed to the library. It will not reveal the secret token.
         /// This is basically an async fn, but use of `async fn` in public traits is discouraged...
@@ -1024,7 +1024,7 @@ pub(crate) mod github_mod {
             // region: Assert the correct url and https
             // It is important that the request coming from a external crate/library
             // is only sent always and only to GitHub uploads and not some other malicious url,
-            // because the request contains the secret GitHub API token.
+            // because the request contains the secret GitHub API secret_token.
             // And it must always use https
             let host_str = req.url().host_str().unwrap();
             assert!(host_str == "uploads.github.com", "{RED}Error: Url is not correct: {host_str}. It must be always api.github.com.{RESET}");
@@ -1052,7 +1052,7 @@ pub(crate) mod github_mod {
 
 pub(crate) mod crates_io_mod {
 
-    //! Publish to crates.io needs the crates.io token. This is a secret important just like a password.
+    //! Publish to crates.io needs the crates.io secret_token. This is a secret important just like a password.
     //! I don't want to pass this secret to an "obscure" library crate that is difficult to review.
     //! This secret will stay here in this codebase that every developer can easily inspect.
     //! Instead of the token, I will pass the struct CratesIoClient with the trait SendToCratesIo.
@@ -1081,12 +1081,12 @@ pub(crate) mod crates_io_mod {
     impl CratesIoClient {
         /// Create new CratesIo client
         ///
-        /// Interactively ask the user to input the crates.io token.
+        /// Interactively ask the user to input the crates.io secret_token.
         #[allow(dead_code)]
         pub fn new_interactive_input_token() -> Self {
             let mut crates_io_client = Self::new_wo_token();
 
-            println!("{BLUE}Enter the crates.io token:{RESET}");
+            println!("{BLUE}Enter the crates.io secret_token:{RESET}");
             crates_io_client.encrypted_token =
                 super::secrecy_mod::SecretEncryptedString::new_with_string(inquire::Password::new("").without_confirmation().prompt().unwrap(), &crates_io_client.session_passcode);
 
@@ -1111,7 +1111,7 @@ pub(crate) mod crates_io_mod {
             CratesIoClient { session_passcode, encrypted_token }
         }
 
-        /// Use the stored crates.io token
+        /// Use the stored crates.io secret_token
         ///
         /// If the token not exists ask user to interactively input the token.
         /// To decrypt it, use the SSH passphrase. That is much easier to type than typing the token.
@@ -1137,7 +1137,7 @@ pub(crate) mod crates_io_mod {
 
             if !encrypted_string_file_path_expanded.exists() {
                 // ask interactive
-                println!("    {BLUE}Do you want to store the crates.io token encrypted with an SSH key? (y/n){RESET}");
+                println!("    {BLUE}Do you want to store the crates.io secret_token encrypted with an SSH key? (y/n){RESET}");
                 let answer = inquire::Text::new("").prompt().unwrap();
                 if answer.to_lowercase() != "y" {
                     // enter the token manually, not storing
@@ -1166,7 +1166,7 @@ pub(crate) mod crates_io_mod {
 
         /// Publish to crates.io
         ///
-        /// This function encapsulates the secret crates.io token.
+        /// This function encapsulates the secret crates.io secret_token.
         /// The client can be passed to the library. It will not reveal the secret token.
         #[allow(dead_code)]
         pub fn publish_to_crates_io(&self) {
