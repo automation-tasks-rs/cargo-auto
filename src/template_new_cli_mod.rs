@@ -744,19 +744,19 @@ pub(crate) mod ssh_mod {
         }
 
         /// get token and encrypt
-        fn get_token_and_encrypt(&self) -> cargo_auto_encrypt_secret_lib::EncryptedString {
+        fn get_secret_token_and_encrypt(&self) -> cargo_auto_encrypt_secret_lib::EncryptedString {
             /// Internal function used only for test configuration
             ///
             /// It is not interactive, but reads from a env var.
             #[cfg(test)]
-            fn get_token() -> secrecy::SecretString {
+            fn get_secret_token() -> secrecy::SecretString {
                 secrecy::SecretString::new(std::env::var("TEST_TOKEN").unwrap())
             }
             /// Internal function get_passphrase interactively ask user to type the passphrase
             ///
             /// This is used for normal code execution.
             #[cfg(not(test))]
-            fn get_token() -> secrecy::SecretString {
+            fn get_secret_token() -> secrecy::SecretString {
                 eprintln!(" ");
                 eprintln!("   {BLUE}Enter the API secret_token to encrypt:{RESET}");
                 secrecy::SecretString::new(
@@ -767,7 +767,7 @@ pub(crate) mod ssh_mod {
                         .unwrap(),
                 )
             }
-            let token_is_a_secret = get_token();
+            let token_is_a_secret = get_secret_token();
             // use this signed as password for symmetric encryption
             let encryptor = encrypt_mod::Encryptor::new_for_encrypt(token_is_a_secret, &self.signed_passcode_is_a_secret);
 
@@ -1195,9 +1195,9 @@ description = "Automation tasks coded in Rust language for the workflow of Rust 
 publish = false
 
 [dependencies]
-cargo_auto_lib = "2.3.8"
-cargo_auto_github_lib = "1.1.2"
-cargo_auto_encrypt_secret_lib = "1.0.7"
+cargo_auto_lib = "2.4.8"
+cargo_auto_github_lib = "1.1.6"
+cargo_auto_encrypt_secret_lib = "1.1.7"
 
 inquire = "0.7.0"
 serde_json = {version= "1.0.114", features=["std"]}

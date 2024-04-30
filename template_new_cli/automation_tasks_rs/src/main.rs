@@ -150,18 +150,18 @@ fn print_help() {
     {YELLOW}It is preferred to use SSH for git push to GitHub.{RESET}
     {YELLOW}<https://github.com/CRUSTDE-ContainerizedRustDevEnv/crustde_cnt_img_pod/blob/main/ssh_easy.md>{YELLOW}
     {YELLOW}On the very first commit, this task will initialize a new local git repository and create a remote GitHub repo.{RESET}
-    {YELLOW}For the GitHub API the task needs the Personal Access Token Classic from <https://github.com/settings/tokens>{RESET}
-    {YELLOW}You can choose to type the token every time or to store it in a file encrypted with an SSH key.{RESET}
+    {YELLOW}For the GitHub API the task needs the Personal Access secret_token Classic from <https://github.com/settings/tokens>{RESET}
+    {YELLOW}You can choose to type the secret_token every time or to store it in a file encrypted with an SSH key.{RESET}
     {YELLOW}Then you can type the passphrase of the private key every time. This is pretty secure.{RESET}
     {YELLOW}Somewhat less secure (but more comfortable) way is to store the private key in ssh-agent.{RESET}
 {GREEN}cargo auto publish_to_crates_io{RESET} - {YELLOW}publish to crates.io, git tag{RESET}
-    {YELLOW}You need the API secret_token for publishing. Get the token on <https://crates.io/settings/tokens>.{RESET}
-    {YELLOW}You can choose to type the token every time or to store it in a file encrypted with an SSH key.{RESET}
+    {YELLOW}You need the API secret_token for publishing. Get the secret_token on <https://crates.io/settings/tokens>.{RESET}
+    {YELLOW}You can choose to type the secret_token every time or to store it in a file encrypted with an SSH key.{RESET}
     {YELLOW}Then you can type the passphrase of the private key every time. This is pretty secure.{RESET}
     {YELLOW}Somewhat less secure (but more comfortable) way is to store the private key in ssh-agent.{RESET}
 {GREEN}cargo auto github_new_release{RESET} - {YELLOW}creates new release on GitHub{RESET}
-    {YELLOW}For the GitHub API the task needs the Personal Access Token Classic from <https://github.com/settings/tokens>{RESET}
-    {YELLOW}You can choose to type the token every time or to store it in a file encrypted with an SSH key.{RESET}
+    {YELLOW}For the GitHub API the task needs the Personal Access secret_token Classic from <https://github.com/settings/tokens>{RESET}
+    {YELLOW}You can choose to type the secret_token every time or to store it in a file encrypted with an SSH key.{RESET}
     {YELLOW}Then you can type the passphrase of the private key every time. This is pretty secure.{RESET}
     {YELLOW}Somewhat less secure (but more comfortable) way is to store the private key in ssh-agent.{RESET}
 
@@ -272,9 +272,12 @@ fn task_doc() {
     cl::run_shell_command_static("rsync -a --info=progress2 --delete-after target/doc/ docs/").unwrap_or_else(|e| panic!("{e}"));
 
     // Create simple index.html file in docs directory
-    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"printf "<meta http-equiv=\"refresh\" content=\"0; url={url_sanitized_for_double_quote}/index.html\" />\n" > docs/index.html"#).unwrap_or_else(|e| panic!("{e}"))
-    .arg("{url_sanitized_for_double_quote}", &cargo_toml.package_name().replace("-", "_")).unwrap_or_else(|e| panic!("{e}"))
-    .run().unwrap_or_else(|e| panic!("{e}"));
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"printf "<meta http-equiv=\"refresh\" content=\"0; url={url_sanitized_for_double_quote}/index.html\" />\n" > docs/index.html"#)
+        .unwrap_or_else(|e| panic!("{e}"))
+        .arg("{url_sanitized_for_double_quote}", &cargo_toml.package_name().replace("-", "_"))
+        .unwrap_or_else(|e| panic!("{e}"))
+        .run()
+        .unwrap_or_else(|e| panic!("{e}"));
 
     // pretty html
     cl::auto_doc_tidy_html().unwrap_or_else(|e| panic!("{e}"));
@@ -319,11 +322,11 @@ fn task_commit_and_push(arg_2: Option<String>) {
 
     // If needed, ask to create a GitHub remote repository
     if !cgl::git_has_remote() || !cgl::git_has_upstream() {
-        let github_client = github_mod::GitHubClient::new_with_stored_token();
+        let github_client = github_mod::GitHubClient::new_with_stored_secret_token();
         cgl::new_remote_github_repository(&github_client).unwrap();
         cgl::description_and_topics_to_github(&github_client);
     } else {
-        let github_client = github_mod::GitHubClient::new_with_stored_token();
+        let github_client = github_mod::GitHubClient::new_with_stored_secret_token();
         // if description or topics/keywords/tags have changed
         cgl::description_and_topics_to_github(&github_client);
 
@@ -334,9 +337,12 @@ fn task_commit_and_push(arg_2: Option<String>) {
 
         cl::add_message_to_unreleased(&message);
         // the real commit of code
-        cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"git add -A && git diff --staged --quiet || git commit -m "{message_sanitized_for_double_quote}" "#).unwrap_or_else(|e| panic!("{e}"))
-        .arg("{message_sanitized_for_double_quote}", &message).unwrap_or_else(|e| panic!("{e}"))
-        .run().unwrap_or_else(|e| panic!("{e}"));
+        cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"git add -A && git diff --staged --quiet || git commit -m "{message_sanitized_for_double_quote}" "#)
+            .unwrap_or_else(|e| panic!("{e}"))
+            .arg("{message_sanitized_for_double_quote}", &message)
+            .unwrap_or_else(|e| panic!("{e}"))
+            .run()
+            .unwrap_or_else(|e| panic!("{e}"));
 
         cl::run_shell_command_static("git push").unwrap_or_else(|e| panic!("{e}"));
     }
@@ -357,8 +363,8 @@ fn task_publish_to_crates_io() {
     // take care of tags
     let tag_name_version = cl::git_tag_sync_check_create_push(&version);
 
-    // cargo publish with encrypted secret token
-    let crates_io_client = crates_io_mod::CratesIoClient::new_with_stored_token();
+    // cargo publish with encrypted secret secret_token
+    let crates_io_client = crates_io_mod::CratesIoClient::new_with_stored_secret_token();
     crates_io_client.publish_to_crates_io();
 
     println!(
