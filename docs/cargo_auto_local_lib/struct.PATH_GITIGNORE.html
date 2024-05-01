@@ -34,7 +34,7 @@
     <div class="sidebar-crate">
       <a class="logo-container" href="../cargo_auto_local_lib/index.html"><img src=
       "https://github.com/automation-tasks-rs/cargo-auto/raw/main/images/logo/logo_cargo_auto.svg" alt="logo"></a>
-      <h2><a href="../cargo_auto_local_lib/index.html">cargo_auto_local_lib</a><span class="version">2024.422.214</span></h2>
+      <h2><a href="../cargo_auto_local_lib/index.html">cargo_auto_local_lib</a><span class="version">2024.501.55</span></h2>
     </div>
     <h2 class="location"><a href="#">PATH_GITIGNORE</a></h2>
     <div class="sidebar-elems">
@@ -198,6 +198,9 @@
             <a href="#impl-From%3CT%3E-for-T">From&lt;T&gt;</a>
           </li>
           <li>
+            <a href="#impl-Instrument-for-T">Instrument</a>
+          </li>
+          <li>
             <a href="#impl-Into%3CU%3E-for-T">Into&lt;U&gt;</a>
           </li>
           <li>
@@ -211,6 +214,9 @@
           </li>
           <li>
             <a href="#impl-TryInto%3CU%3E-for-T">TryInto&lt;U&gt;</a>
+          </li>
+          <li>
+            <a href="#impl-WithSubscriber-for-T">WithSubscriber</a>
           </li>
         </ul>
       </section>
@@ -1434,6 +1440,33 @@ symlink(<span class="string">"/origin_does_not_exist/"</span>, link_path).unwrap
             </div>
           </details>
           <details class="toggle implementors-toggle">
+            <section id="impl-Instrument-for-T" class="impl">
+              <a href="#impl-Instrument-for-T" class="anchor">§</a>
+              <h3 class="code-header">impl&lt;T&gt; Instrument for T</h3>
+            </section>
+            <div class="impl-items">
+              <details class="toggle method-toggle" open="">
+                <section id="method.instrument" class="method trait-impl">
+                  <a href="#method.instrument" class="anchor">§</a>
+                  <h4 class="code-header">fn <a class="fn">instrument</a>(self, span: Span) -&gt; Instrumented&lt;Self&gt;</h4>
+                </section>
+                <div class='docblock'>
+                  Instruments this type with the provided [<code>Span</code>], returning an <code>Instrumented</code> wrapper. <a>Read more</a>
+                </div>
+              </details>
+              <details class="toggle method-toggle" open="">
+                <section id="method.in_current_span" class="method trait-impl">
+                  <a href="#method.in_current_span" class="anchor">§</a>
+                  <h4 class="code-header">fn <a class="fn">in_current_span</a>(self) -&gt; Instrumented&lt;Self&gt;</h4>
+                </section>
+                <div class='docblock'>
+                  Instruments this type with the <a href="super::Span::current()">current</a> <a href="crate::Span"><code>Span</code></a>, returning an
+                  <code>Instrumented</code> wrapper. <a>Read more</a>
+                </div>
+              </details>
+            </div>
+          </details>
+          <details class="toggle implementors-toggle">
             <section id="impl-Into%3CU%3E-for-T" class="impl">
               <a class="src rightside" href="https://doc.rust-lang.org/1.77.2/src/core/convert/mod.rs.html#747-749">source</a><a href="#impl-Into%3CU%3E-for-T"
               class="anchor">§</a>
@@ -1658,6 +1691,38 @@ symlink(<span class="string">"/origin_does_not_exist/"</span>, link_path).unwrap
                 </section>
                 <div class='docblock'>
                   Performs the conversion.
+                </div>
+              </details>
+            </div>
+          </details>
+          <details class="toggle implementors-toggle">
+            <section id="impl-WithSubscriber-for-T" class="impl">
+              <a href="#impl-WithSubscriber-for-T" class="anchor">§</a>
+              <h3 class="code-header">impl&lt;T&gt; WithSubscriber for T</h3>
+            </section>
+            <div class="impl-items">
+              <details class="toggle method-toggle" open="">
+                <section id="method.with_subscriber" class="method trait-impl">
+                  <a href="#method.with_subscriber" class="anchor">§</a>
+                  <h4 class="code-header">fn <a class="fn">with_subscriber</a>&lt;S&gt;(self, subscriber: S) -&gt; WithDispatch&lt;Self&gt;</h4>
+                  <div class="where">
+                    <h4 class="code-header">where S: <a class="trait" href="https://doc.rust-lang.org/1.77.2/core/convert/trait.Into.html" title=
+                    "trait core::convert::Into">Into</a>&lt;Dispatch&gt;,</h4>
+                  </div>
+                </section>
+                <div class='docblock'>
+                  Attaches the provided <a href="super::Subscriber"><code>Subscriber</code></a> to this type, returning a [<code>WithDispatch</code>] wrapper.
+                  <a>Read more</a>
+                </div>
+              </details>
+              <details class="toggle method-toggle" open="">
+                <section id="method.with_current_subscriber" class="method trait-impl">
+                  <a href="#method.with_current_subscriber" class="anchor">§</a>
+                  <h4 class="code-header">fn <a class="fn">with_current_subscriber</a>(self) -&gt; WithDispatch&lt;Self&gt;</h4>
+                </section>
+                <div class='docblock'>
+                  Attaches the current <a href="crate::dispatcher#setting-the-default-subscriber">default</a> <a href=
+                  "super::Subscriber"><code>Subscriber</code></a> to this type, returning a [<code>WithDispatch</code>] wrapper. <a>Read more</a>
                 </div>
               </details>
             </div>
