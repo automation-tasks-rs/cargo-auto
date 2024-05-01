@@ -146,37 +146,37 @@
 
 </span><span class="kw">use crate</span>::{GREEN, RED, RESET, YELLOW};
 
-<span class="kw">pub fn </span>new_cli(arg_2: <span class="prelude-ty">Option</span>&lt;String&gt;, arg_3: <span class=
+<span class="kw">pub fn </span>new_cli(rust_project_name: <span class="prelude-ty">Option</span>&lt;String&gt;, github_owner_or_organization: <span class=
 "prelude-ty">Option</span>&lt;String&gt;) {
-    <span class="kw">if </span>arg_2.is_none() {
+    <span class="kw">if </span>rust_project_name.is_none() {
         <span class="macro">println!</span>(<span class=
 "string">"{RED}Error: Project name argument is missing: `cargo auto new_cli project_name github_owner_or_organization`{RESET}"</span>);
         <span class="kw">return</span>;
     }
-    <span class="kw">if </span>arg_3.is_none() {
+    <span class="kw">if </span>github_owner_or_organization.is_none() {
         <span class="macro">println!</span>(<span class=
 "string">"{RED}Error: Github owner argument is missing: `cargo auto new_cli project_name github_owner_or_organization`{RESET}"</span>);
         <span class="kw">return</span>;
     }
-    <span class="kw">let </span>project_name = arg_2.unwrap();
-    <span class="kw">let </span>github_owner_or_organization = arg_3.unwrap();
+    <span class="kw">let </span>rust_project_name = rust_project_name.unwrap();
+    <span class="kw">let </span>github_owner_or_organization = github_owner_or_organization.unwrap();
 
-    copy_to_files(<span class="kw-2">&</span>project_name, <span class="kw-2">&</span>github_owner_or_organization);
+    copy_to_files(<span class="kw-2">&</span>rust_project_name, <span class="kw-2">&</span>github_owner_or_organization);
 
     <span class="macro">println!</span>(<span class="string">""</span>);
     <span class="macro">println!</span>(<span class=
-"string">"    {YELLOW}The command `cargo auto new_cli` generated the directory `{project_name}`.{RESET}"</span>);
+"string">"    {YELLOW}The command `cargo auto new_cli` generated the directory `{rust_project_name}`.{RESET}"</span>);
     <span class="macro">println!</span>(<span class="string">"    {YELLOW}You can open this new Rust project in VSCode:{RESET}"</span>,);
-    <span class="macro">println!</span>(<span class="string">"{GREEN}code {project_name}{RESET}"</span>);
+    <span class="macro">println!</span>(<span class="string">"{GREEN}code {rust_project_name}{RESET}"</span>);
     <span class="macro">println!</span>(<span class="string">"    {YELLOW}Then build inside the VSCode terminal with:{RESET}"</span>);
     <span class="macro">println!</span>(<span class="string">"{GREEN}cargo auto build{RESET}"</span>);
     <span class="macro">println!</span>(<span class="string">"    {YELLOW}and follow the detailed instructions.{RESET}"</span>);
 }
 
-<span class="kw">pub fn </span>copy_to_files(project_name: <span class="kw-2">&</span>str, github_owner_or_organization: <span class="kw-2">&</span>str) {
-    <span class="kw">let </span>folder_path = std::path::Path::new(project_name);
+<span class="kw">pub fn </span>copy_to_files(rust_project_name: <span class="kw-2">&</span>str, github_owner_or_organization: <span class="kw-2">&</span>str) {
+    <span class="kw">let </span>folder_path = std::path::Path::new(rust_project_name);
     <span class="kw">if </span>folder_path.exists() {
-        <span class="macro">panic!</span>(<span class="string">"{RED}Error: Folder {project_name} already exists! {RESET}"</span>);
+        <span class="macro">panic!</span>(<span class="string">"{RED}Error: Folder {rust_project_name} already exists! {RESET}"</span>);
     }
     std::fs::create_dir_all(folder_path).unwrap();
 
@@ -210,7 +210,7 @@
             <span class="comment">// template has only valid utf8 files
             </span><span class="macro">println!</span>(<span class="string">"replace: {}"</span>, entry.path().to_string_lossy());
             <span class="kw">let </span>content = std::fs::read_to_string(entry.path()).unwrap();
-            <span class="kw">let </span>content = content.replace(<span class="string">"cargo_auto_template_new_cli"</span>, project_name);
+            <span class="kw">let </span>content = content.replace(<span class="string">"cargo_auto_template_new_cli"</span>, rust_project_name);
             <span class="kw">let </span>content = content.replace(<span class="string">"automation-tasks-rs"</span>, github_owner_or_organization);
             <span class="kw">let </span>content = content.replace(<span class="string">"automation--tasks--rs"</span>, <span class=
 "string">"automation-tasks-rs"</span>);
@@ -224,7 +224,7 @@
     <span class="kw">for </span>entry <span class="kw">in </span>traverse_reverse.iter() {
         <span class="kw">if </span>entry.file_name() == <span class="string">"cargo_auto_template_new_cli" </span>{
             <span class="macro">println!</span>(<span class="string">"rename: {}"</span>, entry.path().to_string_lossy());
-            std::fs::rename(entry.path(), entry.path().parent().unwrap().join(project_name)).unwrap();
+            std::fs::rename(entry.path(), entry.path().parent().unwrap().join(rust_project_name)).unwrap();
         }
     }
 }
