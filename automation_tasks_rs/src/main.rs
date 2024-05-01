@@ -255,31 +255,35 @@ fn task_release() {
         r#"
     {YELLOW}After `cargo auto release`, run the compiled binary, examples and/or tests{RESET}
 
-    {YELLOW}1. Check if the template `new_cli` is working. Open a new terminal in VSCode and run:{RESET}
+    {YELLOW}1. Check if the template `new_cli` is working. Open a second terminal in VSCode and run:{RESET}
 {GREEN}cd ~/rustprojects{RESET}
 {GREEN}./cargo-auto/target/release/{package_name} new_cli hello_world bestia-dev;{RESET}
 {GREEN}code hello_world{RESET}
-    {YELLOW}In the new VSCODE window terminal, first change in Cargo.toml/repository from "github_owner" to your github username.{RESET}
-    {YELLOW} Then try the workflow: cargo auto build, cargo auto release, cargo auto doc,... all to the end.{RESET}
-    {YELLOW}If ok, close the VSCode window. Back in the first terminal check the next template:{RESET}
+    {YELLOW} Then in the second VSCode window try the workflow: cargo auto build, cargo auto release, cargo auto doc,... all to the end.{RESET}
+    {YELLOW}If ok, close the second VSCode window. Back in the first VSCode window remove the temporary project:{RESET}
 {GREEN}rm -rf hello_world{RESET}
+    {YELLOW}Kill the second bash terminal from the first VSCode window.{RESET}
 
-    {YELLOW}2. Check if the template `new_wasm` is working. Open a new terminal in VSCode and run:{RESET}
+    {YELLOW}2. Check if the template `new_wasm` is working. Open a second terminal in VSCode and run:{RESET}
 {GREEN}cd ~/rustprojects{RESET}
 {GREEN}./cargo-auto/target/release/{package_name} new_wasm hello_world bestia-dev bestia.dev luciano_bestia;{RESET}
 {GREEN}code hello_world{RESET}
-    {YELLOW}In the new VSCODE window terminal, first change in Cargo.toml/repository from "github_owner" to your github username.{RESET}
-    {YELLOW} Then try the workflow: cargo auto build, cargo auto release, cargo auto doc,... all to the end.{RESET}
-    {YELLOW}If ok, close the VSCode window.{RESET}
+    {YELLOW} Then in the second VSCode window try the workflow: cargo auto build, cargo auto release, cargo auto doc,... all to the end.{RESET}
+    {YELLOW}If ok, close the second VSCode window. Back in the first VSCode window remove the temporary project:{RESET}
 {GREEN}rm -rf hello_world{RESET}
+    {YELLOW}Kill the second bash terminal from the first VSCode window.{RESET}
 
-    {YELLOW}3. Check if the template `new_pwa_wasm` is working. Open a new terminal in VSCode and run:{RESET}
+    {YELLOW}3. Check if the template `new_pwa_wasm` is working. Open a second terminal in VSCode and run:{RESET}
+    {YELLOW}Copy your 'icon512x512.png' into this folder or download and use this default icon.{RESET}
 {GREEN}cd ~/rustprojects{RESET}
-{GREEN}./cargo-auto/target/release/{package_name} new_pwa_wasm{RESET}
-    {YELLOW}Follow the instructions{RESET}
-
-    {YELLOW}If ok, close the VSCode window.{RESET}
+{GREEN}curl -L https://github.com/automation-tasks-rs/cargo_auto_template_new_pwa_wasm/raw/main/icon512x512.png --output icon512x512.png{RESET}
+{GREEN}./cargo-auto/target/release/{package_name} new_pwa_wasm hello_world bestia-dev bestia.dev luciano_bestia;{RESET}
+{GREEN}code hello_world{RESET}
+    {YELLOW} Then in the second VSCode window try the workflow: cargo auto build, cargo auto release, cargo auto doc,... all to the end.{RESET}
+    {YELLOW}If ok, close the second VSCode window. Back in the first VSCode window remove the temporary project:{RESET}
+{GREEN}rm icon512x512.png{RESET}
 {GREEN}rm -rf hello_world{RESET}
+    {YELLOW}Kill the second bash terminal from the first VSCode window.{RESET}
 
     {YELLOW}if ok then{RESET}
 {GREEN}cargo auto doc{RESET}

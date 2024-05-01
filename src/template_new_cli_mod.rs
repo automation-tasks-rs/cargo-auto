@@ -7,33 +7,33 @@
 
 use crate::{GREEN, RED, RESET, YELLOW};
 
-pub fn new_cli(arg_2: Option<String>, arg_3: Option<String>) {
-    if arg_2.is_none() {
+pub fn new_cli(rust_project_name: Option<String>, github_owner_or_organization: Option<String>) {
+    if rust_project_name.is_none() {
         println!("{RED}Error: Project name argument is missing: `cargo auto new_cli project_name github_owner_or_organization`{RESET}");
         return;
     }
-    if arg_3.is_none() {
+    if github_owner_or_organization.is_none() {
         println!("{RED}Error: Github owner argument is missing: `cargo auto new_cli project_name github_owner_or_organization`{RESET}");
         return;
     }
-    let project_name = arg_2.unwrap();
-    let github_owner_or_organization = arg_3.unwrap();
+    let rust_project_name = rust_project_name.unwrap();
+    let github_owner_or_organization = github_owner_or_organization.unwrap();
 
-    copy_to_files(&project_name, &github_owner_or_organization);
+    copy_to_files(&rust_project_name, &github_owner_or_organization);
 
     println!("");
-    println!("    {YELLOW}The command `cargo auto new_cli` generated the directory `{project_name}`.{RESET}");
+    println!("    {YELLOW}The command `cargo auto new_cli` generated the directory `{rust_project_name}`.{RESET}");
     println!("    {YELLOW}You can open this new Rust project in VSCode:{RESET}",);
-    println!("{GREEN}code {project_name}{RESET}");
+    println!("{GREEN}code {rust_project_name}{RESET}");
     println!("    {YELLOW}Then build inside the VSCode terminal with:{RESET}");
     println!("{GREEN}cargo auto build{RESET}");
     println!("    {YELLOW}and follow the detailed instructions.{RESET}");
 }
 
-pub fn copy_to_files(project_name: &str, github_owner_or_organization: &str) {
-    let folder_path = std::path::Path::new(project_name);
+pub fn copy_to_files(rust_project_name: &str, github_owner_or_organization: &str) {
+    let folder_path = std::path::Path::new(rust_project_name);
     if folder_path.exists() {
-        panic!("{RED}Error: Folder {project_name} already exists! {RESET}");
+        panic!("{RED}Error: Folder {rust_project_name} already exists! {RESET}");
     }
     std::fs::create_dir_all(folder_path).unwrap();
 
@@ -65,7 +65,7 @@ pub fn copy_to_files(project_name: &str, github_owner_or_organization: &str) {
             // template has only valid utf8 files
             println!("replace: {}", entry.path().to_string_lossy());
             let content = std::fs::read_to_string(entry.path()).unwrap();
-            let content = content.replace("cargo_auto_template_new_cli", project_name);
+            let content = content.replace("cargo_auto_template_new_cli", rust_project_name);
             let content = content.replace("automation-tasks-rs", github_owner_or_organization);
             let content = content.replace("automation--tasks--rs", "automation-tasks-rs");
             std::fs::write(entry.path(), content).unwrap();
@@ -77,7 +77,7 @@ pub fn copy_to_files(project_name: &str, github_owner_or_organization: &str) {
     for entry in traverse_reverse.iter() {
         if entry.file_name() == "cargo_auto_template_new_cli" {
             println!("rename: {}", entry.path().to_string_lossy());
-            std::fs::rename(entry.path(), entry.path().parent().unwrap().join(project_name)).unwrap();
+            std::fs::rename(entry.path(), entry.path().parent().unwrap().join(rust_project_name)).unwrap();
         }
     }
 }

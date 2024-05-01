@@ -44,7 +44,7 @@ fn print_help_from_cargo_auto() {
     {YELLOW}Outside of a Rust project, cargo-auto can create a new Rust project:{RESET}
 {GREEN}cargo auto new_cli project_name github_owner{RESET}{YELLOW} - a simple yet complete CLI application, better then `cargo new`{RESET}
 {GREEN}cargo auto new_wasm project_name github_owner web_server_domain server_username{RESET}{YELLOW} - a complete wasm application that works inside the browser{RESET}
-{GREEN}cargo auto new_pwa_wasm {RESET}{YELLOW} - On first call, it will create the `pwa.json5` and `icon512x512.png` files.{RESET}
+{GREEN}cargo auto new_pwa_wasm project_name github_owner web_server_domain server_username{RESET}{YELLOW} - There must already be the `icon512x512.png` file to create the icons.{RESET}
     {YELLOW}Modify them with the required data for your pwa project and then repeat the same command.{RESET}
 
     {YELLOW}© 2024 bestia.dev  MIT License github.com/automation-tasks-rs/cargo-auto{RESET}
@@ -58,23 +58,21 @@ fn match_first_argument(task: &str, args: &mut std::env::Args) {
     if task == "completion" {
         completion();
     } else if task == "new_cli" {
-        // project_name
-        let arg_2 = args.next();
-        // github_owner
-        let arg_3 = args.next();
-        crate::template_new_cli_mod::new_cli(arg_2, arg_3);
+        let rust_project_name = args.next();
+        let github_owner_or_organization = args.next();
+        crate::template_new_cli_mod::new_cli(rust_project_name, github_owner_or_organization);
     } else if task == "new_wasm" {
-        // project_name
-        let arg_2 = args.next();
-        // github_owner
-        let arg_3 = args.next();
-        // web server URL
-        let arg_4 = args.next();
-        // web server username
-        let arg_5 = args.next();
-        crate::template_new_wasm_mod::new_wasm(arg_2, arg_3, arg_4, arg_5);
+        let rust_project_name = args.next();
+        let github_owner_or_organization = args.next();
+        let web_server_domain = args.next();
+        let server_username = args.next();
+        crate::template_new_wasm_mod::new_wasm(rust_project_name, github_owner_or_organization, web_server_domain, server_username);
     } else if task == "new_pwa_wasm" {
-        crate::template_new_pwa_wasm_mod::new_pwa_wasm();
+        let rust_project_name = args.next();
+        let github_owner_or_organization = args.next();
+        let web_server_domain = args.next();
+        let server_username = args.next();
+        crate::template_new_pwa_wasm_mod::new_pwa_wasm(rust_project_name, github_owner_or_organization, web_server_domain, server_username);
     } else {
         print_help_from_cargo_auto();
     }

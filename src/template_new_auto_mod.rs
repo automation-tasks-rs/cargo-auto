@@ -51,8 +51,8 @@ pub fn compile_project_automation_tasks_rs() {
     }
 }
 
-pub fn copy_to_files(project_name: &str) {
-    let folder_path = std::path::Path::new(project_name);
+pub fn copy_to_files(rust_project_name: &str) {
+    let folder_path = std::path::Path::new(rust_project_name);
     std::fs::create_dir_all(folder_path).unwrap();
     for file_item in get_vec_file() {
         // create directory if needed

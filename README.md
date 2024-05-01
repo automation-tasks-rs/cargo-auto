@@ -5,7 +5,7 @@
 [//]: # (auto_cargo_toml_to_md start)
 
 **Automation tasks coded in Rust language for the workflow of Rust projects**  
-***version: 2024.501.223 date: 2024-05-01 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
+***version: 2024.501.1827 date: 2024-05-01 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
 
  ![maintained](https://img.shields.io/badge/maintained-green)
  ![ready-for-use](https://img.shields.io/badge/ready_for_use-green)
@@ -28,11 +28,11 @@
  ![cargo-auto](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 
 [//]: # (auto_lines_of_code start)
-[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-1949-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-971-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-433-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-1299-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+[![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-742-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+[![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-222-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-8881-orange.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+[![Lines in tests](https://img.shields.io/badge/Lines_in_tests-549-orange.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 
 [//]: # (auto_lines_of_code end)
 
@@ -58,7 +58,7 @@ cargo auto test
 ```
 
 We can also add `automation tasks` to an existing Rust project.
-Inside your Rust project directory (the one with Cargo.toml) run:  
+Inside your Rust project directory (the one with `Cargo.toml`) run:  
 
 ```bash
 cargo auto new_auto
@@ -117,7 +117,7 @@ I composed an opinionated template for a simple Rust WASM project for a browser.
 It is easy to run:
 
 ```bash
-cargo auto new_wasm project_name
+cargo auto new_wasm project_name github_owner_or_organization web_server_domain server_username
 # then
 cd project_name
 cargo auto build
@@ -127,14 +127,12 @@ cargo auto build
 ## cargo auto new_pwa_wasm
 
 I composed an opinionated template for a simple Rust PWA-WASM project for a browser. It is very similar to the new_cli template but for WASM. It adds the PWA standard functionality to work as an offline app.  
-The template needs the title, name, long name, and description inside a `pwa.json5` file and the `icon512x512.png` file for the icons.  
+The template needs the `icon512x512.png` file for the icons. You can use the default icon if you don't have your own. ![icon512x512.png](https://github.com/automation-tasks-rs/cargo_auto_template_new_pwa_wasm/raw/main/icon512x512.png)  
 It is easy to run:
 
 ```bash
-cargo auto new_pwa_wasm
-# on first run it will just create the `pwa.json5` and `icon512x512.png` files
-# modify these files with data for your new app and then repeat
-cargo auto new_pwa_wasm
+curl -L https://github.com/automation-tasks-rs/cargo_auto_template_new_pwa_wasm/raw/main/icon512x512.png --output icon512x512.png
+cargo auto new_pwa_wasm project_name github_owner_or_organization web_server_domain server_username
 # then
 cd project_name
 cargo auto build
