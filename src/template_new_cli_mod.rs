@@ -13,7 +13,7 @@ pub fn new_cli(rust_project_name: Option<String>, github_owner_or_organization: 
         return;
     }
     if github_owner_or_organization.is_none() {
-        println!("{RED}Error: Github owner argument is missing: `cargo auto new_cli project_name github_owner_or_organization`{RESET}");
+        println!("{RED}Error: github_owner argument is missing: `cargo auto new_cli project_name github_owner_or_organization`{RESET}");
         return;
     }
     let rust_project_name = rust_project_name.unwrap();

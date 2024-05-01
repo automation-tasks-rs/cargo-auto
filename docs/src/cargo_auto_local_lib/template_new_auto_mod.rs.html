@@ -1992,7 +1992,7 @@ fn task_github_new_release() {
     // take care of tags
     let tag_name_version = cl::git_tag_sync_check_create_push(&amp;version);
 
-    let owner = cargo_toml.github_owner().unwrap();
+    let github_owner = cargo_toml.github_owner().unwrap();
     let repo_name = cargo_toml.package_name();
     let now_date = cl::now_utc_date_iso();
     let release_name = format!("Version {} ({})", &amp;version, now_date);
@@ -2003,7 +2003,7 @@ fn task_github_new_release() {
     let body_md_text = cl::body_text_from_releases_md().unwrap();
 
     let github_client = github_mod::GitHubClient::new_with_stored_secret_token();
-    let json_value = github_client.send_to_github_api(cgl::github_api_create_new_release(&amp;owner, &amp;repo_name, &amp;tag_name_version, &amp;release_name, branch, &amp;body_md_text));
+    let json_value = github_client.send_to_github_api(cgl::github_api_create_new_release(&amp;github_owner, &amp;repo_name, &amp;tag_name_version, &amp;release_name, branch, &amp;body_md_text));
     // early exit on error
     if let Some(error_message) = json_value.get("message") {
         eprintln!("{RED}{error_message}{RESET}");
@@ -2045,7 +2045,7 @@ fn task_github_new_release() {
     .run().unwrap_or_else(|e| panic!("{e}"));
 
     // upload asset
-    cgl::github_api_upload_asset_to_release(&amp;github_client, &amp;owner, &amp;repo_name, &amp;release_id, &amp;tar_name);
+    cgl::github_api_upload_asset_to_release(&amp;github_client, &amp;github_owner, &amp;repo_name, &amp;release_id, &amp;tar_name);
 
     cl::ShellCommandLimitedDoubleQuotesSanitizer::new(
         r#"rm "{tar_name_sanitized_for_double_quote}" "#).unwrap_or_else(|e| panic!("{e}"))
@@ -2062,7 +2062,7 @@ fn task_github_new_release() {
 
     println!(
         r#"
-{GREEN}https://github.com/{owner}/{repo_name}/releases{RESET}
+{GREEN}https://github.com/{github_owner}/{repo_name}/releases{RESET}
     "#
     );
 }

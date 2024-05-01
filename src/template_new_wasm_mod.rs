@@ -13,7 +13,7 @@ pub fn new_wasm(rust_project_name: Option<String>, github_owner_or_organization:
         return;
     }
     if github_owner_or_organization.is_none() {
-        println!("{RED}Error: Github owner or Organization argument is missing: `cargo auto new_wasm project_name github_owner_or_organization web_server server_username`{RESET}");
+        println!("{RED}Error: github_owner or Organization argument is missing: `cargo auto new_wasm project_name github_owner_or_organization web_server server_username`{RESET}");
         return;
     }
     if web_server_domain.is_none() {
