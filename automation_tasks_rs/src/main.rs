@@ -214,19 +214,6 @@ fn copy_files_into_module(){
         &exclude_big_folders,
     );
 
-    cl::copy_folder_files_into_module(
-        std::path::Path::new("template_new_wasm"),
-        std::path::Path::new("src/template_new_wasm_mod.rs"),
-        &ext_for_binary_files,
-        &exclude_big_folders,
-    );
-
-    cl::copy_folder_files_into_module(
-        std::path::Path::new("template_new_pwa_wasm"),
-        std::path::Path::new("src/template_new_pwa_wasm_mod.rs"),
-        &ext_for_binary_files,
-        &exclude_big_folders,
-    );
 }
 // region: tasks
 
