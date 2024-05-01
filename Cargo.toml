@@ -1,6 +1,6 @@
 [package]
 name = "cargo-auto"
-version = "2024.422.214"
+version = "2024.501.55"
 authors = ["bestia.dev"]
 homepage = "https://bestia.dev"
 edition = "2021"
@@ -32,6 +32,10 @@ data-encoding = "2.5.0"
 anyhow="1.0.79"
 serde_derive = "1.0.196"
 serde_json = "1.0.113"
+reqwest = { version = "0.12.3", features = ["blocking"] }
+flate2 = "1.0.30"
+tar = "0.4.40"
+walkdir = "2.5.0"
 
 [lib]
 name = "cargo_auto_local_lib"

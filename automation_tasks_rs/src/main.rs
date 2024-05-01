@@ -215,13 +215,6 @@ fn copy_files_into_module(){
     );
 
     cl::copy_folder_files_into_module(
-        std::path::Path::new("template_new_cli"),
-        std::path::Path::new("src/template_new_cli_mod.rs"),
-        &ext_for_binary_files,
-        &exclude_big_folders,
-    );
-
-    cl::copy_folder_files_into_module(
         std::path::Path::new("template_new_wasm"),
         std::path::Path::new("src/template_new_wasm_mod.rs"),
         &ext_for_binary_files,
