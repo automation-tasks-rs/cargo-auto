@@ -4,8 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="generator" content="rustdoc">
-  <meta name="description" content="Source of the Rust file `src/template_new_cli_mod.rs`.">
-  <title>template_new_cli_mod.rs - source</title>
+  <meta name="description" content="Source of the Rust file `src/template_new_auto_for_cli_mod.rs`.">
+  <title>template_new_auto_for_cli_mod.rs - source</title>
   <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2">
   <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2">
@@ -113,67 +113,38 @@
 <a href="#59" id="59">59</a>
 <a href="#60" id="60">60</a>
 <a href="#61" id="61">61</a>
-<a href="#62" id="62">62</a>
-<a href="#63" id="63">63</a>
-<a href="#64" id="64">64</a>
-<a href="#65" id="65">65</a>
-<a href="#66" id="66">66</a>
-<a href="#67" id="67">67</a>
-<a href="#68" id="68">68</a>
-<a href="#69" id="69">69</a>
-<a href="#70" id="70">70</a>
-<a href="#71" id="71">71</a>
-<a href="#72" id="72">72</a>
-<a href="#73" id="73">73</a>
-<a href="#74" id="74">74</a>
-<a href="#75" id="75">75</a>
-<a href="#76" id="76">76</a>
-<a href="#77" id="77">77</a>
-<a href="#78" id="78">78</a>
-<a href="#79" id="79">79</a>
-<a href="#80" id="80">80</a>
-<a href="#81" id="81">81</a>
-<a href="#82" id="82">82</a>
-<a href="#83" id="83">83</a>
 </pre>
         </div>
-        <pre class="rust"><code><span class="comment">// template_new_cli_mod.rs
+        <pre class="rust"><code><span class="comment">// template_new_auto_for_cli_mod.rs
 
-</span><span class="doccomment">//! template for new_cli
+</span><span class="doccomment">//! template for new_auto_for_cli (automation_tasks_rs)
 //!
 //! The template is downloaded from github
-//! &lt;https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/releases/download/v0.0.3/template.tar.gz&gt;
+//! &lt;https://github.com/automation-tasks-rs/cargo_auto_template_new_auto_for_cli/releases/download/v1.0.0/template.tar.gz&gt;
 
+</span><span class="attr">#[allow(unused)]
 </span><span class="kw">use crate</span>::{GREEN, RED, RESET, YELLOW};
 
-<span class="kw">pub fn </span>new_cli(rust_project_name: <span class="prelude-ty">Option</span>&lt;String&gt;, github_owner_or_organization: <span class=
-"prelude-ty">Option</span>&lt;String&gt;) {
-    <span class="kw">if </span>rust_project_name.is_none() {
-        <span class="macro">println!</span>(<span class=
-"string">"{RED}Error: Project name argument is missing: `cargo auto new_cli project_name github_owner_or_organization`{RESET}"</span>);
-        <span class="kw">return</span>;
-    }
-    <span class="kw">if </span>github_owner_or_organization.is_none() {
-        <span class="macro">println!</span>(<span class=
-"string">"{RED}Error: github_owner argument is missing: `cargo auto new_cli project_name github_owner_or_organization`{RESET}"</span>);
-        <span class="kw">return</span>;
-    }
-    <span class="kw">let </span>rust_project_name = rust_project_name.unwrap();
-    <span class="kw">let </span>github_owner_or_organization = github_owner_or_organization.unwrap();
+<span class="doccomment">/// copies the template to the `automation_tasks_rs` directory  
+/// in development use: `cargo run -- new_auto_for_cli`  
+/// in runtime use: `cargo auto new_auto_for_cli`  
+</span><span class="kw">pub fn </span>new_auto_for_cli() {
+    copy_to_files(<span class="string">"automation_tasks_rs"</span>);
 
-    copy_to_files(<span class="kw-2">&</span>rust_project_name, <span class="kw-2">&</span>github_owner_or_organization);
-
-    <span class="macro">println!</span>(<span class="string">""</span>);
-    <span class="macro">println!</span>(<span class=
-"string">"    {YELLOW}The command `cargo auto new_cli` generated the directory `{rust_project_name}`.{RESET}"</span>);
-    <span class="macro">println!</span>(<span class="string">"    {YELLOW}You can open this new Rust project in VSCode:{RESET}"</span>,);
-    <span class="macro">println!</span>(<span class="string">"{GREEN}code {rust_project_name}{RESET}"</span>);
-    <span class="macro">println!</span>(<span class="string">"    {YELLOW}Then build inside the VSCode terminal with:{RESET}"</span>);
-    <span class="macro">println!</span>(<span class="string">"{GREEN}cargo auto build{RESET}"</span>);
-    <span class="macro">println!</span>(<span class="string">"    {YELLOW}and follow the detailed instructions.{RESET}"</span>);
+    <span class="macro">println!</span>(
+        <span class="string">r#"
+    {YELLOW}The command `cargo auto new_auto_for_cli` generated the sub-project `automation_tasks_rs` in your main Rust project.
+    {YELLOW}The sub-project will be automatically compiled on the next use of `cargo auto task_name` command.{RESET}
+{GREEN}cargo auto build{RESET}
+    {YELLOW}The new directory is automatically added to your git commit.
+    There is a local .gitignore file to avoid commit of the `target/` directory.{RESET}
+    the sub-project is independent from the main project. You can open it in a new Rust editor.{RESET}
+{GREEN}code automation_tasks_rs{RESET}
+"#
+    </span>);
 }
 
-<span class="kw">pub fn </span>copy_to_files(rust_project_name: <span class="kw-2">&</span>str, github_owner_or_organization: <span class="kw-2">&</span>str) {
+<span class="kw">pub fn </span>copy_to_files(rust_project_name: <span class="kw-2">&</span>str) {
     <span class="kw">let </span>folder_path = std::path::Path::new(rust_project_name);
     <span class="kw">if </span>folder_path.exists() {
         <span class="macro">panic!</span>(<span class="string">"{RED}Error: Folder {rust_project_name} already exists! {RESET}"</span>);
@@ -185,7 +156,7 @@
     <span class="kw">let </span>file_name = <span class="string">"template.tar.gz"</span>;
     <span class="kw">let </span>path = <span class="string">"./template.tar.gz"</span>;
     <span class="kw">let </span>url = <span class=
-"string">"https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/releases/download/v0.0.3/template.tar.gz"</span>;
+"string">"https://github.com/automation-tasks-rs/cargo_auto_template_new_auto_for_cli/releases/download/v1.0.0/template.tar.gz"</span>;
     <span class="kw">let </span>reqwest_client = reqwest::blocking::Client::new();
     <span class="kw">let </span>http_response = reqwest_client.get(url).send();
     <span class="kw">if </span>http_response.is_err() {
@@ -204,29 +175,8 @@
     archive.unpack(folder_path).unwrap();
     std::fs::remove_file(path).unwrap();
 
-    <span class="comment">// replace placeholders inside text files
-    </span><span class="kw">for </span>entry <span class="kw">in </span>walkdir::WalkDir::new(folder_path).into_iter().filter_map(Result::ok) {
-        <span class="kw">if </span>entry.file_type().is_file() {
-            <span class="comment">// template has only valid utf8 files
-            </span><span class="macro">println!</span>(<span class="string">"replace: {}"</span>, entry.path().to_string_lossy());
-            <span class="kw">let </span>content = std::fs::read_to_string(entry.path()).unwrap();
-            <span class="kw">let </span>content = content.replace(<span class="string">"cargo_auto_template_new_cli"</span>, rust_project_name);
-            <span class="kw">let </span>content = content.replace(<span class="string">"automation-tasks-rs"</span>, github_owner_or_organization);
-            <span class="kw">let </span>content = content.replace(<span class="string">"automation--tasks--rs"</span>, <span class=
-"string">"automation-tasks-rs"</span>);
-            std::fs::write(entry.path(), content).unwrap();
-        }
-    }
-    <span class="comment">// renaming files is tricky and must be traverse  in reverse.
-    </span><span class="kw">let </span><span class=
-"kw-2">mut </span>traverse_reverse: Vec&lt;walkdir::DirEntry&gt; = walkdir::WalkDir::new(folder_path).into_iter().filter_map(Result::ok).collect();
-    traverse_reverse.reverse();
-    <span class="kw">for </span>entry <span class="kw">in </span>traverse_reverse.iter() {
-        <span class="kw">if </span>entry.file_name() == <span class="string">"cargo_auto_template_new_cli" </span>{
-            <span class="macro">println!</span>(<span class="string">"rename: {}"</span>, entry.path().to_string_lossy());
-            std::fs::rename(entry.path(), entry.path().parent().unwrap().join(rust_project_name)).unwrap();
-        }
-    }
+    <span class="comment">// remove unused files/folders
+    </span>std::fs::remove_dir_all(folder_path.join(<span class="string">".github"</span>)).unwrap();
 }
 </code></pre>
       </div>

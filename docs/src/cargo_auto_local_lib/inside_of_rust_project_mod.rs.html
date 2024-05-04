@@ -186,6 +186,22 @@
 <a href="#132" id="132">132</a>
 <a href="#133" id="133">133</a>
 <a href="#134" id="134">134</a>
+<a href="#135" id="135">135</a>
+<a href="#136" id="136">136</a>
+<a href="#137" id="137">137</a>
+<a href="#138" id="138">138</a>
+<a href="#139" id="139">139</a>
+<a href="#140" id="140">140</a>
+<a href="#141" id="141">141</a>
+<a href="#142" id="142">142</a>
+<a href="#143" id="143">143</a>
+<a href="#144" id="144">144</a>
+<a href="#145" id="145">145</a>
+<a href="#146" id="146">146</a>
+<a href="#147" id="147">147</a>
+<a href="#148" id="148">148</a>
+<a href="#149" id="149">149</a>
+<a href="#150" id="150">150</a>
 </pre>
         </div>
         <pre class="rust"><code><span class="comment">// inside_of_rust_project_mod.rs
@@ -199,19 +215,17 @@
 </span><span class="kw">use crate</span>::{GREEN, RED, RESET, YELLOW};
 
 <span class="kw">pub fn </span>parse_args(args: <span class="kw-2">&amp;mut </span>std::env::Args) {
-    <span class="comment">// the first argument is the task: (no argument for help), new_auto, build, release,...
+    <span class="comment">// the first argument is the task: (no argument for help), new_auto_for_cli, ...
     // wooow! There is a difference if I call the standalone binary or as a cargo subcommand:
-    // cargo-auto build     - build is the arg_1
-    // cargo auto build     - build is the arg_2
     </span><span class="kw">let </span>arg_1 = args.next();
     <span class="kw">match </span>arg_1 {
         <span class="prelude-val">None </span>=&gt; print_help_from_cargo_auto(),
         <span class="prelude-val">Some</span>(task) =&gt; {
             <span class="kw">if </span>task != <span class="string">"auto" </span>{
-                <span class="comment">// when calling as `cargo auto build`
+                <span class="comment">// when calling as `cargo auto new_auto_for_cli`
                 </span>match_first_argument(<span class="kw-2">&</span>task, args);
             } <span class="kw">else </span>{
-                <span class="comment">// when calling as `cargo-auto build`
+                <span class="comment">// when calling as `cargo-auto new_auto_for_cli`
                 </span><span class="kw">let </span>arg_2 = args.next();
                 <span class="kw">match </span>arg_2 {
                     <span class="prelude-val">None </span>=&gt; print_help_from_cargo_auto(),
@@ -231,7 +245,7 @@
 <span class="doccomment">/// if there is no argument then print help  
 /// if there exists `automation_tasks_rs/Cargo.toml` and `automation_tasks_rs/src/main.rs`  
 /// call automation_tasks_rs with no arguments to print the help prepared in user defined automation_tasks_rs  
-/// else print the help for `cargo auto new_auto`  
+/// else print the help for `cargo auto new_auto_for_cli`  
 /// in development use: `cargo run`  
 /// in runtime use: `cargo auto`  
 </span><span class="kw">fn </span>print_help_from_cargo_auto() {
@@ -242,29 +256,27 @@
     This program automates your custom tasks when developing a Rust project.
         
     To start using `cargo auto` inside your Rust project, you must create a new `automation_tasks_rs` directory with the command:{RESET}
-{GREEN}cargo auto new_auto{RESET}
+{GREEN}cargo auto new_auto_for_cli{RESET}
 
     {YELLOW}© 2024 bestia.dev  MIT License github.com/automation-tasks-rs/cargo-auto{RESET}
 "#
         </span>);
     } <span class="kw">else </span>{
         <span class="comment">// panic! if cannot compile automation_tasks_rs
-        </span><span class="kw">crate</span>::template_new_auto_mod::compile_automation_tasks_rs_if_needed();
+        </span>compile_automation_tasks_rs_if_needed();
         <span class="kw">let </span>_success = <span class="kw">crate</span>::utils_mod::run_shell_command_success(<span class="kw-2">&</span><span class=
 "kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.to_string_lossy());
     }
 }
 
-<span class="doccomment">/// the first argument is the task: new_auto, build, release,...  
+<span class="doccomment">/// the first argument is the task: new_auto_for_cli,...  
 /// the task `new` is processed by `cargo-auto`,  
 /// all other tasks are processed by the used defined `automation_tasks_rs`  
-/// in development use: `cargo run -- new_auto`  
-/// in development use: `cargo run -- build`  
-/// in development use: `cargo run -- release`  
+/// in development use: `cargo run -- new_auto_for_cli`  
 </span><span class="kw">fn </span>match_first_argument(task: <span class="kw-2">&</span>str, args: <span class="kw-2">&amp;mut </span>std::env::Args) {
     <span class="kw">if </span>task == <span class="string">"completion" </span>{
         completion();
-    } <span class="kw">else if </span>task == <span class="string">"new_auto" </span>{
+    } <span class="kw">else if </span>task == <span class="string">"new_auto_for_cli" </span>{
         <span class="comment">// this task is inside cargo-auto
         </span><span class="kw">if </span>already_exists_automation_tasks_rs() {
             <span class="macro">println!</span>(<span class=
@@ -272,7 +284,7 @@
             <span class="comment">// early exit
             </span>std::process::exit(<span class="number">0</span>);
         }
-        <span class="kw">crate</span>::template_new_auto_mod::new_auto();
+        <span class="kw">crate</span>::template_new_auto_for_cli_mod::new_auto_for_cli();
     } <span class="kw">else </span>{
         <span class="comment">// these tasks are user defined in automation_tasks_rs
         </span><span class="kw">if </span>!already_exists_automation_tasks_rs() {
@@ -282,7 +294,7 @@
             </span>std::process::exit(<span class="number">0</span>);
         }
         <span class="comment">// panic! if cannot compile automation_tasks_rs
-        </span><span class="kw">crate</span>::template_new_auto_mod::compile_automation_tasks_rs_if_needed();
+        </span>compile_automation_tasks_rs_if_needed();
         <span class="comment">// call automation_tasks_rs/target/debug/automation_tasks_rs with all the arguments
         </span><span class="kw">let </span><span class="kw-2">mut </span>command = std::process::Command::new(<span class=
 "kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str());
@@ -322,8 +334,30 @@
         word_being_completed = args[<span class="number">3</span>].as_str();
     }
     <span class="kw">if </span>last_word == <span class="string">"cargo-auto" </span>|| last_word == <span class="string">"auto" </span>{
-        <span class="kw">let </span>sub_commands = <span class="macro">vec!</span>[<span class="string">"new_auto"</span>];
+        <span class="kw">let </span>sub_commands = <span class="macro">vec!</span>[<span class="string">"new_auto_for_cli"</span>];
         completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
+    }
+}
+
+<span class="doccomment">/// build if the files are different then the hashes in automation_tasks_rs/file_hashes.json
+/// panic! if cannot compile automation_tasks_rs
+</span><span class="kw">pub fn </span>compile_automation_tasks_rs_if_needed() {
+    <span class="kw">if </span>!<span class="kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.exists() || <span class=
+"kw">crate</span>::file_hashes_mod::is_project_changed() {
+        compile_project_automation_tasks_rs();
+        <span class="kw">let </span>vec_of_metadata = <span class="kw">crate</span>::file_hashes_mod::read_file_metadata();
+        <span class="kw">crate</span>::file_hashes_mod::save_json_file_for_file_meta_data(vec_of_metadata);
+    }
+}
+
+<span class="doccomment">/// build automation_tasks_rs
+/// panic! if cannot compile automation_tasks_rs
+</span><span class="kw">pub fn </span>compile_project_automation_tasks_rs() {
+    <span class="comment">// build in other directory (not in working current directory)
+    // cargo build --manifest-path=dir/Cargo.toml
+    </span><span class="kw">if </span>!<span class="kw">crate</span>::utils_mod::run_shell_command_success(<span class=
+"string">"cargo build --manifest-path=automation_tasks_rs/Cargo.toml"</span>) {
+        <span class="macro">panic!</span>(<span class="string">"{RED}Cannot compile automation_tasks_rs. Exiting...{RESET}"</span>);
     }
 }
 </code></pre>

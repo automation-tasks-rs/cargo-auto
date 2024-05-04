@@ -34,7 +34,7 @@
     <div class="sidebar-crate">
       <a class="logo-container" href="../cargo_auto/index.html"><img src=
       "https://github.com/automation-tasks-rs/cargo-auto/raw/main/images/logo/logo_cargo_auto.svg" alt="logo"></a>
-      <h2><a href="../cargo_auto/index.html">cargo_auto</a><span class="version">2024.501.1827</span></h2>
+      <h2><a href="../cargo_auto/index.html">cargo_auto</a><span class="version">2024.504.1703</span></h2>
     </div>
     <div class="sidebar-elems">
       <ul class="block">
@@ -81,7 +81,7 @@
           <div class="docblock">
             <h2 id="cargo-auto"><a class="doc-anchor" href="#cargo-auto">§</a>cargo-auto</h2>
             <p><strong>Automation tasks coded in Rust language for the workflow of Rust projects</strong><br>
-            <em><strong>version: 2024.501.1827 date: 2024-05-01 author: <a href="https://bestia.dev">bestia.dev</a> repository: <a href=
+            <em><strong>version: 2024.504.1703 date: 2024-05-04 author: <a href="https://bestia.dev">bestia.dev</a> repository: <a href=
             "https://github.com/automation-tasks-rs/cargo-auto">GitHub</a></strong></em></p>
             <p><img src="https://img.shields.io/badge/maintained-green" alt="maintained"> <img src="https://img.shields.io/badge/ready_for_use-green" alt=
             "ready-for-use"> <img src="https://img.shields.io/badge/rustlang-orange" alt="rustlang"> <img src="https://img.shields.io/badge/automation-orange"
@@ -98,13 +98,13 @@
             "https://github.com/automation-tasks-rs/cargo-auto/workflows/rust_fmt_auto_build_test/badge.svg" alt="Rust"></a> <a href=
             "https://automation-tasks-rs.github.io/cargo-auto/cargo_auto/index.html"><img src="https://img.shields.io/badge/newest_docs-blue.svg" alt=
             "Newest docs"></a> <img src="https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg" alt="cargo-auto"></p>
-            <p><a href="https://github.com/automation-tasks-rs/cargo-auto/"><img src="https://img.shields.io/badge/Lines_in_Rust-1299-green.svg" alt=
+            <p><a href="https://github.com/automation-tasks-rs/cargo-auto/"><img src="https://img.shields.io/badge/Lines_in_Rust-743-green.svg" alt=
             "Lines in Rust code"></a> <a href="https://github.com/automation-tasks-rs/cargo-auto/"><img src=
-            "https://img.shields.io/badge/Lines_in_Doc_comments-742-blue.svg" alt="Lines in Doc comments"></a> <a href=
-            "https://github.com/automation-tasks-rs/cargo-auto/"><img src="https://img.shields.io/badge/Lines_in_comments-222-purple.svg" alt=
+            "https://img.shields.io/badge/Lines_in_Doc_comments-574-blue.svg" alt="Lines in Doc comments"></a> <a href=
+            "https://github.com/automation-tasks-rs/cargo-auto/"><img src="https://img.shields.io/badge/Lines_in_comments-105-purple.svg" alt=
             "Lines in Comments"></a> <a href="https://github.com/automation-tasks-rs/cargo-auto/"><img src=
             "https://img.shields.io/badge/Lines_in_examples-0-yellow.svg" alt="Lines in examples"></a> <a href=
-            "https://github.com/automation-tasks-rs/cargo-auto/"><img src="https://img.shields.io/badge/Lines_in_tests-549-orange.svg" alt=
+            "https://github.com/automation-tasks-rs/cargo-auto/"><img src="https://img.shields.io/badge/Lines_in_tests-0-orange.svg" alt=
             "Lines in tests"></a></p>
             <p>Hashtags: #maintained #ready-for-use #rustlang #automation #workflow<br>
             My projects on GitHub are more like a tutorial than a finished product: <a href="https://github.com/bestia-dev/tutorials_rust_wasm">bestia-dev
@@ -130,7 +130,7 @@ cargo auto test
             <p>We can also add <code>automation tasks</code> to an existing Rust project. Inside your Rust project directory (the one with
             <code>Cargo.toml</code>) run:</p>
             <div class="example-wrap">
-              <pre class="language-bash"><code>cargo auto new_auto
+              <pre class="language-bash"><code>cargo auto new_auto_for_cli
 cargo auto
 # it lists all the prepared automation tasks
 # try to build
@@ -212,7 +212,7 @@ cargo auto build
             This tool <code>cargo-auto</code> is meant for Rust projects, so it means that all the Rust infrastructure is already in place.</p>
             <h3 id="automation_tasks_rs-rust-sub-project"><a class="doc-anchor" href="#automation_tasks_rs-rust-sub-project">§</a>automation_tasks_rs Rust
             sub-project</h3>
-            <p>The command <code>cargo auto new_auto</code> will create a new Rust sub-project<code>automation_tasks_rs</code> inside your <code>Rust
+            <p>The command <code>cargo auto new_auto_for_cli</code> will create a new Rust sub-project<code>automation_tasks_rs</code> inside your <code>Rust
             project</code>. It should not interfere with the main Rust project. This directory will be added to git commits and pushed to remote repositories
             as part of the main project. It has its own <code>.gitignore</code> to avoid committing to its target directory.<br>
             The <code>automation_tasks_rs</code> helper project contains user-defined tasks in Rust code. Your tasks. This helper project should be opened in a

@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"fn":["copy_to_files","new_auto_for_cli"]};
