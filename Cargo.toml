@@ -1,5 +1,6 @@
 [package]
 name = "cargo-auto"
+# binary executable does not need to be SemVer, because nobody depends on it
 version = "2024.504.1814"
 authors = ["bestia.dev"]
 homepage = "https://bestia.dev"
@@ -21,6 +22,9 @@ include = [
 ]
 
 [dependencies]
+# SemVer rules: Major version zero (0.y.z) is for initial development. Anything MAY change at any time. The public API SHOULD NOT be considered stable.
+# WARNING: Although dependecies in Cargo.toml look like a specific version of the crate, they are just like a carret version (^x.y.z) and actually specify 
+# the minimum version and allow automatic SemVer compatible updates up to a MAJOR increment! Always check the true version with `cargo tree`!
 lazy_static="^1.4.0"
 base64ct = {version = "^1.6.0", features = ["alloc"] }
 json5 = "^0.4.1"
