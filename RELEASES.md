@@ -12,6 +12,8 @@ The TODO section is part of the [README.md](https://github.com/automation-tasks-
 
 - new_auto
 
+- pest 2.7.9->2.7.10
+
 ## Version 2024.501.1827 (2024-05-01)
 
 - templates from GitHub
