@@ -57,7 +57,7 @@
 //! Inside your Rust project directory (the one with `Cargo.toml`) run:  
 //!
 //! ```bash
-//! cargo auto new_auto
+//! cargo auto new_auto_for_cli
 //! cargo auto
 //! # it lists all the prepared automation tasks
 //! # try to build
@@ -142,7 +142,7 @@
 //!
 //! ## automation_tasks_rs Rust sub-project
 //!
-//! The command `cargo auto new_auto` will create a new Rust sub-project`automation_tasks_rs` inside your `Rust project`. It should not interfere with the main Rust project. This directory will be added to git commits and pushed to remote repositories as part of the main project. It has its own `.gitignore` to avoid committing to its target directory.  
+//! The command `cargo auto new_auto_for_cli` will create a new Rust sub-project`automation_tasks_rs` inside your `Rust project`. It should not interfere with the main Rust project. This directory will be added to git commits and pushed to remote repositories as part of the main project. It has its own `.gitignore` to avoid committing to its target directory.  
 //! The `automation_tasks_rs` helper project contains user-defined tasks in Rust code. Your tasks. This helper project should be opened in a new editor starting from the `automation_tasks_rs` directory. It does not share dependencies with the main project. It is completely separate and independent.  
 //! You can edit it and add your dependencies and Rust code. No limits. Freedom of expression.  
 //! This is now your code, your tasks, and your helper Rust project!  

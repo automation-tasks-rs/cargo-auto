@@ -32,7 +32,7 @@ pub fn new_wasm(rust_project_name: Option<String>, github_owner_or_organization:
     copy_to_files(&rust_project_name, &github_owner_or_organization, &web_server_domain, &server_username);
 
     println!("");
-    println!("    {YELLOW}The command `crate auto new_wasm` generated the directory `{rust_project_name}`{RESET}");
+    println!("    {YELLOW}The command `cargo auto new_wasm` generated the directory `{rust_project_name}`{RESET}");
     println!("    {YELLOW}You can open this new Rust project `{rust_project_name}` in a new Rust editor.{RESET}",);
     println!("    {YELLOW}For example VSCode:{RESET}");
     println!("{GREEN}code {rust_project_name}{RESET}");
