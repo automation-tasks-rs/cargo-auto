@@ -1,6 +1,6 @@
 [package]
 name = "cargo-auto"
-version = "2024.504.1714"
+version = "2024.504.1814"
 authors = ["bestia.dev"]
 homepage = "https://bestia.dev"
 edition = "2021"
@@ -21,21 +21,21 @@ include = [
 ]
 
 [dependencies]
-lazy_static="1.4.0"
-base64ct = {version = "1.6.0", features = ["alloc"] }
-json5 = "0.4.1"
-serde = { version = "1.0.196", features = ["derive"] }
-image = "0.24.8"
-ico = "0.3.0"
-ring = "0.17.7"
-data-encoding = "2.5.0"
-anyhow="1.0.79"
-serde_derive = "1.0.196"
-serde_json = "1.0.113"
-reqwest = { version = "0.12.3", features = ["blocking"] }
-flate2 = "1.0.30"
-tar = "0.4.40"
-walkdir = "2.5.0"
+lazy_static="^1.4.0"
+base64ct = {version = "^1.6.0", features = ["alloc"] }
+json5 = "^0.4.1"
+serde = { version = "^1.0.196", features = ["derive"] }
+image = "^0.24.8"
+ico = "^0.3.0"
+ring = "^0.17.7"
+data-encoding = "^2.5.0"
+anyhow="^1.0.79"
+serde_derive = "^1.0.196"
+serde_json = "^1.0.113"
+reqwest = { version = "^0.12.3", features = ["blocking"] }
+flate2 = "^1.0.30"
+tar = "^0.4.40"
+walkdir = "^2.5.0"
 
 [lib]
 name = "cargo_auto_local_lib"
