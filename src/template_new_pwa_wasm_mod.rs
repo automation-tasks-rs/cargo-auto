@@ -3,7 +3,7 @@
 //! template for new_pwa_wasm
 //!
 //! The template is downloaded from github
-//! <https://github.com/automation-tasks-rs/cargo_auto_template_new_pwa_wasm/releases/download/v0.0.5/template.tar.gz>
+//! <https://github.com/automation-tasks-rs/cargo_auto_template_new_pwa_wasm/releases/latest/download/template.tar.gz>
 
 use crate::{GREEN, RED, RESET, YELLOW};
 
@@ -140,7 +140,7 @@ pub fn copy_to_files(rust_project_name: &str, github_owner_or_organization: &str
     println!("{YELLOW}Downloading template.tar.gz...{RESET}");
     let file_name = "template.tar.gz";
     let path = "./template.tar.gz";
-    let url = "https://github.com/automation-tasks-rs/cargo_auto_template_new_pwa_wasm/releases/download/v0.0.5/template.tar.gz";
+    let url = "https://github.com/automation-tasks-rs/cargo_auto_template_new_pwa_wasm/releases/latest/download/template.tar.gz";
     let reqwest_client = reqwest::blocking::Client::new();
     let http_response = reqwest_client.get(url).send();
     if http_response.is_err() {
