@@ -10,13 +10,15 @@ The TODO section is part of the [README.md](https://github.com/automation-tasks-
 
 ## Unreleased
 
+## Version 2025.309.1725 (2025-03-09)
+
 - ring does not compile in windows
 
 ## Version 2024.504.1814 (2024-05-04)
 
 - new_auto
 - pest 2.7.9->2.7.10
-- carret versions
+- caret versions
 
 ## Version 2024.501.1827 (2024-05-01)
 
