@@ -1,7 +1,7 @@
 [package]
 name = "cargo-auto"
 # binary executable does not need to be SemVer, because nobody depends on it
-version = "2025.309.1918"
+version = "2025.309.1933"
 authors = ["bestia.dev"]
 homepage = "https://bestia.dev"
 edition = "2021"

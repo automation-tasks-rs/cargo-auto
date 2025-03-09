@@ -83,13 +83,13 @@ pub fn read_file_metadata() -> Vec<FileMetaData> {
     // all files in the src/ directory
     for entry in walkdir::WalkDir::new(crate::PATH_SRC.as_path()).into_iter().filter_map(Result::ok) {
         if entry.file_type().is_file() {
-            let path = entry.file_name();
-
-            let filename = format!("{}/{}", crate::PATH_SRC.to_string_lossy(), path.to_string_lossy());
-            let filename = filename.replace("\"", "");
+            let path = entry.path();
             // calculate hash of file
-            let filehash = sha256_digest(std::path::Path::new(&filename)).unwrap();
-            vec_of_metadata.push(FileMetaData { filename, filehash });
+            let filehash = sha256_digest(path).unwrap();
+            vec_of_metadata.push(FileMetaData {
+                filename: path.to_string_lossy().to_string(),
+                filehash,
+            });
         }
     }
     vec_of_metadata
