@@ -10,9 +10,10 @@ publish = false
 
 [dependencies]
 # SemVer rules: Major version zero (0.y.z) is for initial development. Anything MAY change at any time. The public API SHOULD NOT be considered stable.
-# WARNING: Although dependecies in Cargo.toml look like a specific version of the crate, they are just like a carret version (^x.y.z) and actually specify 
+# WARNING: Although dependencies in Cargo.toml look like a specific version of the crate, they are just like a caret version (^x.y.z) and actually specify 
 # the minimum version and allow automatic SemVer compatible updates up to a MAJOR increment! Always check the true version with `cargo tree`!
-cargo_auto_lib = {version = "2.4.8", path="../../cargo_auto_lib"}
+# , path="../../cargo_auto_lib"
+cargo_auto_lib = {version = "=2.4.8"}
 cargo_auto_github_lib = "1.1.6"
 cargo_auto_encrypt_secret_lib = "1.1.7"
 

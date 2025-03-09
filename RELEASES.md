@@ -10,6 +10,8 @@ The TODO section is part of the [README.md](https://github.com/automation-tasks-
 
 ## Unreleased
 
+- ring does not compile in windows
+
 ## Version 2024.504.1814 (2024-05-04)
 
 - new_auto

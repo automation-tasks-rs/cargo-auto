@@ -27,6 +27,7 @@
         "bestiadev",
         "bindgen",
         "buildtool",
+        "camino",
         "cdylib",
         "cmake",
         "crev",
