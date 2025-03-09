@@ -1,58 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="generator" content="rustdoc">
-  <meta name="description" content="Source of the Rust file `src/inside_of_rust_project_mod.rs`.">
-  <title>inside_of_rust_project_mod.rs - source</title>
-  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2">
-  <link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css">
-  <link rel="stylesheet" href="../../static.files/rustdoc-5bc39a1768837dd0.css">
-  <meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="cargo_auto_local_lib" data-themes=""
-  data-resource-suffix="" data-rustdoc-version="1.77.2 (25ef9e3d8 2024-04-09)" data-channel="1.77.2" data-search-js="search-dd67cee4cfa65049.js"
-  data-settings-js="settings-4313503d2e1961c2.js">
-  <script src="../../static.files/storage-4c98445ec4002617.js"></script>
-  <script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script>
-  <script defer src="../../src-files.js"></script>
-  <script defer src="../../static.files/main-48f368f3872407c8.js"></script><noscript>
-  <link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript>
-  <link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png">
-  <link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png">
-  <link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg">
-</head>
-<body class="rustdoc src">
-  <!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
-  <nav class="sidebar">
-    <div class="src-sidebar-title">
-      <h2>Files</h2>
-    </div>
-  </nav>
-  <div class="sidebar-resizer"></div>
-  <main>
-    <nav class="sub">
-      <form class="search-form">
-        <div id="sidebar-button" tabindex="-1">
-          <a href="../../cargo_auto_local_lib/all.html" title="show sidebar"></a>
-        </div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder=
-        "Click or press ‘S’ to search, ‘?’ for more options…" type="search">
-        <div id="help-button" tabindex="-1">
-          <a href="../../help.html" title="help">?</a>
-        </div>
-        <div id="settings-menu" tabindex="-1">
-          <a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src=
-          "../../static.files/wheel-7b819b6101059cd0.svg"></a>
-        </div>
-      </form>
-    </nav>
-    <section id="main-content" class="content">
-      <div class="example-wrap">
-        <div data-nosnippet="">
-          <pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/inside_of_rust_project_mod.rs`."><title>inside_of_rust_project_mod.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-46132b98.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="cargo_auto_local_lib" data-themes="" data-resource-suffix="" data-rustdoc-version="1.85.0 (4d91de4e4 2025-02-17)" data-channel="1.85.0" data-search-js="search-75f5ac3e.js" data-settings-js="settings-0f613d39.js" ><script src="../../static.files/storage-59e33391.js"></script><script defer src="../../static.files/src-script-56102188.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">cargo_auto_local_lib/</div>inside_of_rust_project_mod.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
+<a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -201,10 +148,7 @@
 <a href="#147" id="147">147</a>
 <a href="#148" id="148">148</a>
 <a href="#149" id="149">149</a>
-<a href="#150" id="150">150</a>
-</pre>
-        </div>
-        <pre class="rust"><code><span class="comment">// inside_of_rust_project_mod.rs
+<a href="#150" id="150">150</a></pre></div><pre class="rust"><code><span class="comment">// inside_of_rust_project_mod.rs
 
 </span><span class="doccomment">//! commands accessible inside a Rust project folder
 
@@ -223,13 +167,13 @@
         <span class="prelude-val">Some</span>(task) =&gt; {
             <span class="kw">if </span>task != <span class="string">"auto" </span>{
                 <span class="comment">// when calling as `cargo auto new_auto_for_cli`
-                </span>match_first_argument(<span class="kw-2">&</span>task, args);
+                </span>match_first_argument(<span class="kw-2">&amp;</span>task, args);
             } <span class="kw">else </span>{
                 <span class="comment">// when calling as `cargo-auto new_auto_for_cli`
                 </span><span class="kw">let </span>arg_2 = args.next();
                 <span class="kw">match </span>arg_2 {
                     <span class="prelude-val">None </span>=&gt; print_help_from_cargo_auto(),
-                    <span class="prelude-val">Some</span>(task) =&gt; match_first_argument(<span class="kw-2">&</span>task, args),
+                    <span class="prelude-val">Some</span>(task) =&gt; match_first_argument(<span class="kw-2">&amp;</span>task, args),
                 }
             }
         }
@@ -264,8 +208,7 @@
     } <span class="kw">else </span>{
         <span class="comment">// panic! if cannot compile automation_tasks_rs
         </span>compile_automation_tasks_rs_if_needed();
-        <span class="kw">let </span>_success = <span class="kw">crate</span>::utils_mod::run_shell_command_success(<span class="kw-2">&</span><span class=
-"kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.to_string_lossy());
+        <span class="kw">let </span>_success = <span class="kw">crate</span>::utils_mod::run_shell_command_success(<span class="kw-2">&amp;</span><span class="kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.to_string_lossy());
     }
 }
 
@@ -273,14 +216,13 @@
 /// the task `new` is processed by `cargo-auto`,  
 /// all other tasks are processed by the used defined `automation_tasks_rs`  
 /// in development use: `cargo run -- new_auto_for_cli`  
-</span><span class="kw">fn </span>match_first_argument(task: <span class="kw-2">&</span>str, args: <span class="kw-2">&amp;mut </span>std::env::Args) {
+</span><span class="kw">fn </span>match_first_argument(task: <span class="kw-2">&amp;</span>str, args: <span class="kw-2">&amp;mut </span>std::env::Args) {
     <span class="kw">if </span>task == <span class="string">"completion" </span>{
         completion();
     } <span class="kw">else if </span>task == <span class="string">"new_auto_for_cli" </span>{
         <span class="comment">// this task is inside cargo-auto
         </span><span class="kw">if </span>already_exists_automation_tasks_rs() {
-            <span class="macro">println!</span>(<span class=
-"string">"{RED}Error: Directory automation_tasks_rs already exists. Cannot create new directory automation_tasks_rs.{RESET}"</span>);
+            <span class="macro">println!</span>(<span class="string">"{RED}Error: Directory automation_tasks_rs already exists. Cannot create new directory automation_tasks_rs.{RESET}"</span>);
             <span class="comment">// early exit
             </span>std::process::exit(<span class="number">0</span>);
         }
@@ -296,11 +238,10 @@
         <span class="comment">// panic! if cannot compile automation_tasks_rs
         </span>compile_automation_tasks_rs_if_needed();
         <span class="comment">// call automation_tasks_rs/target/debug/automation_tasks_rs with all the arguments
-        </span><span class="kw">let </span><span class="kw-2">mut </span>command = std::process::Command::new(<span class=
-"kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str());
-        command.arg(<span class="kw-2">&</span>task);
+        </span><span class="kw">let </span><span class="kw-2">mut </span>command = std::process::Command::new(<span class="kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str());
+        command.arg(<span class="kw-2">&amp;</span>task);
         <span class="kw">while let </span><span class="prelude-val">Some</span>(arg_x) = args.next() {
-            command.arg(<span class="kw-2">&</span>arg_x);
+            command.arg(<span class="kw-2">&amp;</span>arg_x);
         }
         <span class="kw">let </span><span class="kw-2">mut </span>child = command.spawn().unwrap();
         child.wait().unwrap();
@@ -310,8 +251,7 @@
 <span class="doccomment">/// sub-command for bash auto-completion of `cargo auto` using the crate `dev_bestia_cargo_completion`
 </span><span class="kw">fn </span>completion() {
     <span class="doccomment">/// println one, more or all sub_commands
-    </span><span class="kw">fn </span>completion_return_one_or_more_sub_commands(sub_commands: Vec&lt;<span class=
-"kw-2">&</span>str&gt;, word_being_completed: <span class="kw-2">&</span>str) {
+    </span><span class="kw">fn </span>completion_return_one_or_more_sub_commands(sub_commands: Vec&lt;<span class="kw-2">&amp;</span>str&gt;, word_being_completed: <span class="kw-2">&amp;</span>str) {
         <span class="kw">let </span><span class="kw-2">mut </span>sub_found = <span class="bool-val">false</span>;
         <span class="kw">for </span>sub_command <span class="kw">in </span>sub_commands.iter() {
             <span class="kw">if </span>sub_command.starts_with(word_being_completed) {
@@ -342,8 +282,7 @@
 <span class="doccomment">/// build if the files are different then the hashes in automation_tasks_rs/file_hashes.json
 /// panic! if cannot compile automation_tasks_rs
 </span><span class="kw">pub fn </span>compile_automation_tasks_rs_if_needed() {
-    <span class="kw">if </span>!<span class="kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.exists() || <span class=
-"kw">crate</span>::file_hashes_mod::is_project_changed() {
+    <span class="kw">if </span>!<span class="kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.exists() || <span class="kw">crate</span>::file_hashes_mod::is_project_changed() {
         compile_project_automation_tasks_rs();
         <span class="kw">let </span>vec_of_metadata = <span class="kw">crate</span>::file_hashes_mod::read_file_metadata();
         <span class="kw">crate</span>::file_hashes_mod::save_json_file_for_file_meta_data(vec_of_metadata);
@@ -355,14 +294,8 @@
 </span><span class="kw">pub fn </span>compile_project_automation_tasks_rs() {
     <span class="comment">// build in other directory (not in working current directory)
     // cargo build --manifest-path=dir/Cargo.toml
-    </span><span class="kw">if </span>!<span class="kw">crate</span>::utils_mod::run_shell_command_success(<span class=
-"string">"cargo build --manifest-path=automation_tasks_rs/Cargo.toml"</span>) {
+    </span><span class="kw">if </span>!<span class="kw">crate</span>::utils_mod::run_shell_command_success(<span class="string">"cargo build --manifest-path=automation_tasks_rs/Cargo.toml"</span>) {
         <span class="macro">panic!</span>(<span class="string">"{RED}Cannot compile automation_tasks_rs. Exiting...{RESET}"</span>);
     }
 }
-</code></pre>
-      </div>
-    </section>
-  </main>
-</body>
-</html>
+</code></pre></div></section></main></body></html>

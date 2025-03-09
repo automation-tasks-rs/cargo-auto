@@ -1,58 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="generator" content="rustdoc">
-  <meta name="description" content="Source of the Rust file `src/template_new_wasm_mod.rs`.">
-  <title>template_new_wasm_mod.rs - source</title>
-  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../static.files/SourceSerif4-Regular-46f98efaafac5295.ttf.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../static.files/FiraSans-Regular-018c141bf0843ffd.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../static.files/FiraSans-Medium-8f9a781e4970d388.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../static.files/SourceCodePro-Regular-562dcc5011b6de7d.ttf.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../static.files/SourceCodePro-Semibold-d899c5a5c4aeb14a.ttf.woff2">
-  <link rel="stylesheet" href="../../static.files/normalize-76eba96aa4d2e634.css">
-  <link rel="stylesheet" href="../../static.files/rustdoc-5bc39a1768837dd0.css">
-  <meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="cargo_auto_local_lib" data-themes=""
-  data-resource-suffix="" data-rustdoc-version="1.77.2 (25ef9e3d8 2024-04-09)" data-channel="1.77.2" data-search-js="search-dd67cee4cfa65049.js"
-  data-settings-js="settings-4313503d2e1961c2.js">
-  <script src="../../static.files/storage-4c98445ec4002617.js"></script>
-  <script defer src="../../static.files/src-script-e66d777a5a92e9b2.js"></script>
-  <script defer src="../../src-files.js"></script>
-  <script defer src="../../static.files/main-48f368f3872407c8.js"></script><noscript>
-  <link rel="stylesheet" href="../../static.files/noscript-04d5337699b92874.css"></noscript>
-  <link rel="alternate icon" type="image/png" href="../../static.files/favicon-16x16-8b506e7a72182f1c.png">
-  <link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-422f7d1d52889060.png">
-  <link rel="icon" type="image/svg+xml" href="../../static.files/favicon-2c020d218678b618.svg">
-</head>
-<body class="rustdoc src">
-  <!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]-->
-  <nav class="sidebar">
-    <div class="src-sidebar-title">
-      <h2>Files</h2>
-    </div>
-  </nav>
-  <div class="sidebar-resizer"></div>
-  <main>
-    <nav class="sub">
-      <form class="search-form">
-        <div id="sidebar-button" tabindex="-1">
-          <a href="../../cargo_auto_local_lib/all.html" title="show sidebar"></a>
-        </div><input class="search-input" name="search" aria-label="Run search in the documentation" autocomplete="off" spellcheck="false" placeholder=
-        "Click or press ‘S’ to search, ‘?’ for more options…" type="search">
-        <div id="help-button" tabindex="-1">
-          <a href="../../help.html" title="help">?</a>
-        </div>
-        <div id="settings-menu" tabindex="-1">
-          <a href="../../settings.html" title="settings"><img width="22" height="22" alt="Change settings" src=
-          "../../static.files/wheel-7b819b6101059cd0.svg"></a>
-        </div>
-      </form>
-    </nav>
-    <section id="main-content" class="content">
-      <div class="example-wrap">
-        <div data-nosnippet="">
-          <pre class="src-line-numbers"><a href="#1" id="1">1</a>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source of the Rust file `src/template_new_wasm_mod.rs`."><title>template_new_wasm_mod.rs - source</title><script>if(window.location.protocol!=="file:")document.head.insertAdjacentHTML("beforeend","SourceSerif4-Regular-6b053e98.ttf.woff2,FiraSans-Regular-0fe48ade.woff2,FiraSans-Medium-e1aa3f0a.woff2,SourceCodePro-Regular-8badfe75.ttf.woff2,SourceCodePro-Semibold-aa29a496.ttf.woff2".split(",").map(f=>`<link rel="preload" as="font" type="font/woff2" crossorigin href="../../static.files/${f}">`).join(""))</script><link rel="stylesheet" href="../../static.files/normalize-9960930a.css"><link rel="stylesheet" href="../../static.files/rustdoc-46132b98.css"><meta name="rustdoc-vars" data-root-path="../../" data-static-root-path="../../static.files/" data-current-crate="cargo_auto_local_lib" data-themes="" data-resource-suffix="" data-rustdoc-version="1.85.0 (4d91de4e4 2025-02-17)" data-channel="1.85.0" data-search-js="search-75f5ac3e.js" data-settings-js="settings-0f613d39.js" ><script src="../../static.files/storage-59e33391.js"></script><script defer src="../../static.files/src-script-56102188.js"></script><script defer src="../../src-files.js"></script><script defer src="../../static.files/main-5f194d8c.js"></script><noscript><link rel="stylesheet" href="../../static.files/noscript-893ab5e7.css"></noscript><link rel="alternate icon" type="image/png" href="../../static.files/favicon-32x32-6580c154.png"><link rel="icon" type="image/svg+xml" href="../../static.files/favicon-044be391.svg"></head><body class="rustdoc src"><!--[if lte IE 11]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="src-sidebar-title"><h2>Files</h2></div></nav><div class="sidebar-resizer"></div><main><rustdoc-search></rustdoc-search><section id="main-content" class="content"><div class="main-heading"><h1><div class="sub-heading">cargo_auto_local_lib/</div>template_new_wasm_mod.rs</h1><rustdoc-toolbar></rustdoc-toolbar></div><div class="example-wrap"><div data-nosnippet><pre class="src-line-numbers">
+<a href="#1" id="1">1</a>
 <a href="#2" id="2">2</a>
 <a href="#3" id="3">3</a>
 <a href="#4" id="4">4</a>
@@ -147,39 +94,30 @@
 <a href="#93" id="93">93</a>
 <a href="#94" id="94">94</a>
 <a href="#95" id="95">95</a>
-<a href="#96" id="96">96</a>
-</pre>
-        </div>
-        <pre class="rust"><code><span class="comment">// template_new_wasm_mod.rs
+<a href="#96" id="96">96</a></pre></div><pre class="rust"><code><span class="comment">// template_new_wasm_mod.rs
 
 </span><span class="doccomment">//! template for new_wasm
 //!
 //! The template is downloaded from github
-//! &lt;https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm/releases/download/v0.0.2/template.tar.gz&gt;
+//! &lt;https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm/releases/latest/download/template.tar.gz&gt;
 
 </span><span class="kw">use crate</span>::{GREEN, RED, RESET, YELLOW};
 
-<span class="kw">pub fn </span>new_wasm(rust_project_name: <span class="prelude-ty">Option</span>&lt;String&gt;, github_owner_or_organization: <span class=
-"prelude-ty">Option</span>&lt;String&gt;, web_server_domain: <span class="prelude-ty">Option</span>&lt;String&gt;, server_username: <span class=
-"prelude-ty">Option</span>&lt;String&gt;) {
+<span class="kw">pub fn </span>new_wasm(rust_project_name: <span class="prelude-ty">Option</span>&lt;String&gt;, github_owner_or_organization: <span class="prelude-ty">Option</span>&lt;String&gt;, web_server_domain: <span class="prelude-ty">Option</span>&lt;String&gt;, server_username: <span class="prelude-ty">Option</span>&lt;String&gt;) {
     <span class="kw">if </span>rust_project_name.is_none() {
-        <span class="macro">println!</span>(<span class=
-"string">"{RED}Error: Project name argument is missing: `cargo auto new_wasm project_name github_owner_or_organization web_server server_username`{RESET}"</span>);
+        <span class="macro">println!</span>(<span class="string">"{RED}Error: Project name argument is missing: `cargo auto new_wasm project_name github_owner_or_organization web_server server_username`{RESET}"</span>);
         <span class="kw">return</span>;
     }
     <span class="kw">if </span>github_owner_or_organization.is_none() {
-        <span class="macro">println!</span>(<span class=
-"string">"{RED}Error: github_owner or Organization argument is missing: `cargo auto new_wasm project_name github_owner_or_organization web_server server_username`{RESET}"</span>);
+        <span class="macro">println!</span>(<span class="string">"{RED}Error: github_owner or Organization argument is missing: `cargo auto new_wasm project_name github_owner_or_organization web_server server_username`{RESET}"</span>);
         <span class="kw">return</span>;
     }
     <span class="kw">if </span>web_server_domain.is_none() {
-        <span class="macro">println!</span>(<span class=
-"string">"{RED}Error: Web server argument is missing: `cargo auto new_wasm project_name github_owner_or_organization web_server server_username`{RESET}"</span>);
+        <span class="macro">println!</span>(<span class="string">"{RED}Error: Web server argument is missing: `cargo auto new_wasm project_name github_owner_or_organization web_server server_username`{RESET}"</span>);
         <span class="kw">return</span>;
     }
     <span class="kw">if </span>server_username.is_none() {
-        <span class="macro">println!</span>(<span class=
-"string">"{RED}Error: Server username argument is missing: `cargo auto new_wasm project_name github_owner_or_organization web_server server_username`{RESET}"</span>);
+        <span class="macro">println!</span>(<span class="string">"{RED}Error: Server username argument is missing: `cargo auto new_wasm project_name github_owner_or_organization web_server server_username`{RESET}"</span>);
         <span class="kw">return</span>;
     }
     <span class="kw">let </span>rust_project_name = rust_project_name.unwrap();
@@ -187,14 +125,11 @@
     <span class="kw">let </span>web_server_domain = web_server_domain.unwrap();
     <span class="kw">let </span>server_username = server_username.unwrap();
 
-    copy_to_files(<span class="kw-2">&</span>rust_project_name, <span class="kw-2">&</span>github_owner_or_organization, <span class=
-"kw-2">&</span>web_server_domain, <span class="kw-2">&</span>server_username);
+    copy_to_files(<span class="kw-2">&amp;</span>rust_project_name, <span class="kw-2">&amp;</span>github_owner_or_organization, <span class="kw-2">&amp;</span>web_server_domain, <span class="kw-2">&amp;</span>server_username);
 
     <span class="macro">println!</span>(<span class="string">""</span>);
-    <span class="macro">println!</span>(<span class=
-"string">"    {YELLOW}The command `cargo auto new_wasm` generated the directory `{rust_project_name}`{RESET}"</span>);
-    <span class="macro">println!</span>(<span class=
-"string">"    {YELLOW}You can open this new Rust project `{rust_project_name}` in a new Rust editor.{RESET}"</span>,);
+    <span class="macro">println!</span>(<span class="string">"    {YELLOW}The command `cargo auto new_wasm` generated the directory `{rust_project_name}`{RESET}"</span>);
+    <span class="macro">println!</span>(<span class="string">"    {YELLOW}You can open this new Rust project `{rust_project_name}` in a new Rust editor.{RESET}"</span>,);
     <span class="macro">println!</span>(<span class="string">"    {YELLOW}For example VSCode:{RESET}"</span>);
     <span class="macro">println!</span>(<span class="string">"{GREEN}code {rust_project_name}{RESET}"</span>);
     <span class="macro">println!</span>(<span class="string">"    {YELLOW}Then build with:{RESET}"</span>);
@@ -202,8 +137,7 @@
     <span class="macro">println!</span>(<span class="string">"    {YELLOW}and follow the detailed instructions.{RESET}"</span>);
 }
 
-<span class="kw">pub fn </span>copy_to_files(rust_project_name: <span class="kw-2">&</span>str, github_owner_or_organization: <span class=
-"kw-2">&</span>str, web_server_domain: <span class="kw-2">&</span>str, server_username: <span class="kw-2">&</span>str) {
+<span class="kw">pub fn </span>copy_to_files(rust_project_name: <span class="kw-2">&amp;</span>str, github_owner_or_organization: <span class="kw-2">&amp;</span>str, web_server_domain: <span class="kw-2">&amp;</span>str, server_username: <span class="kw-2">&amp;</span>str) {
     <span class="kw">let </span>folder_path = std::path::Path::new(rust_project_name);
     <span class="kw">if </span>folder_path.exists() {
         <span class="macro">panic!</span>(<span class="string">"{RED}Error: Folder {rust_project_name} already exists! {RESET}"</span>);
@@ -214,8 +148,7 @@
     </span><span class="macro">println!</span>(<span class="string">"{YELLOW}Downloading template.tar.gz...{RESET}"</span>);
     <span class="kw">let </span>file_name = <span class="string">"template.tar.gz"</span>;
     <span class="kw">let </span>path = <span class="string">"./template.tar.gz"</span>;
-    <span class="kw">let </span>url = <span class=
-"string">"https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm/releases/download/v0.0.2/template.tar.gz"</span>;
+    <span class="kw">let </span>url = <span class="string">"https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm/releases/latest/download/template.tar.gz"</span>;
     <span class="kw">let </span>reqwest_client = reqwest::blocking::Client::new();
     <span class="kw">let </span>http_response = reqwest_client.get(url).send();
     <span class="kw">if </span>http_response.is_err() {
@@ -223,8 +156,7 @@
     } <span class="kw">else </span>{
         <span class="kw">let </span>body = http_response.unwrap().bytes().unwrap();
         <span class="comment">// Get the content of the response
-        </span>std::fs::write(path, <span class="kw-2">&</span>body).expect(<span class="kw-2">&</span><span class="macro">format!</span>(<span class=
-"string">"Download failed for {file_name}"</span>));
+        </span>std::fs::write(path, <span class="kw-2">&amp;</span>body).expect(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">"Download failed for {file_name}"</span>));
     }
 
     <span class="comment">// decompress into folder_path
@@ -242,16 +174,14 @@
             <span class="kw">let </span>content = std::fs::read_to_string(entry.path()).unwrap();
             <span class="kw">let </span>content = content.replace(<span class="string">"cargo_auto_template_new_wasm"</span>, rust_project_name);
             <span class="kw">let </span>content = content.replace(<span class="string">"automation-tasks-rs"</span>, github_owner_or_organization);
-            <span class="kw">let </span>content = content.replace(<span class="string">"automation--tasks--rs"</span>, <span class=
-"string">"automation-tasks-rs"</span>);
+            <span class="kw">let </span>content = content.replace(<span class="string">"automation--tasks--rs"</span>, <span class="string">"automation-tasks-rs"</span>);
             <span class="kw">let </span>content = content.replace(<span class="string">"web_server_domain"</span>, web_server_domain);
             <span class="kw">let </span>content = content.replace(<span class="string">"server_username"</span>, server_username);
             std::fs::write(entry.path(), content).unwrap();
         }
     }
     <span class="comment">// renaming files is tricky and must be traverse  in reverse.
-    </span><span class="kw">let </span><span class=
-"kw-2">mut </span>traverse_reverse: Vec&lt;walkdir::DirEntry&gt; = walkdir::WalkDir::new(folder_path).into_iter().filter_map(Result::ok).collect();
+    </span><span class="kw">let </span><span class="kw-2">mut </span>traverse_reverse: Vec&lt;walkdir::DirEntry&gt; = walkdir::WalkDir::new(folder_path).into_iter().filter_map(Result::ok).collect();
     traverse_reverse.reverse();
     <span class="kw">for </span>entry <span class="kw">in </span>traverse_reverse.iter() {
         <span class="kw">if </span>entry.file_name() == <span class="string">"cargo_auto_template_new_wasm" </span>{
@@ -260,9 +190,4 @@
         }
     }
 }
-</code></pre>
-      </div>
-    </section>
-  </main>
-</body>
-</html>
+</code></pre></div></section></main></body></html>
