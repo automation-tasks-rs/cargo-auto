@@ -6,6 +6,7 @@
 //! Then we can run commands like compile only if a file has changed.
 
 use serde_derive::{Deserialize, Serialize};
+use sha2::Digest;
 
 // region: structs
 /// file metadata
@@ -122,7 +123,7 @@ fn read_json_file(json_filepath: &str) -> FileHashes {
 fn sha256_digest(path: &std::path::Path) -> anyhow::Result<String> {
     let file = std::fs::File::open(path)?;
     let mut reader = std::io::BufReader::new(file);
-    let mut context = ring::digest::Context::new(&ring::digest::SHA256);
+    let mut hasher = <sha2::Sha256 as sha2::Digest>::new();
     let mut buffer = [0; 1024];
     use std::io::Read;
     loop {
@@ -130,9 +131,9 @@ fn sha256_digest(path: &std::path::Path) -> anyhow::Result<String> {
         if count == 0 {
             break;
         }
-        context.update(&buffer[..count]);
+        hasher.update(&buffer[..count]);
     }
-    let digest = context.finish();
+    let digest = hasher.finalize();
     let hash_string = data_encoding::HEXLOWER.encode(digest.as_ref());
     // return
     Ok(hash_string)
