@@ -146,7 +146,8 @@
 <a href="#145" id="145">145</a>
 <a href="#146" id="146">146</a>
 <a href="#147" id="147">147</a>
-<a href="#148" id="148">148</a></pre></div><pre class="rust"><code><span class="comment">// file_hashes_mod.rs
+<a href="#148" id="148">148</a>
+<a href="#149" id="149">149</a></pre></div><pre class="rust"><code><span class="comment">// file_hashes_mod.rs
 
 </span><span class="doccomment">//! calculate file hashes
 //!
@@ -229,15 +230,16 @@
     });
 
     <span class="comment">// all files in the src/ directory
-    </span><span class="kw">for </span>entry <span class="kw">in </span>std::fs::read_dir(<span class="kw">crate</span>::PATH_SRC.as_path()).unwrap() {
-        <span class="kw">let </span>entry = entry.unwrap();
-        <span class="kw">let </span>path = entry.file_name();
+    </span><span class="kw">for </span>entry <span class="kw">in </span>walkdir::WalkDir::new(<span class="kw">crate</span>::PATH_SRC.as_path()).into_iter().filter_map(Result::ok) {
+        <span class="kw">if </span>entry.file_type().is_file() {
+            <span class="kw">let </span>path = entry.file_name();
 
-        <span class="kw">let </span>filename = <span class="macro">format!</span>(<span class="string">"{}/{}"</span>, <span class="kw">crate</span>::PATH_SRC.to_string_lossy(), path.to_string_lossy());
-        <span class="kw">let </span>filename = filename.replace(<span class="string">"\""</span>, <span class="string">""</span>);
-        <span class="comment">// calculate hash of file
-        </span><span class="kw">let </span>filehash = sha256_digest(std::path::Path::new(<span class="kw-2">&amp;</span>filename)).unwrap();
-        vec_of_metadata.push(FileMetaData { filename, filehash });
+            <span class="kw">let </span>filename = <span class="macro">format!</span>(<span class="string">"{}/{}"</span>, <span class="kw">crate</span>::PATH_SRC.to_string_lossy(), path.to_string_lossy());
+            <span class="kw">let </span>filename = filename.replace(<span class="string">"\""</span>, <span class="string">""</span>);
+            <span class="comment">// calculate hash of file
+            </span><span class="kw">let </span>filehash = sha256_digest(std::path::Path::new(<span class="kw-2">&amp;</span>filename)).unwrap();
+            vec_of_metadata.push(FileMetaData { filename, filehash });
+        }
     }
     vec_of_metadata
 }
