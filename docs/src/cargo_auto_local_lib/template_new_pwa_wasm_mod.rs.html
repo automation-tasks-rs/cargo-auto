@@ -185,8 +185,7 @@
 <a href="#184" id="184">184</a>
 <a href="#185" id="185">185</a>
 <a href="#186" id="186">186</a>
-<a href="#187" id="187">187</a>
-<a href="#188" id="188">188</a></pre></div><pre class="rust"><code><span class="comment">// template_new_pwa_wasm_mod.rs
+<a href="#187" id="187">187</a></pre></div><pre class="rust"><code><span class="comment">// template_new_pwa_wasm_mod.rs
 
 </span><span class="doccomment">//! template for new_pwa_wasm
 //!
@@ -220,9 +219,8 @@
     </span><span class="kw">fn </span>decode_png(vec: Vec&lt;u8&gt;) -&gt; image::DynamicImage {
         <span class="kw">let </span>img = image::io::Reader::new(std::io::Cursor::new(vec));
         <span class="kw">let </span>img = img.with_guessed_format().unwrap();
-        <span class="kw">let </span>img = img.decode().unwrap();
-        <span class="comment">// return
-        </span>img
+        <span class="comment">// return img
+        </span>img.decode().unwrap()
     }
 
     <span class="doccomment">/// internal function: resize img
@@ -232,7 +230,7 @@
             <span class="comment">//dbg!("encode new_img");
             </span><span class="kw">let </span>vec_u8: Vec&lt;u8&gt; = Vec::new();
             <span class="kw">let </span><span class="kw-2">mut </span>cursor_1 = std::io::Cursor::new(vec_u8);
-            <span class="kw">let </span>_x = new_img.write_to(<span class="kw-2">&amp;mut </span>cursor_1, image::ImageOutputFormat::Png).unwrap();
+            new_img.write_to(<span class="kw-2">&amp;mut </span>cursor_1, image::ImageOutputFormat::Png).unwrap();
             <span class="comment">// return
             </span>cursor_1.get_ref().to_owned()
         }
@@ -336,7 +334,7 @@
     } <span class="kw">else </span>{
         <span class="kw">let </span>body = http_response.unwrap().bytes().unwrap();
         <span class="comment">// Get the content of the response
-        </span>std::fs::write(path, <span class="kw-2">&amp;</span>body).expect(<span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">"Download failed for {file_name}"</span>));
+        </span>std::fs::write(path, <span class="kw-2">&amp;</span>body).unwrap_or_else(|<span class="kw">_</span>| <span class="macro">panic!</span>(<span class="string">"Download failed for {file_name}"</span>));
     }
 
     <span class="comment">// decompress into folder_path

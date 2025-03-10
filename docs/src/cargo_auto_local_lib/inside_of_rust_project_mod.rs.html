@@ -239,8 +239,8 @@
         </span>compile_automation_tasks_rs_if_needed();
         <span class="comment">// call automation_tasks_rs/target/debug/automation_tasks_rs with all the arguments
         </span><span class="kw">let </span><span class="kw-2">mut </span>command = std::process::Command::new(<span class="kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str());
-        command.arg(<span class="kw-2">&amp;</span>task);
-        <span class="kw">while let </span><span class="prelude-val">Some</span>(arg_x) = args.next() {
+        command.arg(task);
+        <span class="kw">for </span>arg_x <span class="kw">in </span>args.by_ref() {
             command.arg(<span class="kw-2">&amp;</span>arg_x);
         }
         <span class="kw">let </span><span class="kw-2">mut </span>child = command.spawn().unwrap();
@@ -259,7 +259,7 @@
                 sub_found = <span class="bool-val">true</span>;
             }
         }
-        <span class="kw">if </span>sub_found == <span class="bool-val">false </span>{
+        <span class="kw">if </span>!sub_found {
             <span class="comment">// print all sub-commands
             </span><span class="kw">for </span>sub_command <span class="kw">in </span>sub_commands.iter() {
                 <span class="macro">println!</span>(<span class="string">"{}"</span>, sub_command);

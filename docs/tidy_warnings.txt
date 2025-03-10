@@ -1583,13 +1583,13 @@ using HTML Tidy to generate a tidied up version.
 ./docs/cargo_auto_local_lib/outside_of_rust_project_mod/fn.print_help_from_cargo_auto.html
 Document: "2" is not a file!
 
-line 1 column 2820 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2820 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2836 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3220 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3220 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3237 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1920 - Warning: trimming empty <button>
+line 1 column 2735 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2735 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2751 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3135 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3135 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3152 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1835 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 

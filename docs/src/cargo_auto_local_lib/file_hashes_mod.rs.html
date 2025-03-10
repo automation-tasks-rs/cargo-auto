@@ -143,11 +143,7 @@
 <a href="#142" id="142">142</a>
 <a href="#143" id="143">143</a>
 <a href="#144" id="144">144</a>
-<a href="#145" id="145">145</a>
-<a href="#146" id="146">146</a>
-<a href="#147" id="147">147</a>
-<a href="#148" id="148">148</a>
-<a href="#149" id="149">149</a></pre></div><pre class="rust"><code><span class="comment">// file_hashes_mod.rs
+<a href="#145" id="145">145</a></pre></div><pre class="rust"><code><span class="comment">// file_hashes_mod.rs
 
 </span><span class="doccomment">//! calculate file hashes
 //!
@@ -183,15 +179,11 @@
 </span><span class="kw">pub fn </span>is_project_changed() -&gt; bool {
     <span class="kw">let </span>vec_of_metadata = read_file_metadata();
     <span class="kw">let </span>js_struct = read_json_file(<span class="kw-2">&amp;</span><span class="kw">crate</span>::PATH_FILE_HASHES_JSON.to_string_lossy());
-
-    <span class="kw">if </span>are_all_files_equal(<span class="kw-2">&amp;</span>vec_of_metadata, <span class="kw-2">&amp;</span>js_struct.vec_file_metadata) {
-        <span class="bool-val">false
-    </span>} <span class="kw">else </span>{
-        <span class="bool-val">true
-    </span>}
+    <span class="comment">// return true or false
+    </span>!are_all_files_equal(<span class="kw-2">&amp;</span>vec_of_metadata, <span class="kw-2">&amp;</span>js_struct.vec_file_metadata)
 }
 
-<span class="kw">fn </span>are_all_files_equal(vec_of_metadata: <span class="kw-2">&amp;</span>Vec&lt;FileMetaData&gt;, js_vec_of_metadata: <span class="kw-2">&amp;</span>Vec&lt;FileMetaData&gt;) -&gt; bool {
+<span class="kw">fn </span>are_all_files_equal(vec_of_metadata: <span class="kw-2">&amp;</span>[FileMetaData], js_vec_of_metadata: <span class="kw-2">&amp;</span>[FileMetaData]) -&gt; bool {
     <span class="kw">let </span><span class="kw-2">mut </span>is_files_equal = <span class="bool-val">true</span>;
     <span class="kw">for </span>x <span class="kw">in </span>vec_of_metadata.iter() {
         <span class="comment">//search in json file
