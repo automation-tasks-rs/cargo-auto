@@ -247,8 +247,8 @@
     <span class="kw">if </span>!std::path::Path::new(<span class="string">"icon512x512.png"</span>).exists() {
         <span class="macro">println!</span>(
             <span class="string">r#"
-    {RED}The mandatory file `icon512x512.png` is not found in this folder.{RESET}
-    {YELLOW}If you don't have your icon, you can download and use this default:{RESET}
+{RED}The mandatory file `icon512x512.png` is not found in this folder.{RESET}
+  {YELLOW}If you don't have your icon, you can download and use this default:{RESET}
 {GREEN}curl -L https://github.com/automation-tasks-rs/cargo_auto_template_new_pwa_wasm/raw/main/icon512x512.png --output icon512x512.png{RESET}
 "#
         </span>);
@@ -307,11 +307,11 @@
     <span class="comment">// endregion
     </span><span class="macro">println!</span>(
         <span class="string">r#"
-    {YELLOW}You can open this new Rust project in VSCode:{RESET}
+  {YELLOW}You can open this new Rust project in VSCode:{RESET}
 {GREEN}code {package_name}{RESET}
-    {YELLOW}Then build it with:{RESET}
+  {YELLOW}Then build it with:{RESET}
 {GREEN}cargo auto build{RESET}
-    {YELLOW}Then follow the detailed instructions.{RESET}
+  {YELLOW}Then follow the detailed instructions.{RESET}
 "#</span>,
         package_name = rust_project_name
     );
@@ -325,7 +325,7 @@
     std::fs::create_dir_all(folder_path).unwrap();
 
     <span class="comment">// download latest template.tar.gz
-    </span><span class="macro">println!</span>(<span class="string">"{YELLOW}Downloading template.tar.gz...{RESET}"</span>);
+    </span><span class="macro">println!</span>(<span class="string">"  {YELLOW}Downloading template.tar.gz...{RESET}"</span>);
     <span class="kw">let </span>file_name = <span class="string">"template.tar.gz"</span>;
     <span class="kw">let </span>path = <span class="string">"./template.tar.gz"</span>;
     <span class="kw">let </span>url = <span class="string">"https://github.com/automation-tasks-rs/cargo_auto_template_new_pwa_wasm/releases/latest/download/template.tar.gz"</span>;

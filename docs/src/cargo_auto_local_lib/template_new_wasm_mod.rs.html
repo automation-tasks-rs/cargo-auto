@@ -128,13 +128,13 @@
     copy_to_files(<span class="kw-2">&amp;</span>rust_project_name, <span class="kw-2">&amp;</span>github_owner_or_organization, <span class="kw-2">&amp;</span>web_server_domain, <span class="kw-2">&amp;</span>server_username);
 
     <span class="macro">println!</span>(<span class="string">""</span>);
-    <span class="macro">println!</span>(<span class="string">"    {YELLOW}The command `cargo auto new_wasm` generated the directory `{rust_project_name}`{RESET}"</span>);
-    <span class="macro">println!</span>(<span class="string">"    {YELLOW}You can open this new Rust project `{rust_project_name}` in a new Rust editor.{RESET}"</span>,);
-    <span class="macro">println!</span>(<span class="string">"    {YELLOW}For example VSCode:{RESET}"</span>);
+    <span class="macro">println!</span>(<span class="string">"  {YELLOW}The command `cargo auto new_wasm` generated the directory `{rust_project_name}`{RESET}"</span>);
+    <span class="macro">println!</span>(<span class="string">"  {YELLOW}You can open this new Rust project `{rust_project_name}` in a new Rust editor.{RESET}"</span>,);
+    <span class="macro">println!</span>(<span class="string">"  {YELLOW}For example VSCode:{RESET}"</span>);
     <span class="macro">println!</span>(<span class="string">"{GREEN}code {rust_project_name}{RESET}"</span>);
-    <span class="macro">println!</span>(<span class="string">"    {YELLOW}Then build with:{RESET}"</span>);
+    <span class="macro">println!</span>(<span class="string">"  {YELLOW}Then build with:{RESET}"</span>);
     <span class="macro">println!</span>(<span class="string">"{GREEN}cargo auto build{RESET}"</span>);
-    <span class="macro">println!</span>(<span class="string">"    {YELLOW}and follow the detailed instructions.{RESET}"</span>);
+    <span class="macro">println!</span>(<span class="string">"  {YELLOW}and follow the detailed instructions.{RESET}"</span>);
 }
 
 <span class="kw">pub fn </span>copy_to_files(rust_project_name: <span class="kw-2">&amp;</span>str, github_owner_or_organization: <span class="kw-2">&amp;</span>str, web_server_domain: <span class="kw-2">&amp;</span>str, server_username: <span class="kw-2">&amp;</span>str) {
@@ -145,7 +145,7 @@
     std::fs::create_dir_all(folder_path).unwrap();
 
     <span class="comment">// download latest template.tar.gz
-    </span><span class="macro">println!</span>(<span class="string">"{YELLOW}Downloading template.tar.gz...{RESET}"</span>);
+    </span><span class="macro">println!</span>(<span class="string">"  {YELLOW}Downloading template.tar.gz...{RESET}"</span>);
     <span class="kw">let </span>file_name = <span class="string">"template.tar.gz"</span>;
     <span class="kw">let </span>path = <span class="string">"./template.tar.gz"</span>;
     <span class="kw">let </span>url = <span class="string">"https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm/releases/latest/download/template.tar.gz"</span>;

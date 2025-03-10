@@ -77,10 +77,10 @@
 
     <span class="macro">println!</span>(
         <span class="string">r#"
-    {YELLOW}The command `cargo auto new_auto_for_cli` generated the sub-project `automation_tasks_rs` in your main Rust project.
-    {YELLOW}The sub-project will be automatically compiled on the next use of `cargo auto task_name` command.{RESET}
+  {YELLOW}The command `cargo auto new_auto_for_cli` generated the sub-project `automation_tasks_rs` in your main Rust project.
+  {YELLOW}The sub-project will be automatically compiled on the next use of `cargo auto task_name` command.{RESET}
 {GREEN}cargo auto build{RESET}
-    {YELLOW}The new directory is automatically added to your git commit.
+  {YELLOW}The new directory is automatically added to your git commit.
     There is a local .gitignore file to avoid commit of the `target/` directory.{RESET}
     the sub-project is independent from the main project. You can open it in a new Rust editor.{RESET}
 {GREEN}code automation_tasks_rs{RESET}
@@ -96,7 +96,7 @@
     std::fs::create_dir_all(folder_path).unwrap();
 
     <span class="comment">// download latest template.tar.gz
-    </span><span class="macro">println!</span>(<span class="string">"{YELLOW}Downloading template.tar.gz...{RESET}"</span>);
+    </span><span class="macro">println!</span>(<span class="string">"  {YELLOW}Downloading template.tar.gz...{RESET}"</span>);
     <span class="kw">let </span>file_name = <span class="string">"template.tar.gz"</span>;
     <span class="kw">let </span>path = <span class="string">"./template.tar.gz"</span>;
     <span class="kw">let </span>url = <span class="string">"https://github.com/automation-tasks-rs/cargo_auto_template_new_auto_for_cli/releases/latest/download/template.tar.gz"</span>;
