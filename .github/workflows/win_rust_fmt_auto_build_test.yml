@@ -1,4 +1,4 @@
-name: rust_fmt_auto_build_test
+name: win_rust_fmt_auto_build_test
 
 on:
   push:
