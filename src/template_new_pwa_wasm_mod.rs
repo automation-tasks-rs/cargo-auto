@@ -32,9 +32,8 @@ pub fn new_pwa_wasm(rust_project_name: Option<String>, github_owner_or_organizat
     fn decode_png(vec: Vec<u8>) -> image::DynamicImage {
         let img = image::io::Reader::new(std::io::Cursor::new(vec));
         let img = img.with_guessed_format().unwrap();
-        let img = img.decode().unwrap();
-        // return
-        img
+        // return img
+        img.decode().unwrap()
     }
 
     /// internal function: resize img
@@ -44,7 +43,7 @@ pub fn new_pwa_wasm(rust_project_name: Option<String>, github_owner_or_organizat
             //dbg!("encode new_img");
             let vec_u8: Vec<u8> = Vec::new();
             let mut cursor_1 = std::io::Cursor::new(vec_u8);
-            let _x = new_img.write_to(&mut cursor_1, image::ImageOutputFormat::Png).unwrap();
+            new_img.write_to(&mut cursor_1, image::ImageOutputFormat::Png).unwrap();
             // return
             cursor_1.get_ref().to_owned()
         }
@@ -148,7 +147,7 @@ pub fn copy_to_files(rust_project_name: &str, github_owner_or_organization: &str
     } else {
         let body = http_response.unwrap().bytes().unwrap();
         // Get the content of the response
-        std::fs::write(path, &body).expect(&format!("Download failed for {file_name}"));
+        std::fs::write(path, &body).unwrap_or_else(|_| panic!("Download failed for {file_name}"));
     }
 
     // decompress into folder_path

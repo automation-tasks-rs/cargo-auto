@@ -34,15 +34,11 @@ pub struct FileHashes {
 pub fn is_project_changed() -> bool {
     let vec_of_metadata = read_file_metadata();
     let js_struct = read_json_file(&crate::PATH_FILE_HASHES_JSON.to_string_lossy());
-
-    if are_all_files_equal(&vec_of_metadata, &js_struct.vec_file_metadata) {
-        false
-    } else {
-        true
-    }
+    // return true or false
+    !are_all_files_equal(&vec_of_metadata, &js_struct.vec_file_metadata)
 }
 
-fn are_all_files_equal(vec_of_metadata: &Vec<FileMetaData>, js_vec_of_metadata: &Vec<FileMetaData>) -> bool {
+fn are_all_files_equal(vec_of_metadata: &[FileMetaData], js_vec_of_metadata: &[FileMetaData]) -> bool {
     let mut is_files_equal = true;
     for x in vec_of_metadata.iter() {
         //search in json file

@@ -21,7 +21,7 @@ pub fn new_cli(rust_project_name: Option<String>, github_owner_or_organization: 
 
     copy_to_files(&rust_project_name, &github_owner_or_organization);
 
-    println!("");
+    println!();
     println!("  {YELLOW}The command `cargo auto new_cli` generated the directory `{rust_project_name}`.{RESET}");
     println!("  {YELLOW}You can open this new Rust project in VSCode:{RESET}",);
     println!("{GREEN}code {rust_project_name}{RESET}");
@@ -49,7 +49,7 @@ pub fn copy_to_files(rust_project_name: &str, github_owner_or_organization: &str
     } else {
         let body = http_response.unwrap().bytes().unwrap();
         // Get the content of the response
-        std::fs::write(path, &body).expect(&format!("Download failed for {file_name}"));
+        std::fs::write(path, &body).unwrap_or_else(|_| panic!("Download failed for {file_name}"));
     }
 
     // decompress into folder_path

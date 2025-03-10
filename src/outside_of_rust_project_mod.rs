@@ -34,7 +34,7 @@ pub fn parse_args(args: &mut std::env::Args) {
     }
 }
 
-///  
+/// print help
 fn print_help_from_cargo_auto() {
     println!(
         r#"
@@ -89,7 +89,7 @@ fn completion() {
                 sub_found = true;
             }
         }
-        if sub_found == false {
+        if !sub_found {
             // print all sub-commands
             for sub_command in sub_commands.iter() {
                 println!("{}", sub_command);

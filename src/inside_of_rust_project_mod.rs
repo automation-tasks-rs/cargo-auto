@@ -89,8 +89,8 @@ fn match_first_argument(task: &str, args: &mut std::env::Args) {
         compile_automation_tasks_rs_if_needed();
         // call automation_tasks_rs/target/debug/automation_tasks_rs with all the arguments
         let mut command = std::process::Command::new(crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str());
-        command.arg(&task);
-        while let Some(arg_x) = args.next() {
+        command.arg(task);
+        for arg_x in args.by_ref() {
             command.arg(&arg_x);
         }
         let mut child = command.spawn().unwrap();
@@ -109,7 +109,7 @@ fn completion() {
                 sub_found = true;
             }
         }
-        if sub_found == false {
+        if !sub_found {
             // print all sub-commands
             for sub_command in sub_commands.iter() {
                 println!("{}", sub_command);
