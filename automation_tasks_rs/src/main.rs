@@ -2,13 +2,12 @@
 
 // region: library and modules with basic automation tasks
 
-// for projects that don't use GitHub, delete all the mentions of GitHub
-mod secrets_always_local_mod;
-use crate::secrets_always_local_mod::crates_io_mod;
-use crate::secrets_always_local_mod::github_mod;
+mod cargo_auto_github_api_mod;
+mod encrypt_decrypt_with_ssh_key_mod;
 
-use cargo_auto_github_lib as cgl;
+use cargo_auto_github_api_mod as cgl;
 use cargo_auto_lib as cl;
+use encrypt_decrypt_with_ssh_key_mod as ende;
 
 use cl::GREEN;
 use cl::RED;
@@ -16,14 +15,13 @@ use cl::RESET;
 use cl::YELLOW;
 
 // traits must be in scope (Rust strangeness)
-use cgl::SendToGitHubApi;
 use cl::CargoTomlPublicApiMethods;
 use cl::ShellCommandLimitedDoubleQuotesSanitizerTrait;
 
 // region: library with basic automation tasks
 
 fn main() {
-    std::panic::set_hook(Box::new(|panic_info| panic_set_hook(panic_info)));
+    std::panic::set_hook(Box::new(panic_set_hook));
     tracing_init();
     cl::exit_if_not_run_in_rust_project_root_directory();
 
@@ -109,7 +107,7 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args) {
             if &task == "completion" {
                 completion();
             } else {
-                println!("{YELLOW}Running automation task: {task}{RESET}");
+                println!("  {YELLOW}Running automation task: {task}{RESET}");
                 if &task == "build" {
                     task_build();
                 } else if &task == "release" {
@@ -138,34 +136,34 @@ fn match_arguments_and_call_tasks(mut args: std::env::Args) {
 fn print_help() {
     println!(
         r#"
-    {YELLOW}Welcome to cargo-auto !{RESET}
-    {YELLOW}This program automates your custom tasks when developing a Rust project.{RESET}
+  {YELLOW}Welcome to cargo-auto !{RESET}
+  {YELLOW}This program automates your custom tasks when developing a Rust project.{RESET}
 
-    {YELLOW}User defined tasks in automation_tasks_rs:{RESET}
+  {YELLOW}User defined tasks in automation_tasks_rs:{RESET}
 {GREEN}cargo auto build{RESET} - {YELLOW}builds the crate in debug mode, fmt, increment version{RESET}
 {GREEN}cargo auto release{RESET} - {YELLOW}builds the crate in release mode, fmt, increment version{RESET}
 {GREEN}cargo auto doc{RESET} - {YELLOW}builds the docs, copy to docs directory{RESET}
 {GREEN}cargo auto test{RESET} - {YELLOW}runs all the tests{RESET}
 {GREEN}cargo auto commit_and_push "message"{RESET} - {YELLOW}commits with message and push with mandatory message{RESET}
-    {YELLOW}It is preferred to use SSH for git push to GitHub.{RESET}
-    {YELLOW}<https://github.com/CRUSTDE-ContainerizedRustDevEnv/crustde_cnt_img_pod/blob/main/ssh_easy.md>{YELLOW}
-    {YELLOW}On the very first commit, this task will initialize a new local git repository and create a remote GitHub repo.{RESET}
-    {YELLOW}For the GitHub API the task needs the Personal Access secret_token Classic from <https://github.com/settings/tokens>{RESET}
-    {YELLOW}You can choose to type the secret_token every time or to store it in a file encrypted with an SSH key.{RESET}
-    {YELLOW}Then you can type the passphrase of the private key every time. This is pretty secure.{RESET}
-    {YELLOW}Somewhat less secure (but more comfortable) way is to store the private key in ssh-agent.{RESET}
+  {YELLOW}It is preferred to use SSH for git push to GitHub.{RESET}
+  {YELLOW}<https://github.com/CRUSTDE-ContainerizedRustDevEnv/crustde_cnt_img_pod/blob/main/ssh_easy.md>{YELLOW}
+  {YELLOW}On the very first commit, this task will initialize a new local git repository and create a remote GitHub repo.{RESET}
+  {YELLOW}For the GitHub API the task needs the Personal Access secret_token Classic from <https://github.com/settings/tokens>{RESET}
+  {YELLOW}You can choose to type the secret_token every time or to store it in a file encrypted with an SSH key.{RESET}
+  {YELLOW}Then you can type the passphrase of the private key every time. This is pretty secure.{RESET}
+  {YELLOW}Somewhat less secure (but more comfortable) way is to store the private key in ssh-agent.{RESET}
 {GREEN}cargo auto publish_to_crates_io{RESET} - {YELLOW}publish to crates.io, git tag{RESET}
-    {YELLOW}You need the API secret_token for publishing. Get the secret_token on <https://crates.io/settings/tokens>.{RESET}
-    {YELLOW}You can choose to type the secret_token every time or to store it in a file encrypted with an SSH key.{RESET}
-    {YELLOW}Then you can type the passphrase of the private key every time. This is pretty secure.{RESET}
-    {YELLOW}Somewhat less secure (but more comfortable) way is to store the private key in ssh-agent.{RESET}
+  {YELLOW}You need the API secret_token for publishing. Get the secret_token on <https://crates.io/settings/tokens>.{RESET}
+  {YELLOW}You can choose to type the secret_token every time or to store it in a file encrypted with an SSH key.{RESET}
+  {YELLOW}Then you can type the passphrase of the private key every time. This is pretty secure.{RESET}
+  {YELLOW}Somewhat less secure (but more comfortable) way is to store the private key in ssh-agent.{RESET}
 {GREEN}cargo auto github_new_release{RESET} - {YELLOW}creates new release on GitHub{RESET}
-    {YELLOW}For the GitHub API the task needs the Personal Access secret_token Classic from <https://github.com/settings/tokens>{RESET}
-    {YELLOW}You can choose to type the secret_token every time or to store it in a file encrypted with an SSH key.{RESET}
-    {YELLOW}Then you can type the passphrase of the private key every time. This is pretty secure.{RESET}
-    {YELLOW}Somewhat less secure (but more comfortable) way is to store the private key in ssh-agent.{RESET}
+  {YELLOW}For the GitHub API the task needs the Personal Access secret_token Classic from <https://github.com/settings/tokens>{RESET}
+  {YELLOW}You can choose to type the secret_token every time or to store it in a file encrypted with an SSH key.{RESET}
+  {YELLOW}Then you can type the passphrase of the private key every time. This is pretty secure.{RESET}
+  {YELLOW}Somewhat less secure (but more comfortable) way is to store the private key in ssh-agent.{RESET}
 
-    {YELLOW}© 2024 bestia.dev  MIT License github.com/automation-tasks-rs/cargo-auto{RESET}
+  {YELLOW}© 2025 bestia.dev  MIT License github.com/automation-tasks-rs/cargo-auto{RESET}
 "#
     );
     print_examples_cmd();
@@ -173,14 +171,14 @@ fn print_help() {
 
 /// all example commands in one place
 fn print_examples_cmd() {
-/*
-    println!(
-        r#"
-    {YELLOW}run examples:{RESET}
+    /*
+        println!(
+            r#"
+  {YELLOW}run examples:{RESET}
 {GREEN}cargo run --example plantuml1{RESET}
-"#
-    );
-*/
+    "#
+        );
+    */
 }
 
 /// sub-command for bash auto-completion of `cargo auto` using the crate `dev_bestia_cargo_completion`
@@ -214,9 +212,9 @@ fn task_build() {
     cl::run_shell_command_static("cargo build").unwrap_or_else(|e| panic!("{e}"));
     println!(
         r#"
-    {YELLOW}After `cargo auto build`, run the compiled binary, examples and/or tests{RESET}
+  {YELLOW}After `cargo auto build`, run the compiled binary, examples and/or tests{RESET}
 {GREEN}./target/debug/{package_name} arg_1{RESET}
-    {YELLOW}if ok then{RESET}
+  {YELLOW}if ok then{RESET}
 {GREEN}cargo auto release{RESET}
 "#,
         package_name = cargo_toml.package_name(),
@@ -234,66 +232,69 @@ fn task_release() {
     cl::run_shell_command_static("cargo fmt").unwrap_or_else(|e| panic!("{e}"));
     cl::run_shell_command_static("cargo build --release").unwrap_or_else(|e| panic!("{e}"));
 
-    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"strip "target/release/{package_name}" "#).unwrap_or_else(|e| panic!("{e}"))
-    .arg("{package_name}", &cargo_toml.package_name()).unwrap_or_else(|e| panic!("{e}"))
-    .run().unwrap_or_else(|e| panic!("{e}"));
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"strip "target/release/{package_name}" "#)
+        .unwrap_or_else(|e| panic!("{e}"))
+        .arg("{package_name}", &cargo_toml.package_name())
+        .unwrap_or_else(|e| panic!("{e}"))
+        .run()
+        .unwrap_or_else(|e| panic!("{e}"));
 
     println!(
         r#"
-    {YELLOW}After `cargo auto release`, run the compiled binary, examples and/or tests{RESET}
+  {YELLOW}After `cargo auto release`, run the compiled binary, examples and/or tests{RESET}
 
-    {YELLOW}1. Check if the template `new_cli` is working. Open a second VSCode:{RESET}
+  {YELLOW}1. Check if the template `new_cli` is working. Open a second VSCode:{RESET}
 {GREEN}code ~/rustprojects{RESET}
-    {YELLOW}and run in its terminal:{RESET}
+  {YELLOW}and run in its terminal:{RESET}
 {GREEN}./cargo-auto/target/release/{package_name} new_cli hello_world bestia-dev;{RESET}
 {GREEN}code hello_world{RESET}
-    {YELLOW} In the new VSCode try the workflow: {RESET}
+  {YELLOW} In the new VSCode try the workflow: {RESET}
 {GREEN}cargo auto build, cargo auto release, cargo auto doc,... {RESET}
-    {YELLOW}Follow the instructions, try all tasks.{RESET}
-    {YELLOW}Leave this VSCode open for the next check.{RESET}
+  {YELLOW}Follow the instructions, try all tasks.{RESET}
+  {YELLOW}Leave this VSCode open for the next check.{RESET}
 
-    {YELLOW}2. Check if the template `new_auto_for_cli` is working. Continue in the third VSCode:{RESET}
+  {YELLOW}2. Check if the template `new_auto_for_cli` is working. Continue in the third VSCode:{RESET}
 {GREEN}../cargo-auto/target/release/{package_name} new_auto_for_cli;{RESET}
-    {YELLOW}An Error must be produced because automation_tasks_rs already exists.{RESET}
-    {YELLOW}Remove the directory and try again:{RESET}
+  {YELLOW}An Error must be produced because automation_tasks_rs already exists.{RESET}
+  {YELLOW}Remove the directory and try again:{RESET}
 {GREEN}rm -r automation_tasks_rs{RESET}
 {GREEN}../cargo-auto/target/release/{package_name} new_auto_for_cli;{RESET}
-    {YELLOW}Try the workflow: {RESET}
+  {YELLOW}Try the workflow: {RESET}
 {GREEN}cargo auto build, cargo auto release, cargo auto doc,... {RESET}
-    {YELLOW}Follow the instructions, try all tasks.{RESET}
-    {YELLOW}If ok, close the third VSCode window. In the second VSCode remove the temporary project:{RESET}
+  {YELLOW}Follow the instructions, try all tasks.{RESET}
+  {YELLOW}If ok, close the third VSCode window. In the second VSCode remove the temporary project:{RESET}
 {GREEN}rm -rf hello_world{RESET}
-    {YELLOW}Close the second VSCode.{RESET}
+  {YELLOW}Close the second VSCode.{RESET}
 
 
-    {YELLOW}3. Check if the template `new_wasm` is working. Open a second VSCode:{RESET}
+  {YELLOW}3. Check if the template `new_wasm` is working. Open a second VSCode:{RESET}
 {GREEN}code ~/rustprojects{RESET}
-    {YELLOW}and run in its terminal:{RESET}
+  {YELLOW}and run in its terminal:{RESET}
 {GREEN}./cargo-auto/target/release/{package_name} new_wasm hello_world bestia-dev bestia.dev luciano_bestia;{RESET}
 {GREEN}code hello_world{RESET}
-    {YELLOW} In the new VSCode try the workflow: {RESET}
+  {YELLOW} In the new VSCode try the workflow: {RESET}
 {GREEN}cargo auto build, cargo auto release, cargo auto doc,... {RESET}
-    {YELLOW}Follow the instructions, try all tasks.{RESET}
-    {YELLOW}If ok, close the third VSCode window. In the second VSCode remove the temporary project:{RESET}
+  {YELLOW}Follow the instructions, try all tasks.{RESET}
+  {YELLOW}If ok, close the third VSCode window. In the second VSCode remove the temporary project:{RESET}
 {GREEN}rm -rf hello_world{RESET}
-    {YELLOW}Close the second VSCode.{RESET}
+  {YELLOW}Close the second VSCode.{RESET}
 
 
-    {YELLOW}4. Check if the template `new_pwa_wasm` is working. Open a second VSCode:{RESET}
+  {YELLOW}4. Check if the template `new_pwa_wasm` is working. Open a second VSCode:{RESET}
 {GREEN}code ~/rustprojects{RESET}
-    {YELLOW}and run in its terminal:{RESET}
-    {YELLOW}Copy your 'icon512x512.png' into this folder or download and use this default icon.{RESET}
+  {YELLOW}and run in its terminal:{RESET}
+  {YELLOW}Copy your 'icon512x512.png' into this folder or download and use this default icon.{RESET}
 {GREEN}curl -L https://github.com/automation-tasks-rs/cargo_auto_template_new_pwa_wasm/raw/main/icon512x512.png --output icon512x512.png{RESET}
 {GREEN}./cargo-auto/target/release/{package_name} new_pwa_wasm hello_world bestia-dev bestia.dev luciano_bestia;{RESET}
 {GREEN}code hello_world{RESET}
-    {YELLOW} In the new VSCode try the workflow: {RESET}
+  {YELLOW} In the new VSCode try the workflow: {RESET}
 {GREEN}cargo auto build, cargo auto release, cargo auto doc,... {RESET}
-    {YELLOW}Follow the instructions, try all tasks.{RESET}
+  {YELLOW}Follow the instructions, try all tasks.{RESET}
 {GREEN}rm icon512x512.png{RESET}
 {GREEN}rm -rf hello_world{RESET}
-    {YELLOW}Close the second VSCode.{RESET}
+  {YELLOW}Close the second VSCode.{RESET}
 
-    {YELLOW}if ok then{RESET}
+  {YELLOW}if ok then{RESET}
 {GREEN}cargo auto doc{RESET}
 "#,
         package_name = cargo_toml.package_name(),
@@ -328,7 +329,7 @@ fn task_doc() {
     // message to help user with next move
     println!(
         r#"
-    {YELLOW}After `cargo auto doc`, ctrl-click on `docs/index.html`. 
+  {YELLOW}After `cargo auto doc`, ctrl-click on `docs/index.html`. 
     It will show the index.html in VSCode Explorer, then right-click and choose "Show Preview".
     This works inside the CRUSTDE container, because of the extension "Live Preview" 
     <https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server>
@@ -343,8 +344,8 @@ fn task_test() {
     cl::run_shell_command_static("cargo test").unwrap_or_else(|e| panic!("{e}"));
     println!(
         r#"
-    {YELLOW}After `cargo auto test`. If ok then {RESET}
-    {YELLOW}(commit message is mandatory){RESET}
+  {YELLOW}After `cargo auto test`. If ok then {RESET}
+  {YELLOW}(commit message is mandatory){RESET}
 {GREEN}cargo auto commit_and_push "message"{RESET}
 "#
     );
@@ -365,13 +366,11 @@ fn task_commit_and_push(arg_2: Option<String>) {
 
     // If needed, ask to create a GitHub remote repository
     if !cgl::git_has_remote() || !cgl::git_has_upstream() {
-        let github_client = github_mod::GitHubClient::new_with_stored_secret_token();
-        cgl::new_remote_github_repository(&github_client).unwrap();
-        cgl::description_and_topics_to_github(&github_client);
+        cgl::new_remote_github_repository().unwrap();
+        cgl::description_and_topics_to_github();
     } else {
-        let github_client = github_mod::GitHubClient::new_with_stored_secret_token();
         // if description or topics/keywords/tags have changed
-        cgl::description_and_topics_to_github(&github_client);
+        cgl::description_and_topics_to_github();
 
         // separate commit for docs if they changed, to not make a lot of noise in the real commit
         if std::path::Path::new("docs").exists() {
@@ -392,7 +391,7 @@ fn task_commit_and_push(arg_2: Option<String>) {
 
     println!(
         r#"
-    {YELLOW}After `cargo auto commit_and_push "message"`{RESET}
+  {YELLOW}After `cargo auto commit_and_push "message"`{RESET}
 {GREEN}cargo auto publish_to_crates_io{RESET}
 "#
     );
@@ -407,19 +406,18 @@ fn task_publish_to_crates_io() {
     let tag_name_version = cl::git_tag_sync_check_create_push(&version);
 
     // cargo publish with encrypted secret secret_token
-    let crates_io_client = crates_io_mod::CratesIoClient::new_with_stored_secret_token();
-    crates_io_client.publish_to_crates_io();
+    ende::crates_io_api_token_mod::publish_to_crates_io().unwrap();
 
     println!(
         r#"
-    {YELLOW}After `cargo auto publish_to_crates_io`, check in browser{RESET}
+  {YELLOW}After `cargo auto publish_to_crates_io`, check in browser{RESET}
 {GREEN}https://crates.io/crates/{package_name}{RESET}
-    {YELLOW}Install the crate with{RESET}
+  {YELLOW}Install the crate with{RESET}
 {GREEN}cargo install {package_name}{RESET}
-    {YELLOW}and check how it works.{RESET}
+  {YELLOW}and check how it works.{RESET}
 
-    {YELLOW}First write the content of the release in the RELEASES.md in the `## Unreleased` section, then{RESET}
-    {YELLOW}Then create the GitHub-Release for {tag_name_version}.{RESET}
+  {YELLOW}First write the content of the release in the RELEASES.md in the `## Unreleased` section, then{RESET}
+  {YELLOW}Then create the GitHub-Release for {tag_name_version}.{RESET}
 {GREEN}cargo auto github_new_release{RESET}
 "#
     );
@@ -441,9 +439,8 @@ fn task_github_new_release() {
     // First, the user must write the content into file RELEASES.md in the section ## Unreleased.
     // Then the automation task will copy the content to GitHub release
     let body_md_text = cl::body_text_from_releases_md().unwrap();
-
-    let github_client = github_mod::GitHubClient::new_with_stored_secret_token();
-    let json_value = github_client.send_to_github_api(cgl::github_api_create_new_release(&github_owner, &repo_name, &tag_name_version, &release_name, branch, &body_md_text));
+    let request = cgl::github_api_create_new_release(&github_owner, &repo_name, &tag_name_version, &release_name, branch, &body_md_text);
+    let json_value = ende::github_api_token_with_oauth2_mod::send_to_github_api_with_secret_token(request).unwrap();
     // early exit on error
     if let Some(error_message) = json_value.get("message") {
         eprintln!("{RED}{error_message}{RESET}");
@@ -461,49 +458,37 @@ fn task_github_new_release() {
     // Create a new Version title in RELEASES.md.
     cl::create_new_version_in_releases_md(&release_name).unwrap();
 
-    println!(
-        "
-    {YELLOW}New GitHub release created: {release_name}.{RESET}
-"
-    );
+    println!("  {YELLOW}New GitHub release created: {release_name}.{RESET}");
 
     // region: upload asset only for executables, not for libraries
 
     let release_id = json_value.get("id").unwrap().as_i64().unwrap().to_string();
-    println!(
-        "
-        {YELLOW}Now uploading release asset. This can take some time if the files are big. Wait...{RESET}
-    "
-    );
+    println!("  {YELLOW}Now uploading release asset. This can take some time if the files are big. Wait...{RESET}");
     // compress files tar.gz
     let tar_name = format!("{repo_name}-{tag_name_version}-x86_64-unknown-linux-gnu.tar.gz");
 
-    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(
-        r#"tar -zcvf "{tar_name_sanitized_for_double_quote}" "target/release/{repo_name_sanitized_for_double_quote}" "#).unwrap_or_else(|e| panic!("{e}"))
-    .arg("{tar_name_sanitized_for_double_quote}", &tar_name).unwrap_or_else(|e| panic!("{e}"))
-    .arg("{repo_name_sanitized_for_double_quote}", &repo_name).unwrap_or_else(|e| panic!("{e}"))
-    .run().unwrap_or_else(|e| panic!("{e}"));
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"tar -zcvf "{tar_name_sanitized_for_double_quote}" "target/release/{repo_name_sanitized_for_double_quote}" "#)
+        .unwrap_or_else(|e| panic!("{e}"))
+        .arg("{tar_name_sanitized_for_double_quote}", &tar_name)
+        .unwrap_or_else(|e| panic!("{e}"))
+        .arg("{repo_name_sanitized_for_double_quote}", &repo_name)
+        .unwrap_or_else(|e| panic!("{e}"))
+        .run()
+        .unwrap_or_else(|e| panic!("{e}"));
 
     // upload asset
-    cgl::github_api_upload_asset_to_release(&github_client, &github_owner, &repo_name, &release_id, &tar_name);
+    cgl::github_api_upload_asset_to_release(&github_owner, &repo_name, &release_id, &tar_name);
 
-    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(
-        r#"rm "{tar_name_sanitized_for_double_quote}" "#).unwrap_or_else(|e| panic!("{e}"))
-    .arg("{tar_name_sanitized_for_double_quote}", &tar_name).unwrap_or_else(|e| panic!("{e}"))
-    .run().unwrap_or_else(|e| panic!("{e}"));
-
-    println!(
-        r#"
-    {YELLOW}Asset uploaded. Open and edit the description on GitHub Releases in the browser.{RESET}
-    "#
-    );
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"rm "{tar_name_sanitized_for_double_quote}" "#)
+        .unwrap_or_else(|e| panic!("{e}"))
+        .arg("{tar_name_sanitized_for_double_quote}", &tar_name)
+        .unwrap_or_else(|e| panic!("{e}"))
+        .run()
+        .unwrap_or_else(|e| panic!("{e}"));
+    println!(r#"  {YELLOW}Asset uploaded. Open and edit the description on GitHub Releases in the browser.{RESET}"#);
 
     // endregion: upload asset only for executables, not for libraries
 
-    println!(
-        r#"
-{GREEN}https://github.com/{github_owner}/{repo_name}/releases{RESET}
-    "#
-    );
+    println!(r#"{GREEN}https://github.com/{github_owner}/{repo_name}/releases{RESET} "#);
 }
 // endregion: tasks

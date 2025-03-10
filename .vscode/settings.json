@@ -35,6 +35,7 @@
         "debuginfo",
         "deps",
         "developmenttool",
+        "ende",
         "endregion",
         "filedate",
         "filehash",
@@ -42,7 +43,9 @@
         "flate",
         "HEXLOWER",
         "imageops",
+        "keygen",
         "Lanczos",
+        "lizs",
         "Nazdravlje",
         "new_cli",
         "noopener",
@@ -78,6 +81,7 @@
         "wooow",
         "xtask",
         "zcvf",
-        "zdravje"
+        "zdravje",
+        "zeroize"
     ]
 }

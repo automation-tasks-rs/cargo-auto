@@ -16,10 +16,10 @@ pub fn new_auto_for_cli() {
 
     println!(
         r#"
-    {YELLOW}The command `cargo auto new_auto_for_cli` generated the sub-project `automation_tasks_rs` in your main Rust project.
-    {YELLOW}The sub-project will be automatically compiled on the next use of `cargo auto task_name` command.{RESET}
+  {YELLOW}The command `cargo auto new_auto_for_cli` generated the sub-project `automation_tasks_rs` in your main Rust project.
+  {YELLOW}The sub-project will be automatically compiled on the next use of `cargo auto task_name` command.{RESET}
 {GREEN}cargo auto build{RESET}
-    {YELLOW}The new directory is automatically added to your git commit.
+  {YELLOW}The new directory is automatically added to your git commit.
     There is a local .gitignore file to avoid commit of the `target/` directory.{RESET}
     the sub-project is independent from the main project. You can open it in a new Rust editor.{RESET}
 {GREEN}code automation_tasks_rs{RESET}
@@ -35,7 +35,7 @@ pub fn copy_to_files(rust_project_name: &str) {
     std::fs::create_dir_all(folder_path).unwrap();
 
     // download latest template.tar.gz
-    println!("{YELLOW}Downloading template.tar.gz...{RESET}");
+    println!("  {YELLOW}Downloading template.tar.gz...{RESET}");
     let file_name = "template.tar.gz";
     let path = "./template.tar.gz";
     let url = "https://github.com/automation-tasks-rs/cargo_auto_template_new_auto_for_cli/releases/latest/download/template.tar.gz";

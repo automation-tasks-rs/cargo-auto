@@ -59,8 +59,8 @@ pub fn new_pwa_wasm(rust_project_name: Option<String>, github_owner_or_organizat
     if !std::path::Path::new("icon512x512.png").exists() {
         println!(
             r#"
-    {RED}The mandatory file `icon512x512.png` is not found in this folder.{RESET}
-    {YELLOW}If you don't have your icon, you can download and use this default:{RESET}
+{RED}The mandatory file `icon512x512.png` is not found in this folder.{RESET}
+  {YELLOW}If you don't have your icon, you can download and use this default:{RESET}
 {GREEN}curl -L https://github.com/automation-tasks-rs/cargo_auto_template_new_pwa_wasm/raw/main/icon512x512.png --output icon512x512.png{RESET}
 "#
         );
@@ -119,11 +119,11 @@ pub fn new_pwa_wasm(rust_project_name: Option<String>, github_owner_or_organizat
     // endregion
     println!(
         r#"
-    {YELLOW}You can open this new Rust project in VSCode:{RESET}
+  {YELLOW}You can open this new Rust project in VSCode:{RESET}
 {GREEN}code {package_name}{RESET}
-    {YELLOW}Then build it with:{RESET}
+  {YELLOW}Then build it with:{RESET}
 {GREEN}cargo auto build{RESET}
-    {YELLOW}Then follow the detailed instructions.{RESET}
+  {YELLOW}Then follow the detailed instructions.{RESET}
 "#,
         package_name = rust_project_name
     );
@@ -137,7 +137,7 @@ pub fn copy_to_files(rust_project_name: &str, github_owner_or_organization: &str
     std::fs::create_dir_all(folder_path).unwrap();
 
     // download latest template.tar.gz
-    println!("{YELLOW}Downloading template.tar.gz...{RESET}");
+    println!("  {YELLOW}Downloading template.tar.gz...{RESET}");
     let file_name = "template.tar.gz";
     let path = "./template.tar.gz";
     let url = "https://github.com/automation-tasks-rs/cargo_auto_template_new_pwa_wasm/releases/latest/download/template.tar.gz";

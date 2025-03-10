@@ -46,13 +46,13 @@ fn print_help_from_cargo_auto() {
     if !crate::PATH_CARGO_TOML.exists() || !crate::PATH_SRC_MAIN_RS.exists() {
         println!(
             r#"
-    {YELLOW}Welcome to cargo-auto !
+  {YELLOW}Welcome to cargo-auto !
     This program automates your custom tasks when developing a Rust project.
         
     To start using `cargo auto` inside your Rust project, you must create a new `automation_tasks_rs` directory with the command:{RESET}
 {GREEN}cargo auto new_auto_for_cli{RESET}
 
-    {YELLOW}© 2024 bestia.dev  MIT License github.com/automation-tasks-rs/cargo-auto{RESET}
+  {YELLOW}© 2024 bestia.dev  MIT License github.com/automation-tasks-rs/cargo-auto{RESET}
 "#
         );
     } else {

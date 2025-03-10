@@ -32,13 +32,13 @@ pub fn new_wasm(rust_project_name: Option<String>, github_owner_or_organization:
     copy_to_files(&rust_project_name, &github_owner_or_organization, &web_server_domain, &server_username);
 
     println!("");
-    println!("    {YELLOW}The command `cargo auto new_wasm` generated the directory `{rust_project_name}`{RESET}");
-    println!("    {YELLOW}You can open this new Rust project `{rust_project_name}` in a new Rust editor.{RESET}",);
-    println!("    {YELLOW}For example VSCode:{RESET}");
+    println!("  {YELLOW}The command `cargo auto new_wasm` generated the directory `{rust_project_name}`{RESET}");
+    println!("  {YELLOW}You can open this new Rust project `{rust_project_name}` in a new Rust editor.{RESET}",);
+    println!("  {YELLOW}For example VSCode:{RESET}");
     println!("{GREEN}code {rust_project_name}{RESET}");
-    println!("    {YELLOW}Then build with:{RESET}");
+    println!("  {YELLOW}Then build with:{RESET}");
     println!("{GREEN}cargo auto build{RESET}");
-    println!("    {YELLOW}and follow the detailed instructions.{RESET}");
+    println!("  {YELLOW}and follow the detailed instructions.{RESET}");
 }
 
 pub fn copy_to_files(rust_project_name: &str, github_owner_or_organization: &str, web_server_domain: &str, server_username: &str) {
@@ -49,7 +49,7 @@ pub fn copy_to_files(rust_project_name: &str, github_owner_or_organization: &str
     std::fs::create_dir_all(folder_path).unwrap();
 
     // download latest template.tar.gz
-    println!("{YELLOW}Downloading template.tar.gz...{RESET}");
+    println!("  {YELLOW}Downloading template.tar.gz...{RESET}");
     let file_name = "template.tar.gz";
     let path = "./template.tar.gz";
     let url = "https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm/releases/latest/download/template.tar.gz";
