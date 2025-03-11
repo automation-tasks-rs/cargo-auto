@@ -81,16 +81,19 @@
 <a href="#80" id="80">80</a>
 <a href="#81" id="81">81</a>
 <a href="#82" id="82">82</a>
-<a href="#83" id="83">83</a></pre></div><pre class="rust"><code><span class="comment">// template_new_cli_mod.rs
+<a href="#83" id="83">83</a>
+<a href="#84" id="84">84</a>
+<a href="#85" id="85">85</a></pre></div><pre class="rust"><code><span class="comment">// template_new_cli_mod.rs
 
-</span><span class="doccomment">//! template for new_cli
+</span><span class="doccomment">//! Template for new_cli.
 //!
-//! The template is downloaded from github
+//! The template is downloaded from github:  
 //! &lt;https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/releases/latest/download/template.tar.gz&gt;
 
 </span><span class="kw">use crate</span>::{GREEN, RED, RESET, YELLOW};
 
-<span class="kw">pub fn </span>new_cli(rust_project_name: <span class="prelude-ty">Option</span>&lt;String&gt;, github_owner_or_organization: <span class="prelude-ty">Option</span>&lt;String&gt;) {
+<span class="doccomment">/// Creates a new Rust project from template.
+</span><span class="kw">pub fn </span>new_cli(rust_project_name: <span class="prelude-ty">Option</span>&lt;String&gt;, github_owner_or_organization: <span class="prelude-ty">Option</span>&lt;String&gt;) {
     <span class="kw">if </span>rust_project_name.is_none() {
         <span class="macro">println!</span>(<span class="string">"{RED}Error: Project name argument is missing: `cargo auto new_cli project_name github_owner_or_organization`{RESET}"</span>);
         <span class="kw">return</span>;
@@ -113,7 +116,8 @@
     <span class="macro">println!</span>(<span class="string">"  {YELLOW}and follow the detailed instructions.{RESET}"</span>);
 }
 
-<span class="kw">pub fn </span>copy_to_files(rust_project_name: <span class="kw-2">&amp;</span>str, github_owner_or_organization: <span class="kw-2">&amp;</span>str) {
+<span class="doccomment">/// Copy the Rust project into a compressed file.  
+</span><span class="kw">pub fn </span>copy_to_files(rust_project_name: <span class="kw-2">&amp;</span>str, github_owner_or_organization: <span class="kw-2">&amp;</span>str) {
     <span class="kw">let </span>folder_path = std::path::Path::new(rust_project_name);
     <span class="kw">if </span>folder_path.exists() {
         <span class="macro">panic!</span>(<span class="string">"{RED}Error: Folder {rust_project_name} already exists! {RESET}"</span>);

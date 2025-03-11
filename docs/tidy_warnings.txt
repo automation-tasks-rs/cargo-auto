@@ -202,13 +202,13 @@ line 1 column 1 - Warning: inserting missing 'title' element
 ./docs/cargo_auto_local_lib/inside_of_rust_project_mod/fn.completion.html
 Document: "2" is not a file!
 
-line 1 column 2805 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2805 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2821 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3188 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3188 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3205 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1906 - Warning: trimming empty <button>
+line 1 column 2806 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2806 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2822 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3189 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3189 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3206 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1907 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
@@ -228,168 +228,168 @@ using HTML Tidy to generate a tidied up version.
 ./docs/cargo_auto_local_lib/inside_of_rust_project_mod/fn.compile_automation_tasks_rs_if_needed.html
 Document: "2" is not a file!
 
-line 1 column 2867 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2867 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2883 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3277 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3277 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3294 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1968 - Warning: trimming empty <button>
+line 1 column 2823 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2823 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2839 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3233 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3233 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3250 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1924 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/inside_of_rust_project_mod/fn.parse_args.html
 Document: "2" is not a file!
 
-line 1 column 2786 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2786 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2802 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3169 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3169 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3186 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1887 - Warning: trimming empty <button>
+line 1 column 2750 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2750 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2766 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3133 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3133 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3150 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1851 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/inside_of_rust_project_mod/fn.already_exists_automation_tasks_rs.html
 Document: "2" is not a file!
 
-line 1 column 2775 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2775 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2791 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3182 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3182 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3199 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1876 - Warning: trimming empty <button>
+line 1 column 2782 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2782 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2798 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3189 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3189 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3206 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1883 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/inside_of_rust_project_mod/fn.print_help_from_cargo_auto.html
 Document: "2" is not a file!
 
-line 1 column 3070 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3070 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 3086 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3469 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3469 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3486 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 2171 - Warning: trimming empty <button>
+line 1 column 2763 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2763 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2779 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3162 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3162 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3179 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1864 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/inside_of_rust_project_mod/fn.match_first_argument.html
 Document: "2" is not a file!
 
-line 1 column 2936 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2936 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2952 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3329 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3329 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3346 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 2037 - Warning: trimming empty <button>
+line 1 column 2770 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2770 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2786 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3163 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3163 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3180 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1871 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/inside_of_rust_project_mod/index.html
 Document: "2" is not a file!
 
-line 1 column 2979 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2979 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2995 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3307 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3307 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3324 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1846 - Warning: trimming empty <button>
+line 1 column 2980 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2980 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2996 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3308 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3308 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3325 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1847 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/template_new_pwa_wasm_mod/fn.copy_to_files.html
 Document: "2" is not a file!
 
-line 1 column 2790 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2790 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2806 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3175 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3175 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3192 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1892 - Warning: trimming empty <button>
+line 1 column 2753 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2753 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2769 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3138 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3138 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3155 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1855 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/template_new_pwa_wasm_mod/fn.new_pwa_wasm.html
 Document: "2" is not a file!
 
-line 1 column 2788 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2788 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2804 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3172 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3172 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3189 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1890 - Warning: trimming empty <button>
+line 1 column 2748 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2748 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2764 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3132 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3132 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3149 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1850 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/template_new_pwa_wasm_mod/index.html
 Document: "2" is not a file!
 
-line 1 column 2954 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2954 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2970 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3281 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3281 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3298 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1822 - Warning: trimming empty <button>
+line 1 column 2955 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2955 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2971 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3282 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3282 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3299 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1823 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/utils_mod/fn.run_shell_command_success.html
 Document: "2" is not a file!
 
-line 1 column 2721 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2721 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2737 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3102 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3102 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3119 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1854 - Warning: trimming empty <button>
+line 1 column 2722 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2722 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2738 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3103 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3103 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3120 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1855 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/utils_mod/index.html
 Document: "2" is not a file!
 
-line 1 column 2899 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2899 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2915 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3210 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3210 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3227 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1798 - Warning: trimming empty <button>
+line 1 column 2914 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2914 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2930 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3225 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3225 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3242 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1813 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/fn.is_not_run_in_rust_project_root_directory.html
 Document: "2" is not a file!
 
-line 1 column 2596 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2596 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2612 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 2949 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2949 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 2966 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1831 - Warning: trimming empty <button>
+line 1 column 2597 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2597 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2613 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 2950 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2950 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 2967 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1832 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/struct.PATH_AUTOMATION_TASKS_RS.html
 Document: "2" is not a file!
 
-line 1 column 8005 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 8005 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 8021 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 8343 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 8343 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 8360 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 8021 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 8021 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 8037 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 8359 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 8359 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 8376 - Warning: discarding unexpected </rustdoc-toolbar>
 line 4 column 419 - Warning: missing </summary> before <h2>
 line 4 column 851 - Warning: discarding unexpected </summary>
 line 4 column 957 - Warning: missing </summary> before <section>
@@ -587,7 +587,7 @@ line 498 column 113 - Warning: missing </summary> before <section>
 line 498 column 375 - Warning: discarding unexpected </summary>
 line 499 column 260 - Warning: <div> isn't allowed in <h3> elements
 line 500 column 16 - Warning: discarding unexpected </div>
-line 1 column 1787 - Warning: trimming empty <button>
+line 1 column 1803 - Warning: trimming empty <button>
 line 4 column 419 - Warning: trimming empty <summary>
 line 4 column 957 - Warning: trimming empty <summary>
 line 10 column 60 - Warning: trimming empty <summary>
@@ -674,12 +674,12 @@ using HTML Tidy to generate a tidied up version.
 ./docs/cargo_auto_local_lib/struct.PATH_CARGO_TOML.html
 Document: "2" is not a file!
 
-line 1 column 7921 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 7921 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 7937 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 8250 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 8250 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 8267 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 7935 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 7935 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 7951 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 8264 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 8264 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 8281 - Warning: discarding unexpected </rustdoc-toolbar>
 line 4 column 419 - Warning: missing </summary> before <h2>
 line 4 column 851 - Warning: discarding unexpected </summary>
 line 4 column 957 - Warning: missing </summary> before <section>
@@ -877,7 +877,7 @@ line 498 column 113 - Warning: missing </summary> before <section>
 line 498 column 375 - Warning: discarding unexpected </summary>
 line 499 column 260 - Warning: <div> isn't allowed in <h3> elements
 line 500 column 16 - Warning: discarding unexpected </div>
-line 1 column 1789 - Warning: trimming empty <button>
+line 1 column 1803 - Warning: trimming empty <button>
 line 4 column 419 - Warning: trimming empty <summary>
 line 4 column 957 - Warning: trimming empty <summary>
 line 10 column 60 - Warning: trimming empty <summary>
@@ -977,12 +977,12 @@ using HTML Tidy to generate a tidied up version.
 ./docs/cargo_auto_local_lib/struct.PATH_SRC_MAIN_RS.html
 Document: "2" is not a file!
 
-line 1 column 7937 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 7937 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 7953 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 8267 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 8267 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 8284 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 7951 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 7951 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 7967 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 8281 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 8281 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 8298 - Warning: discarding unexpected </rustdoc-toolbar>
 line 4 column 419 - Warning: missing </summary> before <h2>
 line 4 column 851 - Warning: discarding unexpected </summary>
 line 4 column 957 - Warning: missing </summary> before <section>
@@ -1180,7 +1180,7 @@ line 498 column 113 - Warning: missing </summary> before <section>
 line 498 column 375 - Warning: discarding unexpected </summary>
 line 499 column 260 - Warning: <div> isn't allowed in <h3> elements
 line 500 column 16 - Warning: discarding unexpected </div>
-line 1 column 1791 - Warning: trimming empty <button>
+line 1 column 1805 - Warning: trimming empty <button>
 line 4 column 419 - Warning: trimming empty <summary>
 line 4 column 957 - Warning: trimming empty <summary>
 line 10 column 60 - Warning: trimming empty <summary>
@@ -1267,12 +1267,12 @@ using HTML Tidy to generate a tidied up version.
 ./docs/cargo_auto_local_lib/struct.PATH_FILE_HASHES_JSON.html
 Document: "2" is not a file!
 
-line 1 column 7993 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 7993 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 8009 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 8328 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 8328 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 8345 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 8007 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 8007 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 8023 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 8342 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 8342 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 8359 - Warning: discarding unexpected </rustdoc-toolbar>
 line 4 column 419 - Warning: missing </summary> before <h2>
 line 4 column 851 - Warning: discarding unexpected </summary>
 line 4 column 957 - Warning: missing </summary> before <section>
@@ -1470,7 +1470,7 @@ line 498 column 113 - Warning: missing </summary> before <section>
 line 498 column 375 - Warning: discarding unexpected </summary>
 line 499 column 260 - Warning: <div> isn't allowed in <h3> elements
 line 500 column 16 - Warning: discarding unexpected </div>
-line 1 column 1802 - Warning: trimming empty <button>
+line 1 column 1816 - Warning: trimming empty <button>
 line 4 column 419 - Warning: trimming empty <summary>
 line 4 column 957 - Warning: trimming empty <summary>
 line 10 column 60 - Warning: trimming empty <summary>
@@ -1557,65 +1557,65 @@ using HTML Tidy to generate a tidied up version.
 ./docs/cargo_auto_local_lib/outside_of_rust_project_mod/fn.completion.html
 Document: "2" is not a file!
 
-line 1 column 2807 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2807 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2823 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3191 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3191 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3208 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1907 - Warning: trimming empty <button>
+line 1 column 2808 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2808 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2824 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3192 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3192 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3209 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1908 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/outside_of_rust_project_mod/fn.parse_args.html
 Document: "2" is not a file!
 
-line 1 column 2831 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2831 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2847 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3215 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3215 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3232 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1931 - Warning: trimming empty <button>
+line 1 column 2753 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2753 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2769 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3137 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3137 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3154 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1853 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/outside_of_rust_project_mod/fn.print_help_from_cargo_auto.html
 Document: "2" is not a file!
 
-line 1 column 2735 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2735 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2751 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3135 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3135 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3152 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1835 - Warning: trimming empty <button>
+line 1 column 2751 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2751 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2767 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3151 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3151 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3168 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1851 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/outside_of_rust_project_mod/fn.match_first_argument.html
 Document: "2" is not a file!
 
-line 1 column 2815 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2815 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2831 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3209 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3209 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3226 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1915 - Warning: trimming empty <button>
+line 1 column 2776 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2776 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2792 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3170 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3170 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3187 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1876 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/outside_of_rust_project_mod/index.html
 Document: "2" is not a file!
 
-line 1 column 2982 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2982 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2998 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3311 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3311 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3328 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1848 - Warning: trimming empty <button>
+line 1 column 2983 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2983 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2999 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3312 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3312 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3329 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1849 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
@@ -1658,51 +1658,51 @@ using HTML Tidy to generate a tidied up version.
 ./docs/cargo_auto_local_lib/template_new_auto_for_cli_mod/fn.new_auto_for_cli.html
 Document: "2" is not a file!
 
-line 1 column 2880 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2880 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2896 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3272 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3272 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3289 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1973 - Warning: trimming empty <button>
+line 1 column 2783 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2783 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2799 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3175 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3175 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3192 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1876 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/template_new_auto_for_cli_mod/fn.copy_to_files.html
 Document: "2" is not a file!
 
-line 1 column 2803 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2803 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2819 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3192 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3192 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3209 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1896 - Warning: trimming empty <button>
+line 1 column 2766 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2766 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2782 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3155 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3155 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3172 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1859 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/template_new_auto_for_cli_mod/index.html
 Document: "2" is not a file!
 
-line 1 column 2993 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2993 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 3009 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3324 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3324 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3341 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1852 - Warning: trimming empty <button>
+line 1 column 2994 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2994 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 3010 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3325 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3325 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3342 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1853 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/struct.PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.html
 Document: "2" is not a file!
 
-line 1 column 8178 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 8178 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 8194 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 8529 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 8529 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 8546 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 8194 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 8194 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 8210 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 8545 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 8545 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 8562 - Warning: discarding unexpected </rustdoc-toolbar>
 line 4 column 419 - Warning: missing </summary> before <h2>
 line 4 column 851 - Warning: discarding unexpected </summary>
 line 4 column 957 - Warning: missing </summary> before <section>
@@ -1900,7 +1900,7 @@ line 498 column 113 - Warning: missing </summary> before <section>
 line 498 column 375 - Warning: discarding unexpected </summary>
 line 499 column 260 - Warning: <div> isn't allowed in <h3> elements
 line 500 column 16 - Warning: discarding unexpected </div>
-line 1 column 1833 - Warning: trimming empty <button>
+line 1 column 1849 - Warning: trimming empty <button>
 line 4 column 419 - Warning: trimming empty <summary>
 line 4 column 957 - Warning: trimming empty <summary>
 line 10 column 60 - Warning: trimming empty <summary>
@@ -2000,39 +2000,39 @@ using HTML Tidy to generate a tidied up version.
 ./docs/cargo_auto_local_lib/template_new_wasm_mod/fn.copy_to_files.html
 Document: "2" is not a file!
 
-line 1 column 2777 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2777 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2793 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3158 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3158 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3175 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1888 - Warning: trimming empty <button>
+line 1 column 2740 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2740 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2756 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3121 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3121 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3138 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1851 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/template_new_wasm_mod/fn.new_wasm.html
 Document: "2" is not a file!
 
-line 1 column 2767 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2767 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2783 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3143 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3143 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3160 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1878 - Warning: trimming empty <button>
+line 1 column 2731 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2731 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2747 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3107 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3107 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3124 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1842 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/template_new_wasm_mod/index.html
 Document: "2" is not a file!
 
-line 1 column 2937 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2937 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2953 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3260 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3260 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3277 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1814 - Warning: trimming empty <button>
+line 1 column 2938 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2938 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2954 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3261 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3261 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3278 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1815 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
@@ -2052,77 +2052,77 @@ using HTML Tidy to generate a tidied up version.
 ./docs/cargo_auto_local_lib/template_new_cli_mod/fn.copy_to_files.html
 Document: "2" is not a file!
 
-line 1 column 2775 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2775 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2791 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3155 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3155 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3172 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1887 - Warning: trimming empty <button>
+line 1 column 2738 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2738 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2754 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3118 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3118 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3135 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1850 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/template_new_cli_mod/fn.new_cli.html
 Document: "2" is not a file!
 
-line 1 column 2763 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2763 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2779 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3137 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3137 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3154 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1875 - Warning: trimming empty <button>
+line 1 column 2728 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2728 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2744 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3102 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3102 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3119 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1840 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/template_new_cli_mod/index.html
 Document: "2" is not a file!
 
-line 1 column 2934 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2934 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2950 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3256 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3256 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3273 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1812 - Warning: trimming empty <button>
+line 1 column 2935 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2935 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2951 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3257 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3257 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3274 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1813 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/file_hashes_mod/fn.sha256_digest.html
 Document: "2" is not a file!
 
-line 1 column 2707 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2707 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2723 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3082 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3082 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3099 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1829 - Warning: trimming empty <button>
+line 1 column 2708 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2708 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2724 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3083 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3083 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3100 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1830 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/file_hashes_mod/fn.are_all_files_equal.html
 Document: "2" is not a file!
 
-line 1 column 2772 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2772 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2788 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3153 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3153 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3170 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1894 - Warning: trimming empty <button>
+line 1 column 2713 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2713 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2729 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3094 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3094 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3111 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1835 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/file_hashes_mod/struct.FileHashes.html
 Document: "2" is not a file!
 
-line 1 column 5273 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 5273 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 5289 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 5647 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 5647 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 5664 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 5269 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 5269 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 5285 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 5643 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 5643 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 5660 - Warning: discarding unexpected </rustdoc-toolbar>
 line 5 column 226 - Warning: missing </summary> before <section>
 line 5 column 811 - Warning: discarding unexpected </summary>
 line 5 column 888 - Warning: missing </summary> before <section>
@@ -2223,7 +2223,7 @@ line 29 column 498 - Warning: <div> isn't allowed in <h3> elements
 line 30 column 173 - Warning: discarding unexpected </div>
 line 30 column 368 - Warning: <div> isn't allowed in <h3> elements
 line 31 column 16 - Warning: discarding unexpected </div>
-line 1 column 1875 - Warning: trimming empty <button>
+line 1 column 1871 - Warning: trimming empty <button>
 line 5 column 226 - Warning: trimming empty <summary>
 line 5 column 888 - Warning: trimming empty <summary>
 line 6 column 461 - Warning: trimming empty <summary>
@@ -2268,77 +2268,77 @@ using HTML Tidy to generate a tidied up version.
 ./docs/cargo_auto_local_lib/file_hashes_mod/fn.read_json_file.html
 Document: "2" is not a file!
 
-line 1 column 2721 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2721 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2737 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3097 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3097 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3114 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1843 - Warning: trimming empty <button>
+line 1 column 2722 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2722 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2738 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3098 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3098 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3115 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1844 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/file_hashes_mod/fn.is_project_changed.html
 Document: "2" is not a file!
 
-line 1 column 2943 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2943 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2959 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3323 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3323 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3340 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 2065 - Warning: trimming empty <button>
+line 1 column 2738 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2738 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2754 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3118 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3118 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3135 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1860 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/file_hashes_mod/fn.read_file_metadata.html
 Document: "2" is not a file!
 
-line 1 column 2713 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2713 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2729 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3093 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3093 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3110 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1835 - Warning: trimming empty <button>
+line 1 column 2714 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2714 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2730 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3094 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3094 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3111 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1836 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/file_hashes_mod/index.html
 Document: "2" is not a file!
 
-line 1 column 2973 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2973 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2989 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3290 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3290 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3307 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1808 - Warning: trimming empty <button>
+line 1 column 2974 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2974 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2990 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3291 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3291 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3308 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1809 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/file_hashes_mod/fn.save_json_file_for_file_meta_data.html
 Document: "2" is not a file!
 
-line 1 column 2724 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 2724 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 2740 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 3119 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 3119 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 3136 - Warning: discarding unexpected </rustdoc-toolbar>
-line 1 column 1846 - Warning: trimming empty <button>
+line 1 column 2725 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 2725 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 2741 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 3120 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 3120 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 3137 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 1847 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
 
 ./docs/cargo_auto_local_lib/file_hashes_mod/struct.FileMetaData.html
 Document: "2" is not a file!
 
-line 1 column 5280 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 5280 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 5296 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 5656 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 5656 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 5673 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 5293 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 5293 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 5309 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 5669 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 5669 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 5686 - Warning: discarding unexpected </rustdoc-toolbar>
 line 7 column 226 - Warning: missing </summary> before <section>
 line 7 column 821 - Warning: discarding unexpected </summary>
 line 7 column 898 - Warning: missing </summary> before <section>
@@ -2439,7 +2439,7 @@ line 31 column 498 - Warning: <div> isn't allowed in <h3> elements
 line 32 column 173 - Warning: discarding unexpected </div>
 line 32 column 368 - Warning: <div> isn't allowed in <h3> elements
 line 33 column 16 - Warning: discarding unexpected </div>
-line 1 column 1816 - Warning: trimming empty <button>
+line 1 column 1829 - Warning: trimming empty <button>
 line 7 column 226 - Warning: trimming empty <summary>
 line 7 column 898 - Warning: trimming empty <summary>
 line 8 column 461 - Warning: trimming empty <summary>
@@ -2484,12 +2484,12 @@ using HTML Tidy to generate a tidied up version.
 ./docs/cargo_auto_local_lib/struct.PATH_GITIGNORE.html
 Document: "2" is not a file!
 
-line 1 column 7906 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 7906 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 7922 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 8234 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 8234 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 8251 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 7920 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 7920 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 7936 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 8248 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 8248 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 8265 - Warning: discarding unexpected </rustdoc-toolbar>
 line 4 column 419 - Warning: missing </summary> before <h2>
 line 4 column 851 - Warning: discarding unexpected </summary>
 line 4 column 957 - Warning: missing </summary> before <section>
@@ -2687,7 +2687,7 @@ line 498 column 113 - Warning: missing </summary> before <section>
 line 498 column 375 - Warning: discarding unexpected </summary>
 line 499 column 260 - Warning: <div> isn't allowed in <h3> elements
 line 500 column 16 - Warning: discarding unexpected </div>
-line 1 column 1788 - Warning: trimming empty <button>
+line 1 column 1802 - Warning: trimming empty <button>
 line 4 column 419 - Warning: trimming empty <summary>
 line 4 column 957 - Warning: trimming empty <summary>
 line 10 column 60 - Warning: trimming empty <summary>
@@ -2774,12 +2774,12 @@ using HTML Tidy to generate a tidied up version.
 ./docs/cargo_auto_local_lib/struct.PATH_SRC.html
 Document: "2" is not a file!
 
-line 1 column 7839 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 7839 - Warning: discarding unexpected <rustdoc-search>
-line 1 column 7855 - Warning: discarding unexpected </rustdoc-search>
-line 1 column 8161 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
-line 1 column 8161 - Warning: discarding unexpected <rustdoc-toolbar>
-line 1 column 8178 - Warning: discarding unexpected </rustdoc-toolbar>
+line 1 column 7855 - Error: <rustdoc-search> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 7855 - Warning: discarding unexpected <rustdoc-search>
+line 1 column 7871 - Warning: discarding unexpected </rustdoc-search>
+line 1 column 8177 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
+line 1 column 8177 - Warning: discarding unexpected <rustdoc-toolbar>
+line 1 column 8194 - Warning: discarding unexpected </rustdoc-toolbar>
 line 4 column 419 - Warning: missing </summary> before <h2>
 line 4 column 851 - Warning: discarding unexpected </summary>
 line 4 column 957 - Warning: missing </summary> before <section>
@@ -2977,7 +2977,7 @@ line 498 column 113 - Warning: missing </summary> before <section>
 line 498 column 375 - Warning: discarding unexpected </summary>
 line 499 column 260 - Warning: <div> isn't allowed in <h3> elements
 line 500 column 16 - Warning: discarding unexpected </div>
-line 1 column 1775 - Warning: trimming empty <button>
+line 1 column 1791 - Warning: trimming empty <button>
 line 4 column 419 - Warning: trimming empty <summary>
 line 4 column 957 - Warning: trimming empty <summary>
 line 10 column 60 - Warning: trimming empty <summary>

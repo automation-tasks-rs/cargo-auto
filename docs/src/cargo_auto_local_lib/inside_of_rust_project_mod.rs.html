@@ -148,9 +148,14 @@
 <a href="#147" id="147">147</a>
 <a href="#148" id="148">148</a>
 <a href="#149" id="149">149</a>
-<a href="#150" id="150">150</a></pre></div><pre class="rust"><code><span class="comment">// inside_of_rust_project_mod.rs
+<a href="#150" id="150">150</a>
+<a href="#151" id="151">151</a>
+<a href="#152" id="152">152</a>
+<a href="#153" id="153">153</a>
+<a href="#154" id="154">154</a>
+<a href="#155" id="155">155</a></pre></div><pre class="rust"><code><span class="comment">// inside_of_rust_project_mod.rs
 
-</span><span class="doccomment">//! commands accessible inside a Rust project folder
+</span><span class="doccomment">//! Commands accessible inside a Rust project folder.
 
 </span><span class="comment">// region: use statements
 
@@ -158,7 +163,9 @@
 
 </span><span class="kw">use crate</span>::{GREEN, RED, RESET, YELLOW};
 
-<span class="kw">pub fn </span>parse_args(args: <span class="kw-2">&amp;mut </span>std::env::Args) {
+
+<span class="doccomment">/// Parse when it is run inside a Rust project.  
+</span><span class="kw">pub fn </span>parse_args(args: <span class="kw-2">&amp;mut </span>std::env::Args) {
     <span class="comment">// the first argument is the task: (no argument for help), new_auto_for_cli, ...
     // wooow! There is a difference if I call the standalone binary or as a cargo subcommand:
     </span><span class="kw">let </span>arg_1 = args.next();
@@ -180,18 +187,19 @@
     }
 }
 
-<span class="doccomment">/// already exists automation_tasks_rs directory
+<span class="doccomment">/// Is there already the automation_tasks_rs directory.
 </span><span class="kw">fn </span>already_exists_automation_tasks_rs() -&gt; bool {
     <span class="comment">// return
     </span><span class="kw">crate</span>::PATH_AUTOMATION_TASKS_RS.exists()
 }
 
-<span class="doccomment">/// if there is no argument then print help  
-/// if there exists `automation_tasks_rs/Cargo.toml` and `automation_tasks_rs/src/main.rs`  
-/// call automation_tasks_rs with no arguments to print the help prepared in user defined automation_tasks_rs  
-/// else print the help for `cargo auto new_auto_for_cli`  
-/// in development use: `cargo run`  
-/// in runtime use: `cargo auto`  
+<span class="doccomment">/// If there is no argument then print help.
+///   
+/// If there exists `automation_tasks_rs/Cargo.toml` and `automation_tasks_rs/src/main.rs`  
+/// call automation_tasks_rs with no arguments to print the help prepared in user defined automation_tasks_rs.  
+/// Else print the help for `cargo auto new_auto_for_cli`.  
+/// In development use: `cargo run`.  
+/// In runtime use: `cargo auto`.  
 </span><span class="kw">fn </span>print_help_from_cargo_auto() {
     <span class="kw">if </span>!<span class="kw">crate</span>::PATH_CARGO_TOML.exists() || !<span class="kw">crate</span>::PATH_SRC_MAIN_RS.exists() {
         <span class="macro">println!</span>(
@@ -212,10 +220,11 @@
     }
 }
 
-<span class="doccomment">/// the first argument is the task: new_auto_for_cli,...  
-/// the task `new` is processed by `cargo-auto`,  
-/// all other tasks are processed by the used defined `automation_tasks_rs`  
-/// in development use: `cargo run -- new_auto_for_cli`  
+<span class="doccomment">/// Get the first argument is the task: new_auto_for_cli.
+///
+/// The task `new` is processed by `cargo-auto`.  
+/// All other tasks are processed by the used defined `automation_tasks_rs`.  
+/// In development use: `cargo run -- new_auto_for_cli`.  
 </span><span class="kw">fn </span>match_first_argument(task: <span class="kw-2">&amp;</span>str, args: <span class="kw-2">&amp;mut </span>std::env::Args) {
     <span class="kw">if </span>task == <span class="string">"completion" </span>{
         completion();
@@ -248,7 +257,7 @@
     }
 }
 
-<span class="doccomment">/// sub-command for bash auto-completion of `cargo auto` using the crate `dev_bestia_cargo_completion`
+<span class="doccomment">/// Sub-command for bash auto-completion of `cargo auto` using the crate `dev_bestia_cargo_completion`.
 </span><span class="kw">fn </span>completion() {
     <span class="doccomment">/// println one, more or all sub_commands
     </span><span class="kw">fn </span>completion_return_one_or_more_sub_commands(sub_commands: Vec&lt;<span class="kw-2">&amp;</span>str&gt;, word_being_completed: <span class="kw-2">&amp;</span>str) {
@@ -279,8 +288,9 @@
     }
 }
 
-<span class="doccomment">/// build if the files are different then the hashes in automation_tasks_rs/file_hashes.json
-/// panic! if cannot compile automation_tasks_rs
+<span class="doccomment">/// Build if the files are different then the hashes in automation_tasks_rs/file_hashes.json.
+///
+/// Panic if cannot compile automation_tasks_rs.
 </span><span class="kw">pub fn </span>compile_automation_tasks_rs_if_needed() {
     <span class="kw">if </span>!<span class="kw">crate</span>::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.exists() || <span class="kw">crate</span>::file_hashes_mod::is_project_changed() {
         compile_project_automation_tasks_rs();

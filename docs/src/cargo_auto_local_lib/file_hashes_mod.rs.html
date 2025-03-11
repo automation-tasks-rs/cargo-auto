@@ -143,9 +143,11 @@
 <a href="#142" id="142">142</a>
 <a href="#143" id="143">143</a>
 <a href="#144" id="144">144</a>
-<a href="#145" id="145">145</a></pre></div><pre class="rust"><code><span class="comment">// file_hashes_mod.rs
+<a href="#145" id="145">145</a>
+<a href="#146" id="146">146</a>
+<a href="#147" id="147">147</a></pre></div><pre class="rust"><code><span class="comment">// file_hashes_mod.rs
 
-</span><span class="doccomment">//! calculate file hashes
+</span><span class="doccomment">//! Calculate file hashes.
 //!
 //! File hashes are used to check if some file has changed.
 //! Then we can run commands like compile only if a file has changed.
@@ -154,7 +156,7 @@
 <span class="kw">use </span>sha2::Digest;
 
 <span class="comment">// region: structs
-</span><span class="doccomment">/// file metadata
+</span><span class="doccomment">/// Struct with file metadata.
 </span><span class="attr">#[derive(Serialize, Deserialize)]
 </span><span class="kw">pub struct </span>FileMetaData {
     <span class="doccomment">/// filename with path from Cargo.toml folder
@@ -163,7 +165,7 @@
     </span>filehash: String,
 }
 
-<span class="doccomment">/// the struct that represents the file automation_tasks_rs/._file_hashes.json
+<span class="doccomment">/// The struct represents the file automation_tasks_rs/._file_hashes.json.
 </span><span class="attr">#[derive(Serialize, Deserialize)]
 </span><span class="kw">pub struct </span>FileHashes {
     <span class="doccomment">/// vector of file metadata
@@ -172,10 +174,11 @@
 
 <span class="comment">// endregion: structs
 
-</span><span class="doccomment">/// check if the files are modified and in automation_tasks_rs
-/// The modified date of files is not usable when using git.
-/// The checkout will make dates newer than they really are.
-/// I should use a hash of files and write them in the same directory for later comparison.
+</span><span class="doccomment">/// Check if the files are modified in automation_tasks_rs.
+///
+/// The modified date of files is not usable when using git.  
+/// The checkout will make dates newer than they really are.  
+/// I should use a hash of files and write them in the same directory for later comparison.  
 </span><span class="kw">pub fn </span>is_project_changed() -&gt; bool {
     <span class="kw">let </span>vec_of_metadata = read_file_metadata();
     <span class="kw">let </span>js_struct = read_json_file(<span class="kw-2">&amp;</span><span class="kw">crate</span>::PATH_FILE_HASHES_JSON.to_string_lossy());
@@ -183,7 +186,8 @@
     </span>!are_all_files_equal(<span class="kw-2">&amp;</span>vec_of_metadata, <span class="kw-2">&amp;</span>js_struct.vec_file_metadata)
 }
 
-<span class="kw">fn </span>are_all_files_equal(vec_of_metadata: <span class="kw-2">&amp;</span>[FileMetaData], js_vec_of_metadata: <span class="kw-2">&amp;</span>[FileMetaData]) -&gt; bool {
+<span class="doccomment">/// Check if all files are equal.
+</span><span class="kw">fn </span>are_all_files_equal(vec_of_metadata: <span class="kw-2">&amp;</span>[FileMetaData], js_vec_of_metadata: <span class="kw-2">&amp;</span>[FileMetaData]) -&gt; bool {
     <span class="kw">let </span><span class="kw-2">mut </span>is_files_equal = <span class="bool-val">true</span>;
     <span class="kw">for </span>x <span class="kw">in </span>vec_of_metadata.iter() {
         <span class="comment">//search in json file
@@ -203,7 +207,7 @@
     is_files_equal
 }
 
-<span class="doccomment">/// make a vector of file metadata
+<span class="doccomment">/// Make a vector of file metadata.
 </span><span class="kw">pub fn </span>read_file_metadata() -&gt; Vec&lt;FileMetaData&gt; {
     <span class="kw">let </span><span class="kw-2">mut </span>vec_of_metadata: Vec&lt;FileMetaData&gt; = Vec::new();
 
@@ -236,7 +240,7 @@
     vec_of_metadata
 }
 
-<span class="doccomment">/// read automation_tasks_rs/.file_hashes.json
+<span class="doccomment">/// Read automation_tasks_rs/.file_hashes.json.
 </span><span class="kw">fn </span>read_json_file(json_filepath: <span class="kw-2">&amp;</span>str) -&gt; FileHashes {
     <span class="kw">let </span>js_struct: FileHashes;
     <span class="kw">let </span>f = std::fs::read_to_string(json_filepath);
@@ -261,7 +265,7 @@
     js_struct
 }
 
-<span class="doccomment">/// calculate the hash for a file
+<span class="doccomment">/// Calculate the hash for a file.
 </span><span class="kw">fn </span>sha256_digest(path: <span class="kw-2">&amp;</span>std::path::Path) -&gt; anyhow::Result&lt;String&gt; {
     <span class="kw">let </span>file = std::fs::File::open(path)<span class="question-mark">?</span>;
     <span class="kw">let </span><span class="kw-2">mut </span>reader = std::io::BufReader::new(file);
@@ -281,7 +285,7 @@
     </span><span class="prelude-val">Ok</span>(hash_string)
 }
 
-<span class="doccomment">/// save the new file metadata
+<span class="doccomment">/// Save the new file metadata.
 </span><span class="kw">pub fn </span>save_json_file_for_file_meta_data(vec_of_metadata: Vec&lt;FileMetaData&gt;) {
     <span class="kw">let </span>x = FileHashes { vec_file_metadata: vec_of_metadata };
     <span class="kw">let </span>y = serde_json::to_string_pretty(<span class="kw-2">&amp;</span>x).unwrap();

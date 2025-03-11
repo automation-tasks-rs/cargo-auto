@@ -59,19 +59,22 @@
 <a href="#58" id="58">58</a>
 <a href="#59" id="59">59</a>
 <a href="#60" id="60">60</a>
-<a href="#61" id="61">61</a></pre></div><pre class="rust"><code><span class="comment">// template_new_auto_for_cli_mod.rs
+<a href="#61" id="61">61</a>
+<a href="#62" id="62">62</a>
+<a href="#63" id="63">63</a></pre></div><pre class="rust"><code><span class="comment">// template_new_auto_for_cli_mod.rs
 
-</span><span class="doccomment">//! template for new_auto_for_cli (automation_tasks_rs)
+</span><span class="doccomment">//! Template for new_auto_for_cli (automation_tasks_rs).
 //!
-//! The template is downloaded from github
+//! The template is downloaded from github:  
 //! &lt;https://github.com/automation-tasks-rs/cargo_auto_template_new_auto_for_cli/releases/latest/download/template.tar.gz&gt;
 
 </span><span class="attr">#[allow(unused)]
 </span><span class="kw">use crate</span>::{GREEN, RED, RESET, YELLOW};
 
-<span class="doccomment">/// copies the template to the `automation_tasks_rs` directory  
-/// in development use: `cargo run -- new_auto_for_cli`  
-/// in runtime use: `cargo auto new_auto_for_cli`  
+<span class="doccomment">/// Copies the template to the `automation_tasks_rs` directory.
+///  
+/// In development use: `cargo run -- new_auto_for_cli`.  
+/// In runtime use: `cargo auto new_auto_for_cli`.  
 </span><span class="kw">pub fn </span>new_auto_for_cli() {
     copy_to_files(<span class="string">"automation_tasks_rs"</span>);
 
@@ -88,7 +91,8 @@
     </span>);
 }
 
-<span class="kw">pub fn </span>copy_to_files(rust_project_name: <span class="kw-2">&amp;</span>str) {
+<span class="doccomment">/// Copy the Rust project into a compressed file.  
+</span><span class="kw">pub fn </span>copy_to_files(rust_project_name: <span class="kw-2">&amp;</span>str) {
     <span class="kw">let </span>folder_path = std::path::Path::new(rust_project_name);
     <span class="kw">if </span>folder_path.exists() {
         <span class="macro">panic!</span>(<span class="string">"{RED}Error: Folder {rust_project_name} already exists! {RESET}"</span>);

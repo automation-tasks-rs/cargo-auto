@@ -94,16 +94,19 @@
 <a href="#93" id="93">93</a>
 <a href="#94" id="94">94</a>
 <a href="#95" id="95">95</a>
-<a href="#96" id="96">96</a></pre></div><pre class="rust"><code><span class="comment">// template_new_wasm_mod.rs
+<a href="#96" id="96">96</a>
+<a href="#97" id="97">97</a>
+<a href="#98" id="98">98</a></pre></div><pre class="rust"><code><span class="comment">// template_new_wasm_mod.rs
 
-</span><span class="doccomment">//! template for new_wasm
+</span><span class="doccomment">//! Template for new_wasm.
 //!
-//! The template is downloaded from github
+//! The template is downloaded from github:  
 //! &lt;https://github.com/automation-tasks-rs/cargo_auto_template_new_wasm/releases/latest/download/template.tar.gz&gt;
 
 </span><span class="kw">use crate</span>::{GREEN, RED, RESET, YELLOW};
 
-<span class="kw">pub fn </span>new_wasm(rust_project_name: <span class="prelude-ty">Option</span>&lt;String&gt;, github_owner_or_organization: <span class="prelude-ty">Option</span>&lt;String&gt;, web_server_domain: <span class="prelude-ty">Option</span>&lt;String&gt;, server_username: <span class="prelude-ty">Option</span>&lt;String&gt;) {
+<span class="doccomment">/// Creates a new Rust project from template.
+</span><span class="kw">pub fn </span>new_wasm(rust_project_name: <span class="prelude-ty">Option</span>&lt;String&gt;, github_owner_or_organization: <span class="prelude-ty">Option</span>&lt;String&gt;, web_server_domain: <span class="prelude-ty">Option</span>&lt;String&gt;, server_username: <span class="prelude-ty">Option</span>&lt;String&gt;) {
     <span class="kw">if </span>rust_project_name.is_none() {
         <span class="macro">println!</span>(<span class="string">"{RED}Error: Project name argument is missing: `cargo auto new_wasm project_name github_owner_or_organization web_server server_username`{RESET}"</span>);
         <span class="kw">return</span>;
@@ -137,7 +140,8 @@
     <span class="macro">println!</span>(<span class="string">"  {YELLOW}and follow the detailed instructions.{RESET}"</span>);
 }
 
-<span class="kw">pub fn </span>copy_to_files(rust_project_name: <span class="kw-2">&amp;</span>str, github_owner_or_organization: <span class="kw-2">&amp;</span>str, web_server_domain: <span class="kw-2">&amp;</span>str, server_username: <span class="kw-2">&amp;</span>str) {
+<span class="doccomment">/// Copy the Rust project into a compressed file.  
+</span><span class="kw">pub fn </span>copy_to_files(rust_project_name: <span class="kw-2">&amp;</span>str, github_owner_or_organization: <span class="kw-2">&amp;</span>str, web_server_domain: <span class="kw-2">&amp;</span>str, server_username: <span class="kw-2">&amp;</span>str) {
     <span class="kw">let </span>folder_path = std::path::Path::new(rust_project_name);
     <span class="kw">if </span>folder_path.exists() {
         <span class="macro">panic!</span>(<span class="string">"{RED}Error: Folder {rust_project_name} already exists! {RESET}"</span>);
