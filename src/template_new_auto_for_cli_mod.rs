@@ -1,16 +1,17 @@
 // template_new_auto_for_cli_mod.rs
 
-//! template for new_auto_for_cli (automation_tasks_rs)
+//! Template for new_auto_for_cli (automation_tasks_rs).
 //!
-//! The template is downloaded from github
+//! The template is downloaded from github:  
 //! <https://github.com/automation-tasks-rs/cargo_auto_template_new_auto_for_cli/releases/latest/download/template.tar.gz>
 
 #[allow(unused)]
 use crate::{GREEN, RED, RESET, YELLOW};
 
-/// copies the template to the `automation_tasks_rs` directory  
-/// in development use: `cargo run -- new_auto_for_cli`  
-/// in runtime use: `cargo auto new_auto_for_cli`  
+/// Copies the template to the `automation_tasks_rs` directory.
+///  
+/// In development use: `cargo run -- new_auto_for_cli`.  
+/// In runtime use: `cargo auto new_auto_for_cli`.  
 pub fn new_auto_for_cli() {
     copy_to_files("automation_tasks_rs");
 
@@ -27,6 +28,7 @@ pub fn new_auto_for_cli() {
     );
 }
 
+/// Copy the Rust project into a compressed file.  
 pub fn copy_to_files(rust_project_name: &str) {
     let folder_path = std::path::Path::new(rust_project_name);
     if folder_path.exists() {

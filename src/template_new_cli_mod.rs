@@ -1,12 +1,13 @@
 // template_new_cli_mod.rs
 
-//! template for new_cli
+//! Template for new_cli.
 //!
-//! The template is downloaded from github
+//! The template is downloaded from github:  
 //! <https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/releases/latest/download/template.tar.gz>
 
 use crate::{GREEN, RED, RESET, YELLOW};
 
+/// Creates a new Rust project from template.
 pub fn new_cli(rust_project_name: Option<String>, github_owner_or_organization: Option<String>) {
     if rust_project_name.is_none() {
         println!("{RED}Error: Project name argument is missing: `cargo auto new_cli project_name github_owner_or_organization`{RESET}");
@@ -30,6 +31,7 @@ pub fn new_cli(rust_project_name: Option<String>, github_owner_or_organization: 
     println!("  {YELLOW}and follow the detailed instructions.{RESET}");
 }
 
+/// Copy the Rust project into a compressed file.  
 pub fn copy_to_files(rust_project_name: &str, github_owner_or_organization: &str) {
     let folder_path = std::path::Path::new(rust_project_name);
     if folder_path.exists() {

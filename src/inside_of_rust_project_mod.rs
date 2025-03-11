@@ -1,6 +1,6 @@
 // inside_of_rust_project_mod.rs
 
-//! commands accessible inside a Rust project folder
+//! Commands accessible inside a Rust project folder.
 
 // region: use statements
 
@@ -8,6 +8,7 @@
 
 use crate::{GREEN, RED, RESET, YELLOW};
 
+/// Parse when it is run inside a Rust project.  
 pub fn parse_args(args: &mut std::env::Args) {
     // the first argument is the task: (no argument for help), new_auto_for_cli, ...
     // wooow! There is a difference if I call the standalone binary or as a cargo subcommand:
@@ -30,18 +31,19 @@ pub fn parse_args(args: &mut std::env::Args) {
     }
 }
 
-/// already exists automation_tasks_rs directory
+/// Is there already the automation_tasks_rs directory.
 fn already_exists_automation_tasks_rs() -> bool {
     // return
     crate::PATH_AUTOMATION_TASKS_RS.exists()
 }
 
-/// if there is no argument then print help  
-/// if there exists `automation_tasks_rs/Cargo.toml` and `automation_tasks_rs/src/main.rs`  
-/// call automation_tasks_rs with no arguments to print the help prepared in user defined automation_tasks_rs  
-/// else print the help for `cargo auto new_auto_for_cli`  
-/// in development use: `cargo run`  
-/// in runtime use: `cargo auto`  
+/// If there is no argument then print help.
+///   
+/// If there exists `automation_tasks_rs/Cargo.toml` and `automation_tasks_rs/src/main.rs`  
+/// call automation_tasks_rs with no arguments to print the help prepared in user defined automation_tasks_rs.  
+/// Else print the help for `cargo auto new_auto_for_cli`.  
+/// In development use: `cargo run`.  
+/// In runtime use: `cargo auto`.  
 fn print_help_from_cargo_auto() {
     if !crate::PATH_CARGO_TOML.exists() || !crate::PATH_SRC_MAIN_RS.exists() {
         println!(
@@ -62,10 +64,11 @@ fn print_help_from_cargo_auto() {
     }
 }
 
-/// the first argument is the task: new_auto_for_cli,...  
-/// the task `new` is processed by `cargo-auto`,  
-/// all other tasks are processed by the used defined `automation_tasks_rs`  
-/// in development use: `cargo run -- new_auto_for_cli`  
+/// Get the first argument is the task: new_auto_for_cli.
+///
+/// The task `new` is processed by `cargo-auto`.  
+/// All other tasks are processed by the used defined `automation_tasks_rs`.  
+/// In development use: `cargo run -- new_auto_for_cli`.  
 fn match_first_argument(task: &str, args: &mut std::env::Args) {
     if task == "completion" {
         completion();
@@ -98,7 +101,7 @@ fn match_first_argument(task: &str, args: &mut std::env::Args) {
     }
 }
 
-/// sub-command for bash auto-completion of `cargo auto` using the crate `dev_bestia_cargo_completion`
+/// Sub-command for bash auto-completion of `cargo auto` using the crate `dev_bestia_cargo_completion`.
 fn completion() {
     /// println one, more or all sub_commands
     fn completion_return_one_or_more_sub_commands(sub_commands: Vec<&str>, word_being_completed: &str) {
@@ -129,8 +132,9 @@ fn completion() {
     }
 }
 
-/// build if the files are different then the hashes in automation_tasks_rs/file_hashes.json
-/// panic! if cannot compile automation_tasks_rs
+/// Build if the files are different then the hashes in automation_tasks_rs/file_hashes.json.
+///
+/// Panic if cannot compile automation_tasks_rs.
 pub fn compile_automation_tasks_rs_if_needed() {
     if !crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.exists() || crate::file_hashes_mod::is_project_changed() {
         compile_project_automation_tasks_rs();

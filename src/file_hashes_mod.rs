@@ -1,6 +1,6 @@
 // file_hashes_mod.rs
 
-//! calculate file hashes
+//! Calculate file hashes.
 //!
 //! File hashes are used to check if some file has changed.
 //! Then we can run commands like compile only if a file has changed.
@@ -9,7 +9,7 @@ use serde_derive::{Deserialize, Serialize};
 use sha2::Digest;
 
 // region: structs
-/// file metadata
+/// Struct with file metadata.
 #[derive(Serialize, Deserialize)]
 pub struct FileMetaData {
     /// filename with path from Cargo.toml folder
@@ -18,7 +18,7 @@ pub struct FileMetaData {
     filehash: String,
 }
 
-/// the struct that represents the file automation_tasks_rs/._file_hashes.json
+/// The struct represents the file automation_tasks_rs/._file_hashes.json.
 #[derive(Serialize, Deserialize)]
 pub struct FileHashes {
     /// vector of file metadata
@@ -27,10 +27,11 @@ pub struct FileHashes {
 
 // endregion: structs
 
-/// check if the files are modified and in automation_tasks_rs
-/// The modified date of files is not usable when using git.
-/// The checkout will make dates newer than they really are.
-/// I should use a hash of files and write them in the same directory for later comparison.
+/// Check if the files are modified in automation_tasks_rs.
+///
+/// The modified date of files is not usable when using git.  
+/// The checkout will make dates newer than they really are.  
+/// I should use a hash of files and write them in the same directory for later comparison.  
 pub fn is_project_changed() -> bool {
     let vec_of_metadata = read_file_metadata();
     let js_struct = read_json_file(&crate::PATH_FILE_HASHES_JSON.to_string_lossy());
@@ -38,6 +39,7 @@ pub fn is_project_changed() -> bool {
     !are_all_files_equal(&vec_of_metadata, &js_struct.vec_file_metadata)
 }
 
+/// Check if all files are equal.
 fn are_all_files_equal(vec_of_metadata: &[FileMetaData], js_vec_of_metadata: &[FileMetaData]) -> bool {
     let mut is_files_equal = true;
     for x in vec_of_metadata.iter() {
@@ -58,7 +60,7 @@ fn are_all_files_equal(vec_of_metadata: &[FileMetaData], js_vec_of_metadata: &[F
     is_files_equal
 }
 
-/// make a vector of file metadata
+/// Make a vector of file metadata.
 pub fn read_file_metadata() -> Vec<FileMetaData> {
     let mut vec_of_metadata: Vec<FileMetaData> = Vec::new();
 
@@ -91,7 +93,7 @@ pub fn read_file_metadata() -> Vec<FileMetaData> {
     vec_of_metadata
 }
 
-/// read automation_tasks_rs/.file_hashes.json
+/// Read automation_tasks_rs/.file_hashes.json.
 fn read_json_file(json_filepath: &str) -> FileHashes {
     let js_struct: FileHashes;
     let f = std::fs::read_to_string(json_filepath);
@@ -116,7 +118,7 @@ fn read_json_file(json_filepath: &str) -> FileHashes {
     js_struct
 }
 
-/// calculate the hash for a file
+/// Calculate the hash for a file.
 fn sha256_digest(path: &std::path::Path) -> anyhow::Result<String> {
     let file = std::fs::File::open(path)?;
     let mut reader = std::io::BufReader::new(file);
@@ -136,7 +138,7 @@ fn sha256_digest(path: &std::path::Path) -> anyhow::Result<String> {
     Ok(hash_string)
 }
 
-/// save the new file metadata
+/// Save the new file metadata.
 pub fn save_json_file_for_file_meta_data(vec_of_metadata: Vec<FileMetaData>) {
     let x = FileHashes { vec_file_metadata: vec_of_metadata };
     let y = serde_json::to_string_pretty(&x).unwrap();

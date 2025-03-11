@@ -181,7 +181,7 @@ fn print_examples_cmd() {
     */
 }
 
-/// sub-command for bash auto-completion of `cargo auto` using the crate `dev_bestia_cargo_completion`
+/// Sub-command for bash auto-completion of `cargo auto` using the crate `dev_bestia_cargo_completion`.
 fn completion() {
     let args: Vec<String> = std::env::args().collect();
     let word_being_completed = args[2].as_str();

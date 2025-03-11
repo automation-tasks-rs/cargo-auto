@@ -1,6 +1,6 @@
 // outside_of_rust_project_mod.rs
 
-//! commands accessible outside a Rust project folder
+//! Commands accessible outside a Rust project folder.
 
 // region: use statements
 // endregion
@@ -8,8 +8,9 @@
 #[allow(unused)]
 use crate::{GREEN, RED, RESET, YELLOW};
 
-/// it is run outside a Rust project
-/// It must have the argument "new_cli" or "new_wasm" or "new_pwa_wasm" and the project title
+/// Parse when it is run outside a Rust project.  
+///
+/// It must have the argument "new_cli" or "new_wasm" or "new_pwa_wasm" and the project title.
 pub fn parse_args(args: &mut std::env::Args) {
     // the first argument is the task: new_cli
     // wooow! There is a difference if I call the standalone binary or as a cargo subcommand:
@@ -34,7 +35,7 @@ pub fn parse_args(args: &mut std::env::Args) {
     }
 }
 
-/// print help
+/// Print help for cargo-auto.
 fn print_help_from_cargo_auto() {
     println!(
         r#"
@@ -52,8 +53,9 @@ fn print_help_from_cargo_auto() {
     );
 }
 
-/// the first argument is the task: new_cli, or new_wasm...  
-/// in development use: `cargo run -- new_cli`  
+/// Get the first argument is the task: new_cli, or new_wasm...  
+///
+/// In development use: `cargo run -- new_cli`.  
 fn match_first_argument(task: &str, args: &mut std::env::Args) {
     if task == "completion" {
         completion();
@@ -78,7 +80,7 @@ fn match_first_argument(task: &str, args: &mut std::env::Args) {
     }
 }
 
-/// sub-command for bash auto-completion of `cargo auto` using the crate `dev_bestia_cargo_completion`
+/// Sub-command for bash auto-completion of `cargo auto` using the crate `dev_bestia_cargo_completion`.
 fn completion() {
     /// println one, more or all sub_commands
     fn completion_return_one_or_more_sub_commands(sub_commands: Vec<&str>, word_being_completed: &str) {

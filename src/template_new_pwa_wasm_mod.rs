@@ -1,12 +1,13 @@
 // template_new_pwa_wasm_mod.rs
 
-//! template for new_pwa_wasm
+//! Template for new_pwa_wasm.
 //!
-//! The template is downloaded from github
+//! The template is downloaded from github:  
 //! <https://github.com/automation-tasks-rs/cargo_auto_template_new_pwa_wasm/releases/latest/download/template.tar.gz>
 
 use crate::{GREEN, RED, RESET, YELLOW};
 
+/// Creates a new Rust project from template.
 pub fn new_pwa_wasm(rust_project_name: Option<String>, github_owner_or_organization: Option<String>, web_server_domain: Option<String>, server_username: Option<String>) {
     // internal function: favicon.ico with 16 and 32 icons
     fn encode_to_favicon_ico(img: &image::DynamicImage, rust_project_name: &str) {
@@ -128,6 +129,7 @@ pub fn new_pwa_wasm(rust_project_name: Option<String>, github_owner_or_organizat
     );
 }
 
+/// Copy the Rust project into a compressed file.  
 pub fn copy_to_files(rust_project_name: &str, github_owner_or_organization: &str, web_server_domain: &str, server_username: &str) {
     let folder_path = std::path::Path::new(rust_project_name);
     if folder_path.exists() {
