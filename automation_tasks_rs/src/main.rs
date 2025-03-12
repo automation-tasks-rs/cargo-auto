@@ -209,6 +209,7 @@ fn task_build() {
     let cargo_toml = cl::CargoToml::read();
     cl::auto_version_increment_semver_or_date();
     cl::run_shell_command_static("cargo fmt").unwrap_or_else(|e| panic!("{e}"));
+    cl::run_shell_command_static("cargo clippy --no-deps").unwrap_or_else(|e| panic!("{e}"));
     cl::run_shell_command_static("cargo build").unwrap_or_else(|e| panic!("{e}"));
     println!(
         r#"
@@ -230,6 +231,7 @@ fn task_release() {
     cl::auto_lines_of_code("");
 
     cl::run_shell_command_static("cargo fmt").unwrap_or_else(|e| panic!("{e}"));
+    cl::run_shell_command_static("cargo clippy --no-deps").unwrap_or_else(|e| panic!("{e}"));
     cl::run_shell_command_static("cargo build --release").unwrap_or_else(|e| panic!("{e}"));
 
     cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"strip "target/release/{package_name}" "#)
