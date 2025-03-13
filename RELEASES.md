@@ -1,4 +1,3 @@
-# Releases changelog of cargo-auto
 
 All notable changes to this project will be documented in this file.  
 This project does not adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). The version number represents the datetime of release. This is just fine for binary executables.  
@@ -10,10 +9,9 @@ The TODO section is part of the [README.md](https://github.com/automation-tasks-
 
 ## Unreleased
 
+## Version 2025.313.1549 (2025-03-13)
+
 - docs
-
-- compatibility with win-git-bash
-
 - compatibility with win-git-bash
 
 ## Version 2025.310.1341 (2025-03-10)
