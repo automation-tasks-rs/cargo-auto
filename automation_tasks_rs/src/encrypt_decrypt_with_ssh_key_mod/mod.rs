@@ -8,7 +8,6 @@
 // endregion: auto_md_to_doc_comments include doc_comments/encrypt_decrypt_with_ssh_key_mod.md A //!
 
 pub mod crates_io_api_token_mod;
-pub mod docker_io_api_token_mod;
 pub mod github_api_token_with_oauth2_mod;
 
 // region: Public API constants
