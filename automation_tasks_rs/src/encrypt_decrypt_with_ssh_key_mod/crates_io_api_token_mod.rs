@@ -55,7 +55,7 @@ pub(crate) fn get_crates_io_secret_token(private_key_file_bare_name: &str) -> an
     // check if the plain-text file from `cargo login` exists and warn the user
     // because it is a security vulnerability.
     println!("  {YELLOW}Check if credentials.toml from 'cargo login' exists.{RESET}");
-    
+
     let file_credentials = crate::cl::tilde_expand_to_home_dir_utf8("~/.cargo/credentials.toml")?;
     if file_credentials.exists() {
         eprintln!("{RED}Security vulnerability: Found the cargo credentials file with plain-text secret_token: {RESET}");

@@ -14,7 +14,7 @@ use cl::YELLOW;
 use crate::encrypt_decrypt_with_ssh_key_mod::github_api_token_with_oauth2_mod::send_to_github_api_with_secret_token;
 use crate::encrypt_decrypt_with_ssh_key_mod::github_api_token_with_oauth2_mod::upload_to_github_with_secret_token;
 
-/// Has git remote
+/// Does git have settings for remote.
 pub(crate) fn git_has_remote() -> bool {
     // git remote returns only "origin" if exists or nothing if it does not exist
     let output = std::process::Command::new("git").arg("remote").output().unwrap();
@@ -30,7 +30,7 @@ pub(crate) fn git_has_upstream() -> bool {
     String::from_utf8(output.stdout).unwrap().contains("[")
 }
 
-/// Interactive ask to create a new remote GitHub repository
+/// Interactive ask to create a new remote GitHub repository.
 ///
 /// Use a function pointer to send_to_github_api_with_secret_token() to avoid passing the secret_token.
 pub(crate) fn new_remote_github_repository() -> Option<()> {
@@ -69,7 +69,7 @@ pub(crate) fn new_remote_github_repository() -> Option<()> {
 
         // ask interactive
         println!("{BLUE}This project does not have a remote GitHub repository.{RESET}");
-        let answer =cl::inquire::Text::new(&format!("{BLUE}Do you want to create a new remote GitHub repository? (y/n){RESET}"))
+        let answer = cl::inquire::Text::new(&format!("{BLUE}Do you want to create a new remote GitHub repository? (y/n){RESET}"))
             .prompt()
             .unwrap();
         if answer.to_lowercase() != "y" {

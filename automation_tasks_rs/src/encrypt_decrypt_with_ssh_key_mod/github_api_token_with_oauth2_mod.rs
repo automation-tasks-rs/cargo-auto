@@ -108,14 +108,15 @@ pub(crate) fn get_github_secret_token(client_id: &str, private_key_file_bare_nam
     }
 
     println!("  {YELLOW}Check if the encrypted file exists.{RESET}");
-    let encrypted_file_name = crate::cl::tilde_expand_to_home_dir_utf8(&format!("~/.ssh/{private_key_file_bare_name}.enc"))?;
+    let tilde_encrypted_file_name = format!("~/.ssh/{private_key_file_bare_name}.enc");
+    let encrypted_file_name = crate::cl::tilde_expand_to_home_dir_utf8(&tilde_encrypted_file_name)?;
     if !std::fs::exists(&encrypted_file_name)? {
-        println!("  {YELLOW}Encrypted file {encrypted_file_name} does not exist.{RESET}");
+        println!("  {YELLOW}Encrypted file {tilde_encrypted_file_name} does not exist.{RESET}");
         println!("  {YELLOW}Continue to authentication with the browser{RESET}");
         let secret_access_token = authenticate_with_browser_and_save_file(client_id, &tilde_private_file_name, &encrypted_file_name)?;
         Ok(secret_access_token)
     } else {
-        println!("  {YELLOW}Encrypted file {encrypted_file_name} exist.{RESET}");
+        println!("  {YELLOW}Encrypted file {tilde_encrypted_file_name} exist.{RESET}");
         let plain_file_text = ende::open_file_b64_get_string(&encrypted_file_name)?;
         // deserialize json into struct
         let encrypted_text_with_metadata: ende::EncryptedTextWithMetadata = serde_json::from_str(&plain_file_text)?;
@@ -189,8 +190,9 @@ fn authentication_with_browser(client_id: &str) -> anyhow::Result<SecretBox<Secr
     println!("{GREEN}{}{RESET}", response_device_code.user_code);
     println!("  {YELLOW}Open browser on and paste the user_code:{RESET}");
     println!("{GREEN}https://github.com/login/device?skip_account_picker=true{RESET}");
+    println!("{BLUE}After the tokens are prepared on the server, press enter to continue...{RESET}");
 
-    let _user_input_just_enter_to_continue: String = crate::cl::inquire::Text::new(&format!("{BLUE}After the tokens are prepared on the server, press enter to continue...{RESET}")).prompt().unwrap();
+    let _user_input_just_enter_to_continue: String = crate::cl::inquire::Text::new("").prompt()?;
 
     #[derive(serde::Serialize)]
     struct RequestAccessToken {
@@ -309,7 +311,8 @@ fn encrypt_and_save_file(tilde_private_key_file_path: &str, encrypted_file_name:
 /// This signature will be used as the true passcode for symmetrical decryption.  
 fn decrypt_text_with_metadata(encrypted_text_with_metadata: ende::EncryptedTextWithMetadata) -> anyhow::Result<SecretBox<SecretResponseAccessToken>> {
     // the private key file is written inside the file
-    let private_key_file_path = camino::Utf8PathBuf::from(&encrypted_text_with_metadata.private_key_file_path);
+    let tilde_private_key_file_path = encrypted_text_with_metadata.private_key_file_path.clone();
+    let private_key_file_path =crate::cl::tilde_expand_to_home_dir_utf8(&tilde_private_key_file_path)?;
     if !camino::Utf8Path::new(&private_key_file_path).exists() {
         anyhow::bail!("{RED}Error: File {private_key_file_path} does not exist! {RESET}");
     }
