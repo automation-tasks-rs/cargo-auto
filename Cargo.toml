@@ -23,24 +23,24 @@ include = [
 
 [dependencies]
 # SemVer rules: Major version zero (0.y.z) is for initial development. Anything MAY change at any time. The public API SHOULD NOT be considered stable.
-# WARNING: Although dependecies in Cargo.toml look like a specific version of the crate, they are just like a carret version (^x.y.z) and actually specify 
+# WARNING: Although dependencies in Cargo.toml look like a specific version of the crate, they are just like a caret version (=x.y.z) and actually specify 
 # the minimum version and allow automatic SemVer compatible updates up to a MAJOR increment! Always check the true version with `cargo tree`!
-lazy_static="^1.4.0"
-base64ct = {version = "^1.6.0", features = ["alloc"] }
-json5 = "^0.4.1"
-serde = { version = "^1.0.196", features = ["derive"] }
-image = "^0.24.8"
-ico = "^0.3.0"
+lazy_static="1.5.0"
+base64ct = {version = "1.7.1", features = ["alloc"] }
+json5 = "=0.4.1"
+serde = { version = "1.0.219", features = ["derive"] }
+image = "0.25.5"
+ico = "0.4.0"
 sha2 = "0.10.8"
-# ring = "^0.17.7"
-data-encoding = "^2.5.0"
-anyhow="^1.0.79"
-serde_derive = "^1.0.196"
-serde_json = "^1.0.113"
-reqwest = { version = "^0.12.3", features = ["blocking"] }
-flate2 = "^1.0.30"
-tar = "^0.4.40"
-walkdir = "^2.5.0"
+data-encoding = "2.8.0"
+anyhow="1.0.97"
+serde_derive = "1.0.219"
+serde_json = "1.0.140"
+# reqwest 0.12.12 is the last version that builds in win-git-bash
+reqwest = { version = "=0.12.12", features = ["blocking"] }
+flate2 = "1.1.0"
+tar = "0.4.44"
+walkdir = "=2.5.0"
 
 [lib]
 name = "cargo_auto_local_lib"

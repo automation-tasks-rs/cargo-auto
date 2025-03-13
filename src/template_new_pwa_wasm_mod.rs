@@ -31,7 +31,7 @@ pub fn new_pwa_wasm(rust_project_name: Option<String>, github_owner_or_organizat
 
     /// internal function: decode png
     fn decode_png(vec: Vec<u8>) -> image::DynamicImage {
-        let img = image::io::Reader::new(std::io::Cursor::new(vec));
+        let img = image::ImageReader::new(std::io::Cursor::new(vec));
         let img = img.with_guessed_format().unwrap();
         // return img
         img.decode().unwrap()
@@ -44,7 +44,7 @@ pub fn new_pwa_wasm(rust_project_name: Option<String>, github_owner_or_organizat
             //dbg!("encode new_img");
             let vec_u8: Vec<u8> = Vec::new();
             let mut cursor_1 = std::io::Cursor::new(vec_u8);
-            new_img.write_to(&mut cursor_1, image::ImageOutputFormat::Png).unwrap();
+            new_img.write_to(&mut cursor_1, image::ImageFormat::Png).unwrap();
             // return
             cursor_1.get_ref().to_owned()
         }
