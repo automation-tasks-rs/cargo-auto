@@ -12,27 +12,28 @@ publish = false
 # SemVer rules: Major version zero (0.y.z) is for initial development. Anything MAY change at any time. The public API SHOULD NOT be considered stable.
 # WARNING: Although dependencies in Cargo.toml look like a specific version of the crate, they are just like a caret version (^x.y.z) and actually specify 
 # the minimum version and allow automatic SemVer compatible updates up to a MAJOR increment! Always check the true version with `cargo tree`!
-cargo_auto_lib = "3.0.4"
+cargo_auto_lib = "3.0.9"
 
 tracing = "0.1.41"
 tracing-subscriber = { version = "0.3.19", features = ["env-filter", "std", "fmt", "time"] }
-tracing-appender="0.2.3"
+# tracing-appender="0.2.3"
 time = {version="0.3.39", features=["macros","local-offset"]}
 
 anyhow="1.0.97"
-reqwest={version="0.12.12", features=["json","stream", "blocking"]}
+# reqwest 0.12.12 is tha last that builds in win-git-bash
+reqwest={version="=0.12.12", features=["json","stream", "blocking"]}
 serde ={ version= "1.0.219", features=["std","derive"]}
 serde_json = "1.0.140"
 ssh-key = { version = "0.6.7", features = [ "rsa", "encryption","ed25519"] }
-ssh-agent-client-rs = "0.9.1"
-rsa = { version = "0.9.7", features = ["sha2","pem"] }
+# ssh-agent-client-rs = "0.9.1"
+ssh-agent-client-rs ={git="https://github.com/bestia-dev/ssh-agent-client-rs-win-git-bash", branch="no_sscanf_regex"}
+rsa = { version = "0.9.8", features = ["sha2","pem"] }
 zeroize = {version="1.8.1", features=["derive"]}
 aes-gcm = "0.10.3"
 camino = "1.1.9"
-base64ct = {version = "1.6.0", features = ["alloc"] }
-inquire = "0.7.5"
+base64ct = {version = "1.7.1", features = ["alloc"] }
 secrecy = "0.10.3"
 chrono ={version="0.4.40", default-features=false, features=["now"]}
-tokio-util = {version = "0.7.13", features = ["codec"]}
-tokio = {version = "1.44.0", features = ["rt","rt-multi-thread","fs"]}
+tokio-util = {version = "0.7.14", features = ["codec"]}
+tokio = {version = "1.44.1", features = ["rt","rt-multi-thread","fs"]}
 url="2.5.4"

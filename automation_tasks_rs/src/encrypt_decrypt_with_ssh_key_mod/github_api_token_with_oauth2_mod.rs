@@ -61,7 +61,6 @@
 //! aes-gcm = "0.10.3"
 //! camino = "1.1.6"
 //! base64ct = {version = "1.6.0", features = ["alloc"] }
-//! inquire = "0.7.0"
 //! secrecy = "0.10.3"
 //! chrono ="0.4.39"
 //! ```
@@ -74,7 +73,7 @@ use anyhow::Context;
 use secrecy::{ExposeSecret, SecretBox, SecretString};
 
 use crate::encrypt_decrypt_with_ssh_key_mod as ende;
-use crate::encrypt_decrypt_with_ssh_key_mod::{GREEN, RED, RESET, YELLOW};
+use crate::encrypt_decrypt_with_ssh_key_mod::{BLUE, GREEN, RED, RESET, YELLOW};
 
 #[derive(serde::Deserialize, serde::Serialize)]
 struct CargoAutoConfig {
@@ -99,20 +98,21 @@ struct SecretResponseAccessToken {
 /// Returns access_token to use as bearer for api calls
 pub(crate) fn get_github_secret_token(client_id: &str, private_key_file_bare_name: &str) -> anyhow::Result<SecretString> {
     println!("  {YELLOW}Check if the ssh private key exists.{RESET}");
-    let private_file_name = camino::Utf8PathBuf::from(format!("/home/rustdevuser/.ssh/{private_key_file_bare_name}").as_str());
+    let tilde_private_file_name = format!("~/.ssh/{private_key_file_bare_name}");
+    let private_file_name = crate::cl::tilde_expand_to_home_dir_utf8(&tilde_private_file_name)?;
     if !std::fs::exists(&private_file_name)? {
-        eprintln!("{RED}Error: Private key {private_file_name} does not exist.{RESET}");
+        eprintln!("{RED}Error: Private key {tilde_private_file_name} does not exist.{RESET}");
         println!("  {YELLOW}Create the private key in bash terminal:{RESET}");
-        println!(r#"{GREEN}ssh-keygen -t ed25519 -f "{private_file_name}" -C "github api secret_token"{RESET}"#);
+        println!(r#"{GREEN}ssh-keygen -t ed25519 -f "{tilde_private_file_name}" -C "github api secret_token"{RESET}"#);
         anyhow::bail!("Private key file not found.");
     }
 
     println!("  {YELLOW}Check if the encrypted file exists.{RESET}");
-    let encrypted_file_name = camino::Utf8PathBuf::from(format!("/home/rustdevuser/.ssh/{private_key_file_bare_name}.enc").as_str());
+    let encrypted_file_name = crate::cl::tilde_expand_to_home_dir_utf8(&format!("~/.ssh/{private_key_file_bare_name}.enc"))?;
     if !std::fs::exists(&encrypted_file_name)? {
         println!("  {YELLOW}Encrypted file {encrypted_file_name} does not exist.{RESET}");
         println!("  {YELLOW}Continue to authentication with the browser{RESET}");
-        let secret_access_token = authenticate_with_browser_and_save_file(client_id, &private_file_name, &encrypted_file_name)?;
+        let secret_access_token = authenticate_with_browser_and_save_file(client_id, &tilde_private_file_name, &encrypted_file_name)?;
         Ok(secret_access_token)
     } else {
         println!("  {YELLOW}Encrypted file {encrypted_file_name} exist.{RESET}");
@@ -128,7 +128,7 @@ pub(crate) fn get_github_secret_token(client_id: &str, private_key_file_bare_nam
         let refresh_token_expiration = chrono::DateTime::parse_from_rfc3339(encrypted_text_with_metadata.refresh_token_expiration.as_ref().expect("The former line asserts this is never None"))?;
         if refresh_token_expiration <= utc_now {
             eprintln!("{RED}Refresh token has expired, start authentication_with_browser{RESET}");
-            let secret_access_token = authenticate_with_browser_and_save_file(client_id, &private_file_name, &encrypted_file_name)?;
+            let secret_access_token = authenticate_with_browser_and_save_file(client_id, &tilde_private_file_name, &encrypted_file_name)?;
             return Ok(secret_access_token);
         }
         if encrypted_text_with_metadata.access_token_expiration.is_none() {
@@ -141,7 +141,7 @@ pub(crate) fn get_github_secret_token(client_id: &str, private_key_file_bare_nam
             let secret_response_access_token: SecretBox<SecretResponseAccessToken> = refresh_tokens(client_id, secret_response_refresh_token.expose_secret().refresh_token.clone())?;
             let secret_access_token = SecretString::from(secret_response_access_token.expose_secret().access_token.clone());
             println!("  {YELLOW}Encrypt data and save file{RESET}");
-            encrypt_and_save_file(&private_file_name, &encrypted_file_name, secret_response_access_token)?;
+            encrypt_and_save_file(&tilde_private_file_name, &encrypted_file_name, secret_response_access_token)?;
             return Ok(secret_access_token);
         }
         println!("  {YELLOW}Decrypt the file with the private key.{RESET}");
@@ -151,11 +151,11 @@ pub(crate) fn get_github_secret_token(client_id: &str, private_key_file_bare_nam
     }
 }
 
-fn authenticate_with_browser_and_save_file(client_id: &str, private_file_name: &camino::Utf8Path, encrypted_file_name: &camino::Utf8Path) -> anyhow::Result<SecretString> {
+fn authenticate_with_browser_and_save_file(client_id: &str, tilde_private_file_name: &str, encrypted_file_name: &camino::Utf8Path) -> anyhow::Result<SecretString> {
     let secret_response_access_token: SecretBox<SecretResponseAccessToken> = authentication_with_browser(client_id)?;
     let secret_access_token = SecretString::from(secret_response_access_token.expose_secret().access_token.clone());
     println!("  {YELLOW}Encrypt data and save file{RESET}");
-    encrypt_and_save_file(private_file_name, encrypted_file_name, secret_response_access_token)?;
+    encrypt_and_save_file(tilde_private_file_name, encrypted_file_name, secret_response_access_token)?;
     Ok(secret_access_token)
 }
 
@@ -189,9 +189,8 @@ fn authentication_with_browser(client_id: &str) -> anyhow::Result<SecretBox<Secr
     println!("{GREEN}{}{RESET}", response_device_code.user_code);
     println!("  {YELLOW}Open browser on and paste the user_code:{RESET}");
     println!("{GREEN}https://github.com/login/device?skip_account_picker=true{RESET}");
-    println!("  {YELLOW}After the tokens are prepared on the server, press enter to continue...{RESET}");
 
-    let _user_input_just_enter_to_continue: String = inquire::Text::new("").prompt()?;
+    let _user_input_just_enter_to_continue: String = crate::cl::inquire::Text::new(&format!("{BLUE}After the tokens are prepared on the server, press enter to continue...{RESET}")).prompt().unwrap();
 
     #[derive(serde::Serialize)]
     struct RequestAccessToken {
@@ -258,13 +257,14 @@ fn refresh_tokens(client_id: &str, refresh_token: String) -> anyhow::Result<Secr
 /// The "seed" and the private key path will be stored in plain text in the file
 /// together with the encrypted data in json format.
 /// To avoid plain text in the end encode in base64 just for obfuscate a little bit.
-fn encrypt_and_save_file(private_key_file_path: &camino::Utf8Path, encrypted_file_name: &camino::Utf8Path, secret_response_access_token: SecretBox<SecretResponseAccessToken>) -> anyhow::Result<()> {
+fn encrypt_and_save_file(tilde_private_key_file_path: &str, encrypted_file_name: &camino::Utf8Path, secret_response_access_token: SecretBox<SecretResponseAccessToken>) -> anyhow::Result<()> {
+    let private_key_file_path = crate::cl::tilde_expand_to_home_dir_utf8(tilde_private_key_file_path)?;
     let secret_string = SecretString::from(serde_json::to_string(&secret_response_access_token.expose_secret())?);
 
     let (plain_seed_bytes_32bytes, plain_seed_string) = ende::random_seed_32bytes_and_string()?;
 
     println!("  {YELLOW}Unlock private key to encrypt the secret symmetrically{RESET}");
-    let secret_passcode_32bytes: SecretBox<[u8; 32]> = ende::sign_seed_with_ssh_agent_or_private_key_file(private_key_file_path, plain_seed_bytes_32bytes)?;
+    let secret_passcode_32bytes: SecretBox<[u8; 32]> = ende::sign_seed_with_ssh_agent_or_private_key_file(&private_key_file_path, plain_seed_bytes_32bytes)?;
 
     println!("  {YELLOW}Encrypt the secret symmetrically {RESET}");
     let encrypted_string = ende::encrypt_symmetric(secret_passcode_32bytes, secret_string)?;
@@ -283,7 +283,7 @@ fn encrypt_and_save_file(private_key_file_path: &camino::Utf8Path, encrypted_fil
         .to_rfc3339();
 
     let encrypted_text_with_metadata = ende::EncryptedTextWithMetadata {
-        private_key_file_path: private_key_file_path.to_string(),
+        private_key_file_path: tilde_private_key_file_path.to_string(),
         plain_seed_string,
         plain_encrypted_text: encrypted_string,
         access_token_expiration: Some(access_token_expiration),

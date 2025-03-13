@@ -234,6 +234,7 @@ fn task_release() {
     cl::run_shell_command_static("cargo clippy --no-deps").unwrap_or_else(|e| panic!("{e}"));
     cl::run_shell_command_static("cargo build --release").unwrap_or_else(|e| panic!("{e}"));
 
+    #[cfg(target_family = "unix")]
     cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"strip "target/release/{package_name}" "#)
         .unwrap_or_else(|e| panic!("{e}"))
         .arg("{package_name}", &cargo_toml.package_name())
@@ -326,7 +327,9 @@ fn task_doc() {
         .unwrap_or_else(|e| panic!("{e}"));
 
     // pretty html
+    #[cfg(target_family = "unix")]
     cl::auto_doc_tidy_html().unwrap_or_else(|e| panic!("{e}"));
+
     cl::run_shell_command_static("cargo fmt").unwrap_or_else(|e| panic!("{e}"));
     // message to help user with next move
     println!(

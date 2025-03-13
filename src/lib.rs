@@ -6,7 +6,7 @@
 //! # cargo-auto  
 //!
 //! **Automation tasks coded in Rust language for the workflow of Rust projects**  
-//! ***version: 2025.310.1341 date: 2025-03-11 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
+//! ***version: 2025.313.1549 date: 2025-03-13 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
 //!
 //!  ![maintained](https://img.shields.io/badge/maintained-green)
 //!  ![ready-for-use](https://img.shields.io/badge/ready_for_use-green)
@@ -26,8 +26,8 @@
 //!  [![Newest docs](https://img.shields.io/badge/newest_docs-blue.svg)](https://automation-tasks-rs.github.io/cargo-auto/cargo_auto/index.html)
 //!  ![cargo-auto](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-740-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-590-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-748-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-591-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-106-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-0-orange.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
@@ -278,12 +278,22 @@ lazy_static! {
     static ref PATH_SRC_MAIN_RS: PathBuf = PathBuf::from("automation_tasks_rs/src/main.rs");
     /// Path of folder automation_tasks_rs/src.
     static ref PATH_SRC: PathBuf = PathBuf::from("automation_tasks_rs/src");
-    /// Path of folder automation_tasks_rs/target/debug/automation_tasks_rs.
-    static ref PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS: PathBuf =
-        PathBuf::from("automation_tasks_rs/target/debug/automation_tasks_rs");
     /// Path of file automation_tasks_rs/.file_hashes.json.
     static ref PATH_FILE_HASHES_JSON: PathBuf =
         PathBuf::from("automation_tasks_rs/.file_hashes.json");
+}
+
+#[cfg(target_family = "unix")]
+lazy_static! {
+    /// Path of binary executable file automation_tasks_rs/target/debug/automation_tasks_rs.
+    static ref PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS: PathBuf =
+        PathBuf::from("automation_tasks_rs/target/debug/automation_tasks_rs");
+}
+#[cfg(target_family = "windows")]
+lazy_static! {
+    /// Path of binary executable file automation_tasks_rs/target/debug/automation_tasks_rs.
+    static ref PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS: PathBuf =
+        PathBuf::from("automation_tasks_rs/target/debug/automation_tasks_rs.exe");
 }
 
 // region: Public API constants

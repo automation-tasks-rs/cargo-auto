@@ -69,7 +69,7 @@ pub(crate) fn new_remote_github_repository() -> Option<()> {
 
         // ask interactive
         println!("{BLUE}This project does not have a remote GitHub repository.{RESET}");
-        let answer = inquire::Text::new(&format!("{BLUE}Do you want to create a new remote GitHub repository? (y/n){RESET}"))
+        let answer =cl::inquire::Text::new(&format!("{BLUE}Do you want to create a new remote GitHub repository? (y/n){RESET}"))
             .prompt()
             .unwrap();
         if answer.to_lowercase() != "y" {
