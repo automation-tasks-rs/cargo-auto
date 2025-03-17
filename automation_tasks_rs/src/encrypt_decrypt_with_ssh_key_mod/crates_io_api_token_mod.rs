@@ -143,3 +143,4 @@ pub fn publish_to_crates_io() -> anyhow::Result<()> {
         .unwrap_or_else(|e| panic!("{e}"));
     Ok(())
 }
+
