@@ -55,7 +55,7 @@
 //! serde ={ version= "1.0.217", features=["std","derive"]}
 //! serde_json = "1.0.138"
 //! ssh-key = { version = "0.6.7", features = [ "rsa", "encryption","ed25519"] }
-//! ssh-agent-client-rs = "0.9.1"
+//! ssh_agent_client_rs_git_bash = "0.0.11"
 //! rsa = { version = "0.9.7", features = ["sha2","pem"] }
 //! zeroize = {version="1.8.1", features=["derive"]}
 //! aes-gcm = "0.10.3"
@@ -260,13 +260,12 @@ fn refresh_tokens(client_id: &str, refresh_token: String) -> anyhow::Result<Secr
 /// together with the encrypted data in json format.
 /// To avoid plain text in the end encode in base64 just for obfuscate a little bit.
 fn encrypt_and_save_file(tilde_private_key_file_path: &str, encrypted_file_name: &camino::Utf8Path, secret_response_access_token: SecretBox<SecretResponseAccessToken>) -> anyhow::Result<()> {
-    let private_key_file_path = crate::cl::tilde_expand_to_home_dir_utf8(tilde_private_key_file_path)?;
     let secret_string = SecretString::from(serde_json::to_string(&secret_response_access_token.expose_secret())?);
 
     let (plain_seed_bytes_32bytes, plain_seed_string) = ende::random_seed_32bytes_and_string()?;
 
     println!("  {YELLOW}Unlock private key to encrypt the secret symmetrically{RESET}");
-    let secret_passcode_32bytes: SecretBox<[u8; 32]> = ende::sign_seed_with_ssh_agent_or_private_key_file(&private_key_file_path, plain_seed_bytes_32bytes)?;
+    let secret_passcode_32bytes: SecretBox<[u8; 32]> = ende::sign_seed_with_ssh_agent_or_private_key_file(&tilde_private_key_file_path, plain_seed_bytes_32bytes)?;
 
     println!("  {YELLOW}Encrypt the secret symmetrically {RESET}");
     let encrypted_string = ende::encrypt_symmetric(secret_passcode_32bytes, secret_string)?;
@@ -311,15 +310,15 @@ fn encrypt_and_save_file(tilde_private_key_file_path: &str, encrypted_file_name:
 /// This signature will be used as the true passcode for symmetrical decryption.  
 fn decrypt_text_with_metadata(encrypted_text_with_metadata: ende::EncryptedTextWithMetadata) -> anyhow::Result<SecretBox<SecretResponseAccessToken>> {
     // the private key file is written inside the file
-    let tilde_private_key_file_path = encrypted_text_with_metadata.private_key_file_path.clone();
-    let private_key_file_path =crate::cl::tilde_expand_to_home_dir_utf8(&tilde_private_key_file_path)?;
+    let tilde_private_key_file_path = &encrypted_text_with_metadata.private_key_file_path;
+    let private_key_file_path =crate::cl::tilde_expand_to_home_dir_utf8(tilde_private_key_file_path)?;
     if !camino::Utf8Path::new(&private_key_file_path).exists() {
         anyhow::bail!("{RED}Error: File {private_key_file_path} does not exist! {RESET}");
     }
 
     let plain_seed_bytes_32bytes = ende::decode64_from_string_to_32bytes(&encrypted_text_with_metadata.plain_seed_string)?;
     // first try to use the private key from ssh-agent, else use the private file with user interaction
-    let secret_passcode_32bytes: SecretBox<[u8; 32]> = ende::sign_seed_with_ssh_agent_or_private_key_file(&private_key_file_path, plain_seed_bytes_32bytes)?;
+    let secret_passcode_32bytes: SecretBox<[u8; 32]> = ende::sign_seed_with_ssh_agent_or_private_key_file(tilde_private_key_file_path, plain_seed_bytes_32bytes)?;
     // decrypt the data
     let decrypted_string = ende::decrypt_symmetric(secret_passcode_32bytes, encrypted_text_with_metadata.plain_encrypted_text)?;
     // parse json to struct

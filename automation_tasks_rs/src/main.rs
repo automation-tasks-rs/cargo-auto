@@ -466,6 +466,7 @@ fn task_github_new_release() {
     println!("  {YELLOW}New GitHub release created: {release_name}.{RESET}");
 
     // region: upload asset only for executables, not for libraries
+
     let release_id = json_value.get("id").unwrap().as_i64().unwrap().to_string();
     println!("  {YELLOW}Now uploading release asset. This can take some time if the files are big. Wait...{RESET}");
     // Linux executable binary tar-gz-ed compress files tar.gz

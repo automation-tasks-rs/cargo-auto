@@ -28,7 +28,7 @@
 //! ```toml
 //! [dependencies]
 //! ssh-key = { version = "0.6.7", features = [ "rsa", "encryption","ed25519"] }
-//! ssh-agent-client-rs = "0.9.1"
+//! ssh_agent_client_rs_git_bash = "0.0.11"
 //! rsa = { version = "0.9.7", features = ["sha2","pem"] }
 //! zeroize = {version="1.8.1", features=["derive"]}
 //! aes-gcm = "0.10.3"
@@ -88,7 +88,7 @@ pub(crate) fn get_crates_io_secret_token(private_key_file_bare_name: &str) -> an
         // prepare the random bytes, sign it with the private key, that is the true passcode used to encrypt the secret
         let (plain_seed_bytes_32bytes, plain_seed_string) = ende::random_seed_32bytes_and_string()?;
         // first try to use the private key from ssh-agent, else use the private file with user interaction
-        let secret_passcode_32bytes: SecretBox<[u8; 32]> = ende::sign_seed_with_ssh_agent_or_private_key_file(&private_key_file_path, plain_seed_bytes_32bytes)?;
+        let secret_passcode_32bytes: SecretBox<[u8; 32]> = ende::sign_seed_with_ssh_agent_or_private_key_file(&tilde_private_key_file_path, plain_seed_bytes_32bytes)?;
         let plain_encrypted_text = ende::encrypt_symmetric(secret_passcode_32bytes, secret_access_token)?;
 
         // prepare a struct to save as encoded string
@@ -114,8 +114,7 @@ pub(crate) fn get_crates_io_secret_token(private_key_file_bare_name: &str) -> an
     let encrypted_text_with_metadata: ende::EncryptedTextWithMetadata = serde_json::from_str(&encrypted_text_with_metadata)?;
     println!("  {YELLOW}Decrypt the file with ssh-agent or private key.{RESET}");
     let plain_seed_bytes_32bytes = ende::decode64_from_string_to_32bytes(&encrypted_text_with_metadata.plain_seed_string)?;
-    let private_key_file_path = crate::cl::tilde_expand_to_home_dir_utf8(&encrypted_text_with_metadata.private_key_file_path)?;
-    let secret_passcode_32bytes: SecretBox<[u8; 32]> = ende::sign_seed_with_ssh_agent_or_private_key_file(&private_key_file_path, plain_seed_bytes_32bytes)?;
+    let secret_passcode_32bytes: SecretBox<[u8; 32]> = ende::sign_seed_with_ssh_agent_or_private_key_file(&encrypted_text_with_metadata.private_key_file_path, plain_seed_bytes_32bytes)?;
 
     // decrypt the secret access token string
     let secret_access_token: SecretString = ende::decrypt_symmetric(secret_passcode_32bytes, encrypted_text_with_metadata.plain_encrypted_text.clone())?;
@@ -143,4 +142,3 @@ pub fn publish_to_crates_io() -> anyhow::Result<()> {
         .unwrap_or_else(|e| panic!("{e}"));
     Ok(())
 }
-
