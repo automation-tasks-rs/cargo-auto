@@ -48,7 +48,7 @@ fn print_help_from_cargo_auto() {
 {GREEN}cargo auto new_pwa_wasm project_name github_owner web_server_domain server_username{RESET}{YELLOW} - There must already be the `icon512x512.png` file to create the icons.{RESET}
   {YELLOW}Modify them with the required data for your pwa project and then repeat the same command.{RESET}
 
-  {YELLOW}© 2024 bestia.dev  MIT License github.com/automation-tasks-rs/cargo-auto{RESET}
+  {YELLOW}© 2025 bestia.dev  MIT License github.com/automation-tasks-rs/cargo-auto{RESET}
 "#
     );
 }

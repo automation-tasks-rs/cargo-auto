@@ -131,7 +131,8 @@ pub(crate) fn sign_seed_with_ssh_agent_or_private_key_file(tilde_private_key_fil
         println!("  {YELLOW}Without ssh-agent, you will have to type the private key passphrase every time.{RESET}");
         println!("  {YELLOW}This is more secure, but inconvenient.{RESET}");
         println!("  {YELLOW}WARNING: using ssh-agent is less secure, because there is no need for user interaction.{RESET}");
-        println!("  {YELLOW}Knowing this, you can manually add the SSH private key to ssh-agent for 1 hour:{RESET}");
+        println!("  {YELLOW}Knowing this, you can manually add the SSH private key to ssh-agent for 1 hour.{RESET}");
+        println!("  {YELLOW}You can simply open a new bash terminal and add the key there right now:{RESET}");
         println!("{GREEN}ssh-add -t 1h {tilde_private_key_file_path}{RESET}");
         println!("  {YELLOW}Unlock the private key to decrypt the saved file.{RESET}");
 
