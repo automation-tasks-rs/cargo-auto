@@ -38,6 +38,8 @@
         "plantuml",
         "Prost",
         "reqwest",
+        "rustdevuser",
+        "rustlang",
         "rustprojects",
         "serde",
         "sshadd",

@@ -30,7 +30,7 @@ rsa = { version = "0.9.8", features = ["sha2","pem"] }
 zeroize = {version="1.8.1", features=["derive"]}
 aes-gcm = "0.10.3"
 camino = "1.1.9"
-base64ct = {version = "1.7.1", features = ["alloc"] }
+base64ct = {version = "1.7.3", features = ["alloc"] }
 secrecy = "0.10.3"
 chrono ={version="0.4.40", default-features=false, features=["now"]}
 tokio-util = {version = "0.7.14", features = ["codec"]}
