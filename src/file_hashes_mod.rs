@@ -103,7 +103,9 @@ fn read_json_file(json_filepath: &str) -> FileHashes {
             // check if file have CRLF instead of LF. This are unusable - create empty struct
             if x.contains("\r\n") {
                 //create empty struct
-                js_struct = FileHashes { vec_file_metadata: Vec::new() }
+                js_struct = FileHashes {
+                    vec_file_metadata: Vec::new(),
+                }
             } else {
                 //read struct from file
                 js_struct = serde_json::from_str(x.as_str()).unwrap();
@@ -112,7 +114,9 @@ fn read_json_file(json_filepath: &str) -> FileHashes {
         Err(_error) => {
             // println!("Creating new file: {}", json_filepath);
             //create empty struct
-            js_struct = FileHashes { vec_file_metadata: Vec::new() }
+            js_struct = FileHashes {
+                vec_file_metadata: Vec::new(),
+            }
         }
     };
     js_struct
@@ -140,7 +144,9 @@ fn sha256_digest(path: &std::path::Path) -> anyhow::Result<String> {
 
 /// Save the new file metadata.
 pub fn save_json_file_for_file_meta_data(vec_of_metadata: Vec<FileMetaData>) {
-    let x = FileHashes { vec_file_metadata: vec_of_metadata };
+    let x = FileHashes {
+        vec_file_metadata: vec_of_metadata,
+    };
     let y = serde_json::to_string_pretty(&x).unwrap();
     let json_filepath = crate::PATH_FILE_HASHES_JSON.as_path();
     let _f = std::fs::write(json_filepath, y);

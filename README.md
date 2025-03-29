@@ -6,7 +6,7 @@
 [//]: # (auto_cargo_toml_to_md start)
 
 **Automation tasks coded in Rust language for the workflow of Rust projects**  
-***version: 2025.318.1132 date: 2025-03-18 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
+***version: 2025.329.1647 date: 2025-03-29 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
 
  ![maintained](https://img.shields.io/badge/maintained-green)
  ![ready-for-use](https://img.shields.io/badge/ready_for_use-green)
@@ -29,7 +29,7 @@
  ![cargo-auto](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 
 [//]: # (auto_lines_of_code start)
-[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-748-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+[![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-780-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-591-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-106-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/automation-tasks-rs/cargo-auto/)

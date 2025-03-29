@@ -82,14 +82,14 @@ pub fn task_doc() {
     cl::auto_playground_run_code();
     cl::auto_md_to_doc_comments();
 
-    cl::run_shell_command_static("cargo doc --no-deps --document-private-items")
-        .unwrap_or_else(|e| panic!("{e}"));
+    cl::run_shell_command_static("cargo doc --no-deps --document-private-items").unwrap_or_else(|e| panic!("{e}"));
     // copy target/doc into docs/ because it is GitHub standard
-    cl::run_shell_command_static("rsync -a --info=progress2 --delete-after target/doc/ docs/")
-        .unwrap_or_else(|e| panic!("{e}"));
+    cl::run_shell_command_static("rsync -a --info=progress2 --delete-after target/doc/ docs/").unwrap_or_else(|e| panic!("{e}"));
 
     // Create simple index.html file in docs directory
-    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"printf "<meta http-equiv=\"refresh\" content=\"0; url={url_sanitized_for_double_quote}/index.html\" />\n" > docs/index.html"#)
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(
+        r#"printf "<meta http-equiv=\"refresh\" content=\"0; url={url_sanitized_for_double_quote}/index.html\" />\n" > docs/index.html"#,
+    )
     .unwrap_or_else(|e| panic!("{e}"))
     .arg("{url_sanitized_for_double_quote}", &cargo_toml.package_name().replace("-", "_"))
     .unwrap_or_else(|e| panic!("{e}"))
@@ -135,15 +135,15 @@ pub fn task_commit_and_push(arg_2: Option<String>) {
 
         // separate commit for docs if they changed, to not make a lot of noise in the real commit
         if std::path::Path::new("docs").exists() {
-            cl::run_shell_command_static(
-                r#"git add docs && git diff --staged --quiet || git commit -m "update docs" "#,
-            )
-            .unwrap_or_else(|e| panic!("{e}"));
+            cl::run_shell_command_static(r#"git add docs && git diff --staged --quiet || git commit -m "update docs" "#)
+                .unwrap_or_else(|e| panic!("{e}"));
         }
 
         cl::add_message_to_unreleased(&message);
         // the real commit of code
-        cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"git add -A && git diff --staged --quiet || git commit -m "{message_sanitized_for_double_quote}" "#)
+        cl::ShellCommandLimitedDoubleQuotesSanitizer::new(
+            r#"git add -A && git diff --staged --quiet || git commit -m "{message_sanitized_for_double_quote}" "#,
+        )
         .unwrap_or_else(|e| panic!("{e}"))
         .arg("{message_sanitized_for_double_quote}", &message)
         .unwrap_or_else(|e| panic!("{e}"))
@@ -170,17 +170,8 @@ pub fn task_github_new_release() {
     // First, the user must write the content into file RELEASES.md in the section ## Unreleased.
     // Then the automation task will copy the content to GitHub release
     let body_md_text = cl::body_text_from_releases_md().unwrap();
-    let request = cgl::github_api_create_new_release(
-        &github_owner,
-        &repo_name,
-        &tag_name_version,
-        &release_name,
-        branch,
-        &body_md_text,
-    );
-    let json_value =
-        ende::github_api_token_with_oauth2_mod::send_to_github_api_with_secret_token(request)
-            .unwrap();
+    let request = cgl::github_api_create_new_release(&github_owner, &repo_name, &tag_name_version, &release_name, branch, &body_md_text);
+    let json_value = ende::github_api_token_with_oauth2_mod::send_to_github_api_with_secret_token(request).unwrap();
     // early exit on error
     if let Some(error_message) = json_value.get("message") {
         eprintln!("{RED}{error_message}{RESET}");
@@ -207,10 +198,11 @@ pub fn task_github_new_release() {
     // Linux executable binary tar-gz-ed compress files tar.gz
     let executable_path = format!("target/release/{repo_name}");
     if std::fs::exists(&executable_path).unwrap() {
-        let compressed_name =
-            format!("{repo_name}-{tag_name_version}-x86_64-unknown-linux-gnu.tar.gz");
+        let compressed_name = format!("{repo_name}-{tag_name_version}-x86_64-unknown-linux-gnu.tar.gz");
 
-        cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"tar -zcvf "{compressed_name_sanitized_for_double_quote}" "{executable_path_sanitized_for_double_quote}" "#)
+        cl::ShellCommandLimitedDoubleQuotesSanitizer::new(
+            r#"tar -zcvf "{compressed_name_sanitized_for_double_quote}" "{executable_path_sanitized_for_double_quote}" "#,
+        )
         .unwrap_or_else(|e| panic!("{e}"))
         .arg("{compressed_name_sanitized_for_double_quote}", &compressed_name)
         .unwrap_or_else(|e| panic!("{e}"))
@@ -220,27 +212,15 @@ pub fn task_github_new_release() {
         .unwrap_or_else(|e| panic!("{e}"));
 
         // upload asset
-        cgl::github_api_upload_asset_to_release(
-            &github_owner,
-            &repo_name,
-            &release_id,
-            &compressed_name,
-        );
+        cgl::github_api_upload_asset_to_release(&github_owner, &repo_name, &release_id, &compressed_name);
 
-        cl::ShellCommandLimitedDoubleQuotesSanitizer::new(
-            r#"rm "{compressed_name_sanitized_for_double_quote}" "#,
-        )
-        .unwrap_or_else(|e| panic!("{e}"))
-        .arg(
-            "{compressed_name_sanitized_for_double_quote}",
-            &compressed_name,
-        )
-        .unwrap_or_else(|e| panic!("{e}"))
-        .run()
-        .unwrap_or_else(|e| panic!("{e}"));
-        println!(
-            r#"  {YELLOW}Asset uploaded. Open and edit the description on GitHub Releases in the browser.{RESET}"#
-        );
+        cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"rm "{compressed_name_sanitized_for_double_quote}" "#)
+            .unwrap_or_else(|e| panic!("{e}"))
+            .arg("{compressed_name_sanitized_for_double_quote}", &compressed_name)
+            .unwrap_or_else(|e| panic!("{e}"))
+            .run()
+            .unwrap_or_else(|e| panic!("{e}"));
+        println!(r#"  {YELLOW}Asset uploaded. Open and edit the description on GitHub Releases in the browser.{RESET}"#);
     }
     // endregion: upload asset only for executables, not for libraries
 

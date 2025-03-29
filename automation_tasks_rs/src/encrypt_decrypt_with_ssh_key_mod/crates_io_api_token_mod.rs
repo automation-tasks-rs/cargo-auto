@@ -63,8 +63,7 @@ pub fn crates_io_config_initialize() {
         return;
     }
 
-    let crates_io_config_json =
-        std::fs::read_to_string("automation_tasks_rs/crates_io_config.json").unwrap();
+    let crates_io_config_json = std::fs::read_to_string("automation_tasks_rs/crates_io_config.json").unwrap();
     let crates_io_config: CratesIoConfig = serde_json::from_str(&crates_io_config_json).unwrap();
     let _ = CRATES_IO_CONFIG.set(crates_io_config);
 }
@@ -73,9 +72,7 @@ pub fn crates_io_config_initialize() {
 ///
 /// If exists, decrypt it from file.  
 /// Else ask user to input the token and encrypt it into a file.  
-pub(crate) fn get_crates_io_secret_token(
-    private_key_file_name: &str,
-) -> anyhow::Result<SecretString> {
+pub(crate) fn get_crates_io_secret_token(private_key_file_name: &str) -> anyhow::Result<SecretString> {
     // check if the plain-text file from `cargo login` exists and warn the user
     // because it is a security vulnerability.
     println!("  {YELLOW}Check if credentials.toml from 'cargo login' exists.{RESET}");
@@ -83,35 +80,27 @@ pub(crate) fn get_crates_io_secret_token(
     let file_credentials = ende::tilde_expand_to_home_dir_utf8(tilde_file_credentials)?;
     if file_credentials.exists() {
         eprintln!("{RED}Security vulnerability: Found the cargo credentials file with plain-text secret_token: {RESET}");
-        eprintln!(
-            "{RED}{tilde_file_credentials}. It would be better to inspect and remove it. {RESET}"
-        );
+        eprintln!("{RED}{tilde_file_credentials}. It would be better to inspect and remove it. {RESET}");
         anyhow::bail!("Found security vulnerability");
     }
 
     println!("  {YELLOW}Check if the ssh private key exists.{RESET}");
-    let private_key_path_struct =
-        ende::PathStructInSshFolder::new(private_key_file_name.to_string())?;
+    let private_key_path_struct = ende::PathStructInSshFolder::new(private_key_file_name.to_string())?;
     if !std::fs::exists(private_key_path_struct.get_full_file_path())? {
         eprintln!("{RED}Error: Private key {private_key_path_struct} does not exist.{RESET}");
         println!("  {YELLOW}Create the private key in bash terminal:{RESET}");
-        println!(
-            r#"{GREEN}ssh-keygen -t ed25519 -f "{private_key_path_struct}" -C "crates.io secret_token"{RESET}"#
-        );
+        println!(r#"{GREEN}ssh-keygen -t ed25519 -f "{private_key_path_struct}" -C "crates.io secret_token"{RESET}"#);
         anyhow::bail!("Private key file not found.");
     }
 
     println!("  {YELLOW}Check if the encrypted file exists.{RESET}");
-    let encrypted_path_struct =
-        ende::PathStructInSshFolder::new(format!("{private_key_file_name}.enc"))?;
+    let encrypted_path_struct = ende::PathStructInSshFolder::new(format!("{private_key_file_name}.enc"))?;
     if !std::fs::exists(encrypted_path_struct.get_full_file_path())? {
         println!("  {YELLOW}Encrypted file {encrypted_path_struct} does not exist.{RESET}");
         println!("  {YELLOW}Get your secret token from: https://crates.io/settings/tokens {RESET}");
         println!("  {YELLOW}Never use 'cargo login' to store this secret locally. It will store it in plain-text in the file ~/.cargo.credentials.toml. {RESET}");
         println!("  {YELLOW}Plain-text for secrets in a well-known file is a big no-no. Every malware will just upload it in a millisecond. {RESET}");
-        println!(
-            "  {YELLOW}This function will encrypt the secret with your ssh private key. {RESET}"
-        );
+        println!("  {YELLOW}This function will encrypt the secret with your ssh private key. {RESET}");
         println!();
         println!("{BLUE}Enter the secret_access_token to encrypt:{RESET}");
         let secret_access_token = secrecy::SecretString::from(
@@ -125,12 +114,8 @@ pub(crate) fn get_crates_io_secret_token(
         let (plain_seed_bytes_32bytes, plain_seed_string) = ende::random_seed_32bytes_and_string()?;
         // first try to use the private key from ssh-agent, else use the private file with user interaction
         let secret_passcode_32bytes: SecretBox<[u8; 32]> =
-            ende::sign_seed_with_ssh_agent_or_private_key_file(
-                &private_key_path_struct,
-                plain_seed_bytes_32bytes,
-            )?;
-        let plain_encrypted_text =
-            ende::encrypt_symmetric(secret_passcode_32bytes, secret_access_token)?;
+            ende::sign_seed_with_ssh_agent_or_private_key_file(&private_key_path_struct, plain_seed_bytes_32bytes)?;
+        let plain_encrypted_text = ende::encrypt_symmetric(secret_passcode_32bytes, secret_access_token)?;
 
         // prepare a struct to save as encoded string
         let encrypted_text_with_metadata = ende::EncryptedTextWithMetadata {
@@ -157,33 +142,23 @@ pub(crate) fn get_crates_io_secret_token(
     }
 
     println!("  {YELLOW}Open and read the encrypted file.{RESET}");
-    let encrypted_text_with_metadata: String =
-        ende::open_file_b64_get_string(encrypted_path_struct.get_full_file_path())?;
+    let encrypted_text_with_metadata: String = ende::open_file_b64_get_string(encrypted_path_struct.get_full_file_path())?;
     // parse json
-    let encrypted_text_with_metadata: ende::EncryptedTextWithMetadata =
-        serde_json::from_str(&encrypted_text_with_metadata)?;
+    let encrypted_text_with_metadata: ende::EncryptedTextWithMetadata = serde_json::from_str(&encrypted_text_with_metadata)?;
     println!("  {YELLOW}Decrypt the file with ssh-agent or private key.{RESET}");
     // the private key file is written inside the file
-    let private_key_path_struct = ende::PathStructInSshFolder::new(
-        encrypted_text_with_metadata.private_key_file_name.clone(),
-    )?;
+    let private_key_path_struct = ende::PathStructInSshFolder::new(encrypted_text_with_metadata.private_key_file_name.clone())?;
     if !camino::Utf8Path::new(private_key_path_struct.get_full_file_path()).exists() {
         anyhow::bail!("{RED}Error: File {private_key_path_struct} does not exist! {RESET}");
     }
 
-    let plain_seed_bytes_32bytes =
-        ende::decode64_from_string_to_32bytes(&encrypted_text_with_metadata.plain_seed_string)?;
+    let plain_seed_bytes_32bytes = ende::decode64_from_string_to_32bytes(&encrypted_text_with_metadata.plain_seed_string)?;
     let secret_passcode_32bytes: SecretBox<[u8; 32]> =
-        ende::sign_seed_with_ssh_agent_or_private_key_file(
-            &private_key_path_struct,
-            plain_seed_bytes_32bytes,
-        )?;
+        ende::sign_seed_with_ssh_agent_or_private_key_file(&private_key_path_struct, plain_seed_bytes_32bytes)?;
 
     // decrypt the secret access token string
-    let secret_access_token: SecretString = ende::decrypt_symmetric(
-        secret_passcode_32bytes,
-        encrypted_text_with_metadata.plain_encrypted_text.clone(),
-    )?;
+    let secret_access_token: SecretString =
+        ende::decrypt_symmetric(secret_passcode_32bytes, encrypted_text_with_metadata.plain_encrypted_text.clone())?;
 
     Ok(secret_access_token)
 }
@@ -196,20 +171,13 @@ pub fn publish_to_crates_io() -> anyhow::Result<()> {
         crates_io_secret_token_key: String,
     }
 
-    let secret_access_token = get_crates_io_secret_token(
-        &CRATES_IO_CONFIG
-            .get()
-            .unwrap()
-            .crates_io_private_key_file_name,
-    )?;
+    let secret_access_token = get_crates_io_secret_token(&CRATES_IO_CONFIG.get().unwrap().crates_io_private_key_file_name)?;
     // the secret_token is redacted when print on screen
-    cargo_auto_lib::ShellCommandLimitedDoubleQuotesSanitizer::new(
-        r#"cargo publish --token "{secret_token}" "#,
-    )
-    .unwrap_or_else(|e| panic!("{e}"))
-    .arg_secret("{secret_token}", &secret_access_token)
-    .unwrap_or_else(|e| panic!("{e}"))
-    .run()
-    .unwrap_or_else(|e| panic!("{e}"));
+    cargo_auto_lib::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"cargo publish --token "{secret_token}" "#)
+        .unwrap_or_else(|e| panic!("{e}"))
+        .arg_secret("{secret_token}", &secret_access_token)
+        .unwrap_or_else(|e| panic!("{e}"))
+        .run()
+        .unwrap_or_else(|e| panic!("{e}"));
     Ok(())
 }

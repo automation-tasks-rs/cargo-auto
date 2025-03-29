@@ -8,7 +8,12 @@
 use crate::{GREEN, RED, RESET, YELLOW};
 
 /// Creates a new Rust project from template.
-pub fn new_wasm(rust_project_name: Option<String>, github_owner_or_organization: Option<String>, web_server_domain: Option<String>, server_username: Option<String>) {
+pub fn new_wasm(
+    rust_project_name: Option<String>,
+    github_owner_or_organization: Option<String>,
+    web_server_domain: Option<String>,
+    server_username: Option<String>,
+) {
     if rust_project_name.is_none() {
         println!("{RED}Error: Project name argument is missing: `cargo auto new_wasm project_name github_owner_or_organization web_server server_username`{RESET}");
         return;
@@ -30,7 +35,12 @@ pub fn new_wasm(rust_project_name: Option<String>, github_owner_or_organization:
     let web_server_domain = web_server_domain.unwrap();
     let server_username = server_username.unwrap();
 
-    copy_to_files(&rust_project_name, &github_owner_or_organization, &web_server_domain, &server_username);
+    copy_to_files(
+        &rust_project_name,
+        &github_owner_or_organization,
+        &web_server_domain,
+        &server_username,
+    );
 
     println!();
     println!("  {YELLOW}The command `cargo auto new_wasm` generated the directory `{rust_project_name}`{RESET}");

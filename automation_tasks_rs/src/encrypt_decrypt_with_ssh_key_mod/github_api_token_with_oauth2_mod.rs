@@ -103,8 +103,7 @@ pub fn github_api_config_initialize() {
         return;
     }
 
-    let github_api_config_json =
-        std::fs::read_to_string("automation_tasks_rs/github_api_config.json").unwrap();
+    let github_api_config_json = std::fs::read_to_string("automation_tasks_rs/github_api_config.json").unwrap();
     let github_api_config: GithubApiConfig = serde_json::from_str(&github_api_config_json).unwrap();
     let _ = GITHUB_API_CONFIG.set(github_api_config);
 }
@@ -115,49 +114,33 @@ pub fn github_api_config_initialize() {
 /// Returns access_token to use as bearer for api calls
 pub fn get_github_secret_token() -> anyhow::Result<SecretString> {
     let client_id = GITHUB_API_CONFIG.get().unwrap().client_id.to_string();
-    let private_key_file_name = GITHUB_API_CONFIG
-        .get()
-        .unwrap()
-        .github_api_private_key_file_name
-        .to_string();
+    let private_key_file_name = GITHUB_API_CONFIG.get().unwrap().github_api_private_key_file_name.to_string();
 
     println!("  {YELLOW}Check if the ssh private key exists.{RESET}");
     let private_key_path_struct = ende::PathStructInSshFolder::new(private_key_file_name.clone())?;
     if !std::fs::exists(private_key_path_struct.get_full_file_path())? {
         eprintln!("{RED}Error: Private key {private_key_path_struct} does not exist.{RESET}");
         println!("  {YELLOW}Create the private key in bash terminal:{RESET}");
-        println!(
-            r#"{GREEN}ssh-keygen -t ed25519 -f "{private_key_path_struct}" -C "github api secret_token"{RESET}"#
-        );
+        println!(r#"{GREEN}ssh-keygen -t ed25519 -f "{private_key_path_struct}" -C "github api secret_token"{RESET}"#);
         anyhow::bail!("Private key file not found.");
     }
 
     println!("  {YELLOW}Check if the encrypted file exists.{RESET}");
-    let encrypted_path_struct =
-        ende::PathStructInSshFolder::new(format!("{private_key_file_name}.enc"))?;
+    let encrypted_path_struct = ende::PathStructInSshFolder::new(format!("{private_key_file_name}.enc"))?;
     if !std::fs::exists(encrypted_path_struct.get_full_file_path())? {
         println!("  {YELLOW}Encrypted file {encrypted_path_struct} does not exist.{RESET}");
         println!("  {YELLOW}Continue to authentication with the browser{RESET}");
-        let secret_access_token = authenticate_with_browser_and_save_file(
-            &client_id,
-            &private_key_path_struct,
-            &encrypted_path_struct,
-        )?;
+        let secret_access_token = authenticate_with_browser_and_save_file(&client_id, &private_key_path_struct, &encrypted_path_struct)?;
         Ok(secret_access_token)
     } else {
         println!("  {YELLOW}Encrypted file {encrypted_path_struct} exist.{RESET}");
-        let plain_file_text =
-            ende::open_file_b64_get_string(encrypted_path_struct.get_full_file_path())?;
+        let plain_file_text = ende::open_file_b64_get_string(encrypted_path_struct.get_full_file_path())?;
         // deserialize json into struct
-        let encrypted_text_with_metadata: ende::EncryptedTextWithMetadata =
-            serde_json::from_str(&plain_file_text)?;
+        let encrypted_text_with_metadata: ende::EncryptedTextWithMetadata = serde_json::from_str(&plain_file_text)?;
 
         // check the expiration
         let utc_now = chrono::Utc::now();
-        if encrypted_text_with_metadata
-            .refresh_token_expiration
-            .is_none()
-        {
+        if encrypted_text_with_metadata.refresh_token_expiration.is_none() {
             anyhow::bail!("refresh_token_expiration is None");
         }
         let refresh_token_expiration = chrono::DateTime::parse_from_rfc3339(
@@ -168,17 +151,11 @@ pub fn get_github_secret_token() -> anyhow::Result<SecretString> {
         )?;
         if refresh_token_expiration <= utc_now {
             eprintln!("{RED}Refresh token has expired, start authentication_with_browser{RESET}");
-            let secret_access_token = authenticate_with_browser_and_save_file(
-                &client_id,
-                &private_key_path_struct,
-                &encrypted_path_struct,
-            )?;
+            let secret_access_token =
+                authenticate_with_browser_and_save_file(&client_id, &private_key_path_struct, &encrypted_path_struct)?;
             return Ok(secret_access_token);
         }
-        if encrypted_text_with_metadata
-            .access_token_expiration
-            .is_none()
-        {
+        if encrypted_text_with_metadata.access_token_expiration.is_none() {
             anyhow::bail!("access_token_expiration is None");
         }
         let access_token_expiration = chrono::DateTime::parse_from_rfc3339(
@@ -189,39 +166,17 @@ pub fn get_github_secret_token() -> anyhow::Result<SecretString> {
         )?;
         if access_token_expiration <= utc_now {
             eprintln!("{RED}Access token has expired, use refresh token{RESET}");
-            let secret_response_refresh_token =
-                decrypt_text_with_metadata(encrypted_text_with_metadata)?;
+            let secret_response_refresh_token = decrypt_text_with_metadata(encrypted_text_with_metadata)?;
             let secret_response_access_token: SecretBox<SecretResponseAccessToken> =
-                refresh_tokens(
-                    &client_id,
-                    secret_response_refresh_token
-                        .expose_secret()
-                        .refresh_token
-                        .clone(),
-                )?;
-            let secret_access_token = SecretString::from(
-                secret_response_access_token
-                    .expose_secret()
-                    .access_token
-                    .clone(),
-            );
+                refresh_tokens(&client_id, secret_response_refresh_token.expose_secret().refresh_token.clone())?;
+            let secret_access_token = SecretString::from(secret_response_access_token.expose_secret().access_token.clone());
             println!("  {YELLOW}Encrypt data and save file{RESET}");
-            encrypt_and_save_file(
-                &private_key_path_struct,
-                &encrypted_path_struct,
-                secret_response_access_token,
-            )?;
+            encrypt_and_save_file(&private_key_path_struct, &encrypted_path_struct, secret_response_access_token)?;
             return Ok(secret_access_token);
         }
         println!("  {YELLOW}Decrypt the file with the private key.{RESET}");
-        let secret_response_access_token =
-            decrypt_text_with_metadata(encrypted_text_with_metadata)?;
-        let secret_access_token = SecretString::from(
-            secret_response_access_token
-                .expose_secret()
-                .access_token
-                .clone(),
-        );
+        let secret_response_access_token = decrypt_text_with_metadata(encrypted_text_with_metadata)?;
+        let secret_access_token = SecretString::from(secret_response_access_token.expose_secret().access_token.clone());
         Ok(secret_access_token)
     }
 }
@@ -231,28 +186,16 @@ fn authenticate_with_browser_and_save_file(
     private_key_path_struct: &ende::PathStructInSshFolder,
     encrypted_path_struct: &ende::PathStructInSshFolder,
 ) -> anyhow::Result<SecretString> {
-    let secret_response_access_token: SecretBox<SecretResponseAccessToken> =
-        authentication_with_browser(client_id)?;
-    let secret_access_token = SecretString::from(
-        secret_response_access_token
-            .expose_secret()
-            .access_token
-            .clone(),
-    );
+    let secret_response_access_token: SecretBox<SecretResponseAccessToken> = authentication_with_browser(client_id)?;
+    let secret_access_token = SecretString::from(secret_response_access_token.expose_secret().access_token.clone());
     println!("  {YELLOW}Encrypt data and save file{RESET}");
 
-    encrypt_and_save_file(
-        private_key_path_struct,
-        encrypted_path_struct,
-        secret_response_access_token,
-    )?;
+    encrypt_and_save_file(private_key_path_struct, encrypted_path_struct, secret_response_access_token)?;
     Ok(secret_access_token)
 }
 
 /// Oauth2 device workflow needs to be authenticated with a browser
-fn authentication_with_browser(
-    client_id: &str,
-) -> anyhow::Result<SecretBox<SecretResponseAccessToken>> {
+fn authentication_with_browser(client_id: &str) -> anyhow::Result<SecretBox<SecretResponseAccessToken>> {
     // https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps#device-flow
     // https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app#using-the-device-flow-to-generate-a-user-access-token
     println!("  {YELLOW}Send request with client_id and retrieve device_code and user_code{RESET}");
@@ -283,9 +226,7 @@ fn authentication_with_browser(
     println!("{GREEN}{}{RESET}", response_device_code.user_code);
     println!("  {YELLOW}Open browser on and paste the user_code:{RESET}");
     println!("{GREEN}https://github.com/login/device?skip_account_picker=true{RESET}");
-    println!(
-        "{BLUE}After the tokens are prepared on the server, press enter to continue...{RESET}"
-    );
+    println!("{BLUE}After the tokens are prepared on the server, press enter to continue...{RESET}");
 
     let _user_input_just_enter_to_continue: String = inquire::Text::new("").prompt()?;
 
@@ -316,10 +257,7 @@ fn authentication_with_browser(
 }
 
 /// use refresh token to get new access_token and refresh_token
-fn refresh_tokens(
-    client_id: &str,
-    refresh_token: String,
-) -> anyhow::Result<SecretBox<SecretResponseAccessToken>> {
+fn refresh_tokens(client_id: &str, refresh_token: String) -> anyhow::Result<SecretBox<SecretResponseAccessToken>> {
     // https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/refreshing-user-access-tokens
 
     #[derive(serde::Serialize)]
@@ -329,24 +267,21 @@ fn refresh_tokens(
         refresh_token: String,
     }
 
-    println!(
-        "  {YELLOW}Send request with client_id and refresh_token and retrieve access tokens{RESET}"
-    );
+    println!("  {YELLOW}Send request with client_id and refresh_token and retrieve access tokens{RESET}");
     println!("  {YELLOW}wait...{RESET}");
-    let secret_response_access_token: SecretBox<SecretResponseAccessToken> =
-        SecretBox::new(Box::new(
-            reqwest::blocking::Client::new()
-                .post("https://github.com/login/oauth/access_token")
-                .header("Content-Type", "application/json")
-                .header("Accept", "application/json")
-                .json(&RequestWithRefreshToken {
-                    client_id: client_id.to_owned(),
-                    grant_type: "refresh_token".to_string(),
-                    refresh_token,
-                })
-                .send()?
-                .json()?,
-        ));
+    let secret_response_access_token: SecretBox<SecretResponseAccessToken> = SecretBox::new(Box::new(
+        reqwest::blocking::Client::new()
+            .post("https://github.com/login/oauth/access_token")
+            .header("Content-Type", "application/json")
+            .header("Accept", "application/json")
+            .json(&RequestWithRefreshToken {
+                client_id: client_id.to_owned(),
+                grant_type: "refresh_token".to_string(),
+                refresh_token,
+            })
+            .send()?
+            .json()?,
+    ));
 
     Ok(secret_response_access_token)
 }
@@ -365,18 +300,13 @@ fn encrypt_and_save_file(
     encrypted_path_struct: &ende::PathStructInSshFolder,
     secret_response_access_token: SecretBox<SecretResponseAccessToken>,
 ) -> anyhow::Result<()> {
-    let secret_string = SecretString::from(serde_json::to_string(
-        &secret_response_access_token.expose_secret(),
-    )?);
+    let secret_string = SecretString::from(serde_json::to_string(&secret_response_access_token.expose_secret())?);
 
     let (plain_seed_bytes_32bytes, plain_seed_string) = ende::random_seed_32bytes_and_string()?;
 
     println!("  {YELLOW}Unlock private key to encrypt the secret symmetrically{RESET}");
     let secret_passcode_32bytes: SecretBox<[u8; 32]> =
-        ende::sign_seed_with_ssh_agent_or_private_key_file(
-            private_key_path_struct,
-            plain_seed_bytes_32bytes,
-        )?;
+        ende::sign_seed_with_ssh_agent_or_private_key_file(private_key_path_struct, plain_seed_bytes_32bytes)?;
 
     println!("  {YELLOW}Encrypt the secret symmetrically {RESET}");
     let encrypted_string = ende::encrypt_symmetric(secret_passcode_32bytes, secret_string)?;
@@ -393,10 +323,7 @@ fn encrypt_and_save_file(
         .to_rfc3339();
     let refresh_token_expiration = utc_now
         .checked_add_signed(chrono::Duration::seconds(
-            secret_response_access_token
-                .expose_secret()
-                .refresh_token_expires_in
-                - 600,
+            secret_response_access_token.expose_secret().refresh_token_expires_in - 600,
         ))
         .context("checked_add_signed")?
         .to_rfc3339();
@@ -438,40 +365,26 @@ fn decrypt_text_with_metadata(
     encrypted_text_with_metadata: ende::EncryptedTextWithMetadata,
 ) -> anyhow::Result<SecretBox<SecretResponseAccessToken>> {
     // the private key file is written inside the file
-    let private_key_path_struct = ende::PathStructInSshFolder::new(
-        encrypted_text_with_metadata.private_key_file_name.clone(),
-    )?;
+    let private_key_path_struct = ende::PathStructInSshFolder::new(encrypted_text_with_metadata.private_key_file_name.clone())?;
     if !camino::Utf8Path::new(private_key_path_struct.get_full_file_path()).exists() {
         anyhow::bail!("{RED}Error: File {private_key_path_struct} does not exist! {RESET}");
     }
 
-    let plain_seed_bytes_32bytes =
-        ende::decode64_from_string_to_32bytes(&encrypted_text_with_metadata.plain_seed_string)?;
+    let plain_seed_bytes_32bytes = ende::decode64_from_string_to_32bytes(&encrypted_text_with_metadata.plain_seed_string)?;
     // first try to use the private key from ssh-agent, else use the private file with user interaction
     let secret_passcode_32bytes: SecretBox<[u8; 32]> =
-        ende::sign_seed_with_ssh_agent_or_private_key_file(
-            &private_key_path_struct,
-            plain_seed_bytes_32bytes,
-        )?;
+        ende::sign_seed_with_ssh_agent_or_private_key_file(&private_key_path_struct, plain_seed_bytes_32bytes)?;
     // decrypt the data
-    let decrypted_string = ende::decrypt_symmetric(
-        secret_passcode_32bytes,
-        encrypted_text_with_metadata.plain_encrypted_text,
-    )?;
+    let decrypted_string = ende::decrypt_symmetric(secret_passcode_32bytes, encrypted_text_with_metadata.plain_encrypted_text)?;
     // parse json to struct
-    let secret_response_access_token: SecretBox<SecretResponseAccessToken> = SecretBox::new(
-        Box::new(serde_json::from_str(decrypted_string.expose_secret())?),
-    );
+    let secret_response_access_token: SecretBox<SecretResponseAccessToken> =
+        SecretBox::new(Box::new(serde_json::from_str(decrypted_string.expose_secret())?));
     Ok(secret_response_access_token)
 }
 
-pub(crate) fn send_to_github_api_with_secret_token(
-    req: reqwest::blocking::RequestBuilder,
-) -> anyhow::Result<serde_json::Value> {
+pub(crate) fn send_to_github_api_with_secret_token(req: reqwest::blocking::RequestBuilder) -> anyhow::Result<serde_json::Value> {
     // I must build the request to be able then to inspect it.
-    let req = req
-        .bearer_auth(get_github_secret_token()?.expose_secret())
-        .build()?;
+    let req = req.bearer_auth(get_github_secret_token()?.expose_secret()).build()?;
 
     // region: Assert the correct url and https
     // It is important that the request coming from a external crate/library
@@ -512,13 +425,9 @@ pub(crate) fn send_to_github_api_with_secret_token(
 /// The RequestBuilder is created somewhere in the library crate.
 /// The client can be passed to the library. It will not reveal the secret_token.
 /// This is basically an async fn, but use of `async fn` in public traits is discouraged...
-pub(crate) async fn upload_to_github_with_secret_token(
-    req: reqwest::RequestBuilder,
-) -> anyhow::Result<serde_json::Value> {
+pub(crate) async fn upload_to_github_with_secret_token(req: reqwest::RequestBuilder) -> anyhow::Result<serde_json::Value> {
     // I must build the request to be able then to inspect it.
-    let req = req
-        .bearer_auth(get_github_secret_token()?.expose_secret())
-        .build()?;
+    let req = req.bearer_auth(get_github_secret_token()?.expose_secret()).build()?;
 
     // region: Assert the correct url and https
     // It is important that the request coming from a external crate/library

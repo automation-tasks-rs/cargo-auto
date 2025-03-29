@@ -8,13 +8,21 @@
 use crate::{GREEN, RED, RESET, YELLOW};
 
 /// Creates a new Rust project from template.
-pub fn new_pwa_wasm(rust_project_name: Option<String>, github_owner_or_organization: Option<String>, web_server_domain: Option<String>, server_username: Option<String>) {
+pub fn new_pwa_wasm(
+    rust_project_name: Option<String>,
+    github_owner_or_organization: Option<String>,
+    web_server_domain: Option<String>,
+    server_username: Option<String>,
+) {
     // internal function: favicon.ico with 16 and 32 icons
     fn encode_to_favicon_ico(img: &image::DynamicImage, rust_project_name: &str) {
         /// internal function: favicon
         fn favicon_add_entry(img: &image::DynamicImage, size: u32, icon_dir: &mut ico::IconDir) {
             // icons need smaller images 48, 32 and 16
-            let img_rgba_vec = img.resize(size, size, image::imageops::FilterType::Lanczos3).into_rgba8().into_raw();
+            let img_rgba_vec = img
+                .resize(size, size, image::imageops::FilterType::Lanczos3)
+                .into_rgba8()
+                .into_raw();
             // create an IconImage from raw RGBA pixel data from another image library
             let icon_image = ico::IconImage::from_rgba_data(size, size, img_rgba_vec);
             icon_dir.add_entry(ico::IconDirEntry::encode(&icon_image).unwrap());
@@ -89,7 +97,12 @@ pub fn new_pwa_wasm(rust_project_name: Option<String>, github_owner_or_organizat
     let server_username = server_username.unwrap();
 
     // the icon exist, already checked
-    copy_to_files(&rust_project_name, &github_owner_or_organization, &web_server_domain, &server_username);
+    copy_to_files(
+        &rust_project_name,
+        &github_owner_or_organization,
+        &web_server_domain,
+        &server_username,
+    );
 
     // region: png with various sizes for: favicon png, pwa Android and pwa iOS
     // 32, 72, 96, 120, 128, 144, 152, 167, 180, 192, 196, 512
@@ -162,7 +175,10 @@ pub fn copy_to_files(rust_project_name: &str, github_owner_or_organization: &str
     // replace placeholders inside text files
     for entry in walkdir::WalkDir::new(folder_path).into_iter().filter_map(Result::ok) {
         if entry.file_type().is_file() {
-            if entry.file_name().to_string_lossy().ends_with(".ico") || entry.file_name().to_string_lossy().ends_with(".png") || entry.file_name().to_string_lossy().ends_with(".woff2") {
+            if entry.file_name().to_string_lossy().ends_with(".ico")
+                || entry.file_name().to_string_lossy().ends_with(".png")
+                || entry.file_name().to_string_lossy().ends_with(".woff2")
+            {
                 // cannot replace text in binary files
             } else {
                 // template has only valid utf8 files

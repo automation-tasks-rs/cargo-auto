@@ -36,3 +36,5 @@ chrono ={version="0.4.40", default-features=false, features=["now"]}
 tokio-util = {version = "0.7.14", features = ["codec"]}
 tokio = {version = "1.44.1", features = ["rt","rt-multi-thread","fs"]}
 url="2.5.4"
+inquire="0.7.5"
+home="0.5.11"

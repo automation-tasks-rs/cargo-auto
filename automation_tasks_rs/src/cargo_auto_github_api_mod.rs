@@ -17,10 +17,7 @@ use crate::encrypt_decrypt_with_ssh_key_mod::github_api_token_with_oauth2_mod::u
 /// Does git have settings for remote.
 pub(crate) fn git_has_remote() -> bool {
     // git remote returns only "origin" if exists or nothing if it does not exist
-    let output = std::process::Command::new("git")
-        .arg("remote")
-        .output()
-        .unwrap();
+    let output = std::process::Command::new("git").arg("remote").output().unwrap();
     // return
     String::from_utf8(output.stdout).unwrap() != ""
 }
@@ -28,11 +25,7 @@ pub(crate) fn git_has_remote() -> bool {
 /// Has git upstream
 pub(crate) fn git_has_upstream() -> bool {
     // git branch -vv returns upstream branches in angle brackets []
-    let output = std::process::Command::new("git")
-        .arg("branch")
-        .arg("-vv")
-        .output()
-        .unwrap();
+    let output = std::process::Command::new("git").arg("branch").arg("-vv").output().unwrap();
     // return
     String::from_utf8(output.stdout).unwrap().contains("[")
 }
@@ -53,8 +46,7 @@ pub(crate) fn new_remote_github_repository() -> Option<()> {
     }
 
     // get authenticated user from Github
-    let json_value =
-        send_to_github_api_with_secret_token(github_api_get_authenticated_user()).unwrap();
+    let json_value = send_to_github_api_with_secret_token(github_api_get_authenticated_user()).unwrap();
     let Some(authenticated_user_login) = json_value.get("login") else {
         panic!("{RED}ERROR: Unrecognized Authenticated on GitHub from secret_token.{RESET}");
     };
@@ -64,27 +56,22 @@ pub(crate) fn new_remote_github_repository() -> Option<()> {
         // this repository is a User Repository
     } else {
         // check if it is a GitHub Organization
-        let json_value = send_to_github_api_with_secret_token(github_api_get_organization(
-            &github_owner_or_organization,
-        ))
-        .unwrap();
+        let json_value = send_to_github_api_with_secret_token(github_api_get_organization(&github_owner_or_organization)).unwrap();
         let Some(_organization_login) = json_value.get("login") else {
             panic!("{RED}ERROR: Unrecognized Organization on GitHub: {github_owner_or_organization}.{RESET}");
         };
     }
 
     if !git_has_remote() {
-        let description = cargo_toml.package_description().unwrap_or_else(|| {
-            panic!("{RED}ERROR: Element Description in Cargo.toml does not exist!{RESET}")
-        });
+        let description = cargo_toml
+            .package_description()
+            .unwrap_or_else(|| panic!("{RED}ERROR: Element Description in Cargo.toml does not exist!{RESET}"));
 
         // ask interactive
         println!("{BLUE}This project does not have a remote GitHub repository.{RESET}");
-        let answer = cl::inquire::Text::new(&format!(
-            "{BLUE}Do you want to create a new remote GitHub repository? (y/n){RESET}"
-        ))
-        .prompt()
-        .unwrap();
+        let answer = cl::inquire::Text::new(&format!("{BLUE}Do you want to create a new remote GitHub repository? (y/n){RESET}"))
+            .prompt()
+            .unwrap();
         if answer.to_lowercase() != "y" {
             // early exit
             return None;
@@ -115,13 +102,12 @@ pub(crate) fn new_remote_github_repository() -> Option<()> {
             json_value
         } else {
             // new Organization repository
-            let json_value =
-                send_to_github_api_with_secret_token(github_api_organization_repository_new(
-                    &github_owner_or_organization,
-                    &package_name,
-                    &description,
-                ))
-                .unwrap();
+            let json_value = send_to_github_api_with_secret_token(github_api_organization_repository_new(
+                &github_owner_or_organization,
+                &package_name,
+                &description,
+            ))
+            .unwrap();
             // early exit on error
             if let Some(error_message) = json_value.get("message") {
                 eprintln!("{RED}{error_message}{RESET}");
@@ -139,20 +125,12 @@ pub(crate) fn new_remote_github_repository() -> Option<()> {
         };
 
         // get just the name, description and html_url from json
-        println!(
-            "  {YELLOW}name: {}{RESET}",
-            json_value.get("name").unwrap().as_str().unwrap()
-        );
+        println!("  {YELLOW}name: {}{RESET}", json_value.get("name").unwrap().as_str().unwrap());
         println!(
             "  {YELLOW}description: {}{RESET}",
             json_value.get("description").unwrap().as_str().unwrap()
         );
-        let repo_html_url = json_value
-            .get("html_url")
-            .unwrap()
-            .as_str()
-            .unwrap()
-            .to_string();
+        let repo_html_url = json_value.get("html_url").unwrap().as_str().unwrap().to_string();
         println!("  {YELLOW}url: {}{RESET}", &repo_html_url);
 
         // add this GitHub repository to origin remote over SSH (use sshadd for passphrase)
@@ -160,10 +138,7 @@ pub(crate) fn new_remote_github_repository() -> Option<()> {
             r#"git remote add origin "git@github.com:{github_owner_or_organization}/{name}.git" "#,
         )
         .unwrap()
-        .arg(
-            "{github_owner_or_organization}",
-            &github_owner_or_organization,
-        )
+        .arg("{github_owner_or_organization}", &github_owner_or_organization)
         .unwrap()
         .arg("{name}", &package_name)
         .unwrap()
@@ -175,10 +150,8 @@ pub(crate) fn new_remote_github_repository() -> Option<()> {
         cl::run_shell_command("git push -u origin main").unwrap_or_else(|e| panic!("{e}"));
 
         // the docs pages are created with a GitHub action
-        let _json = send_to_github_api_with_secret_token(github_api_create_a_github_pages_site(
-            &github_owner_or_organization,
-            &package_name,
-        ));
+        let _json =
+            send_to_github_api_with_secret_token(github_api_create_a_github_pages_site(&github_owner_or_organization, &package_name));
     }
 
     Some(())
@@ -211,8 +184,7 @@ pub(crate) fn description_and_topics_to_github() {
     let mut is_old_metadata_different = true;
     if let Ok(old_metadata) = std::fs::read_to_string("automation_tasks_rs/.old_metadata.json") {
         if let Ok(old_metadata) = serde_json::from_str::<OldMetadata>(&old_metadata) {
-            if old_metadata.old_description == description && old_metadata.old_keywords == keywords
-            {
+            if old_metadata.old_description == description && old_metadata.old_keywords == keywords {
                 is_old_metadata_different = false;
             }
         }
@@ -220,19 +192,12 @@ pub(crate) fn description_and_topics_to_github() {
 
     if is_old_metadata_different {
         // get data from GitHub
-        let json = send_to_github_api_with_secret_token(github_api_get_repository(
-            &github_owner_or_organization,
-            &repo_name,
-        ))
-        .unwrap();
+        let json = send_to_github_api_with_secret_token(github_api_get_repository(&github_owner_or_organization, &repo_name)).unwrap();
 
         // get just the description and topis from json
         let gh_description = json.get("description").unwrap().as_str().unwrap();
         let gh_topics = json.get("topics").unwrap().as_array().unwrap();
-        let gh_topics: Vec<String> = gh_topics
-            .iter()
-            .map(|value| value.as_str().unwrap().to_string())
-            .collect();
+        let gh_topics: Vec<String> = gh_topics.iter().map(|value| value.as_str().unwrap().to_string()).collect();
 
         // are description and topics both equal?
         if gh_description != description {
@@ -265,11 +230,8 @@ pub(crate) fn description_and_topics_to_github() {
         };
 
         if !topics_is_equal {
-            let _json = send_to_github_api_with_secret_token(github_api_replace_all_topics(
-                &github_owner_or_organization,
-                &repo_name,
-                &keywords,
-            ));
+            let _json =
+                send_to_github_api_with_secret_token(github_api_replace_all_topics(&github_owner_or_organization, &repo_name, &keywords));
             // write into automation_tasks_rs/.old_metadata.json file
             let old_metadata = OldMetadata {
                 old_description: description,
@@ -335,10 +297,7 @@ pub(crate) fn github_api_get_organization(organization: &str) -> reqwest::blocki
 }
 
 /// GitHub api get repository
-pub(crate) fn github_api_get_repository(
-    github_owner_or_organization: &str,
-    repo_name: &str,
-) -> reqwest::blocking::RequestBuilder {
+pub(crate) fn github_api_get_repository(github_owner_or_organization: &str, repo_name: &str) -> reqwest::blocking::RequestBuilder {
     /*
         https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#get-a-repository
 
@@ -348,8 +307,7 @@ pub(crate) fn github_api_get_repository(
         -H "X-GitHub-Api-Version: 2022-11-28" \
         https://api.github.com/repos/github_owner/REPO
     */
-    let repos_url =
-        format!("https://api.github.com/repos/{github_owner_or_organization}/{repo_name}");
+    let repos_url = format!("https://api.github.com/repos/{github_owner_or_organization}/{repo_name}");
     // return
     reqwest::blocking::Client::new()
         .get(repos_url.as_str())
@@ -360,11 +318,7 @@ pub(crate) fn github_api_get_repository(
 
 /// Create a new github User repository
 /// TODO: slightly different API call for organization repository. How to distinguish user and organization?
-pub(crate) fn github_api_user_repository_new(
-    github_owner: &str,
-    name: &str,
-    description: &str,
-) -> reqwest::blocking::RequestBuilder {
+pub(crate) fn github_api_user_repository_new(github_owner: &str, name: &str, description: &str) -> reqwest::blocking::RequestBuilder {
     /*
     https://docs.github.com/en/rest/repos/repos?apiVersion=2022-11-28#create-a-repository-for-the-authenticated-user
 
@@ -503,8 +457,7 @@ pub(crate) fn github_api_update_description(
     ...
     }
     */
-    let repos_url =
-        format!("https://api.github.com/repos/{github_owner_or_organization}/{repo_name}");
+    let repos_url = format!("https://api.github.com/repos/{github_owner_or_organization}/{repo_name}");
     let body = serde_json::json!({
         "description": description,
     });
@@ -534,8 +487,7 @@ pub(crate) fn github_api_replace_all_topics(
       https://api.github.com/repos/github_owner/REPO/topics \
       -d '{"names":["cat","atom","electron","api"]}'
      */
-    let repos_url =
-        format!("https://api.github.com/repos/{github_owner_or_organization}/{repo_name}/topics");
+    let repos_url = format!("https://api.github.com/repos/{github_owner_or_organization}/{repo_name}/topics");
     let body = serde_json::json!({
         "names": topics,
     });
@@ -571,8 +523,7 @@ pub(crate) fn github_api_create_a_github_pages_site(
         }
     }'
          */
-    let repos_url =
-        format!("https://api.github.com/repos/{github_owner_or_organization}/{repo_name}/pages");
+    let repos_url = format!("https://api.github.com/repos/{github_owner_or_organization}/{repo_name}/pages");
     let body = serde_json::json!({
         "build_type": "workflow",
         "source": {
@@ -591,19 +542,13 @@ pub(crate) fn github_api_create_a_github_pages_site(
 }
 
 /// Upload asset to github release  
-pub(crate) fn github_api_upload_asset_to_release(
-    github_owner_or_organization: &str,
-    repo: &str,
-    release_id: &str,
-    path_to_file: &str,
-) {
+pub(crate) fn github_api_upload_asset_to_release(github_owner_or_organization: &str, repo: &str, release_id: &str, path_to_file: &str) {
     println!("  {YELLOW}Uploading file to GitHub release: {path_to_file}{RESET}");
     let file = camino::Utf8Path::new(&path_to_file);
     let file_name = file.file_name().unwrap();
 
     let release_upload_url = format!("https://uploads.github.com/repos/{github_owner_or_organization}/{repo}/releases/{release_id}/assets");
-    let mut release_upload_url =
-        <url::Url as std::str::FromStr>::from_str(&release_upload_url).unwrap();
+    let mut release_upload_url = <url::Url as std::str::FromStr>::from_str(&release_upload_url).unwrap();
     release_upload_url.set_query(Some(format!("{}={}", "name", file_name).as_str()));
     let file_size = std::fs::metadata(file).unwrap().len();
     println!("  {YELLOW}It can take some time to upload. File size: {file_size}. Wait...{RESET}");
@@ -660,8 +605,7 @@ pub(crate) fn github_api_create_new_release(
     ...
     }
     */
-    let releases_url =
-        format!("https://api.github.com/repos/{github_owner_or_organization}/{repo}/releases");
+    let releases_url = format!("https://api.github.com/repos/{github_owner_or_organization}/{repo}/releases");
     let body = serde_json::json!({
         "tag_name": tag_name_version,
         "target_commitish":branch,
