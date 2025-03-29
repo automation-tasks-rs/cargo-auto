@@ -31,14 +31,16 @@ pub fn task_release() -> cl::CargoToml {
     cl::run_shell_command_static("cargo clippy --no-deps").unwrap_or_else(|e| panic!("{e}"));
     cl::run_shell_command_static("cargo build --release").unwrap_or_else(|e| panic!("{e}"));
 
+    // strip only for binary executables
     #[cfg(target_family = "unix")]
-    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"strip "target/release/{package_name}" "#)
-        .unwrap_or_else(|e| panic!("{e}"))
-        .arg("{package_name}", &cargo_toml.package_name())
-        .unwrap_or_else(|e| panic!("{e}"))
-        .run()
-        .unwrap_or_else(|e| panic!("{e}"));
-
+    if std::fs::exists("target/release/{package_name}").unwrap() {
+        cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"strip "target/release/{package_name}" "#)
+            .unwrap_or_else(|e| panic!("{e}"))
+            .arg("{package_name}", &cargo_toml.package_name())
+            .unwrap_or_else(|e| panic!("{e}"))
+            .run()
+            .unwrap_or_else(|e| panic!("{e}"));
+    }
     cargo_toml
 }
 

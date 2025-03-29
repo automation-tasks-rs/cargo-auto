@@ -1,3 +1,4 @@
+# RELEASES cargo-auto
 
 All notable changes to this project will be documented in this file.  
 This project does not adhere to [Semantic Versioning](https://semver.org/spec/v2.0.0.html). The version number represents the datetime of release. This is just fine for binary executables.  
@@ -8,6 +9,8 @@ The ongoing changes that are not released, are visible in the git commits and gi
 The TODO section is part of the [README.md](https://github.com/automation-tasks-rs/rust_project_name).  
 
 ## Unreleased
+
+- update_automation_tasks_rs
 
 ## Version 2025.329.1647 (2025-03-29)
 

@@ -143,7 +143,7 @@ pub fn new_pwa_wasm(
 }
 
 /// Copy the Rust project into a compressed file.  
-pub fn copy_to_files(rust_project_name: &str, github_owner_or_organization: &str, web_server_domain: &str, server_username: &str) {
+fn copy_to_files(rust_project_name: &str, github_owner_or_organization: &str, web_server_domain: &str, server_username: &str) {
     let folder_path = std::path::Path::new(rust_project_name);
     if folder_path.exists() {
         panic!("{RED}Error: Folder {rust_project_name} already exists! {RESET}");

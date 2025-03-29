@@ -80,6 +80,14 @@ fn match_first_argument(task: &str, args: &mut std::env::Args) {
             std::process::exit(0);
         }
         crate::template_new_auto_for_cli_mod::new_auto_for_cli();
+    } else if task == "update_automation_tasks_rs" {
+        // this task is inside cargo-auto
+        if !already_exists_automation_tasks_rs() {
+            println!("{RED}Error: Directory automation_tasks_rs does not exists. Use 'cargo auto new_auto_for_cli'.{RESET}");
+            // early exit
+            std::process::exit(0);
+        }
+        crate::template_new_auto_for_cli_mod::update_automation_tasks_rs();
     } else {
         // these tasks are user defined in automation_tasks_rs
         if !already_exists_automation_tasks_rs() {
@@ -127,7 +135,7 @@ fn completion() {
         word_being_completed = args[3].as_str();
     }
     if last_word == "cargo-auto" || last_word == "auto" {
-        let sub_commands = vec!["new_auto_for_cli"];
+        let sub_commands = vec!["new_auto_for_cli", "update_automation_tasks_rs"];
         completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
 }
