@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"fn":["copy_to_files","new_auto_for_cli"]};
+window.SIDEBAR_ITEMS = {"fn":["copy_to_files","new_auto_for_cli","update_automation_tasks_rs"]};

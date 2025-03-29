@@ -161,7 +161,7 @@
 }
 
 <span class="doccomment">/// Copy the Rust project into a compressed file.  
-</span><span class="kw">pub fn </span>copy_to_files(rust_project_name: <span class="kw-2">&amp;</span>str, github_owner_or_organization: <span class="kw-2">&amp;</span>str, web_server_domain: <span class="kw-2">&amp;</span>str, server_username: <span class="kw-2">&amp;</span>str) {
+</span><span class="kw">fn </span>copy_to_files(rust_project_name: <span class="kw-2">&amp;</span>str, github_owner_or_organization: <span class="kw-2">&amp;</span>str, web_server_domain: <span class="kw-2">&amp;</span>str, server_username: <span class="kw-2">&amp;</span>str) {
     <span class="kw">let </span>folder_path = std::path::Path::new(rust_project_name);
     <span class="kw">if </span>folder_path.exists() {
         <span class="macro">panic!</span>(<span class="string">"{RED}Error: Folder {rust_project_name} already exists! {RESET}"</span>);

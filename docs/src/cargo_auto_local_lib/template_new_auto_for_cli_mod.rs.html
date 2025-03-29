@@ -61,14 +61,68 @@
 <a href="#60" id="60">60</a>
 <a href="#61" id="61">61</a>
 <a href="#62" id="62">62</a>
-<a href="#63" id="63">63</a></pre></div><pre class="rust"><code><span class="comment">// template_new_auto_for_cli_mod.rs
+<a href="#63" id="63">63</a>
+<a href="#64" id="64">64</a>
+<a href="#65" id="65">65</a>
+<a href="#66" id="66">66</a>
+<a href="#67" id="67">67</a>
+<a href="#68" id="68">68</a>
+<a href="#69" id="69">69</a>
+<a href="#70" id="70">70</a>
+<a href="#71" id="71">71</a>
+<a href="#72" id="72">72</a>
+<a href="#73" id="73">73</a>
+<a href="#74" id="74">74</a>
+<a href="#75" id="75">75</a>
+<a href="#76" id="76">76</a>
+<a href="#77" id="77">77</a>
+<a href="#78" id="78">78</a>
+<a href="#79" id="79">79</a>
+<a href="#80" id="80">80</a>
+<a href="#81" id="81">81</a>
+<a href="#82" id="82">82</a>
+<a href="#83" id="83">83</a>
+<a href="#84" id="84">84</a>
+<a href="#85" id="85">85</a>
+<a href="#86" id="86">86</a>
+<a href="#87" id="87">87</a>
+<a href="#88" id="88">88</a>
+<a href="#89" id="89">89</a>
+<a href="#90" id="90">90</a>
+<a href="#91" id="91">91</a>
+<a href="#92" id="92">92</a>
+<a href="#93" id="93">93</a>
+<a href="#94" id="94">94</a>
+<a href="#95" id="95">95</a>
+<a href="#96" id="96">96</a>
+<a href="#97" id="97">97</a>
+<a href="#98" id="98">98</a>
+<a href="#99" id="99">99</a>
+<a href="#100" id="100">100</a>
+<a href="#101" id="101">101</a>
+<a href="#102" id="102">102</a>
+<a href="#103" id="103">103</a>
+<a href="#104" id="104">104</a>
+<a href="#105" id="105">105</a>
+<a href="#106" id="106">106</a>
+<a href="#107" id="107">107</a>
+<a href="#108" id="108">108</a>
+<a href="#109" id="109">109</a>
+<a href="#110" id="110">110</a>
+<a href="#111" id="111">111</a>
+<a href="#112" id="112">112</a>
+<a href="#113" id="113">113</a>
+<a href="#114" id="114">114</a>
+<a href="#115" id="115">115</a></pre></div><pre class="rust"><code><span class="comment">// template_new_auto_for_cli_mod.rs
 
 </span><span class="doccomment">//! Template for new_auto_for_cli (automation_tasks_rs).
 //!
 //! The template is downloaded from github:  
 //! &lt;https://github.com/automation-tasks-rs/cargo_auto_template_new_auto_for_cli/releases/latest/download/template.tar.gz&gt;
 
-</span><span class="attr">#[allow(unused)]
+</span><span class="kw">use </span>std::ffi::OsStr;
+
+<span class="attr">#[allow(unused)]
 </span><span class="kw">use crate</span>::{GREEN, RED, RESET, YELLOW};
 
 <span class="doccomment">/// Copies the template to the `automation_tasks_rs` directory.
@@ -92,7 +146,7 @@
 }
 
 <span class="doccomment">/// Copy the Rust project into a compressed file.  
-</span><span class="kw">pub fn </span>copy_to_files(rust_project_name: <span class="kw-2">&amp;</span>str) {
+</span><span class="kw">fn </span>copy_to_files(rust_project_name: <span class="kw-2">&amp;</span>str) {
     <span class="kw">let </span>folder_path = std::path::Path::new(rust_project_name);
     <span class="kw">if </span>folder_path.exists() {
         <span class="macro">panic!</span>(<span class="string">"{RED}Error: Folder {rust_project_name} already exists! {RESET}"</span>);
@@ -123,5 +177,55 @@
 
     <span class="comment">// remove unused files/folders
     </span>std::fs::remove_dir_all(folder_path.join(<span class="string">".github"</span>)).unwrap();
+}
+
+<span class="doccomment">/// Updates the files in automation_tasks_rs.
+///  
+/// Downloads the template into `automation_tasks_rs_update` directory.
+/// Checks what files are different. The old file changes the extension to '.old_rs'
+///
+/// In development use: `cargo run -- new_auto_for_cli`.  
+/// In runtime use: `cargo auto new_auto_for_cli`.  
+</span><span class="kw">pub fn </span>update_automation_tasks_rs() {
+    <span class="kw">let </span>update_folder = <span class="string">"automation_tasks_rs_update"</span>;
+    <span class="kw">let </span>automation_folder = <span class="string">"automation_tasks_rs"</span>;
+    <span class="kw">if </span>std::fs::exists(update_folder).unwrap() {
+        std::fs::remove_dir_all(update_folder).unwrap();
+    }
+    copy_to_files(update_folder);
+    <span class="comment">// all files inside 'src' with exception of main.rs must be updated or equal
+    </span><span class="kw">for </span>entry <span class="kw">in </span>walkdir::WalkDir::new(update_folder).min_depth(<span class="number">1</span>) {
+        <span class="kw">let </span>entry = entry.unwrap();
+        <span class="kw">if </span>entry.file_type().is_file() {
+            <span class="kw">let </span>file_path = entry.path();
+            <span class="kw">let </span>file_path_str = file_path.to_string_lossy().to_string();
+            <span class="kw">let </span>content_1 = std::fs::read_to_string(<span class="kw-2">&amp;</span>file_path_str).unwrap();
+            <span class="kw">let </span>old_file_path_str = <span class="macro">format!</span>(<span class="string">"{automation_folder}{}"</span>, file_path_str.trim_start_matches(update_folder));
+            <span class="kw">let </span>content_2 = <span class="kw">if </span>std::fs::exists(<span class="kw-2">&amp;</span>old_file_path_str).unwrap() {
+                std::fs::read_to_string(<span class="kw-2">&amp;</span>old_file_path_str).unwrap()
+            } <span class="kw">else </span>{
+                String::new()
+            };
+            <span class="kw">if </span>content_1 != content_2 {
+                <span class="kw">if </span>content_2.is_empty() {
+                    <span class="comment">// the file does not yet exist
+                    </span>std::fs::copy(file_path_str, old_file_path_str).unwrap();
+                } <span class="kw">else if </span>file_path.extension().unwrap_or_else(|| OsStr::new(<span class="string">""</span>)).to_string_lossy() == <span class="string">"rs"
+                    </span>&amp;&amp; !file_path_str.ends_with(<span class="string">"/main.rs"</span>)
+                {
+                    std::fs::rename(<span class="kw-2">&amp;</span>old_file_path_str, <span class="macro">format!</span>(<span class="string">"{old_file_path_str}_old"</span>)).unwrap();
+                    std::fs::copy(<span class="kw-2">&amp;</span>file_path_str, <span class="kw-2">&amp;</span>old_file_path_str).unwrap();
+                    <span class="macro">println!</span>(<span class="string">"    {GREEN}code --diff {old_file_path_str}_old {file_path_str} {RESET}"</span>);
+                } <span class="kw">else </span>{
+                    <span class="comment">// Some files must be different, because every automation is a little bit different.
+                    // For them just write a warning to manually run the diff.
+                    </span><span class="macro">println!</span>(<span class="string">"{GREEN}code --diff {old_file_path_str} {file_path_str} {RESET}"</span>);
+                }
+            }
+        }
+    }
+    <span class="macro">println!</span>(<span class="string">"  {YELLOW}After manually comparing the old and new files, remove the folder and old files.{RESET}"</span>);
+    <span class="macro">println!</span>(<span class="string">"{GREEN}rm -r {update_folder}{RESET}"</span>);
+    <span class="macro">println!</span>(<span class="string">"{GREEN}rm -r {automation_folder}/**/*.rs_old {RESET}"</span>);
 }
 </code></pre></div></section></main></body></html>
