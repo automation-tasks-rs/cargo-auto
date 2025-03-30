@@ -112,7 +112,23 @@
 <a href="#111" id="111">111</a>
 <a href="#112" id="112">112</a>
 <a href="#113" id="113">113</a>
-<a href="#114" id="114">114</a></pre></div><pre class="rust"><code><span class="comment">// template_new_auto_for_cli_mod.rs
+<a href="#114" id="114">114</a>
+<a href="#115" id="115">115</a>
+<a href="#116" id="116">116</a>
+<a href="#117" id="117">117</a>
+<a href="#118" id="118">118</a>
+<a href="#119" id="119">119</a>
+<a href="#120" id="120">120</a>
+<a href="#121" id="121">121</a>
+<a href="#122" id="122">122</a>
+<a href="#123" id="123">123</a>
+<a href="#124" id="124">124</a>
+<a href="#125" id="125">125</a>
+<a href="#126" id="126">126</a>
+<a href="#127" id="127">127</a>
+<a href="#128" id="128">128</a>
+<a href="#129" id="129">129</a>
+<a href="#130" id="130">130</a></pre></div><pre class="rust"><code><span class="comment">// template_new_auto_for_cli_mod.rs
 
 </span><span class="doccomment">//! Template for new_auto_for_cli (automation_tasks_rs).
 //!
@@ -129,7 +145,7 @@
 /// In development use: `cargo run -- new_auto_for_cli`.  
 /// In runtime use: `cargo auto new_auto_for_cli`.  
 </span><span class="kw">pub fn </span>new_auto_for_cli() {
-    copy_to_files(<span class="string">"automation_tasks_rs"</span>);
+    copy_to_files(<span class="string">"automation_tasks_rs"</span>, <span class="string">"template.tar.gz"</span>);
 
     <span class="macro">println!</span>(
         <span class="string">r#"
@@ -145,20 +161,20 @@
 }
 
 <span class="doccomment">/// Copy the Rust project into a compressed file.  
-</span><span class="kw">fn </span>copy_to_files(rust_project_name: <span class="kw-2">&amp;</span>str) {
+</span><span class="kw">fn </span>copy_to_files(rust_project_name: <span class="kw-2">&amp;</span>str, file_to_download: <span class="kw-2">&amp;</span>str) {
     <span class="kw">let </span>folder_path = std::path::Path::new(rust_project_name);
     <span class="kw">if </span>folder_path.exists() {
         <span class="macro">panic!</span>(<span class="string">"{RED}Error: Folder {rust_project_name} already exists! {RESET}"</span>);
     }
     std::fs::create_dir_all(folder_path).unwrap();
 
-    <span class="comment">// download latest template.tar.gz
-    </span><span class="macro">println!</span>(<span class="string">"  {YELLOW}Downloading template.tar.gz...{RESET}"</span>);
+    <span class="comment">// download latest template.tar.gz or automation_tasks_rs.tar.gz
+    </span><span class="macro">println!</span>(<span class="string">"  {YELLOW}Downloading {file_to_download}...{RESET}"</span>);
     std::fs::create_dir_all(<span class="string">"tmp"</span>).unwrap();
-    <span class="kw">let </span>path = <span class="string">"tmp/template.tar.gz"</span>;
-    <span class="kw">let </span>url = <span class="string">"https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/releases/latest/download/automation_tasks_rs.tar.gz"</span>;
+    <span class="kw">let </span>path = <span class="kw-2">&amp;</span><span class="macro">format!</span>(<span class="string">"tmp/{file_to_download}"</span>);
+    <span class="kw">let </span>url = <span class="macro">format!</span>(<span class="string">"https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/releases/latest/download/{file_to_download}"</span>);
     <span class="kw">let </span>reqwest_client = reqwest::blocking::Client::new();
-    <span class="kw">let </span>http_response = reqwest_client.get(url).send();
+    <span class="kw">let </span>http_response = reqwest_client.get(<span class="kw-2">&amp;</span>url).send();
     <span class="kw">if </span>http_response.is_err() {
         <span class="macro">panic!</span>(<span class="string">"Error while retrieving data: {:#?}"</span>, http_response.err());
     } <span class="kw">else </span>{
@@ -181,7 +197,7 @@
 /// Checks what files are different. The old file changes the extension to '.rs_old'
 /// Prints the diff command for different files.
 </span><span class="kw">pub fn </span>update_automation_tasks_rs() {
-    <span class="macro">println!</span>(<span class="string">"  {YELLOW}update_automation_tasks_rs {RESET}"</span>);
+    <span class="macro">println!</span>(<span class="string">"  {YELLOW}cargo auto update_automation_tasks_rs {RESET}"</span>);
     std::fs::create_dir_all(<span class="string">"tmp/automation_tasks_rs_update"</span>).unwrap();
     <span class="kw">let </span>automation_folder = <span class="string">"automation_tasks_rs"</span>;
     <span class="comment">// must end with the slash
@@ -189,9 +205,11 @@
     <span class="kw">if </span>std::fs::exists(<span class="kw-2">&amp;</span>update_folder).unwrap() {
         std::fs::remove_dir_all(<span class="kw-2">&amp;</span>update_folder).unwrap();
     }
-    copy_to_files(<span class="kw-2">&amp;</span>update_folder);
+    copy_to_files(<span class="kw-2">&amp;</span>update_folder, <span class="string">"automation_tasks_rs.tar.gz"</span>);
     <span class="comment">// all files inside 'src' with exception of main.rs must be updated or equal
-    </span><span class="kw">for </span>entry <span class="kw">in </span>walkdir::WalkDir::new(<span class="kw-2">&amp;</span>update_folder).min_depth(<span class="number">1</span>) {
+    </span><span class="kw">let </span><span class="kw-2">mut </span>vec_updated_diff_files = <span class="macro">vec!</span>[];
+    <span class="kw">let </span><span class="kw-2">mut </span>vec_other_diff_files = <span class="macro">vec!</span>[];
+    <span class="kw">for </span>entry <span class="kw">in </span>walkdir::WalkDir::new(<span class="kw-2">&amp;</span>update_folder).min_depth(<span class="number">1</span>) {
         <span class="kw">let </span>entry = entry.unwrap();
         <span class="kw">if </span>entry.file_type().is_file() {
             <span class="kw">let </span>file_path = entry.path();
@@ -212,16 +230,30 @@
                 {
                     std::fs::rename(<span class="kw-2">&amp;</span>old_file_path_str, <span class="macro">format!</span>(<span class="string">"{old_file_path_str}_old"</span>)).unwrap();
                     std::fs::copy(<span class="kw-2">&amp;</span>file_path_str, <span class="kw-2">&amp;</span>old_file_path_str).unwrap();
-                    <span class="macro">println!</span>(<span class="string">"    {GREEN}code --diff {old_file_path_str}_old {file_path_str} {RESET}"</span>);
+                    vec_updated_diff_files.push(<span class="macro">format!</span>(<span class="string">"{GREEN}code --diff {old_file_path_str}_old {file_path_str} {RESET}\n"</span>));
                 } <span class="kw">else </span>{
                     <span class="comment">// Some files must be different, because every automation is a little bit different.
                     // For them just write a warning to manually run the diff.
-                    </span><span class="macro">println!</span>(<span class="string">"{GREEN}code --diff {file_path_str} {old_file_path_str} {RESET}"</span>);
+                    </span>vec_other_diff_files.push(<span class="macro">format!</span>(<span class="string">"{GREEN}code --diff {file_path_str} {old_file_path_str} {RESET}\n"</span>));
                 }
             }
         }
     }
-    <span class="macro">println!</span>(<span class="string">"  {YELLOW}After manually comparing the old and new files, remove the folder and old files.{RESET}"</span>);
+    <span class="macro">println!</span>(<span class="string">"  {YELLOW}All '.rs' files will be updated except for 'main.rs'.{RESET}"</span>);
+    <span class="macro">println!</span>(<span class="string">"  {YELLOW}You can diff between the 'old' and 'new' files to see what has changed.'.{RESET}"</span>);
+    <span class="kw">if </span>!vec_updated_diff_files.is_empty() {
+        <span class="macro">println!</span>();
+        <span class="macro">println!</span>(<span class="string">"{}"</span>, vec_updated_diff_files.concat());
+    }
+    <span class="macro">println!</span>();
+    <span class="macro">println!</span>(<span class="string">"  {YELLOW}Other files will have custom user tasks or information and will not be updated automatically.{RESET}"</span>);
+    <span class="macro">println!</span>(<span class="string">"  {YELLOW}You can diff those to see what is the new default content and choose what to update or not.{RESET}"</span>);
+    <span class="kw">if </span>!vec_other_diff_files.is_empty() {
+        <span class="macro">println!</span>();
+        <span class="macro">println!</span>(<span class="string">"{}"</span>, vec_other_diff_files.concat());
+    }
+    <span class="macro">println!</span>();
+    <span class="macro">println!</span>(<span class="string">"  {YELLOW}After manually diffing the files, remove the obsolete files.{RESET}"</span>);
     <span class="macro">println!</span>(<span class="string">"{GREEN}rm -r {update_folder}{RESET}"</span>);
     <span class="macro">println!</span>(<span class="string">"{GREEN}rm -f {automation_folder}/src/*.rs_old {RESET}"</span>);
     <span class="macro">println!</span>(<span class="string">"{GREEN}rm -f {automation_folder}/src/*/*.rs_old {RESET}"</span>);
