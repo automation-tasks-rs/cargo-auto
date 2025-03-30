@@ -108,10 +108,7 @@
 <a href="#107" id="107">107</a>
 <a href="#108" id="108">108</a>
 <a href="#109" id="109">109</a>
-<a href="#110" id="110">110</a>
-<a href="#111" id="111">111</a>
-<a href="#112" id="112">112</a>
-<a href="#113" id="113">113</a></pre></div><pre class="rust"><code><span class="comment">// template_new_auto_for_cli_mod.rs
+<a href="#110" id="110">110</a></pre></div><pre class="rust"><code><span class="comment">// template_new_auto_for_cli_mod.rs
 
 </span><span class="doccomment">//! Template for new_auto_for_cli (automation_tasks_rs).
 //!
@@ -153,8 +150,8 @@
 
     <span class="comment">// download latest template.tar.gz
     </span><span class="macro">println!</span>(<span class="string">"  {YELLOW}Downloading template.tar.gz...{RESET}"</span>);
-    <span class="kw">let </span>file_name = <span class="string">"template.tar.gz"</span>;
-    <span class="kw">let </span>path = <span class="string">"./template.tar.gz"</span>;
+    std::fs::create_dir_all(<span class="string">"tmp"</span>).unwrap();
+    <span class="kw">let </span>path = <span class="string">"tmp/template.tar.gz"</span>;
     <span class="kw">let </span>url = <span class="string">"https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/releases/latest/download/automation_tasks_rs.tar.gz"</span>;
     <span class="kw">let </span>reqwest_client = reqwest::blocking::Client::new();
     <span class="kw">let </span>http_response = reqwest_client.get(url).send();
@@ -163,7 +160,7 @@
     } <span class="kw">else </span>{
         <span class="kw">let </span>body = http_response.unwrap().bytes().unwrap();
         <span class="comment">// Get the content of the response
-        </span>std::fs::write(path, <span class="kw-2">&amp;</span>body).unwrap_or_else(|<span class="kw">_</span>| <span class="macro">panic!</span>(<span class="string">"Download failed for {file_name}"</span>));
+        </span>std::fs::write(path, <span class="kw-2">&amp;</span>body).unwrap_or_else(|<span class="kw">_</span>| <span class="macro">panic!</span>(<span class="string">"Download failed for {path}"</span>));
     }
 
     <span class="comment">// decompress into folder_path
@@ -172,9 +169,6 @@
     <span class="kw">let </span><span class="kw-2">mut </span>archive = tar::Archive::new(tar);
     archive.unpack(folder_path).unwrap();
     std::fs::remove_file(path).unwrap();
-
-    <span class="comment">// remove unused files/folders
-    </span>std::fs::remove_dir_all(folder_path.join(<span class="string">".github"</span>)).unwrap();
 }
 
 <span class="doccomment">/// Updates the files in automation_tasks_rs.
