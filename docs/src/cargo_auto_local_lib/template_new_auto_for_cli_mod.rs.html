@@ -108,7 +108,11 @@
 <a href="#107" id="107">107</a>
 <a href="#108" id="108">108</a>
 <a href="#109" id="109">109</a>
-<a href="#110" id="110">110</a></pre></div><pre class="rust"><code><span class="comment">// template_new_auto_for_cli_mod.rs
+<a href="#110" id="110">110</a>
+<a href="#111" id="111">111</a>
+<a href="#112" id="112">112</a>
+<a href="#113" id="113">113</a>
+<a href="#114" id="114">114</a></pre></div><pre class="rust"><code><span class="comment">// template_new_auto_for_cli_mod.rs
 
 </span><span class="doccomment">//! Template for new_auto_for_cli (automation_tasks_rs).
 //!
@@ -174,23 +178,26 @@
 <span class="doccomment">/// Updates the files in automation_tasks_rs.
 ///  
 /// Downloads the template into `automation_tasks_rs_update` directory.
-/// Checks what files are different. The old file changes the extension to '.old_rs'
+/// Checks what files are different. The old file changes the extension to '.rs_old'
 /// Prints the diff command for different files.
 </span><span class="kw">pub fn </span>update_automation_tasks_rs() {
-    <span class="kw">let </span>update_folder = <span class="string">"automation_tasks_rs_update"</span>;
+    <span class="macro">println!</span>(<span class="string">"  {YELLOW}update_automation_tasks_rs {RESET}"</span>);
+    std::fs::create_dir_all(<span class="string">"tmp/automation_tasks_rs_update"</span>).unwrap();
     <span class="kw">let </span>automation_folder = <span class="string">"automation_tasks_rs"</span>;
-    <span class="kw">if </span>std::fs::exists(update_folder).unwrap() {
-        std::fs::remove_dir_all(update_folder).unwrap();
+    <span class="comment">// must end with the slash
+    </span><span class="kw">let </span>update_folder = <span class="string">"tmp/automation_tasks_rs_update/"</span>.to_string();
+    <span class="kw">if </span>std::fs::exists(<span class="kw-2">&amp;</span>update_folder).unwrap() {
+        std::fs::remove_dir_all(<span class="kw-2">&amp;</span>update_folder).unwrap();
     }
-    copy_to_files(update_folder);
+    copy_to_files(<span class="kw-2">&amp;</span>update_folder);
     <span class="comment">// all files inside 'src' with exception of main.rs must be updated or equal
-    </span><span class="kw">for </span>entry <span class="kw">in </span>walkdir::WalkDir::new(update_folder).min_depth(<span class="number">1</span>) {
+    </span><span class="kw">for </span>entry <span class="kw">in </span>walkdir::WalkDir::new(<span class="kw-2">&amp;</span>update_folder).min_depth(<span class="number">1</span>) {
         <span class="kw">let </span>entry = entry.unwrap();
         <span class="kw">if </span>entry.file_type().is_file() {
             <span class="kw">let </span>file_path = entry.path();
             <span class="kw">let </span>file_path_str = file_path.to_string_lossy().to_string();
             <span class="kw">let </span>content_1 = std::fs::read_to_string(<span class="kw-2">&amp;</span>file_path_str).unwrap();
-            <span class="kw">let </span>old_file_path_str = <span class="macro">format!</span>(<span class="string">"{automation_folder}{}"</span>, file_path_str.trim_start_matches(update_folder));
+            <span class="kw">let </span>old_file_path_str = <span class="macro">format!</span>(<span class="string">"automation_tasks_rs/{}"</span>, file_path_str.trim_start_matches(<span class="kw-2">&amp;</span>update_folder));
             <span class="kw">let </span>content_2 = <span class="kw">if </span>std::fs::exists(<span class="kw-2">&amp;</span>old_file_path_str).unwrap() {
                 std::fs::read_to_string(<span class="kw-2">&amp;</span>old_file_path_str).unwrap()
             } <span class="kw">else </span>{
@@ -209,13 +216,14 @@
                 } <span class="kw">else </span>{
                     <span class="comment">// Some files must be different, because every automation is a little bit different.
                     // For them just write a warning to manually run the diff.
-                    </span><span class="macro">println!</span>(<span class="string">"{GREEN}code --diff {old_file_path_str} {file_path_str} {RESET}"</span>);
+                    </span><span class="macro">println!</span>(<span class="string">"{GREEN}code --diff {file_path_str} {old_file_path_str} {RESET}"</span>);
                 }
             }
         }
     }
     <span class="macro">println!</span>(<span class="string">"  {YELLOW}After manually comparing the old and new files, remove the folder and old files.{RESET}"</span>);
     <span class="macro">println!</span>(<span class="string">"{GREEN}rm -r {update_folder}{RESET}"</span>);
-    <span class="macro">println!</span>(<span class="string">"{GREEN}rm -r {automation_folder}/**/*.rs_old {RESET}"</span>);
+    <span class="macro">println!</span>(<span class="string">"{GREEN}rm -f {automation_folder}/src/*.rs_old {RESET}"</span>);
+    <span class="macro">println!</span>(<span class="string">"{GREEN}rm -f {automation_folder}/src/*/*.rs_old {RESET}"</span>);
 }
 </code></pre></div></section></main></body></html>

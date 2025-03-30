@@ -297,7 +297,7 @@
         word_being_completed = args[<span class="number">3</span>].as_str();
     }
     <span class="kw">if </span>last_word == <span class="string">"cargo-auto" </span>|| last_word == <span class="string">"auto" </span>{
-        <span class="kw">let </span>sub_commands = <span class="macro">vec!</span>[<span class="string">"new_auto_for_cli"</span>, <span class="string">"update_automation_tasks_rs"</span>];
+        <span class="kw">let </span>sub_commands = <span class="macro">vec!</span>[<span class="string">"new_auto_for_cli"</span>];
         completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
 }
