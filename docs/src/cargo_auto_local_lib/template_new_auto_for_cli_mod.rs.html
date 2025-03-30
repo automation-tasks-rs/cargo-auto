@@ -111,14 +111,12 @@
 <a href="#110" id="110">110</a>
 <a href="#111" id="111">111</a>
 <a href="#112" id="112">112</a>
-<a href="#113" id="113">113</a>
-<a href="#114" id="114">114</a>
-<a href="#115" id="115">115</a></pre></div><pre class="rust"><code><span class="comment">// template_new_auto_for_cli_mod.rs
+<a href="#113" id="113">113</a></pre></div><pre class="rust"><code><span class="comment">// template_new_auto_for_cli_mod.rs
 
 </span><span class="doccomment">//! Template for new_auto_for_cli (automation_tasks_rs).
 //!
 //! The template is downloaded from github:  
-//! &lt;https://github.com/automation-tasks-rs/cargo_auto_template_new_auto_for_cli/releases/latest/download/template.tar.gz&gt;
+//! &lt;https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/releases/latest/download/automation_tasks_rs.tar.gz&gt;
 
 </span><span class="kw">use </span>std::ffi::OsStr;
 
@@ -157,7 +155,7 @@
     </span><span class="macro">println!</span>(<span class="string">"  {YELLOW}Downloading template.tar.gz...{RESET}"</span>);
     <span class="kw">let </span>file_name = <span class="string">"template.tar.gz"</span>;
     <span class="kw">let </span>path = <span class="string">"./template.tar.gz"</span>;
-    <span class="kw">let </span>url = <span class="string">"https://github.com/automation-tasks-rs/cargo_auto_template_new_auto_for_cli/releases/latest/download/template.tar.gz"</span>;
+    <span class="kw">let </span>url = <span class="string">"https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/releases/latest/download/automation_tasks_rs.tar.gz"</span>;
     <span class="kw">let </span>reqwest_client = reqwest::blocking::Client::new();
     <span class="kw">let </span>http_response = reqwest_client.get(url).send();
     <span class="kw">if </span>http_response.is_err() {
@@ -183,9 +181,7 @@
 ///  
 /// Downloads the template into `automation_tasks_rs_update` directory.
 /// Checks what files are different. The old file changes the extension to '.old_rs'
-///
-/// In development use: `cargo run -- new_auto_for_cli`.  
-/// In runtime use: `cargo auto new_auto_for_cli`.  
+/// Prints the diff command for different files.
 </span><span class="kw">pub fn </span>update_automation_tasks_rs() {
     <span class="kw">let </span>update_folder = <span class="string">"automation_tasks_rs_update"</span>;
     <span class="kw">let </span>automation_folder = <span class="string">"automation_tasks_rs"</span>;
