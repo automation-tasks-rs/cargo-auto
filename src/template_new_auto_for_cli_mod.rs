@@ -40,8 +40,8 @@ fn copy_to_files(rust_project_name: &str) {
 
     // download latest template.tar.gz
     println!("  {YELLOW}Downloading template.tar.gz...{RESET}");
-    let file_name = "template.tar.gz";
-    let path = "./template.tar.gz";
+    std::fs::create_dir_all("tmp").unwrap();
+    let path = "tmp/template.tar.gz";
     let url = "https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/releases/latest/download/automation_tasks_rs.tar.gz";
     let reqwest_client = reqwest::blocking::Client::new();
     let http_response = reqwest_client.get(url).send();
@@ -50,7 +50,7 @@ fn copy_to_files(rust_project_name: &str) {
     } else {
         let body = http_response.unwrap().bytes().unwrap();
         // Get the content of the response
-        std::fs::write(path, &body).unwrap_or_else(|_| panic!("Download failed for {file_name}"));
+        std::fs::write(path, &body).unwrap_or_else(|_| panic!("Download failed for {path}"));
     }
 
     // decompress into folder_path
@@ -59,9 +59,6 @@ fn copy_to_files(rust_project_name: &str) {
     let mut archive = tar::Archive::new(tar);
     archive.unpack(folder_path).unwrap();
     std::fs::remove_file(path).unwrap();
-
-    // remove unused files/folders
-    std::fs::remove_dir_all(folder_path.join(".github")).unwrap();
 }
 
 /// Updates the files in automation_tasks_rs.
