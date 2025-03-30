@@ -86,7 +86,7 @@ pub(crate) fn get_crates_io_secret_token(private_key_file_name: &str) -> anyhow:
 
     println!("  {YELLOW}Check if the ssh private key exists.{RESET}");
     let private_key_path_struct = ende::PathStructInSshFolder::new(private_key_file_name.to_string())?;
-    if !std::fs::exists(private_key_path_struct.get_full_file_path())? {
+    if !private_key_path_struct.exists() {
         eprintln!("{RED}Error: Private key {private_key_path_struct} does not exist.{RESET}");
         println!("  {YELLOW}Create the private key in bash terminal:{RESET}");
         println!(r#"{GREEN}ssh-keygen -t ed25519 -f "{private_key_path_struct}" -C "crates.io secret_token"{RESET}"#);
@@ -95,7 +95,7 @@ pub(crate) fn get_crates_io_secret_token(private_key_file_name: &str) -> anyhow:
 
     println!("  {YELLOW}Check if the encrypted file exists.{RESET}");
     let encrypted_path_struct = ende::PathStructInSshFolder::new(format!("{private_key_file_name}.enc"))?;
-    if !std::fs::exists(encrypted_path_struct.get_full_file_path())? {
+    if !encrypted_path_struct.exists() {
         println!("  {YELLOW}Encrypted file {encrypted_path_struct} does not exist.{RESET}");
         println!("  {YELLOW}Get your secret token from: https://crates.io/settings/tokens {RESET}");
         println!("  {YELLOW}Never use 'cargo login' to store this secret locally. It will store it in plain-text in the file ~/.cargo.credentials.toml. {RESET}");

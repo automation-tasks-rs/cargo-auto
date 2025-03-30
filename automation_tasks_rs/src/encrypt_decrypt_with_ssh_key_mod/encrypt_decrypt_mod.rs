@@ -33,6 +33,11 @@ impl PathStructInSshFolder {
     pub fn get_full_file_path(&self) -> &camino::Utf8Path {
         &self.full_file_path
     }
+
+    /// Does exist file on path
+    pub fn exists(&self) -> bool {
+        self.full_file_path.exists()
+    }
 }
 
 impl std::fmt::Display for PathStructInSshFolder {

@@ -3,7 +3,7 @@
 //! Template for new_auto_for_cli (automation_tasks_rs).
 //!
 //! The template is downloaded from github:  
-//! <https://github.com/automation-tasks-rs/cargo_auto_template_new_auto_for_cli/releases/latest/download/template.tar.gz>
+//! <https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/releases/latest/download/automation_tasks_rs.tar.gz>
 
 use std::ffi::OsStr;
 
@@ -42,7 +42,7 @@ fn copy_to_files(rust_project_name: &str) {
     println!("  {YELLOW}Downloading template.tar.gz...{RESET}");
     let file_name = "template.tar.gz";
     let path = "./template.tar.gz";
-    let url = "https://github.com/automation-tasks-rs/cargo_auto_template_new_auto_for_cli/releases/latest/download/template.tar.gz";
+    let url = "https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/releases/latest/download/automation_tasks_rs.tar.gz";
     let reqwest_client = reqwest::blocking::Client::new();
     let http_response = reqwest_client.get(url).send();
     if http_response.is_err() {
@@ -68,9 +68,7 @@ fn copy_to_files(rust_project_name: &str) {
 ///  
 /// Downloads the template into `automation_tasks_rs_update` directory.
 /// Checks what files are different. The old file changes the extension to '.old_rs'
-///
-/// In development use: `cargo run -- new_auto_for_cli`.  
-/// In runtime use: `cargo auto new_auto_for_cli`.  
+/// Prints the diff command for different files.
 pub fn update_automation_tasks_rs() {
     let update_folder = "automation_tasks_rs_update";
     let automation_folder = "automation_tasks_rs";

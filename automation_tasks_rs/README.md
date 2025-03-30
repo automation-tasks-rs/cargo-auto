@@ -1,10 +1,10 @@
 <!-- markdownlint-disable MD041 -->
 [//]: # (auto_md_to_doc_comments segment start A)
 
-# cargo_auto_template_new_auto_for_cli
+# cargo_auto_template_new_cli
 
 **Automation tasks coded in Rust language for the workflow of Rust projects**  
-***version: 1.0.0 date: 2024-05-04 author: [Bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo_auto_template_new_auto_for_cli)***
+***version: 1.0.0 date: 2024-05-04 author: [Bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli)***
 
  ![maintained](https://img.shields.io/badge/maintained-green)
  ![ready-for-use](https://img.shields.io/badge/ready_for_use-green)
@@ -14,7 +14,7 @@
  ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
  ![logo](https://raw.githubusercontent.com/automation-tasks-rs/cargo-auto/main/images/logo/logo_cargo_auto.svg)
- cargo_auto_template_new_auto_for_cli is part of the [automation_tasks_rs](https://github.com/automation-tasks-rs) project
+ cargo_auto_template_new_cli is part of the [automation_tasks_rs](https://github.com/automation-tasks-rs) project
 
 ## The sub-project `automation_tasks_rs`
 
