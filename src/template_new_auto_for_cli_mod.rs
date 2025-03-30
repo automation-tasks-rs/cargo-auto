@@ -64,23 +64,26 @@ fn copy_to_files(rust_project_name: &str) {
 /// Updates the files in automation_tasks_rs.
 ///  
 /// Downloads the template into `automation_tasks_rs_update` directory.
-/// Checks what files are different. The old file changes the extension to '.old_rs'
+/// Checks what files are different. The old file changes the extension to '.rs_old'
 /// Prints the diff command for different files.
 pub fn update_automation_tasks_rs() {
-    let update_folder = "automation_tasks_rs_update";
+    println!("  {YELLOW}update_automation_tasks_rs {RESET}");
+    std::fs::create_dir_all("tmp/automation_tasks_rs_update").unwrap();
     let automation_folder = "automation_tasks_rs";
-    if std::fs::exists(update_folder).unwrap() {
-        std::fs::remove_dir_all(update_folder).unwrap();
+    // must end with the slash
+    let update_folder = "tmp/automation_tasks_rs_update/".to_string();
+    if std::fs::exists(&update_folder).unwrap() {
+        std::fs::remove_dir_all(&update_folder).unwrap();
     }
-    copy_to_files(update_folder);
+    copy_to_files(&update_folder);
     // all files inside 'src' with exception of main.rs must be updated or equal
-    for entry in walkdir::WalkDir::new(update_folder).min_depth(1) {
+    for entry in walkdir::WalkDir::new(&update_folder).min_depth(1) {
         let entry = entry.unwrap();
         if entry.file_type().is_file() {
             let file_path = entry.path();
             let file_path_str = file_path.to_string_lossy().to_string();
             let content_1 = std::fs::read_to_string(&file_path_str).unwrap();
-            let old_file_path_str = format!("{automation_folder}{}", file_path_str.trim_start_matches(update_folder));
+            let old_file_path_str = format!("automation_tasks_rs/{}", file_path_str.trim_start_matches(&update_folder));
             let content_2 = if std::fs::exists(&old_file_path_str).unwrap() {
                 std::fs::read_to_string(&old_file_path_str).unwrap()
             } else {
@@ -99,12 +102,13 @@ pub fn update_automation_tasks_rs() {
                 } else {
                     // Some files must be different, because every automation is a little bit different.
                     // For them just write a warning to manually run the diff.
-                    println!("{GREEN}code --diff {old_file_path_str} {file_path_str} {RESET}");
+                    println!("{GREEN}code --diff {file_path_str} {old_file_path_str} {RESET}");
                 }
             }
         }
     }
     println!("  {YELLOW}After manually comparing the old and new files, remove the folder and old files.{RESET}");
     println!("{GREEN}rm -r {update_folder}{RESET}");
-    println!("{GREEN}rm -r {automation_folder}/**/*.rs_old {RESET}");
+    println!("{GREEN}rm -f {automation_folder}/src/*.rs_old {RESET}");
+    println!("{GREEN}rm -f {automation_folder}/src/*/*.rs_old {RESET}");
 }

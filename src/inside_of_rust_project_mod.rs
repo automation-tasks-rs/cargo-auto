@@ -135,7 +135,7 @@ fn completion() {
         word_being_completed = args[3].as_str();
     }
     if last_word == "cargo-auto" || last_word == "auto" {
-        let sub_commands = vec!["new_auto_for_cli", "update_automation_tasks_rs"];
+        let sub_commands = vec!["new_auto_for_cli"];
         completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }
 }

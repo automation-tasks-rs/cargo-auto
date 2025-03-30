@@ -100,6 +100,8 @@ fn print_help() {
   {YELLOW}The secret token will be stored in a file encrypted with your SSH private key.{RESET}
   {YELLOW}You can type the passphrase of the private key for every usee. This is pretty secure.{RESET}
   {YELLOW}Somewhat less secure (but more comfortable) way is to store the private key in ssh-agent.{RESET}
+{GREEN}cargo auto update_automation_tasks_rs{RESET} - {YELLOW}updates the files in automation_tasks_rs{RESET}
+  {YELLOW}Some files are fixed and the update is straight forward, other files need manual diff.{RESET}
 
   {YELLOW}© 2025 bestia.dev  MIT License github.com/automation-tasks-rs/cargo-auto{RESET}
 "#
@@ -134,6 +136,7 @@ fn completion() {
             "commit_and_push",
             "publish_to_crates_io",
             "github_new_release",
+            "update_automation_tasks_rs"
         ];
         cl::completion_return_one_or_more_sub_commands(sub_commands, word_being_completed);
     }

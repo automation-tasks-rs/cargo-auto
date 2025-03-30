@@ -1,10 +1,7 @@
-<!-- markdownlint-disable MD041 -->
-[//]: # (auto_md_to_doc_comments segment start A)
-
-# cargo_auto_template_new_cli
+# automation_tasks_rs
 
 **Automation tasks coded in Rust language for the workflow of Rust projects**  
-***version: 1.0.0 date: 2024-05-04 author: [Bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo_auto_template_new_cli)***
+***version: 1.0.0 date: 2024-05-04 author: [Bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation--tasks--rs/cargo_auto_template_new_auto_for_cli)***
 
  ![maintained](https://img.shields.io/badge/maintained-green)
  ![ready-for-use](https://img.shields.io/badge/ready_for_use-green)
@@ -13,15 +10,24 @@
  ![workflow](https://img.shields.io/badge/workflow-orange)
  ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
- ![logo](https://raw.githubusercontent.com/automation-tasks-rs/cargo-auto/main/images/logo/logo_cargo_auto.svg)
- cargo_auto_template_new_cli is part of the [automation_tasks_rs](https://github.com/automation-tasks-rs) project
+ ![logo](https://raw.githubusercontent.com/automation--tasks--rs/cargo-auto/main/images/logo/logo_cargo_auto.svg)  
+This is part of the [automation_tasks_rs](https://github.com/automation--tasks--rs) project
 
-## The sub-project `automation_tasks_rs`
+## The sub-project automation_tasks_rs
 
 In this sub-project `automation_tasks_rs`, you can write tasks that you need when compiling or managing your Rust project.  
 The simple `cargo build` and `cargo build --release` are sometimes not enough. We need to copy some files, to prepare some environment. It is nice to have `all` the tasks in one place with a sort order that new users can easily follow.  
-It is a Rust project, so you don't have to learn another strange language for automation.  
-This helper project is used in combination with the program `cargo-auto`. Install it with:
+It is a Rust project, so you don't have to learn another strange language for automation. You can develop this sub-project in VSCode:
+
+```bash
+code automation--tasks--rs
+```
+
+Don't put any secrets like passwords, passphrases, or tokens here, because this helper project is pushed to the remote repository together with the main Rust project.  
+
+## cargo-auto
+
+This helper project is used in combination with the program `cargo-auto`. Install it with:  
 
 ```bash
 cargo install cargo-auto
@@ -33,8 +39,6 @@ You can use also the cargo bash completion program:
 cargo install dev_bestia_cargo_completion
 ```
 
-Don't put any secrets like passwords, passphrases, or tokens here, because this helper project is pushed to the remote repository together with the main Rust project.  
-
 In the main  project folder (where the Cargo.toml file is) run
 
 ```bash
@@ -43,9 +47,33 @@ cargo auto
 
 You will get a list of possible tasks with descriptions like `cargo auto build`, `cargo auto release`, `cargo auto doc`,...
 
-You can write any task you need. You have all the power of the Rust language under your fingertips.  
-You can use or write a library for some specific tasks you need.  
-There are crates with often-used tasks: `cargo_auto_lib`, `cargo_auto_github_lib`, `cargo_auto_encrypt_secret_lib`.  
+## Already prepared tasks
+  
+I prepared some tasks that I often use. I use my own library crate for often-used functions `cargo_auto_lib`. You can use this tasks or you can modify them or you can completely delete them.
+
+You can write any task you need. You have all the power of the Rust language under your fingertips. You can use or write a library crate for some specific tasks you need.  
+
+## Secrets
+
+Sometimes we need secrets in the development workflow. For example the secret access token for GitHub or crates.io. We must be careful with secrets.
+
+I use my knowledge of SSH private keys to store secrets in my ~/.ssh folder. They are protected by my private key, that is protected by a passphrase that is easy to remember. This secrets never leave the source code inside automation--tasks--rs. They never go to an obscure library crate that can turn malevolent from one update to the other.
+
+In the file `cargo_auto_config.json` there are the names of the private keys you can use in automation--tasks--rs.
+
+## ssh-agent
+
+Typing the passphrase every time you user the private key is very secure, but it has to be repeated too much times. I use the ssh-agent to store my private keys for one hour. This is less secure, but much more comfortable. ssh-agent works well in Linux and in Windows git-bash that is installed with git-for-windows.
+
+## GitHub api
+
+Many things in GitHub can be achieve only through GitHub api. This needs the secret token. GitHub uses OAuth2 to get the token. This is all prepared and working.
+
+The prepared automation--tasks--rs can create a new git repository and a remote GitHub repository, split docs to a separate commit for clarity, change GitHub topics from Cargo.toml keywords, create a release and upload the executables.
+
+## crates.io
+
+To publish to crates.io we need the secret access token. The prepared tasks will store it in ~/.ssh protected by your private key.
 
 ## Open-source and free as a beer
 
@@ -60,5 +88,3 @@ So I can drink a free beer for your health :-)
 [//github.com/bestia-dev](https://github.com/bestia-dev)  
 [//bestiadev.substack.com](https://bestiadev.substack.com)  
 [//youtube.com/@bestia-dev-tutorials](https://youtube.com/@bestia-dev-tutorials)  
-
-[//]: # (auto_md_to_doc_comments segment end A)

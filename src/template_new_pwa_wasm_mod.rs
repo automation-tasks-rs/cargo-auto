@@ -49,14 +49,12 @@ pub fn new_pwa_wasm(
     fn resize_image(img: &image::DynamicImage, img_size: u32, file_name: &str, rust_project_name: &str) {
         /// internal function: encode to png
         fn encode_to_png(new_img: image::DynamicImage) -> Vec<u8> {
-            //dbg!("encode new_img");
             let vec_u8: Vec<u8> = Vec::new();
             let mut cursor_1 = std::io::Cursor::new(vec_u8);
             new_img.write_to(&mut cursor_1, image::ImageFormat::Png).unwrap();
             // return
             cursor_1.get_ref().to_owned()
         }
-        //dbg!("resize_image {img_size}");
         let new_img = img.resize(img_size, img_size, image::imageops::FilterType::Lanczos3);
         let vec_u8 = encode_to_png(new_img);
 
