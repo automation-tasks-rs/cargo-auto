@@ -1,7 +1,7 @@
 # automation_tasks_rs
 
 **Automation tasks coded in Rust language for the workflow of Rust projects**  
-***version: 1.0.0 date: 2024-05-04 author: [Bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation--tasks--rs/cargo_auto_template_new_auto_for_cli)***
+***version: 1.0.0 date: 2024-05-04 author: [Bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo_auto_template_new_auto_for_cli)***
 
  ![maintained](https://img.shields.io/badge/maintained-green)
  ![ready-for-use](https://img.shields.io/badge/ready_for_use-green)
@@ -10,8 +10,8 @@
  ![workflow](https://img.shields.io/badge/workflow-orange)
  ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
- ![logo](https://raw.githubusercontent.com/automation--tasks--rs/cargo-auto/main/images/logo/logo_cargo_auto.svg)  
-This is part of the [automation_tasks_rs](https://github.com/automation--tasks--rs) project
+ ![logo](https://raw.githubusercontent.com/automation-tasks-rs/cargo-auto/main/images/logo/logo_cargo_auto.svg)  
+This is part of the [automation_tasks_rs](https://github.com/automation-tasks-rs) project
 
 ## The sub-project automation_tasks_rs
 
@@ -20,7 +20,7 @@ The simple `cargo build` and `cargo build --release` are sometimes not enough. W
 It is a Rust project, so you don't have to learn another strange language for automation. You can develop this sub-project in VSCode:
 
 ```bash
-code automation--tasks--rs
+code automation-tasks-rs
 ```
 
 Don't put any secrets like passwords, passphrases, or tokens here, because this helper project is pushed to the remote repository together with the main Rust project.  
@@ -57,9 +57,9 @@ You can write any task you need. You have all the power of the Rust language und
 
 Sometimes we need secrets in the development workflow. For example the secret access token for GitHub or crates.io. We must be careful with secrets.
 
-I use my knowledge of SSH private keys to store secrets in my ~/.ssh folder. They are protected by my private key, that is protected by a passphrase that is easy to remember. This secrets never leave the source code inside automation--tasks--rs. They never go to an obscure library crate that can turn malevolent from one update to the other.
+I use my knowledge of SSH private keys to store secrets in my ~/.ssh folder. They are protected by my private key, that is protected by a passphrase that is easy to remember. This secrets never leave the source code inside automation-tasks-rs. They never go to an obscure library crate that can turn malevolent from one update to the other.
 
-In the file `cargo_auto_config.json` there are the names of the private keys you can use in automation--tasks--rs.
+In the file `cargo_auto_config.json` there are the names of the private keys you can use in automation-tasks-rs.
 
 ## ssh-agent
 
@@ -69,7 +69,7 @@ Typing the passphrase every time you user the private key is very secure, but it
 
 Many things in GitHub can be achieve only through GitHub api. This needs the secret token. GitHub uses OAuth2 to get the token. This is all prepared and working.
 
-The prepared automation--tasks--rs can create a new git repository and a remote GitHub repository, split docs to a separate commit for clarity, change GitHub topics from Cargo.toml keywords, create a release and upload the executables.
+The prepared automation-tasks-rs can create a new git repository and a remote GitHub repository, split docs to a separate commit for clarity, change GitHub topics from Cargo.toml keywords, create a release and upload the executables.
 
 ## crates.io
 
