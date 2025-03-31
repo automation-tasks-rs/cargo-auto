@@ -93,7 +93,12 @@ pub fn update_automation_tasks_rs() {
             };
             if content_1 != content_2 {
                 if content_2.is_empty() {
-                    // the file does not yet exist
+                    // the file does not yet exist, maybe even the folder does not exist
+                    let subfolder = std::path::Path::new(&old_file_path_str).parent().unwrap();
+                    if !subfolder.exists() {
+                        std::fs::create_dir(subfolder).unwrap();
+                    }
+                    println!("copy {file_path_str}, {old_file_path_str};");
                     std::fs::copy(file_path_str, old_file_path_str).unwrap();
                 } else if file_path.extension().unwrap_or_else(|| OsStr::new("")).to_string_lossy() == "rs"
                     && !file_path_str.ends_with("/main.rs")
