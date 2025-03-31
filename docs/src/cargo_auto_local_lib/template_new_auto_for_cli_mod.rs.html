@@ -128,7 +128,12 @@
 <a href="#127" id="127">127</a>
 <a href="#128" id="128">128</a>
 <a href="#129" id="129">129</a>
-<a href="#130" id="130">130</a></pre></div><pre class="rust"><code><span class="comment">// template_new_auto_for_cli_mod.rs
+<a href="#130" id="130">130</a>
+<a href="#131" id="131">131</a>
+<a href="#132" id="132">132</a>
+<a href="#133" id="133">133</a>
+<a href="#134" id="134">134</a>
+<a href="#135" id="135">135</a></pre></div><pre class="rust"><code><span class="comment">// template_new_auto_for_cli_mod.rs
 
 </span><span class="doccomment">//! Template for new_auto_for_cli (automation_tasks_rs).
 //!
@@ -223,8 +228,13 @@
             };
             <span class="kw">if </span>content_1 != content_2 {
                 <span class="kw">if </span>content_2.is_empty() {
-                    <span class="comment">// the file does not yet exist
-                    </span>std::fs::copy(file_path_str, old_file_path_str).unwrap();
+                    <span class="comment">// the file does not yet exist, maybe even the folder does not exist
+                    </span><span class="kw">let </span>subfolder = std::path::Path::new(<span class="kw-2">&amp;</span>old_file_path_str).parent().unwrap();
+                    <span class="kw">if </span>!subfolder.exists() {
+                        std::fs::create_dir(subfolder).unwrap();
+                    }
+                    <span class="macro">println!</span>(<span class="string">"copy {file_path_str}, {old_file_path_str};"</span>);
+                    std::fs::copy(file_path_str, old_file_path_str).unwrap();
                 } <span class="kw">else if </span>file_path.extension().unwrap_or_else(|| OsStr::new(<span class="string">""</span>)).to_string_lossy() == <span class="string">"rs"
                     </span>&amp;&amp; !file_path_str.ends_with(<span class="string">"/main.rs"</span>)
                 {
