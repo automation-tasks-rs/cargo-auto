@@ -2,10 +2,6 @@
 
 //! # decrypt crates.io api token from file or ask the user to input the access token, encrypt it and save into file
 //!
-//! Don't change this code, so it can be updated regularly with
-//! cargo auto update_automation_tasks_rs
-//! If you want to customize it, copy the code into main.rs and modify it there.
-//!
 //! Publish to crates.io needs the crates.io secret access_token. This is a secret important just like a password or even more.  
 //! There is the original "cargo login" function that saves this critical secret in plain text in `~/.cargo/credentials.toml`.  Plain-text for secrets in a well-known file is a big no-no. Every malware will just upload it in a millisecond.  
 //!
@@ -67,10 +63,8 @@ pub fn crates_io_config_initialize() {
         return;
     }
 
-    let crates_io_config_json = std::fs::read_to_string("automation_tasks_rs/crates_io_config.json")
-        .unwrap_or_else(|_| panic!("{RED}Error: The file automation_tasks_rs/crates_io_config.json is missing.{RESET}"));
-    let crates_io_config: CratesIoConfig = serde_json::from_str(&crates_io_config_json)
-        .unwrap_or_else(|_| panic!("{RED}Error: The content of automation_tasks_rs/crates_io_config.json is not correct.{RESET}"));
+    let crates_io_config_json = std::fs::read_to_string("automation_tasks_rs/crates_io_config.json").unwrap();
+    let crates_io_config: CratesIoConfig = serde_json::from_str(&crates_io_config_json).unwrap();
     let _ = CRATES_IO_CONFIG.set(crates_io_config);
 }
 
@@ -95,7 +89,7 @@ pub(crate) fn get_crates_io_secret_token(private_key_file_name: &str) -> anyhow:
     if !private_key_path_struct.exists() {
         eprintln!("{RED}Error: Private key {private_key_path_struct} does not exist.{RESET}");
         println!("  {YELLOW}Create the private key in bash terminal:{RESET}");
-        println!(r#"{GREEN}ssh-keygen -t ed25519 -f {private_key_path_struct} -C "crates.io secret_token"{RESET}"#);
+        println!(r#"{GREEN}ssh-keygen -t ed25519 -f "{private_key_path_struct}" -C "crates.io secret_token"{RESET}"#);
         anyhow::bail!("Private key file not found.");
     }
 
@@ -110,9 +104,9 @@ pub(crate) fn get_crates_io_secret_token(private_key_file_name: &str) -> anyhow:
         println!();
         println!("{BLUE}Enter the secret_access_token to encrypt:{RESET}");
         let secret_access_token = secrecy::SecretString::from(
-            inquire::Password::new("")
+            crate::cl::inquire::Password::new("")
                 .without_confirmation()
-                .with_display_mode(inquire::PasswordDisplayMode::Masked)
+                .with_display_mode(crate::cl::inquire::PasswordDisplayMode::Masked)
                 .prompt()?,
         );
 

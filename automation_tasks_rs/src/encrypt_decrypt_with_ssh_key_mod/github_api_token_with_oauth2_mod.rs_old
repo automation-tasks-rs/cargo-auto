@@ -2,10 +2,6 @@
 
 //! # decrypt github api token from file or use the oauth2 device workflow to get the access token and encrypt it and save into file
 //!
-//! Don't change this code, so it can be updated regularly with
-//! cargo auto update_automation_tasks_rs
-//! If you want to customize it, copy the code into main.rs and modify it there.
-//!
 //! ## Secrets
 //!
 //! In this module there will be a lot of work with secrets.  
@@ -107,10 +103,8 @@ pub fn github_api_config_initialize() {
         return;
     }
 
-    let github_api_config_json = std::fs::read_to_string("automation_tasks_rs/github_api_config.json")
-        .unwrap_or_else(|_| panic!("{RED}Error: The file automation_tasks_rs/github_api_config.json is missing.{RESET}"));
-    let github_api_config: GithubApiConfig = serde_json::from_str(&github_api_config_json)
-        .unwrap_or_else(|_| panic!("{RED}Error: The content of automation_tasks_rs/github_api_config.json is not correct.{RESET}"));
+    let github_api_config_json = std::fs::read_to_string("automation_tasks_rs/github_api_config.json").unwrap();
+    let github_api_config: GithubApiConfig = serde_json::from_str(&github_api_config_json).unwrap();
     let _ = GITHUB_API_CONFIG.set(github_api_config);
 }
 
@@ -127,7 +121,7 @@ pub fn get_github_secret_token() -> anyhow::Result<SecretString> {
     if !private_key_path_struct.exists() {
         eprintln!("{RED}Error: Private key {private_key_path_struct} does not exist.{RESET}");
         println!("  {YELLOW}Create the private key in bash terminal:{RESET}");
-        println!(r#"{GREEN}ssh-keygen -t ed25519 -f {private_key_path_struct} -C "github api secret_token"{RESET}"#);
+        println!(r#"{GREEN}ssh-keygen -t ed25519 -f "{private_key_path_struct}" -C "github api secret_token"{RESET}"#);
         anyhow::bail!("Private key file not found.");
     }
 

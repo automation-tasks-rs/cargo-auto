@@ -1,10 +1,6 @@
 // build_lib_mod.rs
 
 //! Functions to build a library crate.
-//!
-//! Don't change this code, so it can be updated regularly with
-//! cargo auto update_automation_tasks_rs
-//! If you want to customize it, copy the code into main.rs and modify it there.
 
 use crate::cl;
 use crate::ende;
