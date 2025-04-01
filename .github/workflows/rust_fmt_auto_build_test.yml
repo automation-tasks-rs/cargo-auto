@@ -44,7 +44,6 @@ jobs:
         path: |
           automation_tasks_rs/.file_hashes.json 
           automation_tasks_rs/target 
-          automation_tasks_rs/Cargo.toml
         key: automation_tasks_rs
 
     - name: cargo auto build
