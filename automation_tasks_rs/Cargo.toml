@@ -17,7 +17,7 @@ cargo_auto_lib = "3.0.14"
 tracing = "0.1.41"
 tracing-subscriber = { version = "0.3.19", features = ["env-filter", "std", "fmt", "time"] }
 # tracing-appender="0.2.3"
-time = {version="0.3.39", features=["macros","local-offset"]}
+time = {version="0.3.40", features=["macros","local-offset"]}
 
 anyhow="1.0.97"
 # reqwest 0.12.12 is tha last that builds in win-git-bash

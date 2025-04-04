@@ -252,17 +252,23 @@
 //!
 // endregion: auto_md_to_doc_comments include README.md A //!
 
-use cargo_auto_local_lib as l;
+mod bin_cli_functions_mod;
+use bin_cli_functions_mod as cli;
+
+use cargo_auto_main_lib as lib;
+// use cli::{BLUE, GREEN, RED, RESET, YELLOW};
 
 fn main() {
+    std::panic::set_hook(Box::new(cli::panic_set_hook));
+    cli::tracing_init();
     // get CLI arguments
     let mut args = std::env::args();
     // the zero argument is the name of the program
     let _arg_0 = args.next();
 
-    if l::is_not_run_in_rust_project_root_directory() {
-        l::outside_of_rust_project_mod::parse_args(&mut args);
+    if lib::is_not_run_in_rust_project_root_directory() {
+        lib::outside_of_rust_project_mod::parse_args(&mut args);
     } else {
-        l::inside_of_rust_project_mod::parse_args(&mut args);
+        lib::inside_of_rust_project_mod::parse_args(&mut args);
     }
 }
