@@ -4,8 +4,6 @@
 //!
 //! Binary executables need some standard functions to help to develop them efficiently.
 
-use tracing::Instrument;
-
 // region: Public API constants
 // ANSI colors for Linux terminal
 // https://github.com/shiena/ansicolor/blob/master/README.md
