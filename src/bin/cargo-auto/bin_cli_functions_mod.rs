@@ -31,7 +31,7 @@ pub const RESET: &str = "\x1b[0m";
 /// The folder tmp/logs/ is in .gitignore and will not be committed.
 pub fn tracing_init() {
     // uncomment this line to enable tracing to file
-    let file_appender = tracing_appender::rolling::daily("tmp/logs", "cargo_auto.log");
+    // let file_appender = tracing_appender::rolling::daily("tmp/logs", "cargo_auto.log");
 
     let offset = time::UtcOffset::current_local_offset().expect("should get local offset!");
     let timer = tracing_subscriber::fmt::time::OffsetTime::new(
@@ -65,7 +65,7 @@ pub fn tracing_init() {
         .with_timer(timer)
         .with_line_number(true)
         .with_ansi(true)
-        .with_writer(file_appender)
+        // .with_writer(file_appender)
         .with_env_filter(filter)
         .init();
 }
