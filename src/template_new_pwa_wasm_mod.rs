@@ -191,13 +191,13 @@ fn copy_to_files(rust_project_name: &str, github_owner_or_organization: &str, we
             }
         }
     }
-    // renaming files is tricky and must be traverse  in reverse.
+    // renaming files is tricky and must be traverse in reverse.
     let mut traverse_reverse: Vec<walkdir::DirEntry> = walkdir::WalkDir::new(folder_path).into_iter().filter_map(Result::ok).collect();
     traverse_reverse.reverse();
     for entry in traverse_reverse.iter() {
-        if entry.file_name() == "cargo_auto_template_new_pwa_wasm" {
+        if entry.file_name().to_string_lossy().contains("cargo_auto_template_new_pwa_wasm") {
             println!("rename: {}", entry.path().to_string_lossy());
-            std::fs::rename(entry.path(), entry.path().parent().unwrap().join(rust_project_name)).unwrap();
+            std::fs::rename(entry.path(), entry.path().to_string_lossy().replace("cargo_auto_template_new_pwa_wasm",rust_project_name)).unwrap();
         }
     }
 }
