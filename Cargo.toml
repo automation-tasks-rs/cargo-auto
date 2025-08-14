@@ -11,9 +11,9 @@ readme = "README.md"
 license = "MIT"
 # Keyword must be only one word: lowercase letters, hyphens(-) or numbers, less then 35 characters, at most 5 keywords per crate
 keywords = ["maintained", "ready-for-use", "rustlang","automation","workflow"]
-# allowed categories are listed here <https://crates.io/category_slugs>
+# Allowed categories are listed here <https://crates.io/category_slugs>
 categories = ["command-line-interface","development-tools::build-utils","development-tools::cargo-plugins"]
-# publish as a cargo tool. Only this files.
+# Publish to crates.io. Only this files.
 publish = true
 include = [
     "Cargo.toml",
