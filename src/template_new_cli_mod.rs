@@ -46,12 +46,12 @@ fn copy_to_files(rust_project_name: &str, github_owner_or_organization: &str) {
     let url = "https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/releases/latest/download/template.tar.gz";
     let reqwest_client = reqwest::blocking::Client::new();
     let http_response = reqwest_client.get(url).send();
-    if http_response.is_err() {
-        panic!("Error while retrieving data: {:#?}", http_response.err());
-    } else {
-        let body = http_response.unwrap().bytes().unwrap();
+    if let Ok(body) = http_response {
+        let body = body.bytes().unwrap();
         // Get the content of the response
         std::fs::write(path, &body).unwrap_or_else(|_| panic!("Download failed for {file_name}"));
+    } else {
+        panic!("Error while retrieving data: {:#?}", http_response.err());
     }
 
     // decompress into folder_path
