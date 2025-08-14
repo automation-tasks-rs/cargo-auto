@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"fn":["copy_to_files","new_wasm"]};

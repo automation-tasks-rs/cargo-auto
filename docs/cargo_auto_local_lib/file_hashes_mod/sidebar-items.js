@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"fn":["are_all_files_equal","is_project_changed","read_file_metadata","read_json_file","save_json_file_for_file_meta_data","sha256_digest"],"struct":["FileHashes","FileMetaData"]};

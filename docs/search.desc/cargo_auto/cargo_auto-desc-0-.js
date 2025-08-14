@@ -1,1 +1,1 @@
-searchState.loadedDescShard("cargo_auto", 0, "cargo-auto")
+searchState.loadedDescShard("cargo_auto", 0, "cargo-auto\nFunctions to work with CLI binary executable projects.\nANSI color\nANSI color\nANSI color\nANSI color\nANSI color\nThe original Rust report of the panic is ugly for the end …\nInitialize tracing to file tmp/logs/cargo_auto.log")

@@ -1,1 +1,0 @@
-window.SIDEBAR_ITEMS = {"fn":["completion","match_first_argument","parse_args","print_help_from_cargo_auto"]};

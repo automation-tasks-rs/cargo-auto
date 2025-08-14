@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":["BLUE","GREEN","RED","RESET","YELLOW"],"fn":["panic_set_hook","tracing_init"]};
