@@ -17,6 +17,10 @@
         "LICENSE": "plain text"
     },
     "rust-analyzer.showUnlinkedFileNotification": false,
+    "terminal.integrated.commandsToSkipShell": [
+        // Ensure the toggle sidebar visibility ctrl+b keybinding skips the terminal shell
+        "workbench.action.toggleSidebarVisibility",
+    ],
     "cSpell.words": [
         "Alla",
         "alloc",
