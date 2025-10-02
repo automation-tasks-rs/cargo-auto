@@ -1,1 +1,1 @@
-window.SIDEBAR_ITEMS = {"fn":["main"],"mod":["bin_cli_functions_mod"]};
+window.SIDEBAR_ITEMS = {"fn":["main","main_returns_anyhow_result"],"mod":["bin_cli_functions_mod"]};

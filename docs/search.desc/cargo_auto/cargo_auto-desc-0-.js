@@ -1,1 +1,1 @@
-searchState.loadedDescShard("cargo_auto", 0, "cargo-auto\nFunctions to work with CLI binary executable projects.\nANSI color\nANSI color\nANSI color\nANSI color\nANSI color\nThe original Rust report of the panic is ugly for the end …\nInitialize tracing to file tmp/logs/cargo_auto.log")
+searchState.loadedDescShard("cargo_auto", 0, "cargo-auto\nFunctions to work with CLI binary executable projects.\nmain returns ExitCode\nmain() returns anyhow::Result\nANSI color\nANSI color\nANSI color\nANSI color\nANSI color\nInitialize tracing to file tmp/logs/cargo_auto.log")

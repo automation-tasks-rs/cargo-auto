@@ -1,4 +1,4 @@
-var searchIndex = new Map(JSON.parse('[["cargo_auto",{"t":"CHSSSSSHH","n":["bin_cli_functions_mod","main","BLUE","GREEN","RED","RESET","YELLOW","panic_set_hook","tracing_init"],"q":[[0,"cargo_auto"],[2,"cargo_auto::bin_cli_functions_mod"],[9,"std::panic"]],"i":"`````````","f":"`{{}b}{{}d}0000{{{d{f}}}b}2","D":"Ab","p":[[1,"unit"],[1,"reference",null,null,1],[5,"PanicHookInfo",9]],"r":[],"b":[],"c":"OjAAAAAAAAA=","e":"OjAAAAEAAAAAAAAAEAAAAAIA","P":[]}]]'));
+var searchIndex = new Map(JSON.parse('[["cargo_auto",{"t":"CHHSSSSSH","n":["bin_cli_functions_mod","main","main_returns_anyhow_result","BLUE","GREEN","RED","RESET","YELLOW","tracing_init"],"q":[[0,"cargo_auto"],[3,"cargo_auto::bin_cli_functions_mod"],[9,"std::process"],[10,"anyhow"]],"i":"`````````","f":"`{{}b}{{}{{f{d}}}}{{}h}00001","D":"Ad","p":[[5,"ExitCode",9],[1,"unit"],[8,"Result",10],[1,"reference",null,null,1]],"r":[],"b":[],"c":"OjAAAAAAAAA=","e":"OjAAAAAAAAA=","P":[]}]]'));
 if (typeof exports !== 'undefined') exports.searchIndex = searchIndex;
 else if (window.initSearch) window.initSearch(searchIndex);
-//{"start":39,"fragment_lengths":[416]}
+//{"start":39,"fragment_lengths":[444]}
