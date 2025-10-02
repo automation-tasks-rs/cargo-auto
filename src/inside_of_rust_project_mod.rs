@@ -162,7 +162,7 @@ pub fn compile_project_automation_tasks_rs() -> anyhow::Result<()> {
     // build in other directory (not in working current directory)
     // cargo build --manifest-path=dir/Cargo.toml
     if !crate::utils_mod::run_shell_command_success("cargo build --manifest-path=automation_tasks_rs/Cargo.toml") {
-        anyhow::bail!("{RED}Cannot compile automation_tasks_rs. Exiting...{RESET}");
+        anyhow::bail!("{RED}Cannot compile automation_tasks_rs.{RESET}");
     }
     Ok(())
 }

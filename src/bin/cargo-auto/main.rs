@@ -262,8 +262,10 @@ use cargo_auto_main_lib as lib;
 fn main() -> std::process::ExitCode {
     match main_returns_anyhow_result() {
         Err(err) => {
+            // After many propagations with ? the error finally comes here to report to the user.
+            // To add additional data for the error add anyhow::context() or with_context() traits.
             eprintln!("{}", err);
-            eprintln!("Exit program with failure exit code 1");
+            // eprintln!("Exit program with failure exit code 1");
             std::process::ExitCode::FAILURE
         }
         Ok(()) => std::process::ExitCode::SUCCESS,

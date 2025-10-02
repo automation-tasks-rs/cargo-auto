@@ -24,8 +24,20 @@ use cl::CargoTomlPublicApiMethods;
 
 // region: library with basic automation tasks
 
-fn main() {
-    std::panic::set_hook(Box::new(gn::panic_set_hook));
+///main returns ExitCode
+fn main() -> std::process::ExitCode {
+    match main_returns_anyhow_result() {
+        Err(err) => {
+            eprintln!("{}", err);
+            // eprintln!("Exit program with failure exit code 1");
+            std::process::ExitCode::FAILURE
+        }
+        Ok(()) => std::process::ExitCode::SUCCESS,
+    }
+}
+
+/// main() returns anyhow::Result
+fn main_returns_anyhow_result() -> anyhow::Result<()> {
     gn::tracing_init();
     cl::exit_if_not_run_in_rust_project_root_directory();
     ende::github_api_token_with_oauth2_mod::github_api_config_initialize();
@@ -35,6 +47,7 @@ fn main() {
     // the zero argument is the name of the program
     let _arg_0 = args.next();
     match_arguments_and_call_tasks(args);
+    Ok(())
 }
 
 // region: match, help and completion
