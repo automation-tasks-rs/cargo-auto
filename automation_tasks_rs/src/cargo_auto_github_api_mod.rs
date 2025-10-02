@@ -16,6 +16,7 @@ use cl::BLUE;
 use cl::RED;
 use cl::RESET;
 use cl::YELLOW;
+use crossplatform_path::CrossPathBuf;
 
 use crate::encrypt_decrypt_with_ssh_key_mod::github_api_token_with_oauth2_mod::send_to_github_api_with_secret_token;
 use crate::encrypt_decrypt_with_ssh_key_mod::github_api_token_with_oauth2_mod::upload_to_github_with_secret_token;
@@ -550,18 +551,19 @@ pub(crate) fn github_api_create_a_github_pages_site(
 /// Upload asset to github release  
 pub(crate) fn github_api_upload_asset_to_release(github_owner_or_organization: &str, repo: &str, release_id: &str, path_to_file: &str) {
     println!("  {YELLOW}Uploading file to GitHub release: {path_to_file}{RESET}");
-    let file = camino::Utf8Path::new(&path_to_file);
-    let file_name = file.file_name().unwrap();
+    let file = CrossPathBuf::new(&path_to_file).unwrap();
+    let file_name =  file.to_path_buf_current_os();
+    let file_name = file_name.file_name().unwrap().to_string_lossy();
 
     let release_upload_url = format!("https://uploads.github.com/repos/{github_owner_or_organization}/{repo}/releases/{release_id}/assets");
     let mut release_upload_url = <url::Url as std::str::FromStr>::from_str(&release_upload_url).unwrap();
     release_upload_url.set_query(Some(format!("{}={}", "name", file_name).as_str()));
-    let file_size = std::fs::metadata(file).unwrap().len();
+    let file_size = std::fs::metadata(file.to_path_buf_current_os()).unwrap().len();
     println!("  {YELLOW}It can take some time to upload. File size: {file_size}. Wait...{RESET}");
     // region: async code made sync locally
     let rt = tokio::runtime::Runtime::new().unwrap();
     rt.block_on(async move {
-        let file = tokio::fs::File::open(file).await.unwrap();
+        let file = tokio::fs::File::open(file.to_path_buf_current_os()).await.unwrap();
         let stream = tokio_util::codec::FramedRead::new(file, tokio_util::codec::BytesCodec::new());
         let body = reqwest::Body::wrap_stream(stream);
 

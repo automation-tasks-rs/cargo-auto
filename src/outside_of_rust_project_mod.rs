@@ -11,7 +11,7 @@ use crate::{GREEN, RED, RESET, YELLOW};
 /// Parse when it is run outside a Rust project.  
 ///
 /// It must have the argument "new_cli" or "new_wasm" or "new_pwa_wasm" and the project title.
-pub fn parse_args(args: &mut std::env::Args) {
+pub fn parse_args(args: &mut std::env::Args) -> anyhow::Result<()> {
     // the first argument is the task: new_cli
     // wooow! There is a difference if I call the standalone binary or as a cargo subcommand:
     // cargo-auto build     - build is the arg_1
@@ -22,17 +22,18 @@ pub fn parse_args(args: &mut std::env::Args) {
         Some(task) => {
             if task != "auto" {
                 // when calling as `cargo auto build`
-                match_first_argument(&task, args);
+                match_first_argument(&task, args)?;
             } else {
                 // when calling as `cargo-auto build`
                 let arg_2 = args.next();
                 match arg_2 {
                     None => print_help_from_cargo_auto(),
-                    Some(task) => match_first_argument(&task, args),
+                    Some(task) => match_first_argument(&task, args)?,
                 }
             }
         }
     }
+    Ok(())
 }
 
 /// Print help for cargo-auto.
@@ -56,28 +57,34 @@ fn print_help_from_cargo_auto() {
 /// Get the first argument is the task: new_cli, or new_wasm...  
 ///
 /// In development use: `cargo run -- new_cli`.  
-fn match_first_argument(task: &str, args: &mut std::env::Args) {
+fn match_first_argument(task: &str, args: &mut std::env::Args) -> anyhow::Result<()> {
     if task == "completion" {
         completion();
     } else if task == "new_cli" {
         let rust_project_name = args.next();
         let github_owner_or_organization = args.next();
-        crate::template_new_cli_mod::new_cli(rust_project_name, github_owner_or_organization);
+        crate::template_new_cli_mod::new_cli(rust_project_name, github_owner_or_organization)?;
     } else if task == "new_wasm" {
         let rust_project_name = args.next();
         let github_owner_or_organization = args.next();
         let web_server_domain = args.next();
         let server_username = args.next();
-        crate::template_new_wasm_mod::new_wasm(rust_project_name, github_owner_or_organization, web_server_domain, server_username);
+        crate::template_new_wasm_mod::new_wasm(rust_project_name, github_owner_or_organization, web_server_domain, server_username)?;
     } else if task == "new_pwa_wasm" {
         let rust_project_name = args.next();
         let github_owner_or_organization = args.next();
         let web_server_domain = args.next();
         let server_username = args.next();
-        crate::template_new_pwa_wasm_mod::new_pwa_wasm(rust_project_name, github_owner_or_organization, web_server_domain, server_username);
+        crate::template_new_pwa_wasm_mod::new_pwa_wasm(
+            rust_project_name,
+            github_owner_or_organization,
+            web_server_domain,
+            server_username,
+        )?;
     } else {
         print_help_from_cargo_auto();
     }
+    Ok(())
 }
 
 /// Sub-command for bash auto-completion of `cargo auto` using the crate `dev_bestia_cargo_completion`.

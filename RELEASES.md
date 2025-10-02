@@ -10,6 +10,8 @@ The TODO section is part of the [README.md](https://github.com/automation-tasks-
 
 ## Unreleased
 
+- anyhow error handling
+
 ## Version 2025.814.1154 (2025-08-14)
 
 - replace filenames

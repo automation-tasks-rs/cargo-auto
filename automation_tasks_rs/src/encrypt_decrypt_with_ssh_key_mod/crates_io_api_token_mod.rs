@@ -31,19 +31,20 @@
 //! ```toml
 //! [dependencies]
 //! ssh-key = { version = "0.6.7", features = [ "rsa", "encryption","ed25519"] }
-//! ssh_agent_client_rs_git_bash = "0.0.11"
+//! ssh_agent_client_rs_git_bash = "0.0.19"
 //! rsa = { version = "0.9.7", features = ["sha2","pem"] }
 //! zeroize = {version="1.8.1", features=["derive"]}
 //! aes-gcm = "0.10.3"
-//! camino = "1.1.6"
 //! base64ct = {version = "1.6.0", features = ["alloc"] }
 //! secrecy = "0.10.3"
+//! crossplatform_path="1.1.1"
 //! ```
 //!
 
 #![allow(dead_code)]
 
 use cargo_auto_lib::ShellCommandLimitedDoubleQuotesSanitizerTrait;
+use crossplatform_path::CrossPathBuf;
 use secrecy::{SecretBox, SecretString};
 
 use super::encrypt_decrypt_mod as ende;
@@ -82,8 +83,8 @@ pub(crate) fn get_crates_io_secret_token(private_key_file_name: &str) -> anyhow:
     // check if the plain-text file from `cargo login` exists and warn the user
     // because it is a security vulnerability.
     println!("  {YELLOW}Check if credentials.toml from 'cargo login' exists.{RESET}");
-    let tilde_file_credentials = "~/.cargo/credentials.toml";
-    let file_credentials = ende::tilde_expand_to_home_dir_utf8(tilde_file_credentials)?;
+    let tilde_file_credentials = CrossPathBuf::new("~/.cargo/credentials.toml")?;
+    let file_credentials = tilde_file_credentials.to_path_buf_current_os();
     if file_credentials.exists() {
         eprintln!("{RED}Security vulnerability: Found the cargo credentials file with plain-text secret_token: {RESET}");
         eprintln!("{RED}{tilde_file_credentials}. It would be better to inspect and remove it. {RESET}");
@@ -148,13 +149,13 @@ pub(crate) fn get_crates_io_secret_token(private_key_file_name: &str) -> anyhow:
     }
 
     println!("  {YELLOW}Open and read the encrypted file.{RESET}");
-    let encrypted_text_with_metadata: String = ende::open_file_b64_get_string(encrypted_path_struct.get_full_file_path())?;
+    let encrypted_text_with_metadata: String = ende::open_file_b64_get_string(encrypted_path_struct.get_cross_path())?;
     // parse json
     let encrypted_text_with_metadata: ende::EncryptedTextWithMetadata = serde_json::from_str(&encrypted_text_with_metadata)?;
     println!("  {YELLOW}Decrypt the file with ssh-agent or private key.{RESET}");
     // the private key file is written inside the file
     let private_key_path_struct = ende::PathStructInSshFolder::new(encrypted_text_with_metadata.private_key_file_name.clone())?;
-    if !camino::Utf8Path::new(private_key_path_struct.get_full_file_path()).exists() {
+    if !private_key_path_struct.exists() {
         anyhow::bail!("{RED}Error: File {private_key_path_struct} does not exist! {RESET}");
     }
 

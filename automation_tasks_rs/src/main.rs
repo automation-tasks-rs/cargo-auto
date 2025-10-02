@@ -10,6 +10,7 @@ mod generic_functions_mod;
 mod tasks_mod;
 
 pub use cargo_auto_lib as cl;
+use crossplatform_path::CrossPathBuf;
 
 use crate::cargo_auto_github_api_mod as cgl;
 use crate::encrypt_decrypt_with_ssh_key_mod as ende;
@@ -244,7 +245,11 @@ fn task_doc() {
     // message to help user with next move
     println!(
         r#"
-  {YELLOW}If ok then run the tests in code and the documentation code examples.{RESET}
+  {YELLOW}After `cargo auto doc`, ctrl-click on `docs/index.html`. 
+    It will show the index.html in VSCode Explorer, then right-click and choose "Show Preview".
+    This works inside the CRUSTDE container, because of the extension "Live Preview" 
+    <https://marketplace.visualstudio.com/items?itemName=ms-vscode.live-server>
+    If ok then run the tests in code and the documentation code examples.{RESET}
 {GREEN}cargo auto test{RESET}
 "#
     );
@@ -275,7 +280,15 @@ fn task_commit_and_push(arg_2: Option<String>) {
 
 /// publish to crates.io and git tag
 fn task_publish_to_crates_io() {
-    let _tag_name_version = crate::build_cli_bin_mod::task_publish_to_crates_io();
+    let main_rs_path = CrossPathBuf::new("src/main.rs").unwrap();
+
+    let _tag_name_version = if main_rs_path.exists()  {
+        // executable binary
+        crate::build_cli_bin_mod::task_publish_to_crates_io();
+    } else {
+        // library
+        crate::build_lib_mod::task_publish_to_crates_io();
+    };
 
     println!(
         r#"
@@ -290,7 +303,7 @@ fn task_publish_to_crates_io() {
 fn task_github_new_release() {
     ts::task_github_new_release();
     println!(
-        r#"  
+        r#"
   {YELLOW}No more automation tasks. {RESET}
 "#
     );

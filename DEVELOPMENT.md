@@ -49,3 +49,15 @@ I am using the previous version of `cargo-auto` to develop the next version. I a
 Inside the cargo-auto project, there are some Rust sub-projects that are templates. I can open a new editor for these directories and build these crates independently. So it is easy to debug and develop.  
 Sadly, I cannot publish these directories and files to `crates.io`. I can effectively publish only the source code inside my main Rust project `cargo-auto`.  
 Therefore, before publishing I copy the content of these files into the modules `template_new_auto_for_cli_mod.rs` on every build. It is not difficult now that Rust has fantastic [raw strings](https://doc.rust-lang.org/rust-by-example/std/str.html). For this repetitive task as always, I prepared an automation task in `automation_tasks_rs`.
+
+## Error handling thiserror and anyhow
+
+Rule number one is never to use `.unwrap()` and `panic!()` in your real Rust code. It is a sign, you are not Error handling properly.
+When using panic or even worse process.exit() the program will not finish execution in a nice way. Avoid that.  
+Maybe `unwrap()` can be fine for some fast learning examples, but for any real-life Rust code, you must use some `Error handling`. There are many different ways to do that in Rust. I choose the pair of libraries `thiserror` and `anyhow`. The first is made for libraries, the second is made for bin-executables.  
+The library needs an Enum with all the possible errors that this library can return. With `#[derive(Error)]` this enum gets everything needed to be a true Rust error struct. Every error can have a formatting string and a struct of data. Internal errors can be propagated without change using the `transparent` cfg.  
+To transform `Option<>` into `Result<>` when using `thiserror` use `ok_or_else(||)`.  
+The bin-executable does not want to be involved in every possible error separately. It needs an umbrella for all possible errors with `anyhow::Result`.  
+Inside the code, mostly propagate the errors with the `?` Operator after the `Result` value instead of unwrap() or the match expression.
+To transform `Option<>` into `Result<>` `use anyhow::Context` trait and `context()` method.  
+In the tests we don't want to work with Error handling. There, instead of `.unwrap()`, use the similar function `.expect(&str)` that has an additional description string. I use `expect()` when I am 100% sure the panic cannot happen because I checked some conditions before it.  

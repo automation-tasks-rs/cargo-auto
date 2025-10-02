@@ -8,22 +8,20 @@
 
 use crate::{BLUE, GREEN, RED, RESET, YELLOW};
 use secrecy::{ExposeSecret, ExposeSecretMut, SecretBox, SecretString};
+use crossplatform_path::CrossPathBuf;
 
 pub struct PathStructInSshFolder {
     file_name: String,
-    tilde_file_path: String,
-    full_file_path: camino::Utf8PathBuf,
+    tilde_file_path: CrossPathBuf,
 }
 
 impl PathStructInSshFolder {
-    /// Private key file path: tilde string and PathBuf.
+    /// Private key file path: CrossPathBuf have tilde. Later it transforms to full path.
     pub fn new(file_name: String) -> anyhow::Result<Self> {
-        let tilde_file_path = format!("~/.ssh/{file_name}");
-        let full_file_path = tilde_expand_to_home_dir_utf8(&tilde_file_path)?;
+        let tilde_file_path = CrossPathBuf::new(&format!("~/.ssh/{file_name}"))?;
         Ok(PathStructInSshFolder {
             file_name,
             tilde_file_path,
-            full_file_path,
         })
     }
 
@@ -31,14 +29,20 @@ impl PathStructInSshFolder {
     pub fn get_file_name(&self) -> &str {
         &self.file_name
     }
-    /// Get reference to full file path.
-    pub fn get_full_file_path(&self) -> &camino::Utf8Path {
-        &self.full_file_path
+    
+    /// Get reference to tilde file path CrossPathBuf.
+    pub fn get_cross_path(&self) -> &CrossPathBuf {
+        &self.tilde_file_path
     }
 
-    /// Does exist file on path
+    /// Get full file path.
+    pub fn get_full_file_path(&self) -> std::path::PathBuf {
+        self.tilde_file_path.to_path_buf_current_os()
+    }
+
+    /// Return true if file exists on path.
     pub fn exists(&self) -> bool {
-        self.full_file_path.exists()
+        self.tilde_file_path.exists()
     }
 }
 
@@ -75,12 +79,12 @@ pub(crate) fn random_seed_32bytes_and_string() -> anyhow::Result<([u8; 32], Stri
 /// Get the string from the file that is base64 encoded.
 ///
 /// It is encoded just to obscure it a little.
-pub(crate) fn open_file_b64_get_string(plain_file_b64_path: &camino::Utf8Path) -> anyhow::Result<String> {
-    if !camino::Utf8Path::new(&plain_file_b64_path).exists() {
+pub(crate) fn open_file_b64_get_string(plain_file_b64_path: &CrossPathBuf) -> anyhow::Result<String> {
+    if !plain_file_b64_path.exists() {
         anyhow::bail!("{RED}Error: File {plain_file_b64_path} does not exist! {RESET}");
     }
 
-    let plain_file_text = std::fs::read_to_string(plain_file_b64_path)?;
+    let plain_file_text = plain_file_b64_path.read_to_string()?;
     // it is encoded just to obscure it a little
     let plain_file_text = decode64_from_string_to_string(&plain_file_text)?;
 
@@ -161,7 +165,7 @@ pub(crate) fn sign_seed_with_ssh_agent_or_private_key_file(
         println!("{GREEN}ssh-add -t 1h {private_key_path_struct}{RESET}");
         println!("  {YELLOW}Unlock the private key to decrypt the saved file.{RESET}");
 
-        match sign_seed_with_private_key_file(plain_seed_bytes_32bytes, private_key_path_struct.get_full_file_path()) {
+        match sign_seed_with_private_key_file(plain_seed_bytes_32bytes, &private_key_path_struct.tilde_file_path) {
             Ok(secret_passcode_32bytes) => secret_passcode_32bytes,
             Err(err) => {
                 if err.to_string() == "Passphrase empty" {
@@ -188,27 +192,28 @@ fn sign_seed_with_ssh_agent(
         client: &mut ssh_agent_client_rs_git_bash::Client,
         fingerprint_from_file: &str,
     ) -> anyhow::Result<ssh_key::PublicKey> {
-        let vec_public_key = client.list_identities()?;
+        let vec_identities = client.list_all_identities()?;
+        for identity in vec_identities.iter() {
+            if let ssh_agent_client_rs_git_bash::Identity::PublicKey(public_key) = identity {
+                let fingerprint_from_agent = public_key.key_data().fingerprint(Default::default()).to_string();
 
-        for public_key in vec_public_key.iter() {
-            let fingerprint_from_agent = public_key.key_data().fingerprint(Default::default()).to_string();
-
-            if fingerprint_from_agent == fingerprint_from_file {
-                return Ok(public_key.to_owned());
+                if fingerprint_from_agent == fingerprint_from_file {
+                    return Ok(public_key.clone().into_owned());
+                }
             }
         }
         anyhow::bail!("This private key is not added to ssh-agent.")
     }
     let public_key_path_struct = PathStructInSshFolder::new(format!("{}.pub", private_key_path_struct.get_file_name()))?;
-    let public_key = ssh_key::PublicKey::read_openssh_file(public_key_path_struct.get_full_file_path().as_std_path())?;
+    let public_key = ssh_key::PublicKey::read_openssh_file(&public_key_path_struct.get_full_file_path())?;
     let fingerprint_from_file = public_key.fingerprint(Default::default()).to_string();
 
     println!("  {YELLOW}Connect to ssh-agent on SSH_AUTH_SOCK{RESET}");
     let var_ssh_auth_sock = std::env::var("SSH_AUTH_SOCK")?;
-    let path_ssh_auth_sock = camino::Utf8Path::new(&var_ssh_auth_sock);
+    let path_ssh_auth_sock = CrossPathBuf::new(&var_ssh_auth_sock)?;
     // import trait into scope
     use ssh_agent_client_rs_git_bash::GitBash;
-    let mut ssh_agent_client = ssh_agent_client_rs_git_bash::Client::connect_to_git_bash_or_linux(path_ssh_auth_sock.as_std_path())?;
+    let mut ssh_agent_client = ssh_agent_client_rs_git_bash::Client::connect_to_git_bash_or_linux(&path_ssh_auth_sock.to_path_buf_current_os())?;
 
     let public_key = public_key_from_ssh_agent(&mut ssh_agent_client, &fingerprint_from_file)?;
 
@@ -229,7 +234,7 @@ fn sign_seed_with_ssh_agent(
 /// Returns secret_password_bytes.  
 fn sign_seed_with_private_key_file(
     plain_seed_bytes_32bytes: [u8; 32],
-    private_key_file_path: &camino::Utf8Path,
+    private_key_file_path: &CrossPathBuf,
 ) -> anyhow::Result<SecretBox<[u8; 32]>> {
     /// Internal function for user input passphrase
     fn user_input_secret_passphrase() -> anyhow::Result<SecretString> {
@@ -252,7 +257,7 @@ fn sign_seed_with_private_key_file(
 
     // sign_with_ssh_private_key_file
     println!("  {YELLOW}Use ssh private key from file {RESET}");
-    let private_key = ssh_key::PrivateKey::read_openssh_file(private_key_file_path.as_std_path())?;
+    let private_key = ssh_key::PrivateKey::read_openssh_file(&private_key_file_path.to_path_buf_current_os())?;
     println!("  {YELLOW}Unlock the private key {RESET}");
 
     // cannot use secrecy: PrivateKey does not have trait Zeroize
@@ -328,21 +333,3 @@ pub(crate) fn decrypt_symmetric(
     Ok(secret_decrypted_string)
 }
 // endregion: symmetrical encrypt and decrypt
-
-/// Replace tilde with home::home_dir, only for utf8.
-pub fn tilde_expand_to_home_dir_utf8(path_str: &str) -> anyhow::Result<camino::Utf8PathBuf> {
-    let mut expanded = String::new();
-    if path_str.starts_with("~") {
-        use anyhow::Context;
-        let base = home::home_dir().context("Cannot find home_dir in this OS.")?;
-        // only utf8 is accepted
-        let base = base.to_string_lossy();
-        expanded.push_str(&base);
-        expanded.push_str(path_str.trim_start_matches("~"));
-        use std::str::FromStr;
-        Ok(camino::Utf8PathBuf::from_str(&expanded)?)
-    } else {
-        use std::str::FromStr;
-        Ok(camino::Utf8PathBuf::from_str(path_str)?)
-    }
-}

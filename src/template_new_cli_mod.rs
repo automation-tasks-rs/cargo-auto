@@ -8,19 +8,20 @@
 use crate::{GREEN, RED, RESET, YELLOW};
 
 /// Creates a new Rust project from template.
-pub fn new_cli(rust_project_name: Option<String>, github_owner_or_organization: Option<String>) {
+pub fn new_cli(rust_project_name: Option<String>, github_owner_or_organization: Option<String>) -> anyhow::Result<()> {
     if rust_project_name.is_none() {
         println!("{RED}Error: Project name argument is missing: `cargo auto new_cli project_name github_owner_or_organization`{RESET}");
-        return;
+        return Ok(());
     }
     if github_owner_or_organization.is_none() {
         println!("{RED}Error: github_owner argument is missing: `cargo auto new_cli project_name github_owner_or_organization`{RESET}");
-        return;
+        return Ok(());
     }
-    let rust_project_name = rust_project_name.unwrap();
-    let github_owner_or_organization = github_owner_or_organization.unwrap();
+    use anyhow::Context;
+    let rust_project_name = rust_project_name.context("rust_project_name is None")?;
+    let github_owner_or_organization = github_owner_or_organization.context("github_owner_or_organization is None")?;
 
-    copy_to_files(&rust_project_name, &github_owner_or_organization);
+    copy_to_files(&rust_project_name, &github_owner_or_organization)?;
 
     println!();
     println!("  {YELLOW}The command `cargo auto new_cli` generated the directory `{rust_project_name}`.{RESET}");
@@ -29,15 +30,16 @@ pub fn new_cli(rust_project_name: Option<String>, github_owner_or_organization: 
     println!("  {YELLOW}Then build inside the VSCode terminal with:{RESET}");
     println!("{GREEN}cargo auto build{RESET}");
     println!("  {YELLOW}and follow the detailed instructions.{RESET}");
+    Ok(())
 }
 
 /// Copy the Rust project into a compressed file.  
-fn copy_to_files(rust_project_name: &str, github_owner_or_organization: &str) {
+fn copy_to_files(rust_project_name: &str, github_owner_or_organization: &str) -> anyhow::Result<()> {
     let folder_path = std::path::Path::new(rust_project_name);
     if folder_path.exists() {
-        panic!("{RED}Error: Folder {rust_project_name} already exists! {RESET}");
+        anyhow::bail!("{RED}Error: Folder {rust_project_name} already exists! {RESET}");
     }
-    std::fs::create_dir_all(folder_path).unwrap();
+    std::fs::create_dir_all(folder_path)?;
 
     // download latest template.tar.gz
     println!("  {YELLOW}Downloading template.tar.gz...{RESET}");
@@ -47,30 +49,30 @@ fn copy_to_files(rust_project_name: &str, github_owner_or_organization: &str) {
     let reqwest_client = reqwest::blocking::Client::new();
     let http_response = reqwest_client.get(url).send();
     if let Ok(body) = http_response {
-        let body = body.bytes().unwrap();
+        let body = body.bytes()?;
         // Get the content of the response
-        std::fs::write(path, &body).unwrap_or_else(|_| panic!("Download failed for {file_name}"));
+        std::fs::write(path, &body).or_else(|err| anyhow::bail!("Download failed for {file_name} {err}"))?;
     } else {
-        panic!("Error while retrieving data: {:#?}", http_response.err());
+        anyhow::bail!("Error while retrieving data: {:#?}", http_response.err());
     }
 
     // decompress into folder_path
-    let tar_gz = std::fs::File::open(path).unwrap();
+    let tar_gz = std::fs::File::open(path)?;
     let tar = flate2::read::GzDecoder::new(tar_gz);
     let mut archive = tar::Archive::new(tar);
-    archive.unpack(folder_path).unwrap();
-    std::fs::remove_file(path).unwrap();
+    archive.unpack(folder_path)?;
+    std::fs::remove_file(path)?;
 
     // replace placeholders inside text files
     for entry in walkdir::WalkDir::new(folder_path).into_iter().filter_map(Result::ok) {
         if entry.file_type().is_file() {
             // template has only valid utf8 files
             println!("replace: {}", entry.path().to_string_lossy());
-            let content = std::fs::read_to_string(entry.path()).unwrap();
+            let content = std::fs::read_to_string(entry.path())?;
             let content = content.replace("cargo_auto_template_new_cli", rust_project_name);
             let content = content.replace("automation-tasks-rs", github_owner_or_organization);
             let content = content.replace("automation--tasks--rs", "automation-tasks-rs");
-            std::fs::write(entry.path(), content).unwrap();
+            std::fs::write(entry.path(), content)?;
         }
     }
     // renaming files is tricky and must be traverse  in reverse.
@@ -79,7 +81,12 @@ fn copy_to_files(rust_project_name: &str, github_owner_or_organization: &str) {
     for entry in traverse_reverse.iter() {
         if entry.file_name() == "cargo_auto_template_new_cli" {
             println!("rename: {}", entry.path().to_string_lossy());
-            std::fs::rename(entry.path(), entry.path().parent().unwrap().join(rust_project_name)).unwrap();
+            use anyhow::Context;
+            std::fs::rename(
+                entry.path(),
+                entry.path().parent().context("parent is None")?.join(rust_project_name),
+            )?;
         }
     }
+    Ok(())
 }

@@ -58,14 +58,14 @@
 //! serde ={ version= "1.0.217", features=["std","derive"]}
 //! serde_json = "1.0.138"
 //! ssh-key = { version = "0.6.7", features = [ "rsa", "encryption","ed25519"] }
-//! ssh_agent_client_rs_git_bash = "0.0.11"
+//! ssh_agent_client_rs_git_bash = "0.0.19"
 //! rsa = { version = "0.9.7", features = ["sha2","pem"] }
 //! zeroize = {version="1.8.1", features=["derive"]}
 //! aes-gcm = "0.10.3"
-//! camino = "1.1.6"
 //! base64ct = {version = "1.6.0", features = ["alloc"] }
 //! secrecy = "0.10.3"
 //! chrono ="0.4.39"
+//! crossplatform_path="1.1.1"
 //! ```
 //!
 
@@ -140,7 +140,7 @@ pub fn get_github_secret_token() -> anyhow::Result<SecretString> {
         Ok(secret_access_token)
     } else {
         println!("  {YELLOW}Encrypted file {encrypted_path_struct} exist.{RESET}");
-        let plain_file_text = ende::open_file_b64_get_string(encrypted_path_struct.get_full_file_path())?;
+        let plain_file_text = ende::open_file_b64_get_string(encrypted_path_struct.get_cross_path())?;
         // deserialize json into struct
         let encrypted_text_with_metadata: ende::EncryptedTextWithMetadata = serde_json::from_str(&plain_file_text)?;
 
@@ -275,8 +275,7 @@ fn refresh_tokens(client_id: &str, refresh_token: String) -> anyhow::Result<Secr
 
     println!("  {YELLOW}Send request with client_id and refresh_token and retrieve access tokens{RESET}");
     println!("  {YELLOW}wait...{RESET}");
-    let secret_response_access_token: SecretBox<SecretResponseAccessToken> = SecretBox::new(Box::new(
-        reqwest::blocking::Client::new()
+  let response_text = reqwest::blocking::Client::new()
             .post("https://github.com/login/oauth/access_token")
             .header("Content-Type", "application/json")
             .header("Accept", "application/json")
@@ -285,10 +284,9 @@ fn refresh_tokens(client_id: &str, refresh_token: String) -> anyhow::Result<Secr
                 grant_type: "refresh_token".to_string(),
                 refresh_token,
             })
-            .send()?
-            .json()?,
-    ));
-
+            .send()?.text()?;
+    let response_json: SecretResponseAccessToken = serde_json::from_str(&response_text).with_context(||response_text)?;
+    let secret_response_access_token = SecretBox::new(Box::new(response_json));
     Ok(secret_response_access_token)
 }
 
@@ -372,7 +370,7 @@ fn decrypt_text_with_metadata(
 ) -> anyhow::Result<SecretBox<SecretResponseAccessToken>> {
     // the private key file is written inside the file
     let private_key_path_struct = ende::PathStructInSshFolder::new(encrypted_text_with_metadata.private_key_file_name.clone())?;
-    if !camino::Utf8Path::new(private_key_path_struct.get_full_file_path()).exists() {
+    if !private_key_path_struct.exists() {
         anyhow::bail!("{RED}Error: File {private_key_path_struct} does not exist! {RESET}");
     }
 

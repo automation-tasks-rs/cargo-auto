@@ -38,6 +38,7 @@
         "cmake",
         "commitish",
         "crev",
+        "crossplatform",
         "CRUSTDE",
         "debuginfo",
         "deps",
