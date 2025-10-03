@@ -6,7 +6,7 @@
 <a href=#6 id=6 data-nosnippet>6</a></span><span class="doccomment">//! # cargo-auto  
 <a href=#7 id=7 data-nosnippet>7</a>//!
 <a href=#8 id=8 data-nosnippet>8</a>//! **Automation tasks coded in Rust language for the workflow of Rust projects**  
-<a href=#9 id=9 data-nosnippet>9</a>//! ***version: 2025.1002.1818 date: 2025-10-02 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
+<a href=#9 id=9 data-nosnippet>9</a>//! ***version: 2025.1002.1910 date: 2025-10-03 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
 <a href=#10 id=10 data-nosnippet>10</a>//!
 <a href=#11 id=11 data-nosnippet>11</a>//!  ![maintained](https://img.shields.io/badge/maintained-green)
 <a href=#12 id=12 data-nosnippet>12</a>//!  ![ready-for-use](https://img.shields.io/badge/ready_for_use-green)
@@ -26,9 +26,9 @@
 <a href=#26 id=26 data-nosnippet>26</a>//!  [![Newest docs](https://img.shields.io/badge/newest_docs-blue.svg)](https://automation-tasks-rs.github.io/cargo-auto/cargo_auto/index.html)
 <a href=#27 id=27 data-nosnippet>27</a>//!  ![cargo-auto](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 <a href=#28 id=28 data-nosnippet>28</a>//!
-<a href=#29 id=29 data-nosnippet>29</a>//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-957-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+<a href=#29 id=29 data-nosnippet>29</a>//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-956-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 <a href=#30 id=30 data-nosnippet>30</a>//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-610-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-<a href=#31 id=31 data-nosnippet>31</a>//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-135-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+<a href=#31 id=31 data-nosnippet>31</a>//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-138-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 <a href=#32 id=32 data-nosnippet>32</a>//! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 <a href=#33 id=33 data-nosnippet>33</a>//! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-0-orange.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 <a href=#34 id=34 data-nosnippet>34</a>//!
@@ -262,25 +262,27 @@
 <a href=#262 id=262 data-nosnippet>262</a></span><span class="kw">fn </span>main() -&gt; std::process::ExitCode {
 <a href=#263 id=263 data-nosnippet>263</a>    <span class="kw">match </span>main_returns_anyhow_result() {
 <a href=#264 id=264 data-nosnippet>264</a>        <span class="prelude-val">Err</span>(err) =&gt; {
-<a href=#265 id=265 data-nosnippet>265</a>            <span class="macro">eprintln!</span>(<span class="string">"{}"</span>, err);
-<a href=#266 id=266 data-nosnippet>266</a>            <span class="macro">eprintln!</span>(<span class="string">"Exit program with failure exit code 1"</span>);
-<a href=#267 id=267 data-nosnippet>267</a>            std::process::ExitCode::FAILURE
-<a href=#268 id=268 data-nosnippet>268</a>        }
-<a href=#269 id=269 data-nosnippet>269</a>        <span class="prelude-val">Ok</span>(()) =&gt; std::process::ExitCode::SUCCESS,
-<a href=#270 id=270 data-nosnippet>270</a>    }
-<a href=#271 id=271 data-nosnippet>271</a>}
-<a href=#272 id=272 data-nosnippet>272</a><span class="doccomment">/// main() returns anyhow::Result
-<a href=#273 id=273 data-nosnippet>273</a></span><span class="kw">fn </span>main_returns_anyhow_result() -&gt; anyhow::Result&lt;()&gt; {
-<a href=#274 id=274 data-nosnippet>274</a>    cli::tracing_init()<span class="question-mark">?</span>;
-<a href=#275 id=275 data-nosnippet>275</a>    <span class="comment">// get CLI arguments
-<a href=#276 id=276 data-nosnippet>276</a>    </span><span class="kw">let </span><span class="kw-2">mut </span>args = std::env::args();
-<a href=#277 id=277 data-nosnippet>277</a>    <span class="comment">// the zero argument is the name of the program
-<a href=#278 id=278 data-nosnippet>278</a>    </span><span class="kw">let </span>_arg_0 = args.next();
-<a href=#279 id=279 data-nosnippet>279</a>
-<a href=#280 id=280 data-nosnippet>280</a>    <span class="kw">if </span>lib::is_not_run_in_rust_project_root_directory() {
-<a href=#281 id=281 data-nosnippet>281</a>        lib::outside_of_rust_project_mod::parse_args(<span class="kw-2">&amp;mut </span>args)<span class="question-mark">?</span>;
-<a href=#282 id=282 data-nosnippet>282</a>    } <span class="kw">else </span>{
-<a href=#283 id=283 data-nosnippet>283</a>        lib::inside_of_rust_project_mod::parse_args(<span class="kw-2">&amp;mut </span>args)<span class="question-mark">?</span>;
-<a href=#284 id=284 data-nosnippet>284</a>    }
-<a href=#285 id=285 data-nosnippet>285</a>    <span class="prelude-val">Ok</span>(())
-<a href=#286 id=286 data-nosnippet>286</a>}</code></pre></div></section></main></body></html>
+<a href=#265 id=265 data-nosnippet>265</a>            <span class="comment">// After many propagations with ? the error finally comes here to report to the user.
+<a href=#266 id=266 data-nosnippet>266</a>            // To add additional data for the error add anyhow::context() or with_context() traits.
+<a href=#267 id=267 data-nosnippet>267</a>            </span><span class="macro">eprintln!</span>(<span class="string">"{}"</span>, err);
+<a href=#268 id=268 data-nosnippet>268</a>            <span class="comment">// eprintln!("Exit program with failure exit code 1");
+<a href=#269 id=269 data-nosnippet>269</a>            </span>std::process::ExitCode::FAILURE
+<a href=#270 id=270 data-nosnippet>270</a>        }
+<a href=#271 id=271 data-nosnippet>271</a>        <span class="prelude-val">Ok</span>(()) =&gt; std::process::ExitCode::SUCCESS,
+<a href=#272 id=272 data-nosnippet>272</a>    }
+<a href=#273 id=273 data-nosnippet>273</a>}
+<a href=#274 id=274 data-nosnippet>274</a><span class="doccomment">/// main() returns anyhow::Result
+<a href=#275 id=275 data-nosnippet>275</a></span><span class="kw">fn </span>main_returns_anyhow_result() -&gt; anyhow::Result&lt;()&gt; {
+<a href=#276 id=276 data-nosnippet>276</a>    cli::tracing_init()<span class="question-mark">?</span>;
+<a href=#277 id=277 data-nosnippet>277</a>    <span class="comment">// get CLI arguments
+<a href=#278 id=278 data-nosnippet>278</a>    </span><span class="kw">let </span><span class="kw-2">mut </span>args = std::env::args();
+<a href=#279 id=279 data-nosnippet>279</a>    <span class="comment">// the zero argument is the name of the program
+<a href=#280 id=280 data-nosnippet>280</a>    </span><span class="kw">let </span>_arg_0 = args.next();
+<a href=#281 id=281 data-nosnippet>281</a>
+<a href=#282 id=282 data-nosnippet>282</a>    <span class="kw">if </span>lib::is_not_run_in_rust_project_root_directory() {
+<a href=#283 id=283 data-nosnippet>283</a>        lib::outside_of_rust_project_mod::parse_args(<span class="kw-2">&amp;mut </span>args)<span class="question-mark">?</span>;
+<a href=#284 id=284 data-nosnippet>284</a>    } <span class="kw">else </span>{
+<a href=#285 id=285 data-nosnippet>285</a>        lib::inside_of_rust_project_mod::parse_args(<span class="kw-2">&amp;mut </span>args)<span class="question-mark">?</span>;
+<a href=#286 id=286 data-nosnippet>286</a>    }
+<a href=#287 id=287 data-nosnippet>287</a>    <span class="prelude-val">Ok</span>(())
+<a href=#288 id=288 data-nosnippet>288</a>}</code></pre></div></section></main></body></html>
