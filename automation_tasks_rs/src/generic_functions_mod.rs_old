@@ -32,9 +32,7 @@ pub fn tracing_init() -> anyhow::Result<()> {
     // export RUST_LOG=automation_tasks_rs=trace
     // Unset the environment variable RUST_LOG
     // unset RUST_LOG
-    let filter = tracing_subscriber::EnvFilter::from_default_env()
-        .add_directive("hyper_util=error".parse()?)
-        .add_directive("reqwest=error".parse()?);
+    let filter = tracing_subscriber::EnvFilter::from_default_env().add_directive("iced=error".parse()?);
 
     tracing_subscriber::fmt()
         .with_file(true)

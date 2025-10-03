@@ -159,25 +159,23 @@ pub fn task_github_new_release() -> anyhow::Result<()> {
         .as_i64()
         .context("id is None")?
         .to_string();
-
     println!("  {YELLOW}Now uploading release asset. This can take some time if the files are big. Wait...{RESET}");
-    std::fs::create_dir_all("tmp")?;
     // Linux executable binary tar-gz-ed compress files tar.gz
     let executable_path = format!("target/release/{repo_name}");
     if std::fs::exists(&executable_path)? {
         let compressed_name = format!("{repo_name}-{tag_name_version}-x86_64-unknown-linux-gnu.tar.gz");
 
         cl::ShellCommandLimitedDoubleQuotesSanitizer::new(
-            r#"tar -zcvf "tmp/{compressed_name_sanitized_for_double_quote}" "{executable_path_sanitized_for_double_quote}" "#,
+            r#"tar -zcvf "{compressed_name_sanitized_for_double_quote}" "{executable_path_sanitized_for_double_quote}" "#,
         )?
         .arg("{compressed_name_sanitized_for_double_quote}", &compressed_name)?
         .arg("{executable_path_sanitized_for_double_quote}", &executable_path)?
         .run()?;
 
         // upload asset
-        cgl::github_api_upload_asset_to_release(&github_owner, &repo_name, &release_id, &format!("tmp/{compressed_name}"))?;
+        cgl::github_api_upload_asset_to_release(&github_owner, &repo_name, &release_id, &compressed_name)?;
 
-        cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"rm "tmp/{compressed_name_sanitized_for_double_quote}" "#)?
+        cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"rm "{compressed_name_sanitized_for_double_quote}" "#)?
             .arg("{compressed_name_sanitized_for_double_quote}", &compressed_name)?
             .run()?;
         println!(r#"  {YELLOW}Asset uploaded. Open and edit the description on GitHub Releases in the browser.{RESET}"#);
@@ -192,16 +190,16 @@ pub fn task_github_new_release() -> anyhow::Result<()> {
         let compressed_name = format!("{repo_name}-{tag_name_version}-x86_64-pc-windows-gnu.zip");
 
         cl::ShellCommandLimitedDoubleQuotesSanitizer::new(
-            r#"zip "tmp/{compressed_name_sanitized_for_double_quote}" "{executable_path_sanitized_for_double_quote}" "#,
+            r#"zip "{compressed_name_sanitized_for_double_quote}" "{executable_path_sanitized_for_double_quote}" "#,
         )?
         .arg("{compressed_name_sanitized_for_double_quote}", &compressed_name)?
         .arg("{executable_path_sanitized_for_double_quote}", &executable_path)?
         .run()?;
 
         // upload asset
-        cgl::github_api_upload_asset_to_release(&github_owner, &repo_name, &release_id, &format!("tmp/{compressed_name}"))?;
+        cgl::github_api_upload_asset_to_release(&github_owner, &repo_name, &release_id, &compressed_name)?;
 
-        cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"rm "tmp/{compressed_name_sanitized_for_double_quote}" "#)?
+        cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"rm "{compressed_name_sanitized_for_double_quote}" "#)?
             .arg("{compressed_name_sanitized_for_double_quote}", &compressed_name)?
             .run()?;
 

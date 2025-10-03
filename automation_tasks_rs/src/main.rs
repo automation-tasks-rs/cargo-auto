@@ -301,19 +301,33 @@ fn task_commit_and_push(arg_2: Option<String>) -> anyhow::Result<()> {
 
 /// publish to crates.io and git tag
 fn task_publish_to_crates_io() -> anyhow::Result<()> {
-    let main_rs_path = CrossPathBuf::new("src/main.rs")?;
-
-    if main_rs_path.exists() {
-        // executable binary
-        crate::build_cli_bin_mod::task_publish_to_crates_io()?;
-    } else {
-        // library
-        crate::build_lib_mod::task_publish_to_crates_io()?;
-    }
+    let (_tag_name_version, package_name, version) = crate::build_lib_mod::task_publish_to_crates_io()?;
 
     println!(
         r#"
-  {YELLOW}Now, write the content of the release in the RELEASES.md in the `## Unreleased` section, then{RESET}
+  {YELLOW}After `cargo auto publish_to_crates_io`, check in browser{RESET}
+{GREEN}https://crates.io/crates/{package_name}{RESET}
+"#
+    );
+    if CrossPathBuf::new("src/lib.rs")?.exists() {
+        println!(
+            r#"
+  {YELLOW}Add the dependency to your Rust project Cargo.toml and check how it works.{RESET}
+{GREEN}{package_name} = "{version}"{RESET}
+"#
+        );
+    }
+    if CrossPathBuf::new("src/main.rs")?.exists() || CrossPathBuf::new(&format!("src/bin/{package_name}/main.rs"))?.exists() {
+        println!(
+            r#"
+  {YELLOW}Install the program and check how it works.{RESET}
+{GREEN}cargo install {package_name}{RESET}
+"#
+        );
+    }
+    println!(
+        r#"
+  {YELLOW}Now, edit the content of the release in the RELEASES.md in the `## Unreleased` section, then{RESET}
   {YELLOW}Next, create the GitHub Release.{RESET}
 {GREEN}cargo auto github_new_release{RESET}
 "#
