@@ -7,6 +7,7 @@
 //! If you want to customize it, copy the code into main.rs and modify it there.
 
 #![allow(dead_code)]
+use anyhow::Context;
 use cargo_auto_lib as cl;
 // traits must be in scope (Rust strangeness)
 use cl::CargoTomlPublicApiMethods;
@@ -22,66 +23,64 @@ use crate::encrypt_decrypt_with_ssh_key_mod::github_api_token_with_oauth2_mod::s
 use crate::encrypt_decrypt_with_ssh_key_mod::github_api_token_with_oauth2_mod::upload_to_github_with_secret_token;
 
 /// Does git have settings for remote.
-pub(crate) fn git_has_remote() -> bool {
+pub(crate) fn git_has_remote() -> anyhow::Result<bool> {
     // git remote returns only "origin" if exists or nothing if it does not exist
-    let output = std::process::Command::new("git").arg("remote").output().unwrap();
+    let output = std::process::Command::new("git").arg("remote").output()?;
     // return
-    String::from_utf8(output.stdout).unwrap() != ""
+    Ok(!(String::from_utf8(output.stdout)?).is_empty())
 }
 
 /// Has git upstream
-pub(crate) fn git_has_upstream() -> bool {
+pub(crate) fn git_has_upstream() -> anyhow::Result<bool> {
     // git branch -vv returns upstream branches in angle brackets []
-    let output = std::process::Command::new("git").arg("branch").arg("-vv").output().unwrap();
+    let output = std::process::Command::new("git").arg("branch").arg("-vv").output()?;
     // return
-    String::from_utf8(output.stdout).unwrap().contains("[")
+    Ok(String::from_utf8(output.stdout)?.contains("["))
 }
 
 /// Interactive ask to create a new remote GitHub repository.
 ///
 /// Use a function pointer to send_to_github_api_with_secret_token() to avoid passing the secret_token.
-pub(crate) fn new_remote_github_repository() -> Option<()> {
+pub(crate) fn new_remote_github_repository() -> anyhow::Result<()> {
     // early error if Repository contains the placeholder "github_owner" or does not contain the true github_owner
-    let cargo_toml = cl::CargoToml::read();
+    let cargo_toml = cl::CargoToml::read()?;
     let package_name = cargo_toml.package_name();
     // the second fragment of URL can be the github_owner (authenticated_user) or organization
     let github_owner_or_organization = cargo_toml
         .github_owner()
-        .unwrap_or_else(|| panic!("{RED}ERROR: Element Repository in Cargo.toml does not contain the github_owner!{RESET}"));
+        .context("{RED}ERROR: Element Repository in Cargo.toml does not contain the github_owner!{RESET}")?;
     if github_owner_or_organization == "github_owner" {
-        panic!("{RED}Error: The placeholder 'github_owner' in Cargo.toml/repository is not changed to the real github_owner or GitHub Organization.{RESET}")
+        anyhow::bail!("{RED}Error: The placeholder 'github_owner' in Cargo.toml/repository is not changed to the real github_owner or GitHub Organization.{RESET}")
     }
 
     // get authenticated user from Github
-    let json_value = send_to_github_api_with_secret_token(github_api_get_authenticated_user()).unwrap();
+    let json_value = send_to_github_api_with_secret_token(github_api_get_authenticated_user())?;
     let Some(authenticated_user_login) = json_value.get("login") else {
-        panic!("{RED}ERROR: Unrecognized Authenticated on GitHub from secret_token.{RESET}");
+        anyhow::bail!("{RED}ERROR: Unrecognized Authenticated on GitHub from secret_token.{RESET}");
     };
-    let authenticated_user_login = authenticated_user_login.as_str().unwrap();
+    let authenticated_user_login = authenticated_user_login.as_str().context("authenticated_user_login is None")?;
 
     if github_owner_or_organization == authenticated_user_login {
         // this repository is a User Repository
     } else {
         // check if it is a GitHub Organization
-        let json_value = send_to_github_api_with_secret_token(github_api_get_organization(&github_owner_or_organization)).unwrap();
+        let json_value = send_to_github_api_with_secret_token(github_api_get_organization(&github_owner_or_organization))?;
         let Some(_organization_login) = json_value.get("login") else {
-            panic!("{RED}ERROR: Unrecognized Organization on GitHub: {github_owner_or_organization}.{RESET}");
+            anyhow::bail!("{RED}ERROR: Unrecognized Organization on GitHub: {github_owner_or_organization}.{RESET}");
         };
     }
 
-    if !git_has_remote() {
+    if !git_has_remote()? {
         let description = cargo_toml
             .package_description()
-            .unwrap_or_else(|| panic!("{RED}ERROR: Element Description in Cargo.toml does not exist!{RESET}"));
+            .context("{RED}ERROR: Element Description in Cargo.toml does not exist!{RESET}")?;
 
         // ask interactive
         println!("{BLUE}This project does not have a remote GitHub repository.{RESET}");
-        let answer = inquire::Text::new(&format!("{BLUE}Do you want to create a new remote GitHub repository? (y/n){RESET}"))
-            .prompt()
-            .unwrap();
+        let answer = inquire::Text::new(&format!("{BLUE}Do you want to create a new remote GitHub repository? (y/n){RESET}")).prompt()?;
         if answer.to_lowercase() != "y" {
             // early exit
-            return None;
+            anyhow::bail!("Ok. You don't want to create a new remote GitHub repository.");
         }
         // continue if answer is "y"
 
@@ -91,20 +90,19 @@ pub(crate) fn new_remote_github_repository() -> Option<()> {
                 &github_owner_or_organization,
                 &package_name,
                 &description,
-            ))
-            .unwrap();
+            ))?;
             // early exit on error
             if let Some(error_message) = json_value.get("message") {
                 eprintln!("{RED}{error_message}{RESET}");
                 if let Some(errors) = json_value.get("errors") {
-                    let errors = errors.as_array().unwrap();
+                    let errors = errors.as_array().context("errors as_array is None")?;
                     for error in errors.iter() {
                         if let Some(code) = error.get("message") {
                             eprintln!("{RED}{code}{RESET}");
                         }
                     }
                 }
-                panic!("{RED}Call to GitHub API github_api_user_repository_new returned an error.{RESET}")
+                anyhow::bail!("{RED}Call to GitHub API github_api_user_repository_new returned an error.{RESET}")
             }
             json_value
         } else {
@@ -113,55 +111,66 @@ pub(crate) fn new_remote_github_repository() -> Option<()> {
                 &github_owner_or_organization,
                 &package_name,
                 &description,
-            ))
-            .unwrap();
+            ))?;
             // early exit on error
             if let Some(error_message) = json_value.get("message") {
                 eprintln!("{RED}{error_message}{RESET}");
                 if let Some(errors) = json_value.get("errors") {
-                    let errors = errors.as_array().unwrap();
+                    let errors = errors.as_array().context("errors.as array is None")?;
                     for error in errors.iter() {
                         if let Some(code) = error.get("message") {
                             eprintln!("{RED}{code}{RESET}");
                         }
                     }
                 }
-                panic!("{RED}Call to GitHub API github_api_organization_repository_new returned an error.{RESET}")
+                anyhow::bail!("{RED}Call to GitHub API github_api_organization_repository_new returned an error.{RESET}")
             }
             json_value
         };
 
         // get just the name, description and html_url from json
-        println!("  {YELLOW}name: {}{RESET}", json_value.get("name").unwrap().as_str().unwrap());
+        println!(
+            "  {YELLOW}name: {}{RESET}",
+            json_value
+                .get("name")
+                .context("json_value name is None")?
+                .as_str()
+                .context("json_value name is None")?
+        );
         println!(
             "  {YELLOW}description: {}{RESET}",
-            json_value.get("description").unwrap().as_str().unwrap()
+            json_value
+                .get("description")
+                .context("json_value description is None")?
+                .as_str()
+                .context("json_value description is None")?
         );
-        let repo_html_url = json_value.get("html_url").unwrap().as_str().unwrap().to_string();
+        let repo_html_url = json_value
+            .get("html_url")
+            .context("json_value html_url is None")?
+            .as_str()
+            .context("json_value html_url is None")?
+            .to_string();
         println!("  {YELLOW}url: {}{RESET}", &repo_html_url);
 
         // add this GitHub repository to origin remote over SSH (use sshadd for passphrase)
         cl::ShellCommandLimitedDoubleQuotesSanitizer::new(
             r#"git remote add origin "git@github.com:{github_owner_or_organization}/{name}.git" "#,
-        )
-        .unwrap()
-        .arg("{github_owner_or_organization}", &github_owner_or_organization)
-        .unwrap()
-        .arg("{name}", &package_name)
-        .unwrap()
-        .run()
-        .unwrap();
+        )?
+        .arg("{github_owner_or_organization}", &github_owner_or_organization)?
+        .arg("{name}", &package_name)?
+        .run()?;
     }
 
-    if !git_has_upstream() {
-        cl::run_shell_command("git push -u origin main").unwrap_or_else(|e| panic!("{e}"));
+    if !git_has_upstream()? {
+        cl::run_shell_command("git push -u origin main")?;
 
         // the docs pages are created with a GitHub action
         let _json =
             send_to_github_api_with_secret_token(github_api_create_a_github_pages_site(&github_owner_or_organization, &package_name));
     }
 
-    Some(())
+    Ok(())
 }
 
 /// Check and modify the description and topics on Github
@@ -174,11 +183,11 @@ pub(crate) fn new_remote_github_repository() -> Option<()> {
 /// I want to avoid GitHub API at every git push. I will store the old description and topics
 /// in the file automation_tasks_rs/.old_metadata.json
 /// So I can compare first locally and only when they differ call the Github API.
-pub(crate) fn description_and_topics_to_github() {
-    let cargo_toml = cl::CargoToml::read();
+pub(crate) fn description_and_topics_to_github() -> anyhow::Result<()> {
+    let cargo_toml = cl::CargoToml::read()?;
     let repo_name = cargo_toml.package_name();
-    let github_owner_or_organization = cargo_toml.github_owner().unwrap();
-    let description = cargo_toml.package_description().unwrap();
+    let github_owner_or_organization = cargo_toml.github_owner().context("github_owner is None")?;
+    let description = cargo_toml.package_description().context("package_description is None")?;
     let keywords = cargo_toml.package_keywords();
 
     #[derive(serde::Serialize, serde::Deserialize)]
@@ -199,12 +208,19 @@ pub(crate) fn description_and_topics_to_github() {
 
     if is_old_metadata_different {
         // get data from GitHub
-        let json = send_to_github_api_with_secret_token(github_api_get_repository(&github_owner_or_organization, &repo_name)).unwrap();
+        let json = send_to_github_api_with_secret_token(github_api_get_repository(&github_owner_or_organization, &repo_name))?;
 
         // get just the description and topis from json
-        let gh_description = json.get("description").unwrap().as_str().unwrap();
-        let gh_topics = json.get("topics").unwrap().as_array().unwrap();
-        let gh_topics: Vec<String> = gh_topics.iter().map(|value| value.as_str().unwrap().to_string()).collect();
+        let gh_description = json
+            .get("description")
+            .context("description is None")?
+            .as_str()
+            .context("description is None")?;
+        let gh_topics = json.get("topics").context("topics is None")?.as_array().context("topics is None")?;
+        let gh_topics: Vec<String> = gh_topics
+            .iter()
+            .map(|value| value.as_str().expect("map(||) cannot use ? propagation").to_string())
+            .collect();
 
         // are description and topics both equal?
         if gh_description != description {
@@ -246,11 +262,11 @@ pub(crate) fn description_and_topics_to_github() {
             };
             std::fs::write(
                 "automation_tasks_rs/.old_metadata.json",
-                serde_json::to_string_pretty(&old_metadata).unwrap(),
-            )
-            .unwrap();
+                serde_json::to_string_pretty(&old_metadata)?,
+            )?;
         }
     }
+    Ok(())
 }
 
 /// GitHub api get authenticated user
@@ -549,21 +565,28 @@ pub(crate) fn github_api_create_a_github_pages_site(
 }
 
 /// Upload asset to github release  
-pub(crate) fn github_api_upload_asset_to_release(github_owner_or_organization: &str, repo: &str, release_id: &str, path_to_file: &str) {
+pub(crate) fn github_api_upload_asset_to_release(
+    github_owner_or_organization: &str,
+    repo: &str,
+    release_id: &str,
+    path_to_file: &str,
+) -> anyhow::Result<()> {
     println!("  {YELLOW}Uploading file to GitHub release: {path_to_file}{RESET}");
-    let file = CrossPathBuf::new(&path_to_file).unwrap();
-    let file_name =  file.to_path_buf_current_os();
-    let file_name = file_name.file_name().unwrap().to_string_lossy();
+    let file = CrossPathBuf::new(path_to_file)?;
+    let file_name = file.to_path_buf_current_os();
+    let file_name = file_name.file_name().context("file_name is None")?.to_string_lossy();
 
     let release_upload_url = format!("https://uploads.github.com/repos/{github_owner_or_organization}/{repo}/releases/{release_id}/assets");
-    let mut release_upload_url = <url::Url as std::str::FromStr>::from_str(&release_upload_url).unwrap();
+    let mut release_upload_url = <url::Url as std::str::FromStr>::from_str(&release_upload_url)?;
     release_upload_url.set_query(Some(format!("{}={}", "name", file_name).as_str()));
-    let file_size = std::fs::metadata(file.to_path_buf_current_os()).unwrap().len();
+    let file_size = std::fs::metadata(file.to_path_buf_current_os())?.len();
     println!("  {YELLOW}It can take some time to upload. File size: {file_size}. Wait...{RESET}");
     // region: async code made sync locally
-    let rt = tokio::runtime::Runtime::new().unwrap();
+    let rt = tokio::runtime::Runtime::new()?;
     rt.block_on(async move {
-        let file = tokio::fs::File::open(file.to_path_buf_current_os()).await.unwrap();
+        let file = tokio::fs::File::open(file.to_path_buf_current_os())
+            .await
+            .expect("Propagation ? cannot be used in async block");
         let stream = tokio_util::codec::FramedRead::new(file, tokio_util::codec::BytesCodec::new());
         let body = reqwest::Body::wrap_stream(stream);
 
@@ -576,6 +599,7 @@ pub(crate) fn github_api_upload_asset_to_release(github_owner_or_organization: &
         let _ = upload_to_github_with_secret_token(req).await;
     });
     // endregion: async code made sync locally
+    Ok(())
 }
 
 /// Create new release on Github
@@ -586,7 +610,7 @@ pub(crate) fn github_api_create_new_release(
     name: &str,
     branch: &str,
     body_md_text: &str,
-) -> reqwest::blocking::RequestBuilder {
+) -> anyhow::Result<reqwest::blocking::RequestBuilder> {
     /*
     https://docs.github.com/en/rest/releases/releases?apiVersion=2022-11-28#create-a-release
     Request like :
@@ -623,11 +647,11 @@ pub(crate) fn github_api_create_new_release(
         "prerelease":false,
         "generate_release_notes":false,
     });
-    let body = serde_json::to_string_pretty(&body).unwrap();
-    reqwest::blocking::Client::new()
+    let body = serde_json::to_string_pretty(&body)?;
+    Ok(reqwest::blocking::Client::new()
         .post(releases_url.as_str())
         .header("Content-Type", "application/vnd.github+json")
         .header("X-GitHub-Api-Version", "2022-11-28")
         .header("User-Agent", "cargo_auto_lib")
-        .body(body)
+        .body(body))
 }

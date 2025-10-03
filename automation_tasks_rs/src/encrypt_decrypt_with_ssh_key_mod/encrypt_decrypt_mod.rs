@@ -7,8 +7,8 @@
 //! If you want to customize it, copy the code into main.rs and modify it there.
 
 use crate::{BLUE, GREEN, RED, RESET, YELLOW};
-use secrecy::{ExposeSecret, ExposeSecretMut, SecretBox, SecretString};
 use crossplatform_path::CrossPathBuf;
+use secrecy::{ExposeSecret, ExposeSecretMut, SecretBox, SecretString};
 
 pub struct PathStructInSshFolder {
     file_name: String,
@@ -29,7 +29,7 @@ impl PathStructInSshFolder {
     pub fn get_file_name(&self) -> &str {
         &self.file_name
     }
-    
+
     /// Get reference to tilde file path CrossPathBuf.
     pub fn get_cross_path(&self) -> &CrossPathBuf {
         &self.tilde_file_path
@@ -213,7 +213,8 @@ fn sign_seed_with_ssh_agent(
     let path_ssh_auth_sock = CrossPathBuf::new(&var_ssh_auth_sock)?;
     // import trait into scope
     use ssh_agent_client_rs_git_bash::GitBash;
-    let mut ssh_agent_client = ssh_agent_client_rs_git_bash::Client::connect_to_git_bash_or_linux(&path_ssh_auth_sock.to_path_buf_current_os())?;
+    let mut ssh_agent_client =
+        ssh_agent_client_rs_git_bash::Client::connect_to_git_bash_or_linux(&path_ssh_auth_sock.to_path_buf_current_os())?;
 
     let public_key = public_key_from_ssh_agent(&mut ssh_agent_client, &fingerprint_from_file)?;
 
@@ -296,7 +297,7 @@ pub(crate) fn encrypt_symmetric(
         &nonce,
         secret_string_to_encrypt.expose_secret().as_bytes(),
     ) else {
-        panic!("{RED}Error: Encryption failed. {RESET}");
+        anyhow::bail!("{RED}Error: Encryption failed. {RESET}");
     };
 
     let mut encrypted_bytes = nonce.to_vec();
@@ -326,7 +327,7 @@ pub(crate) fn decrypt_symmetric(
         nonce,
         cipher_text,
     ) else {
-        panic!("{RED}Error: Decryption failed. {RESET}");
+        anyhow::bail!("{RED}Error: Decryption failed. {RESET}");
     };
     let secret_decrypted_string = SecretString::from(String::from_utf8(secret_decrypted_bytes)?);
 

@@ -14,11 +14,11 @@ pub use cl::{BLUE, GREEN, RED, RESET, YELLOW};
 /// Initialize tracing to file logs/automation_tasks_rs.log
 ///
 /// The folder logs/ is in .gitignore and will not be committed.
-pub fn tracing_init() {
+pub fn tracing_init() -> anyhow::Result<()> {
     // uncomment this line to enable tracing to file
     // let file_appender = tracing_appender::rolling::daily("logs", "automation_tasks_rs.log");
 
-    let offset = time::UtcOffset::current_local_offset().expect("should get local offset!");
+    let offset = time::UtcOffset::current_local_offset()?;
     let timer = tracing_subscriber::fmt::time::OffsetTime::new(
         offset,
         time::macros::format_description!("[hour]:[minute]:[second].[subsecond digits:6]"),
@@ -32,9 +32,7 @@ pub fn tracing_init() {
     // export RUST_LOG=automation_tasks_rs=trace
     // Unset the environment variable RUST_LOG
     // unset RUST_LOG
-    let filter = tracing_subscriber::EnvFilter::from_default_env()
-        .add_directive("hyper_util=error".parse().unwrap_or_else(|e| panic!("{e}")))
-        .add_directive("reqwest=error".parse().unwrap_or_else(|e| panic!("{e}")));
+    let filter = tracing_subscriber::EnvFilter::from_default_env().add_directive("iced=error".parse()?);
 
     tracing_subscriber::fmt()
         .with_file(true)
@@ -45,4 +43,5 @@ pub fn tracing_init() {
         //.with_writer(file_appender)
         .with_env_filter(filter)
         .init();
+    Ok(())
 }

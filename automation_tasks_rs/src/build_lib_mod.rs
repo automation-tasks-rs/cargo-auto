@@ -15,15 +15,15 @@ use cl::{BLUE, GREEN, RED, RESET, YELLOW};
 
 #[allow(dead_code)]
 /// publish to crates.io and git tag
-pub fn task_publish_to_crates_io() -> String {
-    let cargo_toml = cl::CargoToml::read();
+pub fn task_publish_to_crates_io() -> anyhow::Result<String> {
+    let cargo_toml = cl::CargoToml::read()?;
     let package_name = cargo_toml.package_name();
     let version = cargo_toml.package_version();
     // take care of tags
-    let tag_name_version = cl::git_tag_sync_check_create_push(&version);
+    let tag_name_version = cl::git_tag_sync_check_create_push(&version)?;
 
     // cargo publish with encrypted secret secret_token
-    ende::crates_io_api_token_mod::publish_to_crates_io().unwrap();
+    ende::crates_io_api_token_mod::publish_to_crates_io()?;
 
     println!(
         r#"
@@ -33,5 +33,5 @@ pub fn task_publish_to_crates_io() -> String {
 {GREEN}{package_name} = "{version}"{RESET}
 "#
     );
-    tag_name_version
+    Ok(tag_name_version)
 }

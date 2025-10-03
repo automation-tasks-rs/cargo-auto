@@ -65,7 +65,7 @@
 //! base64ct = {version = "1.6.0", features = ["alloc"] }
 //! secrecy = "0.10.3"
 //! chrono ="0.4.39"
-//! crossplatform_path="1.1.1"
+//! crossplatform_path="2.0.1"
 //! ```
 //!
 
@@ -102,16 +102,17 @@ struct SecretResponseAccessToken {
 /// Application state (static) is initialized only once in the main() function.
 ///
 /// And then is accessible all over the code.
-pub fn github_api_config_initialize() {
+pub fn github_api_config_initialize() -> anyhow::Result<()> {
     if GITHUB_API_CONFIG.get().is_some() {
-        return;
+        return Ok(());
     }
 
     let github_api_config_json = std::fs::read_to_string("automation_tasks_rs/github_api_config.json")
-        .unwrap_or_else(|_| panic!("{RED}Error: The file automation_tasks_rs/github_api_config.json is missing.{RESET}"));
+        .with_context(|| anyhow::anyhow!("{RED}Error: The file automation_tasks_rs/github_api_config.json is missing.{RESET}"))?;
     let github_api_config: GithubApiConfig = serde_json::from_str(&github_api_config_json)
-        .unwrap_or_else(|_| panic!("{RED}Error: The content of automation_tasks_rs/github_api_config.json is not correct.{RESET}"));
+        .with_context(|| anyhow::anyhow!("{RED}Error: The content of automation_tasks_rs/github_api_config.json is not correct.{RESET}"))?;
     let _ = GITHUB_API_CONFIG.set(github_api_config);
+    Ok(())
 }
 
 /// Start the github oauth2 device workflow
@@ -119,8 +120,12 @@ pub fn github_api_config_initialize() {
 /// The encrypted file has the same file name with the ".enc" extension.
 /// Returns access_token to use as bearer for api calls
 pub fn get_github_secret_token() -> anyhow::Result<SecretString> {
-    let client_id = GITHUB_API_CONFIG.get().unwrap().client_id.to_string();
-    let private_key_file_name = GITHUB_API_CONFIG.get().unwrap().github_api_private_key_file_name.to_string();
+    let client_id = GITHUB_API_CONFIG.get().context("GITHUB_API_CONFIG is None")?.client_id.to_string();
+    let private_key_file_name = GITHUB_API_CONFIG
+        .get()
+        .context("GITHUB_API_CONFIG is None")?
+        .github_api_private_key_file_name
+        .to_string();
 
     println!("  {YELLOW}Check if the ssh private key exists.{RESET}");
     let private_key_path_struct = ende::PathStructInSshFolder::new(private_key_file_name.clone())?;
@@ -153,7 +158,7 @@ pub fn get_github_secret_token() -> anyhow::Result<SecretString> {
             encrypted_text_with_metadata
                 .refresh_token_expiration
                 .as_ref()
-                .expect("The former line asserts this is never None"),
+                .context("refresh_token_expiration is None")?,
         )?;
         if refresh_token_expiration <= utc_now {
             eprintln!("{RED}Refresh token has expired, start authentication_with_browser{RESET}");
@@ -168,7 +173,7 @@ pub fn get_github_secret_token() -> anyhow::Result<SecretString> {
             encrypted_text_with_metadata
                 .access_token_expiration
                 .as_ref()
-                .expect("The former line asserts this is never None"),
+                .context("access_token_expiration is None")?,
         )?;
         if access_token_expiration <= utc_now {
             eprintln!("{RED}Access token has expired, use refresh token{RESET}");
@@ -275,7 +280,8 @@ fn refresh_tokens(client_id: &str, refresh_token: String) -> anyhow::Result<Secr
 
     println!("  {YELLOW}Send request with client_id and refresh_token and retrieve access tokens{RESET}");
     println!("  {YELLOW}wait...{RESET}");
-  let response_text = reqwest::blocking::Client::new()
+    let secret_response_access_token: SecretBox<SecretResponseAccessToken> = SecretBox::new(Box::new(
+        reqwest::blocking::Client::new()
             .post("https://github.com/login/oauth/access_token")
             .header("Content-Type", "application/json")
             .header("Accept", "application/json")
@@ -284,9 +290,10 @@ fn refresh_tokens(client_id: &str, refresh_token: String) -> anyhow::Result<Secr
                 grant_type: "refresh_token".to_string(),
                 refresh_token,
             })
-            .send()?.text()?;
-    let response_json: SecretResponseAccessToken = serde_json::from_str(&response_text).with_context(||response_text)?;
-    let secret_response_access_token = SecretBox::new(Box::new(response_json));
+            .send()?
+            .json()?,
+    ));
+
     Ok(secret_response_access_token)
 }
 
@@ -412,10 +419,10 @@ pub(crate) fn send_to_github_api_with_secret_token(req: reqwest::blocking::Reque
 
     let json_value: serde_json::Value = serde_json::from_str(&response_text)?;
 
-    // panic if "message": String("Bad credentials"),
+    // Error if "message": String("Bad credentials").
     if let Some(m) = json_value.get("message") {
         if m == "Bad credentials" {
-            panic!("{RED}Error: Bad credentials for GitHub API. {RESET}");
+            anyhow::bail!("{RED}Error: Bad credentials for GitHub API. {RESET}");
         }
     }
 
@@ -455,10 +462,10 @@ pub(crate) async fn upload_to_github_with_secret_token(req: reqwest::RequestBuil
 
     let json_value: serde_json::Value = serde_json::from_str(&response_text)?;
 
-    // panic if "message": String("Bad credentials"),
+    // Error if "message": String("Bad credentials").
     if let Some(m) = json_value.get("message") {
         if m == "Bad credentials" {
-            panic!("{RED}Error: Bad credentials for GitHub API. {RESET}");
+            anyhow::bail!("{RED}Error: Bad credentials for GitHub API. {RESET}");
         }
     }
 

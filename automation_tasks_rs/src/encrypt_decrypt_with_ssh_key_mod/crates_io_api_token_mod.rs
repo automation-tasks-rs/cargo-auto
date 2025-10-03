@@ -31,18 +31,19 @@
 //! ```toml
 //! [dependencies]
 //! ssh-key = { version = "0.6.7", features = [ "rsa", "encryption","ed25519"] }
-//! ssh_agent_client_rs_git_bash = "0.0.19"
+//! ssh_agent_client_rs_git_bash = "0.0.11"
 //! rsa = { version = "0.9.7", features = ["sha2","pem"] }
 //! zeroize = {version="1.8.1", features=["derive"]}
 //! aes-gcm = "0.10.3"
 //! base64ct = {version = "1.6.0", features = ["alloc"] }
 //! secrecy = "0.10.3"
-//! crossplatform_path="1.1.1"
+//! crossplatform_path="2.0.1"
 //! ```
 //!
 
 #![allow(dead_code)]
 
+use anyhow::Context;
 use cargo_auto_lib::ShellCommandLimitedDoubleQuotesSanitizerTrait;
 use crossplatform_path::CrossPathBuf;
 use secrecy::{SecretBox, SecretString};
@@ -63,16 +64,17 @@ pub static CRATES_IO_CONFIG: std::sync::OnceLock<CratesIoConfig> = std::sync::On
 /// Application state (static) is initialized only once in the main() function.
 ///
 /// And then is accessible all over the code.
-pub fn crates_io_config_initialize() {
+pub fn crates_io_config_initialize() -> anyhow::Result<()> {
     if CRATES_IO_CONFIG.get().is_some() {
-        return;
+        return Ok(());
     }
 
     let crates_io_config_json = std::fs::read_to_string("automation_tasks_rs/crates_io_config.json")
-        .unwrap_or_else(|_| panic!("{RED}Error: The file automation_tasks_rs/crates_io_config.json is missing.{RESET}"));
+        .with_context(|| anyhow::anyhow!("{RED}Error: The file automation_tasks_rs/crates_io_config.json is missing.{RESET}"))?;
     let crates_io_config: CratesIoConfig = serde_json::from_str(&crates_io_config_json)
-        .unwrap_or_else(|_| panic!("{RED}Error: The content of automation_tasks_rs/crates_io_config.json is not correct.{RESET}"));
+        .with_context(|| anyhow::anyhow!("{RED}Error: The content of automation_tasks_rs/crates_io_config.json is not correct.{RESET}"))?;
     let _ = CRATES_IO_CONFIG.set(crates_io_config);
+    Ok(())
 }
 
 /// get crates.io secret token
@@ -178,13 +180,15 @@ pub fn publish_to_crates_io() -> anyhow::Result<()> {
         crates_io_secret_token_key: String,
     }
 
-    let secret_access_token = get_crates_io_secret_token(&CRATES_IO_CONFIG.get().unwrap().crates_io_private_key_file_name)?;
+    let secret_access_token = get_crates_io_secret_token(
+        &CRATES_IO_CONFIG
+            .get()
+            .context("CRATES_IO_CONFIG is None")?
+            .crates_io_private_key_file_name,
+    )?;
     // the secret_token is redacted when print on screen
-    cargo_auto_lib::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"cargo publish --token "{secret_token}" "#)
-        .unwrap_or_else(|e| panic!("{e}"))
-        .arg_secret("{secret_token}", &secret_access_token)
-        .unwrap_or_else(|e| panic!("{e}"))
-        .run()
-        .unwrap_or_else(|e| panic!("{e}"));
+    cargo_auto_lib::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"cargo publish --token "{secret_token}" "#)?
+        .arg_secret("{secret_token}", &secret_access_token)?
+        .run()?;
     Ok(())
 }
