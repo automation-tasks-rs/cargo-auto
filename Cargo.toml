@@ -1,7 +1,7 @@
 [package]
 name = "cargo-auto"
 # binary executable does not need to be SemVer, because nobody depends on it
-version = "2025.1003.1141"
+version = "2025.1104.1045"
 authors = ["bestia.dev"]
 homepage = "https://bestia.dev"
 edition = "2021"
@@ -51,6 +51,7 @@ tracing = {version="0.1.41", features=["attributes" ]}
 tracing-subscriber = { version = "0.3.19", features = ["env-filter", "std", "fmt", "time","ansi"] }
 # tracing-appender="0.2.3"
 time = {version="0.3.40", features=["macros","local-offset"]}
+chrono ={version="0.4.40", default-features=false, features=["now"]}
 
 # The library enables the code to be used by other binary executables.
 [lib]

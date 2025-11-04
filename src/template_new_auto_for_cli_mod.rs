@@ -68,12 +68,19 @@ fn copy_to_files(rust_project_name: &str, file_to_download: &str) -> anyhow::Res
 /// Updates the files in automation_tasks_rs.
 ///  
 /// Downloads the template into `automation_tasks_rs_update` directory.
-/// Checks what files are different. The old file changes the extension to '.rs_old'
+/// Checks what files are different. The old file are moved to the tmp folder 'automation_tasks_rs_old_date'.
 /// Prints the diff command for different files.
 pub fn update_automation_tasks_rs() -> anyhow::Result<()> {
     println!("  {YELLOW}cargo auto update_automation_tasks_rs {RESET}");
     std::fs::create_dir_all("tmp/automation_tasks_rs_update")?;
-    let automation_folder = "automation_tasks_rs";
+    let utc_now = chrono::Utc::now();
+    // 2018_01_26T18_30_09Z
+    let utc_now = utc_now
+        .to_rfc3339_opts(chrono::SecondsFormat::Secs, true)
+        .replace(":", "_")
+        .replace("-", "_");
+    let old_rs_folder = format!("tmp/automation_tasks_rs_old_{utc_now}/");
+    std::fs::create_dir_all(&old_rs_folder)?;
     // must end with the slash
     let update_folder = "tmp/automation_tasks_rs_update/".to_string();
     if std::fs::exists(&update_folder)? {
@@ -90,6 +97,7 @@ pub fn update_automation_tasks_rs() -> anyhow::Result<()> {
             let file_path_str = file_path.to_string_lossy().to_string();
             let content_1 = std::fs::read_to_string(&file_path_str)?;
             let old_file_path_str = format!("automation_tasks_rs/{}", file_path_str.trim_start_matches(&update_folder));
+            let old_file_move_destination = format!("{old_rs_folder}{}", file_path_str.trim_start_matches(&update_folder));
             let content_2 = if std::fs::exists(&old_file_path_str)? {
                 std::fs::read_to_string(&old_file_path_str)?
             } else {
@@ -107,9 +115,9 @@ pub fn update_automation_tasks_rs() -> anyhow::Result<()> {
                 } else if file_path.extension().unwrap_or_else(|| OsStr::new("")).to_string_lossy() == "rs"
                     && !file_path_str.ends_with("/main.rs")
                 {
-                    std::fs::rename(&old_file_path_str, format!("{old_file_path_str}_old"))?;
+                    std::fs::rename(&old_file_path_str, &old_file_move_destination)?;
                     std::fs::copy(&file_path_str, &old_file_path_str)?;
-                    vec_updated_diff_files.push(format!("{GREEN}code --diff {old_file_path_str}_old {file_path_str} {RESET}\n"));
+                    vec_updated_diff_files.push(format!("{GREEN}code --diff {old_file_move_destination} {file_path_str} {RESET}\n"));
                 } else {
                     // Some files must be different, because every automation is a little bit different.
                     // For them just write a warning to manually run the diff.
@@ -134,7 +142,6 @@ pub fn update_automation_tasks_rs() -> anyhow::Result<()> {
     println!();
     println!("  {YELLOW}After manually diffing the files, remove the obsolete files.{RESET}");
     println!("{GREEN}rm -r {update_folder}{RESET}");
-    println!("{GREEN}rm -f {automation_folder}/src/*.rs_old {RESET}");
-    println!("{GREEN}rm -f {automation_folder}/src/*/*.rs_old {RESET}");
+    println!("{GREEN}rm -r {old_rs_folder}{RESET}");
     Ok(())
 }
