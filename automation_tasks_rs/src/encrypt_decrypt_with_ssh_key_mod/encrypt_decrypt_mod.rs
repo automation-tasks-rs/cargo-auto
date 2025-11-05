@@ -6,7 +6,7 @@
 //! cargo auto update_automation_tasks_rs
 //! If you want to customize it, copy the code into main.rs and modify it there.
 
-use crate::{BLUE, GREEN, RED, RESET, YELLOW};
+use crate::cargo_auto_lib::{BLUE, GREEN, RED, RESET, YELLOW};
 use crossplatform_path::CrossPathBuf;
 use secrecy::{ExposeSecret, ExposeSecretMut, SecretBox, SecretString};
 
@@ -318,13 +318,14 @@ pub(crate) fn decrypt_symmetric(
 ) -> anyhow::Result<SecretString> {
     let encrypted_bytes = <base64ct::Base64 as base64ct::Encoding>::decode_vec(&plain_encrypted_string)?;
     // nonce is salt
-    let nonce = rsa::sha2::digest::generic_array::GenericArray::from_slice(&encrypted_bytes[..12]);
+    //let nonce = rsa::sha2::digest::generic_array::GenericArray::from_slice(&encrypted_bytes[..12]);
+    let nonce = &encrypted_bytes[..12];
     let cipher_text = &encrypted_bytes[12..];
 
     let Ok(secret_decrypted_bytes) = aes_gcm::aead::Aead::decrypt(
         // cipher_secret is the true passcode, here I don't know how to use secrecy, because the type has not the trait Zeroize
         &<aes_gcm::Aes256Gcm as aes_gcm::KeyInit>::new(secret_passcode_32bytes.expose_secret().into()),
-        nonce,
+        nonce.into(),
         cipher_text,
     ) else {
         anyhow::bail!("{RED}Error: Decryption failed. {RESET}");

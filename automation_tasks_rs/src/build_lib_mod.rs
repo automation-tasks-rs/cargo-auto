@@ -6,10 +6,10 @@
 //! cargo auto update_automation_tasks_rs
 //! If you want to customize it, copy the code into main.rs and modify it there.
 
-use crate::cl;
-use crate::ende;
+use crate::cargo_auto_lib as cl;
+use crate::encrypt_decrypt_with_ssh_key_mod as ende;
 
-use cargo_auto_lib::CargoTomlPublicApiMethods;
+use crate::cargo_auto_lib::CargoTomlPublicApiMethods;
 #[allow(unused_imports)]
 use cl::{BLUE, GREEN, RED, RESET, YELLOW};
 

@@ -8,7 +8,7 @@
 
 #![allow(dead_code)]
 use anyhow::Context;
-use cargo_auto_lib as cl;
+use crate::cargo_auto_lib as cl;
 // traits must be in scope (Rust strangeness)
 use cl::CargoTomlPublicApiMethods;
 

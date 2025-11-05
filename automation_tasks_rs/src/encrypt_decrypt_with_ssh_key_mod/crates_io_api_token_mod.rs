@@ -44,12 +44,12 @@
 #![allow(dead_code)]
 
 use anyhow::Context;
-use cargo_auto_lib::ShellCommandLimitedDoubleQuotesSanitizerTrait;
+use crate::cargo_auto_lib::ShellCommandLimitedDoubleQuotesSanitizerTrait;
 use crossplatform_path::CrossPathBuf;
 use secrecy::{SecretBox, SecretString};
 
 use super::encrypt_decrypt_mod as ende;
-use crate::{BLUE, GREEN, RED, RESET, YELLOW};
+use crate::cargo_auto_lib::{BLUE, GREEN, RED, RESET, YELLOW};
 
 #[derive(serde::Deserialize, serde::Serialize)]
 pub struct CratesIoConfig {
@@ -187,7 +187,7 @@ pub fn publish_to_crates_io() -> anyhow::Result<()> {
             .crates_io_private_key_file_name,
     )?;
     // the secret_token is redacted when print on screen
-    cargo_auto_lib::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"cargo publish --token "{secret_token}" "#)?
+    crate::cargo_auto_lib::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"cargo publish --token "{secret_token}" "#)?
         .arg_secret("{secret_token}", &secret_access_token)?
         .run()?;
     Ok(())

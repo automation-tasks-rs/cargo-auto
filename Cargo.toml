@@ -1,7 +1,7 @@
 [package]
 name = "cargo-auto"
 # binary executable does not need to be SemVer, because nobody depends on it
-version = "2025.1104.1045"
+version = "2025.1105.1923"
 authors = ["bestia.dev"]
 homepage = "https://bestia.dev"
 edition = "2021"
@@ -35,13 +35,12 @@ sha2 = "0.10.8"
 data-encoding = "2.8.0"
 thiserror="2.0.17"
 anyhow="1.0.97"
-
+# crossplatform_path = "2.0.1"
+crossplatform_path = { path = "../crossplatform_path" }
 serde = { version = "1.0.219", features = ["derive"] }
 serde_derive = "1.0.219"
 serde_json = "1.0.140"
-
-# reqwest 0.12.12 is the last version that builds in win-git-bash
-reqwest = { version = "=0.12.12", features = ["blocking"] }
+reqwest = { version = "=0.12.24", features = ["blocking"] }
 
 flate2 = "1.1.1"
 tar = "0.4.44"
@@ -49,7 +48,7 @@ walkdir = "=2.5.0"
 
 tracing = {version="0.1.41", features=["attributes" ]}
 tracing-subscriber = { version = "0.3.19", features = ["env-filter", "std", "fmt", "time","ansi"] }
-# tracing-appender="0.2.3"
+tracing-appender="0.2.3"
 time = {version="0.3.40", features=["macros","local-offset"]}
 chrono ={version="0.4.40", default-features=false, features=["now"]}
 

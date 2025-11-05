@@ -6,7 +6,7 @@
 //! # cargo-auto  
 //!
 //! **Automation tasks coded in Rust language for the workflow of Rust projects**  
-//! ***version: 2025.1104.1045 date: 2025-11-04 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
+//! ***version: 2025.1105.1923 date: 2025-11-05 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
 //!
 //!  ![maintained](https://img.shields.io/badge/maintained-green)
 //!  ![ready-for-use](https://img.shields.io/badge/ready_for_use-green)
@@ -26,9 +26,9 @@
 //!  [![Newest docs](https://img.shields.io/badge/newest_docs-blue.svg)](https://automation-tasks-rs.github.io/cargo-auto/cargo_auto/index.html)
 //!  ![cargo-auto](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-962-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-967-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-610-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-139-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-127-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-0-orange.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //!
@@ -252,8 +252,8 @@
 //!
 // endregion: auto_md_to_doc_comments include README.md A //!
 
-mod bin_cli_functions_mod;
-use bin_cli_functions_mod as cli;
+mod generic_functions_mod;
+use generic_functions_mod as cli;
 
 use cargo_auto_main_lib as lib;
 // use cli::{BLUE, GREEN, RED, RESET, YELLOW};
@@ -274,6 +274,8 @@ fn main() -> std::process::ExitCode {
 /// main() returns anyhow::Result
 fn main_returns_anyhow_result() -> anyhow::Result<()> {
     cli::tracing_init()?;
+    tracing::info!("cargo-auto start");
+
     // get CLI arguments
     let mut args = std::env::args();
     // the zero argument is the name of the program

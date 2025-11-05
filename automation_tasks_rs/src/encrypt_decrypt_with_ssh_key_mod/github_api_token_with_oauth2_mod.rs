@@ -75,7 +75,7 @@ use anyhow::Context;
 use secrecy::{ExposeSecret, SecretBox, SecretString};
 
 use super::encrypt_decrypt_mod as ende;
-use crate::{BLUE, GREEN, RED, RESET, YELLOW};
+use crate::cargo_auto_lib::{BLUE, GREEN, RED, RESET, YELLOW};
 
 #[derive(serde::Deserialize, serde::Serialize)]
 pub struct GithubApiConfig {

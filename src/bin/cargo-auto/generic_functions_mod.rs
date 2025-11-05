@@ -1,4 +1,4 @@
-// bin_cli_functions.rs
+// generic_functions.rs
 
 //! Functions to work with CLI binary executable projects.
 //!
@@ -24,12 +24,17 @@ pub const BLUE: &str = "\x1b[34m";
 pub const RESET: &str = "\x1b[0m";
 // endregion: Public API constants
 
-/// Initialize tracing to file tmp/logs/cargo_auto.log
+/// Initialize tracing to file logs/cargo_auto.log
 ///
-/// The folder tmp/logs/ is in .gitignore and will not be committed.
+/// The folder logs/ is in .gitignore and will not be committed.
 pub fn tracing_init() -> anyhow::Result<()> {
-    // uncomment this line to enable tracing to file
-    // let file_appender = tracing_appender::rolling::daily("tmp/logs", "cargo_auto.log");
+    // export CARGO_AUTO_LOG_FILE=T to enable tracing to file
+    let file_appender = tracing_appender::rolling::RollingFileAppender::builder()
+        .rotation(tracing_appender::rolling::Rotation::DAILY)
+        .filename_prefix("cargo_auto")
+        .filename_suffix("log")
+        .build("logs")
+        .expect("initializing rolling file appender failed");
 
     let offset = time::UtcOffset::current_local_offset()?;
     let timer = tracing_subscriber::fmt::time::OffsetTime::new(
@@ -37,34 +42,27 @@ pub fn tracing_init() -> anyhow::Result<()> {
         time::macros::format_description!("[hour]:[minute]:[second].[subsecond digits:6]"),
     );
 
-    // Filter out logs from: hyper_util, reqwest
     // A filter consists of one or more comma-separated directives
     // target[span{field=value}]=level
-    // examples: tokio::net=info
-    // Levels order: ERROR, WARN, INFO, DEBUG, TRACE
+    // Levels order: 1. ERROR, 2. WARN, 3. INFO, 4. DEBUG, 5. TRACE
     // ERROR level is always logged.
-    // To add other levels use the RUST_LOG environment variable:
+    // Add filters to CARGO_AUTO_LOG environment variable for a single execution:
     // ```bash
-    // export RUST_LOG=cargo_auto=warn
-    // export RUST_LOG=cargo_auto=info
-    // export RUST_LOG=cargo_auto=debug
-    // export RUST_LOG=cargo_auto=trace
+    // CARGO_AUTO_LOG_FILE="T" CARGO_AUTO_LOG="debug,hyper_util=info,reqwest=info" ./{package_name}
     // ```
-    // Unset the environment variable RUST_LOG:
-    // ```bash
-    // unset RUST_LOG
-    // ```
-    let filter = tracing_subscriber::EnvFilter::from_default_env()
-        .add_directive("hyper_util=error".parse()?)
-        .add_directive("reqwest=error".parse()?);
+    let filter = tracing_subscriber::EnvFilter::from_env("CARGO_AUTO_LOG");
 
-    tracing_subscriber::fmt()
+    let builder = tracing_subscriber::fmt()
         .with_file(true)
         .with_timer(timer)
         .with_line_number(true)
-        .with_ansi(true)
-        // .with_writer(file_appender)
-        .with_env_filter(filter)
-        .init();
+        .with_ansi(false)
+        .with_env_filter(filter);
+    if std::env::var("CARGO_AUTO_LOG_FILE").unwrap_or("F".to_string()) == "T" {
+        builder.with_writer(file_appender).init();
+    } else {
+        builder.init();
+    };
+
     Ok(())
 }

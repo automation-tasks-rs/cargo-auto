@@ -12,7 +12,6 @@ publish = false
 # SemVer rules: Major version zero (0.y.z) is for initial development. Anything MAY change at any time. The public API SHOULD NOT be considered stable.
 # WARNING: Although dependencies in Cargo.toml look like a specific version of the crate, they are just like a caret version (^x.y.z) and actually specify 
 # the minimum version and allow automatic SemVer compatible updates up to a MAJOR increment! Always check the true version with `cargo tree`!
-cargo_auto_lib = "4.0.6"
 
 tracing = "0.1.41"
 tracing-subscriber = { version = "0.3.19", features = ["env-filter", "std", "fmt", "time"] }
@@ -20,8 +19,7 @@ tracing-subscriber = { version = "0.3.19", features = ["env-filter", "std", "fmt
 time = {version="0.3.39", features=["macros","local-offset"]}
 
 anyhow="1.0.97"
-# reqwest 0.12.12 is tha last that builds in win-git-bash
-reqwest={version="=0.12.12", features=["json","stream", "blocking"]}
+reqwest={version="=0.12.24", features=["json","stream", "blocking"]}
 serde ={ version= "1.0.219", features=["std","derive"]}
 serde_json = "1.0.140"
 ssh-key = { version = "0.6.7", features = [ "rsa", "encryption","ed25519"] }
@@ -37,4 +35,20 @@ tokio = {version = "1.44.1", features = ["rt","rt-multi-thread","fs"]}
 url="2.5.4"
 inquire="0.9.1"
 home="0.5.11"
-crossplatform_path="2.0.1"
+crossplatform_path="3.0.3"
+
+lazy_static="1.5.0"
+regex = "1.11.1"
+glob = "0.3.2"
+reader_for_microxml="2.0.1"
+filetime = "0.2.25"
+cargo_toml = "0.22.0"
+camino = "1.1.9"
+thiserror="2.0.17"
+semver="1.0.26"
+serde_derive = "1.0.218"
+sha2 = "0.10.8"
+data-encoding = "2.8.0"
+deflate = "1.0.0"
+radix64 = "0.6.2"
+urlencoding = "2.1.3"
