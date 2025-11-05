@@ -12,6 +12,8 @@ The TODO section is part of the [README.md](https://github.com/automation-tasks-
 
 - update_automation_tasks_rs
 
+- crossplatform_path 4.0.1
+
 ## Version 2025.1104.1045 (2025-11-04)
 
 - anyhow error handling
