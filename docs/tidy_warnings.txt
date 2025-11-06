@@ -134,6 +134,11 @@ line 1 column 4253 - Warning: discarding unexpected </rustdoc-search>
 line 1 column 4459 - Error: <rustdoc-toolbar> is not recognized! Did you mean to enable the custom-tags option?
 line 1 column 4459 - Warning: discarding unexpected <rustdoc-toolbar>
 line 1 column 4476 - Warning: discarding unexpected </rustdoc-toolbar>
+line 19 column 4 - Warning: <a> attribute "href" lacks value
+line 20 column 1 - Warning: <a> attribute "href" lacks value
+line 21 column 1 - Warning: <a> attribute "href" lacks value
+line 22 column 1 - Warning: <a> attribute "href" lacks value
+line 23 column 1 - Warning: <a> attribute "href" lacks value
 line 1 column 1797 - Warning: trimming empty <button>
 This document has errors that must be fixed before
 using HTML Tidy to generate a tidied up version.
