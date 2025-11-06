@@ -1,1 +1,1 @@
-searchState.loadedDescShard("cargo_auto", 0, "cargo-auto\nFunctions to work with CLI binary executable projects.\nmain returns ExitCode\nmain() returns anyhow::Result\nANSI color\nANSI color\nANSI color\nANSI color\nANSI color\nInitialize tracing to file logs/cargo_auto.log")
+searchState.loadedDescShard("cargo_auto", 0, "cargo-auto\nFunctions to work with CLI binary executable projects.\nFunction main() returns ExitCode.\nFunction main() returns anyhow::Result.\nANSI color\nANSI color\nANSI color\nANSI color\nANSI color\nInitialize tracing to file logs/cargo_auto.log.  \\")
