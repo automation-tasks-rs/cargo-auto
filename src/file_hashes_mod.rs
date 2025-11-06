@@ -8,7 +8,10 @@
 use serde_derive::{Deserialize, Serialize};
 use sha2::Digest;
 
+use crate::ResultLogError;
+
 // region: structs
+
 /// Struct with file metadata.
 #[derive(Serialize, Deserialize)]
 pub struct FileMetaData {
@@ -27,14 +30,14 @@ pub struct FileHashes {
 
 // endregion: structs
 
-/// Check if the files are modified in automation_tasks_rs.
+/// Check if the files are modified in automation_tasks_rs.  \
 ///
-/// The modified date of files is not usable when using git.  
-/// The checkout will make dates newer than they really are.  
+/// The modified date of files is not usable when using git.  \
+/// The checkout will make dates newer than they really are.  \
 /// I should use a hash of files and write them in the same directory for later comparison.  
 pub fn is_project_changed() -> anyhow::Result<bool> {
-    let vec_of_metadata = read_file_metadata()?;
-    let js_struct = read_json_file(&crate::PATH_FILE_HASHES_JSON.to_string_lossy())?;
+    let vec_of_metadata = read_file_metadata().log()?;
+    let js_struct = read_json_file(&crate::PATH_FILE_HASHES_JSON.to_string_lossy()).log()?;
     // return true or false
     Ok(!are_all_files_equal(&vec_of_metadata, &js_struct.vec_file_metadata))
 }
@@ -65,14 +68,14 @@ pub fn read_file_metadata() -> anyhow::Result<Vec<FileMetaData>> {
     let mut vec_of_metadata: Vec<FileMetaData> = Vec::new();
 
     // calculate hash of Cargo.toml
-    let filehash = sha256_digest(&crate::PATH_CARGO_TOML)?;
+    let filehash = sha256_digest(&crate::PATH_CARGO_TOML).log()?;
     vec_of_metadata.push(FileMetaData {
         filename: crate::PATH_CARGO_TOML.to_string_lossy().to_string(),
         filehash,
     });
 
     // calculate hash of file of the executable file
-    let filehash = sha256_digest(&crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS)?;
+    let filehash = sha256_digest(&crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS).log()?;
     vec_of_metadata.push(FileMetaData {
         filename: crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.to_string_lossy().to_string(),
         filehash,
@@ -83,7 +86,7 @@ pub fn read_file_metadata() -> anyhow::Result<Vec<FileMetaData>> {
         if entry.file_type().is_file() {
             let path = entry.path();
             // calculate hash of file
-            let filehash = sha256_digest(path)?;
+            let filehash = sha256_digest(path).log()?;
             vec_of_metadata.push(FileMetaData {
                 filename: path.to_string_lossy().to_string(),
                 filehash,
@@ -108,7 +111,7 @@ fn read_json_file(json_filepath: &str) -> anyhow::Result<FileHashes> {
                 }
             } else {
                 //read struct from file
-                js_struct = serde_json::from_str(x.as_str())?;
+                js_struct = serde_json::from_str(x.as_str()).log()?;
             }
         }
         Err(_error) => {
@@ -124,7 +127,7 @@ fn read_json_file(json_filepath: &str) -> anyhow::Result<FileHashes> {
 
 /// Calculate the hash for a file.
 fn sha256_digest(path: &std::path::Path) -> anyhow::Result<String> {
-    let file = std::fs::File::open(path)?;
+    let file = std::fs::File::open(path).log()?;
     let mut reader = std::io::BufReader::new(file);
     let mut hasher = <sha2::Sha256 as sha2::Digest>::new();
     let mut buffer = [0; 1024];

@@ -10,13 +10,16 @@ use crossplatform_path::CrossPathBuf;
 #[allow(unused)]
 use crate::{GREEN, RED, RESET, YELLOW};
 
-/// Copies the template to the `automation_tasks_rs` directory.
+// Bring trait for Result into scope.
+use crate::ResultLogError;
+
+/// Copies the template to the `automation_tasks_rs` directory.  \
 ///  
-/// In development use: `cargo run -- new_auto_for_cli`.  
+/// In development use: `cargo run -- new_auto_for_cli`.  \
 /// In runtime use: `cargo auto new_auto_for_cli`.  
 pub fn new_auto_for_cli() -> anyhow::Result<()> {
-    let destination_folder = CrossPathBuf::new("automation_tasks_rs")?;
-    download_decompress_and_copy_files(&destination_folder, "template.tar.gz")?;
+    let destination_folder = CrossPathBuf::new("automation_tasks_rs").log()?;
+    download_decompress_and_copy_files(&destination_folder, "template.tar.gz").log()?;
 
     println!(
         r#"
@@ -40,36 +43,36 @@ fn download_decompress_and_copy_files(destination_folder: &CrossPathBuf, file_to
 
     // download latest template.tar.gz or automation_tasks_rs.tar.gz
     println!("  {YELLOW}Downloading {file_to_download}...{RESET}");
-    let tmp_folder_path = CrossPathBuf::new("tmp")?;
-    tmp_folder_path.create_dir_all()?;
-    let file_path = CrossPathBuf::new(&format!("tmp/{file_to_download}"))?;
+    let tmp_folder_path = CrossPathBuf::new("tmp").log()?;
+    tmp_folder_path.create_dir_all().log()?;
+    let file_path = CrossPathBuf::new(&format!("tmp/{file_to_download}")).log()?;
     let url = format!("https://github.com/automation-tasks-rs/cargo_auto_template_new_cli/releases/latest/download/{file_to_download}");
     let reqwest_client = reqwest::blocking::Client::new();
     let http_response = reqwest_client.get(&url).send();
     if let Ok(body) = http_response {
-        let body = body.bytes()?;
+        let body = body.bytes().log()?;
         // Get the content of the response
-        file_path.write_bytes_to_file(&body)?;
+        file_path.write_bytes_to_file(&body).log()?;
     } else {
         anyhow::bail!("Error while retrieving data: {:#?}", http_response.err());
     }
 
     // decompress into folder_path
-    file_path.decompress_tar_gz(destination_folder)?;
-    file_path.remove_file()?;
+    file_path.decompress_tar_gz(destination_folder).log()?;
+    file_path.remove_file().log()?;
     Ok(())
 }
 
-/// Updates the files in automation_tasks_rs.
+/// Updates the files in automation_tasks_rs.  \
 ///  
-/// Downloads the template into `automation_tasks_rs_update` directory.
-/// Checks what files are different. The old file are moved to the tmp folder 'automation_tasks_rs_old_date'.
-/// Prints the diff command for different files.
+/// Downloads the template into `automation_tasks_rs_update` directory.  \
+/// Checks what files are different. The old file are moved to the tmp folder 'automation_tasks_rs_old_date'.  \
+/// Prints the diff command for different files.  
 pub fn update_automation_tasks_rs() -> anyhow::Result<()> {
     println!("  {YELLOW}cargo auto update_automation_tasks_rs {RESET}");
-    let update_folder = CrossPathBuf::new("tmp/automation_tasks_rs_update/")?;
-    update_folder.remove_dir_all()?;
-    download_decompress_and_copy_files(&update_folder, "automation_tasks_rs.tar.gz")?;
+    let update_folder = CrossPathBuf::new("tmp/automation_tasks_rs_update/").log()?;
+    update_folder.remove_dir_all().log()?;
+    download_decompress_and_copy_files(&update_folder, "automation_tasks_rs.tar.gz").log()?;
     let update_folder_str = update_folder.as_str();
 
     let utc_now = chrono::Utc::now();
@@ -78,8 +81,8 @@ pub fn update_automation_tasks_rs() -> anyhow::Result<()> {
         .to_rfc3339_opts(chrono::SecondsFormat::Secs, true)
         .replace(":", "_")
         .replace("-", "_");
-    let old_rs_folder = CrossPathBuf::new(&format!("tmp/automation_tasks_rs_old_{utc_now}/"))?;
-    old_rs_folder.create_dir_all()?;
+    let old_rs_folder = CrossPathBuf::new(&format!("tmp/automation_tasks_rs_old_{utc_now}/")).log()?;
+    old_rs_folder.create_dir_all().log()?;
 
     // all files inside 'src' with exception of main.rs must be updated or equal
     let mut vec_updated_diff_files = vec![];
@@ -87,14 +90,14 @@ pub fn update_automation_tasks_rs() -> anyhow::Result<()> {
     for entry in walkdir::WalkDir::new(update_folder.to_path_buf_current_os()).min_depth(1) {
         let entry = entry?;
         if entry.file_type().is_file() {
-            let file_path = CrossPathBuf::from_path(entry.path())?;
-            tracing::debug!("{file_path}");
-            let content_1 = file_path.read_to_string()?;
+            let file_path = CrossPathBuf::from_path(entry.path()).log()?;
+            // tracing::debug!(?file_path);
+            let content_1 = file_path.read_to_string().log()?;
 
             let relative_path = file_path.as_str().trim_start_matches(update_folder_str);
-            let old_file_path_str = CrossPathBuf::new(&format!("automation_tasks_rs/{relative_path}"))?;
-            let old_file_move_destination = CrossPathBuf::new(&format!("{old_rs_folder}{relative_path}"))?;
-            tracing::debug!("{old_file_move_destination}");
+            let old_file_path_str = CrossPathBuf::new(&format!("automation_tasks_rs/{relative_path}")).log()?;
+            let old_file_move_destination = CrossPathBuf::new(&format!("{old_rs_folder}{relative_path}")).log()?;
+            // tracing::debug!(?old_file_move_destination);
             let content_2 = if old_file_path_str.exists() {
                 old_file_path_str.read_to_string()?
             } else {
@@ -103,13 +106,13 @@ pub fn update_automation_tasks_rs() -> anyhow::Result<()> {
             if content_1 != content_2 {
                 if content_2.is_empty() {
                     // the file does not yet exist, maybe even the folder does not exist
-                    let subfolder = old_file_path_str.parent()?;
-                    subfolder.create_dir_all()?;
+                    let subfolder = old_file_path_str.parent().log()?;
+                    subfolder.create_dir_all().log()?;
                     println!("copy {file_path}, {old_file_path_str};");
-                    file_path.copy_file_to_file(&old_file_path_str)?;
+                    file_path.copy_file_to_file(&old_file_path_str).log()?;
                 } else if file_path.extension()? == "rs" && !file_path.as_str().ends_with("/main.rs") {
-                    old_file_path_str.rename_or_move(&old_file_move_destination)?;
-                    file_path.copy_file_to_file(&old_file_path_str)?;
+                    old_file_path_str.rename_or_move(&old_file_move_destination).log()?;
+                    file_path.copy_file_to_file(&old_file_path_str).log()?;
                     vec_updated_diff_files.push(format!("{GREEN}code --diff {old_file_move_destination} {file_path} {RESET}\n"));
                 } else {
                     // Some files must be different, because every automation is a little bit different.

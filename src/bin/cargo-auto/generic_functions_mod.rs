@@ -24,18 +24,10 @@ pub const BLUE: &str = "\x1b[34m";
 pub const RESET: &str = "\x1b[0m";
 // endregion: Public API constants
 
-/// Initialize tracing to file logs/cargo_auto.log
+/// Initialize tracing to file logs/cargo_auto.log.  \
 ///
-/// The folder logs/ is in .gitignore and will not be committed.
+/// The folder logs/ is in .gitignore and will not be committed.  
 pub fn tracing_init() -> anyhow::Result<()> {
-    // export CARGO_AUTO_LOG_FILE=T to enable tracing to file
-    let file_appender = tracing_appender::rolling::RollingFileAppender::builder()
-        .rotation(tracing_appender::rolling::Rotation::DAILY)
-        .filename_prefix("cargo_auto")
-        .filename_suffix("log")
-        .build("logs")
-        .expect("initializing rolling file appender failed");
-
     let offset = time::UtcOffset::current_local_offset()?;
     let timer = tracing_subscriber::fmt::time::OffsetTime::new(
         offset,
@@ -48,7 +40,7 @@ pub fn tracing_init() -> anyhow::Result<()> {
     // ERROR level is always logged.
     // Add filters to CARGO_AUTO_LOG environment variable for a single execution:
     // ```bash
-    // CARGO_AUTO_LOG_FILE="T" CARGO_AUTO_LOG="debug,hyper_util=info,reqwest=info" ./{package_name}
+    // CARGO_AUTO_LOG="debug,hyper_util=info,reqwest=info" ./{package_name}
     // ```
     let filter = tracing_subscriber::EnvFilter::from_env("CARGO_AUTO_LOG");
 
@@ -58,7 +50,14 @@ pub fn tracing_init() -> anyhow::Result<()> {
         .with_line_number(true)
         .with_ansi(false)
         .with_env_filter(filter);
-    if std::env::var("CARGO_AUTO_LOG_FILE").unwrap_or("F".to_string()) == "T" {
+    if std::env::var("CARGO_AUTO_LOG").is_ok() {
+        // if CARGO_AUTO_LOG exists than enable tracing to file
+        let file_appender = tracing_appender::rolling::RollingFileAppender::builder()
+            .rotation(tracing_appender::rolling::Rotation::DAILY)
+            .filename_prefix("cargo_auto")
+            .filename_suffix("log")
+            .build("logs")
+            .expect("initializing rolling file appender failed");
         builder.with_writer(file_appender).init();
     } else {
         builder.init();

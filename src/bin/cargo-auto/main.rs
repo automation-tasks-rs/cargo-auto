@@ -6,7 +6,7 @@
 //! # cargo-auto  
 //!
 //! **Automation tasks coded in Rust language for the workflow of Rust projects**  
-//! ***version: 2025.1105.1936 date: 2025-11-05 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
+//! ***version: 2025.1106.1803 date: 2025-11-06 author: [bestia.dev](https://bestia.dev) repository: [GitHub](https://github.com/automation-tasks-rs/cargo-auto)***
 //!
 //!  ![maintained](https://img.shields.io/badge/maintained-green)
 //!  ![ready-for-use](https://img.shields.io/badge/ready_for_use-green)
@@ -26,9 +26,9 @@
 //!  [![Newest docs](https://img.shields.io/badge/newest_docs-blue.svg)](https://automation-tasks-rs.github.io/cargo-auto/cargo_auto/index.html)
 //!  ![cargo-auto](https://bestia.dev/webpage_hit_counter/get_svg_image/959103982.svg)
 //!
-//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-967-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-610-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
-//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-127-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Rust code](https://img.shields.io/badge/Lines_in_Rust-994-green.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Doc comments](https://img.shields.io/badge/Lines_in_Doc_comments-613-blue.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
+//! [![Lines in Comments](https://img.shields.io/badge/Lines_in_comments-130-purple.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //! [![Lines in examples](https://img.shields.io/badge/Lines_in_examples-0-yellow.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //! [![Lines in tests](https://img.shields.io/badge/Lines_in_tests-0-orange.svg)](https://github.com/automation-tasks-rs/cargo-auto/)
 //!
@@ -253,25 +253,29 @@
 // endregion: auto_md_to_doc_comments include README.md A //!
 
 mod generic_functions_mod;
+use cargo_auto_main_lib as lib;
 use generic_functions_mod as cli;
 
-use cargo_auto_main_lib as lib;
+// Bring trait for Result into scope.
+use lib::ResultLogError;
+
 // use cli::{BLUE, GREEN, RED, RESET, YELLOW};
 
-///main returns ExitCode
+/// Function main() returns ExitCode.
 fn main() -> std::process::ExitCode {
     match main_returns_anyhow_result() {
         Err(err) => {
             // After many propagations with ? the error finally comes here to report to the user.
             // To add additional data for the error add anyhow::context() or with_context() traits.
-            eprintln!("{}", err);
+            eprintln!("{:?}", err);
             // eprintln!("Exit program with failure exit code 1");
             std::process::ExitCode::FAILURE
         }
         Ok(()) => std::process::ExitCode::SUCCESS,
     }
 }
-/// main() returns anyhow::Result
+
+/// Function main() returns anyhow::Result.
 fn main_returns_anyhow_result() -> anyhow::Result<()> {
     cli::tracing_init()?;
     tracing::info!("cargo-auto start");
@@ -282,9 +286,9 @@ fn main_returns_anyhow_result() -> anyhow::Result<()> {
     let _arg_0 = args.next();
 
     if lib::is_not_run_in_rust_project_root_directory() {
-        lib::outside_of_rust_project_mod::parse_args(&mut args)?;
+        lib::outside_of_rust_project_mod::parse_args(&mut args).log()?;
     } else {
-        lib::inside_of_rust_project_mod::parse_args(&mut args)?;
+        lib::inside_of_rust_project_mod::parse_args(&mut args).log()?;
     }
     Ok(())
 }

@@ -5,7 +5,7 @@
 //! The template is downloaded from github:  
 //! <https://github.com/automation-tasks-rs/cargo_auto_template_new_pwa_wasm/releases/latest/download/template.tar.gz>
 
-use crate::{GREEN, RED, RESET, YELLOW};
+use crate::{ResultLogError, GREEN, RED, RESET, YELLOW};
 
 /// Creates a new Rust project from template.
 pub fn new_pwa_wasm(
@@ -14,7 +14,7 @@ pub fn new_pwa_wasm(
     web_server_domain: Option<String>,
     server_username: Option<String>,
 ) -> anyhow::Result<()> {
-    // internal function: favicon.ico with 16 and 32 icons
+    /// internal function: favicon.ico with 16 and 32 icons.
     fn encode_to_favicon_ico(img: &image::DynamicImage, rust_project_name: &str) -> anyhow::Result<()> {
         /// internal function: favicon
         fn favicon_add_entry(img: &image::DynamicImage, size: u32, icon_dir: &mut ico::IconDir) -> anyhow::Result<()> {
@@ -30,38 +30,38 @@ pub fn new_pwa_wasm(
         }
         // Create a new, empty icon collection:
         let mut icon_dir = ico::IconDir::new(ico::ResourceType::Icon);
-        favicon_add_entry(img, 16, &mut icon_dir)?;
-        favicon_add_entry(img, 32, &mut icon_dir)?;
-        favicon_add_entry(img, 48, &mut icon_dir)?;
+        favicon_add_entry(img, 16, &mut icon_dir).log()?;
+        favicon_add_entry(img, 32, &mut icon_dir).log()?;
+        favicon_add_entry(img, 48, &mut icon_dir).log()?;
         let file_name = format!("{rust_project_name}/web_server_folder/{rust_project_name}/favicon.ico");
-        let buffer = std::fs::File::create(file_name)?;
-        icon_dir.write(buffer)?;
+        let buffer = std::fs::File::create(file_name).log()?;
+        icon_dir.write(buffer).log()?;
         Ok(())
     }
 
-    /// internal function: decode png
+    /// Internal function: decode png.
     fn decode_png(vec: Vec<u8>) -> anyhow::Result<image::DynamicImage> {
         let img = image::ImageReader::new(std::io::Cursor::new(vec));
-        let img = img.with_guessed_format()?;
+        let img = img.with_guessed_format().log()?;
         // return img
         Ok(img.decode()?)
     }
 
-    /// internal function: resize img
+    /// Internal function: resize img.
     fn resize_image(img: &image::DynamicImage, img_size: u32, file_name: &str, rust_project_name: &str) -> anyhow::Result<()> {
         /// internal function: encode to png
         fn encode_to_png(new_img: image::DynamicImage) -> anyhow::Result<Vec<u8>> {
             let vec_u8: Vec<u8> = Vec::new();
             let mut cursor_1 = std::io::Cursor::new(vec_u8);
-            new_img.write_to(&mut cursor_1, image::ImageFormat::Png)?;
+            new_img.write_to(&mut cursor_1, image::ImageFormat::Png).log()?;
             // return
             Ok(cursor_1.get_ref().to_owned())
         }
         let new_img = img.resize(img_size, img_size, image::imageops::FilterType::Lanczos3);
-        let vec_u8 = encode_to_png(new_img)?;
+        let vec_u8 = encode_to_png(new_img).log()?;
 
         let file_name = format!("{rust_project_name}/web_server_folder/{rust_project_name}/icons/{file_name}");
-        std::fs::write(file_name, vec_u8)?;
+        std::fs::write(file_name, vec_u8).log()?;
         Ok(())
     }
 
@@ -93,10 +93,10 @@ pub fn new_pwa_wasm(
         return Ok(());
     }
     use anyhow::Context;
-    let rust_project_name = rust_project_name.context("rust_project_name is None")?;
-    let github_owner_or_organization = github_owner_or_organization.context("github_owner_or_organization is None")?;
-    let web_server_domain = web_server_domain.context("web_server_domain is None")?;
-    let server_username = server_username.context("server_username is None")?;
+    let rust_project_name = rust_project_name.context("rust_project_name is None").log()?;
+    let github_owner_or_organization = github_owner_or_organization.context("github_owner_or_organization is None").log()?;
+    let web_server_domain = web_server_domain.context("web_server_domain is None").log()?;
+    let server_username = server_username.context("server_username is None").log()?;
 
     // the icon exist, already checked
     copy_to_files(
@@ -104,32 +104,33 @@ pub fn new_pwa_wasm(
         &github_owner_or_organization,
         &web_server_domain,
         &server_username,
-    )?;
+    )
+    .log()?;
 
     // region: png with various sizes for: favicon png, pwa Android and pwa iOS
     // 32, 72, 96, 120, 128, 144, 152, 167, 180, 192, 196, 512
-    let img = std::fs::read("icon512x512.png")?;
-    let img = decode_png(img)?;
+    let img = std::fs::read("icon512x512.png").log()?;
+    let img = decode_png(img).log()?;
 
-    resize_image(&img, 32, "icon-032.png", &rust_project_name)?;
-    resize_image(&img, 72, "icon-072.png", &rust_project_name)?;
-    resize_image(&img, 96, "icon-096.png", &rust_project_name)?;
-    resize_image(&img, 120, "icon-120.png", &rust_project_name)?;
-    resize_image(&img, 128, "icon-128.png", &rust_project_name)?;
-    resize_image(&img, 144, "icon-144.png", &rust_project_name)?;
-    resize_image(&img, 152, "icon-152.png", &rust_project_name)?;
-    resize_image(&img, 167, "icon-167.png", &rust_project_name)?;
-    resize_image(&img, 180, "icon-180.png", &rust_project_name)?;
-    resize_image(&img, 192, "icon-192.png", &rust_project_name)?;
-    resize_image(&img, 196, "icon-196.png", &rust_project_name)?;
+    resize_image(&img, 32, "icon-032.png", &rust_project_name).log()?;
+    resize_image(&img, 72, "icon-072.png", &rust_project_name).log()?;
+    resize_image(&img, 96, "icon-096.png", &rust_project_name).log()?;
+    resize_image(&img, 120, "icon-120.png", &rust_project_name).log()?;
+    resize_image(&img, 128, "icon-128.png", &rust_project_name).log()?;
+    resize_image(&img, 144, "icon-144.png", &rust_project_name).log()?;
+    resize_image(&img, 152, "icon-152.png", &rust_project_name).log()?;
+    resize_image(&img, 167, "icon-167.png", &rust_project_name).log()?;
+    resize_image(&img, 180, "icon-180.png", &rust_project_name).log()?;
+    resize_image(&img, 192, "icon-192.png", &rust_project_name).log()?;
+    resize_image(&img, 196, "icon-196.png", &rust_project_name).log()?;
     // overwrite the default with the new
-    resize_image(&img, 512, "icon-512.png", &rust_project_name)?;
+    resize_image(&img, 512, "icon-512.png", &rust_project_name).log()?;
 
     // maskable icon 192
-    resize_image(&img, 192, "icon-maskable.png", &rust_project_name)?;
+    resize_image(&img, 192, "icon-maskable.png", &rust_project_name).log()?;
 
     // favicon.ico with 16, 32 and 48 icons
-    encode_to_favicon_ico(&img, &rust_project_name)?;
+    encode_to_favicon_ico(&img, &rust_project_name).log()?;
 
     // endregion
     println!(
@@ -156,7 +157,7 @@ fn copy_to_files(
     if folder_path.exists() {
         anyhow::bail!("{RED}Error: Folder {rust_project_name} already exists! {RESET}");
     }
-    std::fs::create_dir_all(folder_path)?;
+    std::fs::create_dir_all(folder_path).log()?;
 
     // download latest template.tar.gz
     println!("  {YELLOW}Downloading template.tar.gz...{RESET}");
@@ -167,19 +168,21 @@ fn copy_to_files(
     let http_response = reqwest_client.get(url).send();
 
     if let Ok(body) = http_response {
-        let body = body.bytes()?;
+        let body = body.bytes().log()?;
         // Get the content of the response
-        std::fs::write(path, &body).or_else(|err| anyhow::bail!("Download failed for {file_name} {err}"))?;
+        std::fs::write(path, &body)
+            .or_else(|err| anyhow::bail!("Download failed for {file_name} {err}"))
+            .log()?;
     } else {
         anyhow::bail!("Error while retrieving data: {:#?}", http_response.err());
     }
 
     // decompress into folder_path
-    let tar_gz = std::fs::File::open(path)?;
+    let tar_gz = std::fs::File::open(path).log()?;
     let tar = flate2::read::GzDecoder::new(tar_gz);
     let mut archive = tar::Archive::new(tar);
-    archive.unpack(folder_path)?;
-    std::fs::remove_file(path)?;
+    archive.unpack(folder_path).log()?;
+    std::fs::remove_file(path).log()?;
 
     // replace placeholders inside text files
     for entry in walkdir::WalkDir::new(folder_path).into_iter().filter_map(Result::ok) {
@@ -192,13 +195,13 @@ fn copy_to_files(
             } else {
                 // template has only valid utf8 files
                 println!("replace: {}", entry.path().to_string_lossy());
-                let content = std::fs::read_to_string(entry.path())?;
+                let content = std::fs::read_to_string(entry.path()).log()?;
                 let content = content.replace("cargo_auto_template_new_pwa_wasm", rust_project_name);
                 let content = content.replace("automation-tasks-rs", github_owner_or_organization);
                 let content = content.replace("automation--tasks--rs", "automation-tasks-rs");
                 let content = content.replace("web_server_domain", web_server_domain);
                 let content = content.replace("server_username", server_username);
-                std::fs::write(entry.path(), content)?;
+                std::fs::write(entry.path(), content).log()?;
             }
         }
     }
@@ -214,7 +217,8 @@ fn copy_to_files(
                     .path()
                     .to_string_lossy()
                     .replace("cargo_auto_template_new_pwa_wasm", rust_project_name),
-            )?;
+            )
+            .log()?;
         }
     }
     Ok(())
