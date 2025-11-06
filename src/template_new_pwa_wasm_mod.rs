@@ -197,6 +197,10 @@ fn copy_to_files(
                 println!("replace: {}", entry.path().to_string_lossy());
                 let content = std::fs::read_to_string(entry.path()).log()?;
                 let content = content.replace("cargo_auto_template_new_pwa_wasm", rust_project_name);
+                let content = content.replace(
+                    &"cargo_auto_template_new_pwa_wasm".to_uppercase(),
+                    &rust_project_name.to_uppercase(),
+                );
                 let content = content.replace("automation-tasks-rs", github_owner_or_organization);
                 let content = content.replace("automation--tasks--rs", "automation-tasks-rs");
                 let content = content.replace("web_server_domain", web_server_domain);
