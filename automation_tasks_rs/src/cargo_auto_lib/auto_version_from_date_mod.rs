@@ -6,6 +6,7 @@
 
 use crate::cargo_auto_lib::error_mod::{Error, Result};
 use crate::cargo_auto_lib::public_api_mod::{RED, RESET, YELLOW};
+use crate::generic_functions_mod::ResultLogError;
 use chrono::DateTime;
 use chrono::Timelike;
 use chrono::{Datelike, Utc};
@@ -75,18 +76,18 @@ pub fn auto_version_from_date_forced() -> Result<()> {
 fn auto_version_from_date_internal(force_version: bool) -> Result<()> {
     let date = Utc::now();
     let new_version = version_from_date(date);
-    let vec_of_metadata = read_file_metadata()?;
+    let vec_of_metadata = read_file_metadata().log()?;
     let is_files_equal = if force_version {
         false
     } else {
-        let js_struct = read_json_file(".automation_tasks_rs_file_hashes.json")?;
+        let js_struct = read_json_file(".automation_tasks_rs_file_hashes.json").log()?;
         are_files_equal(&vec_of_metadata, &js_struct.vec_file_metadata)
     };
 
     if !is_files_equal {
-        write_version_to_cargo_and_modify_metadata(&new_version, vec_of_metadata)?;
+        write_version_to_cargo_and_modify_metadata(&new_version, vec_of_metadata).log()?;
     }
-    modify_service_js(&new_version)?;
+    modify_service_js(&new_version).log()?;
     Ok(())
 }
 
@@ -97,9 +98,9 @@ fn modify_service_js(new_version: &str) -> Result<()> {
         start_dir.as_std_path(),
         "/service_worker.js",
         &["/.git".to_string(), "/target".to_string()],
-    )? {
+    ).log()? {
         // println!("{}write version in {}{}", *GREEN, js_filename, *RESET);
-        let mut js_content = std::fs::read_to_string(js_filename)?;
+        let mut js_content = std::fs::read_to_string(js_filename).log()?;
 
         // check if file have CRLF instead of LF and show error
         if js_content.contains("\r\n") {
@@ -138,7 +139,7 @@ fn modify_service_js(new_version: &str) -> Result<()> {
 fn write_version_to_cargo_and_modify_metadata(new_version: &str, mut vec_of_metadata: Vec<FileMetaData>) -> Result<()> {
     // println!("{}write version to Cargo.toml{}", *GREEN, *RESET);
     let cargo_filename = "Cargo.toml";
-    let mut cargo_content = std::fs::read_to_string(cargo_filename)?;
+    let mut cargo_content = std::fs::read_to_string(cargo_filename).log()?;
 
     // check if file have CRLF instead of LF and show error
     if cargo_content.contains("\r\n") {
@@ -165,8 +166,8 @@ fn write_version_to_cargo_and_modify_metadata(new_version: &str, mut vec_of_meta
                 let _x = std::fs::write(cargo_filename, cargo_content);
 
                 //the Cargo.toml is now different
-                correct_file_metadata_for_cargo_tom_inside_vec(&mut vec_of_metadata)?;
-                save_json_file_for_file_meta_data(vec_of_metadata)?;
+                correct_file_metadata_for_cargo_tom_inside_vec(&mut vec_of_metadata).log()?;
+                save_json_file_for_file_meta_data(vec_of_metadata).log()?;
             }
         } else {
             return Err(Error::ErrorFromString(format!("{RED}no end quote for version{RESET}")));
@@ -182,10 +183,10 @@ pub fn correct_file_metadata_for_cargo_tom_inside_vec(vec_of_metadata: &mut [Fil
     //correct the vector only for Cargo.toml file
     let filename = "Cargo.toml".to_string();
     // calculate hash of file
-    let filehash = sha256_digest(std::path::PathBuf::from_str(&filename)?.as_path())?;
+    let filehash = sha256_digest(std::path::PathBuf::from_str(&filename).log()?.as_path()).log()?;
     vec_of_metadata
         .get_mut(0)
-        .ok_or(Error::ErrorFromStr("error vec_of_metadata.get_mut(0)"))?
+        .ok_or(Error::ErrorFromStr("error vec_of_metadata.get_mut(0)")).log()?
         .filehash = filehash;
     Ok(())
 }
@@ -218,7 +219,7 @@ pub fn read_file_metadata() -> Result<Vec<FileMetaData>> {
     let mut vec_of_metadata: Vec<FileMetaData> = Vec::new();
     let filename = "Cargo.toml".to_string();
     // calculate hash of file
-    let filehash = sha256_digest(std::path::PathBuf::from_str(&filename)?.as_path())?;
+    let filehash = sha256_digest(std::path::PathBuf::from_str(&filename).log()?.as_path()).log()?;
     vec_of_metadata.push(FileMetaData { filename, filehash });
 
     let files_paths = crate::cargo_auto_lib::utils_mod::traverse_dir_with_exclude_dir(
@@ -226,11 +227,11 @@ pub fn read_file_metadata() -> Result<Vec<FileMetaData>> {
         "/*.rs",
         // avoid big folders
         &[],
-    )?;
+    ).log()?;
 
     for filename in files_paths {
         // calculate hash of file
-        let filehash = sha256_digest(std::path::PathBuf::from_str(&filename)?.as_path())?;
+        let filehash = sha256_digest(std::path::PathBuf::from_str(&filename).log()?.as_path()).log()?;
         vec_of_metadata.push(FileMetaData { filename, filehash });
     }
     Ok(vec_of_metadata)
@@ -238,7 +239,7 @@ pub fn read_file_metadata() -> Result<Vec<FileMetaData>> {
 
 /// Calculate the hash for the content of a file
 fn sha256_digest(path: &std::path::Path) -> Result<String> {
-    let file = std::fs::File::open(path)?;
+    let file = std::fs::File::open(path).log()?;
     let mut reader = std::io::BufReader::new(file);
     // let mut context = ring::digest::Context::new(&ring::digest::SHA256);
     let mut hasher = sha2::Sha256::new();
@@ -246,7 +247,7 @@ fn sha256_digest(path: &std::path::Path) -> Result<String> {
     let mut buffer = [0; 1024];
     use std::io::Read;
     loop {
-        let count = reader.read(&mut buffer)?;
+        let count = reader.read(&mut buffer).log()?;
         if count == 0 {
             break;
         }
@@ -273,7 +274,7 @@ pub fn read_json_file(json_filepath: &str) -> Result<AutoVersionFromDate> {
                 }
             } else {
                 //read struct from file
-                js_struct = serde_json::from_str(x.as_str())?;
+                js_struct = serde_json::from_str(x.as_str()).log()?;
             }
         }
         Err(_error) => {
@@ -292,7 +293,7 @@ pub fn save_json_file_for_file_meta_data(vec_of_metadata: Vec<FileMetaData>) -> 
     let x = AutoVersionFromDate {
         vec_file_metadata: vec_of_metadata,
     };
-    let y = serde_json::to_string_pretty(&x)?;
+    let y = serde_json::to_string_pretty(&x).log()?;
     let json_filepath = ".automation_tasks_rs_file_hashes.json";
     let _f = std::fs::write(json_filepath, y);
     Ok(())
@@ -319,7 +320,7 @@ fn version_from_date(date: DateTime<chrono::Utc>) -> String {
 
 /// Find from position in string
 fn find_from(rs_content: &str, from: usize, find: &str) -> Result<usize> {
-    let slice01 = rs_content.get(from..).ok_or_else(|| Error::ErrorFromStr("get from is None"))?;
+    let slice01 = rs_content.get(from..).ok_or_else(|| Error::ErrorFromStr("get from is None")).log()?;
     let option_location = slice01.find(find);
     if let Some(location) = option_location {
         //return Ok with usize
@@ -346,7 +347,7 @@ mod test {
 
     #[test]
     pub fn test_sha256_digest() -> Result<()> {
-        let digest = sha256_digest(camino::Utf8Path::new("LICENSE").as_std_path())?;
+        let digest = sha256_digest(camino::Utf8Path::new("LICENSE").as_std_path()).log()?;
         let hash_string = data_encoding::HEXLOWER.encode(digest.as_ref());
         let expected_hex = "66343964363936663834636237373465396336653537646333646433633537386532643333623130613539663837326634383134373337386462303038653035";
         assert_eq!(&hash_string, expected_hex);

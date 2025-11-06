@@ -10,21 +10,22 @@ use crate::cargo_auto_lib as cl;
 
 use crate::cargo_auto_lib::CargoTomlPublicApiMethods;
 use crate::cargo_auto_lib::ShellCommandLimitedDoubleQuotesSanitizerTrait;
+use crate::generic_functions_mod::ResultLogError;
 #[allow(unused_imports)]
 use cl::{BLUE, GREEN, RED, RESET, YELLOW};
 
 #[allow(dead_code)]
 /// wasm-pack build --profiling
 pub fn task_build() -> anyhow::Result<cl::CargoToml> {
-    let cargo_toml = cl::CargoToml::read()?;
-    cl::auto_version_increment_semver_or_date()?;
-    cl::run_shell_command_static("cargo fmt")?;
-    cl::run_shell_command_static("cargo clippy --no-deps")?;
-    cl::run_shell_command_static("wasm-pack build --target web --profiling")?;
+    let cargo_toml = cl::CargoToml::read().log()?;
+    cl::auto_version_increment_semver_or_date().log()?;
+    cl::run_shell_command_static("cargo fmt").log()?;
+    cl::run_shell_command_static("cargo clippy --no-deps").log()?;
+    cl::run_shell_command_static("wasm-pack build --target web --profiling").log()?;
 
-    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"rsync -a --delete-after pkg/ "web_server_folder/{package_name}/pkg/" "#)?
-        .arg("{package_name}", &cargo_toml.package_name())?
-        .run()?;
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"rsync -a --delete-after pkg/ "web_server_folder/{package_name}/pkg/" "#).log()?
+        .arg("{package_name}", &cargo_toml.package_name()).log()?
+        .run().log()?;
 
     Ok(cargo_toml)
 }
@@ -32,18 +33,18 @@ pub fn task_build() -> anyhow::Result<cl::CargoToml> {
 #[allow(dead_code)]
 /// wasm-pack build --release
 pub fn task_release() -> anyhow::Result<cl::CargoToml> {
-    let cargo_toml = cl::CargoToml::read()?;
-    cl::auto_version_increment_semver_or_date()?;
-    cl::auto_cargo_toml_to_md()?;
-    cl::auto_lines_of_code("")?;
+    let cargo_toml = cl::CargoToml::read().log()?;
+    cl::auto_version_increment_semver_or_date().log()?;
+    cl::auto_cargo_toml_to_md().log()?;
+    cl::auto_lines_of_code("").log()?;
 
-    cl::run_shell_command_static("cargo fmt")?;
-    cl::run_shell_command_static("cargo clippy --no-deps")?;
-    cl::run_shell_command_static("wasm-pack build --target web --release")?;
+    cl::run_shell_command_static("cargo fmt").log()?;
+    cl::run_shell_command_static("cargo clippy --no-deps").log()?;
+    cl::run_shell_command_static("wasm-pack build --target web --release").log()?;
 
-    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"rsync -a --delete-after pkg/ "web_server_folder/{package_name}/pkg/" "#)?
-        .arg("{package_name}", &cargo_toml.package_name())?
-        .run()?;
+    cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"rsync -a --delete-after pkg/ "web_server_folder/{package_name}/pkg/" "#).log()?
+        .arg("{package_name}", &cargo_toml.package_name()).log()?
+        .run().log()?;
 
     Ok(cargo_toml)
 }

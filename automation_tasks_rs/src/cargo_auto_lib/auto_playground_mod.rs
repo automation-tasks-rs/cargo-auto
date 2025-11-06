@@ -5,6 +5,7 @@
 use crate::cargo_auto_lib::error_mod::{Error, Result};
 use crate::cargo_auto_lib::public_api_mod::{RED, RESET, YELLOW};
 use crate::cargo_auto_lib::utils_mod::*;
+use crate::generic_functions_mod::ResultLogError;
 use lazy_static::lazy_static;
 
 lazy_static! {
@@ -49,19 +50,19 @@ lazy_static! {
 // endregion: auto_md_to_doc_comments include doc_comments/auto_playground_run_code.md A ///
 pub fn auto_playground_run_code() -> Result<()> {
     println!("  {YELLOW}Running auto_playground{RESET}");
-    let path = std::env::current_dir()?;
+    let path = std::env::current_dir().log()?;
     //use traverse instead of glob
     let files = crate::cargo_auto_lib::utils_mod::traverse_dir_with_exclude_dir(
         &path,
         "/*.md",
         // exclude folders
         &["/.git".to_string(), "/target".to_string(), "/docs".to_string(), "/pkg".to_string()],
-    )?;
+    ).log()?;
     for md_filename in files {
         let md_filename = camino::Utf8Path::new(&md_filename);
 
         let mut is_changed = false;
-        let md_old = std::fs::read_to_string(md_filename)?;
+        let md_old = std::fs::read_to_string(md_filename).log()?;
 
         // check if file have CRLF and show error
         if md_old.contains("\r\n") {
@@ -101,7 +102,7 @@ pub fn auto_playground_run_code() -> Result<()> {
                 Error::ErrorFromString(format!(
                     "{RED}Error: The old link '{text_that_has_the_link}' is NOT in this format '[Rust playground](https:...)'{RESET}"
                 ))
-            })?;
+            }).log()?;
             let old_link = &cap_group[1];
             // replace the old link with the new one
             let text_that_has_the_link = text_that_has_the_link.replace(old_link, &playground_link);
@@ -123,8 +124,8 @@ pub fn auto_playground_run_code() -> Result<()> {
             // push the remaining text
             md_new.push_str(&md_old[iteration_start_pos..md_old.len()]);
             let bak_filename = md_filename.with_extension("bak");
-            std::fs::write(&bak_filename, md_old)?;
-            std::fs::write(md_filename, md_new)?;
+            std::fs::write(&bak_filename, md_old).log()?;
+            std::fs::write(md_filename, md_new).log()?;
         }
     }
     println!("  {YELLOW}Finished auto_playground{RESET}");

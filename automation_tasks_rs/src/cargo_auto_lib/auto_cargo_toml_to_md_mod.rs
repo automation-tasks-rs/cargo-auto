@@ -8,6 +8,7 @@
 
 use crate::cargo_auto_lib::error_mod::{Error, Result};
 use crate::cargo_auto_lib::public_api_mod::{GREEN, RED, RESET, YELLOW};
+use crate::generic_functions_mod::ResultLogError;
 use glob::glob;
 use lazy_static::lazy_static;
 use regex::*;
@@ -60,7 +61,7 @@ lazy_static! {
 ///
 // endregion: auto_md_to_doc_comments include doc_comments/auto_cargo_toml_to_md.md A ///
 pub fn auto_cargo_toml_to_md() -> Result<()> {
-    let cargo_toml = crate::cargo_auto_lib::auto_cargo_toml_mod::CargoToml::read()?;
+    let cargo_toml = crate::cargo_auto_lib::auto_cargo_toml_mod::CargoToml::read().log()?;
     let version = cargo_toml.package_version();
     let author_name = cargo_toml.package_author_name();
     let homepage = cargo_toml.package_homepage();
@@ -92,13 +93,13 @@ pub fn auto_cargo_toml_to_md() -> Result<()> {
     }
     new_text.push('\n');
 
-    for filename_result in glob("*.md")? {
+    for filename_result in glob("*.md").log()? {
         let filename_pathbuff = filename_result?;
         let md_filename = filename_pathbuff
             .to_str()
-            .ok_or_else(|| Error::ErrorFromStr("filename_pathbuff is None"))?;
+            .ok_or_else(|| Error::ErrorFromStr("filename_pathbuff is None")).log()?;
         // println!("checking md_filename: {}", &md_filename);
-        let mut md_text_content = std::fs::read_to_string(md_filename)?;
+        let mut md_text_content = std::fs::read_to_string(md_filename).log()?;
 
         // check if file have CRLF and show error
         if md_text_content.contains("\r\n") {
@@ -108,13 +109,13 @@ pub fn auto_cargo_toml_to_md() -> Result<()> {
         }
 
         if let Some(cap) = REGEX_MD_START.captures(&md_text_content) {
-            let pos_start = cap.get(0).ok_or_else(|| Error::ErrorFromStr("cap get 0 is None"))?.end() + 1;
+            let pos_start = cap.get(0).ok_or_else(|| Error::ErrorFromStr("cap get 0 is None")).log()?.end() + 1;
             if let Some(cap) = REGEX_MD_END.captures(&md_text_content) {
-                let pos_end = cap.get(0).ok_or_else(|| Error::ErrorFromStr("cap get 0 is None"))?.start();
+                let pos_end = cap.get(0).ok_or_else(|| Error::ErrorFromStr("cap get 0 is None")).log()?.start();
                 md_text_content.replace_range(pos_start..pos_end, &new_text);
                 println!("  {YELLOW}Write to md file: {}{RESET}", md_filename);
                 println!("{GREEN}{}{RESET}", &new_text.trim_end_matches("\n\n"));
-                std::fs::write(md_filename, md_text_content)?;
+                std::fs::write(md_filename, md_text_content).log()?;
             }
         }
     }

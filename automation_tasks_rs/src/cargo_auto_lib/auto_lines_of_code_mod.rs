@@ -5,6 +5,7 @@
 use crate::cargo_auto_lib::error_mod::Error;
 use crate::cargo_auto_lib::public_api_mod::{RED, RESET, YELLOW};
 use crate::cargo_auto_lib::Result;
+use crate::generic_functions_mod::ResultLogError;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
@@ -86,9 +87,9 @@ pub fn auto_lines_of_code(link: &str) -> Result<()> {
         link.to_string()
     };
     // Cargo.toml contains the list of projects
-    let lines_of_code = count_lines_of_code()?;
+    let lines_of_code = count_lines_of_code().log()?;
     let text_to_include = to_string_as_shield_badges(&lines_of_code, &link);
-    include_into_readme_md(&text_to_include)?;
+    include_into_readme_md(&text_to_include).log()?;
     println!("  {YELLOW}Finished auto_lines_of_code{RESET}");
     Ok(())
 }
@@ -105,11 +106,11 @@ pub fn count_lines_of_code() -> Result<LinesOfCode> {
         "/*.rs",
         // avoid big folders
         &["/.git".to_string(), "/target".to_string(), "/docs".to_string()],
-    )?;
+    ).log()?;
     // println!("{:#?}", files);
     for rs_file_name in files.iter() {
         // Open the file in read-only mode (ignoring errors).
-        let file = File::open(rs_file_name)?;
+        let file = File::open(rs_file_name).log()?;
         let reader = BufReader::new(file);
         let mut is_unit_test = false;
         // Read the file line by line using the lines() iterator from std::io::BufRead.
@@ -138,11 +139,11 @@ pub fn count_lines_of_code() -> Result<LinesOfCode> {
         "/*.rs",
         // avoid big folders
         &["/.git".to_string(), "/target".to_string(), "/docs".to_string()],
-    )?;
+    ).log()?;
     // println!("{:#?}", files);
     for rs_file_name in files.iter() {
         // Open the file in read-only mode (ignoring errors).
-        let file = File::open(rs_file_name)?;
+        let file = File::open(rs_file_name).log()?;
         let reader = BufReader::new(file);
         // Read the file line by line using the lines() iterator from std::io::BufRead.
         for _line in reader.lines() {
@@ -156,10 +157,10 @@ pub fn count_lines_of_code() -> Result<LinesOfCode> {
         "/*.rs",
         // avoid big folders
         &["/.git".to_string(), "/target".to_string(), "/docs".to_string()],
-    )?;
+    ).log()?;
     for rs_file_name in files.iter() {
         // Open the file in read-only mode (ignoring errors).
-        let file = File::open(rs_file_name)?;
+        let file = File::open(rs_file_name).log()?;
         let reader = BufReader::new(file);
         // Read the file line by line using the lines() iterator from std::io::BufRead.
         for _line in reader.lines().enumerate() {
@@ -241,7 +242,7 @@ fn include_into_readme_md(include_str: &str) -> Result<()> {
                     *GREEN, file_name, *RESET
                 );
                  */
-                std::fs::write(file_name, new_readme_content)?;
+                std::fs::write(file_name, new_readme_content).log()?;
             }
         }
     }

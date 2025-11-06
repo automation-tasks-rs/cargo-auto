@@ -15,7 +15,7 @@ publish = false
 
 tracing = "0.1.41"
 tracing-subscriber = { version = "0.3.19", features = ["env-filter", "std", "fmt", "time"] }
-# tracing-appender="0.2.3"
+tracing-appender="0.2.3"
 time = {version="0.3.39", features=["macros","local-offset"]}
 
 anyhow="1.0.97"

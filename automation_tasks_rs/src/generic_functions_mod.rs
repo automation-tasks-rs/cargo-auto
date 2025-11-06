@@ -11,39 +11,58 @@ use crate::cargo_auto_lib as cl;
 #[allow(unused_imports)]
 pub use cl::{BLUE, GREEN, RED, RESET, YELLOW};
 
-/// Initialize tracing to file logs/automation_tasks_rs.log
+/// Initialize tracing to file logs/automation_tasks_rs.log.  \
 ///
-/// The folder logs/ is in .gitignore and will not be committed.
+/// The folder logs/ is in .gitignore and will not be committed.  
 pub fn tracing_init() -> anyhow::Result<()> {
-    // uncomment this line to enable tracing to file
-    // let file_appender = tracing_appender::rolling::daily("logs", "automation_tasks_rs.log");
-
     let offset = time::UtcOffset::current_local_offset()?;
     let timer = tracing_subscriber::fmt::time::OffsetTime::new(
         offset,
         time::macros::format_description!("[hour]:[minute]:[second].[subsecond digits:6]"),
     );
 
-    // Filter out logs from: hyper_util, reqwest
     // A filter consists of one or more comma-separated directives
     // target[span{field=value}]=level
-    // examples: tokio::net=info
-    // directives can be added with the RUST_LOG environment variable:
-    // export RUST_LOG=automation_tasks_rs=trace
-    // Unset the environment variable RUST_LOG
-    // unset RUST_LOG
-    let filter = tracing_subscriber::EnvFilter::from_default_env()
-        .add_directive("hyper_util=error".parse()?)
-        .add_directive("reqwest=error".parse()?);
+    // Levels order: 1. ERROR, 2. WARN, 3. INFO, 4. DEBUG, 5. TRACE
+    // ERROR level is always logged.
+    // Add filters to AUTOMATION_TASKS_RS_LOG environment variable for a single execution:
+    // ```bash
+    // AUTOMATION_TASKS_RS_LOG="debug,hyper_util=info,reqwest=info" ./{package_name}
+    // ```
+    let filter = tracing_subscriber::EnvFilter::from_env("AUTOMATION_TASKS_RS_LOG");
 
-    tracing_subscriber::fmt()
+    let builder = tracing_subscriber::fmt()
         .with_file(true)
-        .with_max_level(tracing::Level::DEBUG)
         .with_timer(timer)
         .with_line_number(true)
         .with_ansi(false)
-        //.with_writer(file_appender)
-        .with_env_filter(filter)
-        .init();
+        .with_env_filter(filter);
+    if std::env::var("AUTOMATION_TASKS_RS_LOG").is_ok() {
+        // if AUTOMATION_TASKS_RS_LOG exists than enable tracing to file
+        let file_appender = tracing_appender::rolling::RollingFileAppender::builder()
+            .rotation(tracing_appender::rolling::Rotation::DAILY)
+            .filename_prefix("automation_tasks_rs")
+            .filename_suffix("log")
+            .build("logs")
+            .expect("initializing rolling file appender failed");
+        builder.with_writer(file_appender).init();
+    } else {
+        builder.init();
+    };
+
     Ok(())
+}
+
+/// Trait to log the error from Result before propagation with ?.
+pub trait ResultLogError<T, E>: Sized {
+    fn log(self) -> Self;
+}
+
+/// Implements LogError for anyhow::Result.
+impl<T, E: std::fmt::Debug> ResultLogError<T, E> for core::result::Result<T, E> {
+    #[inline(always)]
+    #[track_caller]
+    fn log(self) -> Self {
+        self.inspect_err(|err| tracing::error!(?err))
+    }
 }

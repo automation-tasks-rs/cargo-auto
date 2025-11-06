@@ -5,24 +5,27 @@
 // bring trait into scope
 use crate::cargo_auto_lib::error_mod::{Error, Result};
 use crate::cargo_auto_lib::{CargoTomlPublicApiMethods, ShellCommandLimitedDoubleQuotesSanitizerTrait};
+use crate::generic_functions_mod::ResultLogError;
 /// File contains releases changelog
 pub const RELEASES_MD: &str = "RELEASES.md";
 
 /// Sync, check, create, push git tag.
 pub fn git_tag_sync_check_create_push(version: &str) -> Result<String> {
     // sync the local and remote tags
-    crate::cargo_auto_lib::run_shell_command_static("git fetch origin --tags --force")?;
+    crate::cargo_auto_lib::run_shell_command_static("git fetch origin --tags --force").log()?;
 
-    let tags = crate::cargo_auto_lib::run_shell_command_output("git tag")?.stdout;
+    let tags = crate::cargo_auto_lib::run_shell_command_output("git tag").log()?.stdout;
     let tag_name_version = format!("v{}", &version);
     if !tags.contains(&format!("{}\n", tag_name_version)) {
         // create git tag and push
-        crate::cargo_auto_lib::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"git tag -f -a "{tag_name_version}" -m "version_{version}" "#)?
-            .arg("{tag_name_version}", &tag_name_version)?
-            .arg("{version}", version)?
-            .run()?;
+        crate::cargo_auto_lib::ShellCommandLimitedDoubleQuotesSanitizer::new(
+            r#"git tag -f -a "{tag_name_version}" -m "version_{version}" "#,
+        ).log()?
+        .arg("{tag_name_version}", &tag_name_version).log()?
+        .arg("{version}", version).log()?
+        .run().log()?;
 
-        crate::cargo_auto_lib::run_shell_command_static("git push origin --tags")?;
+        crate::cargo_auto_lib::run_shell_command_static("git push origin --tags").log()?;
     }
     // return
     Ok(tag_name_version)
@@ -34,14 +37,14 @@ pub fn git_tag_sync_check_create_push(version: &str) -> Result<String> {
 /// Then the automation task will copy the content to GitHub release  
 /// and create a new Version title in RELEASES.md.  
 pub fn body_text_from_releases_md() -> Result<String> {
-    create_releases_md_if_file_not_exist()?;
-    let release_md = std::fs::read_to_string(RELEASES_MD)?;
+    create_releases_md_if_file_not_exist().log()?;
+    let release_md = std::fs::read_to_string(RELEASES_MD).log()?;
     // find the start of ## Unreleased
     let pos_start_data = crate::cargo_auto_lib::find_pos_start_data_after_delimiter(&release_md, 0, "## Unreleased\n")
-        .map_err(|_| Error::ErrorFromStr("## Unreleased is None"))?;
+        .map_err(|_| Error::ErrorFromStr("## Unreleased is None")).log()?;
     // find the beginning of the next ## Version
     let pos_end_data = crate::cargo_auto_lib::find_pos_end_data_before_delimiter(&release_md, pos_start_data, "## Version ")
-        .map_err(|_| Error::ErrorFromStr("## Version is None"))?;
+        .map_err(|_| Error::ErrorFromStr("## Version is None")).log()?;
     let body_md_text = release_md[pos_start_data..pos_end_data - 1].to_string();
 
     // return
@@ -50,11 +53,11 @@ pub fn body_text_from_releases_md() -> Result<String> {
 
 /// Create a new Version title in RELEASES.md.
 pub fn create_new_version_in_releases_md(release_name: &str) -> Result<()> {
-    create_releases_md_if_file_not_exist()?;
-    let release_md = std::fs::read_to_string(RELEASES_MD)?;
+    create_releases_md_if_file_not_exist().log()?;
+    let release_md = std::fs::read_to_string(RELEASES_MD).log()?;
     // find the start of ## Unreleased
     let pos_start_data = crate::cargo_auto_lib::find_pos_start_data_after_delimiter(&release_md, 0, "## Unreleased\n")
-        .map_err(|_| Error::ErrorFromStr("## Unreleased is None"))?;
+        .map_err(|_| Error::ErrorFromStr("## Unreleased is None")).log()?;
 
     // create a new Version title after ## Unreleased in RELEASES.md
     let new_release_md = format!(
@@ -63,7 +66,7 @@ pub fn create_new_version_in_releases_md(release_name: &str) -> Result<()> {
         &release_name,
         &release_md[pos_start_data..]
     );
-    std::fs::write(RELEASES_MD, new_release_md)?;
+    std::fs::write(RELEASES_MD, new_release_md).log()?;
     // return
     Ok(())
 }
@@ -72,11 +75,11 @@ pub fn create_new_version_in_releases_md(release_name: &str) -> Result<()> {
 fn create_releases_md_if_file_not_exist() -> Result<()> {
     if !camino::Utf8Path::new(RELEASES_MD).exists() {
         // create the template file
-        let cargo_toml = crate::cargo_auto_lib::CargoToml::read()?;
+        let cargo_toml = crate::cargo_auto_lib::CargoToml::read().log()?;
         let project_name = cargo_toml.package_name();
         let github_owner = cargo_toml
             .github_owner()
-            .ok_or_else(|| Error::ErrorFromStr("github_owner is None"))?;
+            .ok_or_else(|| Error::ErrorFromStr("github_owner is None")).log()?;
         let template = format!(
             r#"# Releases changelog of {project_name}
 
@@ -94,15 +97,15 @@ The TODO section is part of the [README.md](https://github.com/{github_owner}/{p
 
 "#
         );
-        std::fs::write(RELEASES_MD, template)?;
+        std::fs::write(RELEASES_MD, template).log()?;
     }
     Ok(())
 }
 
 /// Add commit message to Unreleased in RELEASES.md.
 pub fn add_message_to_unreleased(message: &str) -> Result<()> {
-    create_releases_md_if_file_not_exist()?;
-    let release_md = std::fs::read_to_string(RELEASES_MD)?;
+    create_releases_md_if_file_not_exist().log()?;
+    let release_md = std::fs::read_to_string(RELEASES_MD).log()?;
     // find the beginning of the first ## Version
     let Ok(pos_end_data) = crate::cargo_auto_lib::find_pos_end_data_before_delimiter(&release_md, 0, "## Version ") else {
         return Ok(());
@@ -110,6 +113,6 @@ pub fn add_message_to_unreleased(message: &str) -> Result<()> {
     // add before the first ## Version
     // I expect only one empty line before ## Version
     let added_message_md = format!("{}- {}\n\n{}", &release_md[..pos_end_data], message, &release_md[pos_end_data..]);
-    std::fs::write(RELEASES_MD, added_message_md)?;
+    std::fs::write(RELEASES_MD, added_message_md).log()?;
     Ok(())
 }

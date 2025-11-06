@@ -7,6 +7,7 @@ use std::str::FromStr;
 use crate::cargo_auto_lib::error_mod::{Error, Result};
 use crate::cargo_auto_lib::public_api_mod::{RED, RESET, YELLOW};
 use crate::cargo_auto_lib::utils_mod::*;
+use crate::generic_functions_mod::ResultLogError;
 use lazy_static::lazy_static;
 
 lazy_static! {
@@ -61,8 +62,8 @@ lazy_static! {
 ///
 // endregion: auto_md_to_doc_comments include doc_comments/auto_plantuml.md A ///
 pub fn auto_plantuml(repo_url: &str) -> Result<()> {
-    let path = std::env::current_dir()?;
-    auto_plantuml_for_path(&path, repo_url)?;
+    let path = std::env::current_dir().log()?;
+    auto_plantuml_for_path(&path, repo_url).log()?;
     Ok(())
 }
 
@@ -70,7 +71,7 @@ pub fn auto_plantuml(repo_url: &str) -> Result<()> {
 ///
 /// For test and examples I need to provide the path.
 pub fn auto_plantuml_for_path(path: &std::path::Path, repo_url: &str) -> Result<()> {
-    let path = camino::Utf8Path::from_path(path).ok_or_else(|| Error::ErrorFromStr("from_path is None"))?;
+    let path = camino::Utf8Path::from_path(path).ok_or_else(|| Error::ErrorFromStr("from_path is None")).log()?;
     println!("  {YELLOW}Running auto_plantuml{RESET}");
     //use traverse instead of glob
     let files = crate::cargo_auto_lib::utils_mod::traverse_dir_with_exclude_dir(
@@ -78,12 +79,12 @@ pub fn auto_plantuml_for_path(path: &std::path::Path, repo_url: &str) -> Result<
         "/*.md",
         // avoid big folders
         &["/.git".to_string(), "/target".to_string(), "/docs".to_string()],
-    )?;
+    ).log()?;
     for md_filename in files {
         let md_filename = camino::Utf8Path::new(&md_filename);
 
         let mut is_changed = false;
-        let mut md_text_content = std::fs::read_to_string(md_filename)?;
+        let mut md_text_content = std::fs::read_to_string(md_filename).log()?;
 
         // check if file have CRLF and show error
         if md_text_content.contains("\r\n") {
@@ -111,41 +112,41 @@ pub fn auto_plantuml_for_path(path: &std::path::Path, repo_url: &str) -> Result<
                             // parse this format ![svg_534231](images/svg_534231.svg)
                             let cap_group = REGEX_IMG_LINK
                                 .captures(img_link)
-                                .ok_or_else(|| Error::ErrorFromString(format!("{RED}Error: The old img link '{img_link}' is NOT in this format '![svg_534231](images/svg_534231.svg)'{RESET}")))?;
+                                .ok_or_else(|| Error::ErrorFromString(format!("{RED}Error: The old img link '{img_link}' is NOT in this format '![svg_534231](images/svg_534231.svg)'{RESET}"))).log()?;
                             let old_hash = &cap_group[1];
                             if old_hash != plantuml_code_hash {
                                 get_new_svg = true;
                                 // delete the old image file
                                 let old_file_path = camino::Utf8PathBuf::from_str(&format!(
                                     "{}/images/svg_{old_hash}.svg",
-                                    md_filename.parent().ok_or_else(|| Error::ErrorFromStr("parent is None"))?
-                                ))?;
+                                    md_filename.parent().ok_or_else(|| Error::ErrorFromStr("parent is None")).log()?
+                                )).log()?;
                                 if old_file_path.exists() {
-                                    std::fs::remove_file(&old_file_path)?;
+                                    std::fs::remove_file(&old_file_path).log()?;
                                 }
                             } else {
                                 // check if the svg file exists
                                 let old_file_path = camino::Utf8PathBuf::from_str(&format!(
                                     "{}/images/svg_{old_hash}.svg",
-                                    md_filename.parent().ok_or_else(|| Error::ErrorFromStr("parent is None"))?
-                                ))?;
+                                    md_filename.parent().ok_or_else(|| Error::ErrorFromStr("parent is None")).log()?
+                                )).log()?;
                                 if !old_file_path.exists() {
                                     get_new_svg = true;
                                 }
                             }
                         }
                         if get_new_svg {
-                            let relative_md_filename = md_filename.strip_prefix(path)?;
+                            let relative_md_filename = md_filename.strip_prefix(path).log()?;
                             println!("  {YELLOW}{relative_md_filename} get new svg {plantuml_code_hash}{RESET}");
 
                             // get the new svg image
-                            let svg_code = request_svg(plantuml_code)?;
+                            let svg_code = request_svg(plantuml_code).log()?;
                             let new_file_path = camino::Utf8PathBuf::from_str(&format!(
                                 "{}/images/svg_{plantuml_code_hash}.svg",
-                                md_filename.parent().ok_or_else(|| Error::ErrorFromStr("parent is None"))?
-                            ))?;
-                            std::fs::create_dir_all(new_file_path.parent().ok_or_else(|| Error::ErrorFromStr("parent is None"))?)?;
-                            std::fs::write(&new_file_path, svg_code)?;
+                                md_filename.parent().ok_or_else(|| Error::ErrorFromStr("parent is None")).log()?
+                            )).log()?;
+                            std::fs::create_dir_all(new_file_path.parent().ok_or_else(|| Error::ErrorFromStr("parent is None")).log()?).log()?;
+                            std::fs::write(&new_file_path, svg_code).log()?;
                             // if repo_url is not empty then prepare GitHub url
                             // https://github.com/automation-tasks-rs/sey_currency_converter_pwa/raw/main/
                             let repo_full_url = if repo_url.is_empty() {
@@ -154,7 +155,7 @@ pub fn auto_plantuml_for_path(path: &std::path::Path, repo_url: &str) -> Result<
                                 format!("{}/raw/main/", repo_url.trim_end_matches('/'))
                             };
                             // path relative to Cargo.toml (project root)
-                            let relative_svg_path = new_file_path.strip_prefix(path)?;
+                            let relative_svg_path = new_file_path.strip_prefix(path).log()?;
                             // create the new image lnk
                             let img_link = format!("\n![svg_{plantuml_code_hash}]({repo_full_url}{relative_svg_path})\n");
                             // delete the old img_link and insert the new one
@@ -167,7 +168,7 @@ pub fn auto_plantuml_for_path(path: &std::path::Path, repo_url: &str) -> Result<
         }
         // if changed, then write to disk
         if is_changed {
-            std::fs::write(md_filename, md_text_content)?;
+            std::fs::write(md_filename, md_text_content).log()?;
         }
     }
     println!("  {YELLOW}Finished auto_plantuml{RESET}");
@@ -185,11 +186,11 @@ pub fn hash_text(text: &str) -> String {
 /// Request svg from plantuml server
 pub fn request_svg(plant_uml_code: &str) -> Result<String> {
     let base_url = "https://plantuml.com/plantuml";
-    let url_parameter = compress_plant_uml_code(plant_uml_code)?;
+    let url_parameter = compress_plant_uml_code(plant_uml_code).log()?;
     let url = format!("{}/svg/{}", base_url, url_parameter);
     // use reqwest to GET from plantuml.com server
     // return response
-    Ok(reqwest::blocking::get(url)?.text_with_charset("utf-8")?)
+    Ok(reqwest::blocking::get(url).log()?.text_with_charset("utf-8").log()?)
 }
 
 /// Deflate and strange base64, that is Url_safe
@@ -202,7 +203,7 @@ pub fn compress_plant_uml_code(plant_uml_code: &str) -> Result<String> {
     let my_cfg = radix64::CustomConfig::with_alphabet("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-_")
         .no_padding()
         .build()
-        .map_err(|_| Error::ErrorFromStr("CustomConfigError"))?;
+        .map_err(|_| Error::ErrorFromStr("CustomConfigError")).log()?;
     // return
     Ok(my_cfg.encode(&compressed))
 }

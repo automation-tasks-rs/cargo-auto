@@ -10,38 +10,39 @@ use crate::cargo_auto_lib as cl;
 
 use crate::cargo_auto_lib::CargoTomlPublicApiMethods;
 use crate::cargo_auto_lib::ShellCommandLimitedDoubleQuotesSanitizerTrait;
+use crate::generic_functions_mod::ResultLogError;
 #[allow(unused_imports)]
 use cl::{BLUE, GREEN, RED, RESET, YELLOW};
 
 #[allow(dead_code)]
 /// cargo build
 pub fn task_build() -> anyhow::Result<cl::CargoToml> {
-    let cargo_toml = cl::CargoToml::read()?;
-    cl::auto_version_increment_semver_or_date()?;
-    cl::run_shell_command_static("cargo fmt")?;
-    cl::run_shell_command_static("cargo clippy --no-deps")?;
-    cl::run_shell_command_static("cargo build")?;
+    let cargo_toml = cl::CargoToml::read().log()?;
+    cl::auto_version_increment_semver_or_date().log()?;
+    cl::run_shell_command_static("cargo fmt").log()?;
+    cl::run_shell_command_static("cargo clippy --no-deps").log()?;
+    cl::run_shell_command_static("cargo build").log()?;
     Ok(cargo_toml)
 }
 
 #[allow(dead_code)]
 /// cargo build --release
 pub fn task_release() -> anyhow::Result<cl::CargoToml> {
-    let cargo_toml = cl::CargoToml::read()?;
-    cl::auto_version_increment_semver_or_date()?;
-    cl::auto_cargo_toml_to_md()?;
-    cl::auto_lines_of_code("")?;
+    let cargo_toml = cl::CargoToml::read().log()?;
+    cl::auto_version_increment_semver_or_date().log()?;
+    cl::auto_cargo_toml_to_md().log()?;
+    cl::auto_lines_of_code("").log()?;
 
-    cl::run_shell_command_static("cargo fmt")?;
-    cl::run_shell_command_static("cargo clippy --no-deps")?;
-    cl::run_shell_command_static("cargo build --release")?;
+    cl::run_shell_command_static("cargo fmt").log()?;
+    cl::run_shell_command_static("cargo clippy --no-deps").log()?;
+    cl::run_shell_command_static("cargo build --release").log()?;
 
     // strip only for binary executables
     #[cfg(target_family = "unix")]
-    if std::fs::exists("target/release/{package_name}")? {
-        cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"strip "target/release/{package_name}" "#)?
-            .arg("{package_name}", &cargo_toml.package_name())?
-            .run()?;
+    if std::fs::exists("target/release/{package_name}").log()? {
+        cl::ShellCommandLimitedDoubleQuotesSanitizer::new(r#"strip "target/release/{package_name}" "#).log()?
+            .arg("{package_name}", &cargo_toml.package_name()).log()?
+            .run().log()?;
     }
     Ok(cargo_toml)
 }
