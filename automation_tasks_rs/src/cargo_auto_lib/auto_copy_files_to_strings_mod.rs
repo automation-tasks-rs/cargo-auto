@@ -7,7 +7,7 @@ use base64ct::Encoding;
 
 use crate::cargo_auto_lib::error_mod::{Error, Result};
 use crate::cargo_auto_lib::public_api_mod::{RESET, YELLOW};
-use crate::generic_functions_mod::ResultLogError;
+use crate::generic_functions_mod::{pos, ResultLogError};
 
 // region: auto_md_to_doc_comments include doc_comments/copy_folder_files_into_module.md A ///
 /// Copy all files from the folder into a module as strings (static &str).
@@ -44,12 +44,16 @@ pub fn copy_folder_files_into_module(
     ext_for_binary_files: &[&str],
     exclude_big_folders: &[String],
 ) -> Result<()> {
-    let folder_path = camino::Utf8Path::from_path(folder_path).ok_or_else(|| Error::ErrorFromStr("folder_path is None")).log()?;
-    let module_path = camino::Utf8Path::from_path(module_path).ok_or_else(|| Error::ErrorFromStr("module_path is None")).log()?;
+    let folder_path = camino::Utf8Path::from_path(folder_path)
+        .ok_or_else(|| Error::ErrorFromStr("folder_path is None"))
+        .log(pos!())?;
+    let module_path = camino::Utf8Path::from_path(module_path)
+        .ok_or_else(|| Error::ErrorFromStr("module_path is None"))
+        .log(pos!())?;
 
     println!("  {YELLOW}copy_folder_files_into_module {folder_path}, {module_path}{RESET}");
     // traverse and get all file_names
-    let files = crate::cargo_auto_lib::traverse_dir_with_exclude_dir(folder_path.as_std_path(), "", exclude_big_folders).log()?;
+    let files = crate::cargo_auto_lib::traverse_dir_with_exclude_dir(folder_path.as_std_path(), "", exclude_big_folders).log(pos!())?;
     let mut new_code = String::new();
     for file_name in files.iter() {
         let file_name_short = file_name.trim_start_matches(&format!("{folder_path}/"));
@@ -68,11 +72,11 @@ pub fn copy_folder_files_into_module(
 
         let file_content = if is_binary_file {
             // convert binary file to base64
-            let b = std::fs::read(file_name).log()?;
+            let b = std::fs::read(file_name).log(pos!())?;
             base64ct::Base64::encode_string(&b)
         } else {
             // all others are text files
-            std::fs::read_to_string(file_name).log()?
+            std::fs::read_to_string(file_name).log(pos!())?
         };
 
         new_code.push_str(&format!(
@@ -86,7 +90,7 @@ pub fn copy_folder_files_into_module(
     }
 
     // read the content of the module, delimited by markers
-    let module_content = std::fs::read_to_string(module_path).log()?;
+    let module_content = std::fs::read_to_string(module_path).log(pos!())?;
     let start_pos = crate::cargo_auto_lib::find_pos_start_data_after_delimiter(
         &module_content,
         0,
@@ -107,7 +111,7 @@ pub fn copy_folder_files_into_module(
         new_module_content.push_str(&module_content[..start_pos]);
         new_module_content.push_str(&new_code);
         new_module_content.push_str(&module_content[end_pos..]);
-        std::fs::write(module_path, &new_module_content).log()?;
+        std::fs::write(module_path, &new_module_content).log(pos!())?;
     }
     Ok(())
 }

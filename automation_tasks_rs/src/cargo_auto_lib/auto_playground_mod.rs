@@ -5,7 +5,7 @@
 use crate::cargo_auto_lib::error_mod::{Error, Result};
 use crate::cargo_auto_lib::public_api_mod::{RED, RESET, YELLOW};
 use crate::cargo_auto_lib::utils_mod::*;
-use crate::generic_functions_mod::ResultLogError;
+use crate::generic_functions_mod::{pos, ResultLogError};
 use lazy_static::lazy_static;
 
 lazy_static! {
@@ -50,19 +50,20 @@ lazy_static! {
 // endregion: auto_md_to_doc_comments include doc_comments/auto_playground_run_code.md A ///
 pub fn auto_playground_run_code() -> Result<()> {
     println!("  {YELLOW}Running auto_playground{RESET}");
-    let path = std::env::current_dir().log()?;
+    let path = std::env::current_dir().log(pos!())?;
     //use traverse instead of glob
     let files = crate::cargo_auto_lib::utils_mod::traverse_dir_with_exclude_dir(
         &path,
         "/*.md",
         // exclude folders
         &["/.git".to_string(), "/target".to_string(), "/docs".to_string(), "/pkg".to_string()],
-    ).log()?;
+    )
+    .log(pos!())?;
     for md_filename in files {
         let md_filename = camino::Utf8Path::new(&md_filename);
 
         let mut is_changed = false;
-        let md_old = std::fs::read_to_string(md_filename).log()?;
+        let md_old = std::fs::read_to_string(md_filename).log(pos!())?;
 
         // check if file have CRLF and show error
         if md_old.contains("\r\n") {
@@ -98,11 +99,14 @@ pub fn auto_playground_run_code() -> Result<()> {
             // replace the link inside markdown link notation. First find the text between marker_start and code_start
             let text_that_has_the_link = &md_old[marker_start..code_start];
             // parse this format [Rust playground](https:...)
-            let cap_group = REGEX_MD_LINK.captures(text_that_has_the_link).ok_or_else(|| {
-                Error::ErrorFromString(format!(
-                    "{RED}Error: The old link '{text_that_has_the_link}' is NOT in this format '[Rust playground](https:...)'{RESET}"
-                ))
-            }).log()?;
+            let cap_group = REGEX_MD_LINK
+                .captures(text_that_has_the_link)
+                .ok_or_else(|| {
+                    Error::ErrorFromString(format!(
+                        "{RED}Error: The old link '{text_that_has_the_link}' is NOT in this format '[Rust playground](https:...)'{RESET}"
+                    ))
+                })
+                .log(pos!())?;
             let old_link = &cap_group[1];
             // replace the old link with the new one
             let text_that_has_the_link = text_that_has_the_link.replace(old_link, &playground_link);
@@ -124,8 +128,8 @@ pub fn auto_playground_run_code() -> Result<()> {
             // push the remaining text
             md_new.push_str(&md_old[iteration_start_pos..md_old.len()]);
             let bak_filename = md_filename.with_extension("bak");
-            std::fs::write(&bak_filename, md_old).log()?;
-            std::fs::write(md_filename, md_new).log()?;
+            std::fs::write(&bak_filename, md_old).log(pos!())?;
+            std::fs::write(md_filename, md_new).log(pos!())?;
         }
     }
     println!("  {YELLOW}Finished auto_playground{RESET}");

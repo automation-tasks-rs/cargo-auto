@@ -4,7 +4,10 @@
 
 // region: use statements
 
-use crate::{cargo_auto_lib::error_mod::Result, generic_functions_mod::ResultLogError};
+use crate::{
+    cargo_auto_lib::error_mod::Result,
+    generic_functions_mod::{pos, ResultLogError},
+};
 
 // endregion: use statements
 
@@ -16,18 +19,18 @@ pub fn auto_doc_tidy_html() -> Result<()> {
     // First we check if tidy is installed on the system
     // Run a dummy command and write the std/err output to tidy_warnings.txt.
     // The command `2>` will overwrite the file and not append like `2>>`.
-    crate::cargo_auto_lib::run_shell_command_static("tidy xxx 2> docs/tidy_warnings.txt").log()?;
+    crate::cargo_auto_lib::run_shell_command_static("tidy xxx 2> docs/tidy_warnings.txt").log(pos!())?;
     // Check if it contains `command not found`
-    let text = std::fs::read_to_string("docs/tidy_warnings.txt").log()?;
+    let text = std::fs::read_to_string("docs/tidy_warnings.txt").log(pos!())?;
     // don't need this file anymore
-    crate::cargo_auto_lib::run_shell_command_static("rm -f docs/tidy_warnings.txt").log()?;
+    crate::cargo_auto_lib::run_shell_command_static("rm -f docs/tidy_warnings.txt").log(pos!())?;
     if !text.contains("command not found") {
         // Use tidy HTML to format the docs/*.html files to be human readable and usable for git diff.
         // Options: -m modify file, -q quiet suppress nonessential output, -w wrap at 160, -i indent 2 spaces
         // The warnings and errors are appended to the file docs/tidy_warnings.txt
         crate::cargo_auto_lib::run_shell_command_static(
             r#"find ./docs -name '*.html' -type f -print -exec tidy -mq --tidy-mark no -w 160 -i 2 '{}' \; >> docs/tidy_warnings.txt 2>&1 "#,
-        ).log()?;
+        ).log(pos!())?;
     }
     Ok(())
 }

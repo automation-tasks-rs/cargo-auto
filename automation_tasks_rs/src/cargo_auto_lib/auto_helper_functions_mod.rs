@@ -4,7 +4,7 @@
 
 use crate::cargo_auto_lib::error_mod::{Error, Result};
 use crate::cargo_auto_lib::public_api_mod::{RED, RESET};
-use crate::generic_functions_mod::ResultLogError;
+use crate::generic_functions_mod::{pos, ResultLogError};
 
 // region: auto_md_to_doc_comments include doc_comments/exit_if_not_run_in_rust_project_root_directory.md A ///
 /// Check if the code was run inside the Rust project root directory.  
@@ -59,15 +59,17 @@ pub fn home_dir() -> Result<std::path::PathBuf> {
 pub fn tilde_expand_to_home_dir_utf8(path_str: &str) -> Result<camino::Utf8PathBuf> {
     let mut expanded = String::new();
     if path_str.starts_with("~") {
-        let base = home::home_dir().ok_or_else(|| Error::ErrorFromStr("Cannot find home_dir in this OS.")).log()?;
+        let base = home::home_dir()
+            .ok_or_else(|| Error::ErrorFromStr("Cannot find home_dir in this OS."))
+            .log(pos!())?;
         // only utf8 is accepted
         let base = base.to_string_lossy();
         expanded.push_str(&base);
         expanded.push_str(path_str.trim_start_matches("~"));
         use std::str::FromStr;
-        Ok(camino::Utf8PathBuf::from_str(&expanded).log()?)
+        Ok(camino::Utf8PathBuf::from_str(&expanded).log(pos!())?)
     } else {
         use std::str::FromStr;
-        Ok(camino::Utf8PathBuf::from_str(path_str).log()?)
+        Ok(camino::Utf8PathBuf::from_str(path_str).log(pos!())?)
     }
 }

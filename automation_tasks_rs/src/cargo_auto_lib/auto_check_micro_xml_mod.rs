@@ -4,7 +4,7 @@
 
 use crate::cargo_auto_lib::error_mod::{Error, Result};
 use crate::cargo_auto_lib::public_api_mod::{RED, RESET, YELLOW};
-use crate::generic_functions_mod::ResultLogError;
+use crate::generic_functions_mod::{pos, ResultLogError};
 use glob::glob;
 use reader_for_microxml::{ReaderForMicroXml, Token};
 
@@ -14,14 +14,17 @@ pub fn auto_check_micro_xml(path_to_html_pages: &str) -> Result<()> {
     println!("  {YELLOW}Running auto_check_micro_xml {path_to_html_pages}{RESET}");
     let glob_str = format!("{}/*.html", path_to_html_pages.trim_end_matches('/'));
     // find html pages for single page application
-    for filename_result in glob(&glob_str).log()? {
+    for filename_result in glob(&glob_str).log(pos!())? {
         let filename_pathbuff = filename_result?;
-        let filename_pathbuff = camino::Utf8Path::from_path(&filename_pathbuff).ok_or_else(|| Error::ErrorFromStr("filename is None")).log()?;
+        let filename_pathbuff = camino::Utf8Path::from_path(&filename_pathbuff)
+            .ok_or_else(|| Error::ErrorFromStr("filename is None"))
+            .log(pos!())?;
 
         let file_name = filename_pathbuff
             .file_name()
-            .ok_or_else(|| Error::ErrorFromStr("filename is None")).log()?;
-        let str_xml = std::fs::read_to_string(filename_pathbuff).log()?;
+            .ok_or_else(|| Error::ErrorFromStr("filename is None"))
+            .log(pos!())?;
+        let str_xml = std::fs::read_to_string(filename_pathbuff).log(pos!())?;
 
         // check if file have CRLF instead of LF and show error
         if str_xml.contains("\r\n") {
@@ -31,7 +34,7 @@ pub fn auto_check_micro_xml(path_to_html_pages: &str) -> Result<()> {
         }
 
         // check microxml correctness. Error on errors.
-        check_micro_xml(&str_xml, file_name).log()?;
+        check_micro_xml(&str_xml, file_name).log(pos!())?;
     }
     println!("  {YELLOW}Finished auto_check_micro_xml{RESET}");
     Ok(())
@@ -55,7 +58,10 @@ fn check_micro_xml(str_xml: &str, file_name: &str) -> Result<()> {
                 Token::TextNode(_txt) => continue,
                 Token::Comment(_txt) => continue,
                 Token::EndElement(end_element_name) => {
-                    let start_element_name = vec_elem.pop().ok_or_else(|| Error::ErrorFromStr("vec_elem.pop() is None")).log()?;
+                    let start_element_name = vec_elem
+                        .pop()
+                        .ok_or_else(|| Error::ErrorFromStr("vec_elem.pop() is None"))
+                        .log(pos!())?;
                     if !end_element_name.is_empty() && end_element_name != start_element_name {
                         return Err(Error::ErrorFromString(format!(
                             "{RED}MicroXml {} start {} does not match end {}{RESET}",

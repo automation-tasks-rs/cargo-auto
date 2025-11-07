@@ -7,7 +7,7 @@ use crate::cargo_auto_lib::{
     error_mod::{Error, Result},
     utils_mod::*,
 };
-use crate::generic_functions_mod::ResultLogError;
+use crate::generic_functions_mod::{pos, ResultLogError};
 
 /// Enum for version parts: Minor or Patch
 enum VersionPart {
@@ -37,18 +37,19 @@ pub fn auto_semver_increment_minor_forced() -> Result<()> {
 
 /// Increment a part of version in Cargo.toml file even if files are not changed or forced
 fn increment_part(part: VersionPart, force_version: bool) -> Result<()> {
-    let mut vec_of_metadata = crate::cargo_auto_lib::auto_version_from_date_mod::read_file_metadata().log()?;
+    let mut vec_of_metadata = crate::cargo_auto_lib::auto_version_from_date_mod::read_file_metadata().log(pos!())?;
     let is_files_equal = if force_version {
         false
     } else {
-        let js_struct = crate::cargo_auto_lib::auto_version_from_date_mod::read_json_file(".automation_tasks_rs_file_hashes.json").log()?;
+        let js_struct =
+            crate::cargo_auto_lib::auto_version_from_date_mod::read_json_file(".automation_tasks_rs_file_hashes.json").log(pos!())?;
         crate::cargo_auto_lib::auto_version_from_date_mod::are_files_equal(&vec_of_metadata, &js_struct.vec_file_metadata)
     };
 
     if !is_files_equal {
         // println!("pub fn increment_patch");
         let cargo_toml_filename = "Cargo.toml";
-        let cargo_toml_text = std::fs::read_to_string(cargo_toml_filename).log()?;
+        let cargo_toml_text = std::fs::read_to_string(cargo_toml_filename).log(pos!())?;
 
         // check if file have CRLF instead of LF and show error
         if cargo_toml_text.contains("\r\n") {
@@ -65,13 +66,13 @@ fn increment_part(part: VersionPart, force_version: bool) -> Result<()> {
                 println!(r#"  {YELLOW}old version: "{version}"{RESET}"#);
                 //increment the last number
                 let pos = pos_start_data;
-                let (major, pos) = parse_next_number(&cargo_toml_text, pos).log()?;
+                let (major, pos) = parse_next_number(&cargo_toml_text, pos).log(pos!())?;
                 //jump over dot
                 let pos = pos + 1;
-                let (mut minor, pos) = parse_next_number(&cargo_toml_text, pos).log()?;
+                let (mut minor, pos) = parse_next_number(&cargo_toml_text, pos).log(pos!())?;
                 //jump over dot
                 let pos = pos + 1;
-                let (mut patch, pos) = parse_next_number(&cargo_toml_text, pos).log()?;
+                let (mut patch, pos) = parse_next_number(&cargo_toml_text, pos).log(pos!())?;
                 let pos_at_the_end_of_semver = pos;
                 // increment
                 match part {
@@ -96,8 +97,9 @@ fn increment_part(part: VersionPart, force_version: bool) -> Result<()> {
                 let _x = std::fs::write(cargo_toml_filename, new_cargo_toml_text);
 
                 //the Cargo.toml is now different
-                crate::cargo_auto_lib::auto_version_from_date_mod::correct_file_metadata_for_cargo_tom_inside_vec(&mut vec_of_metadata).log()?;
-                crate::cargo_auto_lib::auto_version_from_date_mod::save_json_file_for_file_meta_data(vec_of_metadata).log()?;
+                crate::cargo_auto_lib::auto_version_from_date_mod::correct_file_metadata_for_cargo_tom_inside_vec(&mut vec_of_metadata)
+                    .log(pos!())?;
+                crate::cargo_auto_lib::auto_version_from_date_mod::save_json_file_for_file_meta_data(vec_of_metadata).log(pos!())?;
             } else {
                 return Err(Error::ErrorFromString(format!("{RED}no end quote for version{RESET}")));
             }
@@ -115,16 +117,18 @@ fn parse_next_number(cargo_toml_text: &str, pos: usize) -> Result<(usize, usize)
     let mut one_char = cargo_toml_text[pos..pos + 1]
         .chars()
         .next()
-        .ok_or(Error::ErrorFromStr("error chars().next()")).log()?;
+        .ok_or(Error::ErrorFromStr("error chars().next()"))
+        .log(pos!())?;
     while one_char.is_numeric() {
         number.push(one_char);
         pos += 1;
         one_char = cargo_toml_text[pos..pos + 1]
             .chars()
             .next()
-            .ok_or(Error::ErrorFromStr("error chars().next()")).log()?;
+            .ok_or(Error::ErrorFromStr("error chars().next()"))
+            .log(pos!())?;
     }
-    let number: usize = number.parse().log()?;
+    let number: usize = number.parse().log(pos!())?;
     //return
     Ok((number, pos))
 }

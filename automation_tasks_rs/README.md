@@ -84,6 +84,22 @@ The bin-executable does not want to be involved in every possible error separate
 Inside the code, mostly propagate the errors with the `?` Operator after the `Result` value instead of unwrap() or the match expression.
 In the tests we don't want to work with Error handling. There, instead of `.unwrap()`, use the similar function `.expect(&str)` that has an additional description string. I use expect() when I am 100% sure the panic cannot happen because I checked some conditions before it.  
 
+## Debug with tracing and log to file
+
+For debugging purposes the program has tracing and log to file.  
+If the environment variable AUTOMATION_TASKS_RS exists than the tracing to file is enabled.  
+The log is appended to files in the local `logs/` folder.  
+In the env var AUTOMATION_TASKS_RS we can define filters.  
+A filter consists of one or more comma-separated directives
+target[span{field=value}]=level
+Levels order: 1. ERROR, 2. WARN, 3. INFO, 4. DEBUG, 5. TRACE
+ERROR level is always logged.
+Example of filter for a single execution:
+
+```bash
+AUTOMATION_TASKS_RS="debug,hyper_util=info,reqwest=info" ./{package_name}
+```
+
 ## Open-source and free as a beer
 
 My open-source projects are free as a beer (MIT license).  

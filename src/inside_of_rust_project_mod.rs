@@ -6,7 +6,7 @@
 
 // endregion
 
-use crate::{ResultLogError, GREEN, RED, RESET, YELLOW};
+use crate::{pos, ResultLogError, GREEN, RED, RESET, YELLOW};
 
 /// Parse when it is run inside a Rust project.  
 pub fn parse_args(args: &mut std::env::Args) -> anyhow::Result<()> {
@@ -18,7 +18,7 @@ pub fn parse_args(args: &mut std::env::Args) -> anyhow::Result<()> {
         Some(task) => {
             if task != "auto" {
                 // when calling as `cargo auto new_auto_for_cli`
-                match_first_argument(&task, args).log()?;
+                match_first_argument(&task, args).log(pos!())?;
             } else {
                 // when calling as `cargo-auto new_auto_for_cli`
                 let arg_2 = args.next();
@@ -60,7 +60,7 @@ fn print_help_from_cargo_auto() -> anyhow::Result<()> {
         );
     } else {
         // Error if cannot compile automation_tasks_rs
-        compile_automation_tasks_rs_if_needed().log()?;
+        compile_automation_tasks_rs_if_needed().log(pos!())?;
         let _success = crate::utils_mod::run_shell_command_success(&crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.to_string_lossy());
     }
     Ok(())
@@ -81,7 +81,7 @@ fn match_first_argument(task: &str, args: &mut std::env::Args) -> anyhow::Result
             // early exit
             std::process::exit(0);
         }
-        crate::template_new_auto_for_cli_mod::new_auto_for_cli().log()?;
+        crate::template_new_auto_for_cli_mod::new_auto_for_cli().log(pos!())?;
     } else if task == "update_automation_tasks_rs" {
         // this task is inside cargo-auto
         if !already_exists_automation_tasks_rs() {
@@ -89,25 +89,25 @@ fn match_first_argument(task: &str, args: &mut std::env::Args) -> anyhow::Result
             // early exit
             std::process::exit(0);
         }
-        crate::template_new_auto_for_cli_mod::update_automation_tasks_rs().log()?;
+        crate::template_new_auto_for_cli_mod::update_automation_tasks_rs().log(pos!())?;
     } else {
         // these tasks are user defined in automation_tasks_rs
         if !already_exists_automation_tasks_rs() {
             println!("{RED}Error: Directory automation_tasks_rs does not exist.{RESET}");
-            print_help_from_cargo_auto().log()?;
+            print_help_from_cargo_auto().log(pos!())?;
             // early exit
             std::process::exit(0);
         }
         // Error if cannot compile automation_tasks_rs
-        compile_automation_tasks_rs_if_needed().log()?;
+        compile_automation_tasks_rs_if_needed().log(pos!())?;
         // call automation_tasks_rs/target/debug/automation_tasks_rs with all the arguments
         let mut command = std::process::Command::new(crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.as_os_str());
         command.arg(task);
         for arg_x in args.by_ref() {
             command.arg(&arg_x);
         }
-        let mut child = command.spawn().log()?;
-        child.wait().log()?;
+        let mut child = command.spawn().log(pos!())?;
+        child.wait().log(pos!())?;
     }
     Ok(())
 }
@@ -148,9 +148,9 @@ fn completion() {
 /// Error if cannot compile automation_tasks_rs.  
 pub fn compile_automation_tasks_rs_if_needed() -> anyhow::Result<()> {
     if !crate::PATH_TARGET_DEBUG_AUTOMATION_TASKS_RS.exists() || crate::file_hashes_mod::is_project_changed()? {
-        compile_project_automation_tasks_rs().log()?;
-        let vec_of_metadata = crate::file_hashes_mod::read_file_metadata().log()?;
-        crate::file_hashes_mod::save_json_file_for_file_meta_data(vec_of_metadata).log()?;
+        compile_project_automation_tasks_rs().log(pos!())?;
+        let vec_of_metadata = crate::file_hashes_mod::read_file_metadata().log(pos!())?;
+        crate::file_hashes_mod::save_json_file_for_file_meta_data(vec_of_metadata).log(pos!())?;
     }
     Ok(())
 }

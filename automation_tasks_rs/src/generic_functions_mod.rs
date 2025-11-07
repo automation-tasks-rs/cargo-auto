@@ -32,10 +32,9 @@ pub fn tracing_init() -> anyhow::Result<()> {
     let filter = tracing_subscriber::EnvFilter::from_env("AUTOMATION_TASKS_RS_LOG");
 
     let builder = tracing_subscriber::fmt()
-        .with_file(true)
         .with_timer(timer)
-        .with_line_number(true)
         .with_ansi(false)
+        .with_target(false)
         .with_env_filter(filter);
     if std::env::var("AUTOMATION_TASKS_RS_LOG").is_ok() {
         // if AUTOMATION_TASKS_RS_LOG exists than enable tracing to file
@@ -53,16 +52,26 @@ pub fn tracing_init() -> anyhow::Result<()> {
     Ok(())
 }
 
+/// macro to get source code position to log errors before propagation
+///
+/// example:  read_to_string("x").log(pos!())?;
+macro_rules! pos {
+    // `()` indicates that the macro takes no argument.
+    () => {
+        // The macro will expand into the contents of this block.
+        &format!("{}:{}:{}:", file!(), line!(), column!())
+    };
+}
+pub(crate) use pos;
+
 /// Trait to log the error from Result before propagation with ?.
 pub trait ResultLogError<T, E>: Sized {
-    fn log(self) -> Self;
+    fn log(self, file_line_column: &str) -> Self;
 }
 
 /// Implements LogError for anyhow::Result.
 impl<T, E: std::fmt::Debug> ResultLogError<T, E> for core::result::Result<T, E> {
-    #[inline(always)]
-    #[track_caller]
-    fn log(self) -> Self {
-        self.inspect_err(|err| tracing::error!(?err))
+    fn log(self, file_line_column: &str) -> Self {
+        self.inspect_err(|err| tracing::error!("automation_tasks_rs/{} {:?}", file_line_column, err))
     }
 }

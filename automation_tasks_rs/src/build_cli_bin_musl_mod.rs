@@ -6,6 +6,7 @@
 //! cargo auto update_automation_tasks_rs
 //! If you want to customize it, copy the code into main.rs and modify it there.
 
+use crate::generic_functions_mod::pos;
 use crate::{cargo_auto_lib as cl, generic_functions_mod::ResultLogError};
 
 use crate::cargo_auto_lib::CargoTomlPublicApiMethods;
@@ -15,25 +16,25 @@ use cl::{BLUE, GREEN, RED, RESET, YELLOW};
 #[allow(dead_code)]
 /// cargo build --target x86_64-unknown-linux-musl
 pub fn task_build() -> anyhow::Result<cl::CargoToml> {
-    let cargo_toml = cl::CargoToml::read().log()?;
-    cl::auto_version_increment_semver_or_date().log()?;
-    cl::run_shell_command_static("cargo fmt").log()?;
-    cl::run_shell_command_static("cargo clippy --no-deps --target x86_64-unknown-linux-musl").log()?;
-    cl::run_shell_command_static("cargo build --target x86_64-unknown-linux-musl").log()?;
+    let cargo_toml = cl::CargoToml::read().log(pos!())?;
+    cl::auto_version_increment_semver_or_date().log(pos!())?;
+    cl::run_shell_command_static("cargo fmt").log(pos!())?;
+    cl::run_shell_command_static("cargo clippy --no-deps --target x86_64-unknown-linux-musl").log(pos!())?;
+    cl::run_shell_command_static("cargo build --target x86_64-unknown-linux-musl").log(pos!())?;
     Ok(cargo_toml)
 }
 
 #[allow(dead_code)]
 /// cargo build --release --target x86_64-unknown-linux-musl
 pub fn task_release() -> anyhow::Result<cl::CargoToml> {
-    let cargo_toml = cl::CargoToml::read().log()?;
-    cl::auto_version_increment_semver_or_date().log()?;
-    cl::auto_cargo_toml_to_md().log()?;
-    cl::auto_lines_of_code("").log()?;
+    let cargo_toml = cl::CargoToml::read().log(pos!())?;
+    cl::auto_version_increment_semver_or_date().log(pos!())?;
+    cl::auto_cargo_toml_to_md().log(pos!())?;
+    cl::auto_lines_of_code("").log(pos!())?;
 
-    cl::run_shell_command_static("cargo fmt").log()?;
-    cl::run_shell_command_static("cargo clippy --no-deps --target x86_64-unknown-linux-musl").log()?;
-    cl::run_shell_command_static("cargo build --release --target x86_64-unknown-linux-musl").log()?;
+    cl::run_shell_command_static("cargo fmt").log(pos!())?;
+    cl::run_shell_command_static("cargo clippy --no-deps --target x86_64-unknown-linux-musl").log(pos!())?;
+    cl::run_shell_command_static("cargo build --release --target x86_64-unknown-linux-musl").log(pos!())?;
 
     Ok(cargo_toml)
 }

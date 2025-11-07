@@ -4,9 +4,14 @@
 
 use secrecy::ExposeSecret;
 
-use crate::{cargo_auto_lib::{
-    Result, error_mod::Error, public_api_mod::{RED, RESET, YELLOW}
-}, generic_functions_mod::ResultLogError};
+use crate::{
+    cargo_auto_lib::{
+        error_mod::Error,
+        public_api_mod::{RED, RESET, YELLOW},
+        Result,
+    },
+    generic_functions_mod::{pos, ResultLogError},
+};
 
 /// Similar to std::process::Output, but with i32 and Strings for easier work.
 #[derive(Debug)]
@@ -29,10 +34,17 @@ pub fn run_shell_command_static(shell_command: &'static str) -> Result<()> {
     if !shell_command.starts_with("echo ") && !shell_command.starts_with("printf ") {
         println!("  {YELLOW}$ {shell_command}{RESET}");
     }
-    let status = std::process::Command::new("sh").arg("-c").arg(shell_command).spawn().log()?.wait().log()?;
+    let status = std::process::Command::new("sh")
+        .arg("-c")
+        .arg(shell_command)
+        .spawn()
+        .log(pos!())?
+        .wait()
+        .log(pos!())?;
     let exit_code = status
         .code()
-        .ok_or_else(|| Error::ErrorFromString(format!("{RED}Error. {RESET}"))).log()?;
+        .ok_or_else(|| Error::ErrorFromString(format!("{RED}Error. {RESET}")))
+        .log(pos!())?;
     if exit_code != 0 {
         return Err(Error::ErrorFromString(format!(
             "{RED}Error: run_shell_command {}. {RESET}",
@@ -136,11 +148,14 @@ impl crate::cargo_auto_lib::ShellCommandLimitedDoubleQuotesSanitizerTrait for Sh
         let status = std::process::Command::new("sh")
             .arg("-c")
             .arg(&self.string_to_execute)
-            .spawn().log()?
-            .wait().log()?;
+            .spawn()
+            .log(pos!())?
+            .wait()
+            .log(pos!())?;
         let exit_code = status
             .code()
-            .ok_or_else(|| Error::ErrorFromString(format!("{RED}Error. {RESET}"))).log()?;
+            .ok_or_else(|| Error::ErrorFromString(format!("{RED}Error. {RESET}")))
+            .log(pos!())?;
         if exit_code != 0 {
             return Err(Error::ErrorFromString(format!(
                 "{RED}Error: run_shell_command {}. {RESET}",
@@ -159,10 +174,17 @@ pub fn run_shell_command(shell_command: &str) -> Result<()> {
     if !shell_command.starts_with("echo ") && !shell_command.starts_with("printf ") {
         println!("  {YELLOW}$ {shell_command}{RESET}");
     }
-    let status = std::process::Command::new("sh").arg("-c").arg(shell_command).spawn().log()?.wait().log()?;
+    let status = std::process::Command::new("sh")
+        .arg("-c")
+        .arg(shell_command)
+        .spawn()
+        .log(pos!())?
+        .wait()
+        .log(pos!())?;
     let exit_code = status
         .code()
-        .ok_or_else(|| Error::ErrorFromString(format!("{RED}Error. {RESET}"))).log()?;
+        .ok_or_else(|| Error::ErrorFromString(format!("{RED}Error. {RESET}")))
+        .log(pos!())?;
     if exit_code != 0 {
         return Err(Error::ErrorFromString(format!(
             "{RED}Error: run_shell_command {}. {RESET}",
@@ -179,12 +201,16 @@ pub fn run_shell_command_output(shell_command: &str) -> Result<ShellOutput> {
     if !shell_command.starts_with("echo ") && !shell_command.starts_with("printf ") {
         println!("  {YELLOW} $ {shell_command}{RESET}");
     }
-    let output = std::process::Command::new("sh").arg("-c").arg(shell_command).output().log()?;
+    let output = std::process::Command::new("sh").arg("-c").arg(shell_command).output().log(pos!())?;
     // return
     Ok(ShellOutput {
-        status: output.status.code().ok_or_else(|| Error::ErrorFromStr("code is None")).log()?,
-        stdout: String::from_utf8(output.stdout).log()?,
-        stderr: String::from_utf8(output.stderr).log()?,
+        status: output
+            .status
+            .code()
+            .ok_or_else(|| Error::ErrorFromStr("code is None"))
+            .log(pos!())?,
+        stdout: String::from_utf8(output.stdout).log(pos!())?,
+        stderr: String::from_utf8(output.stderr).log(pos!())?,
     })
 }
 
@@ -195,7 +221,7 @@ pub fn run_shell_command_success(shell_command: &str) -> Result<bool> {
     if !shell_command.starts_with("echo ") && !shell_command.starts_with("printf ") {
         println!("  {YELLOW}$ {shell_command}{RESET}");
     }
-    let status = std::process::Command::new("sh").arg("-c").arg(shell_command).status().log()?;
+    let status = std::process::Command::new("sh").arg("-c").arg(shell_command).status().log(pos!())?;
     // return
     Ok(status.success())
 }

@@ -2,7 +2,10 @@
 
 //! Functions for various utilities.
 
-use crate::{cargo_auto_lib::error_mod::{Error, Result}, generic_functions_mod::ResultLogError};
+use crate::{
+    cargo_auto_lib::error_mod::{Error, Result},
+    generic_functions_mod::{pos, ResultLogError},
+};
 
 // region: delimiters cannot be INACTIVE like markers
 
@@ -29,7 +32,10 @@ pub fn find_pos_end_data_before_delimiter(md_text_content: &str, pos: usize, del
 
 /// Find from pos
 pub fn find_from(text: &str, from_pos: usize, find: &str) -> Result<usize> {
-    let slice01 = text.get(from_pos..).ok_or_else(|| Error::ErrorFromStr("text get is None")).log()?;
+    let slice01 = text
+        .get(from_pos..)
+        .ok_or_else(|| Error::ErrorFromStr("text get is None"))
+        .log(pos!())?;
     let option_location = slice01.find(find);
     if let Some(location) = option_location {
         // return Ok with usize
@@ -71,10 +77,10 @@ pub fn traverse_dir_with_exclude_dir(dir: &std::path::Path, find_file: &str, exc
 
     let mut v = Vec::new();
     if dir.is_dir() {
-        for entry in std::fs::read_dir(dir).log()? {
+        for entry in std::fs::read_dir(dir).log(pos!())? {
             let entry = entry?;
             let path = entry.path();
-            let str_path = path.to_str().ok_or_else(|| Error::ErrorFromStr("path is None")).log()?;
+            let str_path = path.to_str().ok_or_else(|| Error::ErrorFromStr("path is None")).log(pos!())?;
             if path.is_dir() {
                 let mut is_excluded = false;
                 for excl in exclude_dirs {
@@ -84,7 +90,7 @@ pub fn traverse_dir_with_exclude_dir(dir: &std::path::Path, find_file: &str, exc
                     }
                 }
                 if !is_excluded {
-                    let mut sub_v = traverse_dir_with_exclude_dir(&path, find_file, exclude_dirs).log()?;
+                    let mut sub_v = traverse_dir_with_exclude_dir(&path, find_file, exclude_dirs).log(pos!())?;
                     v.append(&mut sub_v);
                 }
             } else if str_path.ends_with(find_file) {

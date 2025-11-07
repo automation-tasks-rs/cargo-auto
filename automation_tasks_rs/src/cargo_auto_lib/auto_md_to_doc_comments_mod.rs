@@ -6,9 +6,14 @@ use glob::glob;
 use lazy_static::lazy_static;
 use regex::Regex;
 
-use crate::{cargo_auto_lib::{
-    Result, error_mod::Error, public_api_mod::{RED, RESET, YELLOW}
-}, generic_functions_mod::ResultLogError};
+use crate::{
+    cargo_auto_lib::{
+        error_mod::Error,
+        public_api_mod::{RED, RESET, YELLOW},
+        Result,
+    },
+    generic_functions_mod::{pos, ResultLogError},
+};
 
 /// Markers found in rs files
 #[derive(Debug)]
@@ -73,8 +78,8 @@ struct MdSegment {
 // endregion: auto_md_to_doc_comments include doc_comments/auto_md_to_doc_comments.md A ///
 pub fn auto_md_to_doc_comments() -> Result<()> {
     let mut cache_md_segments = vec![];
-    for rs_filename in rs_files().log()?.iter() {
-        let mut rs_text_content = std::fs::read_to_string(rs_filename).log()?;
+    for rs_filename in rs_files().log(pos!())?.iter() {
+        let mut rs_text_content = std::fs::read_to_string(rs_filename).log(pos!())?;
 
         // check if file have CRLF instead of LF and show error
         if rs_text_content.contains("\r\n") {
@@ -83,7 +88,7 @@ pub fn auto_md_to_doc_comments() -> Result<()> {
             )));
         }
 
-        let markers = rs_file_markers(&rs_text_content).log()?;
+        let markers = rs_file_markers(&rs_text_content).log(pos!())?;
         if !markers.is_empty() {
             for marker in markers.iter().rev() {
                 let segment_text = get_md_segments_using_cache(
@@ -91,11 +96,12 @@ pub fn auto_md_to_doc_comments() -> Result<()> {
                     &marker.md_filename,
                     &marker.marker_name,
                     &marker.comment_symbol,
-                ).log()?;
+                )
+                .log(pos!())?;
                 rs_text_content.replace_range(marker.pos_start..marker.pos_end, &segment_text);
             }
             println!("  {YELLOW}Write file: {rs_filename}{RESET}");
-            std::fs::write(rs_filename, rs_text_content).log()?;
+            std::fs::write(rs_filename, rs_text_content).log(pos!())?;
         }
     }
     Ok(())
@@ -105,27 +111,30 @@ pub fn auto_md_to_doc_comments() -> Result<()> {
 fn rs_files() -> Result<Vec<String>> {
     let mut rs_files = vec![];
     // in Unix shell ** means recursive match through all the subdirectories
-    for filename_result in glob("src/**/*.rs").log()? {
+    for filename_result in glob("src/**/*.rs").log(pos!())? {
         let filename_pathbuff = filename_result?;
         let rs_filename = filename_pathbuff
             .to_str()
-            .ok_or_else(|| Error::ErrorFromStr("filename_pathbuff is None")).log()?
+            .ok_or_else(|| Error::ErrorFromStr("filename_pathbuff is None"))
+            .log(pos!())?
             .to_string();
         rs_files.push(rs_filename);
     }
-    for filename_result in glob("tests/**/*.rs").log()? {
+    for filename_result in glob("tests/**/*.rs").log(pos!())? {
         let filename_pathbuff = filename_result?;
         let rs_filename = filename_pathbuff
             .to_str()
-            .ok_or_else(|| Error::ErrorFromStr("filename_pathbuff is None")).log()?
+            .ok_or_else(|| Error::ErrorFromStr("filename_pathbuff is None"))
+            .log(pos!())?
             .to_string();
         rs_files.push(rs_filename);
     }
-    for filename_result in glob("examples/**/*.rs").log()? {
+    for filename_result in glob("examples/**/*.rs").log(pos!())? {
         let filename_pathbuff = filename_result?;
         let rs_filename = filename_pathbuff
             .to_str()
-            .ok_or_else(|| Error::ErrorFromStr("filename_pathbuff is None")).log()?
+            .ok_or_else(|| Error::ErrorFromStr("filename_pathbuff is None"))
+            .log(pos!())?
             .to_string();
         rs_files.push(rs_filename);
     }
@@ -147,7 +156,12 @@ fn rs_file_markers(rs_text_content: &str) -> Result<Vec<RsMarker>> {
             md_filename: cap[1].to_string(),
             marker_name: cap[2].to_string(),
             comment_symbol: cap[3].to_string(),
-            pos_start: cap.get(0).ok_or_else(|| Error::ErrorFromStr("cap get 0 is None")).log()?.end() + 1,
+            pos_start: cap
+                .get(0)
+                .ok_or_else(|| Error::ErrorFromStr("cap get 0 is None"))
+                .log(pos!())?
+                .end()
+                + 1,
             pos_end: 0,
         };
         markers.push(rs_marker);
@@ -157,8 +171,13 @@ fn rs_file_markers(rs_text_content: &str) -> Result<Vec<RsMarker>> {
         let marker = markers
             .iter_mut()
             .find(|m| m.md_filename == cap[1] && m.marker_name == cap[2])
-            .ok_or_else(|| Error::ErrorFromStr("find is None")).log()?;
-        marker.pos_end = cap.get(0).ok_or_else(|| Error::ErrorFromStr("cap get 0 is None")).log()?.start();
+            .ok_or_else(|| Error::ErrorFromStr("find is None"))
+            .log(pos!())?;
+        marker.pos_end = cap
+            .get(0)
+            .ok_or_else(|| Error::ErrorFromStr("cap get 0 is None"))
+            .log(pos!())?
+            .start();
     }
     // return
     Ok(markers)
@@ -180,12 +199,13 @@ fn get_md_segments_using_cache(cache: &mut Vec<MdSegment>, md_filename: &str, ma
         let segment = cache
             .iter()
             .find(|m| m.md_filename == md_filename && m.marker_name == marker_name)
-            .ok_or_else(|| Error::ErrorFromStr("find is None")).log()?;
+            .ok_or_else(|| Error::ErrorFromStr("find is None"))
+            .log(pos!())?;
         Ok(segment.text.to_string())
     } else {
         // process the file
         println!("  {YELLOW}Read file: {md_filename}{RESET}");
-        let md_text_content = std::fs::read_to_string(md_filename).log()?;
+        let md_text_content = std::fs::read_to_string(md_filename).log(pos!())?;
 
         // check if file have CRLF instead of LF and show error
         if md_text_content.contains("\r\n") {
@@ -198,7 +218,12 @@ fn get_md_segments_using_cache(cache: &mut Vec<MdSegment>, md_filename: &str, ma
             cache.push(MdSegment {
                 md_filename: md_filename.to_owned(),
                 marker_name: cap[1].to_owned(),
-                pos_start: cap.get(0).ok_or_else(|| Error::ErrorFromStr("cap get 0 is None")).log()?.end() + 1,
+                pos_start: cap
+                    .get(0)
+                    .ok_or_else(|| Error::ErrorFromStr("cap get 0 is None"))
+                    .log(pos!())?
+                    .end()
+                    + 1,
                 pos_end: 0,
                 text: String::new(),
             });
@@ -208,8 +233,13 @@ fn get_md_segments_using_cache(cache: &mut Vec<MdSegment>, md_filename: &str, ma
             let segment = cache
                 .iter_mut()
                 .find(|m| m.md_filename == md_filename && m.marker_name == cap[1])
-                .ok_or_else(|| Error::ErrorFromStr("find is None")).log()?;
-            segment.pos_end = cap.get(0).ok_or_else(|| Error::ErrorFromStr("cap get 0 is None")).log()?.start();
+                .ok_or_else(|| Error::ErrorFromStr("find is None"))
+                .log(pos!())?;
+            segment.pos_end = cap
+                .get(0)
+                .ok_or_else(|| Error::ErrorFromStr("cap get 0 is None"))
+                .log(pos!())?
+                .start();
             // the segment begins with a comment, so don't include the next empty row
             let mut last_line_was_comment = true;
             for line in md_text_content[segment.pos_start..segment.pos_end].lines() {
@@ -234,7 +264,8 @@ fn get_md_segments_using_cache(cache: &mut Vec<MdSegment>, md_filename: &str, ma
         let segment = cache
             .iter()
             .find(|m| m.md_filename == md_filename && m.marker_name == marker_name)
-            .ok_or_else(|| Error::ErrorFromStr("find is None")).log()?;
+            .ok_or_else(|| Error::ErrorFromStr("find is None"))
+            .log(pos!())?;
         //return
         Ok(segment.text.to_string())
     }

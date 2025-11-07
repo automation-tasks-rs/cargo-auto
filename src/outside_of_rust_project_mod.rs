@@ -5,7 +5,7 @@
 // region: use statements
 // endregion
 
-use crate::ResultLogError;
+use crate::{pos, ResultLogError};
 #[allow(unused)]
 use crate::{GREEN, RED, RESET, YELLOW};
 
@@ -23,7 +23,7 @@ pub fn parse_args(args: &mut std::env::Args) -> anyhow::Result<()> {
         Some(task) => {
             if task != "auto" {
                 // when calling as `cargo auto build`
-                match_first_argument(&task, args).log()?;
+                match_first_argument(&task, args).log(pos!())?;
             } else {
                 // when calling as `cargo-auto build`
                 let arg_2 = args.next();
@@ -64,21 +64,21 @@ fn match_first_argument(task: &str, args: &mut std::env::Args) -> anyhow::Result
     } else if task == "new_cli" {
         let rust_project_name = args.next();
         let github_owner_or_organization = args.next();
-        crate::template_new_cli_mod::new_cli(rust_project_name, github_owner_or_organization).log()?;
+        crate::template_new_cli_mod::new_cli(rust_project_name, github_owner_or_organization).log(pos!())?;
     } else if task == "new_wasm" {
         let rust_project_name = args.next();
         let github_owner_or_organization = args.next();
         let web_server_domain = args.next();
         let server_username = args.next();
         crate::template_new_wasm_mod::new_wasm(rust_project_name, github_owner_or_organization, web_server_domain, server_username)
-            .log()?;
+            .log(pos!())?;
     } else if task == "new_pwa_wasm" {
         let rust_project_name = args.next();
         let github_owner_or_organization = args.next();
         let web_server_domain = args.next();
         let server_username = args.next();
         crate::template_new_pwa_wasm_mod::new_pwa_wasm(rust_project_name, github_owner_or_organization, web_server_domain, server_username)
-            .log()?;
+            .log(pos!())?;
     } else {
         print_help_from_cargo_auto();
     }
