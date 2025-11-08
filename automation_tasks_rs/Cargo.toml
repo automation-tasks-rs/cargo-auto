@@ -14,41 +14,41 @@ publish = false
 # the minimum version and allow automatic SemVer compatible updates up to a MAJOR increment! Always check the true version with `cargo tree`!
 
 tracing = "0.1.41"
-tracing-subscriber = { version = "0.3.19", features = ["env-filter", "std", "fmt", "time"] }
+tracing-subscriber = { version = "0.3.20", features = ["env-filter", "std", "fmt", "time"] }
 tracing-appender="0.2.3"
-time = {version="0.3.39", features=["macros","local-offset"]}
+time = {version="0.3.44", features=["macros","local-offset"]}
 
-anyhow="1.0.97"
+anyhow="1.0.100"
 reqwest={version="=0.12.24", features=["json","stream", "blocking"]}
-serde ={ version= "1.0.219", features=["std","derive"]}
-serde_json = "1.0.140"
+serde ={ version= "1.0.228", features=["std","derive"]}
+serde_json = "1.0.145"
 ssh-key = { version = "0.6.7", features = [ "rsa", "encryption","ed25519"] }
 ssh_agent_client_rs_git_bash = "0.0.19"
 rsa = { version = "0.9.8", features = ["sha2","pem"] }
-zeroize = {version="1.8.1", features=["derive"]}
+zeroize = {version="1.8.2", features=["derive"]}
 aes-gcm = "0.10.3"
-base64ct = {version = "1.7.3", features = ["alloc"] }
+base64ct = {version = "1.8.0", features = ["alloc"] }
 secrecy = "0.10.3"
-chrono ={version="0.4.40", default-features=false, features=["now"]}
-tokio-util = {version = "0.7.14", features = ["codec"]}
-tokio = {version = "1.44.1", features = ["rt","rt-multi-thread","fs"]}
-url="2.5.4"
+chrono ={version="0.4.42", default-features=false, features=["now"]}
+tokio-util = {version = "0.7.17", features = ["codec"]}
+tokio = {version = "1.48.0", features = ["rt","rt-multi-thread","fs"]}
+url="2.5.7"
 inquire="0.9.1"
-home="0.5.11"
+home="0.5.12"
 crossplatform_path="4.0.1"
 
 lazy_static="1.5.0"
-regex = "1.11.1"
-glob = "0.3.2"
+regex = "1.12.2"
+glob = "0.3.3"
 reader_for_microxml="2.0.1"
-filetime = "0.2.25"
-cargo_toml = "0.22.0"
-camino = "1.1.9"
+filetime = "0.2.26"
+cargo_toml = "0.22.3"
+camino = "1.2.1"
 thiserror="2.0.17"
-semver="1.0.26"
-serde_derive = "1.0.218"
-sha2 = "0.10.8"
-data-encoding = "2.8.0"
+semver="1.0.27"
+serde_derive = "1.0.228"
+sha2 = "0.10.9"
+data-encoding = "2.9.0"
 deflate = "1.0.0"
 radix64 = "0.6.2"
 urlencoding = "2.1.3"

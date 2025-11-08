@@ -1,7 +1,7 @@
 [package]
 name = "cargo-auto"
 # binary executable does not need to be SemVer, because nobody depends on it
-version = "2025.1108.909"
+version = "2025.1108.929"
 authors = ["bestia.dev"]
 homepage = "https://bestia.dev"
 edition = "2021"
@@ -27,30 +27,30 @@ include = [
 # the minimum version and allow automatic SemVer compatible updates up to a MAJOR increment! Always check the true version with `cargo tree`!
 [dependencies]
 lazy_static="1.5.0"
-base64ct = {version = "1.7.1", features = ["alloc"] }
-json5 = "=0.4.1"
-image = "0.25.5"
+base64ct = {version = "1.8.0", features = ["alloc"] }
+json5 = "0.4.1"
+image = "0.25.8"
 ico = "0.4.0"
-sha2 = "0.10.8"
-data-encoding = "2.8.0"
+sha2 = "0.10.9"
+data-encoding = "2.9.0"
 thiserror="2.0.17"
-anyhow="1.0.97"
+anyhow="1.0.100"
 crossplatform_path = "4.0.1"
 # crossplatform_path = { path = "../crossplatform_path" }
-serde = { version = "1.0.219", features = ["derive"] }
-serde_derive = "1.0.219"
-serde_json = "1.0.140"
-reqwest = { version = "=0.12.24", features = ["blocking"] }
+serde = { version = "1.0.228", features = ["derive"] }
+serde_derive = "1.0.228"
+serde_json = "1.0.145"
+reqwest = { version = "0.12.24", features = ["blocking"] }
 
-flate2 = "1.1.1"
+flate2 = "1.1.5"
 tar = "0.4.44"
-walkdir = "=2.5.0"
+walkdir = "2.5.0"
 
 tracing = {version="0.1.41", features=["attributes" ]}
-tracing-subscriber = { version = "0.3.19", features = ["env-filter", "std", "fmt", "time","ansi"] }
+tracing-subscriber = { version = "0.3.20", features = ["env-filter", "std", "fmt", "time","ansi"] }
 tracing-appender="0.2.3"
-time = {version="0.3.40", features=["macros","local-offset"]}
-chrono ={version="0.4.40", default-features=false, features=["now"]}
+time = {version="0.3.44", features=["macros","local-offset"]}
+chrono ={version="0.4.42", default-features=false, features=["now"]}
 
 # The library enables the code to be used by other binary executables.
 [lib]
