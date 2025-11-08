@@ -2,7 +2,7 @@
 
 //! Functions for various utilities.
 
-/// macro to get source code position to log errors before propagation
+/// Macro to get source code position to log errors before propagation.
 ///
 /// example:  read_to_string("x").log(pos!())?;
 #[macro_export]
@@ -22,7 +22,7 @@ pub trait ResultLogError<T, E>: Sized {
 /// Implements LogError for anyhow::Result.
 impl<T, E: std::fmt::Debug> ResultLogError<T, E> for core::result::Result<T, E> {
     fn log(self, file_line_column: &str) -> Self {
-        self.inspect_err(|err| tracing::error!("{} {:?}", file_line_column, err))
+        self.inspect_err(|err| tracing::debug!("{} {:?}", file_line_column, err))
     }
 }
 

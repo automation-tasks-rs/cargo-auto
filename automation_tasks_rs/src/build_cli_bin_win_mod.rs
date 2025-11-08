@@ -6,8 +6,8 @@
 //! cargo auto update_automation_tasks_rs
 //! If you want to customize it, copy the code into main.rs and modify it there.
 
-use crate::generic_functions_mod::pos;
-use crate::{cargo_auto_lib as cl, generic_functions_mod::ResultLogError};
+use crate::utils_mod::pos;
+use crate::{cargo_auto_lib as cl, utils_mod::ResultLogError};
 
 use crate::cargo_auto_lib::CargoTomlPublicApiMethods;
 #[allow(unused_imports)]

@@ -4,7 +4,7 @@
 
 use crate::cargo_auto_lib::error_mod::{Error, Result};
 use crate::cargo_auto_lib::public_api_mod::{RED, RESET};
-use crate::generic_functions_mod::{pos, ResultLogError};
+use crate::utils_mod::{pos, ResultLogError};
 
 // region: auto_md_to_doc_comments include doc_comments/exit_if_not_run_in_rust_project_root_directory.md A ///
 /// Check if the code was run inside the Rust project root directory.  

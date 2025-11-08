@@ -8,7 +8,7 @@
 
 use crate::cargo_auto_lib::error_mod::{Error, Result};
 use crate::cargo_auto_lib::public_api_mod::{GREEN, RED, RESET, YELLOW};
-use crate::generic_functions_mod::{pos, ResultLogError};
+use crate::utils_mod::{pos, ResultLogError};
 use glob::glob;
 use lazy_static::lazy_static;
 use regex::*;

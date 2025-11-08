@@ -7,7 +7,7 @@ use crate::cargo_auto_lib::public_api_mod::{RESET, YELLOW};
 
 // this trait must be in scope to use these methods of CargoToml
 use crate::cargo_auto_lib::public_api_mod::CargoTomlPublicApiMethods;
-use crate::generic_functions_mod::{pos, ResultLogError};
+use crate::utils_mod::{pos, ResultLogError};
 
 /// Increment the version in Cargo.toml.
 ///

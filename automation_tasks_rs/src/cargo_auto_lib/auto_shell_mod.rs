@@ -10,7 +10,7 @@ use crate::{
         public_api_mod::{RED, RESET, YELLOW},
         Result,
     },
-    generic_functions_mod::{pos, ResultLogError},
+    utils_mod::{pos, ResultLogError},
 };
 
 /// Similar to std::process::Output, but with i32 and Strings for easier work.

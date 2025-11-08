@@ -10,7 +10,7 @@ use crate::cargo_auto_github_api_mod as cgl;
 use crate::cargo_auto_lib as cl;
 use crate::encrypt_decrypt_with_ssh_key_mod as ende;
 // Bring trait for Result into scope.
-use crate::generic_functions_mod::ResultLogError;
+use crate::utils_mod::ResultLogError;
 
 use crate::cargo_auto_lib::CargoTomlPublicApiMethods;
 use crate::cargo_auto_lib::ShellCommandLimitedDoubleQuotesSanitizerTrait;

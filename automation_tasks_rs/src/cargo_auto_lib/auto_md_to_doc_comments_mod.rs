@@ -12,7 +12,7 @@ use crate::{
         public_api_mod::{RED, RESET, YELLOW},
         Result,
     },
-    generic_functions_mod::{pos, ResultLogError},
+    utils_mod::{pos, ResultLogError},
 };
 
 /// Markers found in rs files

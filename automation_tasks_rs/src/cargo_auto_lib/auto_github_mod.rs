@@ -5,7 +5,7 @@
 // bring trait into scope
 use crate::cargo_auto_lib::error_mod::{Error, Result};
 use crate::cargo_auto_lib::{CargoTomlPublicApiMethods, ShellCommandLimitedDoubleQuotesSanitizerTrait};
-use crate::generic_functions_mod::{pos, ResultLogError};
+use crate::utils_mod::{pos, ResultLogError};
 /// File contains releases changelog
 pub const RELEASES_MD: &str = "RELEASES.md";
 

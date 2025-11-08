@@ -1,6 +1,6 @@
-// generic_functions_mod.rs
+// utils_mod.rs
 
-//! Generic functions that does not usually change.
+//! Helper functions that does not usually change.
 //!
 //! Don't change this code, so it can be updated regularly with
 //! cargo auto update_automation_tasks_rs
@@ -72,6 +72,6 @@ pub trait ResultLogError<T, E>: Sized {
 /// Implements LogError for anyhow::Result.
 impl<T, E: std::fmt::Debug> ResultLogError<T, E> for core::result::Result<T, E> {
     fn log(self, file_line_column: &str) -> Self {
-        self.inspect_err(|err| tracing::error!("automation_tasks_rs/{} {:?}", file_line_column, err))
+        self.inspect_err(|err| tracing::debug!("automation_tasks_rs/{} {:?}", file_line_column, err))
     }
 }

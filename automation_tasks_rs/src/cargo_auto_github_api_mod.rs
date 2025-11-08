@@ -8,8 +8,8 @@
 
 #![allow(dead_code)]
 use crate::cargo_auto_lib as cl;
-use crate::generic_functions_mod::pos;
-use crate::generic_functions_mod::ResultLogError;
+use crate::utils_mod::pos;
+use crate::utils_mod::ResultLogError;
 use anyhow::Context;
 // traits must be in scope (Rust strangeness)
 use cl::CargoTomlPublicApiMethods;

@@ -11,7 +11,7 @@ mod cargo_auto_github_api_mod;
 pub mod cargo_auto_lib;
 mod encrypt_decrypt_with_ssh_key_mod;
 #[macro_use]
-mod generic_functions_mod;
+mod utils_mod;
 mod tasks_mod;
 
 pub use cargo_auto_lib as cl;
@@ -21,11 +21,11 @@ use crossplatform_path::CrossPathBuf;
 
 // use crate::cargo_auto_github_api_mod as cgl;
 use crate::encrypt_decrypt_with_ssh_key_mod as ende;
-use crate::generic_functions_mod as gn;
+use crate::utils_mod as gn;
 use crate::tasks_mod as ts;
 
 // Bring trait for Result into scope.
-use crate::generic_functions_mod::ResultLogError;
+use crate::utils_mod::ResultLogError;
 
 pub use cl::{BLUE, GREEN, RED, RESET, YELLOW};
 
@@ -328,7 +328,9 @@ fn task_publish_to_crates_io() -> anyhow::Result<()> {
 "#
         );
     }
-    if CrossPathBuf::new("src/main.rs").log(pos!())?.exists() || CrossPathBuf::new(&format!("src/bin/{package_name}/main.rs")).log(pos!())?.exists() {
+    if CrossPathBuf::new("src/main.rs").log(pos!())?.exists()
+        || CrossPathBuf::new(&format!("src/bin/{package_name}/main.rs")).log(pos!())?.exists()
+    {
         println!(
             r#"
   {YELLOW}Install the program and check how it works.{RESET}

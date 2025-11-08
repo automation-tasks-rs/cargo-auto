@@ -6,7 +6,7 @@
 
 use crate::{
     cargo_auto_lib::error_mod::Result,
-    generic_functions_mod::{pos, ResultLogError},
+    utils_mod::{pos, ResultLogError},
 };
 
 // endregion: use statements

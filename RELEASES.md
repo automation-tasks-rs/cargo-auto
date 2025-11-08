@@ -10,6 +10,8 @@ The TODO section is part of the [README.md](https://github.com/automation-tasks-
 
 ## Unreleased
 
+- utils, debug
+
 ## Version 2025.1107.19 (2025-11-07)
 
 - .log(pos!())?

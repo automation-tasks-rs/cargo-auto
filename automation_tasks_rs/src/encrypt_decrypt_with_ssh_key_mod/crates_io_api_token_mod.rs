@@ -37,7 +37,7 @@
 //! aes-gcm = "0.10.3"
 //! base64ct = {version = "1.6.0", features = ["alloc"] }
 //! secrecy = "0.10.3"
-//! crossplatform_path="2.0.1"
+//! crossplatform_path="4.0.1"
 //! ```
 //!
 
@@ -45,7 +45,7 @@
 
 use crate::{
     cargo_auto_lib::ShellCommandLimitedDoubleQuotesSanitizerTrait,
-    generic_functions_mod::{pos, ResultLogError},
+    utils_mod::{pos, ResultLogError},
 };
 use anyhow::Context;
 use crossplatform_path::CrossPathBuf;

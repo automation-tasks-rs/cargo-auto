@@ -65,7 +65,7 @@
 //! base64ct = {version = "1.6.0", features = ["alloc"] }
 //! secrecy = "0.10.3"
 //! chrono ="0.4.39"
-//! crossplatform_path="2.0.1"
+//! crossplatform_path="4.0.1"
 //! ```
 //!
 
@@ -77,7 +77,7 @@ use secrecy::{ExposeSecret, SecretBox, SecretString};
 use super::encrypt_decrypt_mod as ende;
 use crate::{
     cargo_auto_lib::{BLUE, GREEN, RED, RESET, YELLOW},
-    generic_functions_mod::{pos, ResultLogError},
+    utils_mod::{pos, ResultLogError},
 };
 
 #[derive(serde::Deserialize, serde::Serialize)]

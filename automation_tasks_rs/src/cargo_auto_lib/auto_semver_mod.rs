@@ -7,7 +7,7 @@ use crate::cargo_auto_lib::{
     error_mod::{Error, Result},
     utils_mod::*,
 };
-use crate::generic_functions_mod::{pos, ResultLogError};
+use crate::utils_mod::{pos, ResultLogError};
 
 /// Enum for version parts: Minor or Patch
 enum VersionPart {

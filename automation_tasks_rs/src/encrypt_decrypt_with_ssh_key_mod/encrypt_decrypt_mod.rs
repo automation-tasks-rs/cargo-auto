@@ -8,7 +8,7 @@
 
 use crate::{
     cargo_auto_lib::{BLUE, GREEN, RED, RESET, YELLOW},
-    generic_functions_mod::{pos, ResultLogError},
+    utils_mod::{pos, ResultLogError},
 };
 use crossplatform_path::CrossPathBuf;
 use secrecy::{ExposeSecret, ExposeSecretMut, SecretBox, SecretString};

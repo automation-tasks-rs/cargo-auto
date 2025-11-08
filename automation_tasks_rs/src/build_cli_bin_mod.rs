@@ -10,8 +10,8 @@ use crate::cargo_auto_lib as cl;
 
 use crate::cargo_auto_lib::CargoTomlPublicApiMethods;
 use crate::cargo_auto_lib::ShellCommandLimitedDoubleQuotesSanitizerTrait;
-use crate::generic_functions_mod::pos;
-use crate::generic_functions_mod::ResultLogError;
+use crate::utils_mod::pos;
+use crate::utils_mod::ResultLogError;
 #[allow(unused_imports)]
 use cl::{BLUE, GREEN, RED, RESET, YELLOW};
 

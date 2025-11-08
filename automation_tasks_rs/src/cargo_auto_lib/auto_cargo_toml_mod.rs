@@ -4,7 +4,7 @@
 
 use crate::{
     cargo_auto_lib::error_mod::{Error, Result},
-    generic_functions_mod::{pos, ResultLogError},
+    utils_mod::{pos, ResultLogError},
 };
 use lazy_static::lazy_static;
 use regex::*;

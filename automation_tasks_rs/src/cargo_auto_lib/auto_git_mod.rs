@@ -4,7 +4,7 @@
 
 use crate::cargo_auto_lib::error_mod::{Error, Result};
 use crate::cargo_auto_lib::public_api_mod::{BLUE, RED, RESET};
-use crate::generic_functions_mod::{pos, ResultLogError};
+use crate::utils_mod::{pos, ResultLogError};
 
 /// Does git have settings for remote.
 pub fn git_has_remote() -> Result<bool> {

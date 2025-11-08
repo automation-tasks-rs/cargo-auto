@@ -5,7 +5,7 @@
 //region: use statements
 use crate::cargo_auto_lib::error_mod::{Error, Result};
 use crate::cargo_auto_lib::public_api_mod::{RED, RESET, YELLOW};
-use crate::generic_functions_mod::{pos, ResultLogError};
+use crate::utils_mod::{pos, ResultLogError};
 use filetime::FileTime;
 
 //endregion

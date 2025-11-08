@@ -7,7 +7,7 @@ use base64ct::Encoding;
 
 use crate::cargo_auto_lib::error_mod::{Error, Result};
 use crate::cargo_auto_lib::public_api_mod::{RESET, YELLOW};
-use crate::generic_functions_mod::{pos, ResultLogError};
+use crate::utils_mod::{pos, ResultLogError};
 
 // region: auto_md_to_doc_comments include doc_comments/copy_folder_files_into_module.md A ///
 /// Copy all files from the folder into a module as strings (static &str).

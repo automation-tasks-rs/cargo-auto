@@ -5,7 +5,7 @@
 use crate::cargo_auto_lib::error_mod::Error;
 use crate::cargo_auto_lib::public_api_mod::{RED, RESET, YELLOW};
 use crate::cargo_auto_lib::Result;
-use crate::generic_functions_mod::{pos, ResultLogError};
+use crate::utils_mod::{pos, ResultLogError};
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 
